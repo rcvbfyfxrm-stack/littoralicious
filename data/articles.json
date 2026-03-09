@@ -1,0 +1,165 @@
+{
+  "dispatches": [],
+  "articles": [
+    {
+      "slug": "provisioning-miami-ftl",
+      "title": "Provisioning Miami & Fort Lauderdale: The Complete Playbook",
+      "date": "2026-03-05",
+      "category": "shore-larder",
+      "tags": ["provisioning", "miami", "fort-lauderdale", "suppliers", "yacht-specific", "caribbean"],
+      "read_time": 12,
+      "featured": false
+    },
+    {
+      "slug": "the-fat-index",
+      "title": "The Fat Index: Every Cooking Fat Ranked by Science",
+      "date": "2026-03-01",
+      "category": "shore-larder",
+      "tags": ["fats", "nutrition", "food-science", "ingredients", "science", "omega-3", "cooking-chemistry"],
+      "read_time": 15,
+      "featured": false
+    },
+    {
+      "slug": "the-salt-index",
+      "title": "The Salt Index: Every Culinary Salt Ranked by Science",
+      "date": "2026-03-01",
+      "category": "shore-larder",
+      "tags": ["salt", "seasoning", "food-science", "ingredients", "science", "mineral-content"],
+      "read_time": 14,
+      "featured": false
+    },
+    {
+      "slug": "the-acid-index",
+      "title": "The Acid Index: Every Culinary Acid Ranked by Science",
+      "date": "2026-03-01",
+      "category": "shore-larder",
+      "tags": ["acid", "vinegar", "citrus", "food-science", "ingredients", "science", "flavour-balance"],
+      "read_time": 14,
+      "featured": false
+    },
+    {
+      "slug": "sea-urchin-seasonal-guide",
+      "title": "Sea Urchin: Seasonal Guide, Compound Profile, and Sourcing",
+      "date": "2026-02-05",
+      "category": "shore-larder",
+      "tags": ["sea-urchin", "seasonal", "sourcing", "compound-profile", "ingredients"],
+      "read_time": 4,
+      "featured": false
+    },
+    {
+      "slug": "tech-in-the-galley",
+      "title": "Technology in the Galley: AI Is Your New Sous Chef",
+      "date": "2026-03-04",
+      "category": "the-method",
+      "tags": ["AI", "technology", "claude-code", "menu-agent", "galley-tools", "automation"],
+      "read_time": 10,
+      "featured": false
+    },
+    {
+      "slug": "sea-urchin-beurre-blanc",
+      "title": "Sea Urchin Beurre Blanc: Roe as Natural Emulsifier",
+      "date": "2026-02-05",
+      "category": "the-method",
+      "tags": ["sea-urchin", "technique", "emulsion", "beurre-blanc", "sauce"],
+      "read_time": 4,
+      "featured": false
+    },
+    {
+      "slug": "cooked-fire-made-us-human",
+      "title": "Cooked: How Fire Made Us Human and Why the Person Holding the Pan Still Matters",
+      "date": "2026-03-01",
+      "category": "the-evidence",
+      "tags": ["anthropology", "food-science", "cooking-chemistry", "evolution", "science"],
+      "read_time": 12,
+      "featured": true
+    },
+    {
+      "slug": "silver-lining-protocol",
+      "title": "The Silver Lining Protocol: A Science-Backed Survival Guide for Galley Sanity",
+      "date": "2026-02-02",
+      "category": "the-evidence",
+      "tags": ["mental-health", "resilience", "crew-welfare", "yacht-specific", "psychology"],
+      "read_time": 15,
+      "featured": true
+    },
+    {
+      "slug": "medicinal-plants-your-galley",
+      "title": "The Pharmacy in Your Spice Rack: What Science Actually Knows About Medicinal Plants in Food",
+      "date": "2026-02-02",
+      "category": "the-evidence",
+      "tags": ["spices", "phytochemistry", "health", "ingredients", "science"],
+      "read_time": 14,
+      "featured": true
+    },
+    {
+      "slug": "umami-western-cuisine",
+      "title": "Umami in Western Cuisine: Fermentation as the Universal Glutamate Engine",
+      "date": "2026-02-05",
+      "category": "the-evidence",
+      "tags": ["umami", "fermentation", "glutamate", "food-science"],
+      "read_time": 4,
+      "featured": false
+    },
+    {
+      "slug": "spaghetti-ricci-di-mare",
+      "title": "Spaghetti ai Ricci di Mare: Mondello, Sicily",
+      "date": "2026-02-05",
+      "category": "littoral-heritage",
+      "tags": ["sea-urchin", "sicily", "pasta", "tradition"],
+      "read_time": 4,
+      "featured": false
+    },
+    {
+      "slug": "myojaku-three-stars",
+      "title": "Myojaku Earns Three Stars and STCW Anti-Harassment Training Goes Mandatory",
+      "date": "2026-02-05",
+      "category": "the-bridge",
+      "tags": ["michelin", "umami", "STCW", "training", "industry"],
+      "read_time": 4,
+      "featured": false
+    }
+  ],
+  "categories": {
+    "shore-larder": {
+      "name": "Shore Larder",
+      "description": "Seasonal ingredients, sourcing intel, pantry guides, and port provisioning",
+      "slug": "shore-larder"
+    },
+    "the-method": {
+      "name": "The Method",
+      "description": "Techniques, recipes, efficiency protocols, and equipment",
+      "slug": "the-method"
+    },
+    "littoral-heritage": {
+      "name": "Littoral Heritage",
+      "description": "Coastal traditions, cultural preservation, and chef ideas",
+      "slug": "littoral-heritage"
+    },
+    "the-evidence": {
+      "name": "The Evidence",
+      "description": "Peer-reviewed science, research briefs, and nutrition data",
+      "slug": "the-evidence"
+    },
+    "the-bridge": {
+      "name": "The Bridge",
+      "description": "World chef news, yacht industry intelligence, and events",
+      "slug": "the-bridge"
+    }
+  },
+  "tags": [
+    "mental-health", "resilience", "crew-welfare", "yacht-specific", "psychology",
+    "spices", "phytochemistry", "health", "ingredients", "science",
+    "equipment", "review", "technique",
+    "anthropology", "food-science", "cooking-chemistry", "evolution",
+    "fats", "nutrition", "omega-3",
+    "salt", "seasoning", "mineral-content",
+    "acid", "vinegar", "citrus", "flavour-balance",
+    "sea-urchin", "seasonal", "sourcing", "compound-profile",
+    "emulsion", "beurre-blanc", "sauce",
+    "AI", "technology", "claude-code", "menu-agent", "galley-tools", "automation",
+    "provisioning", "miami", "fort-lauderdale", "suppliers", "caribbean",
+    "umami", "fermentation", "glutamate",
+    "sicily", "pasta", "tradition",
+    "michelin", "STCW", "training", "industry"
+  ]
+}
