@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Monthly Brief — Littoralicious newsletter. Seasonal intelligence, technique, science, and industry news for yacht chefs.">
+
+    <title>The Monthly Brief — LITTORALICIOUS</title>
+
+    <meta property="og:title" content="The Monthly Brief — LITTORALICIOUS">
+    <meta property="og:description" content="Seasonal intelligence, technique, science, and industry news for yacht chefs. One free email per month.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.littoralicious.com/newsletter.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <style>
+        /* ======================================================
+           NEWSLETTER PAGE — All styles scoped to this page only
+           ====================================================== */
+
+        /* --- Header --- */
+        .newsletter-header {
+            padding: var(--space-16) 0 var(--space-12);
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .newsletter-header__category {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-sea);
+            margin-bottom: var(--space-4);
+        }
+
+        .newsletter-header__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-3xl);
+            font-weight: 400;
+            line-height: var(--leading-tight);
+            letter-spacing: -0.02em;
+            margin-bottom: var(--space-6);
+        }
+
+        .newsletter-header__intro {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            line-height: var(--leading-relaxed);
+            color: var(--color-muted);
+            max-width: var(--max-width-prose);
+            margin: 0 auto;
+        }
+
+        /* --- Content Preview Grid --- */
+        .newsletter-preview {
+            padding: var(--space-16) 0;
+        }
+
+        .newsletter-preview__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .newsletter-preview__card {
+            border: 1px solid var(--color-border);
+            padding: var(--space-6);
+        }
+
+        .newsletter-preview__label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-sea);
+            font-weight: 600;
+        }
+
+        .newsletter-preview__heading {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            font-weight: 400;
+            margin: var(--space-3) 0;
+        }
+
+        .newsletter-preview__text {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            line-height: var(--leading-normal);
+        }
+
+        /* --- Signup Form --- */
+        .newsletter-signup {
+            padding: var(--space-16) 0;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .newsletter-signup__heading {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            margin-bottom: var(--space-3);
+        }
+
+        .newsletter-signup__subtext {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            margin-bottom: var(--space-8);
+        }
+
+        .newsletter-signup__form {
+            display: flex;
+            gap: var(--space-3);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-signup__form input[type="email"] {
+            border: 1px solid var(--color-border);
+            padding: var(--space-3) var(--space-4);
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            width: 100%;
+        }
+
+        .newsletter-signup__form input[type="email"]:focus {
+            border-color: var(--color-sea);
+            outline: none;
+        }
+
+        .newsletter-signup__form button[type="submit"] {
+            background: var(--color-sea);
+            color: var(--color-paper);
+            border: 2px solid var(--color-sea);
+            padding: var(--space-3) var(--space-6);
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background var(--transition-fast), color var(--transition-fast);
+        }
+
+        .newsletter-signup__form button[type="submit"]:hover {
+            background: transparent;
+            color: var(--color-sea);
+        }
+
+        .newsletter-signup__status {
+            margin-top: var(--space-4);
+            font-size: var(--text-sm);
+        }
+
+        .newsletter-signup__status--success {
+            color: var(--color-sea);
+        }
+
+        .newsletter-signup__status--error {
+            color: #b91c1c;
+        }
+
+        /* Dark mode form overrides */
+        [data-theme="dark"] .newsletter-signup__form input[type="email"] {
+            background: var(--color-subtle);
+            color: var(--color-ink);
+            border-color: var(--color-salt);
+        }
+
+        /* --- Sample Issue Teaser --- */
+        .newsletter-sample {
+            padding: var(--space-16) 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .newsletter-sample__heading {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            margin-bottom: var(--space-3);
+        }
+
+        .newsletter-sample__subtext {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            margin-bottom: var(--space-8);
+        }
+
+        .newsletter-sample__issue {
+            background: var(--color-subtle);
+            border-left: 3px solid var(--color-sea);
+            padding: var(--space-6);
+        }
+
+        .newsletter-sample__issue-label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-sea);
+            margin-bottom: var(--space-2);
+        }
+
+        .newsletter-sample__issue-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            margin-bottom: var(--space-4);
+        }
+
+        .newsletter-sample__issue-thread {
+            font-size: var(--text-sm);
+            line-height: var(--leading-relaxed);
+            color: var(--color-muted);
+            margin-bottom: var(--space-6);
+        }
+
+        .newsletter-sample__toc {
+            list-style: none;
+            padding: 0;
+            font-size: var(--text-sm);
+        }
+
+        .newsletter-sample__toc li {
+            padding: var(--space-2) 0;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .newsletter-sample__toc li:last-child {
+            border-bottom: none;
+        }
+
+        .newsletter-sample__toc-section {
+            font-weight: 600;
+            color: var(--color-sea);
+        }
+
+        .newsletter-sample__toc-topic {
+            color: var(--color-ink);
+        }
+
+        /* --- Frequency Note --- */
+        .newsletter-frequency {
+            text-align: center;
+            padding: var(--space-8) 0;
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+        }
+
+        .newsletter-frequency strong {
+            color: var(--color-ink);
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .newsletter-signup__form {
+                flex-direction: column;
+            }
+
+            .newsletter-signup__form button[type="submit"] {
+                width: 100%;
+            }
+
+            .newsletter-sample__toc li {
+                flex-direction: column;
+                gap: var(--space-1);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
+                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="shore-larder.html">Shore Larder</a>
+                    <a href="the-method.html">The Method</a>
+                    <a href="littoral-heritage.html">Heritage</a>
+                    <a href="the-evidence.html">The Evidence</a>
+                    <a href="the-bridge.html">The Bridge</a>
+                    <a href="newsletter.html">Newsletter</a>
+                    <a href="connect.html" class="auth-nav-link">Sign In</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========== 1. HEADER ========== -->
+        <header class="newsletter-header">
+            <div class="container">
+                <span class="newsletter-header__category">Newsletter</span>
+                <h1 class="newsletter-header__title">The Monthly Brief</h1>
+                <p class="newsletter-header__intro">
+                    Learn five things every week about cooking and your industry. That's 260 things in a year &mdash; 260 techniques, ingredients, science facts, sourcing tips, and industry insights you didn't have before. One thread connecting what's in season, how to use it, why it works, where it came from, and what's happening around you. No filler, no sponsorships, no algorithms. Written for yacht chefs who cook with intention.
+                </p>
+            </div>
+        </header>
+
+        <!-- ========== 2. CONTENT PREVIEW GRID ========== -->
+        <section class="newsletter-preview">
+            <div class="container">
+                <div class="divider">
+                    <span class="divider__text">What You Get</span>
+                </div>
+
+                <div class="newsletter-preview__grid">
+
+                    <div class="newsletter-preview__card">
+                        <span class="newsletter-preview__label">Shore Larder</span>
+                        <h3 class="newsletter-preview__heading">Seasonal Intelligence</h3>
+                        <p class="newsletter-preview__text">
+                            What's peaking, where to source it, and what the compound profile looks like this month. Provisioning intel from ports we've actually used.
+                        </p>
+                    </div>
+
+                    <div class="newsletter-preview__card">
+                        <span class="newsletter-preview__label">The Method</span>
+                        <h3 class="newsletter-preview__heading">Technique &amp; Recipes</h3>
+                        <p class="newsletter-preview__text">
+                            One technique per issue, tested at sea. The science behind why it works and the adjustments for galley conditions.
+                        </p>
+                    </div>
+
+                    <div class="newsletter-preview__card">
+                        <span class="newsletter-preview__label">Littoral Heritage</span>
+                        <h3 class="newsletter-preview__heading">Coastal Traditions</h3>
+                        <p class="newsletter-preview__text">
+                            A regional dish, its origins, the cultural context, and how to serve it on board. The stories behind the food on the shore.
+                        </p>
+                    </div>
+
+                    <div class="newsletter-preview__card">
+                        <span class="newsletter-preview__label">The Evidence</span>
+                        <h3 class="newsletter-preview__heading">Science &amp; Nutrition</h3>
+                        <p class="newsletter-preview__text">
+                            One peer-reviewed paper, translated into galley-practical terms. What the research actually says, stripped of marketing.
+                        </p>
+                    </div>
+
+                    <div class="newsletter-preview__card">
+                        <span class="newsletter-preview__label">The Bridge</span>
+                        <h3 class="newsletter-preview__heading">Industry Intel</h3>
+                        <p class="newsletter-preview__text">
+                            Chef news, regulatory changes, events, and yacht industry intelligence. The command centre for what matters this month.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 3. SIGNUP FORM ========== -->
+        <section class="newsletter-signup">
+            <div class="container">
+                <h2 class="newsletter-signup__heading">Subscribe</h2>
+                <p class="newsletter-signup__subtext">Free. Monthly. No spam. Unsubscribe anytime.</p>
+                <form class="newsletter-signup__form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+>
+                    <input type="email" name="email" placeholder="your@email.com" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+                <div class="newsletter-signup__status" aria-live="polite"></div>
+            </div>
+        </section>
+
+        <!-- ========== 4. SAMPLE ISSUE TEASER ========== -->
+        <section class="newsletter-sample">
+            <div class="container">
+                <h2 class="newsletter-sample__heading">Sample Issue</h2>
+                <p class="newsletter-sample__subtext">From the Weekly Brief &mdash; February 5, 2026</p>
+
+                <div class="newsletter-sample__issue">
+                    <span class="newsletter-sample__issue-label">Issue 1 &middot; 11 min read</span>
+                    <h3 class="newsletter-sample__issue-title">Umami from the Rock</h3>
+                    <p class="newsletter-sample__issue-thread">
+                        Sea urchin season peaks this week in the Western Mediterranean. The gonads are at maximum fullness &mdash; protein, fat, carotenoids, free glutamic acid all at their pre-spawning ceiling. One compound ties the thread: free glutamic acid. The urchin has it. The Parmesan rind has it. The anchovy paste has it. The question isn't whether to use umami &mdash; it's whether to stack it or strip it. This issue offers both answers.
+                    </p>
+                    <ul class="newsletter-sample__toc">
+                        <li>
+                            <span class="newsletter-sample__toc-section">Shore Larder</span>
+                            <span class="newsletter-sample__toc-topic">Sea urchin &mdash; sourcing, compound profile, pairings</span>
+                        </li>
+                        <li>
+                            <span class="newsletter-sample__toc-section">The Method</span>
+                            <span class="newsletter-sample__toc-topic">Sea urchin beurre blanc &mdash; roe as natural emulsifier</span>
+                        </li>
+                        <li>
+                            <span class="newsletter-sample__toc-section">The Evidence</span>
+                            <span class="newsletter-sample__toc-topic">Umami in Western cuisine &mdash; fermentation as glutamate engine</span>
+                        </li>
+                        <li>
+                            <span class="newsletter-sample__toc-section">Heritage</span>
+                            <span class="newsletter-sample__toc-topic">Spaghetti ai ricci di mare &mdash; Mondello, Sicily</span>
+                        </li>
+                        <li>
+                            <span class="newsletter-sample__toc-section">The Bridge</span>
+                            <span class="newsletter-sample__toc-topic">Myojaku earns three stars &middot; STCW anti-harassment training</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 5. FREQUENCY NOTE ========== -->
+        <div class="newsletter-frequency">
+            <div class="container">
+                <p><strong>Once a month.</strong> First week. Straight to your inbox. That's it.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+>
+                    <label for="footer-email-newsletter">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-newsletter" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">
+                        For those who feed others with intention.
+                    </p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="shore-larder.html">Shore Larder</a></li>
+                            <li><a href="the-method.html">The Method</a></li>
+                            <li><a href="littoral-heritage.html">Heritage</a></li>
+                            <li><a href="the-evidence.html">The Evidence</a></li>
+                            <li><a href="the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">Manifesto</a></li>
+                            <li><a href="founder.html">Founder</a></li>
+                            <li><a href="newsletter.html">Newsletter</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    (function () {
+        document.querySelectorAll('.newsletter-form').forEach(function (form) {
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var emailInput = form.querySelector('input[name="email"]');
+                var email = emailInput ? emailInput.value.trim() : '';
+                if (!email) return;
+
+                var btn = form.querySelector('button[type="submit"]');
+                var origText = btn.textContent;
+                btn.textContent = 'Subscribing...';
+                btn.disabled = true;
+
+                var fd = new FormData();
+                fd.append('email', email);
+
+                fetch('https://buttondown.com/api/emails/embed-subscribe/littoralicious', {
+                    method: 'POST',
+                    body: fd
+                }).then(function () {
+                    // Show inline success
+                    var status = form.closest('.newsletter-signup, .footer__newsletter');
+                    var statusEl = status ? status.querySelector('.newsletter-signup__status') : null;
+                    if (statusEl) {
+                        statusEl.textContent = 'Subscribed! Check your inbox.';
+                        statusEl.className = 'newsletter-signup__status newsletter-signup__status--success';
+                    } else {
+                        btn.textContent = 'Subscribed!';
+                    }
+                    emailInput.value = '';
+                    setTimeout(function () {
+                        btn.textContent = origText;
+                        btn.disabled = false;
+                    }, 3000);
+                }).catch(function () {
+                    var status = form.closest('.newsletter-signup, .footer__newsletter');
+                    var statusEl = status ? status.querySelector('.newsletter-signup__status') : null;
+                    if (statusEl) {
+                        statusEl.textContent = 'Something went wrong. Try again.';
+                        statusEl.className = 'newsletter-signup__status newsletter-signup__status--error';
+                    }
+                    btn.textContent = origText;
+                    btn.disabled = false;
+                });
+            });
+        });
+    })();
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/auth.js"></script>
+</body>
+</html>

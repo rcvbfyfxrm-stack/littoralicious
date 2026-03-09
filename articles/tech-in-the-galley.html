@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI is the most powerful galley tool since the immersion circulator. Here's how to use it for menus, provisioning, guest preferences, and recipe development — with a ready-to-use menu agent you can copy into any AI system.">
+    <title>Technology in the Galley: AI Is Your New Sous Chef &mdash; LITTORALICIOUS</title>
+    <meta property="og:title" content="Technology in the Galley: AI Is Your New Sous Chef &mdash; LITTORALICIOUS">
+    <meta property="og:description" content="AI is the most powerful galley tool since the immersion circulator. Here's how to use it for menus, provisioning, guest preferences, and recipe development — with a ready-to-use menu agent you can copy into any AI system.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.littoralicious.com/articles/tech-in-the-galley.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
+
+    <style>
+        .copy-block {
+            position: relative;
+            background: var(--color-subtle, #f8f8f8);
+            border: 1px solid var(--color-border);
+            padding: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        .copy-block__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .copy-block__title {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-sea);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .copy-btn {
+            background: var(--color-sea);
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            font-size: var(--text-sm);
+            cursor: pointer;
+            font-family: var(--font-mono);
+            letter-spacing: 0.03em;
+        }
+        .copy-btn:hover { opacity: 0.85; }
+        .copy-btn.copied {
+            background: #2d6a4f;
+        }
+        .copy-block__content {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            color: var(--color-ink);
+        }
+        .copy-block__content.collapsed {
+            max-height: 200px;
+            overflow: hidden;
+        }
+        .copy-block__expand {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-2) 0 0;
+            margin-top: var(--space-2);
+            color: var(--color-sea);
+            font-size: var(--text-sm);
+            cursor: pointer;
+            text-align: center;
+        }
+        .download-prompt-btn {
+            display: inline-block;
+            background: var(--color-ink);
+            color: var(--color-paper);
+            padding: 10px 24px;
+            text-decoration: none;
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            letter-spacing: 0.03em;
+            margin: var(--space-2) var(--space-2) var(--space-2) 0;
+        }
+        .download-prompt-btn:hover { opacity: 0.85; }
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            background: var(--color-sea);
+            color: #fff;
+            font-weight: 700;
+            font-size: var(--text-sm);
+            margin-right: var(--space-2);
+        }
+        .platform-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        .platform-card {
+            padding: var(--space-4);
+            border: 1px solid var(--color-border);
+        }
+        .platform-card strong {
+            display: block;
+            margin-bottom: var(--space-1);
+        }
+        .platform-card p {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
+                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="../shore-larder.html">Shore Larder</a>
+                    <a href="../the-method.html" class="active">The Method</a>
+                    <a href="../littoral-heritage.html">Heritage</a>
+                    <a href="../the-evidence.html">The Evidence</a>
+                    <a href="../the-bridge.html">The Bridge</a>
+                    <a href="../newsletter.html">Newsletter</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article">
+            <header class="article__header container">
+                <div class="article__meta">
+                    <span class="article__category">The Method</span>
+                    <time class="article__date">March 5, 2026</time>
+                    <span class="article__reading-time">15 min read</span>
+                </div>
+                <h1 class="article__title">Technology in the Galley: AI Is Your New Sous Chef</h1>
+                <p class="article__lede">
+                    You don&rsquo;t need to be a programmer. You don&rsquo;t need to understand code. You just need to talk to it like you talk to your commis &mdash; tell it what you want, correct it when it&rsquo;s wrong, and let it handle the repetitive work. Here&rsquo;s the complete system, ready to copy.
+                </p>
+            </header>
+
+            <div class="article__content container" style="max-width: 65ch; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+
+                <!-- Table of Contents -->
+                <div class="article-toc">
+                    <p class="article-toc__title">In This Article</p>
+                    <ul>
+                        <li><a href="#why">Why This Matters for Yacht Chefs</a></li>
+                        <li><a href="#what">What AI Can Do in Your Galley</a></li>
+                        <li><a href="#examples">Real Menus, Real Prompts</a></li>
+                        <li><a href="#how">How to Get Started (3 Minutes)</a></li>
+                        <li><a href="#agent">The Menu Agent: Copy, Paste, Cook</a></li>
+                        <li><a href="#platforms">Where to Use It</a></li>
+                        <li><a href="#privacy">Privacy and Your Guests&rsquo; Data</a></li>
+                        <li><a href="#claude-code">Claude Code: The Power Tool</a></li>
+                        <li><a href="#pdf">From Prompt to Printed Menu in 2 Minutes</a></li>
+                        <li><a href="#tips">Tips from a Working Galley</a></li>
+                    </ul>
+                </div>
+
+                <!-- Section 1 -->
+                <h2 id="why">Why This Matters for Yacht Chefs</h2>
+
+                <p>
+                    You already work 16-hour days. You already juggle guest preferences, dietary restrictions, provisioning logistics, crew meals, and themed dinner parties &mdash; often simultaneously, often alone, often in a galley the size of a bathroom.
+                </p>
+
+                <p>
+                    AI does not replace your palate, your instinct, or your ability to read a room. What it does is handle the parts of your job that are administrative, repetitive, and time-consuming &mdash; so you can spend more time on the parts that actually require a chef.
+                </p>
+
+                <div class="note note--key">
+                    <p><strong>The principle:</strong> AI is a tool. Like a Thermomix or a Pacojet. It does what you tell it. It gets better the more precisely you instruct it. And like every tool in your galley, it&rsquo;s only as good as the person using it.</p>
+                </div>
+
+                <!-- Section 2 -->
+                <h2 id="what">What AI Can Do in Your Galley</h2>
+
+                <p><strong>Menu creation.</strong> Tell it the cuisine, the proteins you have, the guest preferences &mdash; and it builds a complete menu card with Cultural Touchstone naming, ingredient-first descriptions, and production-ready PDF output. In minutes, not hours.</p>
+
+                <p><strong>Guest preference management.</strong> Paste in WhatsApp messages, trip feedback, or preference sheets. The AI extracts every like, dislike, allergy, and dietary requirement &mdash; then cross-references them against every menu you create.</p>
+
+                <p><strong>Recipe development.</strong> &ldquo;Give me a branzino dish that works with the Italian theme, avoids onions, and uses what&rsquo;s in season in the Mediterranean in March.&rdquo; Done.</p>
+
+                <p><strong>Provisioning.</strong> &ldquo;I&rsquo;m arriving in Palma with 8 guests for 5 days. Build me a provision list for Mediterranean and Japanese themes.&rdquo; It knows the maths.</p>
+
+                <p><strong>Wine pairing.</strong> One wine per menu, from sustainable producers with real stories &mdash; not the obvious bottle, but the one that makes guests ask where you found it.</p>
+
+                <p><strong>Translation and cultural research.</strong> Hosting Greek guests? Ask for traditional dishes, proper pronunciation, and regional variations. The AI knows more cuisines than any single chef ever will.</p>
+
+                <!-- Section: Real Examples -->
+                <h2 id="examples">Real Menus, Real Prompts</h2>
+
+                <p>This is not theoretical. Here are real prompts from a working galley &mdash; and the kind of menus that came back in under two minutes.</p>
+
+                <h3>Crew Lunch: Make-Your-Own Deli</h3>
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Example prompt</span>
+                    </div>
+                    <div class="copy-block__content">"Crew lunch for 9. Make-your-own deli station. I have sourdough, rye, turkey, roast beef, Swiss cheese, cheddar. Keep it simple, filling, quick to set up. Add a soup."</div>
+                </div>
+                <p>The AI builds the full spread: bread options, proteins, cheeses, condiment bar, two salads, a soup. You adjust, confirm, done. Your crew gets variety. You spend 20 minutes instead of 40.</p>
+
+                <h3>Crew Lunch: Poke Bowl Bar</h3>
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Example prompt</span>
+                    </div>
+                    <div class="copy-block__content">"Crew poke bowl bar for 9. I have sushi-grade tuna, salmon, rice, edamame, avocado, mango. Build me the station with all the toppings and sauces."</div>
+                </div>
+                <p>Back comes a complete station: base options (sushi rice, brown rice, mixed greens), proteins, 8&ndash;10 toppings, three sauces with recipes. The kind of crew lunch that makes people actually say thank you.</p>
+
+                <h3>Guest Dinner: Nobu Style</h3>
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Example prompt</span>
+                    </div>
+                    <div class="copy-block__content">"Guests dinner, 8 pax, Nobu-inspired tasting menu. I have black cod, wagyu, yellowtail, uni. One guest is gluten-free. Elegant, not fussy."</div>
+                </div>
+                <p>The AI returns a 7-course tasting menu with a Cultural Touchstone name, each dish described ingredient-first, a gluten-free footnote only where needed, and a sake pairing suggestion. Print-ready in minutes.</p>
+
+                <h3>More Things You Can Ask</h3>
+                <ul>
+                    <li>&ldquo;Build me a Mediterranean family-style lunch. I have lamb, branzino, and lots of summer vegetables.&rdquo;</li>
+                    <li>&ldquo;Crew breakfast for 7, make-your-own a&ccedil;a&iacute; bowl station. What toppings should I prep?&rdquo;</li>
+                    <li>&ldquo;I&rsquo;m doing a BBQ for 12 guests tonight. American steakhouse theme. What cuts, what sides, what order?&rdquo;</li>
+                    <li>&ldquo;Convert last night&rsquo;s Italian dinner into a provision list for 5 days.&rdquo;</li>
+                    <li>&ldquo;Give me 5 Cultural Touchstone names for a Greek island sunset dinner.&rdquo;</li>
+                    <li>&ldquo;The guests loved the tuna tartare. Give me 3 variations I can rotate through the week.&rdquo;</li>
+                </ul>
+
+                <div class="note note--key">
+                    <p><strong>The pattern:</strong> Be specific about what you have, who you&rsquo;re feeding, and the style you want. The more context you give, the less you need to correct. Talk to it like a commis on day one &mdash; clear, direct, no ambiguity.</p>
+                </div>
+
+                <!-- Section 3 -->
+                <h2 id="how">How to Get Started (3 Minutes)</h2>
+
+                <p>You have two paths. Both work. Choose the one that fits how you think.</p>
+
+                <h3>Path A: The Browser (Easiest)</h3>
+
+                <p>No installation. No terminal. Just a browser.</p>
+
+                <p>
+                    <span class="step-number">1</span> Go to <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> (or <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a>, or <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>)<br>
+                    <span class="step-number">2</span> Create a free account (or subscribe for more power)<br>
+                    <span class="step-number">3</span> Copy the Menu Agent prompt from below<br>
+                    <span class="step-number">4</span> Paste it into the chat as your first message<br>
+                    <span class="step-number">5</span> Then talk to it: &ldquo;Guests dinner, Italian, I have branzino and lamb&rdquo;
+                </p>
+
+                <p>That&rsquo;s it. The AI now has your entire menu system loaded and will behave exactly like the instructions say &mdash; Cultural Touchstone names, ingredient-first, no operational noise on the card.</p>
+
+                <h3>Path B: Claude Code (More Powerful)</h3>
+
+                <p>If you want the AI to actually create files, generate PDFs, read your guest preference sheets, and manage your entire galley document system &mdash; Claude Code is the tool. It runs in your terminal and works directly with your files. See the <a href="#claude-code">Claude Code section</a> below.</p>
+
+                <!-- Section 4: The Agent -->
+                <h2 id="agent">The Menu Agent: Copy, Paste, Cook</h2>
+
+                <p>
+                    This is the complete menu system we use. It works in <strong>any AI platform</strong> &mdash; Claude, ChatGPT, Gemini, Copilot, Mistral, or any other LLM. Copy the entire prompt below, paste it as your first message in a new conversation, and the AI becomes your menu architect.
+                </p>
+
+                <div class="note note--action">
+                    <p><strong>How to use it:</strong> Copy the prompt below. Open any AI chat. Paste the entire thing as your first message. Then tell it what you want: &ldquo;Guests lunch, Thai theme, I have salmon and prawns.&rdquo; The AI handles the rest.</p>
+                </div>
+
+                <div style="margin: var(--space-6) 0;">
+                    <a class="download-prompt-btn" href="https://raw.githubusercontent.com/rcvbfyfxrm-stack/Littoralicious.com/main/data/menu-agent-v5.txt" target="_blank" rel="noopener">Download menu-agent-v5.txt</a>
+                    <a class="download-prompt-btn" style="background: var(--color-sea);" href="#agent-prompt" onclick="document.getElementById('agent-prompt').scrollIntoView({behavior:'smooth'}); return false;">View Below</a>
+                </div>
+
+                <div class="copy-block" id="agent-prompt">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Menu Agent v5.0 &mdash; Full Prompt</span>
+                        <button class="copy-btn" onclick="copyAgent(this)">Copy to Clipboard</button>
+                    </div>
+                    <div class="copy-block__content collapsed" id="agent-text">You are a luxury superyacht menu architect. Follow these rules exactly.
+
+GOLDEN RULES:
+- The menu card is sacred. NOTHING operational touches the printed card.
+- No date, day, "crew" or "guests" label on the card. No section headers like "Proteins" or "Vegetables". No service notes.
+- The card shows ONLY: Cultural Touchstone title, dishes flowing with thin dividers, and a sourcing footer.
+- The menu reads like a poem, not a grocery list.
+
+SERVICE FORMATS:
+- "Lunch" or "dinner" without specification = family style (proteins, vegetables, starch, salad)
+- "Tasting menu" = multi-course: canap&eacute;s, amuse-bouche, starter, fish, meat, pre-dessert, dessert, mignardises
+- "Plated" = 1 starter, 1 main, 1 dessert
+
+CULTURAL TOUCHSTONE NAMES:
+Every menu gets a Cultural Touchstone name &mdash; a short phrase that triggers a cultural memory.
+Examples: "Notte a Napoli", "Mediterranean White Night", "Tokyo Night Market", "Istanbul Kebap&ccedil;&imath;", "Noma Forest Kitchen"
+NEVER use generic names like "Italian Dinner" or "French Brunch".
+Formula: Place + Memory, Chef/Style, Pop Culture, or Place + Vibe.
+
+DISH ORDER (Family Style):
+1. Proteins first (meat, fish, poultry) &mdash; always 2 contrasting options
+2. Vegetables
+3. Starch (rice, potatoes, grains, bread)
+4. Salad (last, as fresh finish)
+
+DISH ORDER (Tasting Menu):
+Canap&eacute;s &rarr; Amuse-bouche &rarr; Starter &rarr; Fish &rarr; Meat &rarr; Pre-dessert &rarr; Dessert &rarr; Mignardises
+
+DISH ORDER (Plated):
+Starter &rarr; Main &rarr; Dessert
+
+INGREDIENT-FIRST PHILOSOPHY:
+- The protein is the hero. Always name the source: "Line-caught Mediterranean branzino" not just "branzino"
+- Sustainability always. Organic/biodynamic when available.
+- Two contrasting proteins per family-style menu (different methods, richness, heat profiles)
+- Anti-pattern: never write "chicken breast with sauce." Write: "Organic free-range chicken thigh, harissa, preserved lemon, yogurt, crispy herbs."
+
+LANGUAGE:
+- Use original language for dish names when it enhances authenticity (Italian for Italian, French for French, etc.)
+- Ingredient descriptions always in English
+- Max 4-5 words for dish name
+- Format: **Dish Name**, ingredient, ingredient, ingredient
+
+DEFAULT: High-end authenticity. Traditional preparations, the genuine article. Only deviate when explicitly asked (e.g., "healthy", "light").
+
+GUEST PREFERENCES:
+If the user provides guest preferences, dietary restrictions, or allergies:
+- NEVER include a dish that violates a hard restriction
+- For dishes that conflict with ONE guest's dietary requirement, add a subtle footnote at the bottom: e.g., "(v) Vegetarian alternative available" or "(gf) Gluten-free alternative available"
+- Only add footnotes when there IS a dietary requirement. If everyone eats everything, keep the card clean.
+
+WINE PAIRING:
+When asked, suggest ONE wine for the whole menu (unless user asks for more).
+- Prefer sustainable, organic, natural producers
+- Choose domaines with reputation and story &mdash; not mainstream
+- Mix discovery bottles with important names
+- The wine should complement the cuisine authentically
+
+KIDS MENU:
+If applicable, create a separate kids version of the same Cultural Touchstone. Playful, fun, with emojis as section markers. Same theme, kid-friendly adaptations.
+
+WORKFLOW:
+1. Present the menu in plain text first (no PDF)
+2. Include the Cultural Touchstone title, all dishes with dividers, sourcing footer
+3. Suggest 2-3 extra dishes that fit the theme
+4. Ask: "Does this look good? Any changes?"
+5. Ask: "Wine pairing card?"
+6. Once confirmed, present the final version
+
+ALWAYS OFFER 2-3 EXTRA CHOICES that complement the theme after presenting the menu.
+
+ANTI-PATTERNS:
+- Never use generic theme names
+- Never put section headers on the card
+- Never put dates or service labels on the card
+- Never use vague sourcing ("beef" instead of "Scottish grass-fed beef")
+- Never build without asking for confirmation first
+- Never default to fusion or deconstructed &mdash; authenticity first</div>
+                    <button class="copy-block__expand" onclick="toggleAgent(this)">Show full prompt</button>
+                </div>
+
+                <div class="note note--science">
+                    <p><strong>Why paste the whole prompt?</strong> AI systems have no memory between conversations. Each new chat starts blank. Pasting the prompt first gives the AI its &ldquo;training&rdquo; for that session &mdash; like giving a new commis your standards on day one. The more specific your instructions, the better the output. This prompt has been refined over 50+ menu sessions.</p>
+                </div>
+
+                <!-- Section 5: Platforms -->
+                <h2 id="platforms">Where to Use It</h2>
+
+                <p>The menu agent works on any AI platform. Copy the prompt, paste it, and start talking. Here are the main options:</p>
+
+                <div class="platform-grid">
+                    <div class="platform-card">
+                        <strong><a href="https://claude.ai" target="_blank" rel="noopener">Claude</a></strong>
+                        <p>By Anthropic. Best for long, detailed instructions. Follows complex prompts precisely. Our recommendation.</p>
+                    </div>
+                    <div class="platform-card">
+                        <strong><a href="https://chatgpt.com" target="_blank" rel="noopener">ChatGPT</a></strong>
+                        <p>By OpenAI. Most widely used. Good general performance. Free tier available.</p>
+                    </div>
+                    <div class="platform-card">
+                        <strong><a href="https://gemini.google.com" target="_blank" rel="noopener">Gemini</a></strong>
+                        <p>By Google. Integrated with Google Workspace. Good for research-heavy tasks.</p>
+                    </div>
+                    <div class="platform-card">
+                        <strong><a href="https://copilot.microsoft.com" target="_blank" rel="noopener">Copilot</a></strong>
+                        <p>By Microsoft. Built into Windows and Office. Convenient if you already use Microsoft tools.</p>
+                    </div>
+                </div>
+
+                <div class="note note--key">
+                    <p><strong>Pro tip:</strong> On Claude, use &ldquo;Projects&rdquo; to save your menu agent as a persistent system prompt. Every new conversation in that project will already have the agent loaded &mdash; no re-pasting needed.</p>
+                </div>
+
+                <!-- Section: Privacy -->
+                <h2 id="privacy">Privacy and Your Guests&rsquo; Data</h2>
+
+                <p>
+                    This matters. You handle sensitive information &mdash; guest names, dietary restrictions, allergies, personal preferences, travel plans. Before you paste any of that into an AI, you need to know where it goes.
+                </p>
+
+                <div class="note note--warning">
+                    <p><strong>Rule of thumb:</strong> Never put a guest&rsquo;s full name, contact details, or anything that identifies them personally into a free-tier AI chat. If you need to reference preferences, use &ldquo;Guest 1&rdquo;, &ldquo;the principal&rdquo;, or initials only.</p>
+                </div>
+
+                <p><strong>What each platform does with your data:</strong></p>
+
+                <ul>
+                    <li><strong>ChatGPT (OpenAI):</strong> Free-tier conversations may be used to train future models unless you opt out in Settings &rarr; Data Controls &rarr; &ldquo;Improve the model for everyone.&rdquo; The paid Team and Enterprise plans do not train on your data. If you&rsquo;re on the free or Plus plan, assume your input is not private.</li>
+                    <li><strong>Claude (Anthropic):</strong> Free and Pro conversations are not used for training by default. Anthropic&rsquo;s policy is clearer on this than most. Still, don&rsquo;t paste anything you wouldn&rsquo;t want stored on a server.</li>
+                    <li><strong>Gemini (Google):</strong> Free-tier conversations may be reviewed by humans and used for training. Gemini Advanced with a Google Workspace plan has stronger privacy protections. Check your Google AI settings.</li>
+                    <li><strong>Copilot (Microsoft):</strong> Enterprise versions have commercial data protection. The free consumer version has weaker guarantees.</li>
+                </ul>
+
+                <p><strong>For menu planning specifically</strong> &mdash; if you&rsquo;re only sharing cuisine themes, ingredients you have, and service style, there&rsquo;s no privacy risk. That&rsquo;s generic information. The risk starts when you add guest names, yacht names, itineraries, or personal health details.</p>
+
+                <div class="note note--action">
+                    <p><strong>Best practice:</strong> Use AI freely for menu creation, recipe ideas, provisioning maths, and cultural research &mdash; none of that is sensitive. For guest preference management, either anonymise the data first or use a paid plan with explicit no-training guarantees. When in doubt, strip out names and identifying details before pasting.</p>
+                </div>
+
+                <!-- Section 6: Claude Code -->
+                <h2 id="claude-code">Claude Code: The Power Tool</h2>
+
+                <p>
+                    The browser version is good for quick menu generation. But if you want AI that reads your actual files &mdash; guest preference sheets, provisioning lists, past menus &mdash; and generates production-ready PDF menu cards, you need <strong>Claude Code</strong>.
+                </p>
+
+                <p>
+                    Claude Code is a terminal tool by Anthropic. It runs on your computer, reads your documents, creates files, and executes commands. You talk to it in plain English. No coding required.
+                </p>
+
+                <h3>What Claude Code Can Do That the Browser Cannot</h3>
+
+                <ul>
+                    <li>Read your guest preference files before composing a menu</li>
+                    <li>Cross-reference every dish against dietary restrictions automatically</li>
+                    <li>Generate LaTeX menu cards and compile them to PDF</li>
+                    <li>Organise menus into folders by trip, date, and service type</li>
+                    <li>Update handover documents after each charter</li>
+                    <li>Build provision lists from your menu plans</li>
+                </ul>
+
+                <h3>Install Claude Code (5 Minutes)</h3>
+
+                <p>
+                    <span class="step-number">1</span> <strong>Get a Claude account.</strong> Go to <a href="https://claude.ai/pricing" target="_blank" rel="noopener">claude.ai/pricing</a> &mdash; you need a Max plan subscription or an Anthropic API key with credits.<br><br>
+                    <span class="step-number">2</span> <strong>Open your terminal.</strong> On Mac: open Terminal (in Applications &rarr; Utilities). On Windows: install <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener">WSL</a> (Windows Subsystem for Linux) first &mdash; Claude Code does not run in native PowerShell.<br><br>
+                    <span class="step-number">3</span> <strong>Install Node.js</strong> if you don&rsquo;t have it. On Mac: <code>brew install node</code>. On Windows/WSL: <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a>. You need version 18 or higher.<br><br>
+                    <span class="step-number">4</span> <strong>Install Claude Code:</strong>
+                </p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">macOS / Linux / WSL</span>
+                        <button class="copy-btn" onclick="copyText(this, 'npm install -g @anthropic-ai/claude-code')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">npm install -g @anthropic-ai/claude-code</div>
+                </div>
+
+                <p>
+                    <span class="step-number">5</span> <strong>Start it.</strong> Type <code>claude</code> in your terminal and press Enter. Log in when prompted.<br><br>
+                    <span class="step-number">6</span> <strong>Navigate to your galley folder.</strong> Then just talk: &ldquo;Read my guest preferences and create an Italian dinner menu for tonight.&rdquo;
+                </p>
+
+                <h3>Video Tutorial</h3>
+
+                <p>If you&rsquo;ve never used the terminal before, watch this first:</p>
+
+                <ul>
+                    <li><a href="https://www.youtube.com/watch?v=9TP1EWtedpY" target="_blank" rel="noopener"><strong>Claude Code Tutorial for Beginners 2026</strong></a> &mdash; Full walkthrough from installation to first project (AyyazTech)</li>
+                    <li><a href="https://www.youtube.com/watch?v=GepHGs_CZdk" target="_blank" rel="noopener"><strong>Claude Code: Build an App in 15 Minutes</strong></a> &mdash; Quick practical demo (Peter Yang / Creator Economy)</li>
+                    <li><a href="https://www.youtube.com/watch?v=fYX6hHC9FhQ" target="_blank" rel="noopener"><strong>The Ultimate Claude Code Course</strong></a> &mdash; Comprehensive course for complete beginners (Sabrina Ramonov)</li>
+                </ul>
+
+                <p>Official documentation: <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">docs.anthropic.com/claude-code</a></p>
+
+                <!-- Section: PDF Generation -->
+                <h2 id="pdf">From Prompt to Printed Menu in 2 Minutes</h2>
+
+                <p>
+                    This is the part that changes your daily workflow. With Claude Code, you don&rsquo;t just get a menu &mdash; you get a <strong>print-ready PDF menu card</strong>. Formatted, styled, with your fonts, your layout, ready to hand to the chief stew or slide under the guest cabin door. No Word. No Canva. No back-and-forth with the interior team. You control the menu from creation to print.
+                </p>
+
+                <h3>How It Works</h3>
+
+                <p>
+                    Claude Code uses LaTeX (a professional typesetting system &mdash; the same technology used to print books and scientific papers) to generate beautifully formatted menu cards. You don&rsquo;t need to know LaTeX. You don&rsquo;t even need to know it exists. You just talk:
+                </p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">What you say to Claude Code</span>
+                    </div>
+                    <div class="copy-block__content">"Create tonight's guest dinner menu. Mediterranean family style. I have branzino and lamb rack. 8 guests, Mrs. Davis is vegetarian. Generate the PDF menu card."</div>
+                </div>
+
+                <p>Claude Code does the rest:</p>
+                <ol>
+                    <li>Builds the menu using the agent rules (Cultural Touchstone name, ingredient-first, no operational noise)</li>
+                    <li>Writes a LaTeX file with proper typography &mdash; elegant fonts, thin dividers, sourcing footer</li>
+                    <li>Compiles it to PDF automatically</li>
+                    <li>Saves it in your menu folder, named and dated</li>
+                </ol>
+
+                <p>You open the PDF. You print it. Done. The entire process &mdash; from &ldquo;I have branzino and lamb&rdquo; to a printed card on the table &mdash; takes about two minutes.</p>
+
+                <h3>Why This Matters</h3>
+
+                <p>
+                    On most yachts, the menu card workflow is painful. The chef writes the menu, sends it to the chief stew, the chief stew formats it in Word or Canva, sends it back for approval, the chef corrects two dishes, it goes back again. Three people. Four messages. Twenty minutes minimum &mdash; and that&rsquo;s if everyone&rsquo;s available.
+                </p>
+
+                <p>
+                    With Claude Code, <strong>you own the entire pipeline</strong>. You create the menu and the printed card in one step. The chief stew gets the final PDF directly &mdash; or you print it yourself. No formatting bottleneck. No waiting. No &ldquo;can you change the font?&rdquo; messages at 6 PM when service starts at 7.
+                </p>
+
+                <div class="note note--action">
+                    <p><strong>For chief stews:</strong> This is not about losing control of the menu card &mdash; it&rsquo;s about getting it faster. The PDF comes out clean, consistent, and professional every time. You can still adjust the template (fonts, layout, yacht logo) once, and every menu after that matches your standards automatically.</p>
+                </div>
+
+                <h3>What You Need Installed</h3>
+
+                <p>Claude Code handles the LaTeX installation for you. The first time you ask for a PDF, it will check if LaTeX is installed and guide you through setup if needed. On Mac, it&rsquo;s one command:</p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">One-time setup</span>
+                    </div>
+                    <div class="copy-block__content">brew install --cask mactex-no-gui</div>
+                </div>
+
+                <p>After that, every menu you create can become a PDF with one sentence: &ldquo;Generate the PDF.&rdquo;</p>
+
+                <!-- Section 7: Tips -->
+                <h2 id="tips">Tips from a Working Galley</h2>
+
+                <p><strong>Be specific.</strong> &ldquo;Italian dinner&rdquo; gives you generic results. &ldquo;Guests dinner, Amalfi Coast theme, I have branzino and lamb rack, 6 guests, Mrs Smith is vegetarian, family style&rdquo; gives you a menu you can actually print.</p>
+
+                <p><strong>Correct it.</strong> If the AI suggests a dish you don&rsquo;t like, say so. &ldquo;Replace the lamb with duck confit. Make the salad simpler.&rdquo; It adapts instantly.</p>
+
+                <p><strong>Build on previous menus.</strong> &ldquo;Same style as last night but Japanese theme&rdquo; works if you&rsquo;re in the same conversation.</p>
+
+                <p><strong>Use it for ideas, not just execution.</strong> &ldquo;Give me 5 Cultural Touchstone names for a Greek island dinner&rdquo; is a valid prompt. So is &ldquo;What would Sukiyabashi Jiro serve as an amuse-bouche with sea urchin?&rdquo;</p>
+
+                <p><strong>Paste in your guest feedback.</strong> &ldquo;Here are the WhatsApp messages from last trip. Extract all food preferences and update my guest profile.&rdquo; The AI does in 30 seconds what takes you 30 minutes. We built an entire system around this &mdash; see <a href="whatsapp-trip-intelligence.html">WhatsApp as Your Trip Intelligence System</a> for the full method.</p>
+
+                <div class="note note--key">
+                    <p><strong>The test:</strong> If you spent 45 minutes writing a menu card by hand, and the AI gives you a better one in 3 minutes &mdash; that&rsquo;s 42 minutes back in your day. Over a 10-day charter, that&rsquo;s 7 hours. Use them to sleep, to prep, or to cook something you actually want to cook.</p>
+                </div>
+
+                <p>
+                    The AI is not replacing you. Nothing replaces the chef who knows that this guest prefers their steak slightly more done than they admit, or that the kids will only eat the pasta if it looks exactly like last time. That knowledge lives in you. The AI just handles the parts that don&rsquo;t need to.
+                </p>
+
+                <!-- Sources -->
+                <div class="article-sources">
+                    <p><strong>Resources</strong></p>
+                    <p>
+                        Claude Code documentation: <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">docs.anthropic.com/claude-code</a> |
+                        Claude AI: <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> |
+                        ChatGPT: <a href="https://chatgpt.com" target="_blank" rel="noopener">chatgpt.com</a> |
+                        Gemini: <a href="https://gemini.google.com" target="_blank" rel="noopener">gemini.google.com</a>
+                    </p>
+                </div>
+
+                <!-- Article Actions -->
+                <div class="article-actions">
+                    <button class="print-btn" data-action="print">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9V2h12v7"/>
+                            <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                            <rect x="6" y="14" width="12" height="8"/>
+                        </svg>
+                        Print
+                    </button>
+                    <button class="download-btn" data-action="download">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Save PDF
+                    </button>
+                </div>
+
+                <!-- Article Engagement Section -->
+                <div class="article-engagement">
+
+                    <!-- Community Pulse -->
+                    <div class="community-pulse">
+                        <span class="community-pulse__count">Loading...</span>
+                    </div>
+
+                    <!-- Reactions -->
+                    <div class="article-reactions" data-article-id="tech-in-the-galley">
+                        <p class="reactions-prompt">Would you use AI in your galley?</p>
+                        <div class="reactions-buttons">
+                            <button class="reaction-btn" data-reaction="agree">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
+                                </svg>
+                                <span>Useful</span>
+                                <span class="reaction-count reaction-count--agree">0</span>
+                            </button>
+                            <button class="reaction-btn" data-reaction="disagree">
+                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
+                                </svg>
+                                <span>Disagree</span>
+                                <span class="reaction-count reaction-count--disagree">0</span>
+                            </button>
+                        </div>
+                        <div class="article-reactions__stats"></div>
+                        <div class="article-reactions__bar"><div class="article-reactions__bar-fill"></div></div>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="article-share">
+                        <span class="share-label">Share:</span>
+                        <button class="share-btn" data-share="twitter" title="Share on Twitter">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </button>
+                        <button class="share-btn" data-share="linkedin" title="Share on LinkedIn">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </button>
+                        <button class="share-btn" data-share="copy" title="Copy link">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="article-comments">
+                        <h3 class="comments-title">Join the conversation</h3>
+
+                        <div class="comments-sort">
+                            <button class="comments-sort__btn active" data-sort="newest">Newest</button>
+                            <button class="comments-sort__btn" data-sort="most-agreed">Most agreed</button>
+                        </div>
+
+                        <div class="comment-form">
+                            <form>
+                                <div class="comment-form__row">
+                                    <input type="text" name="name" placeholder="Your name" required>
+                                    <input type="email" name="email" placeholder="Email (optional)">
+                                </div>
+                                <label class="photo-upload" title="Add your photo">
+                                    <input type="file" name="photo" accept="image/*" hidden>
+                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+                                    <span class="photo-upload__preview"></span>
+                                </label>
+                                <textarea name="comment" placeholder="Share your thoughts, experience, or questions..." rows="4" required></textarea>
+                                <div class="comment-form__footer">
+                                    <label class="comment-form__subscribe">
+                                        <input type="checkbox" name="subscribe" checked>
+                                        <span>Subscribe to the newsletter</span>
+                                    </label>
+                                    <button type="submit">Post Comment</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="comments-list">
+                            <!-- Comments loaded from Firebase -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+>
+                    <label for="footer-email-tech">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-tech" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">
+                        For those who feed others with intention.
+                    </p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="../shore-larder.html">Shore Larder</a></li>
+                            <li><a href="../the-method.html">The Method</a></li>
+                            <li><a href="../littoral-heritage.html">Heritage</a></li>
+                            <li><a href="../the-evidence.html">The Evidence</a></li>
+                            <li><a href="../the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="../about.html">Manifesto</a></li>
+                            <li><a href="../founder.html">Founder</a></li>
+                            <li><a href="../newsletter.html">Newsletter</a></li>
+                            <li><a href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+    }
+    function doCopy(text, btn, label) {
+        var done = function() {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.textContent = label;
+                btn.classList.remove('copied');
+            }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(function() {
+                fallbackCopy(text);
+                done();
+            });
+        } else {
+            fallbackCopy(text);
+            done();
+        }
+    }
+    function copyAgent(btn) {
+        doCopy(document.getElementById('agent-text').textContent, btn, 'Copy to Clipboard');
+    }
+    function copyText(btn, text) {
+        doCopy(text, btn, 'Copy');
+    }
+    function toggleAgent(btn) {
+        var content = document.getElementById('agent-text');
+        if (content.classList.contains('collapsed')) {
+            content.classList.remove('collapsed');
+            content.style.maxHeight = 'none';
+            btn.textContent = 'Collapse';
+        } else {
+            content.classList.add('collapsed');
+            content.style.maxHeight = '200px';
+            btn.textContent = 'Show full prompt';
+        }
+    }
+    // Share buttons
+    document.querySelectorAll('.share-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var type = btn.getAttribute('data-share');
+            var url = encodeURIComponent(window.location.href);
+            var title = encodeURIComponent(document.title);
+            if (type === 'twitter') {
+                window.open('https://x.com/intent/tweet?url=' + url + '&text=' + title, '_blank');
+            } else if (type === 'linkedin') {
+                window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank');
+            } else if (type === 'copy') {
+                doCopy(window.location.href, btn, '');
+                var svg = btn.querySelector('svg');
+                if (svg) {
+                    var orig = btn.innerHTML;
+                    btn.innerHTML = '<span style="font-size:12px;">Copied!</span>';
+                    setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                }
+            }
+        });
+    });
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+    <script src="../assets/js/firebase-config.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/community.js"></script>
+
+</body>
+</html>
