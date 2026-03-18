@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Littoralicious — Modern science and regional recipes from the sea. For those who feed others with intention.">
+
+    <title>LITTORALICIOUS — Modern Science and Regional Recipes from the Sea</title>
+
+    <meta property="og:title" content="LITTORALICIOUS">
+    <meta property="og:description" content="Modern science and regional recipes from the sea. For those who feed others with intention.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.littoralicious.com/">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <style>
+        /* --- Hero --- */
+        .hero {
+            padding: var(--space-24) 0 var(--space-16);
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .hero__tagline {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.25em;
+            color: var(--color-sea);
+            margin-bottom: var(--space-6);
+        }
+
+        .hero__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-4xl);
+            font-weight: 400;
+            line-height: var(--leading-tight);
+            letter-spacing: -0.03em;
+            margin-bottom: var(--space-6);
+        }
+
+        .hero__subtitle {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            line-height: var(--leading-relaxed);
+            color: var(--color-muted);
+            max-width: var(--max-width-prose);
+            margin: 0 auto var(--space-8);
+        }
+
+        .hero__cta {
+            display: inline-flex;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .hero__cta a {
+            padding: var(--space-3) var(--space-6);
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            text-decoration: none;
+            transition: background var(--transition-fast), color var(--transition-fast);
+        }
+
+        .hero__cta-primary {
+            background: var(--color-sea);
+            color: var(--color-paper);
+            border: 2px solid var(--color-sea);
+        }
+
+        .hero__cta-primary:hover {
+            background: transparent;
+            color: var(--color-sea);
+        }
+
+        .hero__cta-secondary {
+            background: transparent;
+            color: var(--color-ink);
+            border: 1px solid var(--color-border);
+        }
+
+        .hero__cta-secondary:hover {
+            border-color: var(--color-sea);
+            color: var(--color-sea);
+        }
+
+        /* --- Featured --- */
+        .featured {
+            padding: var(--space-16) 0;
+        }
+
+        .featured__grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-8);
+            margin-top: var(--space-8);
+        }
+
+        .featured__card {
+            border: 1px solid var(--color-border);
+            padding: var(--space-6);
+            transition: border-color var(--transition-fast);
+        }
+
+        .featured__card:hover {
+            border-color: var(--color-sea);
+        }
+
+        .featured__card-category {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-sea);
+            font-weight: 600;
+        }
+
+        .featured__card-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            font-weight: 400;
+            margin: var(--space-3) 0;
+            line-height: var(--leading-snug);
+        }
+
+        .featured__card-title a {
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+
+        .featured__card-title a:hover {
+            color: var(--color-sea);
+        }
+
+        .featured__card-excerpt {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            line-height: var(--leading-normal);
+        }
+
+        .featured__card-meta {
+            margin-top: var(--space-4);
+            font-size: var(--text-xs);
+            color: var(--color-salt);
+        }
+
+        /* --- Sections Overview --- */
+        .sections-overview {
+            padding: var(--space-16) 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .sections-overview__grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-6);
+            margin-top: var(--space-8);
+        }
+
+        .section-card {
+            text-align: center;
+            padding: var(--space-6) var(--space-4);
+            border: 1px solid var(--color-border);
+            text-decoration: none;
+            color: var(--color-ink);
+            transition: border-color var(--transition-fast), color var(--transition-fast);
+        }
+
+        .section-card:hover {
+            border-color: var(--color-sea);
+        }
+
+        .section-card__name {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            font-weight: 400;
+            margin-bottom: var(--space-2);
+        }
+
+        .section-card__desc {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            line-height: var(--leading-normal);
+        }
+
+        /* --- Latest --- */
+        .latest {
+            padding: var(--space-16) 0;
+            border-top: 1px solid var(--color-border);
+        }
+
+        .latest__list {
+            margin-top: var(--space-8);
+        }
+
+        .latest__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--color-border);
+            gap: var(--space-4);
+        }
+
+        .latest__item:first-child {
+            border-top: 1px solid var(--color-border);
+        }
+
+        .latest__item-category {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--color-sea);
+            font-weight: 600;
+            flex-shrink: 0;
+            width: 100px;
+        }
+
+        .latest__item-title {
+            flex: 1;
+            font-family: var(--font-serif);
+            font-size: var(--text-base);
+        }
+
+        .latest__item-title a {
+            color: var(--color-ink);
+            text-decoration: none;
+        }
+
+        .latest__item-title a:hover {
+            color: var(--color-sea);
+        }
+
+        .latest__item-date {
+            font-size: var(--text-xs);
+            color: var(--color-salt);
+            flex-shrink: 0;
+        }
+
+        /* --- Manifesto --- */
+        .manifesto {
+            padding: var(--space-16) 0;
+            border-top: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .manifesto__text {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            line-height: var(--leading-relaxed);
+            color: var(--color-muted);
+            max-width: var(--max-width-prose);
+            margin: 0 auto;
+        }
+
+        .manifesto__text strong {
+            color: var(--color-ink);
+        }
+
+        /* --- Mobile --- */
+        @media (max-width: 768px) {
+            .hero__title { font-size: var(--text-3xl); }
+
+            .featured__grid {
+                grid-template-columns: 1fr;
+            }
+
+            .latest__item {
+                flex-direction: column;
+                gap: var(--space-1);
+            }
+
+            .latest__item-category { width: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
+                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="shore-larder.html">Shore Larder</a>
+                    <a href="the-method.html">The Method</a>
+                    <a href="littoral-heritage.html">Heritage</a>
+                    <a href="the-evidence.html">The Evidence</a>
+                    <a href="the-bridge.html">The Bridge</a>
+                    <a href="newsletter.html">Newsletter</a>
+                    <a href="connect.html" class="auth-nav-link">Sign In</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- ========== HERO ========== -->
+        <section class="hero">
+            <div class="container">
+                <span class="hero__tagline">For those who feed others with intention</span>
+                <h1 class="hero__title">Sailing Around the Plate</h1>
+                <p class="hero__subtitle">
+                    Science-backed technique. Regional coastal recipes. Sourcing intelligence from real ports. Industry news without the noise. One place for chefs who take their craft seriously.
+                </p>
+                <div class="hero__cta">
+                    <a href="newsletter.html" class="hero__cta-primary">Subscribe Free</a>
+                    <a href="connect.html" class="hero__cta-secondary">Join the Crew</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== FEATURED ========== -->
+        <section class="featured">
+            <div class="container">
+                <div class="divider">
+                    <span class="divider__text">Featured</span>
+                </div>
+
+                <div class="featured__grid">
+                    <div class="featured__card">
+                        <span class="featured__card-category">The Evidence</span>
+                        <h3 class="featured__card-title"><a href="articles/cooked-fire-made-us-human.html">Cooked: How Fire Made Us Human and Why the Person Holding the Pan Still Matters</a></h3>
+                        <p class="featured__card-excerpt">The anthropology of cooking, the chemistry of heat, and why the galley is the most important room on any vessel.</p>
+                        <div class="featured__card-meta">12 min read</div>
+                    </div>
+
+                    <div class="featured__card">
+                        <span class="featured__card-category">The Evidence</span>
+                        <h3 class="featured__card-title"><a href="articles/silver-lining-protocol.html">The Silver Lining Protocol: A Science-Backed Survival Guide for Galley Sanity</a></h3>
+                        <p class="featured__card-excerpt">Burnout is not a badge of honour. The psychology of resilience, crew welfare, and why the best chefs protect their mind first.</p>
+                        <div class="featured__card-meta">15 min read</div>
+                    </div>
+
+                    <div class="featured__card">
+                        <span class="featured__card-category">The Evidence</span>
+                        <h3 class="featured__card-title"><a href="articles/medicinal-plants-your-galley.html">The Pharmacy in Your Spice Rack</a></h3>
+                        <p class="featured__card-excerpt">What science actually knows about medicinal plants in food. Phytochemistry stripped of marketing, translated for the galley.</p>
+                        <div class="featured__card-meta">14 min read</div>
+                    </div>
+
+                    <div class="featured__card">
+                        <span class="featured__card-category">Shore Larder</span>
+                        <h3 class="featured__card-title"><a href="articles/provisioning-miami-ftl.html">Provisioning Miami & Fort Lauderdale: The Complete Playbook</a></h3>
+                        <p class="featured__card-excerpt">60+ suppliers, freezer-ready intel, chandler comparison. The complete provisioning database built from working yacht chef intel.</p>
+                        <div class="featured__card-meta">12 min read</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SECTIONS OVERVIEW ========== -->
+        <section class="sections-overview">
+            <div class="container">
+                <div class="divider">
+                    <span class="divider__text">Sections</span>
+                </div>
+
+                <div class="sections-overview__grid">
+                    <a href="shore-larder.html" class="section-card">
+                        <div class="section-card__name">Shore Larder</div>
+                        <div class="section-card__desc">Seasonal ingredients, sourcing intel, and port provisioning</div>
+                    </a>
+                    <a href="the-method.html" class="section-card">
+                        <div class="section-card__name">The Method</div>
+                        <div class="section-card__desc">Techniques, recipes, and efficiency protocols</div>
+                    </a>
+                    <a href="littoral-heritage.html" class="section-card">
+                        <div class="section-card__name">Heritage</div>
+                        <div class="section-card__desc">Coastal traditions and cultural preservation</div>
+                    </a>
+                    <a href="the-evidence.html" class="section-card">
+                        <div class="section-card__name">The Evidence</div>
+                        <div class="section-card__desc">Peer-reviewed science and nutrition data</div>
+                    </a>
+                    <a href="the-bridge.html" class="section-card">
+                        <div class="section-card__name">The Bridge</div>
+                        <div class="section-card__desc">Chef news, industry intel, and events</div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== LATEST ========== -->
+        <section class="latest">
+            <div class="container">
+                <div class="divider">
+                    <span class="divider__text">Latest</span>
+                </div>
+
+                <div class="latest__list">
+                    <div class="latest__item">
+                        <span class="latest__item-category">Shore Larder</span>
+                        <div class="latest__item-title"><a href="articles/provisioning-miami-ftl.html">Provisioning Miami & Fort Lauderdale</a></div>
+                        <span class="latest__item-date">Mar 5</span>
+                    </div>
+                    <div class="latest__item">
+                        <span class="latest__item-category">The Method</span>
+                        <div class="latest__item-title"><a href="articles/tech-in-the-galley.html">Technology in the Galley: AI Is Your New Sous Chef</a></div>
+                        <span class="latest__item-date">Mar 4</span>
+                    </div>
+                    <div class="latest__item">
+                        <span class="latest__item-category">Shore Larder</span>
+                        <div class="latest__item-title"><a href="articles/the-fat-index.html">The Fat Index: Every Cooking Fat Ranked by Science</a></div>
+                        <span class="latest__item-date">Mar 1</span>
+                    </div>
+                    <div class="latest__item">
+                        <span class="latest__item-category">Shore Larder</span>
+                        <div class="latest__item-title"><a href="articles/the-salt-index.html">The Salt Index: Every Culinary Salt Ranked by Science</a></div>
+                        <span class="latest__item-date">Mar 1</span>
+                    </div>
+                    <div class="latest__item">
+                        <span class="latest__item-category">Shore Larder</span>
+                        <div class="latest__item-title"><a href="articles/the-acid-index.html">The Acid Index: Every Culinary Acid Ranked by Science</a></div>
+                        <span class="latest__item-date">Mar 1</span>
+                    </div>
+                    <div class="latest__item">
+                        <span class="latest__item-category">The Evidence</span>
+                        <div class="latest__item-title"><a href="articles/cooked-fire-made-us-human.html">Cooked: How Fire Made Us Human</a></div>
+                        <span class="latest__item-date">Mar 1</span>
+                    </div>
+                    <div class="latest__item">
+                        <span class="latest__item-category">Heritage</span>
+                        <div class="latest__item-title"><a href="articles/spaghetti-ricci-di-mare.html">Spaghetti ai Ricci di Mare: Mondello, Sicily</a></div>
+                        <span class="latest__item-date">Feb 5</span>
+                    </div>
+                    <div class="latest__item">
+                        <span class="latest__item-category">The Bridge</span>
+                        <div class="latest__item-title"><a href="articles/myojaku-three-stars.html">Myojaku Earns Three Stars</a></div>
+                        <span class="latest__item-date">Feb 5</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== MANIFESTO ========== -->
+        <section class="manifesto">
+            <div class="container">
+                <p class="manifesto__text">
+                    <strong>One purpose: Nurture.</strong> No sponsors. No algorithms. No filler. Just science, technique, sourcing, tradition, and news &mdash; written for those who cook with intention.
+                </p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post">
+                    <label for="footer-email-home">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-home" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">For those who feed others with intention.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="shore-larder.html">Shore Larder</a></li>
+                            <li><a href="the-method.html">The Method</a></li>
+                            <li><a href="littoral-heritage.html">Heritage</a></li>
+                            <li><a href="the-evidence.html">The Evidence</a></li>
+                            <li><a href="the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">Manifesto</a></li>
+                            <li><a href="founder.html">Founder</a></li>
+                            <li><a href="newsletter.html">Newsletter</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/auth.js"></script>
+
+</body>
+</html>
