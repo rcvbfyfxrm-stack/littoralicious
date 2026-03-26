@@ -148,45 +148,6 @@
             color: var(--color-salt);
         }
 
-        /* --- Sections Overview --- */
-        .sections-overview {
-            padding: var(--space-16) 0;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .sections-overview__grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-6);
-            margin-top: var(--space-8);
-        }
-
-        .section-card {
-            text-align: center;
-            padding: var(--space-6) var(--space-4);
-            border: 1px solid var(--color-border);
-            text-decoration: none;
-            color: var(--color-ink);
-            transition: border-color var(--transition-fast), color var(--transition-fast);
-        }
-
-        .section-card:hover {
-            border-color: var(--color-sea);
-        }
-
-        .section-card__name {
-            font-family: var(--font-serif);
-            font-size: var(--text-lg);
-            font-weight: 400;
-            margin-bottom: var(--space-2);
-        }
-
-        .section-card__desc {
-            font-size: var(--text-xs);
-            color: var(--color-muted);
-            line-height: var(--leading-normal);
-        }
-
         /* --- Latest --- */
         .latest {
             padding: var(--space-16) 0;
@@ -241,24 +202,112 @@
             flex-shrink: 0;
         }
 
-        /* --- Manifesto --- */
-        .manifesto {
+        /* --- Newsletter CTA --- */
+        .newsletter-cta {
             padding: var(--space-16) 0;
             border-top: 1px solid var(--color-border);
+        }
+
+        .newsletter-cta__inner {
+            max-width: 560px;
+            margin: 0 auto;
             text-align: center;
         }
 
-        .manifesto__text {
+        .newsletter-cta__title {
             font-family: var(--font-serif);
-            font-size: var(--text-xl);
-            line-height: var(--leading-relaxed);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            margin-bottom: var(--space-2);
+        }
+
+        .newsletter-cta__subtitle {
+            font-size: var(--text-sm);
             color: var(--color-muted);
-            max-width: var(--max-width-prose);
+            margin-bottom: var(--space-6);
+        }
+
+        .newsletter-cta__list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: var(--space-8);
+        }
+
+        .newsletter-cta__list li {
+            padding: var(--space-3) 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: var(--text-sm);
+            line-height: var(--leading-normal);
+            color: var(--color-muted);
+        }
+
+        .newsletter-cta__list li:first-child {
+            border-top: 1px solid var(--color-border);
+        }
+
+        .newsletter-cta__list li strong {
+            color: var(--color-sea);
+            font-weight: 600;
+        }
+
+        .newsletter-cta__form-row {
+            display: flex;
+            gap: var(--space-3);
+            max-width: 420px;
             margin: 0 auto;
         }
 
-        .manifesto__text strong {
+        .newsletter-cta__form-row input[type="email"] {
+            flex: 1;
+            border: 1px solid var(--color-border);
+            padding: var(--space-3) var(--space-4);
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
+            background: var(--color-paper);
             color: var(--color-ink);
+        }
+
+        .newsletter-cta__form-row input[type="email"]:focus {
+            border-color: var(--color-sea);
+            outline: none;
+        }
+
+        .newsletter-cta__form-row button[type="submit"] {
+            background: var(--color-sea);
+            color: var(--color-paper);
+            border: 2px solid var(--color-sea);
+            padding: var(--space-3) var(--space-6);
+            font-family: var(--font-sans);
+            font-size: var(--text-base);
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: background var(--transition-fast), color var(--transition-fast);
+        }
+
+        .newsletter-cta__form-row button[type="submit"]:hover {
+            background: transparent;
+            color: var(--color-sea);
+        }
+
+        .newsletter-cta__note {
+            font-size: var(--text-xs);
+            color: var(--color-salt);
+            margin-top: var(--space-3);
+        }
+
+        [data-theme="dark"] .newsletter-cta__form-row input[type="email"] {
+            background: var(--color-subtle);
+            border-color: var(--color-salt);
+        }
+
+        @media (max-width: 768px) {
+            .newsletter-cta__form-row {
+                flex-direction: column;
+            }
+            .newsletter-cta__form-row button[type="submit"] {
+                width: 100%;
+            }
         }
 
         /* --- Mobile --- */
@@ -295,8 +344,6 @@
                     <a href="littoral-heritage.html">Heritage</a>
                     <a href="the-evidence.html">The Evidence</a>
                     <a href="the-bridge.html">The Bridge</a>
-                    <a href="newsletter.html">Newsletter</a>
-                    <a href="connect.html" class="auth-nav-link">Sign In</a>
                 </nav>
             </div>
         </div>
@@ -307,15 +354,10 @@
         <!-- ========== HERO ========== -->
         <section class="hero">
             <div class="container">
-                <span class="hero__tagline">For those who feed others with intention</span>
-                <h1 class="hero__title">Sailing Around the Plate</h1>
+                <h1 class="hero__title">One purpose: Nurture.</h1>
                 <p class="hero__subtitle">
-                    Science-backed technique. Regional coastal recipes. Sourcing intelligence from real ports. Industry news without the noise. One place for chefs who take their craft seriously.
+                    No sponsors. No algorithms. No filler. Just science, technique, sourcing, tradition, and news &mdash; written for those who cook with intention.
                 </p>
-                <div class="hero__cta">
-                    <a href="newsletter.html" class="hero__cta-primary">Subscribe Free</a>
-                    <a href="connect.html" class="hero__cta-secondary">Join the Crew</a>
-                </div>
             </div>
         </section>
 
@@ -354,38 +396,6 @@
                         <p class="featured__card-excerpt">60+ suppliers, freezer-ready intel, chandler comparison. The complete provisioning database built from working yacht chef intel.</p>
                         <div class="featured__card-meta">12 min read</div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ========== SECTIONS OVERVIEW ========== -->
-        <section class="sections-overview">
-            <div class="container">
-                <div class="divider">
-                    <span class="divider__text">Sections</span>
-                </div>
-
-                <div class="sections-overview__grid">
-                    <a href="shore-larder.html" class="section-card">
-                        <div class="section-card__name">Shore Larder</div>
-                        <div class="section-card__desc">Seasonal ingredients, sourcing intel, and port provisioning</div>
-                    </a>
-                    <a href="the-method.html" class="section-card">
-                        <div class="section-card__name">The Method</div>
-                        <div class="section-card__desc">Techniques, recipes, and efficiency protocols</div>
-                    </a>
-                    <a href="littoral-heritage.html" class="section-card">
-                        <div class="section-card__name">Heritage</div>
-                        <div class="section-card__desc">Coastal traditions and cultural preservation</div>
-                    </a>
-                    <a href="the-evidence.html" class="section-card">
-                        <div class="section-card__name">The Evidence</div>
-                        <div class="section-card__desc">Peer-reviewed science and nutrition data</div>
-                    </a>
-                    <a href="the-bridge.html" class="section-card">
-                        <div class="section-card__name">The Bridge</div>
-                        <div class="section-card__desc">Chef news, industry intel, and events</div>
-                    </a>
                 </div>
             </div>
         </section>
@@ -442,12 +452,31 @@
             </div>
         </section>
 
-        <!-- ========== MANIFESTO ========== -->
-        <section class="manifesto">
+        <!-- ========== NEWSLETTER SIGNUP ========== -->
+        <section class="newsletter-cta">
             <div class="container">
-                <p class="manifesto__text">
-                    <strong>One purpose: Nurture.</strong> No sponsors. No algorithms. No filler. Just science, technique, sourcing, tradition, and news &mdash; written for those who cook with intention.
-                </p>
+                <div class="newsletter-cta__inner">
+                    <h2 class="newsletter-cta__title">The Monthly Brief</h2>
+                    <p class="newsletter-cta__subtitle">One free email per month. Here's what's inside:</p>
+
+                    <ul class="newsletter-cta__list">
+                        <li><strong>Shore Larder</strong> &mdash; What's in season, where to source it, compound profiles</li>
+                        <li><strong>The Method</strong> &mdash; One technique per issue, tested at sea, with the science behind it</li>
+                        <li><strong>Heritage</strong> &mdash; A regional coastal dish, its origins, and how to serve it on board</li>
+                        <li><strong>The Evidence</strong> &mdash; One peer-reviewed paper, translated into practical terms</li>
+                        <li><strong>The Bridge</strong> &mdash; Chef news, regulatory changes, events, industry intel</li>
+                    </ul>
+
+                    <form class="newsletter-cta__form newsletter-form"
+                          action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                          method="post">
+                        <div class="newsletter-cta__form-row">
+                            <input type="email" name="email" placeholder="your@email.com" required>
+                            <button type="submit">Subscribe Free</button>
+                        </div>
+                    </form>
+                    <p class="newsletter-cta__note">No spam. Unsubscribe anytime. First week of every month.</p>
+                </div>
             </div>
         </section>
 
@@ -456,17 +485,6 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer__newsletter">
-                <form class="footer-newsletter-form newsletter-form"
-                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
-                      method="post">
-                    <label for="footer-email-home">Get the monthly brief</label>
-                    <div class="footer-newsletter-form__row">
-                        <input type="email" name="email" id="footer-email-home" placeholder="your@email.com" required>
-                        <button type="submit">Subscribe</button>
-                    </div>
-                </form>
-            </div>
             <div class="footer__inner">
                 <div class="footer__about">
                     <div class="footer__brand">LITTORALICIOUS</div>

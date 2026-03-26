@@ -33,7 +33,6 @@
                     <a href="../the-evidence.html">The Evidence</a>
                     <a href="../the-bridge.html">The Bridge</a>
                     <a href="../newsletter.html">Newsletter</a>
-                    <a href="../connect.html" class="auth-nav-link">Sign In</a>
                 </nav>
             </div>
         </div>
@@ -44,7 +43,7 @@
             <header class="article__header container">
                 <div class="article__meta">
                     <span class="article__category">The Method</span>
-                    <time class="article__date">March 7, 2026</time>
+                    <time class="article__date" datetime="2026-03-07">March 7, 2026</time>
                     <span class="article__reading-time">12 min read</span>
                 </div>
                 <h1 class="article__title">WhatsApp as Your Trip Intelligence System</h1>
@@ -210,12 +209,13 @@
                     This system only works if you actually use it. The good news: it costs almost nothing. You are already on your phone. You are already texting the chief stew. The only change is <em>where</em> you send the message.
                 </p>
 
-                <p><strong>Three rules:</strong></p>
+                <p><strong>Four rules:</strong></p>
 
                 <ol>
                     <li><strong>Text it when it happens.</strong> Don&rsquo;t wait until the end of the day. The message takes 10 seconds. If you wait, you forget. The whole point is real-time capture.</li>
                     <li><strong>Be specific, not polished.</strong> &ldquo;Blender trips breaker on high&rdquo; is perfect. You are not writing a report. You are leaving breadcrumbs for AI to organise later.</li>
                     <li><strong>Photos over words.</strong> If you can photograph it, photograph it. A photo with a one-line caption is faster than typing a description and more useful than any description you&rsquo;d write.</li>
+                    <li><strong>Type, don&rsquo;t voice-note.</strong> Voice messages do not appear in the text export &mdash; the AI will never see them. If your hands are busy, use WhatsApp&rsquo;s voice-to-text dictation so the message lands as text.</li>
                 </ol>
 
                 <div class="note note--key">
@@ -232,16 +232,26 @@
                 <h3>Step 1: Export the Chats</h3>
 
                 <p>In each WhatsApp group:</p>
+
+                <p><strong>On iPhone:</strong></p>
                 <ol>
                     <li>Open the group</li>
                     <li>Tap the group name at the top</li>
                     <li>Scroll down to &ldquo;Export Chat&rdquo;</li>
                     <li>Choose &ldquo;Include Media&rdquo; (for the handover log especially)</li>
-                    <li>Save the export to your phone or send it to yourself</li>
+                    <li>Save the export or send it to yourself</li>
+                </ol>
+
+                <p><strong>On Android:</strong></p>
+                <ol>
+                    <li>Open the group</li>
+                    <li>Tap the three-dot menu (top right) &rarr; More &rarr; Export chat</li>
+                    <li>Choose &ldquo;Include Media&rdquo;</li>
+                    <li>Save or share the export</li>
                 </ol>
 
                 <p>
-                    You get a <code>.txt</code> file with every message, timestamped, plus a folder of all photos and media. This is your raw trip data.
+                    You get a <code>.zip</code> file containing a <code>.txt</code> file with every message (timestamped) plus all photos and media. This is your raw trip data.
                 </p>
 
                 <h3>Step 2: Feed It to AI</h3>
@@ -363,7 +373,7 @@
                 <h2 id="photos">Photos: The Silent Intelligence</h2>
 
                 <p>
-                    When you export a WhatsApp chat with media, every photo comes with a filename that includes the date and time. The AI can reference these when building your documents.
+                    When you export a WhatsApp chat with media, every photo comes with a filename that includes the date and time. The text export references each photo by filename &mdash; to have AI actually analyse the images (identify equipment, read labels, assess produce quality), upload the photos separately to a vision-capable model like Claude or GPT-4.
                 </p>
 
                 <p><strong>Photos worth taking:</strong></p>
@@ -655,10 +665,8 @@
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="../assets/js/firebase-config.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/community.js"></script>
 
 </body>
