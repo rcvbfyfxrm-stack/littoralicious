@@ -2,6 +2,15 @@
   "dispatches": [],
   "articles": [
     {
+      "slug": "ai-cookbook-extraction",
+      "title": "The Cookbook Decoder: Extract the Best Recipes from Any Book with AI",
+      "date": "2026-03-27",
+      "category": "the-method",
+      "tags": ["AI", "technology", "cookbooks", "technique", "recipe-extraction", "claude-code", "modernist-cuisine"],
+      "read_time": 12,
+      "featured": true
+    },
+    {
       "slug": "provisioning-miami-ftl",
       "title": "Provisioning Miami & Fort Lauderdale: The Complete Playbook",
       "date": "2026-03-05",
