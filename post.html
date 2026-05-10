@@ -587,6 +587,54 @@
 
         .post-toast.is-visible { transform: translateX(-50%) translateY(0); }
 
+        /* ----- Replace-photo affordance (over quote card) ----- */
+        .post-card__photo-replace {
+            position: absolute;
+            bottom: var(--space-3);
+            right: var(--space-3);
+            z-index: 3;
+            background: rgba(10, 10, 10, 0.75);
+            color: #fafafa;
+            border: 1px solid rgba(250, 250, 250, 0.35);
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            padding: 6px var(--space-3);
+            cursor: pointer;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            transition: all var(--transition-fast);
+            opacity: 0;
+        }
+        .post-card__photo:hover .post-card__photo-replace { opacity: 1; }
+        @media (hover: none) { .post-card__photo-replace { opacity: 0.85; } }
+        .post-card__photo-replace:hover {
+            background: #fafafa; color: #0a0a0a; border-color: #fafafa;
+        }
+
+        /* Quote card image: skip the grayscale filter (already monochrome) */
+        .post-card__photo img.is-quote { filter: none; }
+
+        /* Tiny shot suggestion line below schedule row */
+        .post-card__shotnote {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: var(--text-xs);
+            color: var(--color-salt);
+            line-height: 1.5;
+            padding-top: 2px;
+        }
+        .post-card__shotnote::before {
+            content: "Suggested shot · ";
+            font-style: normal;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-size: 0.65rem;
+            font-weight: 600;
+            color: var(--color-muted);
+        }
+
         @media (max-width: 640px) {
             .post-grid { grid-template-columns: 1fr; gap: var(--space-12); }
             .post-mast__stats { width: 100%; justify-content: flex-start; gap: var(--space-6); }
@@ -970,6 +1018,119 @@ That's the moment. Not the discovery. The decision to do it again. Every chef si
     ];
 
     /* ==================================================================
+       Quote-card renderer
+       Default 1080×1080 B&W card per post — pure black ground, Georgia
+       serif italic hook, Littoralicious wordmark, vignette + grain.
+       Used as the photo fallback until the user uploads their own shot.
+       ================================================================== */
+    const QUOTE_CACHE = new Map();
+
+    function getQuoteCard(post, size) {
+        const key = `${post.id}-${size}`;
+        if (!QUOTE_CACHE.has(key)) {
+            QUOTE_CACHE.set(key, renderQuoteCard(post, size));
+        }
+        return QUOTE_CACHE.get(key);
+    }
+
+    function renderQuoteCard(post, size) {
+        const canvas = document.createElement("canvas");
+        canvas.width = canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        const cx = size / 2;
+        const scale = size / 1080;
+
+        // Background — near-black to match site --color-ink
+        ctx.fillStyle = "#0a0a0a";
+        ctx.fillRect(0, 0, size, size);
+
+        // Subtle radial vignette (Leica low-key feel)
+        const grad = ctx.createRadialGradient(cx, cx, size * 0.28, cx, cx, size * 0.72);
+        grad.addColorStop(0, "rgba(0,0,0,0)");
+        grad.addColorStop(1, "rgba(0,0,0,0.55)");
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, size, size);
+
+        // ----- Wordmark (top) -----
+        ctx.fillStyle = "#fafafa";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "alphabetic";
+        const supportsLetterSpacing = "letterSpacing" in ctx;
+        if (supportsLetterSpacing) ctx.letterSpacing = (8 * scale) + "px";
+        ctx.font = `500 ${Math.round(22 * scale)}px system-ui, -apple-system, "Segoe UI", sans-serif`;
+        ctx.fillText("LITTORALICIOUS", cx, 160 * scale);
+        if (supportsLetterSpacing) ctx.letterSpacing = "0px";
+
+        // wordmark rule
+        ctx.fillStyle = "#fafafa";
+        ctx.fillRect(cx - 25 * scale, 185 * scale, 50 * scale, 1 * scale);
+
+        // ----- Hook (centered, Georgia italic) -----
+        ctx.fillStyle = "#fafafa";
+        const hookSize = Math.round(60 * scale);
+        ctx.font = `italic 400 ${hookSize}px Georgia, "Times New Roman", serif`;
+        const maxW = size - 200 * scale;
+        const lines = wrapTextLines(ctx, post.hook, maxW);
+        const lineH = hookSize * 1.28;
+        const blockH = lines.length * lineH;
+        const startY = cx - blockH / 2 + lineH * 0.7;
+        lines.forEach((line, i) => {
+            ctx.fillText(line, cx, startY + i * lineH);
+        });
+
+        // ----- Bottom block -----
+        // small rule
+        ctx.fillStyle = "#5a5a5a";
+        ctx.fillRect(cx - 10 * scale, size - 205 * scale, 20 * scale, 1 * scale);
+
+        // post number — serif
+        ctx.fillStyle = "#c4c4c4";
+        ctx.font = `400 ${Math.round(24 * scale)}px Georgia, serif`;
+        ctx.fillText(`Nº ${String(post.id).padStart(2, "0")}`, cx, size - 160 * scale);
+
+        // category — small caps sans
+        ctx.fillStyle = "#94a3b8";
+        if (supportsLetterSpacing) ctx.letterSpacing = (6 * scale) + "px";
+        ctx.font = `600 ${Math.round(13 * scale)}px system-ui, -apple-system, sans-serif`;
+        ctx.fillText(post.category.toUpperCase(), cx, size - 120 * scale);
+        if (supportsLetterSpacing) ctx.letterSpacing = "0px";
+
+        // ----- Grain (only at export size, perf) -----
+        if (size >= 800) addGrain(ctx, size);
+
+        return canvas.toDataURL("image/jpeg", 0.88);
+    }
+
+    function wrapTextLines(ctx, text, maxWidth) {
+        const words = String(text).split(/\s+/);
+        const lines = [];
+        let line = "";
+        for (const word of words) {
+            const test = line ? line + " " + word : word;
+            if (ctx.measureText(test).width > maxWidth && line) {
+                lines.push(line);
+                line = word;
+            } else {
+                line = test;
+            }
+        }
+        if (line) lines.push(line);
+        return lines;
+    }
+
+    function addGrain(ctx, size) {
+        const img = ctx.getImageData(0, 0, size, size);
+        const d = img.data;
+        for (let i = 0; i < d.length; i += 4) {
+            const n = (Math.random() - 0.5) * 10;
+            d[i]     = Math.max(0, Math.min(255, d[i]     + n));
+            d[i + 1] = Math.max(0, Math.min(255, d[i + 1] + n));
+            d[i + 2] = Math.max(0, Math.min(255, d[i + 2] + n));
+        }
+        ctx.putImageData(img, 0, 0);
+    }
+
+    /* ==================================================================
        Best-time-to-post intelligence
        Research-aligned for food/lifestyle/luxury audience:
          Tue/Wed/Thu 11:00 + 19:30  → prime engagement
@@ -1146,20 +1307,16 @@ That's the moment. Not the discovery. The decision to do it again. Every chef si
             card.className = "post-card" + (st.published ? " is-published" : "");
             card.dataset.id = p.id;
 
+            const previewSrc = st.photo || getQuoteCard(p, 540);
+            const imgClass = st.photo ? "" : "is-quote";
+
             card.innerHTML = `
                 <div class="post-card__photo" data-id="${p.id}">
                     <span class="post-card__num">${String(p.id).padStart(2, "0")} / 20</span>
-                    ${st.photo ? `<img src="${st.photo}" alt="">` : `
-                        <div class="post-card__photo-empty">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                <rect x="3" y="5" width="18" height="14" rx="1"/>
-                                <circle cx="8.5" cy="10.5" r="1.5"/>
-                                <path d="M21 17l-5-5L5 21"/>
-                            </svg>
-                            <span class="post-card__photo-empty-text">Drop / tap to add photo</span>
-                        </div>
-                    `}
-                    ${!st.photo ? `<span class="post-card__photo-hint">${escapeHtml(p.photoHint)}</span>` : ""}
+                    <img src="${previewSrc}" alt="" class="${imgClass}">
+                    <button class="post-card__photo-replace" data-action="trigger-upload" data-id="${p.id}">
+                        ${st.photo ? "↺ Replace" : "+ Your photo"}
+                    </button>
                     <input type="file" accept="image/*" data-id="${p.id}">
                 </div>
                 <div class="post-card__body">
@@ -1171,15 +1328,16 @@ That's the moment. Not the discovery. The decision to do it again. Every chef si
                         <span>↗ Article</span>
                         <span>${escapeHtml(p.articleTitle)}</span>
                     </a>
+                    <p class="post-card__shotnote">${escapeHtml(p.photoHint)}</p>
                     ${scheduleHtml}
                     <div class="post-card__actions">
                         <button class="post-btn" data-action="copy" data-id="${p.id}">Copy caption</button>
-                        <button class="post-btn" data-action="save-photo" data-id="${p.id}" ${!st.photo ? "disabled style='opacity:.4;cursor:not-allowed'" : ""}>Save photo</button>
-                        <button class="post-btn post-btn--full post-btn--accent" data-action="prepare" data-id="${p.id}" ${!st.photo ? "disabled style='opacity:.4;cursor:not-allowed'" : ""}>↗ Prepare for Instagram</button>
+                        <button class="post-btn" data-action="save-photo" data-id="${p.id}">Save image</button>
+                        <button class="post-btn post-btn--full post-btn--accent" data-action="prepare" data-id="${p.id}">↗ Prepare for Instagram</button>
                         <button class="post-btn post-btn--full ${st.published ? "is-active" : ""}" data-action="toggle-published" data-id="${p.id}">
                             ${st.published ? "✓ Published — undo" : "Mark as published"}
                         </button>
-                        ${st.photo ? `<button class="post-btn post-btn--full post-btn--ghost" data-action="remove-photo" data-id="${p.id}">Remove photo</button>` : ""}
+                        ${st.photo ? `<button class="post-btn post-btn--full post-btn--ghost" data-action="remove-photo" data-id="${p.id}">Revert to quote card</button>` : ""}
                     </div>
                 </div>
             `;
@@ -1306,27 +1464,32 @@ That's the moment. Not the discovery. The decision to do it again. Every chef si
 
     function downloadPhotoFile(id) {
         const st = getPostState(id);
-        if (!st.photo) return;
+        const post = POSTS.find(p => p.id === id);
+        const url = st.photo || getQuoteCard(post, 1080);
         const a = document.createElement("a");
-        a.href = st.photo;
+        a.href = url;
         a.download = `littoralicious-${String(id).padStart(2,"0")}.jpg`;
         document.body.appendChild(a); a.click(); a.remove();
     }
 
     grid.addEventListener("click", (e) => {
-        const photoEl = e.target.closest(".post-card__photo");
-        if (photoEl && !e.target.closest("button")) {
-            const id = +photoEl.dataset.id;
-            if (getPostState(id).photo) return;
-            photoEl.querySelector('input[type="file"]').click();
+        const btn = e.target.closest("button[data-action]");
+        if (!btn) {
+            const photoEl = e.target.closest(".post-card__photo");
+            if (photoEl) {
+                photoEl.querySelector('input[type="file"]').click();
+            }
             return;
         }
-
-        const btn = e.target.closest("button[data-action]");
-        if (!btn) return;
         const id = +btn.dataset.id;
         const post = POSTS.find(p => p.id === id);
         const action = btn.dataset.action;
+
+        if (action === "trigger-upload") {
+            const card = btn.closest(".post-card");
+            card.querySelector('input[type="file"]').click();
+            return;
+        }
 
         if (action === "copy") {
             const text = post.caption + "\n\n" + post.hashtags;
