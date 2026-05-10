@@ -6,7 +6,9 @@
       "**/.*",
       "**/node_modules/**",
       "validation/**",
-      "data/**"
+      "data/**",
+      "drafts/**",
+      "articles/guest-preference-database.html"
     ]
   },
   "storage": {
