@@ -1,0 +1,1561 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Internal staging board.">
+
+    <title>POST — Littoralicious Internal</title>
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+
+    <style>
+        /* ==================================================================
+           POST.HTML — Instagram staging board (internal)
+           Hidden from navigation. Mono / B&W aesthetic.
+           ================================================================== */
+
+        body { background: var(--color-paper); }
+
+        .post-mast {
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-6) 0 var(--space-4);
+            background: var(--color-paper);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(8px);
+        }
+
+        .post-mast__inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-6);
+            flex-wrap: wrap;
+        }
+
+        .post-mast__brand { display: flex; flex-direction: column; gap: 2px; }
+
+        .post-mast__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+
+        .post-mast__sub {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-muted);
+        }
+
+        .post-mast__stats { display: flex; align-items: center; gap: var(--space-6); }
+
+        .post-mast__stat { display: flex; flex-direction: column; align-items: flex-end; }
+
+        .post-mast__stat-num {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .post-mast__stat-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-salt);
+            margin-top: 4px;
+        }
+
+        .post-progress {
+            margin-top: var(--space-3);
+            height: 2px;
+            background: var(--color-border);
+            overflow: hidden;
+        }
+
+        .post-progress__bar {
+            height: 100%;
+            background: var(--color-ink);
+            transition: width var(--transition-base);
+        }
+
+        .post-mast__filters {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-3);
+            flex-wrap: wrap;
+        }
+
+        .post-filter {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-muted);
+            padding: 6px var(--space-3);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .post-filter:hover { color: var(--color-ink); border-color: var(--color-ink); }
+
+        .post-filter.is-active {
+            background: var(--color-ink);
+            color: var(--color-paper);
+            border-color: var(--color-ink);
+        }
+
+        /* ----- Up-next banner ----- */
+        .up-next {
+            margin: var(--space-8) 0 0;
+            padding: var(--space-4) var(--space-6);
+            background: var(--color-ink);
+            color: var(--color-paper);
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            flex-wrap: wrap;
+        }
+
+        .up-next.is-overdue { background: #6b1a1a; }
+        .up-next.is-now { background: #1a4d1a; }
+
+        .up-next__label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            opacity: 0.6;
+            font-weight: 600;
+        }
+
+        .up-next__when {
+            font-family: var(--font-serif);
+            font-size: var(--text-base);
+            font-style: italic;
+        }
+
+        .up-next__post {
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .up-next__btn {
+            background: transparent;
+            border: 1px solid currentColor;
+            color: inherit;
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            padding: 6px var(--space-4);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .up-next__btn:hover { background: var(--color-paper); color: var(--color-ink); }
+
+        /* ----- Intro ----- */
+        .post-intro {
+            padding: var(--space-12) 0 var(--space-8);
+            border-bottom: 1px solid var(--color-border);
+            text-align: center;
+        }
+
+        .post-intro__rule {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            font-style: italic;
+            color: var(--color-ink);
+            line-height: var(--leading-snug);
+            max-width: 540px;
+            margin: 0 auto;
+            font-weight: 400;
+        }
+
+        .post-intro__caption {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.3em;
+            color: var(--color-salt);
+            margin-top: var(--space-4);
+        }
+
+        /* ----- Auto-schedule toolbar ----- */
+        .schedule-bar {
+            margin-top: var(--space-8);
+            padding: var(--space-4) var(--space-5);
+            border: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+            gap: var(--space-3) var(--space-4);
+            flex-wrap: wrap;
+            background: var(--color-subtle);
+        }
+
+        .schedule-bar__label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-muted);
+            font-weight: 600;
+        }
+
+        .schedule-bar select,
+        .schedule-bar input[type="date"] {
+            font-family: var(--font-sans);
+            font-size: var(--text-xs);
+            padding: 6px var(--space-3);
+            border: 1px solid var(--color-border);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            cursor: pointer;
+        }
+
+        .schedule-bar__action {
+            margin-left: auto;
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
+
+        /* ----- Grid ----- */
+        .post-grid {
+            padding: var(--space-8) 0 var(--space-24);
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: var(--space-12) var(--space-8);
+        }
+
+        .post-card {
+            display: flex;
+            flex-direction: column;
+            background: var(--color-paper);
+            position: relative;
+            transition: opacity var(--transition-base);
+            scroll-margin-top: 180px;
+        }
+
+        @keyframes post-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(45, 74, 94, 0); }
+            50%      { box-shadow: 0 0 0 6px rgba(45, 74, 94, 0.25); }
+        }
+        .post-card.is-pulsing { animation: post-pulse 1.4s ease; }
+
+        .post-card.is-published { opacity: 0.4; }
+
+        .post-card.is-published .post-card__photo::after {
+            content: "PUBLISHED";
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(10, 10, 10, 0.6);
+            color: var(--color-paper);
+            font-family: var(--font-sans);
+            font-size: var(--text-xs);
+            letter-spacing: 0.4em;
+            font-weight: 600;
+        }
+
+        /* ----- Photo (1:1) ----- */
+        .post-card__photo {
+            aspect-ratio: 1 / 1;
+            background: #111;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid var(--color-border);
+        }
+
+        .post-card__photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.05);
+            display: block;
+        }
+
+        .post-card__photo-empty {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            text-align: center;
+            padding: var(--space-6);
+        }
+
+        .post-card__photo-empty svg {
+            width: 32px; height: 32px;
+            margin-bottom: var(--space-3);
+            opacity: 0.6;
+        }
+
+        .post-card__photo-empty-text {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #888;
+        }
+
+        .post-card__photo-hint {
+            position: absolute;
+            bottom: var(--space-3);
+            left: var(--space-3);
+            right: var(--space-3);
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: var(--text-xs);
+            color: #aaa;
+            line-height: 1.4;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        .post-card__photo input[type="file"] { display: none; }
+
+        .post-card__num {
+            position: absolute;
+            top: var(--space-3);
+            left: var(--space-3);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            font-family: var(--font-serif);
+            font-size: var(--text-sm);
+            padding: 4px var(--space-3);
+            letter-spacing: 0.05em;
+            z-index: 2;
+            border: 1px solid var(--color-ink);
+        }
+
+        /* ----- Body ----- */
+        .post-card__body {
+            padding: var(--space-5) 0 0;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-3);
+        }
+
+        .post-card__category {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--color-sea);
+            font-weight: 600;
+        }
+
+        .post-card__hook {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            line-height: var(--leading-snug);
+            font-weight: 400;
+            letter-spacing: -0.01em;
+        }
+
+        .post-card__caption {
+            font-family: var(--font-serif);
+            font-size: var(--text-sm);
+            line-height: var(--leading-normal);
+            color: var(--color-muted);
+            white-space: pre-wrap;
+        }
+
+        .post-card__hashtags {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            line-height: 1.6;
+            color: var(--color-salt);
+            word-break: break-word;
+        }
+
+        .post-card__link {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            color: var(--color-ink);
+            background: var(--color-subtle);
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-border);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-2);
+            transition: all var(--transition-fast);
+            word-break: break-all;
+        }
+
+        .post-card__link:hover { border-color: var(--color-ink); color: var(--color-ink); }
+
+        .post-card__link span:first-child {
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-salt);
+            flex-shrink: 0;
+        }
+
+        /* ----- Schedule row ----- */
+        .post-card__schedule {
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+            padding: var(--space-3) 0;
+            border-top: 1px dashed var(--color-border);
+            border-bottom: 1px dashed var(--color-border);
+            flex-wrap: wrap;
+        }
+
+        .post-card__schedule input[type="datetime-local"] {
+            flex: 1;
+            min-width: 0;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-border);
+            background: var(--color-paper);
+            color: var(--color-ink);
+        }
+
+        .post-card__schedule input:focus { border-color: var(--color-ink); outline: none; }
+
+        .post-card__schedule-meta {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            font-family: var(--font-sans);
+            color: var(--color-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .quality-dot {
+            display: inline-block;
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .quality-dot--prime { background: var(--color-ink); }
+        .quality-dot--good  { background: var(--color-sea); }
+        .quality-dot--soft  { background: var(--color-salt); }
+
+        .post-card__schedule-suggest {
+            font-family: var(--font-sans);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-muted);
+            padding: 4px var(--space-3);
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .post-card__schedule-suggest:hover { border-color: var(--color-ink); color: var(--color-ink); }
+
+        .post-card__schedule-clear {
+            background: transparent;
+            border: none;
+            color: var(--color-salt);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 4px;
+            line-height: 1;
+        }
+
+        .post-card__schedule-clear:hover { color: var(--color-ink); }
+
+        /* ----- Actions ----- */
+        .post-card__actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2);
+        }
+
+        .post-btn {
+            font-family: var(--font-sans);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            font-weight: 600;
+            padding: var(--space-3) var(--space-3);
+            border: 1px solid var(--color-border);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            text-align: center;
+        }
+
+        .post-btn:hover {
+            border-color: var(--color-ink);
+            background: var(--color-ink);
+            color: var(--color-paper);
+        }
+
+        .post-btn.is-active, .post-btn.is-copied {
+            background: var(--color-ink);
+            color: var(--color-paper);
+            border-color: var(--color-ink);
+        }
+
+        .post-btn--full   { grid-column: span 2; }
+
+        .post-btn--accent {
+            background: var(--color-sea);
+            color: var(--color-paper);
+            border-color: var(--color-sea);
+        }
+
+        .post-btn--accent:hover {
+            background: var(--color-paper);
+            color: var(--color-sea);
+            border-color: var(--color-sea);
+        }
+
+        .post-btn--ghost {
+            border-color: transparent;
+            color: var(--color-muted);
+        }
+
+        .post-btn--ghost:hover {
+            background: transparent;
+            color: var(--color-ink);
+            border-color: var(--color-border);
+        }
+
+        /* ----- Footer toolbar ----- */
+        .post-toolbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: var(--space-4);
+            padding: var(--space-4) 0;
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            margin-top: var(--space-8);
+            flex-wrap: wrap;
+        }
+
+        .post-toolbar__note {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            font-family: var(--font-serif);
+            font-style: italic;
+        }
+
+        .post-toolbar__actions {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
+
+        /* ----- Toast ----- */
+        .post-toast {
+            position: fixed;
+            bottom: var(--space-8);
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--color-ink);
+            color: var(--color-paper);
+            padding: var(--space-3) var(--space-6);
+            font-family: var(--font-sans);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            transition: transform var(--transition-base);
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        .post-toast.is-visible { transform: translateX(-50%) translateY(0); }
+
+        @media (max-width: 640px) {
+            .post-grid { grid-template-columns: 1fr; gap: var(--space-12); }
+            .post-mast__stats { width: 100%; justify-content: flex-start; gap: var(--space-6); }
+            .post-mast__stat { align-items: flex-start; }
+            .schedule-bar__action { margin-left: 0; width: 100%; }
+            .up-next { padding: var(--space-3) var(--space-4); }
+            .up-next__post { font-size: var(--text-xs); }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="post-mast">
+        <div class="container">
+            <div class="post-mast__inner">
+                <div class="post-mast__brand">
+                    <span class="post-mast__sub">Internal · Not indexed</span>
+                    <span class="post-mast__title">Post Board</span>
+                </div>
+                <div class="post-mast__stats">
+                    <div class="post-mast__stat">
+                        <span class="post-mast__stat-num" id="stat-published">0</span>
+                        <span class="post-mast__stat-label">Published</span>
+                    </div>
+                    <div class="post-mast__stat">
+                        <span class="post-mast__stat-num" id="stat-scheduled">0</span>
+                        <span class="post-mast__stat-label">Scheduled</span>
+                    </div>
+                    <div class="post-mast__stat">
+                        <span class="post-mast__stat-num" id="stat-queued">20</span>
+                        <span class="post-mast__stat-label">Queued</span>
+                    </div>
+                </div>
+            </div>
+            <div class="post-progress"><div class="post-progress__bar" id="progress-bar" style="width: 0%"></div></div>
+            <div class="post-mast__filters">
+                <button class="post-filter is-active" data-filter="all">All</button>
+                <button class="post-filter" data-filter="queued">Unscheduled</button>
+                <button class="post-filter" data-filter="scheduled">Scheduled</button>
+                <button class="post-filter" data-filter="published">Published</button>
+                <button class="post-filter" data-filter="needs-photo">Needs photo</button>
+                <button class="post-filter" data-sort="order">Sort: order</button>
+                <button class="post-filter" data-sort="schedule">Sort: schedule</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="container">
+            <div id="up-next" class="up-next" style="display:none"></div>
+        </section>
+
+        <section class="post-intro">
+            <div class="container">
+                <p class="post-intro__rule">
+                    A square frame. A monochrome moment. A small fact someone wanted to know but didn't know to ask.
+                </p>
+                <p class="post-intro__caption">Leica Q2M · Littoralicious</p>
+            </div>
+        </section>
+
+        <section class="container">
+
+            <div class="schedule-bar">
+                <span class="schedule-bar__label">Auto-schedule</span>
+                <label class="schedule-bar__label" style="font-weight:400;letter-spacing:.05em;text-transform:none;">starting</label>
+                <input type="date" id="sched-start">
+                <label class="schedule-bar__label" style="font-weight:400;letter-spacing:.05em;text-transform:none;">at cadence</label>
+                <select id="sched-cadence">
+                    <option value="1">1× / week  · Wed 11:00</option>
+                    <option value="2">2× / week  · Tue + Thu 11:00</option>
+                    <option value="3" selected>3× / week  · Tue + Thu 11:00, Sat 10:00</option>
+                    <option value="4">4× / week  · Tue + Wed + Thu 11:00, Sat 10:00</option>
+                </select>
+                <div class="schedule-bar__action">
+                    <button class="post-btn" id="sched-apply">Schedule queue</button>
+                    <button class="post-btn post-btn--ghost" id="sched-clear">Clear all</button>
+                    <button class="post-btn post-btn--ghost" id="export-ics">Add to calendar</button>
+                </div>
+            </div>
+
+            <div class="post-grid" id="post-grid"></div>
+
+            <div class="post-toolbar">
+                <span class="post-toolbar__note">Photos, schedule and published-state saved locally in this browser.</span>
+                <div class="post-toolbar__actions">
+                    <button class="post-btn post-btn--ghost" id="export-data">Export state (JSON)</button>
+                    <button class="post-btn post-btn--ghost" id="reset-data">Reset all</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div class="post-toast" id="toast"></div>
+
+    <script>
+    /* ==================================================================
+       POSTS — 20 publications for Littoralicious Instagram
+       ================================================================== */
+    const POSTS = [
+        {
+            id: 1,
+            category: "The Evidence",
+            hook: "Cooking didn't just feed us. It rewrote our DNA.",
+            caption: `Cooking didn't just feed us. It rewrote our DNA.
+
+Around 1.8 million years ago, fire shrank our jaws and doubled our brains. Raw food demanded six hours of chewing per day. Cooked food bought us the spare metabolic room to think.
+
+Every dish you serve is a continuation of that evolutionary debt.`,
+            photoHint: "Galley fire · cast iron at heat · the moment of contact",
+            hashtags: "#yachtchef #galley #cookingscience #leicaq2m #monochrome #foodanthropology #littoralicious",
+            article: "articles/cooked-fire-made-us-human.html",
+            articleTitle: "Cooked: How Fire Made Us Human"
+        },
+        {
+            id: 2,
+            category: "Shore Larder",
+            hook: "Fleur de sel only forms when wind, sun and humidity align.",
+            caption: `Fleur de sel only forms when wind, sun and humidity align.
+
+The flakes float on the surface of the salt pans for a few hours each summer afternoon. Miss the window, and the harvest is over.
+
+This is why it costs what it costs. You're not paying for sodium chloride. You're paying for a weather window.`,
+            photoHint: "Salt crystals on dark linen · pinch held mid-air · backlit if possible",
+            hashtags: "#fleurdesel #saltindex #yachtchef #galley #leicaq2m #monochrome #littoralicious",
+            article: "articles/the-salt-index.html",
+            articleTitle: "The Salt Index"
+        },
+        {
+            id: 3,
+            category: "Shore Larder",
+            hook: "Olive oil's smoke point is higher than your grandmother swore.",
+            caption: `Olive oil's smoke point is higher than your grandmother swore it was.
+
+Real number for extra virgin: 190–210°C. That's hot enough to sear a steak. The myth that you "ruin" olive oil by cooking with it comes from old refining science, not modern lab work.
+
+Use the good stuff. Hot.`,
+            photoHint: "Pour shot · oil falling into a hot pan · steam catching the light",
+            hashtags: "#oliveoil #fatindex #cookingscience #yachtchef #leicaq2m #monochrome #littoralicious",
+            article: "articles/the-fat-index.html",
+            articleTitle: "The Fat Index"
+        },
+        {
+            id: 4,
+            category: "Shore Larder",
+            hook: "All vinegar is the same molecule. Only the company changes.",
+            caption: `All vinegar is the same molecule. Only the company it keeps changes.
+
+Acetic acid is acetic acid, whether you spent two euros on the bottle or two hundred. What you're really buying is the matrix around it — the residual sugars, the wood, the time, the place.
+
+Acid is geography in a bottle.`,
+            photoHint: "Three vinegars in identical glasses · shadow play · droplet mid-fall",
+            hashtags: "#vinegar #acidindex #cookingscience #fermentation #yachtchef #leicaq2m #littoralicious",
+            article: "articles/the-acid-index.html",
+            articleTitle: "The Acid Index"
+        },
+        {
+            id: 5,
+            category: "The Evidence",
+            hook: "Burnout has a chemical signature. So does recovery.",
+            caption: `Burnout has a chemical signature. So does recovery.
+
+Cortisol stays elevated for up to four hours after service. Your nervous system doesn't know the last plate has gone out. It still thinks it's running.
+
+Cooling down is not weakness. It's the actual end of service.`,
+            photoHint: "Empty pass after dinner · chef's hand on counter · breath visible if cold",
+            hashtags: "#yachtchef #galleylife #burnout #mentalhealth #leicaq2m #monochrome #littoralicious",
+            article: "articles/silver-lining-protocol.html",
+            articleTitle: "The Silver Lining Protocol"
+        },
+        {
+            id: 6,
+            category: "The Evidence",
+            hook: "Your spice rack is a pharmacy. Mostly accidentally.",
+            caption: `Your spice rack is a pharmacy. Mostly accidentally.
+
+Rosemary contains carnosic acid — the same compound currently in clinical trials for Alzheimer's research. Bay leaf carries eucalyptol, identical to the one in cough syrup. Cinnamon shifts blood sugar within forty minutes.
+
+We've been medicating each other for centuries without saying so.`,
+            photoHint: "Spices in rough wooden bowls · top-down · single beam of side light",
+            hashtags: "#herbs #medicinalplants #phytochemistry #galley #yachtchef #leicaq2m #littoralicious",
+            article: "articles/medicinal-plants-your-galley.html",
+            articleTitle: "Plants That Nurture Us"
+        },
+        {
+            id: 7,
+            category: "Heritage",
+            hook: "Sea urchin emulsifies butter without you doing the work.",
+            caption: `Sea urchin emulsifies butter without you doing the work.
+
+The roe is full of natural lecithins — the same molecule that makes egg yolk hold a hollandaise. Whisk it warm into beurre blanc and the sauce stabilises itself.
+
+The sea has been making mayonnaise long before we did.`,
+            photoHint: "Sea urchin shell open on slate · spoon poised · wet shine on the roe",
+            hashtags: "#seaurchin #ricci #beurreblanc #seafood #yachtchef #leicaq2m #monochrome #littoralicious",
+            article: "articles/sea-urchin-beurre-blanc.html",
+            articleTitle: "Sea Urchin Beurre Blanc"
+        },
+        {
+            id: 8,
+            category: "Shore Larder",
+            hook: "Female sea urchins peak in winter. After spawning, the gold goes.",
+            caption: `Female sea urchins peak in winter. After they spawn, the gold goes.
+
+The roe you're paying for is gonad — and it's only at full plumpness for a few weeks before reproduction. Out of season urchin isn't bad. It's just not what it could be.
+
+Ask your supplier when they were dived, not when they arrived.`,
+            photoHint: "Hand cradling a closed urchin · spines casting hard shadow · macro tight",
+            hashtags: "#seaurchin #seasonality #sustainable #galley #yachtchef #leicaq2m #littoralicious",
+            article: "articles/sea-urchin-seasonal-guide.html",
+            articleTitle: "Sea Urchin Seasonal Guide"
+        },
+        {
+            id: 9,
+            category: "Heritage",
+            hook: "In Mondello, the dish has no cream. Anything else is tourism.",
+            caption: `In Mondello, spaghetti ai ricci di mare has no cream. No garlic. No parsley.
+
+Just urchin, oil, pasta water, pepper. The Sicilian fishermen who built the dish weren't being minimalist — they were being honest. Anything more would drown what the sea had already finished seasoning.
+
+Restraint is a regional ingredient.`,
+            photoHint: "Plate of spaghetti from above · single fork twist · shallow depth",
+            hashtags: "#sicily #mondello #ricci #pasta #heritage #yachtchef #leicaq2m #littoralicious",
+            article: "articles/spaghetti-ricci-di-mare.html",
+            articleTitle: "Spaghetti ai Ricci di Mare"
+        },
+        {
+            id: 10,
+            category: "The Bridge",
+            hook: "Myojaku just earned three stars cooking with sea minerals only.",
+            caption: `Myojaku just earned three stars cooking with sea minerals only — no added salt.
+
+The chef harvests his seasoning directly from the coastline. Different rocks, different pools, different seasons. Each dish carries the literal geography of where it was conceived.
+
+Salt is a place. Always was.`,
+            photoHint: "Coastal rock pool · fingertip touching water · long exposure if possible",
+            hashtags: "#myojaku #threestars #fineDining #seasoning #yachtchef #leicaq2m #littoralicious",
+            article: "articles/myojaku-three-stars.html",
+            articleTitle: "Myojaku Earns Three Stars"
+        },
+        {
+            id: 11,
+            category: "Shore Larder",
+            hook: "Miami's wholesale fish moves at 4am. By 7am the best is gone.",
+            caption: `Miami's wholesale fish moves at 4am. By 7am the best of it is already gone.
+
+The whole provisioning game in South Florida is a clock. Get there before the restaurants do. Build a relationship with one cutter. Pay in cash and on time.
+
+The market doesn't reward the chef who shows up at brunch.`,
+            photoHint: "Fish on ice · early light · vendor's hands at work · steam rising",
+            hashtags: "#provisioning #miami #fortlauderdale #yachtchef #sourcing #leicaq2m #littoralicious",
+            article: "articles/provisioning-miami-ftl.html",
+            articleTitle: "Provisioning Miami & Fort Lauderdale"
+        },
+        {
+            id: 12,
+            category: "The Method",
+            hook: "Your WhatsApp threads contain more guest intel than any preference sheet.",
+            caption: `Your WhatsApp threads contain more guest intelligence than any preference sheet.
+
+Every "thank you, that was perfect" is a data point. Every "next time, less heat" is a directive. Every photo from a guest is a ranked review you didn't ask for.
+
+The intel is already there. Most chefs just never go back to read it.`,
+            photoHint: "Phone face-down on the pass · messy mise behind · tonal drop-off",
+            hashtags: "#yachtchef #guestservice #whatsapp #systems #leicaq2m #monochrome #littoralicious",
+            article: "articles/whatsapp-trip-intelligence.html",
+            articleTitle: "WhatsApp as Trip Intelligence"
+        },
+        {
+            id: 13,
+            category: "The Method",
+            hook: "AI can read a 600-page cookbook in 90 seconds.",
+            caption: `AI can read a 600-page cookbook in 90 seconds and pull every technique that fits your boat, your guests, your provisioning window.
+
+This isn't replacement. It's leverage. The same tool that drafts a brief in finance now mines a recipe library for the one technique that solves tonight's service.
+
+The cookbook hasn't changed. The reader has.`,
+            photoHint: "Open cookbook on counter · phone screen reflected in butter knife · hand turning page",
+            hashtags: "#aiinkitchen #yachtchef #technique #cookbooks #leicaq2m #monochrome #littoralicious",
+            article: "articles/tech-in-the-galley.html",
+            articleTitle: "Technology in the Galley"
+        },
+        {
+            id: 14,
+            category: "The Method",
+            hook: "Most cookbooks have 12% of recipes worth keeping.",
+            caption: `Most cookbooks have around 12% of recipes worth keeping. The rest is filler, fashion, or the author writing for an audience you aren't.
+
+AI can find that 12% in minutes — by your standards, your equipment, your guests. The book stays the same. What changes is how fast you can mine it.
+
+Read like a chef, not like a tourist.`,
+            photoHint: "Stack of well-thumbed cookbooks · post-its visible · raking light",
+            hashtags: "#cookbookdecoder #ai #yachtchef #recipes #galley #leicaq2m #littoralicious",
+            article: "articles/ai-cookbook-extraction.html",
+            articleTitle: "The Cookbook Decoder"
+        },
+        {
+            id: 15,
+            category: "The Method",
+            hook: "The best chefs remember 80 guests. The best databases remember 8,000.",
+            caption: `The best chefs remember eighty guests by name. The best databases remember eight thousand.
+
+A preference file isn't paperwork. It's the difference between a chef who is good with people and a chef who is structurally undefeatable. Once it's written down, it never forgets.
+
+Memory leaks. Files don't.`,
+            photoHint: "Notebook with handwritten guest notes · pen mid-stroke · hard side light",
+            hashtags: "#yachtchef #guestpreference #systems #hospitality #leicaq2m #monochrome #littoralicious",
+            article: "articles/guest-preference-database.html",
+            articleTitle: "The Living Preference File"
+        },
+        {
+            id: 16,
+            category: "The Evidence",
+            hook: "Parmigiano has more free glutamate per gram than soy sauce.",
+            caption: `Parmigiano has more free glutamate per gram than soy sauce.
+
+Western cuisine has always had umami — we just never gave it a name. Aged cheese, anchovy, tomato, cured ham, mushroom, wine. We were fermenting our way to the fifth taste centuries before Tokyo named it.
+
+You don't need a Japanese pantry. You need a deeper one.`,
+            photoHint: "Wedge of parmigiano · grater poised · backlight catching shavings in air",
+            hashtags: "#umami #parmigiano #fermentation #cookingscience #yachtchef #leicaq2m #littoralicious",
+            article: "articles/umami-western-cuisine.html",
+            articleTitle: "Umami in Western Cuisine"
+        },
+        {
+            id: 17,
+            category: "Shore Larder",
+            hook: "Bay leaf isn't decorative. It's eucalyptol.",
+            caption: `Bay leaf isn't decorative. It's eucalyptol — the same compound in cough syrup, antiseptic gum, and clinical aromatherapy.
+
+Drop one in a stew and you're not adding "flavour." You're medicating the dish, gently, in the way every grandmother knew without having to say it.
+
+We didn't invent these techniques. We're just relearning what they were doing.`,
+            photoHint: "Single bay leaf on dark wood · tweezers or fingertips · side light",
+            hashtags: "#bayleaf #herbs #medicinalplants #cookingscience #yachtchef #leicaq2m #littoralicious",
+            article: "articles/medicinal-plants-your-galley.html",
+            articleTitle: "Plants That Nurture Us"
+        },
+        {
+            id: 18,
+            category: "Shore Larder",
+            hook: "Maldon doesn't taste different. It feels different.",
+            caption: `Maldon doesn't taste different. It feels different.
+
+The flake is the experience — that brief crunch, the controlled saline burst, the way it sits on top of fat without dissolving. Sodium chloride is sodium chloride. Geometry is the luxury.
+
+You're not seasoning. You're texturing.`,
+            photoHint: "Pinch of flaky salt mid-fall onto seared meat · macro · texture on texture",
+            hashtags: "#maldon #saltflakes #saltindex #seasoning #yachtchef #leicaq2m #littoralicious",
+            article: "articles/the-salt-index.html",
+            articleTitle: "The Salt Index"
+        },
+        {
+            id: 19,
+            category: "Shore Larder",
+            hook: "Butter is 16% water. That's where croissants come from.",
+            caption: `Butter is roughly 16% water. That's where croissants come from.
+
+When the dough hits the oven, that water flashes to steam between the layers and pushes them apart. Every flake is a tiny explosion. No water, no lift, no croissant.
+
+Pastry is just controlled evaporation, dressed up.`,
+            photoHint: "Cross-section of a croissant · backlit · steam still rising if possible",
+            hashtags: "#butter #pastry #fatindex #cookingscience #yachtchef #leicaq2m #littoralicious",
+            article: "articles/the-fat-index.html",
+            articleTitle: "The Fat Index"
+        },
+        {
+            id: 20,
+            category: "The Evidence",
+            hook: "The first cooked meal was an accident. The second one made us human.",
+            caption: `The first cooked meal was probably an accident — a piece of meat dropped near a fire by someone who was paying attention.
+
+The second one was a choice.
+
+That's the moment. Not the discovery. The decision to do it again. Every chef since has been repeating that same gesture: the deliberate return to the flame.`,
+            photoHint: "Hand placing food onto a grill · close · embers glowing · everything else dark",
+            hashtags: "#cookingscience #fire #anthropology #yachtchef #galley #leicaq2m #littoralicious",
+            article: "articles/cooked-fire-made-us-human.html",
+            articleTitle: "Cooked: How Fire Made Us Human"
+        }
+    ];
+
+    /* ==================================================================
+       Best-time-to-post intelligence
+       Research-aligned for food/lifestyle/luxury audience:
+         Tue/Wed/Thu 11:00 + 19:30  → prime engagement
+         Sat 10:00                  → leisure browsing peak
+         Mon/Fri/Sun shoulders      → good but not prime
+         Anything else              → soft (will publish, just not optimal)
+       ================================================================== */
+    const PRIME_SLOTS = {
+        2: [{h:11,m:0},{h:19,m:30}], // Tue
+        3: [{h:11,m:0},{h:19,m:30}], // Wed
+        4: [{h:11,m:0},{h:19,m:30}], // Thu
+        6: [{h:10,m:0}]              // Sat
+    };
+    const GOOD_SLOTS = {
+        1: [{h:19,m:30}], // Mon
+        5: [{h:11,m:0}],  // Fri
+        0: [{h:10,m:0}]   // Sun
+    };
+
+    const CADENCES = {
+        1: [{dow:3, h:11, m:0}],
+        2: [{dow:2, h:11, m:0}, {dow:4, h:11, m:0}],
+        3: [{dow:2, h:11, m:0}, {dow:4, h:11, m:0}, {dow:6, h:10, m:0}],
+        4: [{dow:2, h:11, m:0}, {dow:3, h:11, m:0}, {dow:4, h:11, m:0}, {dow:6, h:10, m:0}]
+    };
+
+    function slotQuality(date) {
+        const day = date.getDay();
+        const h = date.getHours();
+        const m = date.getMinutes();
+        const within = (slot) => Math.abs((h*60+m) - (slot.h*60+slot.m)) <= 30;
+        if ((PRIME_SLOTS[day] || []).some(within)) return "prime";
+        if ((GOOD_SLOTS[day]  || []).some(within)) return "good";
+        return "soft";
+    }
+
+    function nextPrimeSlotAfter(after) {
+        for (let d = 0; d < 14; d++) {
+            const day = new Date(after);
+            day.setDate(day.getDate() + d);
+            const dow = day.getDay();
+            const slots = (PRIME_SLOTS[dow] || []).concat(GOOD_SLOTS[dow] || []);
+            for (const s of slots) {
+                const cand = new Date(day);
+                cand.setHours(s.h, s.m, 0, 0);
+                if (cand.getTime() > after.getTime()) return cand;
+            }
+        }
+        return null;
+    }
+
+    function generateScheduleSlots(cadence, startFromDate, count) {
+        const defs = CADENCES[cadence];
+        const slots = [];
+        let dayOffset = 0;
+        const start = new Date(startFromDate);
+        start.setHours(0, 0, 0, 0);
+        const now = new Date();
+
+        while (slots.length < count && dayOffset < 365) {
+            const day = new Date(start);
+            day.setDate(day.getDate() + dayOffset);
+            for (const def of defs) {
+                if (day.getDay() !== def.dow) continue;
+                const slot = new Date(day);
+                slot.setHours(def.h, def.m, 0, 0);
+                if (slot.getTime() > now.getTime() - 60000) slots.push(slot);
+            }
+            dayOffset++;
+        }
+        return slots.slice(0, count);
+    }
+
+    /* ==================================================================
+       Storage
+       ================================================================== */
+    const STORAGE_KEY = "littoralicious-post-state-v2";
+
+    function loadState() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
+        catch (e) { return {}; }
+    }
+
+    function saveState(state) {
+        try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+        catch (e) { toast("Storage full"); }
+    }
+
+    function getPostState(id) {
+        const s = loadState();
+        return Object.assign({ published: false, photo: null, scheduledAt: null }, s[id] || {});
+    }
+
+    function setPostState(id, patch) {
+        const s = loadState();
+        s[id] = Object.assign(getPostState(id), patch);
+        saveState(s);
+    }
+
+    /* ==================================================================
+       Date helpers
+       ================================================================== */
+    function toLocalInputValue(iso) {
+        if (!iso) return "";
+        const d = new Date(iso);
+        const pad = n => String(n).padStart(2,"0");
+        return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function fromLocalInputValue(val) {
+        if (!val) return null;
+        return new Date(val).toISOString();
+    }
+
+    function relativeTime(date) {
+        const diff = date.getTime() - Date.now();
+        const min = Math.round(diff / 60000);
+        if (Math.abs(min) < 1) return "now";
+        if (diff < 0) {
+            const a = -min;
+            if (a < 60) return `${a} min overdue`;
+            if (a < 60*24) return `${Math.round(a/60)}h overdue`;
+            return `${Math.round(a/(60*24))}d overdue`;
+        }
+        if (min < 60) return `in ${min} min`;
+        if (min < 60*24) return `in ${Math.round(min/60)} h`;
+        return `in ${Math.round(min/(60*24))} d`;
+    }
+
+    function formatScheduleMeta(date) {
+        const dayName = date.toLocaleDateString(undefined, { weekday: "short" });
+        const time = date.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+        const q = slotQuality(date);
+        const qLabel = q === "prime" ? "Prime slot" : q === "good" ? "Good slot" : "Soft slot";
+        return { dayName, time, quality: q, qLabel };
+    }
+
+    /* ==================================================================
+       Render
+       ================================================================== */
+    const grid = document.getElementById("post-grid");
+    let currentSort = "order";
+
+    function getOrderedPosts() {
+        if (currentSort === "schedule") {
+            return [...POSTS].sort((a, b) => {
+                const sa = getPostState(a.id).scheduledAt;
+                const sb = getPostState(b.id).scheduledAt;
+                if (!sa && !sb) return a.id - b.id;
+                if (!sa) return 1;
+                if (!sb) return -1;
+                return new Date(sa) - new Date(sb);
+            });
+        }
+        return POSTS;
+    }
+
+    function render() {
+        grid.innerHTML = "";
+        const filter = document.querySelector(".post-filter.is-active[data-filter]").dataset.filter;
+        let shown = 0;
+
+        getOrderedPosts().forEach(p => {
+            const st = getPostState(p.id);
+            if (filter === "queued"      && (st.published || st.scheduledAt)) return;
+            if (filter === "scheduled"   && (!st.scheduledAt || st.published))  return;
+            if (filter === "published"   && !st.published) return;
+            if (filter === "needs-photo" && st.photo) return;
+
+            shown++;
+
+            const scheduleHtml = renderScheduleRow(p, st);
+            const card = document.createElement("article");
+            card.className = "post-card" + (st.published ? " is-published" : "");
+            card.dataset.id = p.id;
+
+            card.innerHTML = `
+                <div class="post-card__photo" data-id="${p.id}">
+                    <span class="post-card__num">${String(p.id).padStart(2, "0")} / 20</span>
+                    ${st.photo ? `<img src="${st.photo}" alt="">` : `
+                        <div class="post-card__photo-empty">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <rect x="3" y="5" width="18" height="14" rx="1"/>
+                                <circle cx="8.5" cy="10.5" r="1.5"/>
+                                <path d="M21 17l-5-5L5 21"/>
+                            </svg>
+                            <span class="post-card__photo-empty-text">Drop / tap to add photo</span>
+                        </div>
+                    `}
+                    ${!st.photo ? `<span class="post-card__photo-hint">${escapeHtml(p.photoHint)}</span>` : ""}
+                    <input type="file" accept="image/*" data-id="${p.id}">
+                </div>
+                <div class="post-card__body">
+                    <span class="post-card__category">${escapeHtml(p.category)}</span>
+                    <h2 class="post-card__hook">${escapeHtml(p.hook)}</h2>
+                    <p class="post-card__caption">${escapeHtml(p.caption)}</p>
+                    <p class="post-card__hashtags">${escapeHtml(p.hashtags)}</p>
+                    <a class="post-card__link" href="${p.article}" target="_blank" rel="noopener">
+                        <span>↗ Article</span>
+                        <span>${escapeHtml(p.articleTitle)}</span>
+                    </a>
+                    ${scheduleHtml}
+                    <div class="post-card__actions">
+                        <button class="post-btn" data-action="copy" data-id="${p.id}">Copy caption</button>
+                        <button class="post-btn" data-action="save-photo" data-id="${p.id}" ${!st.photo ? "disabled style='opacity:.4;cursor:not-allowed'" : ""}>Save photo</button>
+                        <button class="post-btn post-btn--full post-btn--accent" data-action="prepare" data-id="${p.id}" ${!st.photo ? "disabled style='opacity:.4;cursor:not-allowed'" : ""}>↗ Prepare for Instagram</button>
+                        <button class="post-btn post-btn--full ${st.published ? "is-active" : ""}" data-action="toggle-published" data-id="${p.id}">
+                            ${st.published ? "✓ Published — undo" : "Mark as published"}
+                        </button>
+                        ${st.photo ? `<button class="post-btn post-btn--full post-btn--ghost" data-action="remove-photo" data-id="${p.id}">Remove photo</button>` : ""}
+                    </div>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+
+        if (shown === 0) {
+            grid.innerHTML = `<p style="grid-column: 1/-1; text-align: center; padding: var(--space-16) 0; color: var(--color-muted); font-family: var(--font-serif); font-style: italic;">Nothing in this view.</p>`;
+        }
+
+        updateStats();
+        renderUpNext();
+    }
+
+    function renderScheduleRow(p, st) {
+        if (st.scheduledAt) {
+            const d = new Date(st.scheduledAt);
+            const meta = formatScheduleMeta(d);
+            return `
+                <div class="post-card__schedule">
+                    <input type="datetime-local" data-action="schedule" data-id="${p.id}" value="${toLocalInputValue(st.scheduledAt)}">
+                    <span class="post-card__schedule-meta">
+                        <span class="quality-dot quality-dot--${meta.quality}"></span>
+                        ${meta.dayName} · ${meta.time} · ${meta.qLabel}
+                    </span>
+                    <button class="post-card__schedule-clear" data-action="clear-schedule" data-id="${p.id}" title="Clear schedule">×</button>
+                </div>
+            `;
+        }
+        return `
+            <div class="post-card__schedule">
+                <input type="datetime-local" data-action="schedule" data-id="${p.id}" value="">
+                <button class="post-card__schedule-suggest" data-action="suggest" data-id="${p.id}">Suggest slot</button>
+            </div>
+        `;
+    }
+
+    function renderUpNext() {
+        const banner = document.getElementById("up-next");
+        const candidates = POSTS
+            .map(p => ({ p, st: getPostState(p.id) }))
+            .filter(x => x.st.scheduledAt && !x.st.published)
+            .sort((a, b) => new Date(a.st.scheduledAt) - new Date(b.st.scheduledAt));
+
+        if (candidates.length === 0) {
+            banner.style.display = "none";
+            banner.classList.remove("is-overdue", "is-now");
+            return;
+        }
+
+        const next = candidates[0];
+        const when = new Date(next.st.scheduledAt);
+        const meta = formatScheduleMeta(when);
+        const rel = relativeTime(when);
+        const diff = when.getTime() - Date.now();
+
+        banner.classList.toggle("is-overdue", diff < -5 * 60000);
+        banner.classList.toggle("is-now", diff >= -5 * 60000 && diff < 30 * 60000);
+
+        const label = diff < -5 * 60000 ? "Overdue" : diff < 30 * 60000 ? "Post now" : "Up next";
+
+        banner.style.display = "";
+        banner.innerHTML = `
+            <span class="up-next__label">${label}</span>
+            <span class="up-next__when">${rel} · ${meta.dayName} ${meta.time}</span>
+            <span class="up-next__post">№${String(next.p.id).padStart(2,"0")} — ${escapeHtml(next.p.articleTitle)}</span>
+            <button class="up-next__btn" id="up-next-jump">Open →</button>
+        `;
+        document.getElementById("up-next-jump").onclick = () => {
+            const card = grid.querySelector(`.post-card[data-id="${next.p.id}"]`);
+            if (card) {
+                card.scrollIntoView({ behavior: "smooth", block: "center" });
+                card.classList.add("is-pulsing");
+                setTimeout(() => card.classList.remove("is-pulsing"), 1500);
+            }
+        };
+    }
+
+    function updateStats() {
+        const s = loadState();
+        let pub = 0, sched = 0;
+        POSTS.forEach(p => {
+            const st = s[p.id] || {};
+            if (st.published) pub++;
+            else if (st.scheduledAt) sched++;
+        });
+        document.getElementById("stat-published").textContent = pub;
+        document.getElementById("stat-scheduled").textContent = sched;
+        document.getElementById("stat-queued").textContent = POSTS.length - pub - sched;
+        document.getElementById("progress-bar").style.width = (pub / POSTS.length * 100) + "%";
+    }
+
+    function escapeHtml(s) {
+        return String(s).replace(/[&<>"']/g, c => ({
+            "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        }[c]));
+    }
+
+    /* ==================================================================
+       Interactions
+       ================================================================== */
+    function toast(msg) {
+        const t = document.getElementById("toast");
+        t.textContent = msg;
+        t.classList.add("is-visible");
+        clearTimeout(t._h);
+        t._h = setTimeout(() => t.classList.remove("is-visible"), 1800);
+    }
+
+    function copyToClipboard(text) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            return navigator.clipboard.writeText(text);
+        }
+        return new Promise((resolve, reject) => {
+            const ta = document.createElement("textarea");
+            ta.value = text;
+            ta.style.position = "fixed"; ta.style.opacity = "0";
+            document.body.appendChild(ta); ta.select();
+            try { document.execCommand("copy"); resolve(); }
+            catch (e) { reject(e); }
+            document.body.removeChild(ta);
+        });
+    }
+
+    function downloadPhotoFile(id) {
+        const st = getPostState(id);
+        if (!st.photo) return;
+        const a = document.createElement("a");
+        a.href = st.photo;
+        a.download = `littoralicious-${String(id).padStart(2,"0")}.jpg`;
+        document.body.appendChild(a); a.click(); a.remove();
+    }
+
+    grid.addEventListener("click", (e) => {
+        const photoEl = e.target.closest(".post-card__photo");
+        if (photoEl && !e.target.closest("button")) {
+            const id = +photoEl.dataset.id;
+            if (getPostState(id).photo) return;
+            photoEl.querySelector('input[type="file"]').click();
+            return;
+        }
+
+        const btn = e.target.closest("button[data-action]");
+        if (!btn) return;
+        const id = +btn.dataset.id;
+        const post = POSTS.find(p => p.id === id);
+        const action = btn.dataset.action;
+
+        if (action === "copy") {
+            const text = post.caption + "\n\n" + post.hashtags;
+            copyToClipboard(text).then(() => {
+                btn.classList.add("is-copied");
+                btn.textContent = "✓ Copied";
+                toast("Caption copied");
+                setTimeout(() => { btn.classList.remove("is-copied"); btn.textContent = "Copy caption"; }, 1500);
+            }).catch(() => toast("Copy failed"));
+        }
+
+        if (action === "save-photo") {
+            downloadPhotoFile(id);
+            toast("Photo saved");
+        }
+
+        if (action === "prepare") {
+            const text = post.caption + "\n\n" + post.hashtags;
+            copyToClipboard(text).then(() => {
+                downloadPhotoFile(id);
+                toast("Caption copied · photo saved · opening Instagram");
+                setTimeout(() => { window.open("https://www.instagram.com/", "_blank"); }, 600);
+            });
+        }
+
+        if (action === "toggle-published") {
+            const st = getPostState(id);
+            setPostState(id, { published: !st.published });
+            render();
+            toast(st.published ? "Marked as queued" : "Marked as published");
+        }
+
+        if (action === "remove-photo") {
+            setPostState(id, { photo: null });
+            render();
+        }
+
+        if (action === "suggest") {
+            const slot = nextPrimeSlotAfter(new Date());
+            if (slot) {
+                setPostState(id, { scheduledAt: slot.toISOString() });
+                render();
+                toast("Slot suggested");
+            }
+        }
+
+        if (action === "clear-schedule") {
+            setPostState(id, { scheduledAt: null });
+            render();
+        }
+    });
+
+    grid.addEventListener("change", (e) => {
+        const fileInp = e.target.closest('input[type="file"]');
+        if (fileInp && fileInp.files[0]) {
+            const id = +fileInp.dataset.id;
+            const file = fileInp.files[0];
+            const reader = new FileReader();
+            reader.onload = () => {
+                const img = new Image();
+                img.onload = () => {
+                    const max = 1080;
+                    const size = Math.min(img.width, img.height);
+                    const sx = (img.width - size) / 2;
+                    const sy = (img.height - size) / 2;
+                    const canvas = document.createElement("canvas");
+                    canvas.width = canvas.height = max;
+                    const ctx = canvas.getContext("2d");
+                    ctx.drawImage(img, sx, sy, size, size, 0, 0, max, max);
+                    const dataUrl = canvas.toDataURL("image/jpeg", 0.78);
+                    try { setPostState(id, { photo: dataUrl }); render(); toast("Photo saved"); }
+                    catch (err) { toast("Image too large"); }
+                };
+                img.src = reader.result;
+            };
+            reader.readAsDataURL(file);
+            return;
+        }
+
+        const dtInp = e.target.closest('input[type="datetime-local"][data-action="schedule"]');
+        if (dtInp) {
+            const id = +dtInp.dataset.id;
+            setPostState(id, { scheduledAt: fromLocalInputValue(dtInp.value) });
+            render();
+        }
+    });
+
+    /* ----- Drag and drop ----- */
+    grid.addEventListener("dragover", (e) => {
+        const photoEl = e.target.closest(".post-card__photo");
+        if (!photoEl) return;
+        e.preventDefault();
+        photoEl.style.outline = "2px solid var(--color-sea)";
+    });
+    grid.addEventListener("dragleave", (e) => {
+        const photoEl = e.target.closest(".post-card__photo");
+        if (photoEl) photoEl.style.outline = "";
+    });
+    grid.addEventListener("drop", (e) => {
+        const photoEl = e.target.closest(".post-card__photo");
+        if (!photoEl) return;
+        e.preventDefault();
+        photoEl.style.outline = "";
+        const file = e.dataTransfer.files[0];
+        if (!file || !file.type.startsWith("image/")) return;
+        const inp = photoEl.querySelector('input[type="file"]');
+        const dt = new DataTransfer();
+        dt.items.add(file);
+        inp.files = dt.files;
+        inp.dispatchEvent(new Event("change", { bubbles: true }));
+    });
+
+    /* ----- Filters / sort ----- */
+    document.querySelectorAll(".post-filter[data-filter]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".post-filter[data-filter]").forEach(b => b.classList.remove("is-active"));
+            btn.classList.add("is-active");
+            render();
+        });
+    });
+
+    document.querySelectorAll(".post-filter[data-sort]").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".post-filter[data-sort]").forEach(b => b.classList.remove("is-active"));
+            btn.classList.add("is-active");
+            currentSort = btn.dataset.sort;
+            render();
+        });
+    });
+
+    /* ----- Auto-schedule toolbar ----- */
+    const startInput = document.getElementById("sched-start");
+    const today = new Date();
+    today.setDate(today.getDate());
+    startInput.value = today.toISOString().slice(0, 10);
+
+    document.getElementById("sched-apply").addEventListener("click", () => {
+        const cadence = document.getElementById("sched-cadence").value;
+        const startVal = startInput.value;
+        if (!startVal) return toast("Pick a start date");
+        const start = new Date(startVal + "T00:00:00");
+
+        const queue = POSTS.filter(p => {
+            const st = getPostState(p.id);
+            return !st.published && !st.scheduledAt;
+        });
+
+        if (queue.length === 0) return toast("Nothing to schedule");
+
+        const slots = generateScheduleSlots(cadence, start, queue.length);
+        queue.forEach((p, i) => {
+            if (slots[i]) setPostState(p.id, { scheduledAt: slots[i].toISOString() });
+        });
+        render();
+        toast(`${queue.length} posts scheduled`);
+    });
+
+    document.getElementById("sched-clear").addEventListener("click", () => {
+        if (!confirm("Clear all schedule dates? Photos and published markers will be kept.")) return;
+        POSTS.forEach(p => setPostState(p.id, { scheduledAt: null }));
+        render();
+        toast("Schedule cleared");
+    });
+
+    document.getElementById("export-ics").addEventListener("click", () => {
+        const events = POSTS
+            .map(p => ({ p, st: getPostState(p.id) }))
+            .filter(x => x.st.scheduledAt && !x.st.published);
+
+        if (events.length === 0) return toast("No scheduled posts to export");
+
+        const fmt = d => d.toISOString().replace(/[-:]/g, "").replace(/\.\d{3}/, "");
+        const esc = s => String(s).replace(/[\\,;]/g, m => "\\"+m).replace(/\n/g, "\\n");
+
+        const lines = [
+            "BEGIN:VCALENDAR",
+            "VERSION:2.0",
+            "PRODID:-//Littoralicious//Post Board//EN",
+            "CALSCALE:GREGORIAN",
+            "METHOD:PUBLISH"
+        ];
+        events.forEach(({ p, st }) => {
+            const start = new Date(st.scheduledAt);
+            const end = new Date(start.getTime() + 30 * 60000);
+            lines.push(
+                "BEGIN:VEVENT",
+                `UID:littoralicious-post-${p.id}-${start.getTime()}@littoralicious.com`,
+                `DTSTAMP:${fmt(new Date())}`,
+                `DTSTART:${fmt(start)}`,
+                `DTEND:${fmt(end)}`,
+                `SUMMARY:IG · ${esc(p.articleTitle)}`,
+                `DESCRIPTION:${esc(p.hook)}\\n\\n${esc(p.hashtags)}\\n\\nLink: https://www.littoralicious.com/${p.article}`,
+                "URL:https://www.littoralicious.com/post.html",
+                "END:VEVENT"
+            );
+        });
+        lines.push("END:VCALENDAR");
+
+        const blob = new Blob([lines.join("\r\n")], { type: "text/calendar" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `littoralicious-ig-schedule-${new Date().toISOString().slice(0,10)}.ics`;
+        a.click();
+        URL.revokeObjectURL(url);
+        toast("Calendar file downloaded");
+    });
+
+    /* ----- Footer toolbar ----- */
+    document.getElementById("export-data").addEventListener("click", () => {
+        const blob = new Blob([JSON.stringify(loadState(), null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `littoralicious-posts-${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    });
+
+    document.getElementById("reset-data").addEventListener("click", () => {
+        if (!confirm("Reset everything — photos, schedule, and published markers? This cannot be undone.")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        render();
+        toast("Reset");
+    });
+
+    /* ----- Initial render + live up-next refresh ----- */
+    render();
+    setInterval(renderUpNext, 60000);
+    </script>
+</body>
+</html>
