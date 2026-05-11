@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 22 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;53</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-22.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#7a6a2e">Crypto</div>
+  <h1 class="article-title">22 février 2026</h1>
+  <div class="article-date">Dimanche 22 Février 2026 &mdash; Edition N&deg;53</div>
+</div><div class="article-body"><h1>Journal Liberté — Crypto & Actifs Numériques</h1>
+<h3>22 février 2026</h3>
+<p><em>« In a bear market, you find out who was swimming naked. In thin liquidity, you find out who was swimming at all. »</em></p>
+<hr>
+<h2>L'Éditorial</h2>
+<p>Bitcoin fell below $65,000 this week before clawing back to $66,300, and the interesting part is not the drop but what caused it: almost nothing. There was no exchange collapse, no regulatory crackdown, no protocol failure. There was thin liquidity, vague tariff rhetoric, and simmering tensions with Iran — the kind of ambient uncertainty that, in a healthy market, produces a shrug. Instead, it produced a 4% intraday swing.</p>
+<p>This is what a market looks like when conviction has left the building but capital has not fully followed. The holders are holding. The traders are nervous. And the institutions — those much-celebrated institutions who were supposed to provide stability — are quietly redeeming.</p>
+<hr>
+<h2>Les Grands Récits</h2>
+<h3>The Slide Nobody Wanted to Explain</h3>
+<p>Bitcoin's drop to $64,270 on Thursday was brief, violent, and oddly quiet. There was no single catalyst, which made it more unsettling than a crash with a clear cause. Traders pointed to three overlapping pressures.</p>
+<p>First, <strong>liquidity has thinned dramatically</strong> since the start of February. Order books on major exchanges show bid depth down 30-40% compared to January, meaning that relatively small sell orders move the price disproportionately. This is the hangover from months of range-bound trading: market makers pull back when volatility is low, and when volatility returns, there is no cushion.</p>
+<p>Second, <strong>tariff fears</strong> resurfaced after comments from senior U.S. officials suggesting that new trade measures targeting Chinese technology imports could be announced in March. Crypto, which likes to call itself uncorrelated to traditional markets, sold off in lockstep with the Nasdaq. The correlation remains the elephant in the Bitcoin maximalists' room — an elephant that has been sitting there since 2022 and shows no sign of leaving.</p>
+<p>Third, <strong>Iran tensions</strong> added a geopolitical risk premium to energy markets, which pulled capital toward traditional safe havens — treasuries, gold, the Swiss franc — and away from risk assets. Bitcoin, which has never convincingly performed as a safe haven during actual geopolitical stress (as opposed to theoretical geopolitical stress), behaved exactly as it always does: it sold off with equities and recovered when equities recovered.</p>
+<p>The rebound to $66,300 by Friday afternoon was mechanical rather than organic — short covering and algorithmic mean-reversion strategies, not new buying conviction. The price is stable for now. The confidence is not.</p>
+<h3>ETF Redemptions: The Institutional Exit Nobody Discusses at Conferences</h3>
+<p>The spot crypto ETF complex experienced its sharpest single-day outflows of the month. <strong>Bitcoin ETFs shed $133.3 million</strong>, with IBIT (BlackRock) and FBTC (Fidelity) bearing the largest redemptions. <strong>Ethereum ETFs lost $41.8 million</strong>, a proportionally larger hit given their smaller asset base.</p>
+<p>These are not catastrophic numbers in the context of a $100+ billion AUM complex. But they are meaningful as a signal. Institutional investors — the pension funds, endowments, and wealth managers who entered crypto through the ETF wrapper — are not panicking, but they are rebalancing. And rebalancing, in institutional parlance, is a polite word for "reducing exposure to an asset class that is not performing."</p>
+<p>The redemption pattern reveals something important about the ETF structure that the crypto industry celebrated as a triumph of adoption. ETFs make it as easy to exit crypto as to enter it. The same frictionless access that drove $87 billion in cumulative inflows since January 2024 now works in reverse with identical efficiency. Every fund manager who added "2% Bitcoin allocation" to a balanced portfolio can remove it with a phone call.</p>
+<p>This is not a design flaw. It is a feature of regulated financial products. But it means that the crypto market's liquidity profile has fundamentally changed. In previous cycles, retail holders — who kept coins on hardware wallets, forgot passwords, or simply did not know how to sell — provided involuntary price support. Institutional holders provide no such support. They have quarterly performance reviews and risk committees.</p>
+<h3>Solana: The Exception That Proves the Rotation</h3>
+<p>In the middle of broad crypto redemptions, one asset class bucked the trend. <strong>Solana ETFs recorded $2.4 million in net inflows</strong> — a small number in absolute terms, but notable because it was positive when everything else was negative.</p>
+<p>The inflow reflects an institutional rotation that has been building for months. Solana has emerged as the dominant chain for DeFi activity and meme token trading, with decentralized exchange volumes that now regularly surpass Ethereum's. The narrative is simple and, for the moment, self-reinforcing: Solana is faster, cheaper, and where the activity is. Institutional allocators who want "crypto exposure beyond Bitcoin" are increasingly choosing Solana over Ethereum, a preference that would have been unthinkable two years ago.</p>
+<p>But Solana's dominance in DEX volumes comes with a caveat that the ETF inflow numbers do not capture. A significant portion of Solana's transaction volume is driven by meme coin speculation — a category of activity that is cyclical, mercurial, and liable to evaporate when sentiment shifts. The chain's infrastructure is excellent. The question is whether the activity built on that infrastructure is durable or ephemeral.</p>
+<p>For now, the institutions buying Solana ETFs are making a bet on infrastructure over activity. They believe the chain will find sustainable use cases beyond meme tokens. That may prove correct. But $2.4 million in inflows against $175 million in combined BTC/ETH outflows is a whisper of optimism in a room full of doubt.</p>
+<h3>Austria and the Regulatory Slow Squeeze</h3>
+<p>Far from the price charts and ETF flow tables, a regulatory decision in Vienna illustrates how the compliance landscape for crypto exchanges is tightening, not through dramatic crackdowns but through relentless administrative pressure.</p>
+<p><strong>Austria's Financial Market Authority (FMA) has ordered Kucoin EU to appoint dedicated AML and sanctions compliance officers.</strong> The requirement — which sounds routine for a traditional financial institution — is anything but routine for a crypto exchange that built its business on operational leanness and regulatory arbitrage.</p>
+<p>Kucoin, which has faced regulatory challenges in multiple jurisdictions, obtained EU market access through a registration in Austria. The FMA's order signals that the registration is not a rubber stamp. The regulator expects the same compliance infrastructure from a crypto exchange as it would from a bank: named officers, documented processes, regular reporting, and personal liability for failures.</p>
+<p>This is the model that is spreading across the EU under MiCA (Markets in Crypto-Assets Regulation). The rules do not ban crypto. They bureaucratize it. They require the same compliance apparatus that traditional finance has built over decades — an apparatus that costs millions annually to maintain and that fundamentally changes the economics of running an exchange. The crypto exchanges that survive will look, organizationally, indistinguishable from the banks they were supposed to disrupt.</p>
+<p><strong>Two additional major regulatory packages are expected in Q2 2026</strong>, both focused on stablecoin reserves and cross-border transaction reporting. The direction is clear: crypto is being absorbed into the regulatory perimeter, not kept outside it.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<p>The bid-depth decline on major exchanges is not just a temporary liquidity event. It reflects a structural change: professional market makers are allocating less capital to crypto order books because the volatility-adjusted returns have deteriorated. Lower liquidity begets larger price swings, which begets more uncertainty, which begets lower liquidity. This reflexive loop is the most underappreciated risk in the current market.</p>
+<p>Solana's DEX volume supremacy over Ethereum is being driven partly by a single protocol — Raydium — which now handles more volume than Uniswap. Single-protocol concentration is a risk the Solana ecosystem has not adequately discussed.</p>
+<p>The Ethereum ETF outflows ($41.8M on a smaller base) are proportionally more severe than Bitcoin's. The ETH/BTC ratio continues to compress, and the narrative of Ethereum as "the world computer" has not generated the institutional enthusiasm that the ETH ETF issuers expected. If the ratio breaks below 0.025, the narrative damage may become self-reinforcing.</p>
+<p>Austria's Kucoin decision is the first enforcement action under the revised Austrian crypto registration framework. It will be watched closely by other EU member states as a precedent for how aggressively MiCA's organizational requirements will be applied.</p>
+<hr>
+<h2>La Connexion</h2>
+<p>What connects the Bitcoin price slide, the ETF redemptions, the Solana rotation, and the Austrian compliance order is a single, uncomfortable truth: <strong>the crypto market is becoming a normal financial market</strong>, and normal financial markets are not fun.</p>
+<p>Normal financial markets have thin liquidity when uncertainty rises. They have institutional investors who redeem when performance lags. They have regulatory bodies that demand compliance officers. They have rotations between asset classes based on fundamental analysis rather than meme velocity.</p>
+<p>The crypto industry spent a decade arguing that it deserved to be treated like a legitimate financial market. In 2026, it is getting exactly what it asked for. Legitimate financial markets are boring most of the time, stressful some of the time, and exhilarating almost never. The adrenaline of the Wild West is being replaced by the discipline of the regulated city. Whether the participants who were attracted by the former will stay for the latter is the defining question of this cycle.</p>
+<hr>
+<p><em>Prochain numéro : suivi des régulations Q2 — stablecoin reserves et reporting transfrontalier sous MiCA.</em></p></div><div class="bottom-nav"><a href="maritime-sailing.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Maritime & Sailing</span></a><a href="sante-medecine.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Santé & Médecine &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; CRYPTO</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!--
+    Hearth flame over waves
+    Hestia — goddess of the hearth, nurture
+    Fire + water = the galley
+  -->
+
+  <!-- Flame -->
+  <path
+    d="M 40 12
+       C 45 20, 52 25, 52 35
+       C 52 45, 45 50, 40 50
+       C 35 50, 28 45, 28 35
+       C 28 25, 35 20, 40 12
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+
+  <!-- Inner flame -->
+  <path
+    d="M 40 22
+       C 43 28, 46 32, 46 38
+       C 46 44, 43 48, 40 48
+       C 37 48, 34 44, 34 38
+       C 34 32, 37 28, 40 22
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+  />
+
+  <!-- Waves below - the littoral -->
+  <path
+    d="M 10 58
+       Q 25 52, 40 58
+       T 70 58"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M 10 66
+       Q 25 60, 40 66
+       T 70 66"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+</svg>

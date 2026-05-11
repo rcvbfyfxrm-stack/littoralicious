@@ -13,7 +13,7 @@
     <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
 
     <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20260506b">
     <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
 </head>
 <body>
@@ -22,9 +22,12 @@
         <div class="container">
             <div class="masthead__inner">
                 <div class="masthead__brand">
-                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
-                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
-                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
                 </div>
                 <nav class="masthead__nav">
                     <a href="../shore-larder.html">Shore Larder</a>
@@ -32,8 +35,6 @@
                     <a href="../littoral-heritage.html">Heritage</a>
                     <a href="../the-evidence.html">The Evidence</a>
                     <a href="../the-bridge.html" class="active">The Bridge</a>
-                    <a href="../newsletter.html">Newsletter</a>
-                    <a href="../connect.html" class="auth-nav-link">Sign In</a>
                 </nav>
             </div>
         </div>
@@ -149,32 +150,18 @@
                 <!-- Article Engagement Section -->
                 <div class="article-engagement">
 
-                    <!-- Community Pulse -->
-                    <div class="community-pulse">
-                        <span class="community-pulse__count">Loading...</span>
+                    <!-- Engagement Pulse -->
+                    <div class="engagement-pulse" data-reactions="0" data-comments="0">
+                        <span class="engagement-pulse__text">Be the first to join the conversation</span>
                     </div>
 
                     <!-- Reactions -->
                     <div class="article-reactions" data-article-id="myojaku-three-stars">
                         <p class="reactions-prompt">Are you up to date on the new STCW requirements?</p>
-                        <div class="reactions-buttons">
-                            <button class="reaction-btn" data-reaction="agree">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                                </svg>
-                                <span>Useful</span>
-                                <span class="reaction-count reaction-count--agree">0</span>
-                            </button>
-                            <button class="reaction-btn" data-reaction="disagree">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
-                                </svg>
-                                <span>Disagree</span>
-                                <span class="reaction-count reaction-count--disagree">0</span>
-                            </button>
+                        <div class="reactions-grid">
+                            <!-- Populated by community.js -->
                         </div>
-                        <div class="article-reactions__stats"></div>
-                        <div class="article-reactions__bar"><div class="article-reactions__bar-fill"></div></div>
+                        <div class="sentiment-bar"></div>
                     </div>
 
                     <!-- Share -->
@@ -200,7 +187,7 @@
 
                     <!-- Comments Section -->
                     <div class="article-comments">
-                        <h3 class="comments-title">Join the conversation</h3>
+                        <h3 class="comments-title">Join the conversation <span class="comments-title__count"></span></h3>
 
                         <div class="comments-sort">
                             <button class="comments-sort__btn active" data-sort="newest">Newest</button>
@@ -213,17 +200,13 @@
                                     <input type="text" name="name" placeholder="Your name" required>
                                     <input type="email" name="email" placeholder="Email (optional)">
                                 </div>
-                                <label class="photo-upload" title="Add your photo">
-                                    <input type="file" name="photo" accept="image/*" hidden>
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                                    <span class="photo-upload__preview"></span>
-                                </label>
-                                <textarea name="comment" placeholder="Share your thoughts, experience, or questions..." rows="4" required></textarea>
+                                <textarea name="comment" placeholder="Share your thoughts, experience, or questions..." rows="4" maxlength="2000" required></textarea>
                                 <div class="comment-form__footer">
                                     <label class="comment-form__subscribe">
                                         <input type="checkbox" name="subscribe" checked>
                                         <span>Subscribe to the newsletter</span>
                                     </label>
+                                    <span class="comment-form__char-count"></span>
                                     <button type="submit">Post Comment</button>
                                 </div>
                             </form>
@@ -246,7 +229,7 @@
                 <form class="footer-newsletter-form newsletter-form"
                       action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
                       method="post"
->
+                      target="popupwindow">
                     <label for="footer-email-myojaku-three-stars">Get the monthly brief</label>
                     <div class="footer-newsletter-form__row">
                         <input type="email" name="email" id="footer-email-myojaku-three-stars" placeholder="your@email.com" required>
@@ -278,7 +261,6 @@
                         <ul>
                             <li><a href="../about.html">Manifesto</a></li>
                             <li><a href="../founder.html">Founder</a></li>
-                            <li><a href="../newsletter.html">Newsletter</a></li>
                             <li><a href="../contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -292,11 +274,8 @@
 
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="../assets/js/firebase-config.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/community.js"></script>
 
 </body>

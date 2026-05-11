@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Battered Fish &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 8pt;
+            line-height: 1.32;
+            color: #0a0a0a;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 6mm 9mm 4mm;
+            overflow: hidden;
+        }
+        .header { border-bottom: 2.5px solid #0a0a0a; padding-bottom: 2.5mm; margin-bottom: 3mm; }
+        .brand { font-family: Georgia, serif; font-size: 7.2pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 6.2pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 24pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0.8mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 9pt; color: #4a5568; line-height: 1.32; }
+        .meta-bar { display: flex; gap: 4.5mm; margin-top: 2.2mm; padding-top: 2.2mm; border-top: 1px solid #e2e2e2; font-size: 7.6pt; color: #6b7280; flex-wrap: wrap; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 36% 1fr; gap: 4.5mm; margin-bottom: 2.5mm; }
+        h2 { font-family: Georgia, serif; font-size: 9.2pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1.2mm; margin-bottom: 2.2mm; }
+
+        .ingredients-note { font-size: 6.2pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -1mm 0 1.5mm 0; }
+        .group-label { font-size: 7.2pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 2mm 0 0.6mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 7.5pt; }
+        .ingredients td { padding: 0.4mm 1mm; vertical-align: top; line-height: 1.25; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 50px; }
+        .ingredients td:nth-child(3) { font-size: 6.5pt; text-align: right; color: #6b7280; white-space: nowrap; width: 60px; padding-left: 2mm; }
+        .note { font-size: 6.4pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 6.6pt; color: #6b7280; margin-top: 2mm; padding-top: 1.2mm; border-top: 1px solid #f0f0f0; line-height: 1.3; }
+
+        .method ol { padding-left: 4.5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 1mm; padding-left: 1mm; counter-increment: step; position: relative; line-height: 1.3; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -4.5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.4mm 0; padding: 0.5mm 0 0.5mm 2.8mm; border-left: 2px solid #5c9ead; font-size: 6.6pt; font-style: italic; color: #4a5568; line-height: 1.28; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 1.8mm 2.5mm; margin-top: 2mm; font-size: 7.5pt; line-height: 1.3; }
+        .done strong { color: #2d4a5e; }
+
+        .elevation { border: 1.5px solid #2d4a5e; padding: 1.8mm 2.5mm; margin-bottom: 2mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1.2mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5mm; }
+        .tier-label { font-weight: 700; font-size: 6.3pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3mm; font-size: 6.6pt; line-height: 1.28; }
+        .elevation li { margin-bottom: 0.3mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 1.5mm; }
+        .bottom h2 { font-size: 7.8pt; margin-bottom: 1.5mm; padding-bottom: 0.8mm; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 6.6pt; border-collapse: collapse; }
+        .troubleshoot td, .charter td { padding: 0.4mm 1.5mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; line-height: 1.27; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 30%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 30%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 6pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1.2mm; border-top: 1px solid #e2e2e2; font-size: 5.8pt; color: #94a3b8; display: flex; justify-content: space-between; }
+        @media print { .done, .elevation, .charter tr:first-child td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint</span><span class="brand-tagline">Cold batter, hot oil, mixed at the last second</span>
+    <h1>Battered Fish</h1>
+    <p class="hook">Vodka and rice flour suppress gluten. Beer + double-leavening lifts the lace. The dredge welds it to the fish. Cold batter into 185&deg;C oil, the fillet held submerged for 5 seconds before release.</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>4 fillets</strong></span>
+        <span>Active: <strong>35 min</strong></span>
+        <span>Total: <strong>1 hr 15</strong></span>
+        <span>Oil: <strong>185&deg;C</strong> (365&deg;F)</span>
+        <span>Internal: <strong>60&ndash;63&deg;C</strong></span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; volume in right column</p>
+
+        <div class="group-label">The Fish</div>
+        <table>
+            <tr><td>White fish fillets, skinless, &ge; 2.5 cm <span class="note">(cod / haddock / pollock / hake, MSC)</span></td><td>720&ndash;800g</td><td>&times;4</td></tr>
+            <tr><td>Brine: cold water</td><td>1 L</td><td>1 qt</td></tr>
+            <tr><td>Brine: fine sea salt <span class="note">(3% &times; 15 min)</span></td><td>30g</td><td>2 tbsp</td></tr>
+        </table>
+
+        <div class="group-label">The Dredge <span class="note">(the weld)</span></div>
+        <table>
+            <tr><td>Plain flour</td><td>80g</td><td>&frac23; cup</td></tr>
+            <tr><td>Fine sea salt</td><td>3g</td><td>&frac12; tsp</td></tr>
+            <tr><td>Cracked black pepper</td><td>1g</td><td>&frac14; tsp</td></tr>
+        </table>
+
+        <div class="group-label">The Batter <span class="note">(mix at the last second)</span></div>
+        <table>
+            <tr><td>Plain flour</td><td>100g</td><td>&frac34; c+</td></tr>
+            <tr><td>Rice flour <span class="note">(non-negotiable)</span></td><td>50g</td><td>&frac13; cup</td></tr>
+            <tr><td>Cornflour</td><td>20g</td><td>2&frac12; tbsp</td></tr>
+            <tr><td>Baking powder</td><td>4g</td><td>1 tsp</td></tr>
+            <tr><td>Baking soda</td><td>2g</td><td>&frac12; tsp</td></tr>
+            <tr><td>Fine sea salt</td><td>3g</td><td>&frac12; tsp</td></tr>
+            <tr><td>Lager, fridge-cold</td><td>200g</td><td>~200 ml</td></tr>
+            <tr><td>Vodka, freezer-cold <span class="note">(Heston&rsquo;s trick)</span></td><td>50g</td><td>50 ml</td></tr>
+        </table>
+
+        <div class="group-label">Oil &amp; Service</div>
+        <table>
+            <tr><td>Peanut or rice bran oil <span class="note">(8 cm depth, 4 L pot)</span></td><td>2&ndash;2.5 L</td><td>&mdash;</td></tr>
+            <tr><td>Maldon &middot; lemon &middot; tartare &middot; malt vinegar</td><td>&mdash;</td><td>&mdash;</td></tr>
+        </table>
+
+        <p class="equipment">
+            <strong>Kit:</strong> 4 L heavy pot or Dutch oven &middot; clipped probe thermometer (&plusmn;2&deg;C) &middot; spider/skimmer &middot; wire rack over tray (<em>never</em> paper towels) &middot; two shallow bowls.
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method</h2>
+        <ol>
+            <li>
+                <strong>Brine</strong> fillets in 1 L water + 30g salt &mdash; <strong>exactly 15 min</strong>. Lift, dry triple paper-towel, hold uncovered on a rack in fridge.
+                <span class="why">3% brine seasons through and tightens surface proteins. Wet fish = batter slides off. <cite>&mdash; Nosrat 2017</cite></span>
+            </li>
+            <li>
+                <strong>Heat oil</strong> to <strong>185&deg;C</strong> in a 4 L pot, 8 cm depth. Clipped probe thermometer.
+                <span class="why">&lt; 170&deg;C: batter absorbs oil before set &mdash; greasy. &gt; 195&deg;C: crust browns before fish cooks. <cite>&mdash; Kenji 2014</cite></span>
+            </li>
+            <li>
+                <strong>Whisk dredge</strong> in one bowl. <strong>Whisk batter dries</strong> in a second. Beer in fridge, vodka in freezer.
+            </li>
+            <li>
+                At 185&deg;C: pour cold beer + freezer vodka into batter dries. <strong>Whisk 10&ndash;15 strokes only</strong> &mdash; rice-grain lumps fine. Use immediately.
+                <span class="why">Gluten forms the moment flour meets water; CO&sub2; leaves the moment beer is open. Rested 10 min = half-deflated. <cite>&mdash; Heston 2006</cite></span>
+            </li>
+            <li>
+                <strong>Dredge</strong> fillet in seasoned flour (thin coat). <strong>Batter</strong>, lift by tail, drip 2&ndash;3 sec.
+            </li>
+            <li>
+                <strong>Lower head-first; hold tail submerged 5&ndash;8 sec before releasing.</strong> Sets the crust uniformly, prevents sticking.
+                <span class="why">Drop and release = sinks, sticks, tears. The single most important hand-skill. <cite>&mdash; Kenji 2014</cite></span>
+            </li>
+            <li>
+                <strong>2 fillets max per batch.</strong> Fry <strong>5&ndash;7 min</strong> for a 2.5&ndash;3 cm fillet, turn at 3 min. Done at uniform deep gold + audibly crackles + fish reads <strong>60&ndash;63&deg;C</strong>.
+                <span class="why">More than two crashes oil below 165&deg;C; greasy fish.</span>
+            </li>
+            <li>
+                <strong>Drain 5 sec above pot</strong>, transfer straight to wire rack. Never paper towels. Never foil.
+                <span class="why">Paper traps steam, softens underside in 90 sec. Wire rack lets steam escape from all sides.</span>
+            </li>
+            <li>
+                <strong>Salt with Maldon within 5 sec</strong> of leaving oil, from 20 cm height. Salt bonds to hot oily crust in the first 5 sec only.
+            </li>
+            <li>
+                <strong>Hold in 90&deg;C oven</strong> on rack, uncovered, between batches (max 10 min). Don&rsquo;t stack. Serve on warm plates with lemon, tartare, malt vinegar.
+            </li>
+        </ol>
+
+        <div class="done">
+            <strong>Done:</strong> Uniform deep gold &middot; crust audibly crackles when tapped with the spider &middot; internal <strong>60&ndash;63&deg;C</strong> (140&ndash;145&deg;F). No double-fry: that&rsquo;s for chips, not fish.
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; No Extra Time</div>
+            <ul>
+                <li><strong>Rice bran oil swap</strong> &mdash; cleaner crust, higher smoke point</li>
+                <li><strong>&frac12; tsp turmeric in dredge</strong> &mdash; subtle golden hue</li>
+                <li><strong>25% beef dripping in oil</strong> &mdash; northern English depth</li>
+                <li><strong>Black pepper in batter</strong> &mdash; 1g coarse in dries</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; Worth It</div>
+            <ul>
+                <li><strong>Homemade tartare</strong> &mdash; mayo + cornichons + capers + shallot</li>
+                <li><strong>Mushy peas</strong> &mdash; marrowfat soaked overnight, mint, butter</li>
+                <li><strong>Triple-cooked chips</strong> &mdash; Heston&rsquo;s potato</li>
+                <li><strong>Lager-pickled shallots</strong> &mdash; chip-shop tradition, 24 hr ahead</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>Goujons / fish bites</strong> &mdash; 3 cm strips, 90 sec fry</li>
+                <li><strong>Tempura direction</strong> &mdash; sparkling water, 70% rice flour</li>
+                <li><strong>Sourdough discard in batter</strong> &mdash; tang + tighter crust</li>
+                <li><strong>Charred lemon wedges</strong> &mdash; halved, dry-skillet 3 min</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>Soggy crust</td><td>Oil cold / overcrowded / drained on paper. 2 fillets max, rack only.</td></tr>
+            <tr><td>Greasy batter</td><td>Oil &lt; 170&deg;C / overmixed. Hold 185&deg;C, 10&ndash;15 strokes.</td></tr>
+            <tr><td>Batter slid off</td><td>Wet fish / no dredge / drop from height. Pat dry, dredge, lower at surface.</td></tr>
+            <tr><td>Pale crust</td><td>Oil under temp / no baking soda. 185&deg;C non-negotiable.</td></tr>
+            <tr><td>Burnt outside, raw inside</td><td>Oil &gt; 200&deg;C / fillet too thick. Drop to 185&deg;C; butterfly &gt; 3 cm.</td></tr>
+            <tr><td>Crisp then soggy</td><td>Held in foil / stacked. Wire rack, 90&deg;C oven, uncovered.</td></tr>
+            <tr><td>Tastes flat</td><td>Skipped brine / salted at plate. Brine 15 min, salt at rack within 5 sec.</td></tr>
+            <tr><td>Tough, dry fish</td><td>Internal &gt; 65&deg;C. Probe to 60&ndash;63&deg;C max.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Pre-portion dry batter</td><td>175g vacuum bags = 4 fillets each. 1 month pantry.</td></tr>
+            <tr><td>At service</td><td>Tip bag in bowl, add cold beer + freezer vodka, fry. 90 sec mise.</td></tr>
+            <tr><td>Vodka</td><td>200ml lives in freezer permanently. Sorbets too.</td></tr>
+            <tr><td>Frozen fish</td><td>Pollock IQF: thaw 24 hr fridge, brine as fresh.</td></tr>
+            <tr><td>Tartare sauce</td><td>5 days fridge sealed jar. Improves overnight.</td></tr>
+            <tr><td>Never fry underway</td><td>Hot oil + motion = fire. In port only. Oil disposal: shore.</td></tr>
+            <tr><td>Don&rsquo;t freeze cooked</td><td>Soggy inside, tough outside. Fry to order. No exceptions.</td></tr>
+            <tr><td>Scaling</td><td>Always small batter batches &mdash; CO&sub2; dies past 16 fillets.</td></tr>
+        </table>
+    </section>
+</div>
+
+<footer class="footer">
+    <span>Sources: Heston Blumenthal &middot; J. Kenji L&oacute;pez-Alt &middot; Harold McGee &middot; Felicity Cloake &middot; Samin Nosrat &middot; MSC 2026</span>
+    <span>littoralicious.com &mdash; The Blueprint</span>
+</footer>
+
+</body>
+</html>

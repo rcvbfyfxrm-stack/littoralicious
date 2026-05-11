@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Affair &mdash; Samedi 2 Mai 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; }
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+.masthead-subtitle { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 400; font-style: italic; color: #4a4540; margin-top: 6px; letter-spacing: 1px; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section-divider { display: flex; align-items: center; gap: 14px; margin: 32px 0 24px; font-size: 10px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; }
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.flash-box { background: #ede9e1; border: 1px solid #c8c0b4; border-left: 4px solid #8b3a3a; padding: 20px 24px; margin: 28px 0; }
+.flash-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #8b3a3a; margin-bottom: 12px; }
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li { font-size: 13px; color: #4a4540; line-height: 1.7; margin-bottom: 8px; list-style-type: '\2014 '; }
+.flash-box li strong { color: #1a1714; }
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0; border-top: 2px solid #1a1714; border-bottom: 1px solid #c8c0b4; }
+.hub-card { padding: 20px 20px 18px; border-bottom: 1px solid #c8c0b4; border-right: 1px solid #c8c0b4; text-decoration: none; color: inherit; transition: background 0.15s; position: relative; }
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+.hub-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+.hub-card-excerpt { font-size: 13px; color: #4a4540; line-height: 1.6; font-style: italic; }
+.hub-card-arrow { position: absolute; top: 20px; right: 16px; font-size: 16px; color: #c8c0b4; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; }
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .hub-grid { grid-template-columns: 1fr; } .hub-card { border-right: none; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Samedi 2 Mai 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;112</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link active" href="2026-05-02.html">Premi&egrave;re Page</a><a class="nav-link" href="archive.html">Archives</a></nav><div class="page"><div class="flash-box"><div class="flash-title">En 60 Secondes</div><ul>
+<li><strong>Sénat US rejette résolution Iran-Trump 47-50</strong> &mdash; Le Sénat républicain a rejeté la résolution sur les pouvoirs de guerre qui aurait limité Trump avant autorisation du Congrès, à la veille du délai de 60 jours fixé par la War Powers Resolution de 1973.</li>
+<li><strong>S&amp;P 500 clôture record à 7230</strong> &mdash; Le S&amp;P 500 +0,29% à 7230,12 et le Nasdaq +0,89% à 25114,44 sur la force d&#x27;Apple (+3% post-résultats). Dow -0,31% à 49499.</li>
+<li><strong>CISA force patch Windows Shell CVE-2026-32202 sous 14 jours</strong> &mdash; Faille zero-click d&#x27;authentification Windows Shell exploitée — patch incomplet d&#x27;une vulnérabilité initialement abusée par espions russes. Date butoir 12 mai pour les agences fédérales.</li>
+<li><strong>Section 702 FISA prolongée 45 jours faute d&#x27;accord</strong> &mdash; La Chambre vote 261-111 pour une seconde extension temporaire — Speaker Johnson dépose le Foreign Intelligence Accountability Act au dernier moment.</li>
+<li><strong>FDA approuve AXS-05 pour agitation Alzheimer</strong> &mdash; Le 30 avril Axsome Therapeutics obtient le second feu vert FDA pour une combinaison dextrométhorphane-bupropion ciblant l&#x27;agitation chez les patients Alzheimer.</li>
+<li><strong>DOE consulte sur 4 réacteurs spatiaux en 5 ans</strong> &mdash; Mémo OSTP de la Maison Blanche cadre les rôles de la NASA, du DOE et du DoD pour déployer la propulsion nucléaire spatiale — programme SR-1 Freedom visé pour décembre 2028.</li>
+</ul></div><div class="section-divider"><span>27 rubriques du jour</span></div><div class="hub-grid"><a class="hub-card" href="2026-05-02/geopolitique.html">
+  <div class="hub-card-overline" style="color:#D32F2F">Géopolitique</div>
+  <div class="hub-card-title">Sénat US rejette résolution Iran-Trump 47-50</div>
+  <div class="hub-card-excerpt">&laquo; Le Sénat républicain a rejeté la résolution sur les pouvoirs de guerre qui aurait limité Trump avant autorisation du Congrès, à la veille du délai de 60 jours fixé par la War Powers Resolution de 1973. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/finance.html">
+  <div class="hub-card-overline" style="color:#1565C0">Finance</div>
+  <div class="hub-card-title">S&amp;P 500 clôture record à 7230</div>
+  <div class="hub-card-excerpt">&laquo; Le S&amp;P 500 +0,29% à 7230,12 et le Nasdaq +0,89% à 25114,44 sur la force d&#x27;Apple (+3% post-résultats). Dow -0,31% à 49499. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/cybersecurite.html">
+  <div class="hub-card-overline" style="color:#E65100">Cybersécurité</div>
+  <div class="hub-card-title">CISA force patch Windows Shell CVE-2026-32202 sous 14 jours</div>
+  <div class="hub-card-excerpt">&laquo; Faille zero-click d&#x27;authentification Windows Shell exploitée — patch incomplet d&#x27;une vulnérabilité initialement abusée par espions russes. Date butoir 12 mai pour les agences fédérales. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/privacy-liberte.html">
+  <div class="hub-card-overline" style="color:#4A148C">Privacy/Liberté</div>
+  <div class="hub-card-title">Section 702 FISA prolongée 45 jours faute d&#x27;accord</div>
+  <div class="hub-card-excerpt">&laquo; La Chambre vote 261-111 pour une seconde extension temporaire — Speaker Johnson dépose le Foreign Intelligence Accountability Act au dernier moment. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/sante.html">
+  <div class="hub-card-overline" style="color:#C62828">Santé</div>
+  <div class="hub-card-title">FDA approuve AXS-05 pour agitation Alzheimer</div>
+  <div class="hub-card-excerpt">&laquo; Le 30 avril Axsome Therapeutics obtient le second feu vert FDA pour une combinaison dextrométhorphane-bupropion ciblant l&#x27;agitation chez les patients Alzheimer. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/espace-energie.html">
+  <div class="hub-card-overline" style="color:#1B5E20">Espace/Énergie</div>
+  <div class="hub-card-title">DOE consulte sur 4 réacteurs spatiaux en 5 ans</div>
+  <div class="hub-card-excerpt">&laquo; Mémo OSTP de la Maison Blanche cadre les rôles de la NASA, du DOE et du DoD pour déployer la propulsion nucléaire spatiale — programme SR-1 Freedom visé pour décembre 2028. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/crypto.html">
+  <div class="hub-card-overline" style="color:#F57F17">Crypto</div>
+  <div class="hub-card-title">BTC tient 75K et remonte à 77K — biais court persiste</div>
+  <div class="hub-card-excerpt">&laquo; Bitcoin range-bound, traders gardent biais short — funding négatif et open interest stables signalent manque de conviction. Analystes alertent sur rejet potentiel à 80K évoquant 2022. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/llm-agents.html">
+  <div class="hub-card-overline" style="color:#6B4EFF">LLM/Agents</div>
+  <div class="hub-card-title">OpenAI lève 122 Md$ — plus grosse ronde privée de l&#x27;histoire</div>
+  <div class="hub-card-excerpt">&laquo; Valorisation post-money 852 Md$. Amazon devient cloud tiers-partie exclusif via engagement de 50 Md$. OpenAI publie GPT-5.5 — meilleure performance code, computer use, recherche, agents. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/science-ia.html">
+  <div class="hub-card-overline" style="color:#00838F">Science/IA</div>
+  <div class="hub-card-title">Cholesterol — molécules ADN miniatures bloquent PCSK9</div>
+  <div class="hub-card-excerpt">&laquo; Nouvelle classe d&#x27;oligonucléotides éteint la protéine qui maintient le LDL élevé — alternative potentielle aux statines et aux inhibiteurs PCSK9 monoclonaux. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/innovation.html">
+  <div class="hub-card-overline" style="color:#FF6D00">Innovation</div>
+  <div class="hub-card-title">Mistral AI lève 1</div>
+  <div class="hub-card-excerpt">&laquo; 7 Md€ Série C — valorisation 11 &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/bonnes-nouvelles.html">
+  <div class="hub-card-overline" style="color:#2E7D32">Bonnes Nouvelles</div>
+  <div class="hub-card-title">Artemis II — record d&#x27;éloignement humain de la Terre battu</div>
+  <div class="hub-card-excerpt">&laquo; 4 astronautes battent le record vieux de 55 ans. Christina Koch première femme, Jeremy Hansen premier non-Américain, Victor Glover premier afro-américain à approcher la Lune. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/maritime.html">
+  <div class="hub-card-overline" style="color:#0277BD">Maritime</div>
+  <div class="hub-card-title">Mediterranean Yacht Season 2026 — refit Palma/Antibes/La Ciotat</div>
+  <div class="hub-card-excerpt">&laquo; Saison méditerranéenne en marche — captains finalisent équipages, postes entry-level ouverts. Codecasa livre le 56,75m Legacy 4. REV Ocean (194,9m) confirmé Q4 2026. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/seamanship.html">
+  <div class="hub-card-overline" style="color:#1565C0">Seamanship</div>
+  <div class="hub-card-title">Rapport LR Monaco — surconfiance des ingénieurs</div>
+  <div class="hub-card-excerpt">&laquo; Le LR Yacht Safety Forum (5 mars Monaco) révèle que les officiers mécaniciens expriment les perceptions de sécurité les moins positives — connaissance élevée du risque mais sous-estimation des dangers latents. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/droit-maritime.html">
+  <div class="hub-card-overline" style="color:#01579B">Droit Maritime</div>
+  <div class="hub-card-title">STCW Code amendé contre violence-harcèlement en vigueur</div>
+  <div class="hub-card-excerpt">&laquo; Amendements entrés en vigueur le 1er janvier 2026 — équipent les marins pour prévenir et répondre aux incidents de harcèlement, brimades et agressions sexuelles à bord. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/gastronomie.html">
+  <div class="hub-card-overline" style="color:#C2185B">Gastronomie</div>
+  <div class="hub-card-title">Michelin Shanghai 2026 — 51 étoilés et 35 Bib Gourmand</div>
+  <div class="hub-card-excerpt">&laquo; Annoncé le 9 avril : 1 trois-étoiles, 12 deux-étoiles, 38 une-étoile. Cappadoce rejoint le guide turc; Santorin et Thessalonique rejoignent Athènes pour la Grèce. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/techniques-culinaires.html">
+  <div class="hub-card-overline" style="color:#4E342E">Techniques Culinaires</div>
+  <div class="hub-card-title">Southbend Steam Shell Griddle — sear haute chaleur + vapeur intégrée</div>
+  <div class="hub-card-excerpt">&laquo; Plate verticale 8 pouces qui s&#x27;adapte à l&#x27;épaisseur des produits — opérateurs rapportent +50% vitesse de cuisson et +20% de yield. National Restaurant Show 16-19 mai Chicago. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/nutrition.html">
+  <div class="hub-card-overline" style="color:#BF360C">Nutrition</div>
+  <div class="hub-card-title">BALANCE Model — couverture poids Medicaid mai 2026</div>
+  <div class="hub-card-excerpt">&laquo; Le modèle CMS lance la couverture perte de poids dans Medicaid dès mai. Medicare GLP-1 Bridge prévu pour juillet 2026 — accès élargi pour Part D éligibles. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/bien-etre.html">
+  <div class="hub-card-overline" style="color:#00695C">Bien-être</div>
+  <div class="hub-card-title">UCSD — 7 jours de méditation recâblent le cerveau</div>
+  <div class="hub-card-excerpt">&laquo; Communications Biology — programme intensif d&#x27;une semaine produit changements mesurables en activité cérébrale et biologie sanguine. Activation neuroplasticité, métabolisme, immunité, antalgie naturelle. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/musique.html">
+  <div class="hub-card-overline" style="color:#6A1B9A">Musique</div>
+  <div class="hub-card-title">Paul McCartney sort The Boys of Dungeon Lane</div>
+  <div class="hub-card-excerpt">&laquo; 27e album studio — premier depuis McCartney III (2020). Peter Frampton sort Carry the Light avec Graham Nash, Sheryl Crow, Tom Morello, Benmont Tench. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/experiences.html">
+  <div class="hub-card-overline" style="color:#00838F">Expériences</div>
+  <div class="hub-card-title">Sail250 — Parade flotte Mississippi 28 mai</div>
+  <div class="hub-card-excerpt">&laquo; Festivités maritimes nationales pour le 250e anniversaire — flotte en formation Parade of Sail sur le Mississippi à La Nouvelle-Orléans, jusqu&#x27;à mi-juillet. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/entrepreneuriat.html">
+  <div class="hub-card-overline" style="color:#E64A19">Entrepreneuriat</div>
+  <div class="hub-card-title">Solopreneurs &gt;50M aux US — +15% vs 2025</div>
+  <div class="hub-card-excerpt">&laquo; Le solopreneur — entrepreneur individuel par design — devient la forme dominante de création d&#x27;entreprise. Spécialisation extrême et IA comme co-pilote redéfinissent le format. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/culture.html">
+  <div class="hub-card-overline" style="color:#795548">Culture</div>
+  <div class="hub-card-title">V&amp;A East ouvre — 500+ objets art-architecture-design-mode</div>
+  <div class="hub-card-excerpt">&laquo; Branche du Victoria and Albert Museum à Olympic Park (Londres). Galeries permanentes gratuites + expositions temporaires majeures. Jeunes locaux ont participé à la conception. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/arts.html">
+  <div class="hub-card-overline" style="color:#5D4037">Arts</div>
+  <div class="hub-card-title">Biennale Venise — jury international démissionne en bloc</div>
+  <div class="hub-card-excerpt">&laquo; À 9 jours de l&#x27;ouverture, le jury (Solange Farkas + 4) démissionne sur tensions Russie + interdiction de prix pour pays accusés de crimes contre l&#x27;humanité. UE coupe 2 M€ de financement. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/podcasts.html">
+  <div class="hub-card-overline" style="color:#7B1FA2">Podcasts</div>
+  <div class="hub-card-title">HBO Max lance Harry Potter — The Official Film Podcast</div>
+  <div class="hub-card-excerpt">&laquo; Saison 1 prévue mai 2026 — exploration du processus de production, développement des personnages, impact culturel des films. Chad Ochocinco lance Late Run sur le foot avant Coupe du Monde. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/design-culinaire.html">
+  <div class="hub-card-overline" style="color:#AD1457">Design Culinaire</div>
+  <div class="hub-card-title">Food Photography 2026 — authenticité contre perfection</div>
+  <div class="hub-card-excerpt">&laquo; Lumière naturelle, textures, mains dans le cadre, storytelling de l&#x27;expérience — fini les plats sur-stylés et la perfection plastique. AI éditing accélère les workflows. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/food-science.html">
+  <div class="hub-card-overline" style="color:#33691E">Food Science</div>
+  <div class="hub-card-title">Maillard + fermentation — interaction inédite en pain sans gluten</div>
+  <div class="hub-card-excerpt">&laquo; Étude post-IMARS Maastricht : la disponibilité d&#x27;un groupe fonctionnel réactif issu de la fermentation levurée contribue directement à la formation de composés Maillard en pain sans gluten. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-02/poesie.html">
+  <div class="hub-card-overline" style="color:#3E2723">Poésie</div>
+  <div class="hub-card-title">Tom Wayman remporte le Purdy Poetry Prize 2026</div>
+  <div class="hub-card-excerpt">&laquo; Auteur de West Kootenay couronné pour Out of the Ordinary (2025). Prix de 10 000$ honorant Al Purdy (1918-2000), deux fois Governor General Award. Annonce le 21 avril. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a></div></div><div class="site-footer">The World Affair &mdash; Edition N&deg;112</div></body>
+</html>

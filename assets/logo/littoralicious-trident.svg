@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 80">
+  <!--
+    Trident — Poseidon, the sea
+    Power, tradition, mythology
+  -->
+
+  <!-- Center prong -->
+  <line x1="30" y1="8" x2="30" y2="72" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Left prong -->
+  <path d="M 30 25 L 15 25 L 15 12 L 12 8" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Right prong -->
+  <path d="M 30 25 L 45 25 L 45 12 L 48 8" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Center tip -->
+  <path d="M 27 12 L 30 5 L 33 12" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Decorative crossbar -->
+  <line x1="22" y1="32" x2="38" y2="32" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+
+</svg>

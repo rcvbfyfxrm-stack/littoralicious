@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Seal of Solomon — Hexagram
+    Most powerful protective symbol
+    Fire △ + Water ▽ = union of opposites
+    Air and Earth at the points
+  -->
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Inner circle -->
+  <circle cx="50" cy="50" r="38" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- FIRE — Upward triangle -->
+  <path d="M 50 12 L 83 68 L 17 68 Z" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- WATER — Downward triangle -->
+  <path d="M 50 88 L 17 32 L 83 32 Z" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- Element symbols at the 6 points -->
+
+  <!-- Top point - FIRE -->
+  <circle cx="50" cy="12" r="4" fill="#0a0a0a"/>
+
+  <!-- Bottom point - WATER -->
+  <path d="M 50 88 L 47 82 L 53 82 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Top-right - AIR (triangle + bar) -->
+  <path d="M 83 32 L 79 38 L 87 38 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="80" y1="36" x2="86" y2="36" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Top-left - EARTH (inverted + bar) -->
+  <path d="M 17 32 L 21 38 L 13 38 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="14" y1="34" x2="20" y2="34" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Bottom-right - Secondary fire -->
+  <path d="M 83 68 L 80 62 L 86 62 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Bottom-left - Secondary water -->
+  <path d="M 17 68 L 20 74 L 14 74 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Center - quintessence -->
+  <circle cx="50" cy="50" r="5" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <circle cx="50" cy="50" r="2" fill="#0a0a0a"/>
+
+</svg>

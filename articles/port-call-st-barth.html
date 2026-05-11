@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Port Call St. Barth: Gustavia + the two anchorages, the Voyager cargo ferry from St. Martin, the NYE eggs problem, the Bucket Regatta lock-out. Verified suppliers, inline cautions, watch-outs by season.">
+    <title>Port Call St. Barth: Provisioning the Smallest Yacht Port in the Caribbean &mdash; LITTORALICIOUS</title>
+    <meta property="og:title" content="Port Call St. Barth &mdash; LITTORALICIOUS">
+    <meta property="og:description" content="The smallest yacht port in the Caribbean. The supply ferry runs three times a week. Watch-outs for NYE, Bucket Regatta, hurricane season.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.littoralicious.com/articles/port-call-st-barth.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20260506b">
+    <link rel="stylesheet" href="../assets/css/port-call-content.css">
+    <link rel="stylesheet" href="../assets/css/port-call.css">
+    <link rel="stylesheet" href="../assets/css/port-call-search.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
+
+    <!-- Leaflet for the interactive port-call map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+
+    <aside class="pcv-mini is-collapsed" id="pcv-mini" aria-label="St. Barth map of provisioning points">
+        <button class="pcv-mini__handle" id="pcv-mini-handle" aria-expanded="false" title="Click to fold / unfold the St. Barth map">St. Barth Map</button>
+        <div id="pcv-mini-body">
+            <div class="pcv-mini__head"><strong>Where you are</strong><span>scroll &middot; hover &middot; zoom</span></div>
+            <div id="pcv-mini-map"></div>
+            <div class="pcv-mini__active" id="pcv-mini-active">
+                <b>Hover any pin or scroll</b>
+                <span>The big map is in the article body &mdash; this side panel mirrors it as you read.</span>
+            </div>
+        </div>
+    </aside>
+
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="../shore-larder.html">Shore Larder</a>
+                    <a href="../the-method.html">The Method</a>
+                    <a href="../littoral-heritage.html">Heritage</a>
+                    <a href="../the-evidence.html">The Evidence</a>
+                    <a href="../the-bridge.html" class="active">The Bridge</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article">
+            <header class="article__header container">
+                <div class="article__meta">
+                    <span class="article__category">Port Call</span>
+                    <time class="article__date">Updated April 28, 2026</time>
+                    <span class="article__reading-time">11 min read</span>
+                </div>
+                <h1 class="article__title">Port Call St. Barth: Provisioning the Smallest Yacht Port in the Caribbean</h1>
+                <p class="article__lede">
+                    Saint-Barthélemy is 25 km&sup2; of volcanic rock with one commercial harbour, two big anchorages, and a French-supermarket dependency that shows up the moment NYE arrives. Everything that doesn&rsquo;t come off the local fishing boats comes by cargo ferry from St. Martin, three times a week. Get the timing wrong and you spend three days looking for eggs &mdash; the chef&rsquo;s nightmare that gave this port call its origin story. Below: the three berths, the supplier list, and the watch-outs nobody warns you about until you&rsquo;ve been caught.
+                </p>
+            </header>
+
+            <div class="article__content container" style="max-width: 70ch; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+
+                <!-- ========== INTERACTIVE MAP (top of article) ========== -->
+                <div class="pcv-map-wrap" role="region" aria-label="Interactive map of St. Barth provisioning points">
+                    <div class="pcv-map-head">
+                        <strong>St. Barth &mdash; Where Everything Is</strong>
+                        <span>Click any pin for phone, hours, maps link &middot; toggle categories below</span>
+                    </div>
+                    <div id="pcv-map"></div>
+                    <div class="pcv-legend" id="pcv-legend">
+                        <button data-cat="berth"><i class="dot-berth"></i> Berths</button>
+                        <button data-cat="market"><i class="dot-market"></i> Markets &amp; Direct</button>
+                        <button data-cat="shop"><i class="dot-shop"></i> Specialty &amp; Wine</button>
+                        <button data-cat="mainland"><i class="dot-mainland"></i> Supermarkets / St. Martin</button>
+                        <button data-cat="logistics"><i class="dot-logistics"></i> Agents &amp; Ferry</button>
+                    </div>
+                </div>
+
+                <nav class="pc-quicknav">
+                    <a href="#three-berths">Three Berths</a><span class="sep">&middot;</span>
+                    <a href="#pcv-map">Map</a><span class="sep">&middot;</span>
+                    <a href="#brief">Brief</a><span class="sep">&middot;</span>
+                    <a href="#agents">Agents &amp; Logistics</a><span class="sep">&middot;</span>
+                    <a href="#supermarkets">Supermarkets</a><span class="sep">&middot;</span>
+                    <a href="#specialty">Specialty &amp; Wine</a><span class="sep">&middot;</span>
+                    <a href="#fish">Direct Fish</a><span class="sep">&middot;</span>
+                    <a href="#stmartin">St. Martin Bulk</a><span class="sep">&middot;</span>
+                    <a href="#watchouts" class="warn">⚠ Watch-outs</a><span class="sep">&middot;</span>
+                    <a href="#bottom">Bottom Line</a>
+                </nav>
+
+                <div class="pc-funfact"><strong>St. Barth has no agriculture worth the name.</strong> The island is volcanic rock with thin soil and no fresh water beyond rain catchment. Outside of a handful of garden plots in Lorient and a few goats, every fresh ingredient lands by boat or by plane. The cargo ferry from St. Martin is the lifeline; the local fishermen at Corossol are the only domestic food production. This single fact shapes every supplier decision below.</div>
+
+                <!-- ========== THREE BERTHS ========== -->
+                <details class="sfold" id="three-berths">
+                    <summary>
+                        <div class="sfold__titlewrap">
+                            <div class="sfold__title">The Three Berths</div>
+                            <div class="sfold__desc">Gustavia &middot; Colombier &middot; Public &mdash; one commercial harbour, two anchorages, a tender base.</div>
+                        </div>
+                        <span class="sfold__count">3 options</span>
+                        <span class="sfold__chev">▶</span>
+                    </summary>
+                    <div class="sfold__body">
+
+                        <div class="three-berths">
+                            <div class="tb-col" id="p-gustavia">
+                                <h3>Port de Gustavia</h3>
+                                <div class="subtitle">Capital harbour &middot; ≤75 m &middot; Med-moor &middot; <a href="tel:+590590276697">+590 590 27 66 97</a> &middot; VHF 12 / 16</div>
+                                <ol><li><span class="meta">The only commercial harbour. Stern-to with anchor, walking distance to AMC Marché U, Match, Le Cellier, the Voyager ferry pier. <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Port+de+Gustavia+Saint+Barthelemy" target="_blank" rel="noopener">📍 Maps</a></span></li></ol>
+                            </div>
+                            <div class="tb-col" id="p-colombier">
+                                <h3>Anse de Colombier</h3>
+                                <div class="subtitle">NW anchorage &middot; marine reserve &middot; mooring buoys</div>
+                                <ol><li><span class="meta">Best-protected anchorage on the island. 30-min tender to Gustavia. Principal-friendly when the harbour is full. <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Anse+de+Colombier+Saint+Barthelemy" target="_blank" rel="noopener">📍 Maps</a></span></li></ol>
+                            </div>
+                            <div class="tb-col" id="p-public">
+                                <h3>Public</h3>
+                                <div class="subtitle">Tender base &middot; small craft &middot; east of Gustavia</div>
+                                <ol><li><span class="meta">Small-craft harbour east of Gustavia, used as a tender base. Useful when the main harbour&rsquo;s stern-to is full. Walk to Maya&rsquo;s To Go next door. <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Public+Saint+Barthelemy" target="_blank" rel="noopener">📍 Maps</a></span></li></ol>
+                            </div>
+                        </div>
+
+                    </div>
+                </details>
+
+                <!-- ========== BRIEF ========== -->
+                <details class="sfold" id="brief">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">The Brief</div><div class="sfold__desc">Why this port is different &mdash; and what to lock in before the charter starts.</div></div><span class="sfold__count">3 min</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+                        <p><strong>Port type: ferry-dependent island, French-supermarket dependency.</strong> St. Barth has zero agriculture, no wholesale clubs, no farm markets. Everything fresh comes from one of three places: the local fishermen at Corossol (mahi, wahoo, lobster); the daily-ish Voyager / Great Bay Express cargo ferry from St. Martin (produce, dairy, meat, bread); or air freight via the Saint-Jean strip (premium proteins, ultra-fresh seafood). When the cargo ferry stops &mdash; weather, festival surge, NYE saturation &mdash; the supermarket shelves strip in 24 h.</p>
+
+                        <div class="pc-pullq">Provision the entire NYE block before 23 December. By 30 December the eggs are gone.</div>
+
+                        <p>The supplier game is small but premium. AMC Marché U is the largest supermarket and the day-one reconnaissance stop. Match in Gustavia is the quick walk-up. Maya&rsquo;s To Go is the gourmet pre-prepared answer. Le Cellier is the wine merchant. La Petite Colombe is the bakery the principal will recognise. La Crèmerie is the chef-grade cheese counter. Beyond that — for true bulk, premium proteins, the fuller French-import range — you take the Voyager ferry to St. Martin and load Carrefour Hyper Marigot.</p>
+
+                        <p><strong>Two things to brief your yacht agent on, in writing, two weeks before arrival:</strong> (1) the full provision list with brand specs where they matter; (2) any dietary requirements + the principal&rsquo;s wine preferences. During Bucket / Voiles / NYE, brief six weeks ahead.</p>
+                    </div>
+                </details>
+
+                <!-- ========== AGENTS & LOGISTICS ========== -->
+                <details class="sfold" id="agents">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Agents, Logistics &amp; Cargo Ferry</div><div class="sfold__desc">The first call before arrival. Customs, supplier coordination, and the Voyager ferry that keeps the island fed.</div></div><span class="sfold__count">3 picks</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-wimco">
+                            <summary><div><div class="pfold__name">📍 WIMCO Yacht Services / IGY-Gustavia agents</div><div class="pfold__hook">Rue Auguste Nyman, Gustavia &middot; +590 590 51 04 00</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The standard yacht concierge on the island</div>
+                                <p>WIMCO and the IGY-affiliated Gustavia agents handle customs paperwork, supplier coordination, tender slots, restaurant bookings, helicopter to St. Martin. The first call before any St. Barth visit. They also handle the Bucket Regatta and Voiles de St-Barth registrations &mdash; if you&rsquo;re in either, you go through them. <span class="cau cau--high" data-fix="For NYE / Bucket / Voiles, brief 6+ weeks ahead. For a standard high-season visit, 2 weeks. Outside high season, 1 week. The agent is the only way to get walk-in restaurant tables at Le Bonito, Le Tamarin, Bagatelle.">Brief 2–6 weeks ahead</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Rue Auguste Nyman, Gustavia</div>
+                                    <div><strong>Phone</strong>+590 590 51 04 00</div>
+                                    <div><strong>Email</strong>info@wimcovillas.com</div>
+                                    <div><strong>Web</strong>wimco.com</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=WIMCO+Gustavia+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-voyager">
+                            <summary><div><div class="pfold__name">📍 Voyager (cargo ferry from St. Martin)</div><div class="pfold__hook">Quai Général de Gaulle, Gustavia &middot; ~75 min crossing &middot; +590 590 87 10 68</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The lifeline &middot; ~3× weekly &middot; passengers + cargo</div>
+                                <p>Voyager runs ~3 times a week from St. Martin (Marigot or Oyster Pond) to Gustavia carrying passengers AND cargo &mdash; pallets of fresh produce, dairy, refrigerated goods, wine cases. Most St. Martin–sourced provisioning rides this boat. ~75 min crossing. <span class="cau cau--high" data-fix="Mon / Wed / Fri typical, but the schedule shifts seasonally and around hurricanes. Verify weekly. Cargo cut-off is usually 16:00 the day before the crossing — late orders miss the boat by hours.">Mon/Wed/Fri · cut-off 16:00 day before</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Quai Général de Gaulle, Gustavia</div>
+                                    <div><strong>Phone</strong>+590 590 87 10 68</div>
+                                    <div><strong>Email</strong>info@voy12.com</div>
+                                    <div><strong>Hours</strong>Mon · Wed · Fri (verify schedule weekly)</div>
+                                    <div><strong>Web</strong>voy12.com</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Voyager+Ferry+Gustavia+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-edge">
+                            <summary><div><div class="pfold__name">📍 Great Bay Express (St. Martin alt)</div><div class="pfold__hook">Daily-ish from Philipsburg / Oyster Pond &middot; +1 721 542 0032</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Backup to Voyager when their schedule doesn&rsquo;t fit</div>
+                                <p>Daily-ish service from Dutch St. Martin (Philipsburg). Useful for last-minute or contingency runs. Schedule less ferry-friendly for cargo than Voyager but valuable as a Plan B.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Phone</strong>+1 721 542 0032</div>
+                                    <div><strong>Web</strong>greatbayexpress.com</div>
+                                </div>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== SUPERMARKETS ========== -->
+                <details class="sfold" id="supermarkets">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Supermarkets — AMC + Match</div><div class="sfold__desc">The two French-style supermarkets that anchor everyday provisioning.</div></div><span class="sfold__count">2 picks</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+
+                        <div class="pc-funfact"><strong>The day-one reconnaissance.</strong> On arrival, walk through AMC Marché U with a notebook. See what&rsquo;s actually on the shelves &mdash; produce, dairy, the cheese case, wine. Don&rsquo;t commit a menu until you&rsquo;ve seen the supply state. The cargo ferry day determines what&rsquo;s fresh; the time of season determines what&rsquo;s deep-stocked.</div>
+
+                        <details class="pfold top" id="p-amc">
+                            <summary><div><div class="pfold__name">📍 AMC Marché U (Saint-Jean)</div><div class="pfold__hook">Rue de la Pointe, Saint-Jean &middot; +590 590 27 68 16</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The largest supermarket on the island</div>
+                                <p>Decent French cheese counter, charcuterie, wine selection (Bordeaux/Burgundy at Paris-plus prices), full dry-goods aisle. Fresh produce gets restocked when the cargo ferry lands &mdash; empty by the next morning. Open 7 days. <span class="cau cau--high" data-fix="Sundays close at 13:00 — and produce is usually picked over by 10:00 since the locals shop before church. The Saturday afternoon stock is the freshest of the week (Friday ferry just landed). Avoid Tuesdays — last day of the previous ferry's load.">Sun closes 13:00</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Rue de la Pointe, Saint-Jean, 97133 Saint-Barthélemy</div>
+                                    <div><strong>Phone</strong>+590 590 27 68 16</div>
+                                    <div><strong>Hours</strong>Mon–Sat 07:30–20:00 · Sun 08:00–13:00</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=AMC+Marche+U+Saint+Jean+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-match">
+                            <summary><div><div class="pfold__name">📍 Match Supermarket (Gustavia)</div><div class="pfold__hook">Rue Roi Oscar II, Gustavia &middot; 2 min from the quay</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Smaller than AMC but two minutes&rsquo; walk from the Gustavia quay</div>
+                                <p>The grab-and-go for last-minute items when the bulk run is already done. Wine, dairy, basics. <span class="cau cau--med" data-fix="Tighter aisles than AMC, easier to miss something. Make a list before you walk in. Match is for triage runs, not the bulk shop.">Triage only</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Rue Roi Oscar II, Gustavia</div>
+                                    <div><strong>Phone</strong>+590 590 27 68 16</div>
+                                    <div><strong>Hours</strong>Mon–Sat 07:30–20:00 · Sun 08:00–13:00</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Match+Supermarket+Gustavia+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== SPECIALTY & WINE ========== -->
+                <details class="sfold" id="specialty">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Specialty &mdash; Wine, Cheese, Bread</div><div class="sfold__desc">Le Cellier for the wine case. La Petite Colombe for the croissants. La Crèmerie for the chef-grade cheese.</div></div><span class="sfold__count">5 picks</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-maya">
+                            <summary><div><div class="pfold__name">📍 Maya&rsquo;s To Go (Public)</div><div class="pfold__hook">Public Beach &middot; +590 590 29 83 70 &middot; Eden Rock-tier gourmet</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The gourmet pre-prepared institution next to Eden Rock</div>
+                                <p>Pre-prepared salads, plates, charcuterie, gourmet sandwiches at French-island prices. Where the principal eats lunch before guests arrive, and where you order charter-day platters. <span class="cau cau--med" data-fix="Order ahead 24 h for charter-day platters. Walk-in good for grab lunch only. Sunday closes 14:00 — don't plan a Sunday-evening order.">Order 24 h ahead</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Public Beach, Public, 97133 Saint-Barthélemy</div>
+                                    <div><strong>Phone</strong>+590 590 29 83 70</div>
+                                    <div><strong>Hours</strong>Mon–Sat 07:00–19:00 · Sun 07:00–14:00</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Mayas+To+Go+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-cellier">
+                            <summary><div><div class="pfold__name">📍 Le Cellier du Gouverneur (Gustavia)</div><div class="pfold__hook">Rue Charles de Gaulle &middot; +590 590 27 67 64 &middot; Bordeaux + Burgundy + Champagne</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The serious wine merchant in Gustavia &middot; the case-order go-to</div>
+                                <p>Bordeaux + Burgundy at French-import prices, Champagne by the case, eaux-de-vie. The case-order go-to for Caribbean charter wine programs. <span class="cau cau--high" data-fix="Closed Sundays year-round. Closed for siesta 13:00–16:00 weekdays. For a wine-case order, phone in the morning for afternoon pickup. The shop is small — multi-bottle orders need warning.">Closed Sun · siesta 13:00–16:00</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Rue Charles de Gaulle, Gustavia</div>
+                                    <div><strong>Phone</strong>+590 590 27 67 64</div>
+                                    <div><strong>Hours</strong>Mon–Sat 09:00–13:00 · 16:00–19:00 · closed Sun</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Le+Cellier+du+Gouverneur+Gustavia" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-colombe">
+                            <summary><div><div class="pfold__name">📍 La Petite Colombe (Lorient + Saint-Jean)</div><div class="pfold__hook">+590 590 29 74 30 &middot; croissants + sourdough + pâtisserie</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The bakery + pâtisserie of the island &middot; two locations</div>
+                                <p>Croissants that hold up against any Paris benchmark, real sourdough, pâtisseries the principal will recognise. Two locations (Lorient + Saint-Jean). <span class="cau cau--high" data-fix="Closed Mondays. Order daily volume 24 h ahead — by 09:00 they're sold out on a normal day. NYE morning they're sold out by 07:30. Lock the daily order at the start of the charter.">Closed Mon · sold out by 09:00</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Lorient + Saint-Jean, Saint-Barthélemy</div>
+                                    <div><strong>Phone</strong>+590 590 29 74 30</div>
+                                    <div><strong>Hours</strong>Tue–Sun 06:30–13:30 · closed Mon</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=La+Petite+Colombe+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-cremerie">
+                            <summary><div><div class="pfold__name">📍 La Crèmerie (Saint-Jean)</div><div class="pfold__hook">Saint-Jean &middot; French cheese, fresh imports, cut to order</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Real fromagerie &middot; chef-grade cheese option when AMC&rsquo;s pre-cut wedges aren&rsquo;t enough</div>
+                                <p>Comté, Saint-Nectaire, Camembert au lait cru, chèvre &mdash; fresh imports, cut to order. Charcuterie counter alongside. <span class="cau cau--med" data-fix="Closed Sundays + Mondays. Open Tue–Sat 09:00–13:00 + 15:30–19:00. Plan cheese-board orders for Tuesday or Friday before a weekend charter.">Closed Sun + Mon</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Saint-Jean, 97133 Saint-Barthélemy</div>
+                                    <div><strong>Hours</strong>Tue–Sat 09:00–13:00 · 15:30–19:00 · closed Sun + Mon</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=La+Cremerie+Saint+Jean+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-choisy">
+                            <summary><div><div class="pfold__name">📍 Boulangerie Choisy (Saint-Jean)</div><div class="pfold__hook">Backup bakery &middot; daily bread, brioche, viennoiseries</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The Saint-Jean fallback for La Petite Colombe</div>
+                                <p>Backup to La Petite Colombe. Daily bread, viennoiseries, brioche. Useful when Colombe doesn&rsquo;t have your volume or you need a Saint-Jean stop on the same run.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Phone</strong>+590 590 27 76 86</div>
+                                    <div><strong>Hours</strong>Mon–Sat 06:00–13:00</div>
+                                </div>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== DIRECT FISH ========== -->
+                <details class="sfold" id="fish">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Direct Fish &mdash; Off the Boat at Corossol &amp; Lorient</div><div class="sfold__desc">The only fresh-fish supply on the island that doesn&rsquo;t come from St. Martin. Build the relationship.</div></div><span class="sfold__count">1 channel</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-fish-direct">
+                            <summary><div><div class="pfold__name">📍 Direct from local fishermen (Corossol + Lorient)</div><div class="pfold__hook">Mid-morning landings &middot; cash &middot; mahi · wahoo · snapper · lobster</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The only true local food production on the island</div>
+                                <p>The serious fish moves off the boat at Corossol or the Lorient pier when the local fishermen come in (mid-morning). Mahi, wahoo, snapper, spiny lobster in season. No fixed market &mdash; build a relationship with one or two fishermen. The yacht-agent network knows who&rsquo;s reliable. <span class="cau cau--high" data-fix="Cash only. No fixed price list — the fisherman names a price; you accept or walk. Carry €100–500 cash. WIMCO can introduce you to specific fishermen for the first time. After that you have their phone.">Cash · build relationship</span> <span class="cau cau--med" data-fix="Spiny lobster (langouste) is season-dependent and quota-restricted. Verify the local season before promising a langouste course. Imported (Maine) lobster is available via St. Martin year-round but it's a different product.">Lobster: season + quota</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Where</strong>Corossol pier + Lorient pier</div>
+                                    <div><strong>Hours</strong>Mid-morning landings — varies by tide + weather</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Corossol+Saint+Barthelemy" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== ST. MARTIN BULK ========== -->
+                <details class="sfold" id="stmartin">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">St. Martin Bulk &mdash; The Off-Island Run</div><div class="sfold__desc">For premium proteins, true bulk, the wider French-import range. Day trip via Voyager + ferry the pallets back.</div></div><span class="sfold__count">2 picks</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-carrefour-stmartin">
+                            <summary><div><div class="pfold__name">📍 Carrefour Hyper Marigot (St. Martin)</div><div class="pfold__hook">Howell Center, Marigot &middot; +590 590 87 12 12 &middot; hypermarket scale</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The true bulk answer for a long-charter loadout</div>
+                                <p>Hypermarket on French St. Martin (Marigot). Where serious yacht chefs source premium proteins (Wagyu, dry-aged), bulk dry goods, the wider French-import range. Day trip via the Voyager ferry; load palletised provisions onto the cargo ferry back. <span class="cau cau--high" data-fix="Plan a full day. 06:30 Voyager out, shop 09:00–14:00, palletise + ferry-cargo paperwork, 17:00 Voyager back. Pre-arrange refrigerated cargo space — fresh-meat pallets need cold chain on the return crossing.">Full-day operation</span> <span class="cau cau--med" data-fix="Sundays close at 13:00 island-wide on St. Martin. Hurricane watches stop the ferry. Public holidays vary between French and Dutch sides — French side observes Bastille Day (14 July), Dutch side doesn't, and vice versa for King's Day.">Sun closes 13:00 · double holidays</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Howell Center, Marigot, Saint-Martin</div>
+                                    <div><strong>Phone</strong>+590 590 87 12 12</div>
+                                    <div><strong>Hours</strong>Mon–Sat 08:30–20:00 · Sun 09:00–13:00</div>
+                                    <div><strong>Web</strong>carrefour.fr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Carrefour+Hyper+Marigot+Saint+Martin" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-tropical-prov">
+                            <summary><div><div class="pfold__name">📍 Tropical Provisioning (St. Martin)</div><div class="pfold__hook">Marigot &middot; +590 590 29 38 89 &middot; yacht-grade · ferry direct delivery</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The hands-off way to bulk-source from St. Martin</div>
+                                <p>St. Martin–based yacht-provisioning operator that delivers directly to the Voyager / Great Bay Express dock for pickup in Gustavia. Premium markup vs DIY but saves a full day. The right call when the chef cannot leave the boat or when the principal&rsquo;s schedule is locked.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Marigot, Saint-Martin</div>
+                                    <div><strong>Phone</strong>+590 590 29 38 89</div>
+                                </div>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== WATCH-OUTS ========== -->
+                <details class="sfold" id="watchouts">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">⚠ Watch-outs by Season &amp; Event</div><div class="sfold__desc">The few that will actually break your day. Smaller stuff is in the inline ⚠ pills next to each supplier above.</div></div><span class="sfold__count" id="wo-count">—</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+                        <div id="wo-list"></div>
+                    </div>
+                </details>
+
+                <!-- ========== BOTTOM LINE ========== -->
+                <details class="sfold" id="bottom">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">The Bottom Line</div><div class="sfold__desc">If you read nothing else.</div></div><span class="sfold__count">2 min</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+                        <p>St. Barth is small, expensive, ferry-dependent, and unforgiving when the timing is wrong. Three operational moves do 80% of the work: <strong>brief WIMCO two weeks ahead</strong> (six weeks for NYE / Bucket / Voiles), <strong>walk through AMC Marché U on day one with a notebook</strong> before committing a menu, and <strong>lock the Voyager ferry slot</strong> for any St. Martin–sourced bulk to land on a Mon/Wed/Fri ferry day.</p>
+
+                        <p><strong>Before you sail away,</strong> load French wine cases from Le Cellier, hard-cheese rounds from La Crèmerie, the bakery&rsquo;s daily output from La Petite Colombe (order the night before), and any premium proteins via Tropical Provisioning&rsquo;s Voyager-delivery channel. The lobster, mahi and wahoo come direct from Corossol &mdash; build that relationship on day two of the charter.</p>
+
+                        <p><strong>Avoid:</strong> arriving without an agent during NYE week (28 Dec – 5 Jan), the Bucket Regatta (mid-March), the Voiles de St-Barth (mid-April), or any active hurricane watch June–November. Those four windows alone account for every horror story you&rsquo;ve heard about provisioning St. Barth.</p>
+                    </div>
+                </details>
+
+                <!-- Related -->
+                <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                    <strong>Also on Littoralicious</strong>
+                    <ul style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-3); list-style: none; padding: 0;">
+                        <li style="margin-bottom: var(--space-2);"><a href="port-call-venice.html" style="color: var(--color-sea); text-decoration: underline;">Port Call Venice</a> &mdash; A city with no roads.</li>
+                        <li style="margin-bottom: var(--space-2);"><a href="provisioning-miami-ftl.html" style="color: var(--color-sea); text-decoration: underline;">Port Call Miami &amp; Fort Lauderdale</a> &mdash; The provisioning capital of the Americas.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/littoralicious" method="post" target="popupwindow">
+                    <label for="footer-email-port-call-st-barth">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-port-call-st-barth" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">For those who feed others with intention.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="../shore-larder.html">Shore Larder</a></li>
+                            <li><a href="../the-method.html">The Method</a></li>
+                            <li><a href="../littoral-heritage.html">Heritage</a></li>
+                            <li><a href="../the-evidence.html">The Evidence</a></li>
+                            <li><a href="../the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="../about.html">Manifesto</a></li>
+                            <li><a href="../founder.html">Founder</a></li>
+                            <li><a href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../assets/js/port-call-st-barth-data.js"></script>
+    <script>
+        window.PCV_CONFIG = {
+            articleId: 'port-call-st-barth',
+            center: [17.905, -62.84],
+            zoom: 13,
+            cityRadiusKm: 18  // tight — keeps the map on St. Barth, hides St. Martin (Carrefour) from initial fit
+        };
+    </script>
+    <script defer src="../assets/js/port-call-map-only.js"></script>
+    <script defer src="../assets/js/port-call-search.js"></script>
+    <script defer src="../assets/js/port-call-proximity.js"></script>
+</body>
+</html>

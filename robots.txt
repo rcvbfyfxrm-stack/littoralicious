@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /studio.html
+Disallow: /admin.html
+Disallow: /draft.html
+Disallow: /draftnewsletter.html
+Disallow: /data/drafts.json
+Disallow: /data/draft-articles.json
+Disallow: /terroir/
+
+Sitemap: https://www.littoralicious.com/sitemap.xml

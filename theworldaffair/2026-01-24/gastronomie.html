@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gastronomie — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Samedi 24 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;24</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-24.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#4a5a30">Gastronomie</div>
+  <h1 class="article-title">Saveurs du 2026-01-24  Les Actualités qui Font Saliver Sans Concession</h1>
+  <div class="article-date">Samedi 24 Janvier 2026 &mdash; Edition N&deg;24</div>
+</div><div class="article-body"><h1>Rapport: Gastronomie & Arts Culinaires</h1>
+<h2>Date : 2026-01-24</h2>
+<hr>
+<h2>🍴 Saveurs du 2026-01-24 — Les Actualités qui Font Saliver Sans Concession</h2>
+<hr>
+<h2>🧑‍🍳 CHEFS & MOUVEMENTS</h2>
+<h3>Matt Abé Ouvre Bonheur — L'Héritage Le Gavroche Continue</h3>
+<p><strong>Les faits savoureux :</strong></p>
+<ul>
+<li><strong>Chef :</strong> Matt Abé (ex-Restaurant Gordon Ramsay, 3 étoiles Michelin maintenues année après année)</li>
+<li><strong>Restaurant :</strong> Bonheur</li>
+<li><strong>Lieu :</strong> Site historique de Le Gavroche, Mayfair, Londres</li>
+<li><strong>Ouverture :</strong> Automne 2025</li>
+<li><strong>Reconnaissance :</strong> Ajouté au Michelin Guide UK Janvier 2026</li>
+</ul>
+<p><strong>Source primaire :</strong> The Caterer, Michelin Guide</p>
+<p><strong>🔒 Source de référence :</strong> Michelin Guide UK — Référence autorité</p>
+<p><strong>Contexte & Importance :</strong></p>
+<blockquote>
+<p>Le Gavroche, institution française à Londres depuis 1967, a formé une génération de chefs britanniques. Matt Abé, qui a maintenu les 3 étoiles de Gordon Ramsay avec une régularité impressionnante, se lance enfin en solo. L'enjeu : honorer l'héritage Roux tout en affirmant sa propre vision. La pression est immense.</p>
+</blockquote>
+<p><strong>😲 Fun Fact :</strong></p>
+<blockquote>
+<p>Le Gavroche fut le premier restaurant britannique à obtenir 3 étoiles Michelin (1982). Le site porte plus de 50 ans d'histoire culinaire.</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://www.thecaterer.com/news/january-michelin-additions-2026" target="_blank">The Caterer</a></p>
+<hr>
+<h3>Clare Smyth Lance Corenucopia — Du 3 Étoiles au Bistro de Luxe</h3>
+<p><strong>Les faits savoureux :</strong></p>
+<ul>
+<li><strong>Chef :</strong> Clare Smyth (CORE by Clare Smyth, 3 étoiles Michelin)</li>
+<li><strong>Concept :</strong> "Luxury bistro"</li>
+<li><strong>Lieu :</strong> Londres</li>
+<li><strong>Ajouté au guide :</strong> Janvier 2026</li>
+</ul>
+<p><strong>Contexte & Importance :</strong></p>
+<blockquote>
+<p>Première femme cheffe britannique à obtenir 3 étoiles, Clare Smyth étend son empire. Corenucopia = format plus accessible sans sacrifier l'excellence. Tendance forte : les chefs étoilés diversifient vers le "casual elevated".</p>
+</blockquote>
+<p><strong>🔍 Perspectives Contraires :</strong></p>
+<table><thead><tr><th>Angle</th><th>Position</th></tr></thead><tbody>
+<tr><td>Enthousiaste</td><td>Extension naturelle d'un talent reconnu</td></tr>
+<tr><td>Critique</td><td>Dilution de marque ? Trop d'empire ?</td></tr>
+<tr><td>Puriste</td><td>Le bistro peut-il être "luxury" ?</td></tr>
+</tbody></table>
+<hr>
+<h3>Rodrigo Rivera Río — Le Michelin Mexicain Arrive au Texas</h3>
+<p><strong>Les faits savoureux :</strong></p>
+<ul>
+<li><strong>Chef :</strong> Rodrigo Rivera Río (co-owner Koli Cocina de Origen, Monterrey — 1 étoile Michelin)</li>
+<li><strong>Restaurant :</strong> Almacén El Gallo</li>
+<li><strong>Lieu :</strong> Fort Worth, Texas (500 W. Seventh St.)</li>
+<li><strong>Ouverture :</strong> Fin avril - été 2026</li>
+</ul>
+<p><strong>Contexte & Importance :</strong></p>
+<blockquote>
+<p>Premier chef Michelin mexicain à ouvrir au Texas. Cuisine authentique mexicaine élevée au niveau fine dining. Le Texas devient destination gastronomique sérieuse.</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://www.dallasnews.com/food/restaurant-news/2026/01/21/almacen-el-gallo-new-restaurant-fort-worth-authentic-mexican-food/" target="_blank">Dallas News</a></p>
+<hr>
+<h3>Danny Meyer à Detroit — Les Légendes Investissent le Midwest</h3>
+<p><strong>Les faits savoureux :</strong></p>
+<ul>
+<li><strong>Qui :</strong> Danny Meyer, Union Square Hospitality Group</li>
+<li><strong>Où :</strong> Hudson's Detroit</li>
+<li><strong>Quand :</strong> 2026</li>
+<li><strong>Track record :</strong> 2 douzaines+ de James Beard Awards et étoiles Michelin</li>
+</ul>
+<p><strong>Contexte & Importance :</strong></p>
+<blockquote>
+<p>Danny Meyer (Gramercy Tavern, The Modern — 2 étoiles) amène le prestige new-yorkais à Detroit. Signal fort : le Midwest attire désormais les grands noms.</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://www.detroitnews.com/story/entertainment/dining/2026/01/07/16-restaurant-openings-to-get-excited-about-in-2026/87991972007/" target="_blank">Detroit News</a></p>
+<hr>
+<h2>🍽️ MICHELIN GUIDE — MISES À JOUR JANVIER 2026</h2>
+<h3>Tokyo 2026</h3>
+<table><thead><tr><th>Mouvement</th><th>Restaurant</th><th>Détail</th></tr></thead><tbody>
+<tr><td>2★ → 3★</td><td>Myojaku</td><td>Promotion</td></tr>
+<tr><td>1★ → 2★</td><td>Nishiazabu Sushi Shin</td><td>—</td></tr>
+<tr><td>1★ → 2★</td><td>Hakuun</td><td>—</td></tr>
+<tr><td>1★ → 2★</td><td>Ensui</td><td>—</td></tr>
+<tr><td>Nouveau 1★</td><td>14 restaurants</td><td>—</td></tr>
+</tbody></table>
+<p><strong>Source :</strong> <a href="https://guide.michelin.com/us/en/article/michelin-guide-ceremony/michelin-guide-tokyo-2026-stars-reveal" target="_blank">Michelin Guide</a></p>
+<hr>
+<h3>Italie 2026</h3>
+<ul>
+<li><strong>Nouveaux 1★ :</strong> 22 restaurants</li>
+<li><strong>Chefs <35 ans :</strong> 8 sur 22 nouveaux étoilés</li>
+<li><strong>Signal :</strong> Renouvellement générationnel fort</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://guide.michelin.com/us/en/article/michelin-guide-ceremony/a-new-3-star-restaurant-in-the-michelin-guide-italy-2026" target="_blank">Michelin Guide</a></p>
+<hr>
+<h3>Türkiye 2026</h3>
+<ul>
+<li><strong>Nouveau 2★ :</strong> 1 restaurant (Izmir)</li>
+<li><strong>Nouveaux 1★ :</strong> 3 restaurants</li>
+<li><strong>Expansion :</strong> 54 nouveaux restaurants dont premiers de Cappadoce</li>
+<li><strong>Signal :</strong> Michelin étend sa couverture géographique turque</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://guide.michelin.com/en/article/michelin-guide-ceremony/the-michelin-guide-turkiye-reveals-its-2026-restaurant-selection" target="_blank">Michelin Guide</a></p>
+<hr>
+<h3>American Southwest — Nouveau Guide</h3>
+<ul>
+<li><strong>Couverture :</strong> Arizona, Colorado, Nevada, New Mexico, Utah</li>
+<li><strong>Signal :</strong> Michelin reconnaît enfin le Sud-Ouest américain</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://guide.michelin.com/us/en/article/news-and-views/michelin-guide-arizona-colorado-nevada-new-mexico-utah" target="_blank">Michelin Guide</a></p>
+<hr>
+<h2>🔬 DÉBAT : LES ÉTOILES MICHELIN PERDENT-ELLES LEUR ÉCLAT ?</h2>
+<p><strong>La question :</strong></p>
+<blockquote>
+<p>"Are Michelin guides and restaurant stars losing their shine?"</p>
+</blockquote>
+<p><strong>Arguments :</strong></p>
+<table><thead><tr><th>Position</th><th>Argument</th></tr></thead><tbody>
+<tr><td>Oui</td><td>Prolifération des guides, dilution du prestige</td></tr>
+<tr><td>Non</td><td>Reste référence mondiale, expansion géographique = pertinence</td></tr>
+<tr><td>Nuancé</td><td>Format daté mais pas encore remplacé</td></tr>
+</tbody></table>
+<p><strong>Mon analyse :</strong></p>
+<ul>
+<li>Michelin reste l'étalon-or malgré critiques</li>
+<li>Nouveaux guides (50 Best) offrent alternative</li>
+<li>La vraie question : qui définit l'excellence en 2026 ?</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.chicagobusiness.com/restaurants/are-michelin-guides-and-restaurant-stars-losing-their-shine" target="_blank">Crain's Chicago</a></p>
+<hr>
+<h2>📈 TENDANCES ÉMERGENTES</h2>
+<h3>Signaux Faibles à Surveiller</h3>
+<ol>
+<li><strong>"Luxury Bistro"</strong></li>
+</ol>
+<ul>
+<li>Signal : Clare Smyth, d'autres chefs étoilés</li>
+<li>Potentiel : Format dominant 2026-2030 ?</li>
+</ul>
+<ol>
+<li><strong>Midwest Gastronomique</strong></li>
+</ol>
+<ul>
+<li>Signal : Danny Meyer à Detroit</li>
+<li>Potentiel : Rééquilibrage géographique US</li>
+</ul>
+<ol>
+<li><strong>Michelin Global Expansion</strong></li>
+</ol>
+<ul>
+<li>Signal : Türkiye, American Southwest</li>
+<li>Potentiel : Couverture mondiale complète</li>
+</ul>
+<ol>
+<li><strong>Jeunes Chefs Étoilés</strong></li>
+</ol>
+<ul>
+<li>Signal : 8/22 nouveaux étoilés italiens <35 ans</li>
+<li>Potentiel : Renouvellement accéléré</li>
+</ul>
+<ol>
+<li><strong>Fine Dining Mexicain</strong></li>
+</ol>
+<ul>
+<li>Signal : Expansion hors Mexique</li>
+<li>Potentiel : Prochaine grande cuisine internationale ?</li>
+</ul>
+<hr>
+<h2>⚡ RAPIDE : SCÈNE GLOBALE</h2>
+<h3>Par Région</h3>
+<p><strong>Asie :</strong></p>
+<ul>
+<li>Tokyo : 14 nouveaux 1★, 1 nouveau 3★ (Myojaku)</li>
+</ul>
+<p><strong>Europe :</strong></p>
+<ul>
+<li>Londres : Matt Abé, Clare Smyth expansions</li>
+<li>Italie : 22 nouveaux étoilés</li>
+</ul>
+<p><strong>Amériques :</strong></p>
+<ul>
+<li>Texas : Chef Michelin mexicain arrive</li>
+<li>Detroit : Danny Meyer débarque</li>
+<li>Southwest US : Premier guide Michelin</li>
+</ul>
+<hr>
+<h2>😲 FUN FACTS DU JOUR</h2>
+<ol>
+<li><strong>Le Gavroche Legacy</strong></li>
+<blockquote>
+<p>Premier 3★ britannique (1982). Le site de Mayfair a vu passer 3 générations de cuisine française à Londres avant de devenir Bonheur.</p>
+</ol>
+</blockquote>
+<ol>
+<li><strong>Danny Meyer Empire</strong></li>
+<blockquote>
+<p>Plus de 24 James Beard Awards accumulés. L'homme derrière Shake Shack ouvre maintenant à Detroit.</p>
+</ol>
+</blockquote>
+<ol>
+<li><strong>Michelin Age Trend</strong></li>
+<blockquote>
+<p>36% des nouveaux étoilés italiens ont moins de 35 ans. Plus jeune génération étoilée de l'histoire du guide ?</p>
+</ol>
+</blockquote>
+<hr>
+<h2>📊 DONNÉES SAVOUREUSES</h2>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Contexte</th></tr></thead><tbody>
+<tr><td>Nouveaux 1★ Tokyo</td><td>14</td><td>Guide 2026</td></tr>
+<tr><td>Nouveaux 1★ Italie</td><td>22</td><td>8 chefs <35 ans</td></tr>
+<tr><td>Nouveaux restaurants Türkiye</td><td>54</td><td>Expansion Cappadoce</td></tr>
+<tr><td>Nouveaux 2★ global (Jan)</td><td>4+</td><td>Tokyo + Türkiye</td></tr>
+</tbody></table>
+<hr>
+<h2>🗓️ À VENIR</h2>
+<table><thead><tr><th>Date</th><th>Événement</th><th>Impact</th></tr></thead><tbody>
+<tr><td>Printemps 2026</td><td>Almacén El Gallo opening</td><td>🟠</td></tr>
+<tr><td>2026</td><td>Danny Meyer Detroit</td><td>🔴</td></tr>
+<tr><td>2026</td><td>Guides Michelin annuels</td><td>🔴</td></tr>
+</tbody></table>
+<hr>
+<h2>🍷 MON ANALYSE FINALE</h2>
+<p><strong>Ce qui mérite vraiment attention :</strong></p>
+<ul>
+<li>Matt Abé en solo = test d'un chef qui a prouvé en cuisine d'un autre</li>
+<li>Expansion Michelin Southwest = reconnaissance retardée mais significative</li>
+<li>Jeunes chefs italiens = future garde mondiale</li>
+</ul>
+<p><strong>Ce qui est peut-être hype :</strong></p>
+<ul>
+<li>"Luxury bistro" = oxymore marketing ou vraie catégorie ?</li>
+<li>Prolifération des guides = dilution ou démocratisation ?</li>
+</ul>
+<p><strong>Ce qui donne faim :</strong></p>
+<blockquote>
+<p>La vision de Rivera Río apportant la sophistication de Monterrey au Texas. Fine dining mexicain = dernière grande cuisine non exploitée au niveau mondial ?</p>
+</blockquote>
+<hr>
+<p><em>Rapport généré le 2026-01-24</em></p></div><div class="bottom-nav"><a href="science-tech.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Science & Tech</span></a><a href="culture-societe.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Culture & Société &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; GASTRONOMIE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 80">
+  <!--
+    HORIZON
+
+    Absolute minimal. The littoral moment.
+    Sun/flame rising from the sea line.
+    That's it. That's everything.
+  -->
+
+  <!-- The horizon - one line -->
+  <line x1="0" y1="50" x2="120" y2="50" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- The sun/flame - half circle rising -->
+  <path
+    d="M 40 50
+       A 20 20 0 0 1 80 50"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="2"
+  />
+
+  <!-- Single wave below -->
+  <path
+    d="M 10 62
+       Q 35 55, 60 62
+       T 110 62"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+  />
+
+</svg>

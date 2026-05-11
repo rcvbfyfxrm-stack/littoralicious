@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Metatron's Cube — Contains all Platonic solids
+    13 circles connected by lines
+    Four elements emerge from the geometry
+  -->
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- Center circle -->
+  <circle cx="50" cy="50" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- 6 circles around center (hexagonal) -->
+  <circle cx="50" cy="28" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="50" cy="72" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="69" cy="39" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="69" cy="61" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="31" cy="39" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="31" cy="61" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- 6 outer circles -->
+  <circle cx="50" cy="12" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="50" cy="88" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="83" cy="31" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="83" cy="69" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="17" cy="31" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="17" cy="69" r="6" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- Connecting lines (Metatron's structure) -->
+  <line x1="50" y1="12" x2="50" y2="88" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="17" y1="31" x2="83" y2="69" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="17" y1="69" x2="83" y2="31" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="17" y1="31" x2="83" y2="31" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="17" y1="69" x2="83" y2="69" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="17" y1="31" x2="17" y2="69" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="83" y1="31" x2="83" y2="69" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="50" y1="12" x2="17" y2="31" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="50" y1="12" x2="83" y2="31" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="50" y1="88" x2="17" y2="69" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="50" y1="88" x2="83" y2="69" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- FIRE — Top center circle, filled -->
+  <circle cx="50" cy="12" r="4" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom center circle -->
+  <path d="M 50 92 L 47 85 L 53 85 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- AIR — Right -->
+  <path d="M 89 50 L 82 53 L 82 47 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="83" y1="51" x2="87" y2="51" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- EARTH — Left -->
+  <path d="M 11 50 L 18 47 L 18 53 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="13" y1="49" x2="17" y2="49" stroke="#0a0a0a" stroke-width="1"/>
+
+</svg>

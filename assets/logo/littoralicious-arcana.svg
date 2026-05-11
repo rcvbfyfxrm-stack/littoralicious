@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Arcana — Hidden knowledge
+    Layered circles with element symbols
+    Mystical diagram style
+  -->
+
+  <!-- Outer circle with notches -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Cardinal notches -->
+  <line x1="50" y1="2" x2="50" y2="8" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="50" y1="92" x2="50" y2="98" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="2" y1="50" x2="8" y2="50" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="92" y1="50" x2="98" y2="50" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Second circle -->
+  <circle cx="50" cy="50" r="35" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- Third circle -->
+  <circle cx="50" cy="50" r="24" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- Cross through center -->
+  <line x1="50" y1="15" x2="50" y2="85" stroke="#0a0a0a" stroke-width="0.5"/>
+  <line x1="15" y1="50" x2="85" y2="50" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- FIRE — Top (filled triangle) -->
+  <path d="M 50 12 L 56 24 L 44 24 Z" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom (open inverted triangle) -->
+  <path d="M 50 88 L 44 76 L 56 76 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- AIR — Right (open triangle with bar) -->
+  <path d="M 88 50 L 76 56 L 76 44 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="78" y1="52" x2="84" y2="52" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- EARTH — Left (open inverted triangle with bar) -->
+  <path d="M 12 50 L 24 44 L 24 56 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="16" y1="48" x2="22" y2="48" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Center - quintessence / fifth element -->
+  <circle cx="50" cy="50" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <circle cx="50" cy="50" r="2" fill="#0a0a0a"/>
+
+</svg>

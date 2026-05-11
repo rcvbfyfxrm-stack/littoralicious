@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Culture & Société — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Samedi 24 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;24</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-24.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#6a4a5a">Culture & Société</div>
+  <h1 class="article-title">IDÉES QUI COMPTENT</h1>
+  <div class="article-date">Samedi 24 Janvier 2026 &mdash; Edition N&deg;24</div>
+</div><div class="article-body"><h1>Rapport: Culture & Société</h1>
+<h2>Date : 2026-01-24</h2>
+<hr>
+<h2>💡 IDÉES QUI COMPTENT</h2>
+<h3>"The Great Renegotiation" — IA et Institutions Culturelles</h3>
+<p><strong>De quoi s'agit-il :</strong></p>
+<ul>
+<li>Les géants de l'IA font face au "model collapse" : modèles s'entraînent sur données synthétiques</li>
+<li>Procès pour scraping de données sans permission</li>
+<li>Besoin croissant de datasets "propres", humains, légalement clairs</li>
+<li>Question stratégique 2026 : Vendre l'histoire aux machines ou créer des "Sanctuary Archives" ?</li>
+</ul>
+<p><strong>Source :</strong> Arts Journal, Janvier 2026</p>
+<p><strong>Contexte intellectuel :</strong></p>
+<ul>
+<li>Tradition : Débat sur commodification de la culture</li>
+<li>Ce qui précède : Conflits droits d'auteur IA (2023-2025)</li>
+<li>Ce qui change : Institutions culturelles = détentrices de pouvoir de négociation</li>
+</ul>
+<p><strong>Arguments en présence :</strong></p>
+<table><thead><tr><th>Position</th><th>Argument</th><th>Représentant</th></tr></thead><tbody>
+<tr><td>Pragmatique</td><td>Vendre données = survie financière des musées</td><td>Administrateurs</td></tr>
+<tr><td>Résistant</td><td>"Sanctuary Archives" humaines-only</td><td>Artistes, conservateurs</td></tr>
+<tr><td>Synthèse</td><td>"Organic Culture" comme nouveau label</td><td>Analystes culturels</td></tr>
+</tbody></table>
+<p><strong>Ce qui est en jeu :</strong></p>
+<ul>
+<li>Définition de ce qui est "authentiquement humain"</li>
+<li>Valeur marchande de la création humaine vs IA</li>
+<li>Survie économique des institutions culturelles</li>
+</ul>
+<p><strong>Ma lecture :</strong></p>
+<ul>
+<li>2026 = "moment organic food" pour les arts ?</li>
+<li>Analogie intéressante mais limites : art ≠ produit consommable</li>
+<li>Question de fond : Peut-on labelliser l'authenticité culturelle ?</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.artsjournal.com/diacritical/2026/01/the-great-renegotiation-five-ideas-about-where-culture-is-going-in-2026.html" target="_blank">Arts Journal</a></p>
+<hr>
+<h3>Leo Strauss — Réévaluation Critique</h3>
+<p><strong>De quoi s'agit-il :</strong></p>
+<ul>
+<li>Débat relancé sur la méthode straussienne</li>
+<li>Critique : "Orientation vers la vie intellectuelle au mieux mal guidée, au pire incohérente"</li>
+<li>Contexte : Influence persistante dans certains cercles conservateurs américains</li>
+</ul>
+<p><strong>Source :</strong> Arts & Letters Daily, Janvier 2026</p>
+<p><strong>Contexte intellectuel :</strong></p>
+<ul>
+<li>Strauss : Figure polarisante philosophie politique américaine</li>
+<li>Méthode : Lecture ésotérique des textes classiques</li>
+<li>Influence : Néoconservatisme, certains think tanks</li>
+</ul>
+<p><strong>Ma lecture :</strong></p>
+<ul>
+<li>Critique substantielle ou règlement de comptes intellectuel ?</li>
+<li>Méthode straussienne : Productrice ou stérilisante ?</li>
+<li>Pertinence : Qui lit encore Strauss en 2026 ?</li>
+</ul>
+<hr>
+<h3>Adam Tooze — "Idéal Platonicien de l'Intellectuel Universel"</h3>
+<p><strong>De quoi s'agit-il :</strong></p>
+<ul>
+<li>Discussion sur le rôle de l'intellectuel public</li>
+<li>Tooze proposé comme modèle d'intellectuel universel contemporain</li>
+<li>Intersection économie, histoire, politique</li>
+</ul>
+<p><strong>Contexte :</strong></p>
+<ul>
+<li>Crise de l'intellectuel public face aux réseaux sociaux</li>
+<li>Besoin de synthétiseurs capables de traverser les disciplines</li>
+<li>Question : L'expertise spécialisée vs la vision d'ensemble</li>
+</ul>
+<hr>
+<h2>🎨 ARTS & CRÉATION</h2>
+<h3>Tendances Art 2026 — Consensus des Curateurs</h3>
+<p><strong>Ce que disent 16 curateurs majeurs (Artsy) :</strong></p>
+<ul>
+<li>Formes d'art et d'exposition plus lentes, délibérées</li>
+<li>Emphase sur le fait-main, le matériel, l'artisanat</li>
+<li>Engagement croissant pour la collaboration</li>
+<li>IA : Approche avec retenue et scrutiny éthique</li>
+</ul>
+<p><strong>Prédictions clés :</strong></p>
+<table><thead><tr><th>Tendance</th><th>Direction</th><th>Interprétation</th></tr></thead><tbody>
+<tr><td>Artisanat</td><td>↗️ En hausse</td><td>Réaction anti-digital</td></tr>
+<tr><td>Collaboration</td><td>↗️ En hausse</td><td>Post-star system</td></tr>
+<tr><td>IA art</td><td>↔️ Présent mais prudent</td><td>Fatigue du hype</td></tr>
+<tr><td>Slow art</td><td>↗️ En hausse</td><td>Contre l'économie de l'attention</td></tr>
+</tbody></table>
+<p><strong>Géographie — Shift vers le Moyen-Orient :</strong></p>
+<ul>
+<li>Art Basel Doha : Février 2026 (inaugural)</li>
+<li>Frieze Abu Dhabi : Novembre 2026 (inaugural)</li>
+<li>Guggenheim Abu Dhabi : Ouverture Juin 2026</li>
+</ul>
+<p><strong>Ma lecture :</strong></p>
+<ul>
+<li>"Slow art" = résistance à la vitesse digitale</li>
+<li>Moyen-Orient = nouveau centre de gravité du marché</li>
+<li>Artisanat revival = retour du "fait-main" comme différenciateur</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.artsy.net/article/artsy-editorial-16-leading-curators-predict-art-trends-2026" target="_blank">Artsy</a></p>
+<hr>
+<h3>IA et Propriété Intellectuelle — Clarification en Vue</h3>
+<p><strong>Développement :</strong></p>
+<ul>
+<li>Settlement 2025 landmark = mouvement vers compensation des artistes</li>
+<li>2026 : Plus de clarté attendue sur IP et IA</li>
+<li>Précédent juridique en formation</li>
+</ul>
+<p><strong>Ce que ça signifie :</strong></p>
+<ul>
+<li>Artistes pourraient être compensés pour usage de leurs œuvres par IA</li>
+<li>Marché de la licence d'œuvres pour training en émergence</li>
+<li>Nouveau modèle économique pour créateurs ?</li>
+</ul>
+<hr>
+<h2>📊 ÉVOLUTION DES MENTALITÉS</h2>
+<h3>Aphorismes vs IA — La Forme Courte Réhabilitée</h3>
+<p><strong>Observation :</strong></p>
+<ul>
+<li>Aphorismes décrits comme "antithèse de la flatterie IA et des hot takes"</li>
+<li>Thomas Mann cité : "Only thoroughness can be truly entertaining"</li>
+<li>Retour de la forme concise mais profonde ?</li>
+</ul>
+<p><strong>Interprétation :</strong></p>
+<ul>
+<li>Fatigue du contenu IA = recherche d'authenticité</li>
+<li>Brièveté ≠ superficialité</li>
+<li>Valeur du travail intellectuel concentré</li>
+</ul>
+<hr>
+<h2>🔗 TECH & SOCIÉTÉ</h2>
+<h3>"Organic Culture" — Nouveau Concept Émergent</h3>
+<p><strong>L'idée :</strong></p>
+<ul>
+<li>Analogie avec "organic food" pour la production culturelle</li>
+<li>Labelliser ce qui est créé sans IA</li>
+<li>Établir la valeur de la création "pure humaine"</li>
+</ul>
+<p><strong>Débat :</strong></p>
+<ul>
+<li>Pour : Préserve l'authenticité, valorise le travail humain</li>
+<li>Contre : Distinction artificielle, tout art a toujours utilisé des outils</li>
+<li>Question : Comment vérifier ? Qui certifie ?</li>
+</ul>
+<p><strong>Implications :</strong></p>
+<ul>
+<li>Nouveau marché pour "art certifié humain" ?</li>
+<li>Premium de prix pour création non-IA ?</li>
+<li>Risque de faux labels ?</li>
+</ul>
+<hr>
+<h2>📚 LECTURES RECOMMANDÉES</h2>
+<h3>Cette semaine</h3>
+<table><thead><tr><th>Type</th><th>Titre</th><th>Où</th><th>Pourquoi</th></tr></thead><tbody>
+<tr><td>Essai</td><td>"The Great Renegotiation"</td><td>Arts Journal</td><td>Synthèse IA/Culture</td></tr>
+<tr><td>Analyse</td><td>Curateurs prédictions 2026</td><td>Artsy</td><td>Tendances art</td></tr>
+<tr><td>Débat</td><td>Strauss réévaluation</td><td>Arts & Letters Daily</td><td>Philosophie politique</td></tr>
+</tbody></table>
+<hr>
+<h2>🌊 POULS CULTUREL</h2>
+<p><strong>Ce qui monte dans la conversation intellectuelle :</strong></p>
+<ul>
+<li>"Organic Culture" et labellisation humain/IA</li>
+<li>Slow art, artisanat, fait-main</li>
+<li>Moyen-Orient comme hub artistique</li>
+</ul>
+<p><strong>Ce qui descend :</strong></p>
+<ul>
+<li>Hype IA créative non-différencié</li>
+<li>Star system artistique traditionnel</li>
+</ul>
+<p><strong>Signaux faibles :</strong></p>
+<ul>
+<li>"Sanctuary Archives" pour patrimoine culturel</li>
+<li>Settlement IA/IP comme précédent juridique</li>
+<li>Intellectuel universel vs expert spécialisé</li>
+</ul>
+<hr>
+<h2>🚩 À ÉVITER / BRUIT</h2>
+<p><strong>Ce que je ne couvre PAS cette semaine et pourquoi :</strong></p>
+<ul>
+<li>Drama réseaux sociaux X/Y — Éphémère, pas de substance intellectuelle</li>
+<li>Hype NFT résiduel — Plus de pertinence culturelle significative</li>
+</ul>
+<hr>
+<h2>❓ QUESTIONS OUVERTES</h2>
+<ol>
+<li>Peut-on vraiment distinguer création humaine et assistée-IA à l'avenir ?</li>
+<li>Le Moyen-Orient deviendra-t-il le nouveau centre du marché de l'art ?</li>
+<li>"Slow art" : Tendance durable ou réaction temporaire ?</li>
+</ol>
+<hr>
+<p><em>Rapport généré le 2026-01-24</em></p></div><div class="bottom-nav"><a href="gastronomie.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Gastronomie</span></a><a href="finance-marches.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Finance & Marchés &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; CULTURE & SOCIÉTÉ</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 80">
+  <!--
+    LITTORALICIOUS Wordmark
+    Inspired by: Matisse line drawings, ancient maritime maps
+    Style: Single-weight line, organic flow
+  -->
+
+  <!-- Flowing wave underline - Matisse-style organic curve -->
+  <path
+    d="M 20 62
+       Q 60 52, 100 58
+       T 180 54
+       T 260 60
+       T 340 56
+       Q 360 54, 380 58"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Wordmark -->
+  <text
+    x="200"
+    y="42"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-size="32"
+    font-weight="400"
+    letter-spacing="0.12em"
+    text-anchor="middle"
+    fill="#0a0a0a"
+  >LITTORALICIOUS</text>
+
+</svg>

@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    LITTORALICIOUS ORIGINAL
+
+    The Littoral Seal — Where all elements meet
+
+    Concept: The shore is where fire (sun), water (sea),
+    air (wind), and earth (land) converge. Cooking is
+    the same convergence. The galley is a littoral zone.
+
+    Structure:
+    - Horizon line divides the circle (littoral boundary)
+    - Above: Fire (sun/heat) and Air (sky/steam)
+    - Below: Water (sea) and Earth (shore)
+    - Center: The flame of nurture where all meet
+  -->
+
+  <!-- Outer circle - the whole -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- THE LITTORAL LINE - horizon dividing the world -->
+  <line x1="4" y1="50" x2="96" y2="50" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- ABOVE THE LINE: Fire + Air (the sky realm) -->
+
+  <!-- Sun/Fire - rising -->
+  <path
+    d="M 50 18
+       C 58 26, 62 34, 62 42
+       C 62 48, 56 50, 50 50
+       C 44 50, 38 48, 38 42
+       C 38 34, 42 26, 50 18
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.2"
+  />
+
+  <!-- Inner flame -->
+  <path
+    d="M 50 28
+       C 54 32, 56 36, 56 42
+       C 56 46, 53 48, 50 48
+       C 47 48, 44 46, 44 42
+       C 44 36, 46 32, 50 28
+       Z"
+    fill="#0a0a0a"
+  />
+
+  <!-- Air - three breath lines (steam rising) -->
+  <path d="M 25 35 Q 28 30, 25 25" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 75 35 Q 72 30, 75 25" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- BELOW THE LINE: Water + Earth (the sea realm) -->
+
+  <!-- Water - waves -->
+  <path
+    d="M 20 62
+       Q 35 56, 50 62
+       T 80 62"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.2"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M 15 72
+       Q 32 66, 50 72
+       T 85 72"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.2"
+    stroke-linecap="round"
+  />
+
+  <!-- Earth - the ground/shore (solid base) -->
+  <path
+    d="M 20 82
+       L 35 82
+       Q 50 78, 65 82
+       L 80 82"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+
+  <!-- Four element markers at cardinal points -->
+  <!-- Fire △ top -->
+  <path d="M 50 5 L 53 11 L 47 11 Z" fill="#0a0a0a"/>
+
+  <!-- Water ▽ bottom -->
+  <path d="M 50 95 L 47 89 L 53 89 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Air → right -->
+  <circle cx="94" cy="50" r="2" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Earth ← left -->
+  <rect x="4" y="48" width="4" height="4" fill="#0a0a0a"/>
+
+</svg>

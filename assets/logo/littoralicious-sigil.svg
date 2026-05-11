@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Element Sigil — Mystical seal
+    Four triangles radiating from center
+    Ancient seal / talisman style
+  -->
+
+  <!-- Outer octagon -->
+  <polygon
+    points="50,5 80,20 95,50 80,80 50,95 20,80 5,50 20,20"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+  />
+
+  <!-- Inner circle -->
+  <circle cx="50" cy="50" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE — Top ray -->
+  <path d="M 50 35 L 55 20 L 50 8 L 45 20 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- WATER — Bottom ray -->
+  <path d="M 50 65 L 45 80 L 50 92 L 55 80 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- AIR — Right ray -->
+  <path d="M 65 50 L 80 45 L 92 50 L 80 55 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- EARTH — Left ray -->
+  <path d="M 35 50 L 20 55 L 8 50 L 20 45 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Diagonal rays (secondary) -->
+  <line x1="61" y1="39" x2="76" y2="24" stroke="#0a0a0a" stroke-width="0.8"/>
+  <line x1="61" y1="61" x2="76" y2="76" stroke="#0a0a0a" stroke-width="0.8"/>
+  <line x1="39" y1="61" x2="24" y2="76" stroke="#0a0a0a" stroke-width="0.8"/>
+  <line x1="39" y1="39" x2="24" y2="24" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- Center - the prima materia -->
+  <circle cx="50" cy="50" r="4" fill="#0a0a0a"/>
+
+</svg>

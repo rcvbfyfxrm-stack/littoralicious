@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Seed of Life — Genesis pattern
+    7 circles, the beginning of creation
+    Four elements at the cardinal seeds
+  -->
+
+  <!-- Outer boundary -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Center circle -->
+  <circle cx="50" cy="50" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- 6 surrounding circles (Seed of Life) -->
+  <circle cx="50" cy="35" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <circle cx="50" cy="65" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <circle cx="37" cy="42.5" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <circle cx="63" cy="42.5" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <circle cx="37" cy="57.5" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <circle cx="63" cy="57.5" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE — Top seed -->
+  <path d="M 50 8 L 55 18 L 45 18 Z" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom seed -->
+  <path d="M 50 92 L 45 82 L 55 82 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- AIR — Right -->
+  <path d="M 92 50 L 82 55 L 82 45 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="84" y1="52" x2="90" y2="52" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- EARTH — Left -->
+  <path d="M 8 50 L 18 45 L 18 55 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="10" y1="48" x2="16" y2="48" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Center point -->
+  <circle cx="50" cy="50" r="2" fill="#0a0a0a"/>
+
+</svg>

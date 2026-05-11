@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Littoralicious — The full archive of articles. Modern science and regional littoral cooking for yacht chefs.">
+
+    <title>Archive — LITTORALICIOUS</title>
+
+    <meta property="og:title" content="Archive — Littoralicious">
+    <meta property="og:description" content="The full archive of Littoralicious articles. Recipes, techniques, ingredient deep-dives, port calls, and the science behind them.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.littoralicious.com/archive.html">
+    <meta property="og:site_name" content="Littoralicious">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+</head>
+<body>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="shore-larder.html">Shore Larder</a>
+                    <a href="the-method.html">The Method</a>
+                    <a href="littoral-heritage.html">Heritage</a>
+                    <a href="the-evidence.html">The Evidence</a>
+                    <a href="the-bridge.html">The Bridge</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="container" style="padding-top: var(--space-12); padding-bottom: var(--space-6); text-align: center;">
+            <h1 style="font-family: var(--font-serif); font-size: var(--text-3xl); margin-bottom: var(--space-3);">
+                Archive
+            </h1>
+            <p style="color: var(--color-muted); font-size: var(--text-base); line-height: 1.6; max-width: 60ch; margin: 0 auto;">
+                Every Littoralicious article published. Filter by section, search by topic, or scroll through the lot.
+            </p>
+        </section>
+
+        <!-- Search -->
+        <section class="container" style="padding-bottom: var(--space-8);">
+            <div style="max-width: 500px; margin: 0 auto; position: relative;">
+                <input type="text" id="article-search" placeholder="Search articles and themes..." style="width: 100%; padding: var(--space-3) var(--space-4); padding-left: 40px; border: 1px solid var(--color-border); background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); font-size: var(--text-sm); outline: none; transition: border-color 150ms ease;" onfocus="this.style.borderColor='var(--color-sea)'" onblur="this.style.borderColor='var(--color-border)'">
+                <svg style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--color-salt);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round" stroke-width="2"/></svg>
+            </div>
+            <div id="search-filters" style="display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-top: var(--space-3);">
+                <button class="search-filter active" data-filter="all" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">All</button>
+                <button class="search-filter" data-filter="Shore Larder" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">Shore Larder</button>
+                <button class="search-filter" data-filter="The Method" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">The Method</button>
+                <button class="search-filter" data-filter="Littoral Heritage" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">Heritage</button>
+                <button class="search-filter" data-filter="The Evidence" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">The Evidence</button>
+                <button class="search-filter" data-filter="The Bridge" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">The Bridge</button>
+                <button class="search-filter" data-filter="Port Call" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">Port Call</button>
+                <button class="search-filter" data-filter="Trade Winds" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">Trade Winds</button>
+            </div>
+            <p id="search-count" style="text-align: center; font-size: var(--text-xs); color: var(--color-salt); margin-top: var(--space-2); display: none;"></p>
+        </section>
+
+        <!-- Articles -->
+        <section class="container" style="padding-bottom: var(--space-12);">
+            <div id="article-list" style="margin-top: var(--space-6);">
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint dessert sticky-toffee-pudding dates muscovado caramel whisky baking food-science charter-prep"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>9 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/sticky-toffee-pudding.html">Sticky Toffee Pudding: Dark Muscovado &amp; Whisky Caramel</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint dessert apple crumble baking brown-butter pectin food-science charter-prep"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>10 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/apple-crumble-perfect.html">Apple Crumble: The Perfect Version</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint soup chicken stock gelatin umami comfort convalescent galley-staple food-science"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>12 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/chicken-soup-perfect.html">Chicken Soup: The Perfect Version</a></h3></article>
+                <article class="article-card" data-category="Port Call" data-tags="provisioning venice italy rialto port-call vaporetto logistics"><div class="article-card__meta"><span class="article-card__category">Port Call</span><span>14 min</span><span class="article-card__subtag">Provisioning</span></div><h3 class="article-card__title"><a href="articles/port-call-venice.html">Port Call Venice: Provisioning a City With No Roads</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="garlic ingredient-deep-dive allium food-science history compounds"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>15 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/garlic-the-immortal-bulb.html">Garlic: The Immortal Bulb</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="mushrooms ingredient-deep-dive umami food-science sourcing glutamate"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>14 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/mushrooms-the-new-centre.html">Mushrooms: The New Centre of the Plate</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="tea ingredient-deep-dive tannins smoking infusion cooking-chemistry"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>14 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/tea-as-cooking-ingredient.html">Tea as a Cooking Ingredient</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint baking banana quick-bread brown-butter miso food-science charter-prep"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>8 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/banana-bread.html">Banana Bread: The Science-First Version</a></h3></article>
+                <article class="article-card" data-category="Port Call" data-tags="provisioning suppliers port-call coming-soon community"><div class="article-card__meta"><span class="article-card__category">Port Call</span><span>5 min</span><span class="article-card__subtag">Provisioning</span></div><h3 class="article-card__title"><a href="articles/preview-port-call.html">Port Call: Provisioning Guides Built by the Chefs Who Actually Dock There</a></h3></article>
+                <article class="article-card" data-category="The Evidence" data-tags="flavor-science food-pairing volatile-compounds molecules FlavorDB research cooking-chemistry"><div class="article-card__meta"><span class="article-card__category">The Evidence</span><span>16 min</span><span class="article-card__subtag">Food Science</span></div><h3 class="article-card__title"><a href="articles/flavordb-compound-pairing.html">FlavorDB: Compound-Level Flavor Pairing</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="technology AI Claude-Code galley automation PDF menus handover WhatsApp intelligence"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>18 min</span><span class="article-card__subtag">Tech &amp; AI</span></div><h3 class="article-card__title"><a href="articles/claude-code-galley.html">Claude Code in the Galley: The Power Tool</a></h3></article>
+                <article class="article-card" data-category="Trade Winds" data-tags="tax crew employment legal finance residency France Article-81-A CGI"><div class="article-card__meta"><span class="article-card__category">Trade Winds</span><span>18 min</span><span class="article-card__subtag">Career &amp; Industry</span></div><h3 class="article-card__title"><a href="articles/yacht-crew-tax-guide.html">The Truth About Paying Tax as Yacht Crew</a></h3></article>
+                <article class="article-card" data-category="Trade Winds" data-tags="career yacht-chef certification STCW crew employment industry"><div class="article-card__meta"><span class="article-card__category">Trade Winds</span><span>14 min</span><span class="article-card__subtag">Career &amp; Industry</span></div><h3 class="article-card__title"><a href="articles/how-to-become-a-yacht-chef.html">How to Become a Yacht Chef: The Real Path Nobody Advertises</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="technology AI tools galley efficiency automation claude-code menu-generation handover WhatsApp"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>18 min</span><span class="article-card__subtag">Tech &amp; AI</span></div><h3 class="article-card__title"><a href="articles/tech-in-the-galley.html">Technology in the Galley: Your AI Sous Chef</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="WhatsApp intelligence trip handover AI workflow chef-ops"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>12 min</span><span class="article-card__subtag">Tech &amp; AI</span></div><h3 class="article-card__title"><a href="articles/whatsapp-trip-intelligence.html">WhatsApp as Your Trip Intelligence System</a></h3></article>
+                <article class="article-card" data-category="Port Call" data-tags="provisioning miami fort-lauderdale suppliers usa port-call wholesale"><div class="article-card__meta"><span class="article-card__category">Port Call</span><span>12 min</span><span class="article-card__subtag">Provisioning</span></div><h3 class="article-card__title"><a href="articles/provisioning-miami-ftl.html">Provisioning Miami &amp; Fort Lauderdale: The Complete Playbook</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="fats nutrition food-science ingredients science omega-3 cooking-chemistry"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>15 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/the-fat-index.html">The Fat Index: Every Cooking Fat Ranked by Science</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="salt seasoning food-science ingredients science mineral-content"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>14 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/the-salt-index.html">The Salt Index: Every Culinary Salt Ranked by Science</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="acid vinegar citrus food-science ingredients science flavour-balance"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>14 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/the-acid-index.html">The Acid Index: Every Culinary Acid Ranked by Science</a></h3></article>
+                <article class="article-card" data-category="The Evidence" data-tags="anthropology food-science cooking-chemistry evolution science"><div class="article-card__meta"><span class="article-card__category">The Evidence</span><span>12 min</span><span class="article-card__subtag">Food Science</span></div><h3 class="article-card__title"><a href="articles/cooked-fire-made-us-human.html">Cooked: How Fire Made Us Human and Why the Person Holding the Pan Still Matters</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="sea-urchin seasonal sourcing compound-profile ingredients"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>4 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/sea-urchin-seasonal-guide.html">Sea Urchin: Seasonal Guide, Compound Profile, and Sourcing</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="sea-urchin technique emulsion beurre-blanc sauce"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>4 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/sea-urchin-beurre-blanc.html">Sea Urchin Beurre Blanc: Roe as Natural Emulsifier</a></h3></article>
+                <article class="article-card" data-category="The Evidence" data-tags="umami fermentation glutamate food-science"><div class="article-card__meta"><span class="article-card__category">The Evidence</span><span>4 min</span><span class="article-card__subtag">Food Science</span></div><h3 class="article-card__title"><a href="articles/umami-western-cuisine.html">Umami in Western Cuisine: Fermentation as the Universal Glutamate Engine</a></h3></article>
+                <article class="article-card" data-category="Littoral Heritage" data-tags="sea-urchin sicily pasta tradition"><div class="article-card__meta"><span class="article-card__category">Littoral Heritage</span><span>4 min</span><span class="article-card__subtag">Heritage</span></div><h3 class="article-card__title"><a href="articles/spaghetti-ricci-di-mare.html">Spaghetti ai Ricci di Mare: Mondello, Sicily</a></h3></article>
+                <article class="article-card" data-category="The Bridge" data-tags="michelin umami STCW training industry"><div class="article-card__meta"><span class="article-card__category">The Bridge</span><span>4 min</span><span class="article-card__subtag">Industry News</span></div><h3 class="article-card__title"><a href="articles/myojaku-three-stars.html">Myojaku Earns Three Stars and STCW Anti-Harassment Training Goes Mandatory</a></h3></article>
+                <article class="article-card" data-category="The Evidence" data-tags="mental-health resilience crew-welfare yacht-specific psychology"><div class="article-card__meta"><span class="article-card__category">The Evidence</span><span>15 min</span><span class="article-card__subtag">Crew Welfare</span></div><h3 class="article-card__title"><a href="articles/silver-lining-protocol.html">The Silver Lining Protocol: A Science-Backed Survival Guide for Galley Sanity</a></h3></article>
+                <article class="article-card" data-category="The Evidence" data-tags="spices phytochemistry health ingredients science"><div class="article-card__meta"><span class="article-card__category">The Evidence</span><span>14 min</span><span class="article-card__subtag">Food Science</span></div><h3 class="article-card__title"><a href="articles/medicinal-plants-your-galley.html">The Pharmacy in Your Spice Rack: What Science Actually Knows About Medicinal Plants in Food</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="galley workflow mise-en-place efficiency space protocol"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>12 min</span><span class="article-card__subtag">Galley Efficiency</span></div><h3 class="article-card__title"><a href="articles/galley-efficiency-protocol.html">Galley Efficiency Protocol: Maximizing Output in Minimal Space</a></h3></article>
+            </div>
+            <p id="no-results" style="display: none; text-align: center; color: var(--color-muted); padding: var(--space-8) 0; font-style: italic;">No articles match your search.</p>
+
+            <!-- Back to home -->
+            <div style="text-align: center; margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                <a href="/" style="color: var(--color-muted); font-size: var(--text-sm); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em;">&larr; Home</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+                      target="popupwindow">
+                    <label for="footer-email-archive">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-archive" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">
+                        For those who feed others with intention.
+                    </p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="shore-larder.html">Shore Larder</a></li>
+                            <li><a href="the-method.html">The Method</a></li>
+                            <li><a href="littoral-heritage.html">Heritage</a></li>
+                            <li><a href="the-evidence.html">The Evidence</a></li>
+                            <li><a href="the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">Manifesto</a></li>
+                            <li><a href="founder.html">Founder</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    // Article search and filter (same as homepage)
+    (function() {
+        var searchInput = document.getElementById('article-search');
+        var articleList = document.getElementById('article-list');
+        var noResults = document.getElementById('no-results');
+        var searchCount = document.getElementById('search-count');
+        var filterBtns = document.querySelectorAll('.search-filter');
+        var activeFilter = 'all';
+
+        function filterArticles() {
+            var query = searchInput.value.toLowerCase().trim();
+            var visible = 0;
+            var articles = articleList.querySelectorAll('.article-card');
+
+            articles.forEach(function(card) {
+                var title = card.querySelector('.article-card__title').textContent.toLowerCase();
+                var category = card.getAttribute('data-category') || '';
+                var tags = card.getAttribute('data-tags') || '';
+                var searchable = title + ' ' + category.toLowerCase() + ' ' + tags;
+
+                var matchesFilter = activeFilter === 'all' || category === activeFilter;
+                var matchesQuery = !query || searchable.indexOf(query) !== -1;
+
+                if (matchesFilter && matchesQuery) {
+                    card.style.display = '';
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visible === 0 ? '' : 'none';
+
+            if (query || activeFilter !== 'all') {
+                searchCount.textContent = visible + ' of ' + articles.length + ' articles';
+                searchCount.style.display = '';
+            } else {
+                searchCount.style.display = 'none';
+            }
+        }
+
+        searchInput.addEventListener('input', filterArticles);
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                    b.style.borderColor = '';
+                    b.style.color = '';
+                });
+                btn.classList.add('active');
+                btn.style.borderColor = 'var(--color-sea)';
+                btn.style.color = 'var(--color-sea)';
+                activeFilter = btn.getAttribute('data-filter');
+                filterArticles();
+            });
+        });
+
+        filterBtns[0].style.borderColor = 'var(--color-sea)';
+        filterBtns[0].style.color = 'var(--color-sea)';
+    })();
+
+    // Auto-prepend any non-draft articles in data/articles.json that aren't already in the DOM.
+    // Archive shows everything (no card limit).
+    (function autoPrependFromJson() {
+        var list = document.getElementById('article-list');
+        if (!list) return;
+        fetch('data/articles.json', { cache: 'no-store' }).then(function(r) {
+            return r.ok ? r.json() : null;
+        }).then(function(data) {
+            if (!data || !Array.isArray(data.articles)) return;
+            var present = {};
+            list.querySelectorAll('.article-card a[href^="articles/"]').forEach(function(a) {
+                var m = a.getAttribute('href').match(/articles\/([^.\/]+)\.html/);
+                if (m) present[m[1]] = true;
+            });
+            var cats = (data.categories) || {};
+            var fresh = data.articles
+                .filter(function(a) { return a && a.slug && !a.draft && !present[a.slug]; })
+                .sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
+            if (!fresh.length) return;
+            var anchor = list.querySelector('.article-card');
+            fresh.forEach(function(a) {
+                var catName = (cats[a.category] && cats[a.category].name) || a.category || '';
+                var tags = (a.tags || []).join(' ').replace(/"/g, '');
+                var subtag = a.subtag || '';
+                var card = document.createElement('article');
+                card.className = 'article-card';
+                card.setAttribute('data-category', catName);
+                card.setAttribute('data-tags', tags);
+                card.innerHTML =
+                    '<div class="article-card__meta">' +
+                        '<span class="article-card__category">' + catName + '</span>' +
+                        '<span>' + (a.read_time ? a.read_time + ' min' : '') + '</span>' +
+                        (subtag ? '<span class="article-card__subtag">' + subtag + '</span>' : '') +
+                    '</div>' +
+                    '<h3 class="article-card__title">' +
+                        '<a href="articles/' + a.slug + '.html">' + a.title + '</a>' +
+                    '</h3>';
+                if (anchor) list.insertBefore(card, anchor); else list.appendChild(card);
+            });
+        }).catch(function() { /* fallback: hardcoded list still renders */ });
+    })();
+    </script>
+</body>
+</html>

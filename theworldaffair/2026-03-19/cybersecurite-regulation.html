@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybers&eacute;curit&eacute; &amp; R&eacute;gulation &mdash; The World Affair</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; } html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; } a { color: inherit; text-decoration: none; transition: color 0.15s; } a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; } .masthead-title a:hover { color: #1a1714; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; } .masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; } .nav-link:hover { background: #e6e1d8; color: #1a1714; } .nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.article-header { padding: 32px 0 20px; border-bottom: 2px solid #1a1714; margin-bottom: 28px; }
+.article-overline { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+.article-date { font-size: 12px; color: #8a847a; text-transform: uppercase; letter-spacing: 1px; }
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1714; }
+.article-body h2 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin: 24px 0 10px; padding-bottom: 4px; border-bottom: 1px solid #c8c0b4; }
+.article-body p { font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75; }
+.article-body strong { color: #1a1714; } .article-body em { font-style: italic; }
+.article-body ul, .article-body ol { margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540; } .article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote { border-left: 3px solid #b5ad9f; padding: 12px 18px; margin: 14px 0; background: #ede9e1; font-size: 13px; color: #4a4540; line-height: 1.7; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0; }
+.article-body th { text-align: left; padding: 8px 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a; border-bottom: 2px solid #b5ad9f; font-weight: 700; }
+.article-body td { padding: 8px 10px; border-bottom: 1px solid #c8c0b4; } .article-body tr:hover td { background: #ede9e1; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; } .bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .article-title { font-size: 24px; } .article-body { max-width: 100%; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta"><span>Jeudi 19 Mars 2026</span><span class="masthead-dot">&bull;</span><span>Edition N&deg;56</span><span class="masthead-dot">&bull;</span><span>NEXUS Intelligence</span></div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-19.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#2c2c2c">Cybers&eacute;curit&eacute; &amp; R&eacute;gulation</div>
+  <h1 class="article-title">Campagne cyber iranienne : alerte NY DFS</h1>
+  <div class="article-date">Jeudi 19 Mars 2026 &mdash; Edition N&deg;56</div>
+</div><div class="article-body"><h1>Le front cyber du conflit iranien</h1>
+
+<p><em>&laquo; La guerre avec l'Iran ne se joue pas seulement dans le d&eacute;troit d'Hormuz. Une campagne cyber iranienne massive cible les infrastructures financi&egrave;res occidentales. Le NY DFS &eacute;met une alerte sans pr&eacute;c&eacute;dent. Les &eacute;ch&eacute;ances du Cyber Resilience Act europ&eacute;en approchent. Et les feuilles de route post-quantiques deviennent obligatoires. Le paysage de la cybers&eacute;curit&eacute; se reconfigure sous la pression de la guerre. &raquo;</em></p>
+
+<hr>
+
+<h2>I. Campagne cyber iranienne : le secteur financier en alerte</h2>
+
+<p>Le New York Department of Financial Services (NY DFS) a &eacute;mis une alerte de s&eacute;curit&eacute; pour l'ensemble du secteur financier am&eacute;ricain, signalant une campagne cyber coordonn&eacute;e attribu&eacute;e &agrave; des groupes APT (Advanced Persistent Threat) iraniens. Les cibles identifi&eacute;es incluent les syst&egrave;mes bancaires, les plateformes de trading de mati&egrave;res premi&egrave;res, et les infrastructures de paiement SWIFT.</p>
+
+<p>Les tactiques observ&eacute;es combinent spear-phishing cibl&eacute; contre des employ&eacute;s de banques, exploitation de vuln&eacute;rabilit&eacute;s zero-day dans les VPN d'entreprise, et d&eacute;ploiement de wipers (malwares destructeurs) capables d'effacer des syst&egrave;mes entiers. L'objectif semble &ecirc;tre double : espionnage (acc&egrave;s aux flux financiers li&eacute;s aux sanctions) et perturbation (attaques destructrices en cas d'escalade).</p>
+
+<h2>II. EU Cyber Resilience Act : les &eacute;ch&eacute;ances approchent</h2>
+
+<p>Le Cyber Resilience Act (CRA) europ&eacute;en, entr&eacute; en vigueur en 2024, impose aux fabricants de produits contenant des &eacute;l&eacute;ments num&eacute;riques de respecter des exigences de cybers&eacute;curit&eacute; tout au long du cycle de vie du produit. Les premi&egrave;res &eacute;ch&eacute;ances de conformit&eacute; arrivent en septembre 2026 pour les produits &laquo; critiques &raquo; (routeurs, pare-feu, syst&egrave;mes d'exploitation). Les entreprises qui ne se conforment pas s'exposent &agrave; des amendes allant jusqu'&agrave; 15 millions d'euros ou 2,5% du chiffre d'affaires mondial.</p>
+
+<h2>III. Post-quantique : les feuilles de route deviennent obligatoires</h2>
+
+<p>Le NIST am&eacute;ricain a finalis&eacute; ses standards de cryptographie post-quantique (ML-KEM, ML-DSA, SLH-DSA) en 2024. En mars 2026, la directive de la Maison Blanche exige que toutes les agences f&eacute;d&eacute;rales soumettent une feuille de route de migration vers la cryptographie post-quantique avant le 30 juin 2026. Le secteur priv&eacute; &mdash; en particulier la finance et la sant&eacute; &mdash; est fortement incit&eacute; &agrave; suivre.</p>
+
+<table>
+<tr><th>Menace / R&eacute;gulation</th><th>Source</th><th>&Eacute;ch&eacute;ance</th><th>Impact</th></tr>
+<tr><td>Campagne APT iranienne</td><td>NY DFS Alert</td><td>En cours</td><td>Secteur financier US</td></tr>
+<tr><td>EU Cyber Resilience Act</td><td>UE</td><td>Sept. 2026 (produits critiques)</td><td>Fabricants IoT/r&eacute;seaux</td></tr>
+<tr><td>Feuilles de route PQC</td><td>NIST / Maison Blanche</td><td>Juin 2026</td><td>Agences f&eacute;d&eacute;rales US</td></tr>
+<tr><td>CVE pr&eacute;vues en 2026</td><td>MITRE</td><td>Ann&eacute;e compl&egrave;te</td><td>59 000 vuln&eacute;rabilit&eacute;s</td></tr>
+</table>
+
+<h2>IV. 59 000 CVE en 2026 : l'inflation des vuln&eacute;rabilit&eacute;s</h2>
+
+<p>MITRE pr&eacute;voit l'enregistrement de 59 000 CVE (Common Vulnerabilities and Exposures) en 2026, contre 40 000 en 2024. Cette inflation refl&egrave;te &agrave; la fois l'augmentation de la surface d'attaque (IoT, cloud, IA) et l'am&eacute;lioration des m&eacute;thodes de d&eacute;tection (scanning automatis&eacute;, bug bounties). Le probl&egrave;me n'est pas le nombre de vuln&eacute;rabilit&eacute;s d&eacute;couvertes &mdash; c'est la capacit&eacute; des organisations &agrave; les corriger. Avec 59 000 CVE par an, soit plus de 160 par jour, la priorisation devient un enjeu existentiel.</p>
+
+<hr>
+
+<h2>Signaux Faibles</h2>
+
+<ul>
+<li>La campagne cyber iranienne pourrait s'intensifier en cas de cessez-le-feu &mdash; l'Iran disposant de capacit&eacute;s cyber asym&eacute;triques qu'il peut d&eacute;ployer m&ecirc;me apr&egrave;s la fin des op&eacute;rations militaires.</li>
+<li>L'approche r&eacute;glementaire convergente (CRA en Europe, directives f&eacute;d&eacute;rales aux US) cr&eacute;e une pression croissante sur les fabricants de mat&eacute;riel connect&eacute;, qui devront int&eacute;grer la s&eacute;curit&eacute; d&egrave;s la conception.</li>
+<li>La migration post-quantique est le plus grand chantier cryptographique depuis l'adoption g&eacute;n&eacute;ralis&eacute;e de TLS &mdash; et la plupart des organisations n'ont pas encore commenc&eacute;.</li>
+</ul>
+
+<hr>
+
+<p><em>The World Affair &mdash; Cybers&eacute;curit&eacute; &amp; R&eacute;gulation &mdash; 19 mars 2026</em></p></div><div class="bottom-nav"><a href="espace-energie.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Espace &amp; &Eacute;nergie</span></a></div></div><div class="site-footer">The World Affair &mdash; CYBERS&Eacute;CURIT&Eacute; &amp; R&Eacute;GULATION</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);"><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;"><span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span><div><button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button><button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button></div></div><div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div></div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>(function(){var VAULT="worldaffair",KEY="nexus-passages-"+VAULT;function getAll(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}var selText="";document.addEventListener("mouseup",function(e){var s=window.getSelection(),t=s.toString().trim(),b=document.getElementById("ps-save-btn");if(t.length>10){selText=t;b.style.display="block";b.style.left=(e.pageX+10)+"px";b.style.top=(e.pageY-40)+"px"}else{setTimeout(function(){b.style.display="none"},200)}});window.psSave=function(){if(!selText)return;var p=getAll();p.push({text:selText.substring(0,2000),source:document.title,url:location.href,date:new Date().toISOString(),vault:VAULT});saveAll(p);document.getElementById("ps-save-btn").style.display="none";psRenderList();psFlash();selText=""};function psFlash(){var t=document.getElementById("ps-toggle");t.style.background="#3d6b4f";setTimeout(function(){t.style.background="#1a1714"},600)}window.psTogglePanel=function(){var p=document.getElementById("ps-panel");p.style.display=p.style.display==="none"?"block":"none";psRenderList()};window.psRenderList=function(){var p=getAll(),el=document.getElementById("ps-list");document.getElementById("ps-count").textContent=p.length||"";if(!p.length){el.innerHTML="<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S\u00e9lectionne du texte et clique Sauvegarder</div>";return}el.innerHTML=p.slice().reverse().map(function(x,ri){var i=p.length-1-ri,d=new Date(x.date),ds=d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});return"<div style=\"padding:8px 0;border-bottom:1px solid #333;\"><div style=\"display:flex;justify-content:space-between;align-items:baseline;\"><span style=\"font-size:9px;color:#888;\">"+ds+" &mdash; "+(x.source||"").substring(0,30)+"</span><button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button></div><div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; "+x.text.substring(0,300)+(x.text.length>300?"...":"")+" &raquo;</div></div>"}).join("")};window.psDelete=function(i){var p=getAll();p.splice(i,1);saveAll(p);psRenderList()};window.psExport=function(){var p=getAll();if(!p.length)return;var md="# Passages sauvegard\u00e9s \u2014 "+VAULT+"\n\n";md+="Export\u00e9 le "+new Date().toLocaleDateString("fr-FR")+"\n\n---\n\n";p.forEach(function(x){var d=new Date(x.date).toLocaleDateString("fr-FR");md+="> "+x.text.replace(/\n/g,"\n> ")+"\n\n";md+="*Source: "+(x.source||"?")+" \u2014 "+d+"*\n\n---\n\n"});var blob=new Blob([md],{type:"text/markdown"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="passages-"+VAULT+"-"+new Date().toISOString().slice(0,10)+".md";a.click()};psRenderList()})();</script>
+</body></html>

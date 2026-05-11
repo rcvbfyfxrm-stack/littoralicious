@@ -13,7 +13,7 @@
     <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
 
     <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20260506b">
     <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
 </head>
 <body>
@@ -22,9 +22,12 @@
         <div class="container">
             <div class="masthead__inner">
                 <div class="masthead__brand">
-                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
-                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
-                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
                 </div>
                 <nav class="masthead__nav">
                     <a href="../shore-larder.html" class="active">Shore Larder</a>
@@ -32,8 +35,6 @@
                     <a href="../littoral-heritage.html">Heritage</a>
                     <a href="../the-evidence.html">The Evidence</a>
                     <a href="../the-bridge.html">The Bridge</a>
-                    <a href="../newsletter.html">Newsletter</a>
-                    <a href="../connect.html" class="auth-nav-link">Sign In</a>
                 </nav>
             </div>
         </div>
@@ -332,6 +333,8 @@
                     <p><strong>The rule:</strong> Lemon juice is a finishing acid. Add it after heat. It denatures proteins (ceviche), prevents browning, aids leavening, and stabilises emulsions. The most versatile acid available &mdash; but only if you protect its volatiles from heat.</p>
                 </div>
 
+                <div class="note note--science" data-label="Citral Half-Life Under Heat"><p>Schieberle &amp; Grosch (<em>Journal of Agricultural and Food Chemistry</em>, 1988) measured citral &mdash; the dominant aromatic in lemon &mdash; under thermal stress: <mark>~50% of citral degrades within 5 minutes</mark> at 100&deg;C, producing methylheptenone (a stale, soapy off-note). Squeeze lemon over the resting fish, not into the cooking pan. The aromatic loss is fast, measurable, and irreversible.</p></div>
+
                 <h3>#2 &mdash; Sherry Vinegar</h3>
 
                 <p>
@@ -339,7 +342,7 @@
                 </p>
 
                 <p>
-                    The result is an acetic acid backbone (7&ndash;8%) layered with <mark>Maillard-derived compounds from barrel aging</mark> &mdash; caramel, toasted nuts, dried fruit, and a persistent woody finish. Where wine vinegar provides simple fruity acidity, sherry vinegar provides architecture. It has depth, length, and a sweetness that comes not from added sugar but from the oxidative aging process.
+                    The result is an acetic acid backbone (7&ndash;8%) layered with <mark>Maillard-derived compounds from barrel aging</mark> &mdash; caramel, toasted nuts, dried fruit, and a persistent woody finish. Where wine vinegar provides bright, single-note fruit acidity, sherry vinegar provides architecture. It has depth, length, and a sweetness that comes not from added sugar but from the oxidative aging process.
                 </p>
 
                 <p>
@@ -379,7 +382,7 @@
                 </p>
 
                 <p>
-                    Critical distinction: <strong>unseasoned</strong> rice vinegar is the tool. <strong>Seasoned</strong> rice vinegar (pre-mixed with sugar and salt) is a convenience product &mdash; fine for quick sushi rice but useless for any application where you need to control sweetness and salinity independently. Stock unseasoned.
+                    Critical distinction: <strong>unseasoned</strong> rice vinegar is the tool. <strong>Seasoned</strong> rice vinegar (pre-mixed with sugar and salt) is a convenience product &mdash; fine for casual sushi rice but useless for any application where you need to control sweetness and salinity independently. Stock unseasoned.
                 </p>
 
                 <div class="note note--key">
@@ -716,7 +719,7 @@
                 </p>
 
                 <p>
-                    <strong>2. Sherry Vinegar</strong> &mdash; Your cooking and vinaigrette acid. Survives heat, deglazes beautifully, makes the best simple vinaigrette (3:1 oil to sherry vinegar, pinch of salt). Reserva grade minimum. Gran Reserva if you can source it.
+                    <strong>2. Sherry Vinegar</strong> &mdash; Your cooking and vinaigrette acid. Survives heat, deglazes beautifully, builds the most reliable everyday vinaigrette (3:1 oil to sherry vinegar, pinch of salt). Reserva grade minimum. Gran Reserva if you can source it.
                 </p>
 
                 <p>
@@ -758,7 +761,7 @@
                 </p>
 
                 <p>
-                    <strong>Seasoned rice vinegar as your only rice vinegar</strong> &mdash; Pre-mixed with sugar and salt. You lose independent control of three variables (acid, sweet, salt) and gain nothing except convenience for one specific application (quick sushi rice). Stock unseasoned and add your own.
+                    <strong>Seasoned rice vinegar as your only rice vinegar</strong> &mdash; Pre-mixed with sugar and salt. You lose independent control of three variables (acid, sweet, salt) and gain nothing except convenience for one specific application (casual sushi rice). Stock unseasoned and add your own.
                 </p>
 
                 <div class="summary-box">
@@ -803,30 +806,22 @@
 
                 <!-- Article Engagement Section -->
                 <div class="article-engagement">
-                    <div class="community-pulse">
-                        <span class="community-pulse__count">Loading...</span>
+
+                    <!-- Engagement Pulse -->
+                    <div class="engagement-pulse" data-reactions="0" data-comments="0">
+                        <span class="engagement-pulse__text">Be the first to join the conversation</span>
                     </div>
+
+                    <!-- Reactions -->
                     <div class="article-reactions" data-article-id="the-acid-index">
                         <p class="reactions-prompt">Will this change how you balance your dishes?</p>
-                        <div class="reactions-buttons">
-                            <button class="reaction-btn" data-reaction="agree">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                                </svg>
-                                <span>Useful</span>
-                                <span class="reaction-count reaction-count--agree">0</span>
-                            </button>
-                            <button class="reaction-btn" data-reaction="disagree">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
-                                </svg>
-                                <span>Disagree</span>
-                                <span class="reaction-count reaction-count--disagree">0</span>
-                            </button>
+                        <div class="reactions-grid">
+                            <!-- Populated by community.js -->
                         </div>
-                        <div class="article-reactions__stats"></div>
-                        <div class="article-reactions__bar"><div class="article-reactions__bar-fill"></div></div>
+                        <div class="sentiment-bar"></div>
                     </div>
+
+                    <!-- Share -->
                     <div class="article-share">
                         <span class="share-label">Share:</span>
                         <button class="share-btn" data-share="twitter" title="Share on Twitter">
@@ -846,38 +841,53 @@
                             </svg>
                         </button>
                     </div>
+
+                    <!-- Comments Section -->
                     <div class="article-comments">
-                        <h3 class="comments-title">Join the conversation</h3>
+                        <h3 class="comments-title">Join the conversation <span class="comments-title__count"></span></h3>
+
                         <div class="comments-sort">
                             <button class="comments-sort__btn active" data-sort="newest">Newest</button>
                             <button class="comments-sort__btn" data-sort="most-agreed">Most agreed</button>
                         </div>
+
                         <div class="comment-form">
                             <form>
                                 <div class="comment-form__row">
                                     <input type="text" name="name" placeholder="Your name" required>
                                     <input type="email" name="email" placeholder="Email (optional)">
                                 </div>
-                                <label class="photo-upload" title="Add your photo">
-                                    <input type="file" name="photo" accept="image/*" hidden>
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                                    <span class="photo-upload__preview"></span>
-                                </label>
-                                <textarea name="comment" placeholder="Share your thoughts, experience, or questions..." rows="4" required></textarea>
+                                <textarea name="comment" placeholder="Share your thoughts, experience, or questions..." rows="4" maxlength="2000" required></textarea>
                                 <div class="comment-form__footer">
                                     <label class="comment-form__subscribe">
                                         <input type="checkbox" name="subscribe" checked>
                                         <span>Subscribe to the newsletter</span>
                                     </label>
+                                    <span class="comment-form__char-count"></span>
                                     <button type="submit">Post Comment</button>
                                 </div>
                             </form>
                         </div>
-                        <div class="comments-list"></div>
+
+                        <div class="comments-list">
+                            <!-- Comments loaded from Firebase -->
+                        </div>
                     </div>
+
                 </div>
 
             </div>
+
+                <!-- Related -->
+                <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                    <strong>Also on Littoralicious</strong>
+                    <ul style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-3); list-style: none; padding: 0;">
+                        <li style="margin-bottom: var(--space-2);"><a href="the-salt-index.html" style="color: var(--color-sea); text-decoration: underline;">The Salt Index: Every Culinary Salt Ranked by Science</a> &mdash; The companion index — salt.</li>
+                        <li style="margin-bottom: var(--space-2);"><a href="the-fat-index.html" style="color: var(--color-sea); text-decoration: underline;">The Fat Index: Every Cooking Fat Ranked by Science</a> &mdash; The companion index — fat.</li>
+                        <li style="margin-bottom: var(--space-2);"><a href="flavordb-compound-pairing.html" style="color: var(--color-sea); text-decoration: underline;">FlavorDB: Compound-Level Flavor Pairing</a> &mdash; Compound-level science behind how acids interact with other flavours.</li>
+                    </ul>
+                </div>
+
         </article>
     </main>
 
@@ -887,7 +897,7 @@
                 <form class="footer-newsletter-form newsletter-form"
                       action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
                       method="post"
->
+                      target="popupwindow">
                     <label for="footer-email-acid-index">Get the monthly brief</label>
                     <div class="footer-newsletter-form__row">
                         <input type="email" name="email" id="footer-email-acid-index" placeholder="your@email.com" required>
@@ -919,7 +929,6 @@
                         <ul>
                             <li><a href="../about.html">Manifesto</a></li>
                             <li><a href="../founder.html">Founder</a></li>
-                            <li><a href="../newsletter.html">Newsletter</a></li>
                             <li><a href="../contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -933,11 +942,8 @@
 
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="../assets/js/firebase-config.js"></script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/auth.js"></script>
     <script src="../assets/js/community.js"></script>
 
 </body>

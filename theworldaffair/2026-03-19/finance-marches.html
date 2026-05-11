@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance &amp; March&eacute;s &mdash; The World Affair</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; }
+a { color: inherit; text-decoration: none; transition: color 0.15s; } a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; } .masthead-title a:hover { color: #1a1714; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; } .masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; } .nav-link:hover { background: #e6e1d8; color: #1a1714; } .nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.article-header { padding: 32px 0 20px; border-bottom: 2px solid #1a1714; margin-bottom: 28px; }
+.article-overline { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+.article-date { font-size: 12px; color: #8a847a; text-transform: uppercase; letter-spacing: 1px; }
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1714; }
+.article-body h2 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin: 24px 0 10px; padding-bottom: 4px; border-bottom: 1px solid #c8c0b4; }
+.article-body p { font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75; }
+.article-body strong { color: #1a1714; } .article-body em { font-style: italic; }
+.article-body ul, .article-body ol { margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540; }
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote { border-left: 3px solid #b5ad9f; padding: 12px 18px; margin: 14px 0; background: #ede9e1; font-size: 13px; color: #4a4540; line-height: 1.7; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0; }
+.article-body th { text-align: left; padding: 8px 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a; border-bottom: 2px solid #b5ad9f; font-weight: 700; }
+.article-body td { padding: 8px 10px; border-bottom: 1px solid #c8c0b4; }
+.article-body tr:hover td { background: #ede9e1; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; } .bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .article-title { font-size: 24px; } .article-body { max-width: 100%; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Jeudi 19 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;56</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-19.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3d6b4f">Finance &amp; March&eacute;s</div>
+  <h1 class="article-title">Brent &agrave; $112, or &agrave; $4 569</h1>
+  <div class="article-date">Jeudi 19 Mars 2026 &mdash; Edition N&deg;56</div>
+</div><div class="article-body"><h1>Le choc p&eacute;trolier iranien frappe les march&eacute;s</h1>
+
+<p><em>&laquo; La fermeture effective du d&eacute;troit d'Hormuz se transmet d&eacute;sormais &agrave; l'ensemble des march&eacute;s financiers mondiaux. Le Brent &agrave; $112, l'or &agrave; un record historique de $4 569/oz, et une Fed qui maintient les taux face &agrave; un choc stagflationniste classique. Le march&eacute; h&eacute;site entre peur de la r&eacute;cession et pari sur la r&eacute;solution rapide du conflit. &raquo;</em></p>
+
+<hr>
+
+<h2>I. Le p&eacute;trole : anatomie d'un choc d'offre</h2>
+
+<p>Le Brent a atteint $112 le baril, son plus haut niveau depuis ao&ucirc;t 2022. La hausse de 43% en trois semaines est la plus rapide depuis l'invasion russe de l'Ukraine en f&eacute;vrier 2022. La cause est m&eacute;canique : la fermeture effective d'Hormuz retire environ 17 millions de barils par jour du march&eacute; mondial &mdash; soit 17% de la production mondiale. L'Arabie saoudite redirige ses exportations via le pipeline East-West vers Yanbu (+330% de volume), mais la capacit&eacute; de ce pipeline est limit&eacute;e &agrave; 5 millions de barils/jour, insuffisant pour compenser la perte d'Hormuz.</p>
+
+<p>Les r&eacute;serves strat&eacute;giques am&eacute;ricaines (SPR), d&eacute;j&agrave; &agrave; leur plus bas niveau depuis 1983 apr&egrave;s les lib&eacute;rations de 2022, ne constituent plus un tampon cr&eacute;dible. L'administration Trump h&eacute;site &agrave; les utiliser, consciente que les remplir ensuite &agrave; $112/baril co&ucirc;terait des dizaines de milliards de plus qu'au prix de lib&eacute;ration.</p>
+
+<h2>II. March&eacute;s actions et volatil&eacute;</h2>
+
+<p>Le S&amp;P 500 a cl&ocirc;tur&eacute; en baisse de 0,9% &agrave; 5 548, portant sa perte depuis le d&eacute;but du conflit &agrave; -4,2%. Le VIX s'est install&eacute; &agrave; 24,92 &mdash; en zone de stress mod&eacute;r&eacute; mais loin des niveaux de panique (&gt;35). Le Nasdaq sous-performe (&minus;1,3%) en raison de la sensibilit&eacute; des tech aux co&ucirc;ts &eacute;nerg&eacute;tiques et &agrave; la perturbation des cha&icirc;nes d'approvisionnement asiatiques.</p>
+
+<table>
+<tr><th>Indice / Actif</th><th>Niveau</th><th>Variation semaine</th><th>Variation depuis conflit</th></tr>
+<tr><td>S&amp;P 500</td><td>5 548</td><td>-0,9%</td><td>-4,2%</td></tr>
+<tr><td>Nasdaq</td><td>17 220</td><td>-1,3%</td><td>-5,8%</td></tr>
+<tr><td>Brent Crude</td><td>$112/bbl</td><td>+8,7%</td><td>+43%</td></tr>
+<tr><td>Or</td><td>$4 569/oz</td><td>+3,2%</td><td>+12%</td></tr>
+<tr><td>VIX</td><td>24,92</td><td>+2,1</td><td>+5,0</td></tr>
+<tr><td>DXY (Dollar)</td><td>104,3</td><td>+0,6%</td><td>+1,8%</td></tr>
+<tr><td>US 10Y</td><td>4,18%</td><td>-8bps</td><td>-22bps</td></tr>
+</table>
+
+<h2>III. La Fed face au dilemme stagflationniste</h2>
+
+<p>La Fed a maintenu les taux &agrave; 3,50-3,75% lors de sa r&eacute;union du 18 mars, comme attendu. Mais le communiqu&eacute; de Powell r&eacute;v&egrave;le le dilemme : le choc p&eacute;trolier est inflationniste (il pousse les prix &agrave; la hausse) mais aussi r&eacute;cessif (il r&eacute;duit le pouvoir d'achat et ralentit l'activit&eacute;). Baisser les taux pour soutenir la croissance risque d'alimenter l'inflation. Les maintenir risque d'aggraver le ralentissement.</p>
+
+<p>L'or &agrave; $4 569 &mdash; record absolu &mdash; est le thermom&egrave;tre de l'incertitude. Les banques centrales ach&egrave;tent massivement depuis 2023 (Chine, Inde, Turquie), et le choc iranien acc&eacute;l&egrave;re la tendance. Le dollar se renforce paradoxalement (DXY &agrave; 104,3), les investisseurs cherchant la liquidit&eacute; en p&eacute;riode de stress &mdash; le &laquo; dollar smile &raquo; classique.</p>
+
+<hr>
+
+<h2>Signaux Faibles</h2>
+
+<ul>
+<li>La r&eacute;silience relative du S&amp;P 500 (-4,2% seulement face &agrave; un choc p&eacute;trolier majeur) sugg&egrave;re que le march&eacute; parie sur une r&eacute;solution rapide du conflit.</li>
+<li>Le spread Brent-WTI s'&eacute;largit &agrave; $8 &mdash; signe que le march&eacute; am&eacute;ricain est relativement prot&eacute;g&eacute; par sa production domestique.</li>
+<li>Les obligations indexées sur l'inflation (TIPS) montrent des anticipations d'inflation &agrave; 5 ans en forte hausse &mdash; le march&eacute; int&egrave;gre un choc durable.</li>
+</ul>
+
+<hr>
+
+<p><em>The World Affair &mdash; Finance &amp; March&eacute;s &mdash; 19 mars 2026</em></p></div><div class="bottom-nav"><a href="podcasts-interviews.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Podcasts &amp; Interviews</span></a><a href="bonnes-nouvelles.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Bonnes Nouvelles &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; FINANCE &amp; MARCH&Eacute;S</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span>
+    <div><button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button><button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button></div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){var VAULT="worldaffair",KEY="nexus-passages-"+VAULT;function getAll(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}var selText="";document.addEventListener("mouseup",function(e){var s=window.getSelection(),t=s.toString().trim(),b=document.getElementById("ps-save-btn");if(t.length>10){selText=t;b.style.display="block";b.style.left=(e.pageX+10)+"px";b.style.top=(e.pageY-40)+"px"}else{setTimeout(function(){b.style.display="none"},200)}});window.psSave=function(){if(!selText)return;var p=getAll();p.push({text:selText.substring(0,2000),source:document.title,url:location.href,date:new Date().toISOString(),vault:VAULT});saveAll(p);document.getElementById("ps-save-btn").style.display="none";psRenderList();psFlash();selText=""};function psFlash(){var t=document.getElementById("ps-toggle");t.style.background="#3d6b4f";setTimeout(function(){t.style.background="#1a1714"},600)}window.psTogglePanel=function(){var p=document.getElementById("ps-panel");p.style.display=p.style.display==="none"?"block":"none";psRenderList()};window.psRenderList=function(){var p=getAll(),el=document.getElementById("ps-list");document.getElementById("ps-count").textContent=p.length||"";if(!p.length){el.innerHTML="<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S\u00e9lectionne du texte et clique Sauvegarder</div>";return}el.innerHTML=p.slice().reverse().map(function(x,ri){var i=p.length-1-ri,d=new Date(x.date),ds=d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});return"<div style=\"padding:8px 0;border-bottom:1px solid #333;\"><div style=\"display:flex;justify-content:space-between;align-items:baseline;\"><span style=\"font-size:9px;color:#888;\">"+ds+" &mdash; "+(x.source||"").substring(0,30)+"</span><button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button></div><div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; "+x.text.substring(0,300)+(x.text.length>300?"...":"")+" &raquo;</div></div>"}).join("")};window.psDelete=function(i){var p=getAll();p.splice(i,1);saveAll(p);psRenderList()};window.psExport=function(){var p=getAll();if(!p.length)return;var md="# Passages sauvegard\u00e9s \u2014 "+VAULT+"\n\n";md+="Export\u00e9 le "+new Date().toLocaleDateString("fr-FR")+"\n\n---\n\n";p.forEach(function(x){var d=new Date(x.date).toLocaleDateString("fr-FR");md+="> "+x.text.replace(/\n/g,"\n> ")+"\n\n";md+="*Source: "+(x.source||"?")+" \u2014 "+d+"*\n\n---\n\n"});var blob=new Blob([md],{type:"text/markdown"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="passages-"+VAULT+"-"+new Date().toISOString().slice(0,10)+".md";a.click()};psRenderList()})();
+</script>
+</body></html>

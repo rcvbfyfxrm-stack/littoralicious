@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Machine Hollandaise &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 8.3pt;
+            line-height: 1.3;
+            color: #0a0a0a;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 6mm 9mm 5mm;
+            display: flex;
+            flex-direction: column;
+            zoom: 0.98;
+        }
+        .header { border-bottom: 2px solid #0a0a0a; padding-bottom: 2.2mm; margin-bottom: 2.6mm; }
+        .brand { font-family: Georgia, serif; font-size: 7.8pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 20pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.03; margin: 0.6mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 9pt; color: #4a5568; line-height: 1.28; }
+        .meta-bar { display: flex; gap: 4.5mm; margin-top: 2.2mm; padding-top: 2.2mm; border-top: 1px solid #e2e2e2; font-size: 8.3pt; color: #6b7280; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 36% 1fr; gap: 5mm; margin-bottom: 2.6mm; }
+        h2 { font-family: Georgia, serif; font-size: 9.7pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1.4mm; margin-bottom: 2.4mm; }
+
+        .ingredients-note { font-size: 7pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -0.9mm 0 1.4mm 0; }
+        .group-label { font-size: 7.8pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 2.4mm 0 0.9mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 8.3pt; }
+        .ingredients td { padding: 0.6mm 1mm; vertical-align: top; line-height: 1.28; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7.8pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 42px; }
+        .ingredients td:nth-child(3) { font-size: 7.4pt; text-align: right; color: #6b7280; white-space: nowrap; width: 62px; padding-left: 1.8mm; }
+        .note { font-size: 7.4pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 7.4pt; color: #6b7280; margin-top: 2.2mm; padding-top: 1.4mm; border-top: 1px solid #f0f0f0; line-height: 1.3; }
+
+        .method ol { padding-left: 5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 1.3mm; padding-left: 0.5mm; counter-increment: step; position: relative; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7.8pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.6mm 0; padding: 0.7mm 0 0.7mm 3mm; border-left: 2px solid #5c9ead; font-size: 7.4pt; font-style: italic; color: #4a5568; line-height: 1.28; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 1.9mm 2.8mm; margin-top: 2.2mm; font-size: 8.3pt; line-height: 1.32; }
+        .done strong { color: #2d4a5e; }
+
+        .sauce-block { background: #fdf8f0; border-left: 3px solid #b88a3a; padding: 1.9mm 2.8mm; margin-top: 2.2mm; font-size: 8.0pt; line-height: 1.34; }
+        .sauce-block strong { color: #8a5e1a; }
+        .sauce-block .machine-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3mm; margin-top: 1.4mm; }
+        .sauce-block .machine-col h4 { font-family: Georgia, serif; font-size: 8.6pt; color: #8a5e1a; text-transform: uppercase; letter-spacing: 0.06em; padding-bottom: 0.6mm; border-bottom: 1px solid #d9b97a; margin-bottom: 1mm; }
+        .sauce-block .machine-col .sub { font-size: 6.8pt; color: #94816a; font-style: italic; display: block; margin-top: -0.3mm; margin-bottom: 0.8mm; }
+        .sauce-block ol { padding-left: 4mm; margin-top: 0.6mm; list-style: none; counter-reset: smallstep; }
+        .sauce-block ol li { counter-increment: smallstep; position: relative; padding-left: 0.4mm; margin-bottom: 0.7mm; line-height: 1.32; }
+        .sauce-block ol li::before { content: counter(smallstep) "."; position: absolute; left: -3.6mm; font-weight: 700; font-family: "SF Mono", monospace; font-size: 7pt; color: #8a5e1a; }
+        .recover { background: #fbeee0; border: 1px dashed #b88a3a; padding: 1.4mm 2.4mm; margin-top: 1.4mm; font-size: 7.6pt; line-height: 1.3; }
+        .recover strong { color: #8a5e1a; }
+
+        .elevation { border: 2px solid #2d4a5e; padding: 1.9mm 2.5mm; margin-bottom: 2mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1.4mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.8mm; }
+        .tier-label { font-weight: 700; font-size: 7pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.5mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3.2mm; font-size: 7.4pt; line-height: 1.3; }
+        .elevation li { margin-bottom: 0.4mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 3.6mm; margin-bottom: 1.4mm; }
+        .bottom h2 { font-size: 8.3pt; padding-bottom: 1mm; margin-bottom: 1.6mm; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 7.4pt; border-collapse: collapse; line-height: 1.3; }
+        .troubleshoot td, .charter td { padding: 0.6mm 1.3mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 32%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 28%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1.2mm; border-top: 1px solid #e2e2e2; font-size: 6pt; color: #94a3b8; display: flex; justify-content: space-between; align-items: baseline; }
+        .footer a { color: #94a3b8; text-decoration: none; border-bottom: 1px dotted #cbd2da; }
+        .footer .colophon { display: flex; gap: 4mm; align-items: baseline; }
+        .contact { margin-top: 1mm; padding: 0.8mm 1.8mm; border: 1px solid #e2e2e2; display: flex; justify-content: center; align-items: center; gap: 2.6mm; font-size: 6pt; color: #4a5568; }
+        .contact strong { font-family: Georgia, serif; font-size: 6.5pt; color: #2d4a5e; letter-spacing: 0.04em; text-transform: uppercase; }
+        .contact a { color: #2d4a5e; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8mm; }
+        .contact a:hover { color: #0a0a0a; }
+        .contact .ig-logo { width: 7pt; height: 7pt; vertical-align: middle; }
+        .contact .sep { color: #cbd2da; }
+        .spacer { flex: 1; min-height: 0; }
+        @media print { .done, .sauce-block, .recover, .elevation, .charter tr:first-child td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+<style>
+  body { font-size: 7.2pt !important; padding: 4mm 7mm 3mm !important; line-height: 1.25 !important; }
+  h1 { font-size: 16.5pt !important; }
+  h2 { font-size: 8.4pt !important; padding-bottom: 0.9mm !important; margin-bottom: 1.6mm !important; }
+  .header { padding-bottom: 1.4mm !important; margin-bottom: 1.8mm !important; }
+  .hook { font-size: 7.6pt !important; line-height: 1.22 !important; }
+  .meta-bar { font-size: 7pt !important; gap: 3.5mm !important; margin-top: 1.4mm !important; padding-top: 1.4mm !important; }
+  .main { gap: 4mm !important; margin-bottom: 1.8mm !important; }
+  .ingredients table { font-size: 7pt !important; }
+  .ingredients td { padding: 0.4mm 0.8mm !important; line-height: 1.2 !important; }
+  .ingredients td:nth-child(2) { font-size: 6.6pt !important; }
+  .ingredients td:nth-child(3) { font-size: 6.3pt !important; }
+  .group-label { font-size: 6.7pt !important; margin: 1.5mm 0 0.6mm !important; }
+  .ingredients-note { font-size: 6pt !important; margin: -0.6mm 0 1mm !important; }
+  .equipment { font-size: 6.4pt !important; margin-top: 1.5mm !important; padding-top: 1mm !important; }
+  .method ol { padding-left: 4.2mm !important; }
+  .method li { margin-bottom: 1mm !important; font-size: 7.2pt !important; line-height: 1.25 !important; }
+  .why { font-size: 6.4pt !important; padding: 0.5mm 0 0.5mm 2.5mm !important; margin: 0.4mm 0 !important; line-height: 1.22 !important; }
+  .sauce-block { padding: 1.4mm 2.2mm !important; margin-top: 1.6mm !important; font-size: 6.9pt !important; line-height: 1.28 !important; }
+  .sauce-block .machine-grid { gap: 2.4mm !important; margin-top: 1mm !important; }
+  .sauce-block .machine-col h4 { font-size: 7.4pt !important; padding-bottom: 0.4mm !important; margin-bottom: 0.7mm !important; }
+  .sauce-block .machine-col .sub { font-size: 6pt !important; margin-bottom: 0.5mm !important; }
+  .sauce-block ol { padding-left: 3.4mm !important; margin-top: 0.4mm !important; }
+  .sauce-block ol li { padding-left: 0.2mm !important; margin-bottom: 0.5mm !important; line-height: 1.28 !important; }
+  .sauce-block ol li::before { font-size: 6.2pt !important; }
+  .done { padding: 1.4mm 2.2mm !important; margin-top: 1.5mm !important; font-size: 7pt !important; line-height: 1.28 !important; }
+  .recover { padding: 1mm 2mm !important; margin-top: 1mm !important; font-size: 6.6pt !important; line-height: 1.25 !important; }
+  .elevation { padding: 1.4mm 2mm !important; margin-bottom: 1.5mm !important; }
+  .elevation-grid { gap: 2.4mm !important; }
+  .elevation ul { font-size: 6.4pt !important; line-height: 1.28 !important; padding-left: 2.8mm !important; }
+  .tier-label { font-size: 6.2pt !important; margin-bottom: 0.4mm !important; }
+  .bottom { gap: 3mm !important; margin-bottom: 1mm !important; }
+  .bottom h2 { font-size: 7.6pt !important; padding-bottom: 0.7mm !important; margin-bottom: 1.2mm !important; }
+  .troubleshoot table, .charter table { font-size: 6.4pt !important; line-height: 1.25 !important; }
+  .troubleshoot td, .charter td { padding: 0.4mm 1mm !important; }
+  .charter td:first-child { font-size: 6pt !important; }
+  .footer { font-size: 5.4pt !important; padding-top: 0.8mm !important; }
+  .contact { padding: 0.5mm 1.4mm !important; font-size: 5.6pt !important; gap: 2mm !important; margin-top: 0.6mm !important; }
+  .contact strong { font-size: 5.8pt !important; }
+</style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint</span><span class="brand-tagline">The recipe you actually want to read</span>
+    <h1>Machine Hollandaise</h1>
+    <p class="hook">Vitamix &amp; Thermomix, one recipe. Clarified butter, acid-first reduction, 70&deg;C pasteurisation hold. Four minutes from pour to pass; four hours of holding stability.</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>250g</strong> (6&ndash;8 covers)</span>
+        <span>Active: <strong>4 min</strong></span>
+        <span>Mise: <strong>15 min</strong> @ 06:00</span>
+        <span>Target: <strong>70&deg;C</strong> (158&deg;F)</span>
+        <span>Hold: <strong>4 hr</strong> @ 60&deg;C</span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; US volume in right column</p>
+
+        <div class="group-label">Acid Reduction (yields ~25g)</div>
+        <table>
+            <tr><td>White wine vinegar</td><td>60g</td><td>&frac14; cup</td></tr>
+            <tr><td>Dry white wine</td><td>30g</td><td>2 tbsp</td></tr>
+            <tr><td>Shallot, fine brunoise</td><td>25g</td><td>1 small</td></tr>
+            <tr><td>Black peppercorns, cracked</td><td>2g</td><td>&frac12; tsp</td></tr>
+            <tr><td>Bay leaf</td><td>1g</td><td>1 leaf</td></tr>
+        </table>
+
+        <div class="group-label">Yolks &amp; Hydration</div>
+        <table>
+            <tr><td>Egg yolks (4 large) <span class="note">(RT)</span></td><td>80g</td><td>4 yolks</td></tr>
+            <tr><td>Acid reduction <span class="note">(cooled)</span></td><td>25g</td><td>~1&frac12; tbsp</td></tr>
+            <tr><td>Cold water <span class="note">(do not skip)</span></td><td>15g</td><td>1 tbsp</td></tr>
+            <tr><td>Diamond kosher salt</td><td>2g</td><td>&frac12; tsp</td></tr>
+            <tr><td>Cayenne, pinch</td><td>0.3g</td><td>pinch</td></tr>
+        </table>
+
+        <div class="group-label">Clarified Butter</div>
+        <table>
+            <tr><td>Unsalted butter (whole)</td><td>320g</td><td>1&Vert; cups</td></tr>
+            <tr><td>Yields clarified <span class="note">(at 70&ndash;75&deg;C for the pour)</span></td><td>250g</td><td>~1&Vert; cups</td></tr>
+        </table>
+
+        <div class="group-label">Ratio Lock</div>
+        <p style="font-size: 7.6pt; color: #4a5568; line-height: 1.32; margin-top: 0.6mm;">
+            Yolk : Butter : Acid : Water = <strong>80 : 250 : 25 : 15</strong> &middot; pH locks at 4.2&ndash;4.5 (lecithin sweet spot) &middot; 6% added water keeps continuous phase mobile.
+        </p>
+
+        <p class="equipment">
+            <strong>Kit:</strong> Vitamix or Thermomix &middot; small + medium saucepan &middot; chinois &middot; scale &middot; thermometer &middot; <strong>pre-warmed thermos (1L)</strong> &middot; Cambro / warm bain for butter
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method</h2>
+        <ol>
+            <li>
+                <strong>Reduction (06:00 mise).</strong> Combine vinegar + wine + shallot + pepper + bay. Reduce on low to <strong>~25g</strong>, syrupy. <strong>8&ndash;10 min.</strong> Strain through chinois, press shallots, discard solids. Cool to RT.
+                <span class="why">Pre-acidifying yolks to pH 4.2&ndash;4.5 puts lecithin at its emulsification optimum before fat enters. Lemon-at-the-end leaves the build alkaline = weaker emulsion. <cite>&mdash; Modernist Cuisine Vol. 4</cite></span>
+            </li>
+            <li>
+                <strong>Clarify butter (06:00 mise).</strong> Melt 320g whole butter, low heat, no stirring, <strong>6&ndash;8 min</strong>. Skim foam (caseins). Decant the gold middle layer into a Cambro; leave the milky water at the bottom. Hold at <strong>60&deg;C</strong>. Yield ~250g.
+                <span class="why">Whole butter is 16% water + 4% milk solids. Free water breaks emulsion under heat &amp; shear. Clarifying takes shelf-life from ~45 min to ~4 hr. <cite>&mdash; McGee, p. 626</cite></span>
+            </li>
+            <li>
+                <strong>Pre-warm thermos.</strong> Rinse with boiling water, drain, dry the lip. Cold glass shocks the emulsion at decant.
+            </li>
+        </ol>
+
+        <div class="sauce-block">
+            <strong>The Build</strong> &mdash; Vitamix OR Thermomix, same chemistry
+            <div class="machine-grid">
+                <div class="machine-col">
+                    <h4>A &middot; Vitamix</h4>
+                    <span class="sub">Hot butter does the cooking &mdash; one pour, one probe</span>
+                    <ol>
+                        <li>Bowl: cold yolks + reduction + cold water + salt + cayenne. No bain pre-warm.</li>
+                        <li><strong>Heat clarified butter to 95&deg;C.</strong> Probe to confirm. Visibly hot, just below sizzling-water threshold.</li>
+                        <li>Pulse <strong>Var 3, 5 sec</strong> to combine.</li>
+                        <li>Run <strong>Var 4</strong>. Stream the 95&deg;C butter through the lid hole over <strong>60 sec</strong> &mdash; pencil-lead ribbon, against the bowl wall, never onto the blade.</li>
+                        <li><strong>Probe: 70&ndash;72&deg;C.</strong> Under 68&deg;C? +15 sec Var 6. Over 75&deg;C? Butter was too hot &mdash; strain, accept slight grain.</li>
+                        <li>Decant immediately into pre-warmed thermos at 60&deg;C.</li>
+                    </ol>
+                </div>
+                <div class="machine-col">
+                    <h4>B &middot; Thermomix</h4>
+                    <span class="sub">Heat + shear in one bowl &mdash; pasteurises in place</span>
+                    <ol>
+                        <li>Bowl: yolks + reduction + cold water + salt + cayenne.</li>
+                        <li><strong>70&deg;C / 4 min / speed 4</strong> &mdash; sabayon: thick, pale, ribbons off paddle.</li>
+                        <li>Still running <strong>70&deg;C / speed 4</strong>: drizzle butter (70&ndash;75&deg;C) through lid hole over <strong>90 sec</strong>.</li>
+                        <li><strong>Probe: 70&ndash;72&deg;C, hold 60 sec</strong> at speed 4. This is the pasteurisation step.</li>
+                        <li>Drop to <strong>65&deg;C / speed 1</strong> for service hold (up to 30 min in bowl).</li>
+                        <li>Longer hold? Decant to pre-warmed thermos at 60&deg;C.</li>
+                    </ol>
+                </div>
+            </div>
+            <span class="why" style="margin-top: 1.4mm;">Yolk proteins coagulate progressively from 65&deg;C. <strong>70&deg;C / 60 sec</strong> = 7-log salmonella reduction (regulator-grade) AND firm sauce body. Below 65&deg;C: loose &amp; live. Above 75&deg;C: scrambled. Thermometer non-negotiable. <cite>&mdash; Baldwin, Practical Guide to Sous Vide Cooking</cite></span>
+        </div>
+
+        <div class="done">
+            <strong>Done:</strong> Sauce reads <strong>70&ndash;72&deg;C</strong>, takes a clean whisk-trail, butter-yellow turning pale gold, glossy.<br>
+            <strong>Hold:</strong> Pre-warmed thermos at <strong>60&deg;C &plusmn; 3&deg;C</strong>, max <strong>4 hr</strong>. Above 65&deg;C: keeps cooking. Below 55&deg;C: butter solidifies, breaks on plating. Refresh thermos at the 90-min mark for long service.
+        </div>
+
+        <div class="recover">
+            <strong>Broken?</strong> Crack a fresh yolk + 5g warm water into a clean bowl. Whisk hard. Drizzle the broken sauce in slowly, whisking. <strong>~90% recovery rate.</strong> Faster than starting from scratch.
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation &amp; Variations</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; The Daughters</div>
+            <ul>
+                <li><strong>B&eacute;arnaise</strong> &mdash; tarragon-vinegar reduction; chopped tarragon + chervil at finish</li>
+                <li><strong>Maltaise</strong> &mdash; 60g blood orange juice reduced to 20g, replaces half the acid; orange zest at finish</li>
+                <li><strong>Mousseline</strong> &mdash; fold 60g whipped cream into 250g sauce at service</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; +10 min</div>
+            <ul>
+                <li><strong>Brown butter</strong> &mdash; take clarified to noisette before pour</li>
+                <li><strong>Torch the cap</strong> &mdash; sweep flame 10 cm above plate, 8&ndash;12 sec, until gold spots flash. Don&rsquo;t park flame.</li>
+                <li><strong>Choron</strong> &mdash; 30g tomato paste cooked in butter, whisked in</li>
+                <li><strong>Paloise</strong> &mdash; mint replaces tarragon in b&eacute;arnaise</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>Smoked clarified butter</strong> &mdash; 15 min apple/hay before holding</li>
+                <li><strong>Bone marrow hollandaise</strong> &mdash; 30g warm rendered marrow off-machine</li>
+                <li><strong>Yuzu kosho b&eacute;arnaise</strong> &mdash; half acid = yuzu juice + 5g kosho at finish</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>Broken / split</td><td>Fresh yolk + 5g warm water. Drizzle broken sauce in. Whisk.</td></tr>
+            <tr><td>Grainy</td><td>Butter was &lt;65&deg;C. Re-warm to 70&ndash;75&deg;C, run 15 sec longer.</td></tr>
+            <tr><td>Scrambled</td><td>Butter &gt;80&deg;C or held &gt;72&deg;C. Strain through chinois, salvage flavour.</td></tr>
+            <tr><td>Too thin</td><td>Vitamix: +30 sec Var 6. TM: 70&deg;C / 90 sec / speed 4.</td></tr>
+            <tr><td>Too thick</td><td>Whisk in 5g warm water per 100g sauce.</td></tr>
+            <tr><td>Tastes flat</td><td>Reduction skipped. Whisk 2g lemon + pinch salt.</td></tr>
+            <tr><td>Breaks on plate</td><td>Held &lt;55&deg;C. Pre-warm thermos. Hold 60&deg;C, plate fast.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Build at 06:00</td><td>Reduction + clarified butter only. Sauce itself: 4 min at service.</td></tr>
+            <tr><td>Reduction</td><td>1 wk fridge (vinegar preserves)</td></tr>
+            <tr><td>Clarified butter</td><td>6 wk fridge &middot; 6 mo freezer. Re-warm to 60&deg;C.</td></tr>
+            <tr><td>Pre-portioned yolks</td><td>3 d fridge, 4-yolk &times; 80g pots. RT 30 min before build.</td></tr>
+            <tr><td>Finished sauce</td><td>4 hr at 60&deg;C in pre-warmed thermos. Do not refrigerate.</td></tr>
+            <tr><td>Long service</td><td>Refresh thermos at 90 min. Fresh batch at 3 hr.</td></tr>
+            <tr><td>Scaling caps</td><td>Vitamix &le;500g. TM &le;750g. Above = run 2 batches.</td></tr>
+        </table>
+    </section>
+</div>
+
+<div class="spacer"></div>
+
+<div class="contact">
+    <strong>Contact the Chef</strong>
+    <a href="https://www.instagram.com/arnaudcallier">
+        <svg class="ig-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        @arnaudcallier
+    </a>
+    <span class="sep">&middot;</span>
+    <a href="https://www.littoralicious.com">www.littoralicious.com</a>
+</div>
+
+<footer class="footer">
+    <span>Tradition: Escoffier, Le Guide Culinaire (1903) &nbsp;|&nbsp; Science: McGee &middot; Modernist Cuisine &middot; Baldwin &middot; Herv&eacute; This</span>
+    <span class="colophon">
+        <span>&mdash; The Blueprint</span>
+    </span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synthèse — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 22 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;53</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-22.html">Premi&egrave;re Page</a><a class="nav-link active" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#8b3a3a">Synth&egrave;se Quotidienne</div>
+  <h1 class="article-title">Le Briefing du Jour</h1>
+  <div class="article-date">Dimanche 22 Février 2026 &mdash; Edition N&deg;53</div>
+</div><div class="article-body"><h1>Liberté — Synthèse Quotidienne</h1>
+<h2>La peur est un indicateur, pas un verdict</h2>
+<h3>22 février 2026</h3>
+<hr>
+<h3>En 60 Secondes</h3>
+<ul>
+<li><strong>IA / Marchés</strong> — Claude Opus 4.6 et ses équipes d'agents ont vaporisé 285 milliards de dollars de capitalisation logicielle en une seule séance, signalant que l'IA ne remplace plus les tâches simples mais attaque directement le travail cognitif complexe.</li>
+<li><strong>Géopolitique</strong> — À deux jours du quatrième anniversaire de l'invasion russe, des pourparlers reprennent à Genève le 26 février tandis que Moscou relève sa TVA à 22% pour financer une guerre qui dévore son budget.</li>
+<li><strong>Crypto / Finance</strong> — Bitcoin s'effondre à 68 000 $ avec un Fear & Greed Index à 9 — niveau de capitulation comparable à FTX — pendant que BlackRock et les trésoreries d'entreprise achètent méthodiquement.</li>
+<li><strong>Cybersécurité</strong> — Semaine noire : 5,1 millions de comptes Panera Bread exposés, PayPal et Japan Airlines compromis, 600 FortiGate piratés dans 55 pays avec l'aide d'IA générative, et un agent IA autonome injecté dans la supply chain npm.</li>
+<li><strong>Santé</strong> — Le vaccin contre le zona émerge comme candidat inattendu contre Alzheimer, convergent avec la découverte que Chlamydia pneumoniae envahit le cerveau — l'hypothèse infectieuse de la démence gagne du terrain.</li>
+<li><strong>Culture</strong> — Le Kennedy Center ferme pour deux ans, officiellement pour travaux, réellement parce que les artistes boycottent et le gouvernement contrôle les clés.</li>
+<li><strong>Espace</strong> — Artemis II bloqué par un problème d'hélium pendant que SpaceX repousse Mars de cinq à sept ans pour se concentrer sur la Lune, où l'argent de la NASA attend.</li>
+</ul>
+<hr>
+<h3>Les Trois Histoires du Jour</h3>
+<h4>1. L'IA dévore la chaîne alimentaire du logiciel</h4>
+<p>Le 3 février, deux jours avant la sortie officielle de Claude Opus 4.6 par Anthropic, 285 milliards de dollars de capitalisation boursière se sont évaporés des valeurs logicielles. Pas à cause d'un krach macro, d'une hausse de taux ou d'un choc géopolitique — à cause de la peur. La peur qu'un outil en ligne de commande facturé à l'usage puisse rendre obsolètes des plateformes SaaS vendues 50 à 100 dollars par siège et par mois.</p>
+<p>Cette peur n'est pas irrationnelle. Claude Code, l'interface CLI d'Anthropic, a atteint un milliard de dollars de revenus annualisés en six mois. Le modèle se propage latéralement, de clavier en clavier, sans passer par les directeurs informatiques ni les cycles d'approvisionnement. Un développeur l'essaie, son équipe constate le changement de vélocité, l'adoption suit. En face, OpenAI a riposté avec GPT-5.3-Codex, premier modèle classé "haute capacité" en cybersécurité par son propre cadre d'évaluation interne — un outil qui trouve les vulnérabilités avec la sophistication d'un pentester professionnel, mais qui peut aussi les exploiter.</p>
+<p>Ce qui rend ce moment charnière, ce n'est pas qu'une IA écrive du code. C'est qu'elle orchestre désormais des équipes d'agents qui planifient, se répartissent les tâches, exécutent en parallèle, testent et intègrent — le tout pour quelques centimes de l'heure. L'hypothèse confortable selon laquelle l'IA automatiserait d'abord les tâches simples s'est inversée : elle attaque d'abord le travail cognitif le plus complexe et le mieux rémunéré. La repricing la plus rapide du travail intellectuel humain de l'histoire est en cours, et la question n'est plus de savoir si elle continuera, mais si les institutions peuvent s'adapter à la vitesse requise.</p>
+<h4>2. Ukraine, an IV : la guerre que personne ne peut gagner ni arrêter</h4>
+<p>Le 24 février marquera quatre ans d'invasion russe. Quatre ans — le temps qu'il a fallu aux Alliés pour gagner la Seconde Guerre mondiale. Les fronts sont largement gelés. L'attention internationale s'est diluée. Mais les effets de second ordre sont immenses et irréversibles : l'OTAN élargie à la Finlande et à la Suède, le marché énergétique européen restructuré au pas de charge, une Russie mutée — plus autoritaire, plus dépendante de la Chine, plus fragile économiquement qu'elle ne l'admet.</p>
+<p>Les signaux budgétaires sont implacables. Moscou a relevé sa TVA de 20 à 22% en janvier — un geste bureaucratique qui raconte l'histoire d'un État qui cherche de l'argent partout. Les dépenses militaires explosent pendant que les revenus gaziers se contractent : 2026 est la dernière année du gaz russe en Europe avant l'interdiction totale de 2027, et Pékin négocie les prix du pipeline Power of Siberia 2 avec la tranquillité de celui qui sait que le vendeur n'a pas d'alternative. En face, l'UE a mobilisé 90 milliards d'euros pour maintenir l'État ukrainien en vie, financés en partie par les intérêts des actifs russes gelés — une innovation juridique dont la légalité fait encore débat.</p>
+<p>Les pourparlers reprennent à Genève le 26 février. Le scénario le plus probable reste un cessez-le-feu de type coréen : pas de paix formelle, une ligne de contact gelée, des garanties ambiguës. Ce n'est pas la victoire que Kiev mérite ni la défaite que Moscou a gagnée. C'est le compromis que la fatigue impose. Pendant ce temps, les tarifs Trump à 15% fracturent la cohésion transatlantique au moment précis où l'Europe en a le plus besoin — une politique étrangère par la contradiction.</p>
+<h4>3. Le vaccin contre le zona pourrait protéger contre Alzheimer — et ce serait la percée médicale de la décennie</h4>
+<p>Après vingt ans et des milliards de dollars investis dans l'hypothèse amyloïde — l'idée que les plaques de protéine dans le cerveau causent Alzheimer — avec des échecs thérapeutiques en série, la recherche prend un virage pragmatique. Trois médicaments existants sont repositionnés comme candidats anti-Alzheimer, et c'est le vaccin contre le zona (Shingrix, GSK) qui mène la course. Les données épidémiologiques sont robustes : les personnes vaccinées présentent un risque de démence significativement réduit.</p>
+<p>L'hypothèse sous-jacente relie les herpèsvirus latents à une neuroinflammation chronique qui précède Alzheimer de plusieurs décennies. Cette semaine, elle est renforcée par une découverte convergente : Chlamydia pneumoniae, une banale bactérie respiratoire, peut envahir la rétine et le cerveau via le nerf olfactif, déclenchant exactement le même type d'inflammation chronique. Deux pathogènes différents, deux voies d'accès, un même mécanisme destructeur. Si l'hypothèse infectieuse/inflammatoire se confirme, Alzheimer n'est plus une maladie du cerveau mais une maladie de l'immunité — un changement de paradigme qui ouvrirait des voies thérapeutiques entièrement nouvelles.</p>
+<p>Ce qui rend la piste Shingrix si puissante, c'est son accessibilité. Le vaccin est déjà approuvé, déjà fabriqué à grande échelle, déjà administré à des millions de personnes. Si les essais cliniques randomisés confirment l'effet protecteur, nous aurions un outil de prévention déployable immédiatement, sans les dix ans de développement que coûte une nouvelle molécule. Dans un monde où le coût moyen d'un nouveau médicament dépasse deux milliards de dollars, la meilleure percée pourrait être celle que votre pharmacien a déjà en stock.</p>
+<hr>
+<h3>Connexions Cross-Domaines</h3>
+<p>La même IA générative qui a vaporisé 285 milliards de capitalisation logicielle traite désormais des données médicales plus vite que des équipes de chercheurs (rapport UCSF/Wayne State), ce qui accélérera précisément les découvertes sur Alzheimer et Parkinson décrites dans nos rapports santé — la technologie qui détruit les anciens emplois cognitifs accélère simultanément la découverte de médicaments. Pendant ce temps, l'IA offensive a permis à un acteur russophone de compromettre 600 pare-feux FortiGate dans 55 pays avec l'efficacité d'une équipe de dix personnes — la même puissance computationnelle sert les deux côtés du miroir. Et dans un parallèle inattendu entre gastronomie et technologie, le monde culinaire de 2026 opère son propre retour aux fondamentaux — le feu plutôt que le sous-vide, la fermentation plutôt que la chimie moléculaire, le champignon entier plutôt que l'extrait — exactement au moment où le monde numérique accélère dans la direction opposée. Comme si la culture compensait intuitivement ce que la technologie disloque.</p>
+<hr>
+<h3>À Surveiller</h3>
+<ul>
+<li><strong>Genève, 26 février</strong> — Reprise des pourparlers Ukraine-Russie, deux jours après le quatrième anniversaire de l'invasion. Le langage diplomatique qui en sortira dira si un cessez-le-feu de type coréen se dessine ou si nous repartons pour une année supplémentaire d'attrition.</li>
+<li><strong>Régulations crypto Q2 2026</strong> — Deux paquets réglementaires majeurs attendus sur les réserves de stablecoins et le reporting transfrontalier sous MiCA. Leur contenu déterminera si l'institutionnalisation du crypto accélère ou freine — et le marché, dans sa peur actuelle, n'a probablement pas pricé le scénario favorable.</li>
+<li><strong>Supply chain logicielle</strong> — Trois incidents majeurs d'empoisonnement npm/PyPI en six semaines, dont l'injection d'un agent IA autonome via Cline. Le modèle de confiance de l'open source est sous pression structurelle ; le prochain incident pourrait toucher un package critique avec des millions de dépendances.</li>
+<li><strong>Artemis II</strong> — Le glitch hélium du Space Launch System pourrait ajouter des mois au calendrier, comprimant toute la cascade Artemis et repoussant le retour humain sur la Lune au-delà de 2028.</li>
+</ul>
+<hr>
+<h3>Chiffres du Jour</h3>
+<table><thead><tr><th>Chiffre</th><th>Contexte</th></tr></thead><tbody>
+<tr><td><strong>285 Md $</strong></td><td>Capitalisation logicielle évaporée en une séance après l'annonce de Claude Opus 4.6 — la peur que l'IA rende le SaaS obsolète</td></tr>
+<tr><td><strong>9</strong></td><td>Fear & Greed Index crypto — niveau de capitulation comparable à l'effondrement de FTX en novembre 2022</td></tr>
+<tr><td><strong>22%</strong></td><td>Nouveau taux de TVA russe (contre 20%), signal fiscal d'un État qui cherche de l'argent pour financer sa guerre</td></tr>
+<tr><td><strong>80,7%</strong></td><td>Part d'électricité renouvelable au Portugal en janvier 2026 — record en neuf mois, en plein hiver</td></tr>
+<tr><td><strong>600</strong></td><td>Dispositifs FortiGate compromis dans 55 pays par un acteur russophone utilisant l'IA générative</td></tr>
+<tr><td><strong>99,2%</strong></td><td>Part du solaire + batteries dans les nouvelles capacités électriques nettes installées aux États-Unis</td></tr>
+</tbody></table>
+<hr>
+<p><em>Liberté — Synthèse Quotidienne — 22 février 2026</em></p></div><div class="bottom-nav">
+  <a href="../2026-02-22.html"><span class="bottom-nav-label">Retour</span><span class="bottom-nav-title">&larr; Premi&egrave;re Page</span></a>
+</div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; SYNTH&Egrave;SE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

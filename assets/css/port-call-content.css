@@ -1,0 +1,449 @@
+/* ============================================================
+   Port Call — content styles (used INSIDE the Littoralicious shell)
+   Loaded after style.css. Uses the site's design tokens.
+   Components: sfold (section foldable), pfold (entry foldable),
+   three-berths grid, .cau caution badge, .wo-card watch-out card.
+   ============================================================ */
+
+/* Severity palette */
+:root {
+  --pc-warn: #b91c1c; --pc-warn-bg: #fef2f2;
+  --pc-caut: #d97706; --pc-caut-bg: #fffbeb;
+  --pc-info: #2563eb; --pc-info-bg: #eff6ff;
+  --pc-gold: #c4a35a;
+}
+
+/* ---------- Section foldables (sfold) ---------- */
+details.sfold {
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--space-8) 0 var(--space-6);
+}
+details.sfold > summary {
+  list-style: none; cursor: pointer;
+  display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-4);
+}
+details.sfold > summary::-webkit-details-marker { display: none; }
+details.sfold .sfold__titlewrap { flex: 1; }
+details.sfold .sfold__title {
+  font-family: var(--font-serif);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  color: var(--color-ink);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0;
+}
+details.sfold .sfold__desc {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-base);
+  color: var(--color-muted);
+  margin-top: 4px;
+}
+details.sfold .sfold__count {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  letter-spacing: 0.06em;
+  flex-shrink: 0;
+}
+details.sfold .sfold__chev {
+  color: var(--color-muted);
+  font-size: 14px;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+details.sfold[open] .sfold__chev { transform: rotate(90deg); }
+details.sfold .sfold__body { padding: var(--space-4) 0 var(--space-2); }
+
+/* ---------- Entry foldables (pfold) ---------- */
+details.pfold {
+  margin: var(--space-2) 0;
+  border-left: 3px solid var(--color-border);
+  padding: 0 0 0 var(--space-3);
+}
+details.pfold > summary {
+  list-style: none; cursor: pointer;
+  padding: var(--space-2) 0;
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: var(--space-3);
+}
+details.pfold > summary::-webkit-details-marker { display: none; }
+details.pfold .pfold__name {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  color: var(--color-ink);
+}
+details.pfold .pfold__hook {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
+details.pfold .pfold__chev {
+  color: var(--color-muted);
+  font-size: 13px;
+  transition: transform 0.2s;
+  flex-shrink: 0;
+}
+details.pfold[open] .pfold__chev { transform: rotate(90deg); }
+details.pfold .pfold__body {
+  padding: var(--space-2) 0 var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+}
+details.pfold .pfold__body p { margin-bottom: var(--space-2); }
+details.pfold .pfold__recog {
+  font-size: 11px;
+  color: var(--color-sea);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+details.pfold .pfold__meta {
+  display: flex; flex-wrap: wrap;
+  gap: 6px var(--space-3);
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--color-border);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+details.pfold .pfold__meta div { min-width: 200px; }
+details.pfold .pfold__meta strong {
+  color: var(--color-sea);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 9.5px;
+  margin-right: 6px;
+}
+details.pfold.cult { border-left-color: var(--pc-gold); }
+details.pfold.top  { border-left-color: #15803d; }
+details.pfold.warn { border-left-color: var(--pc-warn); }
+details.pfold .map-link {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-size: 11px;
+  color: var(--color-sea);
+  text-decoration: underline;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Three Berths grid (top-of-article picks) ---------- */
+.three-berths {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--space-4);
+  margin: var(--space-4) 0;
+}
+@media (max-width: 760px) { .three-berths { grid-template-columns: 1fr; } }
+.tb-col {
+  background: var(--color-subtle);
+  border: 1px solid var(--color-border);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+}
+.tb-col h3 {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--color-ink);
+}
+.tb-col .subtitle {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-muted);
+  margin-bottom: var(--space-2);
+}
+.tb-col ol {
+  list-style: none; padding: 0;
+  counter-reset: tb-c;
+}
+.tb-col li {
+  padding: var(--space-2) 0;
+  border-bottom: 1px dashed var(--color-border);
+  counter-increment: tb-c;
+  position: relative;
+  padding-left: var(--space-4);
+}
+.tb-col li::before {
+  content: counter(tb-c);
+  position: absolute; left: 0; top: var(--space-2);
+  font-family: var(--font-mono);
+  color: var(--color-sea);
+  font-weight: 700;
+  font-size: 11px;
+}
+.tb-col li:last-child { border-bottom: none; }
+.tb-col li a {
+  color: var(--color-ink);
+  text-decoration: none;
+  font-weight: 600;
+}
+.tb-col li a::after {
+  content: ' ◉';
+  color: var(--color-sea);
+  font-size: 9px;
+  opacity: 0.6;
+}
+.tb-col li a:hover { color: var(--color-sea); }
+.tb-col li .meta {
+  display: block;
+  font-size: 11px;
+  color: var(--color-muted);
+  margin-top: 2px;
+}
+
+/* ---------- Inline caution badges (.cau) ---------- */
+.cau {
+  display: inline-flex; align-items: center; gap: 4px;
+  font-family: var(--font-sans);
+  font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.06em;
+  padding: 2px 7px; margin-left: 6px;
+  border-radius: 2px; vertical-align: middle;
+  cursor: help; position: relative;
+}
+.cau::before { content: '⚠'; }
+.cau--high { background: var(--pc-warn-bg); color: var(--pc-warn); border: 1px solid var(--pc-warn); }
+.cau--med  { background: var(--pc-caut-bg); color: var(--pc-caut); border: 1px solid var(--pc-caut); }
+.cau--info { background: var(--pc-info-bg); color: var(--pc-info); border: 1px solid var(--pc-info); }
+.cau:hover::after {
+  content: attr(data-fix);
+  position: absolute; left: 0; top: calc(100% + 6px);
+  background: var(--color-ink); color: var(--color-paper);
+  padding: var(--space-2) var(--space-3);
+  font-size: 12px; font-weight: 400;
+  text-transform: none; letter-spacing: 0;
+  width: 280px; white-space: normal; line-height: 1.45;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+  border-left: 3px solid var(--pc-gold);
+}
+
+/* ---------- Pull quote + funfact (Littoralicious-flavoured) ---------- */
+/* Use the .pc- prefixed names in port-call articles. The unprefixed forms
+   are kept as aliases for back-compat with terroir/legacy pages. */
+.pullq, .pc-pullq {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-sea);
+  padding: var(--space-3) var(--space-6);
+  border-left: 3px solid var(--color-sea);
+  margin: var(--space-6) 0;
+  background: var(--color-subtle);
+}
+.funfact, .pc-funfact {
+  background: var(--color-subtle);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-sea);
+  padding: var(--space-3) var(--space-4);
+  margin: var(--space-4) 0;
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+}
+.funfact strong, .pc-funfact strong { color: var(--color-ink); font-weight: 700; }
+
+/* ---------- Watch-outs cards (severity-coloured) ---------- */
+.wo-card {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-left: 5px solid var(--color-muted);
+  margin: 0 0 var(--space-3);
+  padding: var(--space-4) var(--space-4) var(--space-3);
+}
+.wo-card.sev-high   { border-left-color: var(--pc-warn); background: var(--pc-warn-bg); }
+.wo-card.sev-medium { border-left-color: var(--pc-caut); background: var(--pc-caut-bg); }
+.wo-card.sev-low    { border-left-color: var(--pc-info); background: var(--pc-info-bg); }
+.wo-card.sev-info   { border-left-color: #475569; background: #f8fafc; }
+.wo-head {
+  display: flex; justify-content: space-between; align-items: baseline;
+  gap: var(--space-3);
+  margin-bottom: 6px;
+}
+.wo-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-lg);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+.wo-sev {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  padding: 2px 8px;
+  border: 1px solid currentColor;
+  flex-shrink: 0;
+}
+.wo-card.sev-high   .wo-sev { color: var(--pc-warn); }
+.wo-card.sev-medium .wo-sev { color: #92400e; }
+.wo-card.sev-low    .wo-sev { color: #1e40af; }
+.wo-card.sev-info   .wo-sev { color: #334155; }
+.wo-when {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-muted);
+  margin-bottom: var(--space-2);
+  letter-spacing: 0.04em;
+}
+.wo-what {
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  line-height: 1.55;
+  margin-bottom: var(--space-2);
+}
+.wo-fix {
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  line-height: 1.55;
+  padding: var(--space-2) var(--space-3);
+  border: 1px dashed currentColor;
+  background: rgba(255,255,255,0.6);
+}
+.wo-card.sev-high   .wo-fix { color: #7f1d1d; }
+.wo-card.sev-medium .wo-fix { color: #78350f; }
+.wo-card.sev-low    .wo-fix { color: #1e3a8a; }
+.wo-fix b {
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 10px;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* ---------- Quicknav strip (vertical list, one item per line) ---------- */
+.pc-quicknav {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: var(--space-4) 0 var(--space-6);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+.pc-quicknav a {
+  display: block;
+  color: var(--color-sea);
+  text-decoration: none;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 10px 14px;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  transition: background 0.15s, color 0.15s;
+}
+.pc-quicknav a:last-child { border-bottom: none; }
+.pc-quicknav a:hover { background: var(--color-subtle); color: var(--color-ink); }
+.pc-quicknav .sep { display: none; }
+.pc-quicknav .warn { color: var(--pc-warn); font-weight: 700; }
+
+/* ---------- Port grid (preview / series page) ---------- */
+.pc-ports {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+  margin: var(--space-6) 0 var(--space-8);
+}
+@media (max-width: 760px) { .pc-ports { grid-template-columns: 1fr; } }
+.pc-port-card {
+  background: var(--color-subtle);
+  border: 1px solid var(--color-border);
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  transition: box-shadow 0.18s, transform 0.18s;
+}
+.pc-port-card:hover { box-shadow: 0 12px 32px rgba(0,0,0,0.10); transform: translateY(-2px); }
+.pc-port-card.live    { border-left: 5px solid var(--color-sea); }
+.pc-port-card.coming  { border-left: 5px solid var(--pc-info); opacity: 0.92; }
+.pc-port-card .status {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  padding: 2px 8px;
+  margin-bottom: var(--space-2);
+}
+.pc-port-card.live .status   { background: var(--color-sea); color: #fff; }
+.pc-port-card.coming .status { background: var(--pc-info-bg); color: var(--pc-info); border: 1px solid var(--pc-info); }
+.pc-port-card h3 {
+  font-family: var(--font-serif);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  margin: 4px 0 6px;
+}
+.pc-port-card .place {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-muted);
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-3);
+}
+.pc-port-card p {
+  font-size: var(--text-sm);
+  color: var(--color-ink);
+  margin-bottom: var(--space-3);
+  min-height: 60px;
+}
+.pc-port-card a.cta {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  text-decoration: none;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-sea);
+  color: var(--color-sea);
+  transition: all 0.15s;
+}
+.pc-port-card a.cta:hover { background: var(--color-sea); color: #fff; }
+.pc-port-card.coming a.cta {
+  border-color: var(--pc-info); color: var(--pc-info);
+  pointer-events: none; opacity: 0.6;
+}
+
+/* ---------- Map-linked text (hover lights up the corresponding pin) ---------- */
+.pcv-name-link {
+  cursor: crosshair;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.pcv-name-link:hover {
+  background: linear-gradient(transparent 60%, rgba(196,163,90,0.22) 60%);
+  box-shadow: inset 0 -2px 0 rgba(196,163,90,0.55);
+}
+
+/* Feature ribbon (preview page) */
+.pc-features {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-3);
+  margin: var(--space-6) 0 var(--space-8);
+}
+@media (max-width: 760px) { .pc-features { grid-template-columns: 1fr 1fr; } }
+.pc-feat {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  padding: var(--space-3) var(--space-3) var(--space-2);
+}
+.pc-feat .icon { font-size: 22px; margin-bottom: 4px; }
+.pc-feat .label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--color-sea);
+  margin-bottom: 4px;
+}
+.pc-feat .body {
+  font-size: var(--text-xs);
+  color: var(--color-ink);
+  line-height: 1.45;
+}

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    LITTORALICIOUS GENESIS
+
+    The Nurture Seal — Transformation through elements
+
+    Concept: A vessel (earth) holds water, fire transforms it,
+    air rises. This is cooking. This is alchemy. This is nurture.
+    The four elements in their cooking relationship.
+
+    Structure:
+    - Cauldron/vessel at center (earth containing water)
+    - Flame beneath (fire)
+    - Steam above (air)
+    - All within sacred circle
+  -->
+
+  <!-- Outer sacred circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Inner circle - the transformation zone -->
+  <circle cx="50" cy="50" r="32" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- EARTH — The vessel/cauldron -->
+  <path
+    d="M 28 45
+       C 24 52, 26 65, 35 72
+       Q 50 80, 65 72
+       C 74 65, 76 52, 72 45"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.8"
+  />
+  <!-- Vessel rim -->
+  <ellipse cx="50" cy="45" rx="24" ry="5" fill="none" stroke="#0a0a0a" stroke-width="1.8"/>
+
+  <!-- WATER — Waves inside vessel -->
+  <path
+    d="M 32 55
+       Q 41 51, 50 55
+       T 68 55"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 34 62
+       Q 42 58, 50 62
+       T 66 62"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+    stroke-linecap="round"
+  />
+
+  <!-- FIRE — Flames beneath vessel -->
+  <path
+    d="M 42 88
+       C 44 82, 48 80, 50 75
+       C 52 80, 56 82, 58 88"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.2"
+  />
+  <path
+    d="M 50 90
+       C 50 85, 52 82, 50 78
+       C 48 82, 50 85, 50 90"
+    fill="#0a0a0a"
+  />
+
+  <!-- AIR — Steam rising -->
+  <path d="M 40 38 Q 38 30, 42 22" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 50 35 Q 50 26, 52 18" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 60 38 Q 62 30, 58 22" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Four element symbols at corners -->
+  <path d="M 50 5 L 53 11 L 47 11 Z" fill="#0a0a0a"/>
+  <path d="M 50 95 L 47 89 L 53 89 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <path d="M 95 50 L 89 53 L 89 47 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="90" y1="51.5" x2="93" y2="51.5" stroke="#0a0a0a" stroke-width="1"/>
+  <path d="M 5 50 L 11 47 L 11 53 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="7" y1="48.5" x2="10" y2="48.5" stroke="#0a0a0a" stroke-width="1"/>
+
+</svg>

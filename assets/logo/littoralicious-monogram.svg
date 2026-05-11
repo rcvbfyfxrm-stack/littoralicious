@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!--
+    L monogram — classic letterform
+    Serif L with subtle wave
+  -->
+
+  <!-- L letterform -->
+  <path
+    d="M 25 15
+       L 25 55
+       Q 25 62, 32 62
+       L 55 62
+       Q 60 62, 60 58
+       L 60 55
+       Q 60 52, 55 52
+       L 35 52
+       L 35 15
+       Q 35 10, 30 10
+       Q 25 10, 25 15
+       Z"
+    fill="#0a0a0a"
+  />
+
+  <!-- Subtle wave underneath -->
+  <path
+    d="M 20 70
+       Q 35 65, 50 70
+       T 80 68"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+    stroke-linecap="round"
+  />
+
+</svg>

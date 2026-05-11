@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maritime & Sailing — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 25 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;25</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-25.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3a5a6a">Maritime & Sailing</div>
+  <h1 class="article-title">EN BREF  Actualités Nautiques</h1>
+  <div class="article-date">Dimanche 25 Janvier 2026 &mdash; Edition N&deg;25</div>
+</div><div class="article-body"><h1>Maritime & Sailing — 25 Janvier 2026</h1>
+<p><em>Ingénierie nautique, innovations et actualité de la voile</em></p>
+<hr>
+<h2>⛵ EN BREF — Actualités Nautiques</h2>
+<blockquote>
+<p>- <strong>Cargo vélique</strong> : Commande passée pour le premier cargo autonome à propulsion 100% vent</p>
+<p>- <strong>IMOCA</strong> : Sam Goodchild champion Globe Series pour la 2e fois en 3 ans</p>
+<p>- <strong>Vendée Globe 2028</strong> : Violette Dorange, 25 ans, prend la barre d'Initiatives-Coeur</p>
+<p>- <strong>Innovation</strong> : Voile rigide coréenne en test sur tanker de 50,000 dwt</p>
+<p>- <strong>Route du Rhum 2026</strong> : Préparations en cours pour la grande classique</p>
+<p>- <strong>Trimaran VELA</strong> : Lancement prévu 2026 — 600 palettes à 14 nœuds sous voile pure</p>
+</blockquote>
+<hr>
+<h2>🚢 INNOVATION — Propulsion Vélique Cargo</h2>
+<h3>Premier Cargo Autonome 100% Vent : Commande Passée</h3>
+<p><strong>Qui :</strong> Clippership (US) / Chantier néerlandais</p>
+<p><strong>Quoi :</strong> Cargo autonome zéro-émission à ailes rigides pliables</p>
+<p><strong>Lancement :</strong> Fin 2026</p>
+<p><strong>Classification :</strong> RINA — "General Cargo Ship – Powered Sailing Ship" + notation WAPS</p>
+<p><strong>Caractéristiques techniques :</strong></p>
+<table><thead><tr><th>Spec</th><th>Valeur</th></tr></thead><tbody>
+<tr><td>Longueur</td><td>78 pieds (24m)</td></tr>
+<tr><td>Propulsion</td><td>Twin wings pliables carbone composite</td></tr>
+<tr><td>Autonomie</td><td>Pleine (uncrewed capable)</td></tr>
+<tr><td>Pavillon</td><td>Malte</td></tr>
+<tr><td>Routes pilotes</td><td>Transatlantique, Caraïbes, Amérique du Sud</td></tr>
+</tbody></table>
+<p><strong>Innovation clé :</strong></p>
+<blockquote>
+<p>Les ailes en composite carbone sont 2x plus puissantes que des voiles en tissu moderne. Le design pliable permet de s'adapter aux conditions et au port.</p>
+</blockquote>
+<p><strong>Pourquoi c'est important :</strong></p>
+<ul>
+<li>Premier cargo commercial combinant autonomie totale + propulsion vélique pure</li>
+<li>Proof of concept pour la décarbonation maritime à grande échelle</li>
+<li>Si viable : révolution du transport de fret courte/moyenne distance</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://maritime-executive.com/article/construction-order-placed-for-first-autonomous-wind-powered-cargo-ship" target="_blank">Maritime Executive</a></p>
+<hr>
+<h3>HD Korea : Voile Rigide Domestique en Test</h3>
+<p><strong>Qui :</strong> HD Korea Shipbuilding & Offshore Engineering + HMM</p>
+<p><strong>Navire test :</strong> Oriental Aquamarine (tanker produits, 50,000 dwt)</p>
+<p><strong>Status :</strong> Démonstration et tests en cours (janvier 2026)</p>
+<p><strong>Contexte :</strong></p>
+<blockquote>
+<p>Première voile rigide développée domestiquement en Corée du Sud. HD Korea vise le marché des navires "value-added green ships".</p>
+</blockquote>
+<p><strong>Impact attendu :</strong></p>
+<ul>
+<li>Réduction carburant : 10-30% selon conditions</li>
+<li>Conformité FuelEU Maritime dès 2026</li>
+</ul>
+<hr>
+<h3>Projet VELA : Trimaran 100% Vent</h3>
+<p><strong>Partenaires :</strong> Takeda + VELA</p>
+<p><strong>Type :</strong> Trimaran cargo</p>
+<p><strong>Lancement :</strong> 2026</p>
+<p><strong>Specs :</strong></p>
+<table><thead><tr><th>Caractéristique</th><th>Valeur</th></tr></thead><tbody>
+<tr><td>Longueur</td><td>65m (220 ft)</td></tr>
+<tr><td>Largeur</td><td>25m (82 ft)</td></tr>
+<tr><td>Hauteur mâts</td><td>52m (171 ft) x2</td></tr>
+<tr><td>Capacité</td><td>600 palettes EUR / 500 palettes US</td></tr>
+<tr><td>Vitesse moyenne</td><td>14 nœuds</td></tr>
+<tr><td>Propulsion</td><td>100% vent en mer</td></tr>
+</tbody></table>
+<p><strong>Pourquoi c'est remarquable :</strong></p>
+<blockquote>
+<p>14 nœuds = vitesse des porte-conteneurs modernes, mais uniquement sous voile. Proof of concept que la propulsion vélique pure peut être commercialement compétitive.</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://cleantechnica.com/2025/09/19/wind-powered-trimaran-cargo-ship-to-be-launched-in-2026/" target="_blank">CleanTechnica</a></p>
+<hr>
+<h2>📊 INDUSTRIE — Propulsion Vélique</h2>
+<h3>État du Marché Mondial</h3>
+<table><thead><tr><th>Métrique</th><th>Janvier 2025</th><th>2026-2027</th></tr></thead><tbody>
+<tr><td>Navires véliques opérationnels</td><td>4</td><td>~10+</td></tr>
+<tr><td>Carnet de commandes</td><td>80 navires</td><td>+30-40 supplémentaires</td></tr>
+<tr><td>Réduction carburant (retrofit)</td><td>Jusqu'à 30%</td><td>-</td></tr>
+<tr><td>Réduction (conçu pour vent)</td><td>Jusqu'à 80%</td><td>-</td></tr>
+</tbody></table>
+<p><strong>Réglementation UE :</strong></p>
+<blockquote>
+<p>FuelEU Maritime accorde un facteur bonus de <5% pour les installations véliques — permettant la conformité jusqu'en 2030 par le vent seul.</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://www.wind-ship.org" target="_blank">International Windship Association</a></p>
+<hr>
+<h2>🏆 COMPÉTITION — Voile de Course</h2>
+<h3>IMOCA Globe Series : Sam Goodchild Champion</h3>
+<p><strong>Skipper :</strong> Sam Goodchild (GBR)</p>
+<p><strong>Bateau :</strong> VULNERABLE</p>
+<p><strong>Palmarès 2025 :</strong> 3 victoires, champion Globe Series (2e titre en 3 ans)</p>
+<p><strong>Parcours :</strong></p>
+<blockquote>
+<p>Après une longue saison au sommet de la flotte IMOCA avec trois victoires, Goodchild confirme sa position de leader de la classe.</p>
+</blockquote>
+<hr>
+<h3>Vendée Globe 2028 : Préparations</h3>
+<p><strong>Prochain départ :</strong> 12 novembre 2028, Les Sables d'Olonne</p>
+<p><strong>Classe :</strong> IMOCA 18m (nouvelle génération)</p>
+<p><strong>Transferts majeurs :</strong></p>
+<table><thead><tr><th>Skipper</th><th>Bateau</th><th>Note</th></tr></thead><tbody>
+<tr><td>Violette Dorange</td><td>Initiatives-Coeur (ex-foiler)</td><td>25 ans, première femme à ce poste</td></tr>
+<tr><td>Scott Shawyer (CAN)</td><td>Ex-Groupe Dubreuil / 11th Hour</td><td>Canada Ocean Racing</td></tr>
+<tr><td>Sébastien Simon</td><td>Groupe Dubreuil (nouveau projet)</td><td>3e Vendée 2024</td></tr>
+</tbody></table>
+<p><strong>Violette Dorange — Portrait :</strong></p>
+<blockquote>
+<p>À 25 ans, elle prend les commandes d'un projet emblématique du circuit IMOCA. Roadmap : Route du Rhum 2026, qualification puis Vendée Globe 2028.</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://www.boatnews.com/story/50923/violette-dorange-takes-the-helm-of-initiatives-coeur-for-the-vendee-globe-2028" target="_blank">Boat News</a></p>
+<hr>
+<h3>Foils IMOCA : Le Débat Continue</h3>
+<p><strong>Contexte :</strong></p>
+<blockquote>
+<p>Les T-foils (permettant le vol complet) ont été rejetés par la classe IMOCA, principalement pour des raisons de coût.</p>
+</blockquote>
+<p><strong>Arguments :</strong></p>
+<ul>
+<li><strong>Pour les foils actuels</strong> : +3-4 jours de gain sur un Vendée Globe</li>
+<li><strong>Contre les T-foils</strong> : Coût prohibitif des foils + systèmes de contrôle + refonte complète des bateaux</li>
+</ul>
+<p><strong>État actuel :</strong></p>
+<ul>
+<li>2016 : 6 foilers au départ</li>
+<li>2020 : 19 foilers</li>
+<li>2024 : Quasi-totalité de la flotte foilers</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.yachtingworld.com/vendee-globe/why-the-vendee-globe-fleet-is-right-to-reject-a-full-foiling-rule-156689" target="_blank">Yachting World</a></p>
+<hr>
+<h2>🗓️ CALENDRIER — Événements 2026</h2>
+<table><thead><tr><th>Date</th><th>Événement</th><th>Classe</th><th>Lieu</th></tr></thead><tbody>
+<tr><td>Q4 2026</td><td>Route du Rhum</td><td>Toutes</td><td>Saint-Malo → Guadeloupe</td></tr>
+<tr><td>2026</td><td>Vendée Arctique</td><td>IMOCA</td><td>Première course du cycle</td></tr>
+<tr><td>2026</td><td>AC Preliminary Events</td><td>AC75</td><td>TBD</td></tr>
+<tr><td>Fin 2026</td><td>Lancement cargo Clippership</td><td>-</td><td>Pays-Bas</td></tr>
+<tr><td>2026</td><td>Trimaran VELA</td><td>-</td><td>Lancement</td></tr>
+</tbody></table>
+<hr>
+<h2>🔧 FOCUS TECHNIQUE : Voiles Rigides vs Souples</h2>
+<h3>Comparaison</h3>
+<table><thead><tr><th>Critère</th><th>Voile rigide (wing)</th><th>Voile souple</th></tr></thead><tbody>
+<tr><td>Efficacité aéro</td><td>Supérieure (+100%)</td><td>Standard</td></tr>
+<tr><td>Complexité</td><td>Haute (pivot, contrôle)</td><td>Moyenne</td></tr>
+<tr><td>Maintenance</td><td>Élevée</td><td>Modérée</td></tr>
+<tr><td>Rangement</td><td>Problématique (pliable = solution)</td><td>Facile</td></tr>
+<tr><td>Coût</td><td>Très élevé</td><td>Modéré</td></tr>
+</tbody></table>
+<p><strong>Tendance :</strong></p>
+<blockquote>
+<p>Les nouvelles voiles rigides pliables (Clippership) tentent de combiner l'efficacité des wings avec la praticité des voiles traditionnelles.</p>
+</blockquote>
+<hr>
+<h2>💭 CITATION DU JOUR</h2>
+<blockquote>
+<p>"Fourteen knots average under pure sail — matching container ships. This is not nostalgia, this is the future."</p>
+<p>— VELA Project announcement</p>
+</blockquote>
+<hr>
+<p><em>Rapport généré le 2026-01-25 par l'Agent Maritime & Sailing — NEXUS Intelligence</em></p>
+<p><em>Sources : <a href="https://maritime-executive.com" target="_blank">Maritime Executive</a>, <a href="https://www.imoca.org" target="_blank">IMOCA</a>, <a href="https://www.sail-world.com" target="_blank">Sail World</a></em></p></div><div class="bottom-nav"><a href="podcasts-interviews.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Podcasts & Interviews</span></a><a href="bonnes-nouvelles.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Bonnes Nouvelles &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; MARITIME & SAILING</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

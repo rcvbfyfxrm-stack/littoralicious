@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Newsletter preview — internal review.">
+    <title>Newsletter Preview — LITTORALICIOUS</title>
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <style>
+        /* ==================================================================
+           NEWSLETTER PREVIEW — simulates the inbox view of the next
+           Monthly Brief, populated from drafts selected on /draft.html
+           ================================================================== */
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; padding: 0;
+            background: #e5e7eb;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            color: #111;
+            min-height: 100vh;
+        }
+
+        /* --- Top toolbar (the "viewing as" chrome) --- */
+        .nlp-toolbar {
+            background: #1a1a1a; color: #fafafa;
+            padding: 10px 20px;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 13px;
+            border-bottom: 2px solid #c4a35a;
+            position: sticky; top: 0; z-index: 50;
+        }
+        .nlp-toolbar__left { display: flex; align-items: center; gap: 14px; }
+        .nlp-toolbar__pulse { width: 8px; height: 8px; background: #c4a35a; }
+        .nlp-toolbar__title { font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+        .nlp-toolbar__hint { color: #a3a3a3; font-size: 12px; }
+        .nlp-toolbar__actions { display: flex; gap: 8px; }
+        .nlp-toolbar a, .nlp-toolbar button {
+            background: transparent; color: #fafafa; border: 1px solid #555;
+            padding: 6px 14px; font-size: 12px; text-decoration: none;
+            cursor: pointer; font-family: inherit;
+            text-transform: uppercase; letter-spacing: 0.08em;
+        }
+        .nlp-toolbar button.primary { background: #c4a35a; color: #1a1a1a; border-color: #c4a35a; font-weight: 700; }
+        .nlp-toolbar a:hover, .nlp-toolbar button:hover { background: #fafafa; color: #1a1a1a; border-color: #fafafa; }
+        .nlp-toolbar button.primary:hover { background: #fafafa; color: #1a1a1a; border-color: #fafafa; }
+
+        /* --- Inbox-style envelope frame --- */
+        .nlp-frame {
+            max-width: 720px;
+            margin: 30px auto;
+            background: #fafafa;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        /* The header that mimics an email client's "from / subject" row */
+        .nlp-headers {
+            background: #f3f4f6;
+            padding: 18px 28px;
+            border-bottom: 1px solid #d1d5db;
+            font-size: 13px;
+            color: #4b5563;
+        }
+        .nlp-headers__row { display: flex; gap: 12px; padding: 4px 0; align-items: baseline; }
+        .nlp-headers__label { width: 80px; flex-shrink: 0; color: #6b7280; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; }
+        .nlp-headers__val { color: #111; flex: 1; }
+        .nlp-headers__val--subject { font-weight: 700; font-size: 15px; }
+
+        /* --- The actual email body, deliberately email-safe styles --- */
+        .nlp-email {
+            background: #fafafa;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #0a0a0a;
+            line-height: 1.6;
+        }
+        .nlp-masthead {
+            text-align: center;
+            padding: 48px 32px 32px;
+            border-bottom: 2px solid #0a0a0a;
+        }
+        .nlp-masthead__brand {
+            font-family: Georgia, serif;
+            font-size: 32px; font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #0a0a0a;
+            margin: 0 0 6px;
+        }
+        .nlp-masthead__tag {
+            font-size: 12px; color: #6b7280;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            margin-bottom: 18px;
+        }
+        .nlp-masthead__brief {
+            font-size: 11px; color: #c4a35a; font-weight: 700;
+            letter-spacing: 0.25em; text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+        .nlp-masthead__title {
+            font-family: Georgia, serif;
+            font-size: 28px; font-weight: 400;
+            margin: 0 0 8px; line-height: 1.2;
+        }
+        .nlp-masthead__edition {
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 11px; color: #6b7280;
+            letter-spacing: 0.1em;
+        }
+
+        .nlp-intro {
+            padding: 36px 40px 24px;
+            font-size: 16px;
+            color: #1a1a1a;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .nlp-intro p { margin: 0 0 14px; }
+        .nlp-intro p:last-child { margin-bottom: 0; }
+        .nlp-intro__sig { font-style: italic; color: #6b7280; font-size: 14px; }
+
+        .nlp-divider {
+            text-align: center;
+            padding: 30px 0 18px;
+            font-family: Georgia, serif;
+            font-size: 13px; color: #6b7280;
+            letter-spacing: 0.18em; text-transform: uppercase;
+        }
+        .nlp-divider span { display: inline-block; padding: 0 16px; background: #fafafa; position: relative; }
+        .nlp-divider::before {
+            content: ''; display: block;
+            border-top: 1px solid #d1d5db;
+            position: relative; top: 17px;
+        }
+        .nlp-divider span { background: #fafafa; position: relative; z-index: 1; }
+
+        /* --- Article cards --- */
+        .nlp-articles { padding: 0 40px; }
+        .nlp-article {
+            padding: 28px 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .nlp-article:last-child { border-bottom: none; padding-bottom: 32px; }
+        .nlp-article__cat {
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 10px; font-weight: 700;
+            color: #c4a35a;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .nlp-article__title {
+            font-family: Georgia, serif;
+            font-size: 24px; font-weight: 400;
+            line-height: 1.2; margin: 0 0 10px;
+            color: #0a0a0a;
+        }
+        .nlp-article__title a { color: #0a0a0a; text-decoration: none; }
+        .nlp-article__title a:hover { color: #2d4a5e; text-decoration: underline; }
+        .nlp-article__meta {
+            font-size: 12px; color: #6b7280;
+            margin-bottom: 14px;
+            font-family: 'SF Mono', Consolas, monospace;
+            letter-spacing: 0.05em;
+        }
+        .nlp-article__lede {
+            font-size: 16px; line-height: 1.65;
+            color: #1a1a1a;
+            margin: 0 0 16px;
+        }
+        .nlp-article__cta a {
+            color: #2d4a5e; font-weight: 700; font-size: 14px;
+            text-decoration: none;
+            border-bottom: 2px solid #c4a35a;
+            padding-bottom: 1px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            letter-spacing: 0.02em;
+        }
+        .nlp-article__cta a:hover { color: #0a0a0a; }
+
+        /* --- Empty state --- */
+        .nlp-empty {
+            padding: 80px 40px; text-align: center;
+            color: #6b7280; font-style: italic;
+        }
+        .nlp-empty a {
+            display: inline-block; margin-top: 18px;
+            color: #2d4a5e; font-weight: 700; text-decoration: none;
+            border-bottom: 2px solid #c4a35a;
+            font-style: normal;
+        }
+
+        /* --- Footer --- */
+        .nlp-footer {
+            background: #f3f4f6;
+            padding: 32px 40px;
+            font-size: 12px;
+            color: #6b7280;
+            text-align: center;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+        .nlp-footer p { margin: 0 0 8px; }
+        .nlp-footer a { color: #2d4a5e; text-decoration: underline; }
+        .nlp-footer__cta {
+            margin: 14px 0 22px;
+        }
+        .nlp-footer__cta a {
+            background: #0a0a0a; color: #fafafa; padding: 12px 24px;
+            text-decoration: none; font-weight: 700; font-size: 13px;
+            display: inline-block; letter-spacing: 0.05em;
+        }
+        .nlp-footer__legal { font-size: 10px; color: #94a3b8; margin-top: 18px; }
+
+        @media (max-width: 740px) {
+            .nlp-frame { margin: 0; box-shadow: none; }
+            .nlp-headers, .nlp-intro, .nlp-articles, .nlp-footer { padding-left: 20px; padding-right: 20px; }
+            .nlp-masthead { padding: 36px 20px 24px; }
+            .nlp-masthead__brand { font-size: 26px; }
+            .nlp-masthead__title { font-size: 22px; }
+            .nlp-toolbar { flex-direction: column; gap: 10px; align-items: stretch; padding: 10px 14px; }
+            .nlp-toolbar__actions { justify-content: space-between; flex-wrap: wrap; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="nlp-toolbar">
+    <div class="nlp-toolbar__left">
+        <span class="nlp-toolbar__pulse"></span>
+        <span class="nlp-toolbar__title">Newsletter Preview</span>
+        <span class="nlp-toolbar__hint">This is exactly what subscribers will receive · Internal · noindex</span>
+    </div>
+    <div class="nlp-toolbar__actions">
+        <a href="draft.html">← Drafts</a>
+        <button id="copy-html" type="button">Copy HTML</button>
+        <button id="copy-md" type="button">Copy Markdown</button>
+        <button id="print" type="button" class="primary">Print / Save PDF</button>
+    </div>
+</div>
+
+<main class="nlp-frame" id="email-frame">
+
+    <!-- Email "from / to / subject" headers (preview chrome) -->
+    <div class="nlp-headers">
+        <div class="nlp-headers__row">
+            <span class="nlp-headers__label">From</span>
+            <span class="nlp-headers__val">Littoralicious &lt;newsletter@littoralicious.com&gt;</span>
+        </div>
+        <div class="nlp-headers__row">
+            <span class="nlp-headers__label">To</span>
+            <span class="nlp-headers__val">subscriber@example.com</span>
+        </div>
+        <div class="nlp-headers__row">
+            <span class="nlp-headers__label">Subject</span>
+            <span class="nlp-headers__val nlp-headers__val--subject" id="subject-line">The Monthly Brief — Edition</span>
+        </div>
+        <div class="nlp-headers__row">
+            <span class="nlp-headers__label">Date</span>
+            <span class="nlp-headers__val" id="date-line"></span>
+        </div>
+    </div>
+
+    <!-- The actual email body -->
+    <article class="nlp-email" id="email-body">
+
+        <!-- Masthead -->
+        <header class="nlp-masthead">
+            <div class="nlp-masthead__brand">LITTORALICIOUS</div>
+            <div class="nlp-masthead__tag">Modern Science · Regional Recipes · From the Sea</div>
+            <div class="nlp-masthead__brief">The Monthly Brief</div>
+            <h1 class="nlp-masthead__title" id="brief-title">Edition Loading…</h1>
+            <div class="nlp-masthead__edition" id="brief-meta">—</div>
+        </header>
+
+        <!-- Intro -->
+        <section class="nlp-intro">
+            <p>Five things to read, one thread connecting them. What's peaking in the markets, what works on the line, and what the science says about why.</p>
+            <p class="nlp-intro__sig">— Arnaud, from the galley</p>
+        </section>
+
+        <!-- Section divider -->
+        <div class="nlp-divider"><span>This Month's Reading</span></div>
+
+        <!-- Articles list (rendered by JS) -->
+        <section class="nlp-articles" id="articles-list">
+            <div class="nlp-empty">Loading selected drafts…</div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="nlp-footer">
+            <p>You are receiving this because you subscribed to the Monthly Brief at littoralicious.com.</p>
+            <p>One purpose: nurture. No ads, no sponsors, no algorithms.</p>
+            <div class="nlp-footer__cta">
+                <a href="https://www.littoralicious.com">Read more at littoralicious.com</a>
+            </div>
+            <p class="nlp-footer__legal">
+                © 2026 Littoralicious · No rights reserved · Information wants to be free.<br>
+                <a href="https://www.littoralicious.com">Visit the site</a> · <a href="https://buttondown.com/littoralicious">Manage subscription</a>
+            </p>
+        </footer>
+
+    </article>
+
+</main>
+
+<script>
+(function () {
+    'use strict';
+
+    const SELECTION_KEY = 'llcs-draft-newsletter-selection';
+
+    function getSelection() {
+        try { return JSON.parse(localStorage.getItem(SELECTION_KEY) || '[]'); }
+        catch (e) { return []; }
+    }
+
+    const escapeHTML = s => (s || '').replace(/[&<>"']/g, c =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    function fmtDate(d) {
+        return d.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+    }
+    function editionOfMonth(d) {
+        // Rough edition number: month index since launch (Jan 2026 = 1)
+        const start = new Date(2026, 0, 1);
+        const months = (d.getFullYear() - start.getFullYear()) * 12 + (d.getMonth() - start.getMonth()) + 1;
+        return Math.max(1, months);
+    }
+
+    function render(allDrafts) {
+        const selection = getSelection();
+        const selected = allDrafts.filter(d => selection.includes(d.slug));
+
+        // Build subject + masthead + meta
+        const now = new Date();
+        const ed = editionOfMonth(now);
+        const monthName = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+        document.getElementById('subject-line').textContent =
+            'The Monthly Brief — ' + monthName + ' (Edition №' + String(ed).padStart(2,'0') + ')';
+        document.getElementById('date-line').textContent = fmtDate(now);
+        document.getElementById('brief-title').textContent = monthName;
+        document.getElementById('brief-meta').textContent = 'Edition №' + String(ed).padStart(2,'0') + ' · ' + selected.length + ' article' + (selected.length === 1 ? '' : 's');
+
+        const list = document.getElementById('articles-list');
+        if (!selected.length) {
+            list.innerHTML =
+                '<div class="nlp-empty">' +
+                    'No drafts selected yet.' +
+                    '<br><a href="draft.html">← Go back to /draft and tick the boxes</a>' +
+                '</div>';
+            return;
+        }
+
+        list.innerHTML = selected.map(d => (
+            '<article class="nlp-article">' +
+                '<div class="nlp-article__cat">' + escapeHTML(d.category_label || d.category) + '</div>' +
+                '<h2 class="nlp-article__title">' +
+                    '<a href="https://www.littoralicious.com/' + escapeHTML(d.file) + '">' + escapeHTML(d.title) + '</a>' +
+                '</h2>' +
+                '<div class="nlp-article__meta">' + d.read_time + ' min read</div>' +
+                '<p class="nlp-article__lede">' + escapeHTML(d.lede) + '</p>' +
+                '<div class="nlp-article__cta">' +
+                    '<a href="https://www.littoralicious.com/' + escapeHTML(d.file) + '">Read the full article →</a>' +
+                '</div>' +
+            '</article>'
+        )).join('');
+    }
+
+    // Toolbar actions
+    function htmlOfEmail() {
+        // Inline-friendly HTML — copy the body so it can paste into Buttondown
+        const body = document.getElementById('email-body').outerHTML;
+        return '<!DOCTYPE html><html><head><meta charset="UTF-8"><title>The Monthly Brief</title></head><body style="margin:0;padding:0;background:#e5e7eb;">' + body + '</body></html>';
+    }
+    function markdownOfEmail() {
+        const drafts = window.__nlpDrafts || [];
+        const selection = getSelection();
+        const selected = drafts.filter(d => selection.includes(d.slug));
+        const now = new Date();
+        const ed = editionOfMonth(now);
+        const monthName = now.toLocaleDateString('en-GB', { month: 'long', year: 'numeric' });
+        let md = '# The Monthly Brief — ' + monthName + '\n\n';
+        md += 'Edition №' + String(ed).padStart(2,'0') + ' · ' + fmtDate(now) + '\n\n';
+        md += 'Five things to read, one thread connecting them. What’s peaking in the markets, what works on the line, and what the science says about why.\n\n— Arnaud, from the galley\n\n---\n\n## This Month’s Reading\n\n';
+        if (!selected.length) return md + '_No drafts selected._\n';
+        selected.forEach(d => {
+            md += '### ' + d.title + '\n';
+            md += '_' + (d.category_label || d.category) + ' · ' + d.read_time + ' min read_\n\n';
+            md += d.lede + '\n\n';
+            md += '[Read the full article →](https://www.littoralicious.com/' + d.file + ')\n\n---\n\n';
+        });
+        md += '\n_Sent via Littoralicious · One purpose: nurture._\n';
+        return md;
+    }
+    function copyText(t, label) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(t).then(() => alert(label + ' copied to clipboard.')).catch(() => fallback());
+        } else { fallback(); }
+        function fallback() {
+            const ta = document.createElement('textarea');
+            ta.value = t; ta.style.position = 'fixed'; ta.style.opacity = '0';
+            document.body.appendChild(ta); ta.select();
+            try { document.execCommand('copy'); alert(label + ' copied.'); }
+            catch (e) { alert('Copy failed. Open DevTools and copy manually.'); }
+            ta.remove();
+        }
+    }
+
+    document.getElementById('copy-html').addEventListener('click', () => copyText(htmlOfEmail(), 'HTML'));
+    document.getElementById('copy-md').addEventListener('click', () => copyText(markdownOfEmail(), 'Markdown'));
+    document.getElementById('print').addEventListener('click', () => window.print());
+
+    // Boot
+    fetch('data/draft-articles.json', { cache: 'no-cache' })
+        .then(r => r.json())
+        .then(d => {
+            window.__nlpDrafts = d.drafts || [];
+            render(d.drafts || []);
+        })
+        .catch(err => {
+            document.getElementById('articles-list').innerHTML =
+                '<div class="nlp-empty" style="color:#b91c1c;">Failed to load drafts: ' + err.message + '</div>';
+        });
+})();
+</script>
+
+</body>
+</html>

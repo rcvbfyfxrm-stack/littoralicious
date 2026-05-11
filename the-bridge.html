@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Bridge — World chef news, yacht industry intelligence, regulations, competitions, and events. The command centre for what matters this week.">
+
+    <title>The Bridge — LITTORALICIOUS</title>
+
+    <meta property="og:title" content="The Bridge — LITTORALICIOUS">
+    <meta property="og:description" content="World chef news, yacht industry intelligence, regulations, competitions, and events.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.littoralicious.com/the-bridge.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+</head>
+<body>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="shore-larder.html">Shore Larder</a>
+                    <a href="the-method.html">The Method</a>
+                    <a href="littoral-heritage.html">Heritage</a>
+                    <a href="the-evidence.html">The Evidence</a>
+                    <a href="the-bridge.html" class="active">The Bridge</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <header class="article-header">
+            <div class="container">
+                <span class="article-header__category">Section</span>
+                <h1 class="article-header__title">The Bridge</h1>
+                <p style="max-width: 60ch; color: var(--color-muted); margin-top: var(--space-4);">
+                    World chef news, yacht industry intelligence, regulations, competitions, and events. The command centre for what matters this week.
+                </p>
+            </div>
+        </header>
+
+        <!-- Published Articles -->
+        <section class="container" style="padding: var(--space-12) 0;">
+            <div class="divider">
+                <span class="divider__text">Published</span>
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+                <input type="search" id="dispatch-search" placeholder="Search dispatches by title, tag, or keyword..." autocomplete="off"
+                    style="width:100%; padding: var(--space-4); font-size: var(--text-base); font-family: inherit; border: 1px solid var(--color-border); background: var(--color-paper); color: var(--color-ink); box-sizing: border-box;">
+                <p id="dispatch-count" style="font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); margin: var(--space-2) 0 0 0;"></p>
+            </div>
+
+            <div class="article-list" id="dispatch-list" style="margin-top: var(--space-6);">
+                <article class="dispatch" data-tags="tax crew employment legal finance residency career trade-winds">
+                    <time class="dispatch__date">2026-04-08</time>
+                    <h3 class="dispatch__title">
+                        <a href="articles/yacht-crew-tax-guide.html">The Truth About Paying Tax as Yacht Crew</a>
+                    </h3>
+                    <div class="dispatch__body">
+                        <p>What Europeans, Americans, South Africans, and Australians actually owe in tax. The myth of tax-free yachting, the CRS reality, and the practical steps to get compliant.</p>
+                    </div>
+                    <span style="font-size: var(--text-xs); color: var(--color-salt);">12 min read &middot; #tax #crew #career</span>
+                </article>
+
+                <article class="dispatch" data-tags="career yacht-chef certification STCW crew employment industry trade-winds">
+                    <time class="dispatch__date">2026-04-08</time>
+                    <h3 class="dispatch__title">
+                        <a href="articles/how-to-become-a-yacht-chef.html">How to Become a Yacht Chef: The Real Path Nobody Advertises</a>
+                    </h3>
+                    <div class="dispatch__body">
+                        <p>Certifications, day work, crew agencies, what to cook at a trial, salary by vessel size, and what nobody tells you before your first season.</p>
+                    </div>
+                    <span style="font-size: var(--text-xs); color: var(--color-salt);">14 min read &middot; #career #certification #STCW</span>
+                </article>
+
+                <article class="dispatch" data-tags="michelin umami STCW training industry the-bridge">
+                    <time class="dispatch__date">2026-02-05</time>
+                    <h3 class="dispatch__title">
+                        <a href="articles/myojaku-three-stars.html">Myojaku Earns Three Stars and STCW Anti-Harassment Training Goes Mandatory</a>
+                    </h3>
+                    <div class="dispatch__body">
+                        <p>Myojaku earns three Michelin stars by stripping umami back to the ingredient itself. Plus: STCW anti-harassment training goes mandatory for all flag states.</p>
+                    </div>
+                    <span style="font-size: var(--text-xs); color: var(--color-salt);">4 min read &middot; #michelin #STCW #industry</span>
+                </article>
+            </div>
+            <p id="dispatch-empty" style="display:none; color: var(--color-muted); text-align:center; padding: var(--space-8) 0;">No dispatches match. Try a broader search, or <a href="tags.html">browse every article by theme</a>.</p>
+        </section>
+
+        <script>
+        (() => {
+            const input = document.getElementById('dispatch-search');
+            const list = document.getElementById('dispatch-list');
+            const empty = document.getElementById('dispatch-empty');
+            const count = document.getElementById('dispatch-count');
+            const items = Array.from(list.querySelectorAll('.dispatch'));
+            const total = items.length;
+            count.textContent = `${total} dispatch${total === 1 ? '' : 'es'}`;
+            input.addEventListener('input', () => {
+                const q = input.value.trim().toLowerCase();
+                let shown = 0;
+                items.forEach(el => {
+                    const hay = (el.textContent + ' ' + (el.dataset.tags || '')).toLowerCase();
+                    const match = !q || hay.includes(q);
+                    el.style.display = match ? '' : 'none';
+                    if (match) shown++;
+                });
+                empty.style.display = shown === 0 ? 'block' : 'none';
+                count.textContent = q
+                    ? `${shown} of ${total} dispatch${total === 1 ? '' : 'es'} matching "${q}"`
+                    : `${total} dispatch${total === 1 ? '' : 'es'}`;
+            });
+        })();
+        </script>
+
+        <!-- Podcasts & Shows -->
+        <section class="container" style="padding: var(--space-12) 0;">
+            <div class="divider">
+                <span class="divider__text">Podcasts & Shows</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--space-6); margin-top: var(--space-8);">
+
+                <div style="border: 1px solid var(--color-border); padding: var(--space-6);">
+                    <span style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-sea);">Podcast</span>
+                    <h3 style="font-size: var(--text-lg); margin: var(--space-2) 0; font-family: var(--font-serif);">Kojinomics</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-bottom: var(--space-4);">
+                        Deep conversations about the business and craft of yacht cheffing. Economics, career strategy, and real talk from working professionals.
+                    </p>
+                    <p style="font-size: var(--text-sm); margin-bottom: var(--space-4);">
+                        <strong>Latest:</strong> Episode 147 — "Negotiating Your Day Rate: What The Market Actually Pays"
+                    </p>
+                    <a href="#" style="color: var(--color-sea); font-size: var(--text-sm);">Listen on Spotify &rarr;</a>
+                </div>
+
+                <div style="border: 1px solid var(--color-border); padding: var(--space-6);">
+                    <span style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-sea);">YouTube / TV</span>
+                    <h3 style="font-size: var(--text-lg); margin: var(--space-2) 0; font-family: var(--font-serif);">The Yacht Chef</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-bottom: var(--space-4);">
+                        Behind-the-scenes content from working yacht chefs. Galley tours, charter prep, and the reality of cooking at sea.
+                    </p>
+                    <p style="font-size: var(--text-sm); margin-bottom: var(--space-4);">
+                        <strong>Latest:</strong> "72-Hour Charter Prep: Feeding 12 Guests on M/Y Aurora"
+                    </p>
+                    <a href="#" style="color: var(--color-sea); font-size: var(--text-sm);">Watch on YouTube &rarr;</a>
+                </div>
+
+                <div style="border: 1px solid var(--color-border); padding: var(--space-6);">
+                    <span style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-sea);">Community</span>
+                    <h3 style="font-size: var(--text-lg); margin: var(--space-2) 0; font-family: var(--font-serif);">Yacht Crew Chef</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-bottom: var(--space-4);">
+                        Community platform and content hub for yacht chefs. Job boards, recipe sharing, and crew connections.
+                    </p>
+                    <p style="font-size: var(--text-sm); margin-bottom: var(--space-4);">
+                        <strong>Latest:</strong> "2026 Salary Survey Results — What Chefs Really Earn"
+                    </p>
+                    <a href="#" style="color: var(--color-sea); font-size: var(--text-sm);">Visit site &rarr;</a>
+                </div>
+
+                <div style="border: 1px solid var(--color-border); padding: var(--space-6);">
+                    <span style="font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-sea);">TV Series</span>
+                    <h3 style="font-size: var(--text-lg); margin: var(--space-2) 0; font-family: var(--font-serif);">Below Deck</h3>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-bottom: var(--space-4);">
+                        Love it or hate it, it's shaped public perception of yacht cheffing. We analyze what they get right, wrong, and absurdly wrong.
+                    </p>
+                    <p style="font-size: var(--text-sm); margin-bottom: var(--space-4);">
+                        <strong>Latest:</strong> Season 12 Episode 8 — Chef Rachel's Beef Wellington Analysis
+                    </p>
+                    <a href="#" style="color: var(--color-sea); font-size: var(--text-sm);">Our take &rarr;</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Voices to Follow -->
+        <section class="container" style="padding-bottom: var(--space-12);">
+            <div class="divider">
+                <span class="divider__text">Voices to Follow</span>
+            </div>
+
+            <p style="color: var(--color-muted); margin: var(--space-6) 0; max-width: 60ch;">
+                Yacht chefs and industry figures sharing real insights. No influencer fluff — professionals worth your attention.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: var(--space-4); margin-top: var(--space-6);">
+
+                <div style="padding: var(--space-4); background: var(--color-subtle);">
+                    <strong style="font-size: var(--text-base);">Chef Rachel Hargrove</strong>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-1);">Below Deck alum. Outspoken about industry realities. @rachaehargrove</p>
+                </div>
+
+                <div style="padding: var(--space-4); background: var(--color-subtle);">
+                    <strong style="font-size: var(--text-base);">Chef Adrian Martin</strong>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-1);">Plant-forward yacht cuisine advocate. Cookbook author. @chefadrianmartin</p>
+                </div>
+
+                <div style="padding: var(--space-4); background: var(--color-subtle);">
+                    <strong style="font-size: var(--text-base);">Chef Ben Robinson</strong>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-1);">Industry veteran. Galley consultant. Honest about the business side. @chefbenrobinson</p>
+                </div>
+
+                <div style="padding: var(--space-4); background: var(--color-subtle);">
+                    <strong style="font-size: var(--text-base);">Chef Marcos Spaziani</strong>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-1);">Below Deck Sailing Yacht. Venezuelan cuisine specialist. @chefmarcospaziani</p>
+                </div>
+
+                <div style="padding: var(--space-4); background: var(--color-subtle);">
+                    <strong style="font-size: var(--text-base);">The Crew Chef</strong>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-1);">Anonymous account. Industry truths. Sometimes spicy. @thecrewchef</p>
+                </div>
+
+                <div style="padding: var(--space-4); background: var(--color-subtle);">
+                    <strong style="font-size: var(--text-base);">Luxury Hospitality Magazine</strong>
+                    <p style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-1);">Industry publication covering superyacht F&B trends. @luxuryhospmag</p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Events Calendar -->
+        <section class="container" style="padding-bottom: var(--space-16);">
+            <div class="divider">
+                <span class="divider__text">2026 Events</span>
+            </div>
+
+            <div style="margin-top: var(--space-8);">
+                <table style="width: 100%; border-collapse: collapse; font-size: var(--text-sm);">
+                    <thead>
+                        <tr style="border-bottom: 2px solid var(--color-ink);">
+                            <th style="text-align: left; padding: var(--space-3) 0;">Date</th>
+                            <th style="text-align: left; padding: var(--space-3) 0;">Event</th>
+                            <th style="text-align: left; padding: var(--space-3) 0;">Location</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: var(--space-3) 0; font-family: var(--font-mono);">Mar 15-17</td>
+                            <td style="padding: var(--space-3) 0;">Superyacht Chef Symposium</td>
+                            <td style="padding: var(--space-3) 0;">Fort Lauderdale, USA</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: var(--space-3) 0; font-family: var(--font-mono);">Apr 22-24</td>
+                            <td style="padding: var(--space-3) 0;">METSTRADE Superyacht Pavilion</td>
+                            <td style="padding: var(--space-3) 0;">Amsterdam, NL</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: var(--space-3) 0; font-family: var(--font-mono);">Jun 12-14</td>
+                            <td style="padding: var(--space-3) 0;">MYBA Superyacht Chef Competition</td>
+                            <td style="padding: var(--space-3) 0;">Antibes, France</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: var(--space-3) 0; font-family: var(--font-mono);">Sep 25-28</td>
+                            <td style="padding: var(--space-3) 0;">Monaco Yacht Show</td>
+                            <td style="padding: var(--space-3) 0;">Monaco</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: var(--space-3) 0; font-family: var(--font-mono);">Oct 30 - Nov 3</td>
+                            <td style="padding: var(--space-3) 0;">Fort Lauderdale International Boat Show</td>
+                            <td style="padding: var(--space-3) 0;">Fort Lauderdale, USA</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid var(--color-border);">
+                            <td style="padding: var(--space-3) 0; font-family: var(--font-mono);">Nov 15-17</td>
+                            <td style="padding: var(--space-3) 0;">Yacht Crew Training Conference</td>
+                            <td style="padding: var(--space-3) 0;">Palma de Mallorca, Spain</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+                      target="popupwindow">
+                    <label for="footer-email-bridge">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-bridge" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">
+                        For those who feed others with intention.
+                    </p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="shore-larder.html">Shore Larder</a></li>
+                            <li><a href="the-method.html">The Method</a></li>
+                            <li><a href="littoral-heritage.html">Heritage</a></li>
+                            <li><a href="the-evidence.html">The Evidence</a></li>
+                            <li><a href="the-bridge.html">The Bridge</a></li>
+                            <li><a href="tags.html">Browse by Theme</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">Manifesto</a></li>
+                            <li><a href="founder.html">Founder</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+
+</body>
+</html>

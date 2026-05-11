@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libert&eacute; &amp; Surveillance &mdash; The World Affair</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 52px; font-weight: 400; letter-spacing: 2px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Lundi 2 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;54</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#7a5230">Liberté & Surveillance</div>
+  <h1 class="article-title">Le chiffrement sous le feu croisé des législateurs</h1>
+  <div class="article-date">Lundi 2 Mars 2026 &mdash; Edition N&deg;54</div>
+</div><div class="article-body"><h1>The World Affair — Liberté & Surveillance</h1>
+<h3>1er mars 2026 | Édition du lundi</h3>
+<p><em>La surveillance ne s'installe jamais sous son vrai nom. Elle arrive toujours déguisée en protection.</em></p>
+<hr>
+<h2>La Grande Affaire</h2>
+<h3>Règlement CSAR : l'Europe prépare le scan de vos messages privés</h3>
+<p>Le Parlement européen et le Conseil de l'UE devraient adopter au printemps 2026 le règlement sur les abus sexuels sur mineurs — connu sous l'acronyme CSAR (<em>Child Sexual Abuse Regulation</em>). Derrière l'intitulé, que personne n'oserait contester, se cache un mécanisme qui pourrait transformer l'architecture même de la communication privée en Europe.</p>
+<p>Le texte prévoit un système de <strong>scan volontaire des communications privées</strong> par les plateformes de messagerie. Le mot « volontaire » est la clé de voûte rhétorique de l'édifice. En théorie, aucune obligation. En pratique, les plateformes qui refuseraient de coopérer s'exposeraient à une pression réglementaire et médiatique considérable — qui refuserait publiquement d'aider à protéger les enfants ?</p>
+<p>Le problème technique est fondamental. Pour scanner un message chiffré de bout en bout, il faut soit briser le chiffrement, soit installer un mécanisme de détection <em>avant</em> le chiffrement — ce que les cryptographes appellent le <em>client-side scanning</em>. Dans les deux cas, le résultat est identique : la promesse de confidentialité absolue que font Signal, WhatsApp ou iMessage à leurs utilisateurs devient un mensonge.</p>
+<p>Les défenseurs du texte arguent que le scan ne cible que les contenus pédopornographiques connus, via des empreintes numériques (<em>hashes</em>) comparées à des bases de données existantes. Les critiques — et ils sont nombreux, des cryptographes de renom aux défenseurs des droits civils — répondent que l'infrastructure technique, une fois en place, peut être étendue à n'importe quel type de contenu. Un outil qui sait chercher une image illégale sait aussi chercher un tract politique, un document journalistique ou une conversation syndicale.</p>
+<blockquote>
+<p>La question n'est pas : « Faut-il protéger les enfants ? » — la réponse est évidemment oui. La question est : « Faut-il, pour cela, construire une infrastructure de surveillance de masse qui, par conception, peut être retournée contre n'importe qui ? »</p>
+</blockquote>
+<p>L'histoire des démocraties enseigne une constante : les outils de surveillance créés pour un usage spécifique finissent toujours par être étendus. Le Patriot Act américain, voté pour traquer les terroristes après le 11 septembre, a fini par servir à la surveillance de masse révélée par Snowden. Les caméras de vidéosurveillance installées pour prévenir le terrorisme dans les villes européennes sont aujourd'hui utilisées pour verbaliser les infractions routières. Le CSAR s'inscrit dans cette même logique : un pied dans la porte, au nom de la cause la plus inattaquable possible.</p>
+<hr>
+<h2>Les Histoires qui Comptent</h2>
+<h3>États-Unis : l'Alabama et le Connecticut avancent, Washington reste immobile</h3>
+<p>Pendant que l'Europe construit un cadre continental, les États-Unis continuent leur marche fragmentée vers une régulation de la vie privée numérique — État par État, texte par texte, sans cohérence fédérale.</p>
+<p>En <strong>Alabama</strong>, deux textes viennent d'être promulgués. Le premier est un <em>App Store bill</em> qui impose de nouvelles obligations aux magasins d'applications en matière de transparence sur la collecte de données. Le second est une loi sur les données consommateurs qui établit des droits d'accès, de correction et de suppression pour les résidents de l'État. L'Alabama — pas exactement le premier nom qui vient à l'esprit quand on pense à la régulation tech — rejoint ainsi une liste croissante d'États qui légifèrent en l'absence de Washington.</p>
+<p>Au <strong>Connecticut</strong>, deux projets de loi sont en cours d'examen. Le premier cible les <em>data brokers</em> — ces courtiers en données qui achètent, agrègent et revendent les informations personnelles de millions d'Américains sans que ceux-ci en aient la moindre conscience. Le second porte sur la <strong>reconnaissance faciale</strong>, avec des restrictions sur son usage par les forces de l'ordre et les entreprises privées.</p>
+<p>Le tableau d'ensemble est celui d'un <strong>patchwork réglementaire</strong> de plus en plus dense. La Californie (CCPA/CPRA), la Virginie, le Colorado, l'Utah, le Connecticut, le Texas, l'Oregon, le Montana — et maintenant l'Alabama — ont tous leur propre cadre. Pour une entreprise tech opérant à l'échelle nationale, c'est un cauchemar de conformité. Pour un citoyen, c'est une loterie géographique : vos droits sur vos propres données dépendent de l'État où vous vivez.</p>
+<h3>L'absence fédérale : un choix, pas un accident</h3>
+<p>L'absence de loi fédérale américaine sur la vie privée numérique n'est pas un oubli législatif. C'est le résultat d'un blocage structurel entre deux forces irréconciliables : l'industrie tech, qui ne veut pas de régulation contraignante à l'échelle nationale, et les deux partis politiques, qui ne s'entendent pas sur le périmètre de la loi.</p>
+<p>Les Républicains veulent limiter la portée du texte et protéger les entreprises. Les Démocrates veulent un droit d'action privé qui permettrait aux citoyens de poursuivre directement les entreprises fautives. Le résultat est une impasse qui dure depuis plus de cinq ans, pendant laquelle les États comblent le vide chacun à leur manière.</p>
+<p>Le paradoxe est cruel. Les États-Unis, qui ont inventé l'internet, qui hébergent les plus grandes entreprises technologiques de l'histoire, qui collectent plus de données par habitant que n'importe quel pays au monde, sont incapables de s'accorder sur les droits fondamentaux de leurs citoyens face à cette collecte. L'Europe, avec le RGPD puis le CSAR, a au moins le mérite de la cohérence — même quand cette cohérence mène dans une direction inquiétante.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<ul>
+<li><strong>Le « volontaire » du CSAR est un précédent dangereux.</strong> Si l'UE établit que le scan « volontaire » des messages privés est acceptable, la prochaine étape — le scan obligatoire — ne sera qu'une question de temps et d'un seul attentat.</li>
+<li><strong>La reconnaissance faciale au Connecticut</strong> signale que même les États américains les plus progressistes ne parviennent qu'à <em>restreindre</em> la technologie, pas à l'interdire. La normalisation est en cours.</li>
+<li><strong>Les data brokers restent le maillon invisible.</strong> Le projet de loi du Connecticut les cible enfin, mais l'industrie du courtage en données représente des milliards de dollars et dispose de lobbyistes à la mesure de ses revenus.</li>
+</ul>
+<hr>
+<h2>Connexion</h2>
+<p>Il y a une symétrie troublante entre ce qui se passe des deux côtés de l'Atlantique. En Europe, un texte unique menace de créer une infrastructure de surveillance des communications privées de 450 millions de personnes, sous couvert de protection de l'enfance. Aux États-Unis, cinquante textes différents créent un labyrinthe de droits fragmentés où personne — ni les citoyens, ni les entreprises, ni les tribunaux — ne sait exactement ce qui est permis et ce qui ne l'est pas. Les deux approches, en apparence opposées, produisent le même résultat : un citoyen qui ne sait pas ce qu'il advient de ses données, de ses messages, de sa vie numérique. La centralisation européenne et la fragmentation américaine convergent vers la même impuissance individuelle. La différence est que l'Europe le fait avec méthode, et l'Amérique par accident.</p></div><div class="bottom-nav"><a href="sante-medecine.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Santé & Médecine</span></a><a href="espace-energie.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Espace & Énergie &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; LIBERT&Eacute; & SURVEILLANCE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

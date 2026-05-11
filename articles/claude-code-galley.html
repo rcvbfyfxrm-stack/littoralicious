@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Claude Code turns your galley into a system — PDF menu cards, guest intelligence from WhatsApp exports, automated handover notes, and a shared brain between rotational chefs.">
+    <title>Claude Code in the Galley: The Power Tool &mdash; LITTORALICIOUS</title>
+    <meta property="og:title" content="Claude Code in the Galley: The Power Tool &mdash; LITTORALICIOUS">
+    <meta property="og:description" content="Claude Code turns your galley into a system — PDF menu cards, guest intelligence from WhatsApp exports, automated handover notes, and a shared brain between rotational chefs.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.littoralicious.com/articles/claude-code-galley.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
+
+    <style>
+        .copy-block {
+            position: relative;
+            background: var(--color-subtle, #f8f8f8);
+            border: 1px solid var(--color-border);
+            padding: var(--space-4);
+            margin: var(--space-6) 0;
+        }
+        .copy-block__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-3);
+            padding-bottom: var(--space-2);
+            border-bottom: 1px solid var(--color-border);
+        }
+        .copy-block__title {
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            color: var(--color-sea);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .copy-btn {
+            background: var(--color-sea);
+            color: #fff;
+            border: none;
+            padding: 6px 16px;
+            font-size: var(--text-sm);
+            cursor: pointer;
+            font-family: var(--font-mono);
+            letter-spacing: 0.03em;
+        }
+        .copy-btn:hover { opacity: 0.85; }
+        .copy-btn.copied {
+            background: #2d6a4f;
+        }
+        .copy-block__content {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+            word-break: break-word;
+            max-height: 400px;
+            overflow-y: auto;
+            color: var(--color-ink);
+        }
+        .copy-block__content.collapsed {
+            max-height: 200px;
+            overflow: hidden;
+        }
+        .copy-block__expand {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            border-top: 1px solid var(--color-border);
+            padding: var(--space-2) 0 0;
+            margin-top: var(--space-2);
+            color: var(--color-sea);
+            font-size: var(--text-sm);
+            cursor: pointer;
+            text-align: center;
+        }
+        .step-number {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            text-align: center;
+            background: var(--color-sea);
+            color: #fff;
+            font-weight: 700;
+            font-size: var(--text-sm);
+            margin-right: var(--space-2);
+        }
+        .video-list {
+            list-style: none;
+            padding: 0;
+            margin: var(--space-4) 0;
+        }
+        .video-list li {
+            padding: var(--space-2) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .video-list li:last-child {
+            border-bottom: none;
+        }
+        .video-list a {
+            color: var(--color-sea);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .video-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
+                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="../shore-larder.html">Shore Larder</a>
+                    <a href="../the-method.html" class="active">The Method</a>
+                    <a href="../littoral-heritage.html">Heritage</a>
+                    <a href="../the-evidence.html">The Evidence</a>
+                    <a href="../the-bridge.html">The Bridge</a>
+                    <a href="../newsletter.html">Newsletter</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article">
+            <header class="article__header container">
+                <div class="article__meta">
+                    <span class="article__category">The Method</span>
+                    <time class="article__date">April 9, 2026</time>
+                    <span class="article__reading-time">18 min read</span>
+                </div>
+                <h1 class="article__title">Claude Code in the Galley: The Power Tool</h1>
+                <p class="article__lede">
+                    The browser gives you menus. Claude Code gives you a system &mdash; PDF menu cards, guest intelligence from WhatsApp exports, automated handover notes, and a shared brain between rotational chefs. Here&rsquo;s how to set it up and what it can do.
+                </p>
+            </header>
+
+            <div class="article__content container" style="max-width: 65ch; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+
+                <!-- Table of Contents -->
+                <div class="article-toc">
+                    <p class="article-toc__title">In This Article</p>
+                    <ol>
+                        <li><a href="#what-it-is">What Claude Code Is</a></li>
+                        <li><a href="#install">Install Claude Code (5 Minutes)</a></li>
+                        <li><a href="#pdf-menu">From Prompt to Printed Menu in 2 Minutes</a></li>
+                        <li><a href="#galley-intel">Galley Intelligence: Your Data, Your Advantage</a></li>
+                        <li><a href="#whatsapp">WhatsApp as Your Intelligence Feed</a></li>
+                        <li><a href="#handover">Handover Notes in 30 Seconds</a></li>
+                        <li><a href="#rotational">Rotational Chef Sync</a></li>
+                        <li><a href="#chief-stew">The Chief Stew Channel</a></li>
+                        <li><a href="#tips">Tips from a Working Galley</a></li>
+                    </ol>
+                </div>
+
+                <div class="note note--key">
+                    <p>This is Part 2 of a two-part series. <a href="tech-in-the-galley.html">Part 1: Technology in the Galley</a> covers browser AI, prompts, and the menu agent. This article covers Claude Code &mdash; the power tool for file management, PDF generation, and galley intelligence.</p>
+                </div>
+
+                <!-- Section 1: What Claude Code Is -->
+                <h2 id="what-it-is">What Claude Code Is</h2>
+
+                <p>
+                    Claude Code is a terminal tool by Anthropic. It runs on your computer, reads your documents, creates files, and executes commands. You talk to it in plain English. No coding required.
+                </p>
+
+                <p>
+                    It is to the browser version of Claude what a Thermomix is to a stick blender &mdash; same motor, but it can do things the simpler version physically cannot:
+                </p>
+
+                <ul>
+                    <li>Read your guest preference files before composing a menu</li>
+                    <li>Cross-reference every dish against dietary restrictions automatically</li>
+                    <li>Generate LaTeX menu cards and compile them to PDF</li>
+                    <li>Organise menus into folders by trip, date, and service type</li>
+                    <li>Update handover documents after each charter</li>
+                    <li>Build provision lists from your menu plans</li>
+                    <li>Process WhatsApp chat exports into structured guest intelligence</li>
+                </ul>
+
+                <div class="note note--key">
+                    <p>If you followed the <a href="tech-in-the-galley.html">first article</a> and you are happy with the browser version, you do not need this. Claude Code is for chefs who want a system, not just an answer.</p>
+                </div>
+
+                <!-- Section 2: Install Claude Code -->
+                <h2 id="install">Install Claude Code (5 Minutes)</h2>
+
+                <p>Six steps. Five minutes. Then you never do this again.</p>
+
+                <p>
+                    <span class="step-number">1</span> <strong>Get a Claude account.</strong> Go to <a href="https://claude.ai/pricing" target="_blank" rel="noopener">claude.ai/pricing</a>. You need a Max plan ($100/mo) or an API key with credits.
+                </p>
+
+                <p>
+                    <span class="step-number">2</span> <strong>Open your terminal.</strong> Mac: search for &ldquo;Terminal&rdquo; in Spotlight. Windows: install <a href="https://learn.microsoft.com/en-us/windows/wsl/install" target="_blank" rel="noopener">WSL</a> first, then open the Ubuntu terminal.
+                </p>
+
+                <p>
+                    <span class="step-number">3</span> <strong>Install Node.js.</strong> Mac: <code>brew install node</code>. Or download from <a href="https://nodejs.org" target="_blank" rel="noopener">nodejs.org</a>. You need version 18 or higher.
+                </p>
+
+                <p>
+                    <span class="step-number">4</span> <strong>Install Claude Code.</strong>
+                </p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Terminal</span>
+                        <button class="copy-btn" onclick="copyText(this, 'npm install -g @anthropic-ai/claude-code')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">npm install -g @anthropic-ai/claude-code</div>
+                </div>
+
+                <p>
+                    <span class="step-number">5</span> <strong>Start it.</strong> Type <code>claude</code> and press Enter. Log in when prompted.
+                </p>
+
+                <p>
+                    <span class="step-number">6</span> <strong>Navigate to your galley folder and talk.</strong> That&rsquo;s it. You are running.
+                </p>
+
+                <h3>Video Tutorials</h3>
+
+                <p>If you prefer watching over reading, these three will get you from zero to functional:</p>
+
+                <ul class="video-list">
+                    <li><a href="https://www.youtube.com/watch?v=9TP1EWtedpY" target="_blank" rel="noopener">Claude Code Tutorial for Beginners 2026</a> &mdash; AyyazTech</li>
+                    <li><a href="https://www.youtube.com/watch?v=GepHGs_CZdk" target="_blank" rel="noopener">Claude Code: Build an App in 15 Minutes</a> &mdash; Peter Yang</li>
+                    <li><a href="https://www.youtube.com/watch?v=fYX6hHC9FhQ" target="_blank" rel="noopener">The Ultimate Claude Code Course</a> &mdash; Sabrina Ramonov</li>
+                </ul>
+
+                <p>Official documentation: <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">docs.anthropic.com/en/docs/claude-code</a></p>
+
+                <!-- Section 3: From Prompt to Printed Menu in 2 Minutes -->
+                <h2 id="pdf-menu">From Prompt to Printed Menu in 2 Minutes</h2>
+
+                <p>
+                    This is the feature that changes your daily workflow. Not a suggestion. Not a draft. A print-ready PDF menu card. Formatted, styled, ready to hand to the chief stew.
+                </p>
+
+                <h3>How It Works</h3>
+
+                <p><span class="step-number">1</span> You say this:</p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Prompt</span>
+                        <button class="copy-btn" onclick="copyText(this, 'Create tonight\'s guest dinner menu. Mediterranean family style. I have branzino and lamb rack. 8 guests, one vegetarian. Generate the PDF menu card.')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">Create tonight's guest dinner menu. Mediterranean family style. I have branzino and lamb rack. 8 guests, one vegetarian. Generate the PDF menu card.</div>
+                </div>
+
+                <p><span class="step-number">2</span> Claude Code builds the menu, writes a LaTeX file with proper typography, compiles it to PDF, and saves it dated in your folder.</p>
+
+                <p><span class="step-number">3</span> You open and print. Done. Two minutes.</p>
+
+                <h3>Why This Matters</h3>
+
+                <p>
+                    The old workflow: chef writes the menu on paper or in Notes. Sends it to the chief stew. Chief stew opens Word or Canva and formats it. Back and forth on spacing, font, spelling. Three people, four messages, twenty minutes. Every single service.
+                </p>
+
+                <p>
+                    With Claude Code, you own the pipeline. One prompt, one PDF, one print. The chief stew gets a clean, consistent document without touching a design tool. You get twenty minutes back per service.
+                </p>
+
+                <div class="note note--action">
+                    <p><strong>For chief stews:</strong> This is not about losing control of the presentation. It is about getting the PDF faster, clean and consistent every time, without opening Canva at midnight. You set the style once. The chef produces it on demand.</p>
+                </div>
+
+                <h3>What You Need Installed &mdash; LaTeX</h3>
+
+                <p>
+                    Claude Code needs LaTeX to generate PDFs. This is a one-time install:
+                </p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Terminal (Mac)</span>
+                        <button class="copy-btn" onclick="copyText(this, 'brew install --cask mactex-no-gui')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">brew install --cask mactex-no-gui</div>
+                </div>
+
+                <div class="note note--science" data-label="One-Time Download">
+                    <p>This is a 4GB download. It takes about 5 minutes. You only do it once. After that, every menu you create can become a PDF with one sentence.</p>
+                </div>
+
+                <p>
+                    If you are on a yacht with limited internet, download the installer on shore Wi-Fi and bring it on a USB stick. Claude Code will detect it automatically once installed.
+                </p>
+
+                <!-- Section 4: Galley Intelligence -->
+                <h2 id="galley-intel">Galley Intelligence: Your Data, Your Advantage</h2>
+
+                <p>
+                    This is where Claude Code stops being a menu tool and becomes an operating system for your galley. The menus are the surface. The intelligence underneath is the real value.
+                </p>
+
+                <p>
+                    Every charter produces data &mdash; WhatsApp messages, preference sheets, trip feedback, provisioning records, handover notes. Most of it sits in your phone, unsearchable, forgotten by the next rotation. Claude Code turns all of it into structured intelligence you can query, share, and build on.
+                </p>
+
+                <p>
+                    Think of it this way: after five charters, a chef using Claude Code has a searchable database of every guest preference, every menu that worked, every supplier that delivered on time, and every dish that got a compliment or a complaint. A chef without it has a phone full of screenshots and a memory that fades with each rotation.
+                </p>
+
+                <!-- Section 5: WhatsApp as Your Intelligence Feed -->
+                <h2 id="whatsapp">WhatsApp as Your Intelligence Feed</h2>
+
+                <p>
+                    Every yacht has the feedback group &mdash; the chief stew forwards guest comments after each meal. &ldquo;They loved the tuna tartare.&rdquo; &ldquo;Mr. B said the lamb was too pink.&rdquo; &ldquo;Kids didn&rsquo;t touch the vegetables again.&rdquo;
+                </p>
+
+                <p>
+                    That group is a goldmine sitting in your pocket. Export it and paste it into Claude Code.
+                </p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Prompt</span>
+                        <button class="copy-btn" onclick="copyText(this, 'Here is the WhatsApp export from the charter feedback group. Extract all food preferences, reactions to specific dishes, and any dietary information. Organize by guest. Flag anything that contradicts our current preference sheet.')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">Here is the WhatsApp export from the charter feedback group. Extract all food preferences, reactions to specific dishes, and any dietary information. Organize by guest. Flag anything that contradicts our current preference sheet.</div>
+                </div>
+
+                <p>In 30 seconds, Claude Code returns:</p>
+
+                <ul>
+                    <li>Every dish mentioned positively or negatively</li>
+                    <li>Dietary preferences discovered mid-charter</li>
+                    <li>Guest personality patterns (adventurous vs conservative eaters)</li>
+                    <li>Contradictions with existing preference records</li>
+                    <li>Specific quotes worth remembering for the next trip</li>
+                </ul>
+
+                <div class="note note--science" data-label="The Numbers">
+                    <p>A 10-day charter generates approximately 200&ndash;400 WhatsApp messages in the feedback group. Reading and processing that manually takes 30&ndash;45 minutes. Claude Code does it in under a minute and misses nothing.</p>
+                </div>
+
+                <h3>The Galley Intelligence Chat</h3>
+
+                <p>
+                    Here is a method that costs nothing and pays for itself on the first charter. Create a private WhatsApp group with just you and one other person (or just you &mdash; WhatsApp allows single-member groups now).
+                </p>
+
+                <p>
+                    During the charter, every time you notice something &mdash; a guest who grimaced at the cilantro, a crew member who always takes seconds of the pasta, a wine that got compliments &mdash; you type a quick note into this group. Ten seconds. No formatting. Just the observation.
+                </p>
+
+                <p>
+                    At the end of the charter, export the chat, paste it into Claude Code, and ask it to structure your observations into a proper preference update. Ten days of raw intelligence, organised in under a minute.
+                </p>
+
+                <!-- Section 6: Handover Notes in 30 Seconds -->
+                <h2 id="handover">Handover Notes in 30 Seconds</h2>
+
+                <p>
+                    At the end of a rotation, instead of spending two hours writing handover notes, you say this:
+                </p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Prompt</span>
+                        <button class="copy-btn" onclick="copyText(this, 'Read all my menus from this rotation, the guest preference file, the feedback messages, and the provisioning records. Write a complete handover document for the incoming chef. Include: equipment changes, menus that worked with ratings, guest preference summary, outstanding tasks, supplier contacts, and known galley issues.')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">Read all my menus from this rotation, the guest preference file, the feedback messages, and the provisioning records. Write a complete handover document for the incoming chef. Include: equipment changes, menus that worked with ratings, guest preference summary, outstanding tasks, supplier contacts, and known galley issues.</div>
+                </div>
+
+                <p>
+                    Claude Code generates a complete handover. On a 50-metre motor yacht, this produced a 13-file handover package including:
+                </p>
+
+                <ul>
+                    <li>Equipment changes and where things are now</li>
+                    <li>Two trips of executed menus with ratings</li>
+                    <li>Complete guest preference update &mdash; favourite dishes, allergies, &ldquo;do not serve&rdquo; list</li>
+                    <li>Outstanding maintenance tasks with severity</li>
+                    <li>Supplier contacts with notes on reliability</li>
+                </ul>
+
+                <div class="note note--key">
+                    <p>The incoming chef can ask Claude Code: &ldquo;Summarise the handover. What should I cook first? What are the hard dietary restrictions?&rdquo; and get an immediate answer &mdash; without reading 13 files.</p>
+                </div>
+
+                <!-- Section 7: Rotational Chef Sync -->
+                <h2 id="rotational">Rotational Chef Sync</h2>
+
+                <p>
+                    Two chefs rotating on the same yacht can share a Claude Code project folder. Every menu, every guest note, every preference update lives in one place.
+                </p>
+
+                <p>When Chef B arrives:</p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Prompt</span>
+                        <button class="copy-btn" onclick="copyText(this, 'Summarize everything Chef A did last rotation. What worked, what didn\'t, what are the current guest preferences? Are there any outstanding tasks or known issues?')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">Summarize everything Chef A did last rotation. What worked, what didn't, what are the current guest preferences? Are there any outstanding tasks or known issues?</div>
+                </div>
+
+                <p>
+                    No more &ldquo;the other chef didn&rsquo;t leave notes.&rdquo; No more guessing what the guests liked last month. No more starting from scratch every rotation.
+                </p>
+
+                <p>
+                    The system remembers. You ask, it answers.
+                </p>
+
+                <!-- Section 8: The Chief Stew Channel -->
+                <h2 id="chief-stew">The Chief Stew Channel</h2>
+
+                <p>
+                    Instead of the chief stew texting &ldquo;the guests loved the lamb&rdquo; at 11 PM and hoping someone remembers it next charter, they can paste feedback into a shared document or text file. Claude Code processes it:
+                </p>
+
+                <div class="copy-block">
+                    <div class="copy-block__header">
+                        <span class="copy-block__title">Prompt</span>
+                        <button class="copy-btn" onclick="copyText(this, 'Update the guest preference file with tonight\'s dinner feedback: [paste messages]')">Copy</button>
+                    </div>
+                    <div class="copy-block__content">Update the guest preference file with tonight's dinner feedback: [paste messages]</div>
+                </div>
+
+                <p>
+                    The preference file stays current without anyone manually editing it. After a 10-day charter, you have a complete record of every reaction to every dish &mdash; structured, searchable, ready for the next trip or the next chef.
+                </p>
+
+                <div class="note note--action">
+                    <p><strong>Start simple.</strong> Create one folder. Put your menus in it. Put your guest preferences in it. Let Claude Code read it. Everything else builds from there.</p>
+                </div>
+
+                <!-- Section 9: Tips from a Working Galley -->
+                <h2 id="tips">Tips from a Working Galley</h2>
+
+                <p>
+                    <strong>Be specific.</strong> &ldquo;Italian dinner&rdquo; gives you generic. &ldquo;Amalfi Coast, branzino and lamb rack, 6 guests, one vegetarian, family style&rdquo; gives you something printable. The AI responds to precision the same way a commis does.
+                </p>
+
+                <p>
+                    <strong>Correct it.</strong> &ldquo;Replace the lamb with duck confit. Make the salad simpler.&rdquo; It adapts instantly. You are the chef. It is the tool.
+                </p>
+
+                <p>
+                    <strong>Build on previous menus.</strong> &ldquo;Same style as last night but Japanese theme&rdquo; works in the same conversation. Context carries forward.
+                </p>
+
+                <p>
+                    <strong>Use it for ideas.</strong> &ldquo;5 Cultural Touchstone names for a Greek island dinner&rdquo; is a valid prompt. So is &ldquo;What did I serve the last time these guests were on board?&rdquo;
+                </p>
+
+                <p>
+                    <strong>Export your WhatsApp feedback after every charter.</strong> It takes 30 seconds and builds your intelligence over time. After three charters, your preference database is better than anything you could build from memory.
+                </p>
+
+                <p>
+                    <strong>The maths.</strong> If you spend 45 minutes writing a menu card by hand, and the AI gives you a better one in 3 minutes &mdash; that is 42 minutes back in your day. Over a 10-day charter, that is 7 hours. Seven hours of sleep, or prep, or the thing you never have time for.
+                </p>
+
+                <p>
+                    The AI is not replacing you. Nothing replaces the chef who knows that this guest prefers their steak slightly more done than they admit, or that the kids will only eat the pasta if it looks exactly like last time. That knowledge lives in you. Claude Code just makes sure it is never lost.
+                </p>
+
+                <!-- Sources -->
+                <div class="article-sources">
+                    <strong>Sources</strong>
+                    <p>Claude Code documentation: <a href="https://docs.anthropic.com/en/docs/claude-code" target="_blank" rel="noopener">docs.anthropic.com/en/docs/claude-code</a></p>
+                    <p>Claude AI: <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a></p>
+                    <p>Part 1 of this series: <a href="tech-in-the-galley.html">Technology in the Galley: AI Is Your New Sous Chef</a></p>
+                </div>
+
+                <!-- Article Actions -->
+                <div class="article-actions">
+                    <button class="print-btn" data-action="print">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M6 9V2h12v7"/>
+                            <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
+                            <rect x="6" y="14" width="12" height="8"/>
+                        </svg>
+                        Print
+                    </button>
+                    <button class="download-btn" data-action="download">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
+                            <polyline points="7,10 12,15 17,10"/>
+                            <line x1="12" y1="15" x2="12" y2="3"/>
+                        </svg>
+                        Save PDF
+                    </button>
+                </div>
+
+                <!-- Article Engagement Section -->
+                <div class="article-engagement">
+
+                    <!-- Engagement Pulse -->
+                    <div class="engagement-pulse" data-reactions="0" data-comments="0">
+                        <span class="engagement-pulse__text">Be the first to join the conversation</span>
+                    </div>
+
+                    <!-- Reactions -->
+                    <div class="article-reactions" data-article-id="claude-code-galley">
+                        <p class="reactions-prompt">Would you use Claude Code in your galley?</p>
+                        <div class="reactions-grid">
+                            <!-- Populated by community.js -->
+                        </div>
+                        <div class="sentiment-bar"></div>
+                    </div>
+
+                    <!-- Share -->
+                    <div class="article-share">
+                        <span class="share-label">Share:</span>
+                        <button class="share-btn" data-share="twitter" title="Share on Twitter">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </button>
+                        <button class="share-btn" data-share="linkedin" title="Share on LinkedIn">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                            </svg>
+                        </button>
+                        <button class="share-btn" data-share="copy" title="Copy link">
+                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Comments Section -->
+                    <div class="article-comments">
+                        <h3 class="comments-title">Join the conversation <span class="comments-title__count"></span></h3>
+
+                        <div class="comments-sort">
+                            <button class="comments-sort__btn active" data-sort="newest">Newest</button>
+                            <button class="comments-sort__btn" data-sort="most-agreed">Most agreed</button>
+                        </div>
+
+                        <div class="comment-form">
+                            <form>
+                                <div class="comment-form__row">
+                                    <input type="text" name="name" placeholder="Your name" required>
+                                    <input type="email" name="email" placeholder="Email (optional)">
+                                </div>
+                                <textarea name="comment" placeholder="Share your thoughts, experience, or questions..." rows="4" maxlength="2000" required></textarea>
+                                <div class="comment-form__footer">
+                                    <label class="comment-form__subscribe">
+                                        <input type="checkbox" name="subscribe" checked>
+                                        <span>Subscribe to the newsletter</span>
+                                    </label>
+                                    <span class="comment-form__char-count"></span>
+                                    <button type="submit">Post Comment</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="comments-list">
+                            <!-- Comments loaded from Firebase -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+                <!-- Related -->
+                <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                    <strong>Also on Littoralicious</strong>
+                    <ul style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-3); list-style: none; padding: 0;">
+                        <li style="margin-bottom: var(--space-2);"><a href="tech-in-the-galley.html" style="color: var(--color-sea); text-decoration: underline;">Technology in the Galley: AI Is Your New Sous Chef</a> &mdash; The complete setup guide for AI in your galley.</li>
+                        <li style="margin-bottom: var(--space-2);"><a href="whatsapp-trip-intelligence.html" style="color: var(--color-sea); text-decoration: underline;">WhatsApp as Your Trip Intelligence System</a> &mdash; Turn 10,000 WhatsApp messages into actionable trip intel.</li>
+                    </ul>
+                </div>
+
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+                      target="popupwindow">
+                    <label for="footer-email-claude-code">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-claude-code" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">
+                        For those who feed others with intention.
+                    </p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="../shore-larder.html">Shore Larder</a></li>
+                            <li><a href="../the-method.html">The Method</a></li>
+                            <li><a href="../littoral-heritage.html">Heritage</a></li>
+                            <li><a href="../the-evidence.html">The Evidence</a></li>
+                            <li><a href="../the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="../about.html">Manifesto</a></li>
+                            <li><a href="../founder.html">Founder</a></li>
+                            <li><a href="../newsletter.html">Newsletter</a></li>
+                            <li><a href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    function fallbackCopy(text) {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.left = '-9999px';
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand('copy'); } catch(e) {}
+        document.body.removeChild(ta);
+    }
+    function doCopy(text, btn, label) {
+        var done = function() {
+            btn.textContent = 'Copied!';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.textContent = label;
+                btn.classList.remove('copied');
+            }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(done).catch(function() {
+                fallbackCopy(text);
+                done();
+            });
+        } else {
+            fallbackCopy(text);
+            done();
+        }
+    }
+    function copyText(btn, text) {
+        doCopy(text, btn, 'Copy');
+    }
+    // Share buttons
+    document.querySelectorAll('.share-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            var type = btn.getAttribute('data-share');
+            var url = encodeURIComponent(window.location.href);
+            var title = encodeURIComponent(document.title);
+            if (type === 'twitter') {
+                window.open('https://x.com/intent/tweet?url=' + url + '&text=' + title, '_blank');
+            } else if (type === 'linkedin') {
+                window.open('https://www.linkedin.com/sharing/share-offsite/?url=' + url, '_blank');
+            } else if (type === 'copy') {
+                doCopy(window.location.href, btn, '');
+                var svg = btn.querySelector('svg');
+                if (svg) {
+                    var orig = btn.innerHTML;
+                    btn.innerHTML = '<span style="font-size:12px;">Copied!</span>';
+                    setTimeout(function() { btn.innerHTML = orig; }, 2000);
+                }
+            }
+        });
+    });
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
+    <script src="../assets/js/firebase-config.js"></script>
+    <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/community.js"></script>
+
+</body>
+</html>

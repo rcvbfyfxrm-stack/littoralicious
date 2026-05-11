@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Littoralicious — Welcome</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: #fafafa;
+            color: #0a0a0a;
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            background: #fff;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding-bottom: 12mm;
+            border-bottom: 0.5pt solid #0a0a0a;
+            margin-bottom: 10mm;
+        }
+
+        .logo {
+            font-size: 28pt;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 3mm;
+        }
+
+        .tagline {
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #6b7280;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 15mm 10mm;
+            background: #0a0a0a;
+            color: #fafafa;
+            margin-bottom: 10mm;
+        }
+
+        .hero h1 {
+            font-size: 32pt;
+            font-weight: 400;
+            margin-bottom: 5mm;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 12pt;
+            color: #94a3b8;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        /* Sections Grid */
+        .sections {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6mm;
+            margin-bottom: 10mm;
+        }
+
+        .section-card {
+            border: 0.5pt solid #e2e2e2;
+            padding: 5mm;
+        }
+
+        .section-card h3 {
+            font-size: 10pt;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #2d4a5e;
+            margin-bottom: 2mm;
+            font-weight: 600;
+        }
+
+        .section-card p {
+            font-size: 9pt;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        /* Founder */
+        .founder {
+            padding: 8mm;
+            background: #f5f5f5;
+            margin-bottom: 10mm;
+        }
+
+        .founder-header {
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #2d4a5e;
+            margin-bottom: 4mm;
+            font-weight: 600;
+        }
+
+        .founder h2 {
+            font-size: 16pt;
+            margin-bottom: 4mm;
+            font-weight: 400;
+        }
+
+        .founder p {
+            font-size: 10pt;
+            color: #0a0a0a;
+            margin-bottom: 3mm;
+        }
+
+        .founder .stats {
+            font-size: 9pt;
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* Newsletter CTA */
+        .cta {
+            text-align: center;
+            padding: 10mm;
+            border: 1pt solid #0a0a0a;
+        }
+
+        .cta h3 {
+            font-size: 14pt;
+            margin-bottom: 3mm;
+        }
+
+        .cta p {
+            font-size: 10pt;
+            color: #6b7280;
+            margin-bottom: 4mm;
+        }
+
+        .cta .url {
+            font-size: 12pt;
+            font-weight: 600;
+            color: #2d4a5e;
+            letter-spacing: 0.02em;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 10mm;
+            padding-top: 6mm;
+            border-top: 0.5pt solid #e2e2e2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-left {
+            font-size: 8pt;
+            color: #6b7280;
+        }
+
+        .footer-right {
+            font-size: 8pt;
+            color: #6b7280;
+            text-align: right;
+        }
+
+        .footer-right a {
+            color: #2d4a5e;
+            text-decoration: none;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { margin: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="page">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">LITTORALICIOUS</div>
+        <div class="tagline">Modern Science and Regional Recipes from the Sea</div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>One purpose: Nurture.</h1>
+        <p style="font-style: italic; margin-bottom: 8mm;">Think your grannie has a degree in science and happened to be a yacht chef.</p>
+        <p style="font-size: 10pt;">No fluff. No superfoods. Just the science that matters and the heritage that earned it.</p>
+    </section>
+
+    <!-- Sections -->
+    <section class="sections">
+        <div class="section-card">
+            <h3>Shore Larder</h3>
+            <p>Seasonal ingredients, sourcing intelligence, port provisioning guides. The coastal pantry, stocked with intention.</p>
+        </div>
+        <div class="section-card">
+            <h3>The Method</h3>
+            <p>Techniques, recipes, galley efficiency protocols. Step-by-step, science-backed, tested at sea.</p>
+        </div>
+        <div class="section-card">
+            <h3>Heritage</h3>
+            <p>Coastal traditions, cultural preservation, chef ideas worth stealing. The stories behind the dishes.</p>
+        </div>
+        <div class="section-card">
+            <h3>The Evidence</h3>
+            <p>Peer-reviewed research, food chemistry, nutrition data. We read the papers so you don't have to.</p>
+        </div>
+        <div class="section-card">
+            <h3>The Bridge</h3>
+            <p>World chef news, yacht industry intelligence, regulations, competitions. What matters this week.</p>
+        </div>
+        <div class="section-card">
+            <h3>Newsletter</h3>
+            <p>Monthly digest. First of every month. Science, sourcing, heritage, and industry — curated for the galley.</p>
+        </div>
+    </section>
+
+    <!-- Founder -->
+    <section class="founder">
+        <div class="founder-header">The Founder</div>
+        <h2>Arnaud Callier</h2>
+        <p>A decade in superyacht galleys taught me something: the best meals I ever made weren't the most impressive. They were the ones that left people feeling genuinely better. Calmer. More energized. More themselves.</p>
+        <p>That's what Littoralicious is about. Not showing off. Not content for content's sake. Just the knowledge and tools to nurture people through the food we make.</p>
+        <p class="stats">50,000+ nautical miles · M/Y Symphony · Vava II · Christina O. · Cloud 9 · Kismet</p>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h3>Join the Newsletter</h3>
+        <p>Monthly. First of every month. No spam. Unsubscribe anytime.</p>
+        <div class="url">littoralicious.com/newsletter</div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-left">
+            &copy; 2026 Littoralicious<br>
+            Information wants to be free.
+        </div>
+        <div class="footer-right">
+            <a href="mailto:arnaudcallier@pm.me">arnaudcallier@pm.me</a><br>
+            <a href="https://wa.me/33695903520">WhatsApp</a>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>

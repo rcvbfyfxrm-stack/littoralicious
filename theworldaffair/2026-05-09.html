@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Affair &mdash; Samedi 9 Mai 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; }
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+.masthead-subtitle { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 400; font-style: italic; color: #4a4540; margin-top: 6px; letter-spacing: 1px; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section-divider { display: flex; align-items: center; gap: 14px; margin: 32px 0 24px; font-size: 10px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; }
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.flash-box { background: #ede9e1; border: 1px solid #c8c0b4; border-left: 4px solid #8b3a3a; padding: 20px 24px; margin: 28px 0; }
+.flash-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #8b3a3a; margin-bottom: 12px; }
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li { font-size: 13px; color: #4a4540; line-height: 1.7; margin-bottom: 8px; list-style-type: '\2014 '; }
+.flash-box li strong { color: #1a1714; }
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0; border-top: 2px solid #1a1714; border-bottom: 1px solid #c8c0b4; }
+.hub-card { padding: 20px 20px 18px; border-bottom: 1px solid #c8c0b4; border-right: 1px solid #c8c0b4; text-decoration: none; color: inherit; transition: background 0.15s; position: relative; }
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+.hub-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+.hub-card-excerpt { font-size: 13px; color: #4a4540; line-height: 1.6; font-style: italic; }
+.hub-card-arrow { position: absolute; top: 20px; right: 16px; font-size: 16px; color: #c8c0b4; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; }
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .hub-grid { grid-template-columns: 1fr; } .hub-card { border-right: none; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Samedi 9 Mai 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;119</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link active" href="2026-05-09.html">Premi&egrave;re Page</a><a class="nav-link" href="archive.html">Archives</a></nav><div class="page"><div class="flash-box"><div class="flash-title">En 60 Secondes</div><ul>
+<li><strong>Anthropic signe un contrat de 1,8 Md$ avec Akamai</strong> &mdash; Croissance annualis&eacute;e &agrave; 30 Md$ (x3 sur un an), Claude Code adopt&eacute; par Uber et Netflix; Anthropic loue aussi la totalit&eacute; du data center Colossus 1 d'xAI &agrave; Memphis [Bloomberg/Fortune].</li>
+<li><strong>S&amp;P 500 c&egrave;de 0,4% &agrave; 7337 apr&egrave;s record historique</strong> &mdash; Recul jeudi 8 mai apr&egrave;s les sommets de la veille; rebond du p&eacute;trole et incertitude sur les pourparlers US-Iran p&egrave;sent sur le sentiment [TheStreet/CNBC].</li>
+<li><strong>FDA approuve la premi&egrave;re th&eacute;rapie g&eacute;nique pour la surdit&eacute; g&eacute;n&eacute;tique</strong> &mdash; Le 8 mai, premi&egrave;re mondiale pour traiter la perte auditive cong&eacute;nitale; Bizengri obtient aussi le 7&egrave;me feu vert du programme National Priority Voucher pour cholangiocarcinome NRG1+ [FDA].</li>
+<li><strong>Let's Encrypt suspend l'&eacute;mission de certificats</strong> &mdash; Le 8 mai, Let's Encrypt arr&ecirc;te toute &eacute;mission apr&egrave;s d&eacute;tection d'une faille critique dans un certificat crois&eacute;; CISA ajoute en parall&egrave;le CVE-2026-42208 (BerriAI LiteLLM SQL injection) &agrave; son catalogue [Help Net Security/CISA].</li>
+<li><strong>Sir David Attenborough f&ecirc;te ses 100 ans</strong> &mdash; Le naturaliste-r&eacute;alisateur britannique atteint le si&egrave;cle le 8 mai; le Mexique annonce parall&egrave;lement la sant&eacute; gratuite et universelle pour 120 millions de citoyens [Positive News].</li>
+<li><strong>Commonwealth Fusion vend 400 MW &agrave; Google et Eni</strong> &mdash; La Fall Line Fusion Power Station (Virginie) trouve ses deux premiers clients avant m&ecirc;me d'&ecirc;tre construite; tokamak de d&eacute;monstration au Massachusetts &agrave; 75% d'avancement [Scientific American].</li>
+<li><strong>Eurovision 2026 ouvre &agrave; Vienne mardi 12 mai</strong> &mdash; Demi-finales 12 et 14 mai, finale 16 mai au Wiener Stadthalle; 35 pays participants &mdash; le plus petit plateau depuis 2003 [Eurovision].</li>
+<li><strong>Asia-Pacific Superyacht Summit 7-8 mai &agrave; Kobe</strong> &mdash; Le Japon affiche son ambition d'infrastructure superyacht; Oceanco ouvre ses ateliers d'Alblasserdam le 22 mai pour le World Boating Day [SuperYacht Times].</li>
+</ul></div><div class="section-divider"><span>25 rubriques du jour</span></div><div class="hub-grid"><a class="hub-card" href="2026-05-09/llm-agents.html">
+  <div class="hub-card-overline" style="color:#6B4EFF">LLM &amp; Agents</div>
+  <div class="hub-card-title">Anthropic signe 1,8 Md$ avec Akamai et loue Colossus 1 &agrave; xAI</div>
+  <div class="hub-card-excerpt">&laquo; Revenu annualis&eacute; tripl&eacute; en un an &agrave; 30 Md$. Anthropic double les rate limits Claude Code (Pro/Max/Team/Enterprise) gr&acirc;ce &agrave; la capacit&eacute; lou&eacute;e dans le data center Memphis d'Elon Musk. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/geopolitique.html">
+  <div class="hub-card-overline" style="color:#D32F2F">G&eacute;opolitique</div>
+  <div class="hub-card-title">Yen au plus bas depuis les ann&eacute;es 80 &mdash; collision US-Japon en vue</div>
+  <div class="hub-card-excerpt">&laquo; Le yen plonge &agrave; son plus bas niveau face au dollar depuis quarante ans, rendant les exports japonais plus comp&eacute;titifs et ouvrant un nouveau front commercial avec Washington. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/finance.html">
+  <div class="hub-card-overline" style="color:#1565C0">Finance</div>
+  <div class="hub-card-title">S&amp;P 500 c&egrave;de 0,4% &agrave; 7337 apr&egrave;s record historique</div>
+  <div class="hub-card-excerpt">&laquo; Recul jeudi 8 mai apr&egrave;s les sommets de la veille &mdash; rebond du brut et incertitude sur les pourparlers US-Iran p&egrave;sent sur le sentiment apr&egrave;s un solide rapport emploi d'avril. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/cybersecurite.html">
+  <div class="hub-card-overline" style="color:#E65100">Cybers&eacute;curit&eacute;</div>
+  <div class="hub-card-title">Let's Encrypt suspend l'&eacute;mission &mdash; faille certificat crois&eacute;</div>
+  <div class="hub-card-excerpt">&laquo; Le 8 mai, Let's Encrypt stoppe toute &eacute;mission de certificats apr&egrave;s d&eacute;tection d'un d&eacute;faut critique sur un certificat crois&eacute;. Pendant ce temps Palo Alto PAN-OS et Ivanti EPMM sous exploitation active. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-08/liberte-surveillance-oss.html">
+  <div class="hub-card-overline" style="color:#4A148C">Libert&eacute; &amp; Surveillance &amp; OSS</div>
+  <div class="hub-card-title">CSAR europ&eacute;en &mdash; printemps de l'adoption controvers&eacute;e</div>
+  <div class="hub-card-excerpt">&laquo; Le Parlement et le Conseil pr&eacute;voient d'adopter le Child Sexual Abuse Regulation; critiques d&eacute;noncent un scan de masse des communications priv&eacute;es. Dataiku publie en parall&egrave;le Kiji Privacy Proxy en open-source. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/sante.html">
+  <div class="hub-card-overline" style="color:#C62828">Sant&eacute; &amp; M&eacute;decine</div>
+  <div class="hub-card-title">FDA approuve la premi&egrave;re th&eacute;rapie g&eacute;nique pour surdit&eacute; cong&eacute;nitale</div>
+  <div class="hub-card-excerpt">&laquo; Premi&egrave;re mondiale le 8 mai &mdash; un traitement g&eacute;n&eacute;tique pour la perte auditive h&eacute;r&eacute;ditaire. Le m&ecirc;me jour, Bizengri (zenocutuzumab) obtient le 7&egrave;me feu vert du programme National Priority Voucher pour cholangiocarcinome NRG1+. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/science-tech.html">
+  <div class="hub-card-overline" style="color:#00838F">Science &amp; Tech</div>
+  <div class="hub-card-title">Oxford d&eacute;montre le quadsqueezing &mdash; effet quantique d'ordre 4</div>
+  <div class="hub-card-excerpt">&laquo; Premi&egrave;re d&eacute;monstration exp&eacute;rimentale d'un effet quantique de quatri&egrave;me ordre &agrave; Oxford. En parall&egrave;le, atmosph&egrave;re fine d&eacute;tect&eacute;e sur l'objet trans-neptunien (612533) 2002 XV93 (annonce 4 mai). &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/espace-energie.html">
+  <div class="hub-card-overline" style="color:#1B5E20">Espace &amp; &Eacute;nergie</div>
+  <div class="hub-card-title">Commonwealth Fusion vend 400 MW &agrave; Google et Eni</div>
+  <div class="hub-card-excerpt">&laquo; La Fall Line Fusion Power Station (Virginie) trouve ses deux premiers clients avant construction. Tokamak de d&eacute;monstration au Massachusetts &agrave; 75% d'avancement, op&eacute;rationnel fin 2027. SpaceX CRS-34 d&eacute;colle mardi 12 mai vers l'ISS. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/innovation-startups.html">
+  <div class="hub-card-overline" style="color:#FF6D00">Innovation &amp; Startups</div>
+  <div class="hub-card-title">Moonshot AI l&egrave;ve 2 Md$ &mdash; valorisation 20 Md$</div>
+  <div class="hub-card-excerpt">&laquo; La startup IA chinoise boucle son tour men&eacute; par Long-Z Investment (Meituan) avec Tsinghua Holdings et China Mobile. Astranis (satellites) annonce 450 M$ S&eacute;rie E; Parallel Web Systems de Parag Agrawal l&egrave;ve 100 M$ chez Sequoia. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/culture-societe.html">
+  <div class="hub-card-overline" style="color:#795548">Culture &amp; Soci&eacute;t&eacute;</div>
+  <div class="hub-card-title">Amsterdam interdit la publicit&eacute; pour les &eacute;nergies fossiles</div>
+  <div class="hub-card-excerpt">&laquo; L'interdiction est entr&eacute;e en vigueur le 1er mai &mdash; &laquo; il n'y a plus de place &agrave; Amsterdam pour des annonceurs qui alimentent la crise climatique &raquo; d&eacute;clare un conseiller municipal. Premi&egrave;re capitale &agrave; franchir le pas. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/gastronomie.html">
+  <div class="hub-card-overline" style="color:#C2185B">Gastronomie</div>
+  <div class="hub-card-title">Michelin Qu&eacute;bec 2026 &mdash; 4 nouvelles &eacute;toiles, 3 Green Stars</div>
+  <div class="hub-card-excerpt">&laquo; Auberge Saint-Mathieu, Hoogan et Beaufort, Le Clan, et Sushi Nishinokaze re&ccedil;oivent une &eacute;toile. Coteau, Huit 100 Vingt et Les Mal-Aim&eacute;s d&eacute;crochent l'&eacute;toile verte pour gastronomie durable. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/maritime-sailing.html">
+  <div class="hub-card-overline" style="color:#0277BD">Maritime &amp; Sailing</div>
+  <div class="hub-card-title">Asia-Pacific Superyacht Summit &agrave; Kobe les 7-8 mai</div>
+  <div class="hub-card-excerpt">&laquo; Le Japon affiche son ambition d'infrastructure superyacht. Le m&eacute;diterran&eacute;en se redessine &mdash; arr&ecirc;ts plus courts, plus longs s&eacute;jours en moins d'escales, sous l'effet du carburant et des incertitudes s&eacute;curitaires r&eacute;gionales. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/bonnes-nouvelles.html">
+  <div class="hub-card-overline" style="color:#2E7D32">Bonnes Nouvelles</div>
+  <div class="hub-card-title">Sir David Attenborough f&ecirc;te ses 100 ans</div>
+  <div class="hub-card-excerpt">&laquo; Le naturaliste-r&eacute;alisateur britannique atteint le si&egrave;cle le 8 mai. Le Mexique annonce la sant&eacute; gratuite et universelle pour 120 millions de citoyens; un train direct Prague-Copenhague rouvre apr&egrave;s plus d'une d&eacute;cennie. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/podcasts-interviews.html">
+  <div class="hub-card-overline" style="color:#7B1FA2">Podcasts &amp; Interviews</div>
+  <div class="hub-card-title">Bill O'Reilly d&eacute;voile &laquo; We'll Do It Live &raquo;</div>
+  <div class="hub-card-excerpt">&laquo; Variety annonce le nouveau podcast d'interviews de Bill O'Reilly. C&ocirc;t&eacute; offre &eacute;mergente : les s&eacute;ries Money Trauma, City of Lights et Creation Myth confirment que le &laquo; slow listening &raquo; trouve son public en 2026. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/culture-arts.html">
+  <div class="hub-card-overline" style="color:#5D4037">Culture G&eacute;n&eacute;rale &amp; Arts</div>
+  <div class="hub-card-title">Eurovision 2026 ouvre &agrave; Vienne &mdash; demi-finales 12 et 14 mai</div>
+  <div class="hub-card-excerpt">&laquo; 35 pays participants au Wiener Stadthalle (le plus petit plateau depuis 2003), finale le 16 mai. La capitale du Mozart-Beethoven-Schubert se r&eacute;approprie sa centralit&eacute; musicale europ&eacute;enne. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/tech-voile.html">
+  <div class="hub-card-overline" style="color:#0288D1">Tech &amp; Voile</div>
+  <div class="hub-card-title">IA + voix Garmin sur Sirena Yachts &mdash; navigation main libre</div>
+  <div class="hub-card-excerpt">&laquo; Sirena d&eacute;ploie un syst&egrave;me de commande vocale d&eacute;velopp&eacute; avec Garmin pour gestion d'&eacute;nergie et navigation. La &laquo; Batman sail &raquo; (gennakers jumeaux structur&eacute;s) gagne en popularit&eacute;. Hybrides diesel-&eacute;lectrique : +20-30% &eacute;conomie carburant, adoption +10%/an. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/seamanship.html">
+  <div class="hub-card-overline" style="color:#1565C0">Seamanship &amp; Matelotage</div>
+  <div class="hub-card-title">Atlantic Challenge &mdash; Roskilde Danemark juillet 2026</div>
+  <div class="hub-card-excerpt">&laquo; Le Contest of Seamanship international se tient en juillet &agrave; Roskilde &mdash; &eacute;preuves de noeuds, &eacute;pissures, surliures, saisines, et man&oelig;uvres de gig. Marlinspike seamanship comme savoir-faire inscrit dans la m&eacute;moire des nations maritimes. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/techniques-culinaires.html">
+  <div class="hub-card-overline" style="color:#4E342E">Techniques Culinaires</div>
+  <div class="hub-card-title">Couteaux ultrasoniques &mdash; 30 000 vibrations/s, -50% d'effort</div>
+  <div class="hub-card-excerpt">&laquo; CES 2026 conf&eacute;r&eacute; la cuisine autonome. Bosch Cook AI adapte les recettes aux ingr&eacute;dients pr&eacute;sents; Lumo (grill infrarouge IA) reconna&icirc;t type-&eacute;paisseur-poids de la pi&egrave;ce. La &laquo; gourmetization &raquo; raffine les plats humbles avec techniques fine dining. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/nutrition-cuisine.html">
+  <div class="hub-card-overline" style="color:#BF360C">Nutrition &amp; Cuisine</div>
+  <div class="hub-card-title">Loma Linda &mdash; les &oelig;ufs r&eacute;duisent le risque d'Alzheimer chez 65+</div>
+  <div class="hub-card-excerpt">&laquo; Une consommation r&eacute;guli&egrave;re d'&oelig;ufs serait associ&eacute;e &agrave; un risque moindre d&eacute;velopper Alzheimer chez les seniors. C&ocirc;t&eacute; tendance, la fibre devient le focus 2026 &mdash; alimentation m&eacute;tabolique, axe di&egrave;te-microbiome-m&eacute;tabolome consolid&eacute;. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/developpement-bienetre.html">
+  <div class="hub-card-overline" style="color:#00695C">D&eacute;veloppement &amp; Bien-&ecirc;tre</div>
+  <div class="hub-card-title">Imperial College &mdash; un test sanguin pr&eacute;dit la r&eacute;ponse au traitement</div>
+  <div class="hub-card-excerpt">&laquo; Le test pr&eacute;dit l'&eacute;volution de plusieurs maladies inflammatoires et la r&eacute;ponse aux th&eacute;rapies, notamment chez les patients atteints de maladie inflammatoire chronique de l'intestin (MICI). M&eacute;decine de pr&eacute;cision &agrave; port&eacute;e clinique. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/musique-son.html">
+  <div class="hub-card-overline" style="color:#6A1B9A">Musique &amp; Son</div>
+  <div class="hub-card-title">Social Distortion sort un album apr&egrave;s 15 ans de silence</div>
+  <div class="hub-card-excerpt">&laquo; Le groupe punk-rock am&eacute;ricain rompt 15 ans de silence ce 8 mai. Madison Beer, Khalid et Kesha sortent &eacute;galement; Aldous Harding livre &laquo; Train on the Island &raquo; sur 4AD. Earl Sweatshirt et MIKE collaborent sur &laquo; POMPEII // UTILITY &raquo;. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/experiences-destinations.html">
+  <div class="hub-card-overline" style="color:#00838F">Exp&eacute;riences &amp; Destinations</div>
+  <div class="hub-card-title">Train direct Prague-Copenhague &mdash; cha&icirc;non manquant restaur&eacute;</div>
+  <div class="hub-card-excerpt">&laquo; Une nouvelle ligne grande vitesse relie pour la premi&egrave;re fois en plus d'une d&eacute;cennie les deux capitales en direct. Le rail europ&eacute;en recoud son tissu Nord-Est. Vienne attire 35 d&eacute;l&eacute;gations Eurovision &agrave; partir du 12 mai. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/entrepreneuriat-creatif.html">
+  <div class="hub-card-overline" style="color:#E64A19">Entrepreneuriat Cr&eacute;atif</div>
+  <div class="hub-card-title">Zoom Solopreneur 50 &mdash; 3 000 candidats, 5 laur&eacute;ats &agrave; 30 K$</div>
+  <div class="hub-card-excerpt">&laquo; Annonc&eacute; le 4 mai : la premi&egrave;re &eacute;dition du programme Zoom Solopreneur 50 reconna&icirc;t les entrepreneurs solo IA-natifs. 62% g&eacute;n&egrave;rent d&eacute;j&agrave; du chiffre, m&eacute;diane de cr&eacute;ation 2022. Services-conseil 20%, sant&eacute; 14%, impact social 12%. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/design-culinaire.html">
+  <div class="hub-card-overline" style="color:#AD1457">Design Culinaire &amp; Photographie</div>
+  <div class="hub-card-title">Photographie culinaire 2026 &mdash; les mains reviennent dans le cadre</div>
+  <div class="hub-card-excerpt">&laquo; Lumi&egrave;re naturelle, l&eacute;g&egrave;re imperfection, mains et gestes dans le cadre &mdash; la r&eacute;alit&eacute; remplace la perfection plastique. 57% des d&eacute;cisions clients pass&eacute;es par la photo, le derri&egrave;re des cuisines (prep, dressage) g&eacute;n&egrave;re +19% d'engagement. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-05-09/droit-maritime.html">
+  <div class="hub-card-overline" style="color:#01579B">Droit Maritime &amp; Yachting</div>
+  <div class="hub-card-title">Polar Code &eacute;tendu aux yachts de plaisance &gt;300 GT</div>
+  <div class="hub-card-excerpt">&laquo; Depuis le 1er janvier 2026, les yachts de plaisance &agrave; partir de 300 GT op&eacute;rant en eaux polaires sont assujettis aux exigences SOLAS de planification voyage et s&eacute;curit&eacute; navigation. Le code STCW amend&eacute; (anti-violence-harc&egrave;lement) reste en vigueur. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a></div><div class="bottom-nav"><a href="2026-05-02.html"><span class="bottom-nav-label">&larr; &Eacute;dition pr&eacute;c&eacute;dente</span><span class="bottom-nav-title">Samedi 2 Mai 2026 &mdash; N&deg;112</span></a><a href="archive.html"><span class="bottom-nav-label">Archives &rarr;</span><span class="bottom-nav-title">Toutes les &eacute;ditions</span></a></div></div><div class="site-footer">The World Affair &mdash; Edition N&deg;119</div>
+
+<!-- Passage Saver Widget -->
+<div id="ps-controls" style="position:fixed;bottom:20px;right:20px;z-index:9999;font-family:'Libre Baskerville',serif;">
+  <button id="ps-save-btn" style="display:none;background:#1a1714;color:#f4f1eb;border:none;padding:10px 16px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.2);">Sauver le passage</button>
+  <button id="ps-toggle" style="background:#8b3a3a;color:#f4f1eb;border:none;padding:10px 16px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;font-family:inherit;box-shadow:0 2px 8px rgba(0,0,0,0.2);margin-left:8px;">Mes passages</button>
+</div>
+<div id="ps-panel" style="position:fixed;bottom:70px;right:20px;width:360px;max-height:60vh;overflow-y:auto;background:#f4f1eb;border:1px solid #c8c0b4;box-shadow:0 4px 16px rgba(0,0,0,0.15);padding:16px;display:none;z-index:9998;font-family:'Libre Baskerville',serif;font-size:13px;color:#1a1714;">
+  <div style="font-family:'Playfair Display',serif;font-weight:700;font-size:14px;margin-bottom:12px;border-bottom:1px solid #c8c0b4;padding-bottom:8px;">Passages sauvegard&eacute;s</div>
+  <div id="ps-list"></div>
+</div>
+<script>
+(function(){
+  const STORAGE_KEY = 'nexus-passages-worldaffair';
+  const saveBtn = document.getElementById('ps-save-btn');
+  const toggleBtn = document.getElementById('ps-toggle');
+  const panel = document.getElementById('ps-panel');
+  const list = document.getElementById('ps-list');
+
+  function getPassages(){ try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch(e) { return []; } }
+  function setPassages(arr){ localStorage.setItem(STORAGE_KEY, JSON.stringify(arr)); }
+  function render(){
+    const items = getPassages();
+    if (items.length === 0) { list.innerHTML = '<div style="color:#8a847a;font-style:italic;">Aucun passage sauvegard&eacute;.</div>'; return; }
+    list.innerHTML = items.map((p,i) => `<div style="margin-bottom:14px;padding-bottom:12px;border-bottom:1px dashed #c8c0b4;"><div style="font-style:italic;color:#4a4540;line-height:1.5;">&laquo; ${p.text} &raquo;</div><div style="font-size:10px;color:#8a847a;margin-top:6px;letter-spacing:1px;text-transform:uppercase;">${p.date} &middot; <a href="${p.url}" style="color:#8b3a3a;">source</a> &middot; <a href="#" data-i="${i}" class="ps-del" style="color:#8b3a3a;">supprimer</a></div></div>`).join('');
+    list.querySelectorAll('.ps-del').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const idx = +e.target.dataset.i; const arr = getPassages(); arr.splice(idx,1); setPassages(arr); render(); }));
+  }
+  document.addEventListener('selectionchange', () => {
+    const sel = window.getSelection();
+    const txt = sel ? sel.toString().trim() : '';
+    if (txt.length > 10) { saveBtn.style.display = 'inline-block'; saveBtn.dataset.text = txt; } else { saveBtn.style.display = 'none'; }
+  });
+  saveBtn.addEventListener('click', () => {
+    const txt = saveBtn.dataset.text; if (!txt) return;
+    const arr = getPassages();
+    arr.unshift({ text: txt, url: window.location.pathname + window.location.hash, date: new Date().toLocaleDateString('fr-FR') });
+    setPassages(arr); saveBtn.style.display = 'none'; window.getSelection().removeAllRanges();
+    panel.style.display = 'block'; render();
+  });
+  toggleBtn.addEventListener('click', () => { const v = panel.style.display === 'block'; panel.style.display = v ? 'none' : 'block'; if (!v) render(); });
+})();
+</script>
+</body>
+</html>

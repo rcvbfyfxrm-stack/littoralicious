@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Dashboard — LITTORALICIOUS</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <style>
+        /* Dashboard-specific styles */
+        .dashboard {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--space-8) var(--space-4);
+        }
+
+        .dashboard__header {
+            border-bottom: 2px solid var(--color-ink);
+            padding-bottom: var(--space-4);
+            margin-bottom: var(--space-8);
+        }
+
+        .dashboard__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+        }
+
+        .dashboard__subtitle {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            margin-top: var(--space-1);
+        }
+
+        .dashboard__date-controls {
+            display: flex;
+            gap: var(--space-3);
+            margin-top: var(--space-4);
+            align-items: center;
+        }
+
+        .dashboard__date-controls label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-muted);
+        }
+
+        .dashboard__date-controls input[type="date"] {
+            padding: var(--space-2) var(--space-3);
+            border: 1px solid var(--color-border);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            font-family: var(--font-mono);
+            font-size: var(--text-sm);
+        }
+
+        .dashboard__date-controls button {
+            padding: var(--space-2) var(--space-4);
+            background: var(--color-ink);
+            color: var(--color-paper);
+            border: none;
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+            cursor: pointer;
+        }
+
+        .dashboard__quick-range {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-3);
+        }
+
+        .dashboard__quick-range button {
+            padding: var(--space-1) var(--space-3);
+            background: none;
+            border: 1px solid var(--color-border);
+            color: var(--color-muted);
+            font-family: var(--font-sans);
+            font-size: var(--text-xs);
+            cursor: pointer;
+            transition: all 150ms ease;
+        }
+
+        .dashboard__quick-range button:hover,
+        .dashboard__quick-range button.active {
+            border-color: var(--color-ink);
+            color: var(--color-ink);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-4);
+            margin-bottom: var(--space-8);
+        }
+
+        .stat-card {
+            padding: var(--space-6);
+            border: 1px solid var(--color-border);
+        }
+
+        .stat-card__label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-muted);
+            margin-bottom: var(--space-2);
+        }
+
+        .stat-card__value {
+            font-family: var(--font-mono);
+            font-size: var(--text-2xl);
+            font-weight: 600;
+        }
+
+        .stat-card__detail {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            margin-top: var(--space-1);
+        }
+
+        /* Sections */
+        .dashboard-section {
+            margin-bottom: var(--space-12);
+        }
+
+        .dashboard-section__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--space-2);
+            margin-bottom: var(--space-4);
+        }
+
+        /* Article Table */
+        .article-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: var(--text-sm);
+        }
+
+        .article-table th {
+            text-align: left;
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-muted);
+            padding: var(--space-2) var(--space-3);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .article-table td {
+            padding: var(--space-3);
+            border-bottom: 1px solid var(--color-border);
+            vertical-align: top;
+        }
+
+        .article-table tr:hover {
+            background: var(--color-subtle);
+        }
+
+        .article-table__slug {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-sea);
+        }
+
+        .article-table__bar {
+            display: inline-block;
+            height: 8px;
+            background: var(--color-sea);
+            min-width: 2px;
+            transition: width 0.3s ease;
+        }
+
+        /* Reactions breakdown */
+        .reactions-breakdown {
+            display: flex;
+            gap: var(--space-2);
+            flex-wrap: wrap;
+        }
+
+        .reactions-breakdown__chip {
+            font-size: var(--text-xs);
+            padding: 2px var(--space-2);
+            background: var(--color-subtle);
+            white-space: nowrap;
+        }
+
+        /* Recent comments */
+        .recent-comment {
+            padding: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .recent-comment__header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-2);
+        }
+
+        .recent-comment__author {
+            font-weight: 600;
+            font-size: var(--text-sm);
+        }
+
+        .recent-comment__meta {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+        }
+
+        .recent-comment__body {
+            font-size: var(--text-sm);
+            color: var(--color-ink);
+            line-height: var(--leading-normal);
+        }
+
+        .recent-comment__article {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-sea);
+        }
+
+        .recent-comment__votes {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            margin-top: var(--space-2);
+        }
+
+        /* Device breakdown */
+        .device-bar {
+            display: flex;
+            height: 24px;
+            overflow: hidden;
+            margin-top: var(--space-2);
+        }
+
+        .device-bar__segment {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-xs);
+            color: #fff;
+            font-weight: 600;
+            transition: width 0.3s ease;
+        }
+
+        .device-bar__segment--desktop { background: var(--color-sea); }
+        .device-bar__segment--tablet { background: var(--color-salt); }
+        .device-bar__segment--mobile { background: var(--color-ink); }
+
+        .device-legend {
+            display: flex;
+            gap: var(--space-4);
+            margin-top: var(--space-2);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+        }
+
+        .device-legend span::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin-right: var(--space-1);
+            vertical-align: middle;
+        }
+
+        .device-legend .legend-desktop::before { background: var(--color-sea); }
+        .device-legend .legend-tablet::before { background: var(--color-salt); }
+        .device-legend .legend-mobile::before { background: var(--color-ink); }
+
+        /* Referrer list */
+        .referrer-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .referrer-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--space-2) 0;
+            border-bottom: 1px solid var(--color-border);
+            font-size: var(--text-sm);
+        }
+
+        .referrer-list__source {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+        }
+
+        .referrer-list__count {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+        }
+
+        /* Loading state */
+        .loading {
+            color: var(--color-muted);
+            font-style: italic;
+            font-size: var(--text-sm);
+        }
+
+        /* Newsletter section */
+        .newsletter-info {
+            padding: var(--space-6);
+            background: var(--color-subtle);
+            border-left: 3px solid var(--color-sea);
+        }
+
+        .newsletter-info p {
+            font-size: var(--text-sm);
+            line-height: var(--leading-normal);
+            margin-bottom: var(--space-3);
+        }
+
+        .newsletter-info a {
+            color: var(--color-sea);
+            text-decoration: underline;
+        }
+
+        .newsletter-info code {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            background: var(--color-paper);
+            padding: 2px 6px;
+            border: 1px solid var(--color-border);
+        }
+
+        /* Daily chart */
+        .daily-chart {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 100px;
+            margin-top: var(--space-4);
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .daily-chart__bar {
+            flex: 1;
+            background: var(--color-sea);
+            min-width: 8px;
+            position: relative;
+            transition: height 0.3s ease;
+        }
+
+        .daily-chart__bar:hover {
+            opacity: 0.8;
+        }
+
+        .daily-chart__bar:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-ink);
+            color: var(--color-paper);
+            padding: 2px 6px;
+            font-size: 10px;
+            font-family: var(--font-mono);
+            white-space: nowrap;
+        }
+
+        .daily-chart__labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            font-family: var(--font-mono);
+            color: var(--color-muted);
+            margin-top: var(--space-1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .article-table {
+                font-size: var(--text-xs);
+            }
+            .dashboard__date-controls {
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <main class="dashboard">
+
+        <header class="dashboard__header">
+            <h1 class="dashboard__title">Littoralicious Dashboard</h1>
+            <p class="dashboard__subtitle">Community engagement, readership, and newsletter intelligence</p>
+
+            <div class="dashboard__quick-range">
+                <button data-range="7" class="active">7 days</button>
+                <button data-range="30">30 days</button>
+                <button data-range="90">90 days</button>
+                <button data-range="all">All time</button>
+            </div>
+        </header>
+
+        <!-- Top-level stats -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-card__label">Page Views</div>
+                <div class="stat-card__value" id="stat-views">--</div>
+                <div class="stat-card__detail" id="stat-views-detail"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__label">Reactions</div>
+                <div class="stat-card__value" id="stat-reactions">--</div>
+                <div class="stat-card__detail" id="stat-reactions-detail"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__label">Comments</div>
+                <div class="stat-card__value" id="stat-comments">--</div>
+                <div class="stat-card__detail" id="stat-comments-detail"></div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-card__label">Articles</div>
+                <div class="stat-card__value" id="stat-articles">13</div>
+                <div class="stat-card__detail">Published</div>
+            </div>
+        </div>
+
+        <!-- Daily views chart -->
+        <section class="dashboard-section">
+            <h2 class="dashboard-section__title">Daily Page Views</h2>
+            <div class="daily-chart" id="daily-chart"></div>
+            <div class="daily-chart__labels" id="daily-chart-labels"></div>
+        </section>
+
+        <!-- Article Performance Table -->
+        <section class="dashboard-section">
+            <h2 class="dashboard-section__title">Article Performance</h2>
+            <table class="article-table">
+                <thead>
+                    <tr>
+                        <th>Article</th>
+                        <th>Views</th>
+                        <th>Reactions</th>
+                        <th>Comments</th>
+                        <th>Sentiment</th>
+                    </tr>
+                </thead>
+                <tbody id="article-table-body">
+                    <tr><td colspan="5" class="loading">Loading article data...</td></tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Device & Referrer Breakdown -->
+        <section class="dashboard-section">
+            <h2 class="dashboard-section__title">Audience</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-8);">
+                <div>
+                    <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin-bottom: var(--space-2);">Devices</h3>
+                    <div class="device-bar" id="device-bar"></div>
+                    <div class="device-legend">
+                        <span class="legend-desktop" id="legend-desktop">Desktop: --</span>
+                        <span class="legend-tablet" id="legend-tablet">Tablet: --</span>
+                        <span class="legend-mobile" id="legend-mobile">Mobile: --</span>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="font-size: var(--text-sm); text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin-bottom: var(--space-2);">Top Referrers</h3>
+                    <ul class="referrer-list" id="referrer-list">
+                        <li class="loading">Loading...</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Comments -->
+        <section class="dashboard-section">
+            <h2 class="dashboard-section__title">Recent Comments</h2>
+            <div id="recent-comments">
+                <p class="loading">Loading comments...</p>
+            </div>
+        </section>
+
+        <!-- Newsletter Signups -->
+        <section class="dashboard-section">
+            <h2 class="dashboard-section__title">Newsletter Signups</h2>
+            <div class="stats-grid" style="margin-bottom: var(--space-6);">
+                <div class="stat-card">
+                    <div class="stat-card__label">Total Signups Tracked</div>
+                    <div class="stat-card__value" id="stat-signups">--</div>
+                    <div class="stat-card__detail" id="stat-signups-detail">From on-site forms</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-card__label">Top Signup Source</div>
+                    <div class="stat-card__value" id="stat-signup-source" style="font-size: var(--text-sm);">--</div>
+                    <div class="stat-card__detail" id="stat-signup-source-detail"></div>
+                </div>
+            </div>
+            <div id="signup-timeline" style="margin-bottom: var(--space-6);"></div>
+        </section>
+
+        <!-- Newsletter Admin -->
+        <section class="dashboard-section">
+            <h2 class="dashboard-section__title">Newsletter (Buttondown)</h2>
+            <div class="newsletter-info">
+                <p><strong>Your Buttondown account:</strong> <a href="https://buttondown.com/littoralicious" target="_blank">buttondown.com/littoralicious</a></p>
+                <p><strong>Admin dashboard:</strong> <a href="https://buttondown.com/emails" target="_blank">buttondown.com/emails</a> — see subscribers, open rates, and send emails.</p>
+                <p><strong>Subscribers page:</strong> <a href="https://buttondown.com/subscribers" target="_blank">buttondown.com/subscribers</a> — see who signed up, when, and their status.</p>
+                <p><strong>RSS-to-email:</strong> Connect your RSS feed to auto-notify subscribers when you publish. Go to <a href="https://buttondown.com/settings" target="_blank">Settings</a> &rarr; Newsletter &rarr; RSS feed URL: <code>https://www.littoralicious.com/feed.xml</code></p>
+                <p><strong>API key:</strong> If you want programmatic access, get it from <a href="https://buttondown.com/settings" target="_blank">Settings &rarr; API</a>. The API endpoint is <code>https://api.buttondown.com/v1/</code></p>
+                <p><strong>Welcome email:</strong> Go to <a href="https://buttondown.com/settings#emails" target="_blank">Settings &rarr; Emails</a> &rarr; enable "Send welcome email" and paste the welcome text below.</p>
+            </div>
+        </section>
+
+        <!-- Firestore Setup Notes -->
+        <section class="dashboard-section">
+            <h2 class="dashboard-section__title">Setup Notes</h2>
+            <div class="newsletter-info">
+                <p><strong>Firestore Rules:</strong> Make sure the <code>pageviews</code> and <code>stats</code> collections allow writes from the client. In <a href="https://console.firebase.google.com/project/littoralicious/firestore/rules" target="_blank">Firebase Console &rarr; Firestore &rarr; Rules</a>, ensure these collections have write access:</p>
+                <p><code>match /pageviews/{doc} { allow create: if true; allow read: if true; }</code></p>
+                <p><code>match /stats/{doc} { allow write: if true; allow read: if true; }</code></p>
+                <p>The <code>articles</code> collection should already have read/write access from the community features.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
+
+    <!-- Admin auth gate -->
+    <script>
+    (function () {
+        // Two authorised admin accounts — backup access if one ever breaks.
+        // Both are also listed in firestore.rules. Removing an entry here AND
+        // from the rules revokes that account's admin powers.
+        const ADMIN_EMAILS = ['arnaudcallier@pm.me', 'arnaudcallier@icloud.com'];
+        const auth = firebase.auth();
+
+        function showSignIn(msg) {
+            document.querySelector('.dashboard').innerHTML =
+                '<div style="max-width: 420px; margin: 4rem auto; padding: var(--space-6); border: 1px solid var(--color-border); font-family: var(--font-sans);">' +
+                '<h1 style="font-family: var(--font-serif); font-size: var(--text-xl); margin-bottom: var(--space-4);">Admin sign-in required</h1>' +
+                (msg ? '<p style="color: #b91c1c; font-size: var(--text-sm); margin-bottom: var(--space-3);">' + msg + '</p>' : '') +
+                '<form id="admin-signin" style="display: flex; flex-direction: column; gap: var(--space-3);">' +
+                '<input type="email" name="email" placeholder="email" required style="padding: var(--space-2); border: 1px solid var(--color-border);">' +
+                '<input type="password" name="password" placeholder="password" required style="padding: var(--space-2); border: 1px solid var(--color-border);">' +
+                '<button type="submit" style="padding: var(--space-2) var(--space-4); background: var(--color-ink); color: var(--color-paper); border: none; cursor: pointer;">Sign in</button>' +
+                '</form></div>';
+            document.getElementById('admin-signin').addEventListener('submit', function (e) {
+                e.preventDefault();
+                const email = e.target.email.value.trim();
+                const password = e.target.password.value;
+                auth.signInWithEmailAndPassword(email, password)
+                    .catch(function (err) { showSignIn('Sign-in failed: ' + err.message); });
+            });
+        }
+
+        // Block dashboard render until auth confirmed
+        window.__adminAuthPending = true;
+        auth.onAuthStateChanged(function (user) {
+            if (user && ADMIN_EMAILS.indexOf(user.email) !== -1) {
+                window.__adminAuthPending = false;
+                if (typeof window.__adminLoadAll === 'function') window.__adminLoadAll();
+            } else if (user) {
+                auth.signOut();
+                showSignIn('This account is not authorised.');
+            } else {
+                showSignIn('');
+            }
+        });
+    })();
+    </script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        // Article slugs — auto-loaded from data/articles.json on init.
+        // Single source of truth; no more drift between dashboard and site.
+        let ARTICLES = [];
+        async function loadArticleSlugs() {
+            try {
+                const r = await fetch('data/articles.json', { cache: 'no-cache' });
+                const j = await r.json();
+                ARTICLES = (j.articles || []).map(function (a) { return a.slug; }).filter(Boolean);
+                document.getElementById('stat-articles').textContent = ARTICLES.length;
+            } catch (e) {
+                console.log('Failed to load articles.json — falling back to empty list:', e.message);
+            }
+        }
+
+        const REACTION_TYPES = ['useful', 'tried-this', 'learned', 'chefs-kiss', 'need-more', 'disagree'];
+        // Also support legacy reaction field names
+        const LEGACY_REACTIONS = ['agrees', 'disagrees'];
+
+        let currentRange = 7;
+
+        // ---- Helpers ----
+
+        function daysAgo(n) {
+            const d = new Date();
+            d.setDate(d.getDate() - n);
+            d.setHours(0, 0, 0, 0);
+            return d;
+        }
+
+        function formatDate(d) {
+            return d.toISOString().split('T')[0];
+        }
+
+        function timeAgo(date) {
+            const seconds = Math.floor((Date.now() - date.getTime()) / 1000);
+            if (seconds < 60) return 'Just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return minutes + 'm ago';
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return hours + 'h ago';
+            const days = Math.floor(hours / 24);
+            return days + 'd ago';
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ---- Date range controls ----
+
+        document.querySelectorAll('.dashboard__quick-range button').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.dashboard__quick-range button').forEach(function (b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                var range = this.dataset.range;
+                currentRange = range === 'all' ? 365 : parseInt(range);
+                loadAll();
+            });
+        });
+
+        // ---- Load Page Views ----
+
+        async function loadPageViews() {
+            var since = daysAgo(currentRange);
+            var totalViews = 0;
+            var viewsBySlug = {};
+            var viewsByDevice = { desktop: 0, tablet: 0, mobile: 0 };
+            var viewsByReferrer = {};
+            var viewsByDay = {};
+
+            try {
+                var snap = await db.collection('pageviews')
+                    .where('timestamp', '>=', since)
+                    .orderBy('timestamp', 'desc')
+                    .get();
+
+                snap.forEach(function (doc) {
+                    var d = doc.data();
+                    totalViews++;
+
+                    var slug = d.slug || 'unknown';
+                    viewsBySlug[slug] = (viewsBySlug[slug] || 0) + 1;
+
+                    var device = d.device || 'desktop';
+                    viewsByDevice[device] = (viewsByDevice[device] || 0) + 1;
+
+                    var referrer = d.referrer || 'direct';
+                    viewsByReferrer[referrer] = (viewsByReferrer[referrer] || 0) + 1;
+
+                    if (d.timestamp && d.timestamp.toDate) {
+                        var day = formatDate(d.timestamp.toDate());
+                        viewsByDay[day] = (viewsByDay[day] || 0) + 1;
+                    }
+                });
+            } catch (err) {
+                console.log('Pageviews load failed:', err.message);
+                // Try stats collection as fallback
+                try {
+                    var statsSnap = await db.collection('stats')
+                        .orderBy(firebase.firestore.FieldPath.documentId())
+                        .get();
+                    statsSnap.forEach(function (doc) {
+                        var day = doc.id;
+                        var data = doc.data();
+                        if (day >= formatDate(since)) {
+                            viewsByDay[day] = data._total || 0;
+                            totalViews += viewsByDay[day];
+                            Object.keys(data).forEach(function (key) {
+                                if (key !== '_total') {
+                                    viewsBySlug[key] = (viewsBySlug[key] || 0) + data[key];
+                                }
+                            });
+                        }
+                    });
+                } catch (e) {
+                    console.log('Stats fallback also failed:', e.message);
+                }
+            }
+
+            // Update stat cards
+            document.getElementById('stat-views').textContent = totalViews;
+            document.getElementById('stat-views-detail').textContent = 'Last ' + currentRange + ' days';
+
+            // Device bar
+            renderDeviceBar(viewsByDevice, totalViews);
+
+            // Referrer list
+            renderReferrers(viewsByReferrer);
+
+            // Daily chart
+            renderDailyChart(viewsByDay);
+
+            return viewsBySlug;
+        }
+
+        function renderDeviceBar(devices, total) {
+            var bar = document.getElementById('device-bar');
+            if (total === 0) {
+                bar.innerHTML = '<div style="color: var(--color-muted); font-size: var(--text-sm); padding: var(--space-2);">No data yet</div>';
+                return;
+            }
+            var html = '';
+            ['desktop', 'tablet', 'mobile'].forEach(function (d) {
+                var pct = Math.round((devices[d] / total) * 100);
+                if (pct > 0) {
+                    html += '<div class="device-bar__segment device-bar__segment--' + d + '" style="width:' + pct + '%">' + pct + '%</div>';
+                }
+            });
+            bar.innerHTML = html;
+            document.getElementById('legend-desktop').textContent = 'Desktop: ' + devices.desktop;
+            document.getElementById('legend-tablet').textContent = 'Tablet: ' + devices.tablet;
+            document.getElementById('legend-mobile').textContent = 'Mobile: ' + devices.mobile;
+        }
+
+        function renderReferrers(referrers) {
+            var list = document.getElementById('referrer-list');
+            var sorted = Object.entries(referrers).sort(function (a, b) { return b[1] - a[1]; }).slice(0, 10);
+            if (sorted.length === 0) {
+                list.innerHTML = '<li style="color: var(--color-muted); font-size: var(--text-sm);">No data yet</li>';
+                return;
+            }
+            list.innerHTML = sorted.map(function (entry) {
+                return '<li><span class="referrer-list__source">' + escapeHtml(entry[0]) + '</span><span class="referrer-list__count">' + entry[1] + '</span></li>';
+            }).join('');
+        }
+
+        function renderDailyChart(viewsByDay) {
+            var chart = document.getElementById('daily-chart');
+            var labels = document.getElementById('daily-chart-labels');
+            var days = [];
+
+            for (var i = currentRange - 1; i >= 0; i--) {
+                var d = daysAgo(i);
+                var key = formatDate(d);
+                days.push({ date: key, count: viewsByDay[key] || 0 });
+            }
+
+            var max = Math.max.apply(null, days.map(function (d) { return d.count; }));
+            if (max === 0) max = 1;
+
+            chart.innerHTML = days.map(function (d) {
+                var height = Math.max(2, (d.count / max) * 100);
+                return '<div class="daily-chart__bar" style="height:' + height + 'px" data-tooltip="' + d.date + ': ' + d.count + '"></div>';
+            }).join('');
+
+            // Show first and last labels
+            if (days.length > 0) {
+                labels.innerHTML = '<span>' + days[0].date + '</span><span>' + days[days.length - 1].date + '</span>';
+            }
+        }
+
+        // ---- Load Article Engagement ----
+
+        async function loadArticleData(viewsBySlug) {
+            var tbody = document.getElementById('article-table-body');
+            var rows = [];
+            var totalReactions = 0;
+            var totalComments = 0;
+
+            for (var i = 0; i < ARTICLES.length; i++) {
+                var slug = ARTICLES[i];
+                var views = viewsBySlug[slug] || 0;
+                var reactions = {};
+                var reactionTotal = 0;
+                var commentCount = 0;
+
+                try {
+                    // Get article reactions
+                    var artDoc = await db.collection('articles').doc(slug).get();
+                    if (artDoc.exists) {
+                        var data = artDoc.data();
+                        REACTION_TYPES.forEach(function (r) {
+                            if (data[r]) {
+                                reactions[r] = data[r];
+                                reactionTotal += data[r];
+                            }
+                        });
+                        // Legacy fields
+                        if (data.agrees) { reactions['agrees'] = data.agrees; reactionTotal += data.agrees; }
+                        if (data.disagrees) { reactions['disagrees'] = data.disagrees; reactionTotal += data.disagrees; }
+                    }
+
+                    // Get comment count
+                    var commSnap = await db.collection('articles').doc(slug).collection('comments').get();
+                    commentCount = commSnap.size;
+                } catch (err) {
+                    console.log('Failed to load data for ' + slug + ':', err.message);
+                }
+
+                totalReactions += reactionTotal;
+                totalComments += commentCount;
+
+                rows.push({
+                    slug: slug,
+                    views: views,
+                    reactions: reactions,
+                    reactionTotal: reactionTotal,
+                    commentCount: commentCount,
+                });
+            }
+
+            // Update stat cards
+            document.getElementById('stat-reactions').textContent = totalReactions;
+            document.getElementById('stat-reactions-detail').textContent = 'Across all articles';
+            document.getElementById('stat-comments').textContent = totalComments;
+            document.getElementById('stat-comments-detail').textContent = 'Across all articles';
+
+            // Sort by views (then reactions)
+            rows.sort(function (a, b) { return (b.views + b.reactionTotal) - (a.views + a.reactionTotal); });
+
+            var maxViews = Math.max.apply(null, rows.map(function (r) { return r.views; }));
+            if (maxViews === 0) maxViews = 1;
+
+            tbody.innerHTML = rows.map(function (row) {
+                var barWidth = Math.max(2, (row.views / maxViews) * 80);
+                var reactionChips = '';
+                Object.keys(row.reactions).forEach(function (key) {
+                    if (row.reactions[key] > 0) {
+                        reactionChips += '<span class="reactions-breakdown__chip">' + key + ': ' + row.reactions[key] + '</span>';
+                    }
+                });
+
+                // Calculate sentiment
+                var positive = (row.reactions['useful'] || 0) + (row.reactions['tried-this'] || 0) +
+                               (row.reactions['learned'] || 0) + (row.reactions['chefs-kiss'] || 0) +
+                               (row.reactions['agrees'] || 0);
+                var negative = (row.reactions['disagree'] || 0) + (row.reactions['disagrees'] || 0);
+                var sentiment = row.reactionTotal > 0
+                    ? Math.round((positive / row.reactionTotal) * 100) + '% positive'
+                    : '--';
+
+                return '<tr>' +
+                    '<td><a href="articles/' + row.slug + '.html" target="_blank" class="article-table__slug">' + row.slug + '</a></td>' +
+                    '<td>' + row.views + ' <span class="article-table__bar" style="width:' + barWidth + 'px"></span></td>' +
+                    '<td><div class="reactions-breakdown">' + (reactionChips || '<span style="color:var(--color-muted)">--</span>') + '</div></td>' +
+                    '<td>' + row.commentCount + '</td>' +
+                    '<td>' + sentiment + '</td>' +
+                '</tr>';
+            }).join('');
+        }
+
+        // ---- Load Recent Comments ----
+
+        async function loadRecentComments() {
+            var container = document.getElementById('recent-comments');
+            var allComments = [];
+
+            for (var i = 0; i < ARTICLES.length; i++) {
+                var slug = ARTICLES[i];
+                try {
+                    var snap = await db.collection('articles').doc(slug).collection('comments')
+                        .orderBy('timestamp', 'desc').limit(5).get();
+                    snap.forEach(function (doc) {
+                        var d = doc.data();
+                        d._slug = slug;
+                        d._id = doc.id;
+                        allComments.push(d);
+                    });
+                } catch (err) {
+                    // Skip
+                }
+            }
+
+            // Sort by timestamp
+            allComments.sort(function (a, b) {
+                var ta = a.timestamp && a.timestamp.toDate ? a.timestamp.toDate() : new Date(0);
+                var tb = b.timestamp && b.timestamp.toDate ? b.timestamp.toDate() : new Date(0);
+                return tb - ta;
+            });
+
+            // Show latest 20
+            allComments = allComments.slice(0, 20);
+
+            if (allComments.length === 0) {
+                container.innerHTML = '<p style="color: var(--color-muted); font-size: var(--text-sm);">No comments yet.</p>';
+                return;
+            }
+
+            container.innerHTML = allComments.map(function (c) {
+                var ts = c.timestamp && c.timestamp.toDate ? c.timestamp.toDate() : new Date();
+                return '<div class="recent-comment">' +
+                    '<div class="recent-comment__header">' +
+                        '<span class="recent-comment__author">' + escapeHtml(c.name || 'Anonymous') + '</span>' +
+                        '<span class="recent-comment__meta">' + timeAgo(ts) + '</span>' +
+                    '</div>' +
+                    '<div class="recent-comment__body">' + escapeHtml(c.content || '') + '</div>' +
+                    '<div style="display:flex; justify-content:space-between; margin-top:var(--space-2);">' +
+                        '<span class="recent-comment__article">on ' + c._slug + '</span>' +
+                        '<span class="recent-comment__votes">+' + (c.agrees || 0) + ' / -' + (c.disagrees || 0) + '</span>' +
+                    '</div>' +
+                '</div>';
+            }).join('');
+        }
+
+        // ---- Load Newsletter Signups ----
+
+        async function loadNewsletterSignups() {
+            var since = daysAgo(currentRange);
+            var totalSignups = 0;
+            var signupsBySource = {};
+            var signupsByDay = {};
+
+            try {
+                var snap = await db.collection('newsletter_signups')
+                    .where('timestamp', '>=', since)
+                    .orderBy('timestamp', 'desc')
+                    .get();
+
+                snap.forEach(function (doc) {
+                    var d = doc.data();
+                    totalSignups++;
+
+                    var source = d.source || '/unknown';
+                    signupsBySource[source] = (signupsBySource[source] || 0) + 1;
+
+                    if (d.timestamp && d.timestamp.toDate) {
+                        var day = formatDate(d.timestamp.toDate());
+                        signupsByDay[day] = (signupsByDay[day] || 0) + 1;
+                    }
+                });
+            } catch (err) {
+                console.log('Newsletter signups load failed:', err.message);
+            }
+
+            document.getElementById('stat-signups').textContent = totalSignups;
+            document.getElementById('stat-signups-detail').textContent = 'Last ' + currentRange + ' days';
+
+            // Top source
+            var topSource = '--';
+            var topCount = 0;
+            Object.entries(signupsBySource).forEach(function (entry) {
+                if (entry[1] > topCount) {
+                    topSource = entry[0];
+                    topCount = entry[1];
+                }
+            });
+            document.getElementById('stat-signup-source').textContent = topSource;
+            document.getElementById('stat-signup-source-detail').textContent = topCount > 0 ? topCount + ' signups' : '';
+
+            // Timeline
+            var timeline = document.getElementById('signup-timeline');
+            if (totalSignups === 0) {
+                timeline.innerHTML = '<p style="color: var(--color-muted); font-size: var(--text-sm);">No signups tracked yet. Signups will appear here once people subscribe through the site.</p>';
+                return;
+            }
+
+            var html = '<table class="article-table"><thead><tr><th>Source Page</th><th>Signups</th></tr></thead><tbody>';
+            Object.entries(signupsBySource)
+                .sort(function (a, b) { return b[1] - a[1]; })
+                .forEach(function (entry) {
+                    html += '<tr><td class="article-table__slug">' + escapeHtml(entry[0]) + '</td><td>' + entry[1] + '</td></tr>';
+                });
+            html += '</tbody></table>';
+            timeline.innerHTML = html;
+        }
+
+        // ---- Load All ----
+
+        async function loadAll() {
+            await loadArticleSlugs();
+            var viewsBySlug = await loadPageViews();
+            await loadArticleData(viewsBySlug);
+            await loadRecentComments();
+            await loadNewsletterSignups();
+            await loadSignupDetail();
+            await loadStarsAndVotes();
+            await loadUsers();
+        }
+
+        // ---- Init (gated by auth) ----
+
+        if (typeof firebase === 'undefined' || typeof db === 'undefined') {
+            document.querySelector('.dashboard').innerHTML =
+                '<p style="padding: var(--space-8); color: var(--color-muted);">Firebase not loaded. Check your connection.</p>';
+            return;
+        }
+        window.__adminLoadAll = loadAll;
+        if (!window.__adminAuthPending) loadAll();
+    })();
+    </script>
+
+</body>
+</html>

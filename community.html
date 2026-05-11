@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Littoralicious community — yacht chefs and culinary practitioners from around the world. Join, share your story, and connect.">
+
+    <title>The Crew — LITTORALICIOUS</title>
+
+    <meta property="og:title" content="The Crew — Littoralicious Community">
+    <meta property="og:description" content="Yacht chefs and culinary practitioners from around the world. Join the crew.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.littoralicious.com/community.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <style>
+        /* Community page styles */
+        .community-header {
+            padding: var(--space-16) 0 var(--space-8);
+            text-align: center;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .community-header__count {
+            font-family: var(--font-mono);
+            font-size: var(--text-4xl);
+            font-weight: 700;
+            color: var(--color-sea);
+            line-height: 1;
+        }
+
+        .community-header__label {
+            font-size: var(--text-sm);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-muted);
+            margin-top: var(--space-2);
+        }
+
+        .community-header__subtitle {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            color: var(--color-muted);
+            margin-top: var(--space-4);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Join form */
+        .join-section {
+            padding: var(--space-12) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .join-section__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-2);
+        }
+
+        .join-section__subtitle {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            margin-bottom: var(--space-6);
+        }
+
+        .join-form {
+            max-width: 600px;
+        }
+
+        .join-form__row {
+            display: flex;
+            gap: var(--space-3);
+            margin-bottom: var(--space-3);
+        }
+
+        .join-form__field {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-1);
+        }
+
+        .join-form__field--full {
+            flex: none;
+            width: 100%;
+        }
+
+        .join-form label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-muted);
+            font-weight: 600;
+        }
+
+        .join-form input,
+        .join-form select,
+        .join-form textarea {
+            padding: var(--space-3) var(--space-4);
+            border: 1px solid var(--color-border);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+        }
+
+        .join-form input:focus,
+        .join-form select:focus,
+        .join-form textarea:focus {
+            outline: none;
+            border-color: var(--color-sea);
+        }
+
+        .join-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+
+        .join-form select {
+            cursor: pointer;
+        }
+
+        .join-form__actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-4);
+            margin-top: var(--space-4);
+        }
+
+        .join-form__submit {
+            background: var(--color-ink);
+            color: var(--color-paper);
+            border: none;
+            padding: var(--space-3) var(--space-8);
+            font-family: var(--font-sans);
+            font-size: var(--text-sm);
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 150ms ease;
+        }
+
+        .join-form__submit:hover {
+            opacity: 0.85;
+        }
+
+        .join-form__status {
+            font-size: var(--text-sm);
+        }
+
+        .join-form__status--success { color: var(--color-sea); }
+        .join-form__status--error { color: #b44; }
+
+        /* Badge preview */
+        .badge-preview {
+            margin-top: var(--space-6);
+            padding: var(--space-4);
+            background: var(--color-subtle);
+            display: none;
+        }
+
+        .badge-preview.visible {
+            display: block;
+        }
+
+        .badge-preview__label {
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-muted);
+            margin-bottom: var(--space-2);
+        }
+
+        .badge-preview__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-2);
+            font-size: var(--text-sm);
+            font-weight: 600;
+        }
+
+        /* Badges */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: var(--space-1);
+            padding: 2px var(--space-2);
+            font-size: var(--text-xs);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .badge--rookie      { background: #e8f0fe; color: #1a56db; }
+        .badge--line-cook    { background: #e6f4ea; color: #137333; }
+        .badge--sous-chef    { background: #fef3e2; color: #b45309; }
+        .badge--head-chef    { background: #fce8e8; color: #b91c1c; }
+        .badge--master       { background: #f3e8ff; color: #7c3aed; }
+        .badge--yacht        { background: rgba(45, 74, 94, 0.1); color: var(--color-sea); }
+
+        /* Role badges */
+        .badge--sole         { background: #fef3c7; color: #92400e; font-weight: 700; }
+        .badge--head         { background: #fce8e8; color: #b91c1c; }
+        .badge--sous         { background: #fef3e2; color: #b45309; }
+        .badge--crew         { background: #e6f4ea; color: #137333; }
+        .badge--pastry       { background: #fce7f3; color: #9d174d; }
+        .badge--freelance    { background: #e0f2fe; color: #0369a1; }
+        .badge--rotational   { background: #f0fdf4; color: #15803d; }
+        .badge--land         { background: #f5f5f4; color: #57534e; }
+        .badge--student      { background: #ede9fe; color: #6d28d9; }
+        .badge--retired      { background: #fef9c3; color: #854d0e; }
+
+        [data-theme="dark"] .badge--rookie      { background: rgba(26, 86, 219, 0.15); }
+        [data-theme="dark"] .badge--line-cook    { background: rgba(19, 115, 51, 0.15); }
+        [data-theme="dark"] .badge--sous-chef    { background: rgba(180, 83, 9, 0.15); }
+        [data-theme="dark"] .badge--head-chef    { background: rgba(185, 28, 28, 0.15); }
+        [data-theme="dark"] .badge--master       { background: rgba(124, 58, 237, 0.15); }
+        [data-theme="dark"] .badge--sole         { background: rgba(146, 64, 14, 0.2); }
+        [data-theme="dark"] .badge--pastry       { background: rgba(157, 23, 77, 0.15); }
+        [data-theme="dark"] .badge--freelance    { background: rgba(3, 105, 161, 0.15); }
+        [data-theme="dark"] .badge--student      { background: rgba(109, 40, 217, 0.15); }
+        [data-theme="dark"] .badge--retired      { background: rgba(133, 77, 14, 0.15); }
+
+        /* Crew grid */
+        .crew-section {
+            padding: var(--space-12) 0;
+        }
+
+        .crew-section__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-6);
+        }
+
+        .crew-sort {
+            display: flex;
+            gap: var(--space-3);
+            margin-bottom: var(--space-6);
+            border-bottom: 1px solid var(--color-border);
+            padding-bottom: var(--space-3);
+        }
+
+        .crew-sort__btn {
+            background: none;
+            border: none;
+            font-family: var(--font-sans);
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-muted);
+            cursor: pointer;
+            padding: var(--space-1) var(--space-2);
+        }
+
+        .crew-sort__btn:hover { color: var(--color-ink); }
+        .crew-sort__btn.active { color: var(--color-ink); border-bottom: 2px solid var(--color-sea); }
+
+        .crew-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-4);
+        }
+
+        /* Profile card */
+        .profile-card {
+            border: 1px solid var(--color-border);
+            padding: var(--space-6);
+            transition: border-color 150ms ease;
+        }
+
+        .profile-card:hover {
+            border-color: var(--color-sea);
+        }
+
+        .profile-card__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: var(--space-3);
+        }
+
+        .profile-card__name {
+            font-weight: 700;
+            font-size: var(--text-base);
+        }
+
+        .profile-card__meta {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            margin-bottom: var(--space-3);
+        }
+
+        .profile-card__badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin-bottom: var(--space-3);
+        }
+
+        .profile-card__bio {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            line-height: var(--leading-normal);
+        }
+
+        .profile-card__footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: var(--space-4);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .profile-card__share {
+            background: none;
+            border: none;
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            cursor: pointer;
+            padding: 0;
+            font-family: var(--font-sans);
+        }
+
+        .profile-card__share:hover { color: var(--color-sea); }
+
+        .profile-card__joined {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            font-family: var(--font-mono);
+        }
+
+        /* Empty state */
+        .crew-empty {
+            text-align: center;
+            padding: var(--space-12) 0;
+            color: var(--color-muted);
+        }
+
+        .crew-empty__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-2);
+            color: var(--color-ink);
+        }
+
+        /* Photo upload & sticker */
+        .photo-upload__dropzone {
+            width: 120px;
+            height: 120px;
+            border: 2px dashed var(--color-border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 150ms ease;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .photo-upload__dropzone:hover {
+            border-color: var(--color-sea);
+        }
+
+        .photo-upload__dropzone.has-photo {
+            border: 3px solid var(--color-sea);
+        }
+
+        .photo-upload__placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--space-1);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+        }
+
+        .photo-upload__hint {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            margin-top: var(--space-2);
+            max-width: 120px;
+            text-align: center;
+        }
+
+        .sticker-preview {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Sticker in profile cards */
+        .profile-card__sticker {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: 2px solid var(--color-sea);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        .profile-card__header {
+            display: flex;
+            gap: var(--space-3);
+            align-items: center;
+            margin-bottom: var(--space-3);
+        }
+
+        .profile-card__header-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* Sticker in comments */
+        .comment__sticker {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            border: 2px solid var(--color-sea);
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .join-form__row { flex-direction: column; }
+            .crew-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Masthead -->
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
+                    <span class="masthead__description">Sailing Around The Plate - Littoraly Delicious</span>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="shore-larder.html">Shore Larder</a>
+                    <a href="the-method.html">The Method</a>
+                    <a href="littoral-heritage.html">Heritage</a>
+                    <a href="the-evidence.html">The Evidence</a>
+                    <a href="the-bridge.html">The Bridge</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- Community Header with Chef Count -->
+        <header class="community-header">
+            <div class="container">
+                <div class="community-header__count" id="chef-count">--</div>
+                <div class="community-header__label">Chefs in the Crew</div>
+                <p class="community-header__subtitle">
+                    Yacht chefs and culinary practitioners from around the world. No rank, no politics — just people who feed others with intention.
+                </p>
+            </div>
+        </header>
+
+        <!-- Join the Crew -->
+        <section class="join-section">
+            <div class="container">
+                <h2 class="join-section__title">Join the Crew</h2>
+                <p class="join-section__subtitle">Tell your story. It takes 30 seconds. No login required.</p>
+
+                <form class="join-form" id="join-form">
+                    <div class="join-form__row">
+                        <div class="join-form__field">
+                            <label for="chef-name">Name *</label>
+                            <input type="text" id="chef-name" name="name" placeholder="How you want to be known" required>
+                        </div>
+                        <div class="join-form__field">
+                            <label for="chef-years">Years in the Kitchen *</label>
+                            <select id="chef-years" name="years" required>
+                                <option value="">Select...</option>
+                                <option value="0-2">0 – 2 years</option>
+                                <option value="2-5">2 – 5 years</option>
+                                <option value="5-10">5 – 10 years</option>
+                                <option value="10-15">10 – 15 years</option>
+                                <option value="15+">15+ years</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="join-form__row">
+                        <div class="join-form__field">
+                            <label for="chef-role">Role *</label>
+                            <select id="chef-role" name="role" required>
+                                <option value="">Select...</option>
+                                <option value="sole-chef">Sole Chef</option>
+                                <option value="head-chef">Head Chef</option>
+                                <option value="sous-chef">Sous Chef</option>
+                                <option value="crew-chef">Crew Chef</option>
+                                <option value="pastry">Pastry Chef</option>
+                                <option value="freelance">Freelance</option>
+                                <option value="rotational">Rotational</option>
+                                <option value="land-chef">Land-Based Chef</option>
+                                <option value="student">Student</option>
+                                <option value="retired">Retired Legend</option>
+                            </select>
+                        </div>
+                        <div class="join-form__field">
+                            <label for="chef-vessel">Vessel Type</label>
+                            <select id="chef-vessel" name="vessel">
+                                <option value="">Select...</option>
+                                <option value="motor-yacht">Motor Yacht</option>
+                                <option value="sailing-yacht">Sailing Yacht</option>
+                                <option value="explorer">Explorer</option>
+                                <option value="catamaran">Catamaran</option>
+                                <option value="charter">Charter</option>
+                                <option value="private">Private</option>
+                                <option value="land-based">Land-Based</option>
+                                <option value="between-boats">Between Boats</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="join-form__row">
+                        <div class="join-form__field">
+                            <label for="chef-speciality">Speciality</label>
+                            <input type="text" id="chef-speciality" name="speciality" placeholder="Mediterranean, pastry, sushi...">
+                        </div>
+                    </div>
+
+                    <div class="join-form__row">
+                        <div class="join-form__field">
+                            <label for="chef-photo">Your Photo</label>
+                            <div class="photo-upload" id="photo-upload">
+                                <input type="file" id="chef-photo" name="photo" accept="image/*" style="display:none;">
+                                <div class="photo-upload__dropzone" id="photo-dropzone">
+                                    <div class="photo-upload__placeholder" id="photo-placeholder">
+                                        <span style="font-size: var(--text-2xl);">&#x1F4F7;</span>
+                                        <span>Tap to upload</span>
+                                    </div>
+                                    <canvas id="sticker-canvas" width="200" height="200" style="display:none;"></canvas>
+                                    <img id="sticker-preview" class="sticker-preview" style="display:none;" alt="Your sticker">
+                                </div>
+                                <div class="photo-upload__hint">This becomes your sticker in comments</div>
+                            </div>
+                        </div>
+                        <div class="join-form__field">
+                            <label for="chef-bio">Your Story</label>
+                            <textarea id="chef-bio" name="bio" placeholder="How did you end up cooking? What drives you? Keep it short — a few sentences." maxlength="500"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="join-form__row">
+                        <div class="join-form__field">
+                            <label for="chef-link">Social Link (optional)</label>
+                            <input type="url" id="chef-link" name="link" placeholder="Instagram, LinkedIn, website...">
+                        </div>
+                    </div>
+
+                    <!-- Badge Preview -->
+                    <div class="badge-preview" id="badge-preview">
+                        <div class="badge-preview__label">Your Badge</div>
+                        <div class="badge-preview__badge" id="badge-preview-content"></div>
+                    </div>
+
+                    <div class="join-form__actions">
+                        <button type="submit" class="join-form__submit">Join the Crew</button>
+                        <span class="join-form__status" id="join-status"></span>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <!-- The Crew -->
+        <section class="crew-section">
+            <div class="container">
+                <h2 class="crew-section__title">The Crew</h2>
+
+                <div class="crew-sort">
+                    <button class="crew-sort__btn active" data-sort="newest">Newest</button>
+                    <button class="crew-sort__btn" data-sort="experience">Most Experienced</button>
+                </div>
+
+                <div class="crew-grid" id="crew-grid">
+                    <p style="color: var(--color-muted); font-style: italic;">Loading profiles...</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+                      target="popupwindow">
+                    <label for="footer-email-community">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-community" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">For those who feed others with intention.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="shore-larder.html">Shore Larder</a></li>
+                            <li><a href="the-method.html">The Method</a></li>
+                            <li><a href="littoral-heritage.html">Heritage</a></li>
+                            <li><a href="the-evidence.html">The Evidence</a></li>
+                            <li><a href="the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="about.html">Manifesto</a></li>
+                            <li><a href="founder.html">Founder</a></li>
+                            <li><a href="contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+    <script src="assets/js/firebase-config.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+    (function () {
+        'use strict';
+
+        // Badge system — experience
+        var BADGES = {
+            '0-2':  { label: 'First Flame',          emoji: '\u{1F525}', cls: 'badge--rookie',    desc: 'Just lit the fire' },
+            '2-5':  { label: 'Salt & Steel',          emoji: '\u{1F52A}', cls: 'badge--line-cook', desc: 'Knife skills locked in' },
+            '5-10': { label: 'Saucier',               emoji: '\u{1FAD5}', cls: 'badge--sous-chef', desc: 'The sauce tells the story' },
+            '10-15':{ label: 'Iron Galley',            emoji: '\u{2693}',  cls: 'badge--head-chef', desc: 'Forged at sea' },
+            '15+':  { label: 'Old Salt',               emoji: '\u{1F30A}', cls: 'badge--master',    desc: 'The ocean knows your name' },
+        };
+
+        // Role badges
+        var ROLE_BADGES = {
+            'sole-chef':    { label: 'Sole Chef',      emoji: '\u{1F4AA}', cls: 'badge--sole' },
+            'head-chef':    { label: 'Head Chef',       emoji: '\u{1F451}', cls: 'badge--head' },
+            'sous-chef':    { label: 'Sous Chef',       emoji: '\u{2B50}',  cls: 'badge--sous' },
+            'crew-chef':    { label: 'Crew Chef',       emoji: '\u{1F37D}', cls: 'badge--crew' },
+            'pastry':       { label: 'Pastry Chef',     emoji: '\u{1F370}', cls: 'badge--pastry' },
+            'freelance':    { label: 'Freelance',       emoji: '\u{1F30D}', cls: 'badge--freelance' },
+            'rotational':   { label: 'Rotational',      emoji: '\u{1F504}', cls: 'badge--rotational' },
+            'land-chef':    { label: 'Land-Based Chef', emoji: '\u{1F3E0}', cls: 'badge--land' },
+            'student':      { label: 'Student',         emoji: '\u{1F4DA}', cls: 'badge--student' },
+            'retired':      { label: 'Retired Legend',   emoji: '\u{1F3C6}', cls: 'badge--retired' },
+        };
+
+        var VESSEL_BADGES = {
+            'motor-yacht':   'Motor Yacht',
+            'sailing-yacht': 'Sailing Yacht',
+            'explorer':      'Explorer',
+            'catamaran':     'Catamaran',
+            'charter':       'Charter',
+            'private':       'Private',
+            'land-based':    'Land-Based',
+            'between-boats': 'Between Boats',
+        };
+
+        var currentSort = 'newest';
+
+        function escapeHtml(text) {
+            var div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        function getBadgeHTML(years) {
+            var b = BADGES[years];
+            if (!b) return '';
+            return '<span class="badge ' + b.cls + '" title="' + b.desc + '">' + b.emoji + ' ' + b.label + '</span>';
+        }
+
+        function getRoleBadgeHTML(role) {
+            var b = ROLE_BADGES[role];
+            if (!b) return '';
+            return '<span class="badge ' + b.cls + '">' + b.emoji + ' ' + b.label + '</span>';
+        }
+
+        function getVesselBadgeHTML(vessel) {
+            if (!vessel || !VESSEL_BADGES[vessel]) return '';
+            return '<span class="badge badge--yacht">\u{26F5} ' + VESSEL_BADGES[vessel] + '</span>';
+        }
+
+        // Badge preview — updates when experience or role changes
+        var yearsSelect = document.getElementById('chef-years');
+        var roleSelect = document.getElementById('chef-role');
+        var badgePreview = document.getElementById('badge-preview');
+        var badgeContent = document.getElementById('badge-preview-content');
+
+        function updateBadgePreview() {
+            var years = yearsSelect ? yearsSelect.value : '';
+            var role = roleSelect ? roleSelect.value : '';
+            var html = '';
+            if (years && BADGES[years]) html += getBadgeHTML(years);
+            if (role && ROLE_BADGES[role]) html += getRoleBadgeHTML(role);
+            if (html) {
+                badgeContent.innerHTML = html;
+                badgePreview.classList.add('visible');
+            } else {
+                badgePreview.classList.remove('visible');
+            }
+        }
+
+        if (yearsSelect) yearsSelect.addEventListener('change', updateBadgePreview);
+        if (roleSelect) roleSelect.addEventListener('change', updateBadgePreview);
+
+        // ---- Photo upload & sticker generator ----
+
+        var photoInput = document.getElementById('chef-photo');
+        var dropzone = document.getElementById('photo-dropzone');
+        var placeholder = document.getElementById('photo-placeholder');
+        var stickerCanvas = document.getElementById('sticker-canvas');
+        var stickerPreview = document.getElementById('sticker-preview');
+        var stickerDataUrl = null;
+
+        if (dropzone && photoInput) {
+            dropzone.addEventListener('click', function () { photoInput.click(); });
+
+            photoInput.addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    processPhoto(this.files[0]);
+                }
+            });
+        }
+
+        function processPhoto(file) {
+            if (file.size > 5 * 1024 * 1024) {
+                alert('Photo must be under 5 MB.');
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var img = new Image();
+                img.onload = function () {
+                    generateSticker(img);
+                };
+                img.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function generateSticker(img) {
+            var size = 200;
+            var canvas = stickerCanvas;
+            var ctx = canvas.getContext('2d');
+            canvas.width = size;
+            canvas.height = size;
+
+            // Clear
+            ctx.clearRect(0, 0, size, size);
+
+            // Draw circular clip
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2 - 4, 0, Math.PI * 2);
+            ctx.closePath();
+            ctx.clip();
+
+            // Crop-center the image
+            var scale = Math.max(size / img.width, size / img.height);
+            var w = img.width * scale;
+            var h = img.height * scale;
+            var x = (size - w) / 2;
+            var y = (size - h) / 2;
+            ctx.drawImage(img, x, y, w, h);
+            ctx.restore();
+
+            // Draw border ring
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2 - 3, 0, Math.PI * 2);
+            ctx.strokeStyle = '#2d4a5e'; // sea color
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            // Outer white ring (sticker edge)
+            ctx.beginPath();
+            ctx.arc(size / 2, size / 2, size / 2 - 1, 0, Math.PI * 2);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Get data URL
+            stickerDataUrl = canvas.toDataURL('image/jpeg', 0.5);
+            // Cap at ~100KB to stay well under Firestore 1MB doc limit
+            if (stickerDataUrl.length > 150000) {
+                stickerDataUrl = canvas.toDataURL('image/jpeg', 0.3);
+            }
+
+            // Show preview
+            stickerPreview.src = stickerDataUrl;
+            stickerPreview.style.display = 'block';
+            placeholder.style.display = 'none';
+            dropzone.classList.add('has-photo');
+        }
+
+        // Load chef count
+        async function loadChefCount() {
+            var countEl = document.getElementById('chef-count');
+            try {
+                var snap = await db.collection('chefs').get();
+                countEl.textContent = snap.size;
+            } catch (err) {
+                countEl.textContent = '0';
+            }
+        }
+
+        // Build profile card HTML
+        function buildProfileCard(data, id) {
+            var badges = getBadgeHTML(data.years);
+            if (data.role) badges += getRoleBadgeHTML(data.role);
+            if (data.vessel) badges += getVesselBadgeHTML(data.vessel);
+
+            var bio = data.bio ? '<div class="profile-card__bio">' + escapeHtml(data.bio) + '</div>' : '';
+
+            var meta = [];
+            if (data.speciality) meta.push(escapeHtml(data.speciality));
+            if (data.years) meta.push(data.years + ' years');
+            var metaHTML = meta.length > 0
+                ? '<div class="profile-card__meta">' + meta.join(' &middot; ') + '</div>'
+                : '';
+
+            var link = '';
+            if (data.link) {
+                try {
+                    var hostname = new URL(data.link).hostname.replace('www.', '');
+                    link = '<a href="' + escapeHtml(data.link) + '" target="_blank" rel="noopener noreferrer" style="font-size: var(--text-xs); color: var(--color-sea);">' + hostname + '</a>';
+                } catch (e) {}
+            }
+
+            var joined = '';
+            if (data.timestamp && data.timestamp.toDate) {
+                var d = data.timestamp.toDate();
+                joined = d.toLocaleDateString('en-GB', { month: 'short', year: 'numeric' });
+            }
+
+            var stickerImg = data.sticker
+                ? '<img class="profile-card__sticker" src="' + data.sticker + '" alt="">'
+                : '<div class="profile-card__sticker" style="background: var(--color-subtle); display:flex; align-items:center; justify-content:center; font-size: 20px;">\u{1F468}\u{200D}\u{1F373}</div>';
+
+            return '<div class="profile-card" data-id="' + id + '">' +
+                '<div class="profile-card__header">' +
+                    stickerImg +
+                    '<div class="profile-card__header-info">' +
+                        '<span class="profile-card__name">' + escapeHtml(data.name) + '</span>' +
+                        (link ? '<br>' + link : '') +
+                    '</div>' +
+                '</div>' +
+                metaHTML +
+                '<div class="profile-card__badges">' + badges + '</div>' +
+                bio +
+                '<div class="profile-card__footer">' +
+                    '<span class="profile-card__joined">Joined ' + joined + '</span>' +
+                    '<button class="profile-card__share" data-id="' + id + '" data-name="' + escapeHtml(data.name) + '">Share profile</button>' +
+                '</div>' +
+            '</div>';
+        }
+
+        // Load profiles
+        async function loadProfiles() {
+            var grid = document.getElementById('crew-grid');
+
+            try {
+                var orderField = currentSort === 'experience' ? 'yearsNum' : 'timestamp';
+                var orderDir = 'desc';
+
+                var snap = await db.collection('chefs').orderBy(orderField, orderDir).get();
+
+                if (snap.empty) {
+                    grid.innerHTML =
+                        '<div class="crew-empty" style="grid-column: 1 / -1;">' +
+                            '<div class="crew-empty__title">No one here yet.</div>' +
+                            '<p>Be the first to join the crew.</p>' +
+                        '</div>';
+                    return;
+                }
+
+                var html = '';
+                snap.forEach(function (doc) {
+                    html += buildProfileCard(doc.data(), doc.id);
+                });
+                grid.innerHTML = html;
+
+                // Bind share buttons
+                grid.querySelectorAll('.profile-card__share').forEach(function (btn) {
+                    btn.addEventListener('click', function () {
+                        var name = this.dataset.name;
+                        var url = window.location.origin + '/community.html#' + this.dataset.id;
+                        if (navigator.share) {
+                            navigator.share({ title: name + ' — Littoralicious Crew', url: url });
+                        } else {
+                            navigator.clipboard.writeText(url).then(function () {
+                                btn.textContent = 'Link copied!';
+                                setTimeout(function () { btn.textContent = 'Share profile'; }, 2000);
+                            });
+                        }
+                    });
+                });
+
+            } catch (err) {
+                console.log('Failed to load profiles:', err.message);
+                grid.innerHTML = '<p style="color: var(--color-muted);">Could not load profiles.</p>';
+            }
+        }
+
+        // Sort controls
+        document.querySelectorAll('.crew-sort__btn').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                document.querySelectorAll('.crew-sort__btn').forEach(function (b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                currentSort = this.dataset.sort;
+                loadProfiles();
+            });
+        });
+
+        // Years to number mapping for sorting
+        var YEARS_NUM = { '0-2': 1, '2-5': 3, '5-10': 7, '10-15': 12, '15+': 20 };
+
+        // Join form
+        var form = document.getElementById('join-form');
+        var status = document.getElementById('join-status');
+
+        if (form) {
+            form.addEventListener('submit', async function (e) {
+                e.preventDefault();
+
+                var name = form.querySelector('[name="name"]').value.trim();
+                var years = form.querySelector('[name="years"]').value;
+                var role = form.querySelector('[name="role"]').value;
+                var vessel = form.querySelector('[name="vessel"]').value;
+                var speciality = form.querySelector('[name="speciality"]').value.trim();
+                var bio = form.querySelector('[name="bio"]').value.trim();
+                var link = form.querySelector('[name="link"]').value.trim();
+
+                if (typeof db === 'undefined') {
+                    status.textContent = 'Database not loaded. Refresh the page and try again.';
+                    status.className = 'join-form__status join-form__status--error';
+                    return;
+                }
+
+                if (!name || !years || !role) {
+                    status.textContent = 'Name, experience, and role are required.';
+                    status.className = 'join-form__status join-form__status--error';
+                    return;
+                }
+
+                if (bio.length > 500) {
+                    status.textContent = 'Bio must be under 500 characters.';
+                    status.className = 'join-form__status join-form__status--error';
+                    return;
+                }
+
+                // Validate link if provided
+                if (link && !link.match(/^https?:\/\//)) {
+                    link = 'https://' + link;
+                }
+
+                var submitBtn = form.querySelector('.join-form__submit');
+                submitBtn.textContent = 'Joining...';
+                submitBtn.disabled = true;
+                status.textContent = '';
+
+                try {
+                    var profileData = {
+                        name: name,
+                        years: years,
+                        yearsNum: YEARS_NUM[years] || 0,
+                        role: role || null,
+                        vessel: vessel || null,
+                        speciality: speciality || null,
+                        bio: bio || null,
+                        link: link || null,
+                        sticker: stickerDataUrl || null,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                    };
+
+                    var docRef = await db.collection('chefs').add(profileData);
+
+                    // Save profile ID + sticker locally so comments show their sticker
+                    localStorage.setItem('littoralicious-chef-id', docRef.id);
+                    localStorage.setItem('littoralicious-chef-name', name);
+                    if (stickerDataUrl) {
+                        localStorage.setItem('littoralicious-chef-sticker', stickerDataUrl);
+                    }
+
+                    status.textContent = 'Welcome to the crew.';
+                    status.className = 'join-form__status join-form__status--success';
+                    submitBtn.textContent = 'Welcome aboard';
+
+                    // Notify owner
+                    var roleName = ROLE_BADGES[role] ? ROLE_BADGES[role].label : role;
+                    var badgeName = BADGES[years] ? BADGES[years].label : years;
+                    fetch('https://ntfy.sh/littoralicious-72cfde43', {
+                        method: 'POST',
+                        headers: { 'Title': 'New crew member: ' + name, 'Tags': 'cook' },
+                        body: badgeName + ' | ' + roleName + (speciality ? ' | ' + speciality : ''),
+                    }).catch(function () {});
+
+                    // Refresh
+                    loadChefCount();
+                    loadProfiles();
+
+                    form.reset();
+                    stickerDataUrl = null;
+                    if (stickerPreview) { stickerPreview.style.display = 'none'; }
+                    if (placeholder) { placeholder.style.display = 'flex'; }
+                    if (dropzone) { dropzone.classList.remove('has-photo'); }
+                    badgePreview.classList.remove('visible');
+
+                    setTimeout(function () {
+                        submitBtn.textContent = 'Join the Crew';
+                        submitBtn.disabled = false;
+                    }, 3000);
+
+                } catch (err) {
+                    console.error('Join failed:', err.code, err.message, err);
+                    if (err.message && err.message.includes('exceeds the maximum')) {
+                        status.textContent = 'Photo is too large. Try a smaller image or skip the photo.';
+                    } else {
+                        status.textContent = 'Something went wrong (' + (err.code || 'unknown') + '). Check console for details.';
+                    }
+                    status.className = 'join-form__status join-form__status--error';
+                    submitBtn.textContent = 'Join the Crew';
+                    submitBtn.disabled = false;
+                }
+            });
+        }
+
+        // Init
+        if (typeof firebase !== 'undefined' && typeof db !== 'undefined') {
+            loadChefCount();
+            loadProfiles();
+        }
+    })();
+    </script>
+
+</body>
+</html>

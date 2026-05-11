@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Quattro Elementi — Four triangles united
+    Pure alchemical symbols, prominent
+    Fire △ Water ▽ Air △̶ Earth ▽̶
+  -->
+
+  <!-- Outer circle - the cosmos -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE — Top, large triangle pointing up -->
+  <path d="M 50 10 L 65 35 L 35 35 Z" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- WATER — Bottom, large triangle pointing down -->
+  <path d="M 50 90 L 35 65 L 65 65 Z" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- AIR — Right, triangle with horizontal bar -->
+  <path d="M 90 50 L 70 65 L 70 35 Z" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="72" y1="55" x2="84" y2="55" stroke="#0a0a0a" stroke-width="2"/>
+
+  <!-- EARTH — Left, inverted triangle with horizontal bar -->
+  <path d="M 10 50 L 30 35 L 30 65 Z" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="16" y1="45" x2="28" y2="45" stroke="#0a0a0a" stroke-width="2"/>
+
+  <!-- Center point - quinta essentia -->
+  <circle cx="50" cy="50" r="4" fill="#0a0a0a"/>
+
+</svg>

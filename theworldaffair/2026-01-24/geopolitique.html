@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Géopolitique — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Samedi 24 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;24</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-24.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#8b3a3a">Géopolitique</div>
+  <h1 class="article-title">VUE D'ENSEMBLE</h1>
+  <div class="article-date">Samedi 24 Janvier 2026 &mdash; Edition N&deg;24</div>
+</div><div class="article-body"><h1>Rapport: Géopolitique & Relations Internationales</h1>
+<h2>Date : 2026-01-24</h2>
+<hr>
+<h2>🌍 VUE D'ENSEMBLE</h2>
+<p><strong>Tensions principales aujourd'hui :</strong></p>
+<table><thead><tr><th>Région</th><th>Niveau</th><th>Évolution</th><th>Événement clé</th></tr></thead><tbody>
+<tr><td>Ukraine</td><td>🔴</td><td>↔️ Stagnation</td><td>Remaniement gouvernemental, préparation négociations</td></tr>
+<tr><td>Gaza</td><td>🔴</td><td>↗️ Fragile</td><td>Ceasefire fragile, 411 morts depuis trêve</td></tr>
+<tr><td>Taiwan</td><td>🟠</td><td>↔️ Stable</td><td>Sommet Xi-Trump anticipé, pas d'escalade</td></tr>
+<tr><td>Institutions</td><td>🟠</td><td>↗️ Évolution</td><td>"Board of Peace" émerge comme alternative</td></tr>
+</tbody></table>
+<p><strong>Ce qui a changé en 24h :</strong></p>
+<ul>
+<li>"Board of Peace" : Volume trading $418K, Russie 42% probabilité de rejoindre</li>
+<li>Ukraine : Signaux de préparation pour négociations difficiles</li>
+<li>Gaza : Violations continues du ceasefire</li>
+</ul>
+<hr>
+<h2>🇺🇸🇨🇳🇷🇺🇪🇺 GRANDES PUISSANCES</h2>
+<h3>"Board of Peace" — Nouvelle Institution Internationale</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Nouvelle instance de résolution de conflits émergente</li>
+<li>Origine : Roadmap reconstruction Gaza, évoluée en alternative aux institutions traditionnelles</li>
+<li>Marchés prédictifs : $418K volume trading</li>
+<li>Deadline résolution : 31 mars 2026</li>
+</ul>
+<p><strong>Probabilités de participation :</strong></p>
+<table><thead><tr><th>Pays</th><th>Probabilité</th><th>Évolution</th></tr></thead><tbody>
+<tr><td>Russie</td><td>42%</td><td>En hausse</td></tr>
+<tr><td>Inde</td><td>23%</td><td>Stable</td></tr>
+</tbody></table>
+<p><strong>Source primaire :</strong> FinancialContent, marchés prédictifs</p>
+<p><strong>Contexte historique :</strong></p>
+<ul>
+<li>Test de la "diplomatie transactionnelle" de l'administration Trump</li>
+<li>Alternative aux blocages ONU (vétos répétés)</li>
+<li>Évolution du multilatéralisme</li>
+</ul>
+<p><strong>Perspectives multiples :</strong></p>
+<table><thead><tr><th>Acteur</th><th>Position</th><th>Intérêts</th></tr></thead><tbody>
+<tr><td>USA</td><td>Promoteur</td><td>Contourner blocages ONU, influence</td></tr>
+<tr><td>Russie</td><td>Observateur</td><td>Légitimation possible, alternative à isolement</td></tr>
+<tr><td>Chine</td><td>Non participant</td><td>Préfère institutions existantes où elle a influence</td></tr>
+<tr><td>Europe</td><td>Sceptique</td><td>Attachement au multilatéralisme traditionnel</td></tr>
+</tbody></table>
+<p><strong>Mon analyse :</strong></p>
+<ul>
+<li>Innovation diplomatique ou gadget ? À observer</li>
+<li>Si Russie rejoint = légitimation significative</li>
+<li>Risque : fragmentation du système international</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://markets.financialcontent.com/stocks/article/predictstreet-2026-1-24-the-price-of-peace-prediction-markets-signal-uncertainty-for-russia-and-india-as-board-of-peace-deadline-looms" target="_blank">FinancialContent</a></p>
+<hr>
+<h3>Conseil de Sécurité ONU — Nouveaux Membres</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>5 nouveaux membres non-permanents (2 ans) :</li>
+<li>Bahrain, Colombie, RD Congo, Lettonie, Liberia</li>
+<li>Rejoignent : Danemark, Grèce, Pakistan, Panama, Somalie</li>
+<li>+ 5 membres permanents (P5)</li>
+</ul>
+<p><strong>Ce qui compte vraiment :</strong></p>
+<ul>
+<li>Divisions profondes persistantes (Ukraine, Moyen-Orient)</li>
+<li>Action unifiée limitée par vétos</li>
+<li>Nouveaux membres = peu d'impact sur dynamiques fondamentales</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://news.un.org/en/story/2026/01/1166697" target="_blank">UN News</a></p>
+<hr>
+<h2>🔥 CONFLITS ACTIFS</h2>
+<h3>Ukraine — Préparation Négociations</h3>
+<p><strong>Situation terrain (24h) :</strong></p>
+<ul>
+<li>Ukraine reste sur la défensive</li>
+<li>Perte du saillant de Kursk (printemps)</li>
+<li>Russie avance lentement : Pokrovsk, Siversk (Donetsk), Huliaipole (Zaporizhzhia), Kupiansk (Kharkiv)</li>
+</ul>
+<p><strong>Sources :</strong></p>
+<ul>
+<li>Foreign Policy (occidental)</li>
+<li>Russia Matters (analyse)</li>
+<li>Divergences : Estimations pertes varient selon sources</li>
+</ul>
+<p><strong>Données clés :</strong></p>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Contexte</th></tr></thead><tbody>
+<tr><td>Territoire conquis par Russie</td><td><0.5% supplémentaire</td><td>Coût énorme</td></tr>
+<tr><td>Pertes russes estimées</td><td>100,000+ morts</td><td>Depuis début guerre</td></tr>
+<tr><td>Durée si continue</td><td>>WWI</td><td>Si dépasse mi-2026</td></tr>
+</tbody></table>
+<p><strong>Perspectives des parties :</strong></p>
+<p><strong>Russie :</strong></p>
+<ul>
+<li>Objectifs déclarés : "Dénazification", neutralité Ukraine</li>
+<li>Objectifs probables : Contrôle territorial, affaiblissement OTAN</li>
+<li>Contraintes : Pertes, économie sous sanctions</li>
+</ul>
+<p><strong>Ukraine :</strong></p>
+<ul>
+<li>Objectifs déclarés : Récupération territoire, sécurité</li>
+<li>Objectifs probables : Survie, garanties occidentales</li>
+<li>Contraintes : Épuisement, dépendance aide occidentale</li>
+</ul>
+<p><strong>Développement clé :</strong></p>
+<ul>
+<li>Remaniement gouvernemental ukrainien = signal préparation négociations difficiles</li>
+<li>Proposition Trump 28 points en discussion</li>
+<li>Scénario probable : Gel du conflit, pas reconnaissance légale</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<ul>
+<li>Tendance : Stagnation avec pression vers négociations</li>
+<li>"Le sort de l'Ukraine sera probablement décidé en 2026"</li>
+<li>Accord = fragile, gel probable, pas paix durable</li>
+</ul>
+<p><strong>Sources :</strong> <a href="https://foreignpolicy.com/2026/01/02/top-10-risks-2026-ukraine-trump/" target="_blank">Foreign Policy</a>, <a href="https://www.crisisgroup.org/cmt/global/10-conflicts-watch-2026" target="_blank">Crisis Group</a></p>
+<hr>
+<h3>Gaza — Ceasefire Fragile</h3>
+<p><strong>Situation terrain :</strong></p>
+<ul>
+<li>Ceasefire octobre 2024 (après 2 ans de guerre)</li>
+<li>Gaza de facto partitionnée : Israël contrôle >50% territoire</li>
+<li>Hamas : Refuse désarmement, réaffirme présence militaire/politique</li>
+</ul>
+<p><strong>Humanitaire :</strong></p>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Source</th></tr></thead><tbody>
+<tr><td>Morts depuis ceasefire</td><td>411</td><td>Rapports palestiniens</td></tr>
+<tr><td>Blessés depuis ceasefire</td><td>1,112</td><td>Rapports palestiniens</td></tr>
+<tr><td>Morts totaux guerre</td><td>>71,000</td><td>Estimations</td></tr>
+</tbody></table>
+<p><strong>Violations rapportées :</strong></p>
+<ul>
+<li>Violations israéliennes du ceasefire continues</li>
+<li>Aide humanitaire : Accès limité</li>
+</ul>
+<p><strong>Perspectives des parties :</strong></p>
+<p><strong>Israël :</strong></p>
+<ul>
+<li>Position : Sécurité, démantèlement Hamas</li>
+<li>Contraintes : Pression internationale, otages</li>
+</ul>
+<p><strong>Hamas :</strong></p>
+<ul>
+<li>Position : Refuse désarmement, résistance</li>
+<li>Contraintes : Territoire réduit, population déplacée</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<ul>
+<li>Tendance : Risque élevé d'effondrement ceasefire</li>
+<li>Phase 1 du plan Trump = fragile</li>
+<li>Partition de facto risque de devenir permanente</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.aa.com.tr/en/world/unresolved-wars-emerging-flashpoints-and-fragile-ceasefires-what-to-expect-in-2026/3784255" target="_blank">Anadolu Agency</a></p>
+<hr>
+<h2>🇨🇳🇹🇼 CHINE-TAIWAN</h2>
+<h3>Stabilité Relative Attendue</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Sommet Xi-Trump anticipé (avril 2026)</li>
+<li>Arrangement commercial tentative attendu</li>
+<li>Taiwan : $11.1B ventes d'armes US approuvées</li>
+<li>Taiwan : Plan défense $40B annoncé (novembre 2025)</li>
+</ul>
+<p><strong>Évaluation risque :</strong></p>
+<ul>
+<li>Pas parmi top risques géopolitiques 2026 (analystes)</li>
+<li>Activités "zone grise" continues mais pas escalade</li>
+<li>Russie : Réitère soutien à "une seule Chine"</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<ul>
+<li>Fenêtre de stabilité liée à diplomatie Trump-Xi</li>
+<li>Tensions structurelles inchangées</li>
+<li>Post-sommet = période à surveiller</li>
+</ul>
+<p><strong>Sources :</strong> <a href="https://www.cfr.org/report/conflicts-watch-2026" target="_blank">CFR</a>, <a href="https://www.stimson.org/2026/top-ten-global-risks-for-2026/" target="_blank">Stimson</a></p>
+<hr>
+<h2>💰 ÉCONOMIE MONDIALE & AIDE</h2>
+<h3>Coupes Aide Étrangère US</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Budget 2026 : $28.5B (estimations basses : $8.1B avec rescissions)</li>
+<li>Gel aide étrangère depuis janvier (executive order Trump)</li>
+<li>Impact estimé : >350,000 morts attribués aux coupes</li>
+</ul>
+<p><strong>Implications :</strong></p>
+<ul>
+<li>Crise humanitaire dans pays dépendants</li>
+<li>Vide comblé par Chine/Russie ?</li>
+<li>Reconfiguration influence globale US</li>
+</ul>
+<hr>
+<h2>🏛️ INSTITUTIONS & DIPLOMATIE</h2>
+<h3>Évolution du Multilatéralisme</h3>
+<p><strong>Tendances :</strong></p>
+<ul>
+<li>ONU : Blocages persistants</li>
+<li>"Board of Peace" : Alternative émergente</li>
+<li>BRICS : Expansion continue</li>
+<li>G7/G20 : Pertinence questionnée</li>
+</ul>
+<p><strong>Pattern :</strong></p>
+<ul>
+<li>Fragmentation du système international</li>
+<li>Institutions parallèles en compétition</li>
+<li>Diplomatie bilatérale/transactionnelle en hausse</li>
+</ul>
+<hr>
+<h2>📊 INDICATEURS STRATÉGIQUES</h2>
+<table><thead><tr><th>Indicateur</th><th>Valeur</th><th>Tendance</th><th>Signification</th></tr></thead><tbody>
+<tr><td>Aide US étrangère</td><td>$8-28B</td><td>↘️ Forte baisse</td><td>Retrait influence</td></tr>
+<tr><td>Volume "Board of Peace"</td><td>$418K</td><td>↗️</td><td>Intérêt croissant</td></tr>
+<tr><td>Morts Gaza (total)</td><td>>71,000</td><td>↗️</td><td>Crise humanitaire</td></tr>
+</tbody></table>
+<hr>
+<h2>🟡 À SURVEILLER</h2>
+<ul>
+<li><strong>31 mars</strong> : Deadline "Board of Peace"</li>
+<li><strong>Avril 2026</strong> : Sommet Xi-Trump</li>
+<li><strong>Mi-2026</strong> : Possible décision Ukraine</li>
+<li><strong>Venezuela</strong> : Situation Maduro</li>
+</ul>
+<hr>
+<h2>🚩 PROPAGANDA ALERT</h2>
+<ul>
+<li><strong>Chiffres de pertes</strong> : Toutes parties exagèrent/minimisent — croiser sources</li>
+<li><strong>"Board of Peace"</strong> : Présentation varie selon orientation source</li>
+<li><strong>Gaza</strong> : Narratives radicalement différentes selon source</li>
+</ul>
+<hr>
+<h2>❓ QUESTIONS OUVERTES</h2>
+<ol>
+<li>"Board of Peace" : Innovation ou fragmentation du système international ?</li>
+<li>Ukraine : Gel = stabilité ou préparation round suivant ?</li>
+<li>Aide US coupée : Qui comble le vide ? À quel prix ?</li>
+</ol>
+<hr>
+<p><em>Rapport généré le 2026-01-24</em></p></div><div class="bottom-nav"><a href="finance-marches.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Finance & Marchés</span></a><a href="liberte-surveillance.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Liberté & Surveillance &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; GÉOPOLITIQUE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

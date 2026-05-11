@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse every Littoralicious article by theme or tag — recipes, galley efficiency, ingredient deep-dives, food science, provisioning, career, and more.">
+    <title>Browse by Theme — LITTORALICIOUS</title>
+
+    <meta property="og:title" content="Browse by Theme — LITTORALICIOUS">
+    <meta property="og:description" content="Every article, organised by the themes yacht chefs actually search for.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.littoralicious.com/tags.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+
+    <style>
+        .search-bar {
+            width: 100%;
+            padding: var(--space-4);
+            font-size: var(--text-base);
+            font-family: inherit;
+            border: 1px solid var(--color-border);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            margin-bottom: var(--space-6);
+            box-sizing: border-box;
+        }
+        .search-bar:focus {
+            outline: none;
+            border-color: var(--color-ink);
+        }
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-6);
+            margin: var(--space-8) 0;
+        }
+        .theme-card {
+            border: 1px solid var(--color-border);
+            padding: var(--space-5);
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+        .theme-card:hover,
+        .theme-card.active {
+            border-color: var(--color-ink);
+        }
+        .theme-card__name {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            margin: 0 0 var(--space-2) 0;
+        }
+        .theme-card__desc {
+            font-size: var(--text-sm);
+            color: var(--color-muted);
+            margin: 0 0 var(--space-3) 0;
+        }
+        .theme-card__count {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-sea);
+            letter-spacing: 0.05em;
+        }
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-2);
+            margin: var(--space-6) 0;
+        }
+        .tag-chip {
+            display: inline-block;
+            padding: 4px 10px;
+            border: 1px solid var(--color-border);
+            font-size: var(--text-xs);
+            font-family: var(--font-mono);
+            color: var(--color-muted);
+            background: var(--color-paper);
+            cursor: pointer;
+            text-transform: lowercase;
+        }
+        .tag-chip:hover { border-color: var(--color-ink); color: var(--color-ink); }
+        .tag-chip.active { background: var(--color-ink); color: var(--color-paper); border-color: var(--color-ink); }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin: var(--space-6) 0 var(--space-4);
+        }
+        .result-count {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+        }
+        .clear-btn {
+            background: none;
+            border: none;
+            color: var(--color-sea);
+            font-size: var(--text-sm);
+            cursor: pointer;
+            padding: 0;
+            text-decoration: underline;
+        }
+        .result-item {
+            padding: var(--space-4) 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .result-item__meta {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-salt);
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        .result-item__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            margin: var(--space-1) 0 var(--space-2) 0;
+        }
+        .result-item__title a { color: var(--color-ink); text-decoration: none; }
+        .result-item__title a:hover { color: var(--color-sea); }
+        .result-item__tags { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-salt); }
+        .no-results { padding: var(--space-8) 0; text-align: center; color: var(--color-muted); }
+    </style>
+</head>
+<body>
+
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="shore-larder.html">Shore Larder</a>
+                    <a href="the-method.html">The Method</a>
+                    <a href="littoral-heritage.html">Heritage</a>
+                    <a href="the-evidence.html">The Evidence</a>
+                    <a href="the-bridge.html">The Bridge</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <header class="article-header">
+            <div class="container">
+                <span class="article-header__category">Index</span>
+                <h1 class="article-header__title">Browse by Theme</h1>
+                <p style="max-width: 60ch; color: var(--color-muted); margin-top: var(--space-4);">
+                    Every article, sorted the way a working chef actually searches. Pick a theme, drill into a tag, or type what you need.
+                </p>
+            </div>
+        </header>
+
+        <section class="container" style="padding: var(--space-10) 0;">
+            <input type="search" id="search" class="search-bar" placeholder="Search articles by title or tag — e.g. 'brown butter', 'venice', 'stock'..." autocomplete="off" />
+
+            <div class="divider"><span class="divider__text">Themes</span></div>
+            <div id="theme-grid" class="theme-grid"></div>
+
+            <div class="divider"><span class="divider__text">All Tags</span></div>
+            <div id="tag-cloud" class="tag-cloud"></div>
+
+            <div class="result-header">
+                <div class="divider" style="flex:1;"><span class="divider__text">Results</span></div>
+            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: var(--space-4);">
+                <span id="result-count" class="result-count"></span>
+                <button id="clear-btn" class="clear-btn" style="display:none;">Clear filters</button>
+            </div>
+            <div id="results"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="shore-larder.html">Shore Larder</a></li>
+                            <li><a href="the-method.html">The Method</a></li>
+                            <li><a href="littoral-heritage.html">Heritage</a></li>
+                            <li><a href="the-evidence.html">The Evidence</a></li>
+                            <li><a href="the-bridge.html">The Bridge</a></li>
+                            <li><a href="tags.html">Browse by Theme</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+    (async () => {
+        const res = await fetch('data/articles.json', { cache: 'no-cache' });
+        const data = await res.json();
+        const articles = data.articles.filter(a => !a.tags.includes('coming-soon'));
+        const themes = data.themes || {};
+        const categories = data.categories || {};
+
+        const state = { query: '', theme: null, tag: null };
+
+        const tagCounts = {};
+        articles.forEach(a => a.tags.forEach(t => { tagCounts[t] = (tagCounts[t] || 0) + 1; }));
+
+        const themeCounts = {};
+        Object.entries(themes).forEach(([key, t]) => {
+            themeCounts[key] = articles.filter(a => a.tags.some(tag => t.tags.includes(tag))).length;
+        });
+
+        const themeGrid = document.getElementById('theme-grid');
+        Object.entries(themes).forEach(([key, t]) => {
+            const card = document.createElement('div');
+            card.className = 'theme-card';
+            card.dataset.theme = key;
+            card.innerHTML = `
+                <h3 class="theme-card__name">${t.name}</h3>
+                <p class="theme-card__desc">${t.description}</p>
+                <span class="theme-card__count">${themeCounts[key]} article${themeCounts[key] === 1 ? '' : 's'}</span>
+            `;
+            card.addEventListener('click', () => {
+                state.theme = state.theme === key ? null : key;
+                state.tag = null;
+                render();
+            });
+            themeGrid.appendChild(card);
+        });
+
+        const tagCloud = document.getElementById('tag-cloud');
+        const allTags = Object.keys(tagCounts).sort((a, b) => tagCounts[b] - tagCounts[a]);
+        allTags.forEach(tag => {
+            const chip = document.createElement('span');
+            chip.className = 'tag-chip';
+            chip.dataset.tag = tag;
+            chip.textContent = `${tag} (${tagCounts[tag]})`;
+            chip.addEventListener('click', () => {
+                state.tag = state.tag === tag ? null : tag;
+                render();
+            });
+            tagCloud.appendChild(chip);
+        });
+
+        const searchInput = document.getElementById('search');
+        searchInput.addEventListener('input', e => {
+            state.query = e.target.value.trim().toLowerCase();
+            render();
+        });
+
+        document.getElementById('clear-btn').addEventListener('click', () => {
+            state.query = ''; state.theme = null; state.tag = null;
+            searchInput.value = '';
+            render();
+        });
+
+        function render() {
+            document.querySelectorAll('.theme-card').forEach(c => {
+                c.classList.toggle('active', c.dataset.theme === state.theme);
+            });
+            document.querySelectorAll('.tag-chip').forEach(c => {
+                c.classList.toggle('active', c.dataset.tag === state.tag);
+            });
+
+            const themeTags = state.theme ? themes[state.theme].tags : null;
+            const q = state.query;
+
+            const filtered = articles.filter(a => {
+                if (state.tag && !a.tags.includes(state.tag)) return false;
+                if (themeTags && !a.tags.some(t => themeTags.includes(t))) return false;
+                if (q) {
+                    const hay = (a.title + ' ' + a.tags.join(' ') + ' ' + a.category).toLowerCase();
+                    if (!hay.includes(q)) return false;
+                }
+                return true;
+            }).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+            const hasFilter = q || state.theme || state.tag;
+            document.getElementById('clear-btn').style.display = hasFilter ? 'inline' : 'none';
+            document.getElementById('result-count').textContent =
+                `${filtered.length} article${filtered.length === 1 ? '' : 's'}` +
+                (state.theme ? ` in ${themes[state.theme].name}` : '') +
+                (state.tag ? ` tagged #${state.tag}` : '') +
+                (q ? ` matching "${q}"` : '');
+
+            const results = document.getElementById('results');
+            if (!filtered.length) {
+                results.innerHTML = '<div class="no-results">No articles match. Try a broader search.</div>';
+                return;
+            }
+            results.innerHTML = filtered.map(a => {
+                const cat = categories[a.category];
+                const catName = cat ? cat.name : a.category;
+                return `
+                    <article class="result-item">
+                        <div class="result-item__meta">${catName} &middot; ${a.date} &middot; ${a.read_time || '?'} min</div>
+                        <h3 class="result-item__title"><a href="articles/${a.slug}.html">${a.title}</a></h3>
+                        <div class="result-item__tags">${a.tags.map(t => '#' + t).join(' ')}</div>
+                    </article>
+                `;
+            }).join('');
+        }
+
+        render();
+    })();
+    </script>
+
+</body>
+</html>

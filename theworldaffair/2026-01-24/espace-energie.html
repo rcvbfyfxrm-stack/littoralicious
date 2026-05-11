@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Espace & Énergie — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Samedi 24 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;24</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-24.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3a5a6a">Espace & Énergie</div>
+  <h1 class="article-title">LANCEMENTS & MISSIONS</h1>
+  <div class="article-date">Samedi 24 Janvier 2026 &mdash; Edition N&deg;24</div>
+</div><div class="article-body"><h1>Rapport: Espace & Innovations Énergétiques</h1>
+<h2>Date : 2026-01-24</h2>
+<hr>
+<h2>🚀 LANCEMENTS & MISSIONS</h2>
+<h3>SpaceX — Rythme Record Janvier 2026</h3>
+<p><strong>Statistiques Janvier 2026 :</strong></p>
+<table><thead><tr><th>Date</th><th>Mission</th><th>Satellites</th><th>Site</th><th>Booster</th></tr></thead><tbody>
+<tr><td>4 Jan</td><td>Starlink 6-88</td><td>29</td><td>Cape Canaveral</td><td>B1101 (nouveau)</td></tr>
+<tr><td>9 Jan</td><td>Starlink 6-96</td><td>29</td><td>Florida</td><td>—</td></tr>
+<tr><td>12 Jan</td><td>Starlink 6-97</td><td>29</td><td>Cape Canaveral</td><td>—</td></tr>
+<tr><td>14 Jan</td><td>Starlink 6-98</td><td>29</td><td>Cape Canaveral</td><td>—</td></tr>
+<tr><td>21 Jan</td><td>West Coast</td><td>—</td><td>Vandenberg</td><td>—</td></tr>
+</tbody></table>
+<p><strong>Record battu :</strong></p>
+<ul>
+<li>14 janvier : Turnaround pad SLC-40 en 45 heures</li>
+<li>Record précédent battu de >5 heures</li>
+<li>Rythme : >1 lancement tous les 2.5 jours</li>
+</ul>
+<p><strong>Citation Kiko Dontchev, VP Launch SpaceX :</strong></p>
+<blockquote>
+<p>"We once thought it was crazy town to launch from the same pad in two days. Now it feels crazy not to be launching from the same pad multiple times a day. Physics is the only constraint."</p>
+</blockquote>
+<p><strong>Données cumulées :</strong></p>
+<ul>
+<li>595ème lancement SpaceX depuis 2008</li>
+<li>555ème atterrissage depuis 2015</li>
+<li>Constellation Starlink : ~9,500 satellites actifs</li>
+</ul>
+<p><strong>Sources :</strong> <a href="https://www.space.com/space-exploration/launches-spacecraft/spacex-starlink-6-88-b1101-ccsfs-jrti" target="_blank">Space.com</a>, <a href="https://spaceflightnow.com/2026/01/14/live-coverage-spacex-to-launch-midweek-starlink-mission-on-falcon-9-rocket-from-cape-canaveral/" target="_blank">Spaceflight Now</a></p>
+<hr>
+<h2>🌙 EXPLORATION LUNAIRE</h2>
+<h3>NASA-DOE : Réacteur Nucléaire Lunaire pour 2030</h3>
+<p><strong>Événement :</strong></p>
+<ul>
+<li>8 janvier 2026 : Rencontre Secretary of Energy Chris Wright + NASA Administrator Jared Isaacman</li>
+<li>Signature MoU (Memorandum of Understanding)</li>
+<li>Objectif : Réacteur fission surface lunaire d'ici 2030</li>
+</ul>
+<p><strong>Données mission :</strong></p>
+<table><thead><tr><th>Paramètre</th><th>Valeur</th></tr></thead><tbody>
+<tr><td>Budget Congrès</td><td>$250M (Fission Surface Power)</td></tr>
+<tr><td>Nuclear thermal/electric</td><td>$170M (transféré vers Exploration)</td></tr>
+<tr><td>Objectif</td><td>Missions Artemis + futures missions Mars</td></tr>
+<tr><td>Capacité</td><td>Alimentation continue, indépendante soleil</td></tr>
+</tbody></table>
+<p><strong>Avantages techniques :</strong></p>
+<ul>
+<li>Fonctionnement 24/7 (vs solaire = nuit lunaire de 14 jours)</li>
+<li>Indépendant de la température</li>
+<li>Durée de vie : années sans ravitaillement</li>
+</ul>
+<p><strong>🚩 Reality check :</strong></p>
+<ul>
+<li>2030 = objectif ambitieux</li>
+<li>Historique retards programmes NASA</li>
+<li>Défis : radiation, masse, déploiement autonome</li>
+</ul>
+<p><strong>Sources :</strong> <a href="https://www.nasa.gov/news-release/nasa-department-of-energy-to-develop-lunar-surface-reactor-by-2030/" target="_blank">NASA</a>, <a href="https://www.energy.gov/articles/us-department-energy-and-nasa-develop-lunar-surface-reactor-2030" target="_blank">DOE</a></p>
+<hr>
+<h3>Artemis II — Progression</h3>
+<p><strong>Status :</strong></p>
+<ul>
+<li>17 janvier : Fusée déplacée vers pad de lancement</li>
+<li>Fenêtre de lancement : prochaines semaines</li>
+<li>Mission : Tour de la Lune avec équipage</li>
+</ul>
+<p><strong>Données mission :</strong></p>
+<ul>
+<li>Premiers astronautes autour de la Lune depuis Apollo 17 (1972)</li>
+<li>Durée : ~10 jours</li>
+<li>Équipage : 4 astronautes</li>
+</ul>
+<hr>
+<h2>🛰️ SATELLITES & CONSTELLATIONS</h2>
+<h3>Starlink — État du Déploiement</h3>
+<p><strong>Déploiement :</strong></p>
+<table><thead><tr><th>Métrique</th><th>Valeur</th></tr></thead><tbody>
+<tr><td>Satellites actifs</td><td>~9,500</td></tr>
+<tr><td>Objectif constellation</td><td>12,000+ (phase 1)</td></tr>
+<tr><td>Couverture</td><td>Mondiale (zones autorisées)</td></tr>
+</tbody></table>
+<p><strong>Prochaine génération :</strong></p>
+<ul>
+<li>Starlink V3 prévu 2026</li>
+<li>Lancement via Starship</li>
+<li>Capacité : >1 Tbps downlink, >200 Gbps uplink par satellite</li>
+</ul>
+<p><strong>Préoccupations :</strong></p>
+<ul>
+<li>Débris spatiaux : densité orbitale croissante</li>
+<li>Astronomie : pollution lumineuse continue</li>
+<li>Régulation : tensions internationales</li>
+</ul>
+<hr>
+<h2>⚛️ FUSION NUCLÉAIRE</h2>
+<h3>EAST Chinois — Régime "Density-Free" Atteint</h3>
+<p><strong>Résultat rapporté :</strong></p>
+<ul>
+<li>Tokamak EAST atteint régime density-free</li>
+<li>Plasma stable à densités extrêmes (au-delà limites théoriques)</li>
+<li>Publié Science Advances, 1er janvier 2026</li>
+</ul>
+<p><strong>Reality check fusion :</strong></p>
+<table><thead><tr><th>Métrique</th><th>EAST</th><th>Requis centrale</th><th>Gap</th></tr></thead><tbody>
+<tr><td>Q (gain)</td><td><1</td><td>~10+</td><td>Facteur 10+</td></tr>
+<tr><td>Durée</td><td>Secondes</td><td>Continue</td><td>Ordres de grandeur</td></tr>
+<tr><td>Production</td><td>Expérimentale</td><td>500+ MW</td><td>N/A</td></tr>
+</tbody></table>
+<p><strong>Ce que ça change vraiment :</strong></p>
+<ul>
+<li>Avance compréhension théorique</li>
+<li>Obstacle "limite de densité" potentiellement contournable</li>
+<li>NE signifie PAS centrale commerciale proche</li>
+</ul>
+<p><strong>Mon évaluation :</strong></p>
+<ul>
+<li>Avancée réelle : Oui, scientifiquement significative</li>
+<li>Distance commercialisation : Décennies</li>
+<li>Hype level : Modéré — résultat peer-reviewed</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.sciencedaily.com/releases/2026/01/260101160855.htm" target="_blank">ScienceDaily</a></p>
+<hr>
+<h2>⚡ PRODUCTION D'ÉNERGIE</h2>
+<h3>Nucléaire Renaissance — Tendance Globale</h3>
+<p><strong>Contexte :</strong></p>
+<ul>
+<li>Fusion : EAST milestone (Chine)</li>
+<li>Fission : NASA/DOE pour Lune</li>
+<li>SMR (Small Modular Reactors) : Développement accéléré</li>
+</ul>
+<p><strong>Évaluation réaliste :</strong></p>
+<ul>
+<li>Fusion commerciale : >2040 minimum</li>
+<li>Fission spatiale : 2030 (objectif NASA)</li>
+<li>SMR terrestres : Premiers déploiements 2025-2030</li>
+</ul>
+<hr>
+<h2>🌍 GÉOPOLITIQUE ÉNERGÉTIQUE</h2>
+<h3>Espace — Course Internationale</h3>
+<p><strong>Lancements Janvier 2026 :</strong></p>
+<table><thead><tr><th>Opérateur</th><th>Lancements</th><th>Notes</th></tr></thead><tbody>
+<tr><td>SpaceX</td><td>5+</td><td>Rythme record</td></tr>
+<tr><td>Chine</td><td>À suivre</td><td>Programme actif</td></tr>
+<tr><td>Autres</td><td>Variable</td><td>—</td></tr>
+</tbody></table>
+<p><strong>Implications stratégiques :</strong></p>
+<ul>
+<li>SpaceX domine accès LEO</li>
+<li>Chine développe constellation concurrente</li>
+<li>Europe : Ariane 6 en montée en puissance</li>
+</ul>
+<hr>
+<h2>📊 DONNÉES CLÉS</h2>
+<h3>Lancements Janvier 2026 (partiel)</h3>
+<table><thead><tr><th>Opérateur</th><th>Lancements</th><th>Succès</th><th>Charge utile</th></tr></thead><tbody>
+<tr><td>SpaceX</td><td>5+</td><td>5+</td><td>~150 satellites</td></tr>
+</tbody></table>
+<h3>Prix de l'Énergie (contexte)</h3>
+<table><thead><tr><th>Marché</th><th>Tendance</th><th>Facteur</th></tr></thead><tbody>
+<tr><td>Brent</td><td>Variable</td><td>Géopolitique</td></tr>
+<tr><td>Gaz EU</td><td>Élevé</td><td>Hiver, stocks</td></tr>
+</tbody></table>
+<hr>
+<h2>🟡 À SURVEILLER</h2>
+<ul>
+<li><strong>Artemis II</strong> — Lancement prochaines semaines</li>
+<li><strong>Starlink V3</strong> — Premiers lancements via Starship 2026</li>
+<li><strong>ITER</strong> — Avancement construction (France)</li>
+<li><strong>SpaceX Starship</strong> — Tests orbitaux continus</li>
+</ul>
+<hr>
+<h2>🚩 RED FLAGS & HYPE</h2>
+<ul>
+<li><strong>Fusion EAST</strong> : Avancée réelle MAIS pas de centrale commerciale proche</li>
+<li><strong>Timelines nucléaire lunaire</strong> : 2030 = ambitieux, historique de retards</li>
+<li><strong>Starlink V3</strong> : Specs impressionnantes, attendre validation</li>
+</ul>
+<hr>
+<h2>❓ QUESTIONS OUVERTES</h2>
+<ol>
+<li>Artemis II respectera-t-il le calendrier actuel ?</li>
+<li>Quelle sera la réponse chinoise à la dominance SpaceX ?</li>
+<li>Fusion commerciale : avant ou après 2040 ?</li>
+</ol>
+<hr>
+<p><em>Rapport généré le 2026-01-24</em></p></div><div class="bottom-nav"><a href="sante-medecine.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Santé & Médecine</span></a><a href="cybersecurite-regulation.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Cybersécurité & Régulation &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; ESPACE & ÉNERGIE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Santé & Médecine — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 25 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;25</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-25.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3a5a52">Santé & Médecine</div>
+  <h1 class="article-title">RECHERCHE CLINIQUE</h1>
+  <div class="article-date">Dimanche 25 Janvier 2026 &mdash; Edition N&deg;25</div>
+</div><div class="article-body"><h1>Rapport Sante & Medecine</h1>
+<h2>Date : 2026-01-25</h2>
+<hr>
+<h2>RECHERCHE CLINIQUE</h2>
+<h3>Osimertinib + Chimiotherapie : Gain de Survie dans le Cancer du Poumon EGFR-Mute</h3>
+<p><strong>Les faits bruts :</strong></p>
+<ul>
+<li>Population etudiee : Patients avec cancer bronchique non a petites cellules (CBNPC) EGFR-mute, stade avance</li>
+<li>Intervention : Osimertinib + platine-pemetrexed vs Osimertinib seul (premiere ligne)</li>
+<li>Endpoint primaire : Survie globale mediane 47,5 mois (combo) vs 37,6 mois (mono)</li>
+<li>Gain absolu : +9,9 mois de survie</li>
+<li>Effets indesirables : Risque accru avec la combinaison (grade 3-4 plus frequents)</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.nejm.org/browse/nejm-article-type/original-article" target="_blank">NEJM 2026;394:27-38 (Janne et al.)</a></p>
+<p><strong>Evaluation methodologique :</strong></p>
+<table><thead><tr><th>Critere</th><th>Evaluation</th></tr></thead><tbody>
+<tr><td>Design</td><td>RCT (essai FLAURA2)</td></tr>
+<tr><td>Randomisation</td><td>Oui</td></tr>
+<tr><td>Echantillon</td><td>Significatif - etude de phase III</td></tr>
+<tr><td>Duree suivi</td><td>Suivi a long terme (maturite donnees)</td></tr>
+</tbody></table>
+<p><strong>Resultats cles :</strong></p>
+<ul>
+<li>Gain absolu de survie : +9,9 mois (cliniquement significatif)</li>
+<li>Taille d'effet : Benefice reel mais au prix de toxicite accrue</li>
+<li>Balance benefice/risque : A evaluer individuellement</li>
+</ul>
+<p><strong>Verification :</strong></p>
+<ul>
+<li>Publication peer-reviewed dans NEJM</li>
+<li>Confiance : ELEVEE</li>
+</ul>
+<p><strong>Contexte traitement :</strong></p>
+<ul>
+<li>Standard of care actuel : Osimertinib en monotherapie premiere ligne</li>
+<li>Avantage comparatif : Extension significative de survie mais profil de toxicite moins favorable</li>
+<li>Decision clinique : Dialogue patient-medecin sur balance benefice/risque</li>
+</ul>
+<p><strong>Conflits d'interets :</strong></p>
+<ul>
+<li>Financement : Industrie (AstraZeneca - fabricant d'osimertinib)</li>
+<li>Necessite confirmation par etudes independantes sur outcomes qualite de vie</li>
+</ul>
+<hr>
+<h3>Cellules CAR7 Editees pour la Leucemie T : Premiere Reponse "Off-the-Shelf"</h3>
+<p><strong>Les faits bruts :</strong></p>
+<ul>
+<li>Population etudiee : n = 11 patients, leucemie aigue lymphoblastique T refractaire/rechute</li>
+<li>Intervention : Cellules CAR7 T allogeniques editees par CRISPR (base editing)</li>
+<li>Endpoint primaire : Reponse chez 11/11 patients (100%)</li>
+<li>Remission profonde : 9 patients ont pu recevoir greffe de cellules souches</li>
+<li>Effets indesirables : Syndrome de relargage cytokinique (attendu)</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.nejm.org/" target="_blank">NEJM 2026;394:152-165 (Chiesa et al.)</a></p>
+<p><strong>Evaluation methodologique :</strong></p>
+<table><thead><tr><th>Critere</th><th>Evaluation</th></tr></thead><tbody>
+<tr><td>Design</td><td>Etude de phase I, ouverte</td></tr>
+<tr><td>Echantillon</td><td>n = 11 (tres petit - preuve de concept)</td></tr>
+<tr><td>Niveau preuve</td><td>4 (case series)</td></tr>
+</tbody></table>
+<p><strong>Resultats cles :</strong></p>
+<ul>
+<li>Taux de reponse : 100% (11/11)</li>
+<li>Bridge to transplant : 9/11 patients (82%)</li>
+<li>LIMITATION CRITIQUE : Petit echantillon, pas de groupe controle</li>
+</ul>
+<p><strong>Verification :</strong></p>
+<ul>
+<li>Publication peer-reviewed NEJM</li>
+<li>Confiance : MOYENNE (donnees preliminaires encourageantes mais effectif reduit)</li>
+</ul>
+<p><strong>Hype check :</strong></p>
+<ul>
+<li>Claim : "Premiere therapie off-the-shelf CAR-T pour leucemie T"</li>
+<li>Realite : Preuve de concept sur 11 patients - loin d'etre validee a grande echelle</li>
+<li>Gap : Necessite essais de phase II/III avant conclusions definitives</li>
+</ul>
+<hr>
+<h3>CAR-T Anti-CD19 dans l'Anemie Hemolytique Auto-immune : Nouvelle Indication</h3>
+<p><strong>Les faits bruts :</strong></p>
+<ul>
+<li>Population etudiee : n = 11 patients, anemie hemolytique auto-immune multi-refractaire</li>
+<li>Intervention : Therapie CAR-T anti-CD19</li>
+<li>Endpoint primaire : Reponse complete chez 11/11 patients</li>
+<li>Remission sans traitement : Mediane 11,5 mois</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.nejm.org/" target="_blank">NEJM 2026;394:253-267 (Li et al.)</a></p>
+<p><strong>Contexte :</strong></p>
+<ul>
+<li>Extension des CAR-T au-dela de l'oncologie vers l'auto-immunite</li>
+<li>Similaire aux resultats recents dans le lupus et la sclerodermie</li>
+</ul>
+<p><strong>Verification :</strong></p>
+<ul>
+<li>Confiance : MOYENNE (effectif limite mais resultats coherents avec autres etudes auto-immunes)</li>
+</ul>
+<hr>
+<h3>FDA : Decisions de Janvier 2026</h3>
+<p><strong>Approuvees :</strong></p>
+<ol>
+<li><strong>Zycubo (copper histidinate)</strong> - Sentynl Therapeutics</li>
+</ol>
+<ul>
+<li>Indication : Maladie de Menkes (pediatrique)</li>
+<li>Approuve : 12 janvier 2026</li>
+<li>Statut : Premiere therapie de remplacement du cuivre pour cette maladie rare</li>
+</ul>
+<p><strong>En attente ce mois-ci :</strong></p>
+<table><thead><tr><th>Medicament</th><th>Indication</th><th>Date PDUFA</th><th>Enjeu</th></tr></thead><tbody>
+<tr><td>Tabelecleucel (Ebvallo)</td><td>PTLD EBV+ post-transplant</td><td>10 janvier 2026</td><td>Premiere therapie T allogenique USA</td></tr>
+<tr><td>Sparsentan (Filspari)</td><td>FSGS (glomerulopathie)</td><td>13 janvier 2026</td><td>Premier traitement pour cette cause majeure d'IRC</td></tr>
+<tr><td>Anaphylm</td><td>Reactions allergiques type 1</td><td>31 janvier 2026</td><td>Epinephrine sublinguale</td></tr>
+<tr><td>Brimochol PF</td><td>Presbytie</td><td>28 janvier 2026</td><td>Premiere combinaison pour la presbytie</td></tr>
+<tr><td>Bitopertin</td><td>Porphyrie erythropoietique</td><td>Fin janvier</td><td>FDA l'a qualifie de "potentially game changing"</td></tr>
+</tbody></table>
+<p><strong>Sources :</strong> <a href="https://www.drugs.com/newdrugs.html" target="_blank">FDA Drug Approvals</a>, <a href="https://www.thecardiologyadvisor.com/news/fda-drug-approval-decisions-expected-in-january-2026/" target="_blank">Cardiology Advisor</a>, <a href="https://www.biopharmadive.com/news/fda-approval-decisions-watch-2026/808684/" target="_blank">BioPharma Dive</a></p>
+<hr>
+<h3>EMA : Bilan 2025</h3>
+<p><strong>Chiffres cles 2025 :</strong></p>
+<ul>
+<li>104 medicaments recommandes pour AMM</li>
+<li>38 nouvelles substances actives</li>
+<li>16 medicaments pour maladies rares</li>
+<li>41 biosimilaires</li>
+</ul>
+<p><strong>Innovations notables :</strong></p>
+<ul>
+<li>Premier traitement de la bronchiectasie non-FC</li>
+<li>Premier traitement pour retarder diabete type 1</li>
+<li>Premier medicament oral pour depression post-partum</li>
+<li>Premier traitement du syndrome de Wiskott-Aldrich</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.ema.europa.eu/en/news/human-medicines-2025" target="_blank">EMA Human Medicines 2025</a></p>
+<hr>
+<h2>MALADIES INFECTIEUSES & PANDEMIES</h2>
+<h3>Grippe Aviaire H5N1 : Surveillance Continue, Risque Populationnel Faible</h3>
+<p><strong>Situation epidemiologique :</strong></p>
+<ul>
+<li>Cas confirmes USA 2024-debut 2025 : 70 cas humains</li>
+<li>Premier cas H5N5 humain mondial : USA, novembre 2025</li>
+<li>Deces globaux 2025 (H5N1) : 11 (Cambodge 8, Inde 2, Mexique 1)</li>
+<li>Tendance USA : Aucun cas reporte depuis fevrier 2025</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.cdc.gov/bird-flu/situation-summary/index.html" target="_blank">CDC Bird Flu Current Situation</a>, <a href="https://www.who.int/emergencies/disease-outbreak-news" target="_blank">WHO DON</a></p>
+<p><strong>Donnees de surveillance :</strong></p>
+<table><thead><tr><th>Metrique</th><th>Valeur</th><th>Evaluation</th></tr></thead><tbody>
+<tr><td>Transmission H2H</td><td>Aucune documentee</td><td>Risque pandemique actuel faible</td></tr>
+<tr><td>Reservoirs actifs</td><td>Volaille, bovins laitiers, faune sauvage</td><td>Exposition professionnelle</td></tr>
+<tr><td>Variants circulants</td><td>H5N1, H5N5 (nouveau)</td><td>Surveillance renforcee</td></tr>
+</tbody></table>
+<p><strong>Ce qu'on sait vs ce qu'on suppose :</strong></p>
+<ul>
+<li>Confirme : Pas de transmission interhumaine soutenue</li>
+<li>Confirme : Risque limite aux travailleurs en contact avec animaux infectes</li>
+<li>Inconnu : Potentiel de mutation vers transmissibilite humaine</li>
+</ul>
+<p><strong>Verification :</strong> Confiance ELEVEE (donnees CDC/WHO concordantes)</p>
+<hr>
+<h3>Mpox Clade Ib : Epidemie Africaine Continue</h3>
+<p><strong>Situation epidemiologique :</strong></p>
+<ul>
+<li>Cas confirmes clade I depuis janvier 2024 : > 46 000 (Afrique centrale/est)</li>
+<li>Deces : > 200</li>
+<li>Cas clade Ib hors Afrique : > 150 cas, 0 deces</li>
+<li>Nouvelle alerte : Premier cas de transmission H2H en Europe sans lien de voyage (Espagne, decembre 2025)</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.who.int/publications/m/item/multi-country-outbreak-of-mpox--external-situation-report--62---23-january-2026" target="_blank">WHO Mpox Situation Report #62</a>, <a href="https://www.ecdc.europa.eu/en/mpox-worldwide-overview" target="_blank">ECDC Mpox Overview</a></p>
+<p><strong>Zones touchees :</strong></p>
+<ul>
+<li>Principaux foyers : RDC, Ouganda, Burundi, Kenya, Zambie</li>
+</ul>
+<p><strong>Donnees de surveillance :</strong></p>
+<table><thead><tr><th>Metrique</th><th>Clade Ib</th><th>Clade Ia</th></tr></thead><tbody>
+<tr><td>Letalite</td><td>< 0,5%</td><td>~2,5%</td></tr>
+<tr><td>Transmission principale</td><td>Contact intime/sexuel</td><td>Contact etroit</td></tr>
+</tbody></table>
+<p><strong>Verification :</strong> Confiance ELEVEE (donnees OMS/ECDC)</p>
+<hr>
+<h3>Rougeole USA : Statut "Elimine" Menace</h3>
+<p><strong>Situation :</strong></p>
+<ul>
+<li>Foyers actifs : Caroline du Sud, Georgie, Floride, Arizona, Utah</li>
+<li>Menace : Les USA pourraient perdre le statut "rougeole eliminee" (depuis 2000)</li>
+<li>Le Canada a perdu ce statut en novembre 2025</li>
+<li>Evaluation PAHO prevue en 2026</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.healthline.com/health-news/us-measles-outbreak-2026" target="_blank">Healthline Measles Outbreak 2026</a></p>
+<p><strong>Facteurs contributifs :</strong></p>
+<ul>
+<li>Hesitation vaccinale croissante</li>
+<li>Couverture vaccinale en baisse dans certaines communautes</li>
+</ul>
+<p><strong>Verification :</strong> Confiance ELEVEE</p>
+<hr>
+<h3>Trachome : Succes Mondial en Sante Publique</h3>
+<p><strong>Annonce OMS (6 janvier 2026) :</strong></p>
+<ul>
+<li>Population necessitant intervention : < 100 millions (premiere fois)</li>
+<li>Reduction depuis 2002 : 94% (de 1,5 milliard a 97,1 millions)</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.who.int/news/item/06-01-2026-global-population-requiring-interventions-against-trachoma-falls-below-100-million-for-the-first-time" target="_blank">WHO Trachoma News</a></p>
+<hr>
+<h2>BIOTECHNOLOGIE</h2>
+<h3>CRISPR Sans Coupure d'ADN : Nouvelle Approche Plus Sure</h3>
+<p><strong>Avancee rapportee :</strong></p>
+<ul>
+<li>Technique developpee : CRISPR sans coupure de double brin</li>
+<li>Mecanisme : Retrait de tags chimiques (methylation) pour reactiver genes</li>
+<li>Application potentielle : Drepanocytose</li>
+<li>Stade : Preclinique</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.sciencedaily.com/releases/2026/01/260104202813.htm" target="_blank">ScienceDaily</a>, UNSW Sydney</p>
+<p><strong>Hype check :</strong></p>
+<ul>
+<li>Claim : "Approche plus sure que CRISPR standard"</li>
+<li>Realite : Preuve de concept en labo, pas encore testee chez l'humain</li>
+<li>Gap : Necessite essais cliniques comparatifs</li>
+</ul>
+<p><strong>Verification :</strong> Confiance FAIBLE a MOYENNE (donnees precliniques uniquement)</p>
+<hr>
+<h3>Edition de Base Personnalisee : Le Cas KJ</h3>
+<p><strong>Avancee rapportee :</strong></p>
+<ul>
+<li>Equipe : University of Pennsylvania</li>
+<li>Application : Traitement personnalise de maladies genetiques ultra-rares</li>
+<li>Technologie : Base editing</li>
+<li>Patient : KJ - maintenant en bonne sante, atteint les jalons developpementaux</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.technologyreview.com/2026/01/12/1129999/gene-editing-base-edited-baby-personalized-drugs-2026-breakthrough-technology/" target="_blank">MIT Technology Review</a></p>
+<p><strong>Developpement reglementaire :</strong></p>
+<ul>
+<li>FDA a approuve protocole d'essai pour aussi peu que 5 patients</li>
+<li>Nouvelle voie reglementaire pour therapies personnalisees</li>
+</ul>
+<p><strong>Hype check :</strong></p>
+<ul>
+<li>Realite : Cas individuel, pas scalable actuellement</li>
+<li>Cout : Prohibitif pour la plupart des systemes de sante</li>
+</ul>
+<hr>
+<h3>Inversion de la Maladie d'Alzheimer chez la Souris</h3>
+<p><strong>Avancee rapportee :</strong></p>
+<ul>
+<li>Equipe : Case Western Reserve University</li>
+<li>Resultat : Recuperation cognitive complete dans 2 modeles murins Alzheimer avances</li>
+<li>Mecanisme : Stabilisation des niveaux de NAD+</li>
+<li>Compose : P7C3-A20</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://case.edu/news/new-study-shows-alzheimers-disease-can-be-reversed-achieve-full-neurological-recovery-not-just-prevented-or-slowed-animal-models" target="_blank">Case Western Reserve University</a></p>
+<p><strong>Hype check :</strong></p>
+<ul>
+<li>Claim : "Maladie d'Alzheimer reversible"</li>
+<li>Realite : Chez la SOURIS - pas chez l'humain</li>
+<li>Gap : ENORME - 99% des traitements Alzheimer prometteurs chez la souris echouent chez l'humain</li>
+</ul>
+<p><strong>Verification :</strong> Confiance FAIBLE pour applicabilite clinique</p>
+<hr>
+<h2>ETHIQUE MEDICALE</h2>
+<h3>Fin de Vie et Demence : Debat Relance</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>France : Examen au Senat du projet de loi "fin de vie digne" (20 janvier 2026)</li>
+<li>Question controversee : Aide medicale a mourir pour personnes avec demence</li>
+<li>Position Art Caplan (ethicien) : Contre l'extension aux demences</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.alliancevita.org/en/2026/01/bioethical-stakes-for-2026/" target="_blank">Alliance Vita - Bioethics 2026</a></p>
+<p><strong>Arguments en presence :</strong></p>
+<table><thead><tr><th>Position</th><th>Arguments</th></tr></thead><tbody>
+<tr><td>Pour</td><td>Autonomie anticipee, dignite</td></tr>
+<tr><td>Contre</td><td>Incapacite de consentement actuel, pente glissante</td></tr>
+</tbody></table>
+<hr>
+<h3>IA en Medecine : Experience Sociale Non Controlee ?</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Probleme identifie : Les modeles de fondation entrent en clinique sans tests rigoureux</li>
+<li>Enjeu ethique : Supervision, responsabilite, consentement patient</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.nature.com/articles/s41591-025-04078-8" target="_blank">Nature Medicine</a></p>
+<hr>
+<h2>DONNEES EPIDEMIOLOGIQUES</h2>
+<table><thead><tr><th>Indicateur</th><th>Valeur</th><th>Tendance</th><th>Source</th></tr></thead><tbody>
+<tr><td>Grippe saisonniere USA</td><td>Activite elevee</td><td>Stable/haute</td><td><a href="https://www.cdc.gov/fluview/surveillance/2026-week-02.html" target="_blank">CDC FluView</a></td></tr>
+<tr><td>RSV USA</td><td>Pic passe</td><td>Baisse</td><td>CDC</td></tr>
+<tr><td>COVID-19 USA</td><td>Circulation moderee</td><td>Variable</td><td>CDC</td></tr>
+<tr><td>Mpox global (clade I)</td><td>> 46 000 cas cumulatifs</td><td>Stable</td><td>OMS</td></tr>
+<tr><td>H5N1 humain USA</td><td>0 cas depuis fevrier 2025</td><td>Stable bas</td><td>CDC</td></tr>
+</tbody></table>
+<hr>
+<h2>ESSAIS EN COURS A SUIVRE</h2>
+<table><thead><tr><th>Essai</th><th>Phase</th><th>Indication</th><th>Resultats attendus</th></tr></thead><tbody>
+<tr><td>TRAILRUNNER-ALZ 1 (Eli Lilly)</td><td>III</td><td>Alzheimer - Remternetug</td><td>H1 2026</td></tr>
+<tr><td>CELIA (Biogen)</td><td>II</td><td>Alzheimer - BIIB080</td><td>2026 ("annee du tau")</td></tr>
+<tr><td>VLA15 VALOR</td><td>III</td><td>Vaccin Lyme</td><td>2026</td></tr>
+<tr><td>Regenxbio DMD</td><td>III</td><td>Dystrophie Duchenne</td><td>Debut 2026</td></tr>
+<tr><td>REMODEL (Novartis)</td><td>III</td><td>SEP - Remibrutinib</td><td>Avril 2026</td></tr>
+<tr><td>Atea HCV combo</td><td>III</td><td>Hepatite C</td><td>Mi-2026</td></tr>
+</tbody></table>
+<p><strong>Source :</strong> <a href="https://www.biopharmadive.com/news/biotech-pharma-clinical-trials-watch-2026/808255/" target="_blank">BioPharma Dive</a></p>
+<hr>
+<h2>RED FLAGS DU JOUR</h2>
+<ol>
+<li><strong>Inversion Alzheimer chez la Souris = Prudence Extreme</strong></li>
+</ol>
+<ul>
+<li>Historique desastreux des modeles murins en Alzheimer</li>
+<li>Aucun traitement "curatif" souris n'a fonctionne chez l'humain</li>
+</ul>
+<ol>
+<li><strong>CAR-T sur 11 Patients = Pas une Revolution (Encore)</strong></li>
+</ol>
+<ul>
+<li>"100% de reponse" sur petit echantillon peut ne pas se reproduire</li>
+<li>Necessite essais de phase II/III randomises</li>
+</ul>
+<ol>
+<li><strong>Communiques de Presse Pharma</strong></li>
+</ol>
+<ul>
+<li>Retatrutide Eli Lilly "71.2 lbs weight loss" = communique de presse</li>
+<li>Attendre publication complete peer-reviewed</li>
+</ul>
+<ol>
+<li><strong>Coupes Budgetaires Sante Publique USA</strong></li>
+</ol>
+<ul>
+<li>Big Beautiful Bill : -1 trillion $ sur 10 ans pour programmes sante</li>
+<li>4.8 millions pourraient perdre couverture ACA</li>
+</ul>
+<hr>
+<h2>QUESTIONS OUVERTES</h2>
+<ol>
+<li><strong>H5N1 chez les bovins</strong> : L'endemicite dans les troupeaux laitiers US augmente-t-elle le risque de mutation vers transmissibilite humaine ?</li>
+</ol>
+<ol>
+<li><strong>Longevite des CAR-T en auto-immunite</strong> : Les remissions observees sont-elles durables au-dela de 2-3 ans ?</li>
+</ol>
+<ol>
+<li><strong>Therapies Alzheimer anti-tau</strong> : Les resultats 2026 confirmeront-ils que cibler tau est plus efficace qu'amyloide ?</li>
+</ol>
+<ol>
+<li><strong>GLP-1 et cerveaux</strong> : Les benefices neurologiques reportes se confirmeront-ils en essais cliniques rigoureux ?</li>
+</ol>
+<ol>
+<li><strong>Mpox clade Ib en pays riches</strong> : Une transmission communautaire soutenue peut-elle s'etablir en dehors de l'Afrique ?</li>
+</ol>
+<hr>
+<h2>SOURCES PRINCIPALES</h2>
+<p><strong>Journaux Medicaux :</strong></p>
+<ul>
+<li><a href="https://www.nejm.org/" target="_blank">NEJM</a></li>
+<li><a href="https://www.thelancet.com/journals/lancet/issue/current" target="_blank">The Lancet</a></li>
+<li><a href="https://www.nature.com/nm/" target="_blank">Nature Medicine</a></li>
+</ul>
+<p><strong>Agences Reglementaires :</strong></p>
+<ul>
+<li><a href="https://www.drugs.com/newdrugs.html" target="_blank">FDA New Drug Approvals</a></li>
+<li><a href="https://www.ema.europa.eu/en/news/human-medicines-2025" target="_blank">EMA</a></li>
+</ul>
+<p><strong>Surveillance Epidemiologique :</strong></p>
+<ul>
+<li><a href="https://www.cdc.gov/bird-flu/situation-summary/index.html" target="_blank">CDC Bird Flu</a></li>
+<li><a href="https://www.cdc.gov/fluview/surveillance/2026-week-02.html" target="_blank">CDC FluView</a></li>
+<li><a href="https://www.who.int/emergencies/disease-outbreak-news" target="_blank">WHO Disease Outbreak News</a></li>
+<li><a href="https://www.who.int/publications/m/item/multi-country-outbreak-of-mpox--external-situation-report--62---23-january-2026" target="_blank">WHO Mpox Report #62</a></li>
+<li><a href="https://www.ecdc.europa.eu/en/mpox-worldwide-overview" target="_blank">ECDC Mpox Overview</a></li>
+</ul>
+<p><strong>Biotechnologie :</strong></p>
+<ul>
+<li><a href="https://crisprmedicinenews.com/clinical-trials/" target="_blank">CRISPR Medicine News</a></li>
+<li><a href="https://www.technologyreview.com/2026/01/12/1129999/gene-editing-base-edited-baby-personalized-drugs-2026-breakthrough-technology/" target="_blank">MIT Technology Review</a></li>
+<li><a href="https://www.sciencedaily.com/releases/2026/01/260104202813.htm" target="_blank">ScienceDaily</a></li>
+</ul>
+<p><strong>Politiques de Sante :</strong></p>
+<ul>
+<li><a href="https://www.kff.org/from-drew-altman/health-policy-in-2026/" target="_blank">KFF Health Policy 2026</a></li>
+<li><a href="https://www.statnews.com/2025/12/30/health-care-policy-2026-top-issues-examined-stat-3-to-watch/" target="_blank">STAT News</a></li>
+</ul>
+<p><strong>Essais Cliniques :</strong></p>
+<ul>
+<li><a href="https://www.biopharmadive.com/news/biotech-pharma-clinical-trials-watch-2026/808255/" target="_blank">BioPharma Dive</a></li>
+</ul>
+<hr>
+<p><em>Rapport genere le 2026-01-25 | Verification : Sources Tier 1 et Tier 2 privilegiees | Niveau de preuve explicite pour chaque item</em></p></div><div class="bottom-nav"><a href="innovation-startups.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Innovation & Startups &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; SANTÉ & MÉDECINE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Drafts — internal review.">
+    <title>Drafts — LITTORALICIOUS</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <style>
+        /* ==================================================================
+           DRAFT REVIEW INDEX — internal-only review queue
+           ================================================================== */
+        body { background: #fafafa; }
+
+        .draft-shell {
+            max-width: 920px;
+            margin: 0 auto;
+            padding: var(--space-8) var(--space-4) 140px;
+        }
+
+        /* --- Top bar (mini-masthead, deliberately understated) --- */
+        .draft-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 2px solid var(--color-ink);
+            padding-bottom: var(--space-4);
+            margin-bottom: var(--space-8);
+        }
+        .draft-bar__brand {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+        .draft-bar__brand b { font-weight: 700; }
+        .draft-bar__hint {
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--color-muted);
+            background: #1a1a1a;
+            color: #fafafa;
+            padding: 4px 10px;
+        }
+        .draft-bar__back a {
+            color: var(--color-muted); font-size: 12px; text-decoration: none;
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .draft-bar__back a:hover { color: var(--color-ink); }
+
+        /* --- Header block --- */
+        .draft-head { margin-bottom: var(--space-8); }
+        .draft-head__pre {
+            font-family: 'SF Mono', Consolas, monospace; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 0.2em;
+            color: #c4a35a; margin-bottom: var(--space-3);
+        }
+        .draft-head__title {
+            font-family: var(--font-serif); font-size: var(--text-4xl); font-weight: 400;
+            line-height: 1.15; margin: 0 0 var(--space-3);
+        }
+        .draft-head__lede {
+            font-family: var(--font-serif); font-size: var(--text-base);
+            color: var(--color-muted); line-height: 1.55; max-width: 60ch;
+        }
+
+        /* --- Counters strip --- */
+        .draft-counts {
+            display: flex; gap: var(--space-6); margin-bottom: var(--space-6);
+            border-top: 1px solid var(--color-border);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-4) 0;
+            font-family: 'SF Mono', Consolas, monospace; font-size: 12px;
+        }
+        .draft-counts__item {
+            display: flex; flex-direction: column;
+        }
+        .draft-counts__num { font-size: 22px; font-weight: 700; color: var(--color-ink); line-height: 1; }
+        .draft-counts__label { color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.12em; font-size: 10px; margin-top: 6px; }
+
+        /* --- Card list --- */
+        .draft-list { display: flex; flex-direction: column; }
+        .draft-card {
+            display: grid;
+            grid-template-columns: 32px 1fr auto;
+            gap: var(--space-4);
+            padding: var(--space-5) 0;
+            border-bottom: 1px solid var(--color-border);
+            transition: background 0.15s;
+        }
+        .draft-card:hover { background: rgba(196, 163, 90, 0.04); }
+        .draft-card.is-selected { background: rgba(196, 163, 90, 0.08); border-left: 3px solid #c4a35a; padding-left: var(--space-3); margin-left: calc(-1 * var(--space-3) - 3px); }
+
+        .draft-check {
+            display: flex; align-items: flex-start; padding-top: 2px;
+        }
+        .draft-check input {
+            width: 20px; height: 20px; cursor: pointer;
+            accent-color: #c4a35a;
+        }
+
+        .draft-body__meta {
+            font-family: 'SF Mono', Consolas, monospace;
+            font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em;
+            color: var(--color-muted);
+            display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center;
+            margin-bottom: var(--space-2);
+        }
+        .draft-body__cat { color: #c4a35a; font-weight: 700; }
+        .draft-body__sep { opacity: 0.5; }
+        .draft-body__notes { background: #c4a35a; color: #1a1a1a; padding: 1px 8px; font-weight: 700; }
+        .draft-body__notes--zero { background: transparent; color: var(--color-muted); border: 1px solid var(--color-border); }
+
+        .draft-body__title {
+            font-family: var(--font-serif); font-size: var(--text-xl); font-weight: 400;
+            line-height: 1.25; margin: 0 0 var(--space-2);
+        }
+        .draft-body__title a { color: var(--color-ink); text-decoration: none; }
+        .draft-body__title a:hover { text-decoration: underline; text-decoration-color: #c4a35a; text-underline-offset: 4px; text-decoration-thickness: 2px; }
+        .draft-body__lede {
+            font-family: var(--font-serif); font-size: var(--text-sm);
+            color: var(--color-muted); line-height: 1.55; margin: 0;
+            display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+        }
+
+        .draft-actions { display: flex; flex-direction: column; gap: 6px; align-items: flex-end; }
+        .draft-actions a, .draft-actions button {
+            font-family: 'SF Mono', Consolas, monospace; font-size: 11px;
+            text-transform: uppercase; letter-spacing: 0.1em;
+            text-decoration: none; cursor: pointer;
+            padding: 6px 12px; border: 1px solid var(--color-border); background: transparent; color: var(--color-ink);
+            white-space: nowrap;
+        }
+        .draft-actions a.primary { background: #1a1a1a; color: #fafafa; border-color: #1a1a1a; }
+        .draft-actions a:hover, .draft-actions button:hover { background: #c4a35a; color: #1a1a1a; border-color: #c4a35a; }
+
+        /* --- Sticky action bar --- */
+        .draft-stickybar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: #1a1a1a; color: #fafafa;
+            padding: 14px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-top: 3px solid #c4a35a;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 13px;
+            z-index: 100;
+        }
+        .draft-stickybar__count { display: flex; gap: 16px; align-items: center; }
+        .draft-stickybar__big {
+            font-family: 'SF Mono', Consolas, monospace;
+            background: #c4a35a; color: #1a1a1a; padding: 4px 12px; font-weight: 700; font-size: 14px;
+        }
+        .draft-stickybar__big--zero { background: transparent; color: #777; border: 1px solid #555; }
+        .draft-stickybar__actions { display: flex; gap: 10px; }
+        .draft-stickybar__actions button, .draft-stickybar__actions a {
+            background: transparent; color: #fafafa; border: 1px solid #555;
+            padding: 8px 16px; font-size: 12px; font-family: inherit; text-decoration: none; cursor: pointer;
+            text-transform: uppercase; letter-spacing: 0.1em;
+        }
+        .draft-stickybar__actions a.primary { background: #c4a35a; color: #1a1a1a; border-color: #c4a35a; font-weight: 700; }
+        .draft-stickybar__actions a.primary:hover { background: #fafafa; color: #1a1a1a; border-color: #fafafa; }
+        .draft-stickybar__actions button:hover { background: #fafafa; color: #1a1a1a; border-color: #fafafa; }
+        .draft-stickybar__actions a.disabled { opacity: 0.4; pointer-events: none; }
+
+        @media (max-width: 720px) {
+            .draft-card { grid-template-columns: 28px 1fr; }
+            .draft-actions { grid-column: 1 / -1; flex-direction: row; justify-content: flex-start; padding-top: 8px; }
+            .draft-stickybar { flex-direction: column; gap: 10px; align-items: stretch; padding: 12px 16px; }
+            .draft-stickybar__actions { justify-content: space-between; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="draft-shell">
+
+    <!-- Mini masthead -->
+    <div class="draft-bar">
+        <div class="draft-bar__brand"><b>LITTORALICIOUS</b></div>
+        <div class="draft-bar__hint">Internal · noindex</div>
+        <div class="draft-bar__back"><a href="/">← Site</a></div>
+    </div>
+
+    <header class="draft-head">
+        <div class="draft-head__pre">Drafts · Review Queue</div>
+        <h1 class="draft-head__title">Articles in review</h1>
+        <p class="draft-head__lede">
+            Click a title to read in <strong>Draft Mode</strong> — every paragraph becomes click-to-annotate. Type a note, sketch one with a stylus or finger (e-ink-friendly with the <em>Pen only</em> palm-rejection toggle), or both. Notes are summed up at the end of the page and exportable as Markdown or as HTML with sketches inlined. Tick the box on any draft you want included in the next monthly brief, then open the newsletter preview to see exactly how it will land in subscribers' inboxes.
+        </p>
+    </header>
+
+    <div class="draft-counts">
+        <div class="draft-counts__item">
+            <span class="draft-counts__num" id="dc-total">—</span>
+            <span class="draft-counts__label">Drafts in review</span>
+        </div>
+        <div class="draft-counts__item">
+            <span class="draft-counts__num" id="dc-selected">—</span>
+            <span class="draft-counts__label">Selected for newsletter</span>
+        </div>
+        <div class="draft-counts__item">
+            <span class="draft-counts__num" id="dc-notes">—</span>
+            <span class="draft-counts__label">Total annotations</span>
+        </div>
+    </div>
+
+    <div class="draft-list" id="draft-list">
+        <p style="color: var(--color-muted); padding: 40px 0; text-align: center;">Loading drafts…</p>
+    </div>
+
+</div>
+
+<!-- Sticky action bar -->
+<div class="draft-stickybar">
+    <div class="draft-stickybar__count">
+        <span class="draft-stickybar__big draft-stickybar__big--zero" id="sb-count">0</span>
+        <span id="sb-label">drafts selected for the next newsletter</span>
+    </div>
+    <div class="draft-stickybar__actions">
+        <button id="sb-clear" type="button">Clear selection</button>
+        <a id="sb-preview" class="primary disabled" href="draftnewsletter.html">Preview Newsletter →</a>
+    </div>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    const SELECTION_KEY = 'llcs-draft-newsletter-selection';
+
+    function getSelection() {
+        try { return JSON.parse(localStorage.getItem(SELECTION_KEY) || '[]'); }
+        catch (e) { return []; }
+    }
+    function setSelection(arr) { localStorage.setItem(SELECTION_KEY, JSON.stringify(arr)); }
+
+    function getNoteCount(slug) {
+        try {
+            const raw = localStorage.getItem('llcs-draft-notes-' + slug);
+            return raw ? Object.keys(JSON.parse(raw)).length : 0;
+        } catch (e) { return 0; }
+    }
+
+    const escapeHTML = s => (s || '').replace(/[&<>"']/g, c =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+    function render(drafts) {
+        const list = document.getElementById('draft-list');
+        const selected = new Set(getSelection());
+        let totalNotes = 0;
+
+        list.innerHTML = drafts.map(d => {
+            const noteN = getNoteCount(d.slug);
+            totalNotes += noteN;
+            const isSel = selected.has(d.slug);
+            return (
+                '<article class="draft-card' + (isSel ? ' is-selected' : '') + '" data-slug="' + escapeHTML(d.slug) + '">' +
+                    '<div class="draft-check">' +
+                        '<input type="checkbox" data-slug="' + escapeHTML(d.slug) + '" aria-label="Include in next newsletter"' + (isSel ? ' checked' : '') + '>' +
+                    '</div>' +
+                    '<div class="draft-body">' +
+                        '<div class="draft-body__meta">' +
+                            '<span class="draft-body__cat">' + escapeHTML(d.category_label || d.category) + '</span>' +
+                            '<span class="draft-body__sep">·</span>' +
+                            '<span>' + d.read_time + ' min read</span>' +
+                            '<span class="draft-body__sep">·</span>' +
+                            '<span>added ' + escapeHTML(d.added) + '</span>' +
+                            '<span class="draft-body__sep">·</span>' +
+                            '<span class="draft-body__notes' + (noteN === 0 ? ' draft-body__notes--zero' : '') + '">' +
+                                noteN + ' note' + (noteN === 1 ? '' : 's') +
+                            '</span>' +
+                        '</div>' +
+                        '<h2 class="draft-body__title"><a href="' + escapeHTML(d.file) + '?draft=1">' + escapeHTML(d.title) + '</a></h2>' +
+                        '<p class="draft-body__lede">' + escapeHTML(d.lede) + '</p>' +
+                    '</div>' +
+                    '<div class="draft-actions">' +
+                        '<a class="primary" href="' + escapeHTML(d.file) + '?draft=1">Open in Draft Mode →</a>' +
+                        '<a href="' + escapeHTML(d.file) + '" target="_blank" rel="noopener">View as published</a>' +
+                    '</div>' +
+                '</article>'
+            );
+        }).join('');
+
+        // Counters
+        document.getElementById('dc-total').textContent = drafts.length;
+        document.getElementById('dc-selected').textContent = selected.size;
+        document.getElementById('dc-notes').textContent = totalNotes;
+        updateStickyBar();
+
+        // Wire checkboxes
+        list.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                const slug = cb.dataset.slug;
+                const sel = new Set(getSelection());
+                if (cb.checked) sel.add(slug); else sel.delete(slug);
+                setSelection(Array.from(sel));
+                cb.closest('.draft-card').classList.toggle('is-selected', cb.checked);
+                document.getElementById('dc-selected').textContent = sel.size;
+                updateStickyBar();
+            });
+        });
+    }
+
+    function updateStickyBar() {
+        const sel = getSelection();
+        const sbCount = document.getElementById('sb-count');
+        const sbPreview = document.getElementById('sb-preview');
+        const sbLabel = document.getElementById('sb-label');
+        sbCount.textContent = sel.length;
+        if (sel.length === 0) {
+            sbCount.classList.add('draft-stickybar__big--zero');
+            sbPreview.classList.add('disabled');
+            sbLabel.textContent = 'drafts selected — tick a box to add one';
+        } else {
+            sbCount.classList.remove('draft-stickybar__big--zero');
+            sbPreview.classList.remove('disabled');
+            sbLabel.textContent = sel.length === 1 ? 'draft selected for the next newsletter' : 'drafts selected for the next newsletter';
+        }
+    }
+
+    document.getElementById('sb-clear').addEventListener('click', () => {
+        if (!getSelection().length) return;
+        if (!confirm('Clear the newsletter selection? Notes on individual articles are kept.')) return;
+        setSelection([]);
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => { cb.checked = false; });
+        document.querySelectorAll('.draft-card').forEach(c => c.classList.remove('is-selected'));
+        document.getElementById('dc-selected').textContent = '0';
+        updateStickyBar();
+    });
+
+    fetch('data/draft-articles.json', { cache: 'no-cache' })
+        .then(r => r.json())
+        .then(d => render(d.drafts || []))
+        .catch(err => {
+            document.getElementById('draft-list').innerHTML =
+                '<p style="color:#b91c1c; padding: 40px 0;">Failed to load drafts: ' + err.message + '</p>';
+        });
+})();
+</script>
+
+</body>
+</html>

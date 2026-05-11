@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Port Call Split: ACI + Kaštela + Lav, Ribarnica at 06:30, Pazar at the Palace wall, the local-favorite Sućidar pazar in Plokite, neighbourhood butchers (Certa, Škokić) + fish shops (Kantar Stobreč, Gastro Brač) the locals use, METRO for the bulk run, Pelješac wineries + Brač olive oil. Watch-outs for charter Saturday, Bura, Croatian VAT.">
+    <title>Port Call Split: The Dalmatian Hub Playbook &mdash; LITTORALICIOUS</title>
+    <meta property="og:title" content="Port Call Split: The Dalmatian Hub Playbook &mdash; LITTORALICIOUS">
+    <meta property="og:description" content="The complete provisioning playbook for yacht chefs in Split — verified suppliers, inline cautions, watch-outs by season.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.littoralicious.com/articles/port-call-split.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20260506b">
+    <link rel="stylesheet" href="../assets/css/port-call-content.css">
+    <link rel="stylesheet" href="../assets/css/port-call.css">
+    <link rel="stylesheet" href="../assets/css/port-call-search.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
+
+    <!-- Leaflet for the interactive port-call map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+
+    <!-- Sticky right-side foldable mini-map (hidden under 980px viewport) -->
+    <aside class="pcv-mini is-collapsed" id="pcv-mini" aria-label="Dalmatian map of Split provisioning points">
+        <button class="pcv-mini__handle" id="pcv-mini-handle" aria-expanded="false" title="Click to fold / unfold the Dalmatian map">Dalmatia Map</button>
+        <div id="pcv-mini-body">
+            <div class="pcv-mini__head">
+                <strong>Where you are</strong>
+                <span>scroll &middot; hover &middot; zoom</span>
+            </div>
+            <div id="pcv-mini-map"></div>
+            <div class="pcv-mini__active" id="pcv-mini-active">
+                <b>Hover any pin or scroll</b>
+                <span>The big map is in the article body &mdash; this side panel mirrors it as you read.</span>
+            </div>
+        </div>
+    </aside>
+
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="../shore-larder.html">Shore Larder</a>
+                    <a href="../the-method.html">The Method</a>
+                    <a href="../littoral-heritage.html">Heritage</a>
+                    <a href="../the-evidence.html">The Evidence</a>
+                    <a href="../the-bridge.html" class="active">The Bridge</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article">
+            <header class="article__header container">
+                <div class="article__meta">
+                    <span class="article__category">Port Call</span>
+                    <time class="article__date">Updated May 6, 2026</time>
+                    <span class="article__reading-time">17 min read</span>
+                </div>
+                <h1 class="article__title">Port Call Split: The Dalmatian Hub Playbook</h1>
+                <p class="article__lede">
+                    Split is the busiest charter hub in the Adriatic and one of the few Mediterranean cities where a serious daily fish market still sits inside the old town walls. The Ribarnica at 06:30, the Pazar against the eastern face of Diocletian&rsquo;s Palace by 07:30, METRO at Kaštel Sućurac for the bulk run, and Pelješac for the wine. But the city-centre markets are also where every cruise-ship guest goes, and prices reflect it. The shops the locals actually use &mdash; the Sućidar pazar at Plokite, neighbourhood butchers in Lokve and Plokite, and the fish shop in Stobreč &mdash; sit ten minutes by van from ACI and run on a different price grid. Brief your yacht agent 72 hours ahead, plan your island runs around Bura forecasts, and assume any Saturday between June and September is going to bleed three hours.
+                </p>
+            </header>
+
+            <div class="article__content container" style="max-width: 70ch; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+
+                <!-- ========== INTERACTIVE MAP (top of article) ========== -->
+                <div class="pcv-map-wrap" role="region" aria-label="Interactive map of Split provisioning points">
+                    <div class="pcv-map-head">
+                        <strong>The Coast &mdash; Where Everything Is</strong>
+                        <span>Click any pin for phone, hours, maps link &middot; toggle categories below</span>
+                    </div>
+                    <div id="pcv-map"></div>
+                    <div class="pcv-legend" id="pcv-legend">
+                        <button data-cat="berth"><i class="dot-berth"></i> Berths</button>
+                        <button data-cat="market"><i class="dot-market"></i> Markets &amp; Direct</button>
+                        <button data-cat="shop"><i class="dot-shop"></i> Specialty &amp; Wine</button>
+                        <button data-cat="mainland"><i class="dot-mainland"></i> Wholesale / Hypermarket</button>
+                        <button data-cat="logistics"><i class="dot-logistics"></i> Logistics</button>
+                    </div>
+                </div>
+
+                <nav class="pc-quicknav">
+                    <a href="#three-berths">Three Berths</a><span class="sep">&middot;</span>
+                    <a href="#pcv-map">Map</a><span class="sep">&middot;</span>
+                    <a href="#brief">Brief</a><span class="sep">&middot;</span>
+                    <a href="#agents">Agents &amp; Logistics</a><span class="sep">&middot;</span>
+                    <a href="#wholesale">Wholesale</a><span class="sep">&middot;</span>
+                    <a href="#fish">Fish</a><span class="sep">&middot;</span>
+                    <a href="#meat">Meat</a><span class="sep">&middot;</span>
+                    <a href="#bread">Bread</a><span class="sep">&middot;</span>
+                    <a href="#produce">Produce</a><span class="sep">&middot;</span>
+                    <a href="#wine">Wine &amp; Oil</a><span class="sep">&middot;</span>
+                    <a href="#watchouts" class="warn">&#9888; Watch-outs</a><span class="sep">&middot;</span>
+                    <a href="#bottom">Bottom Line</a>
+                </nav>
+
+                <div class="pc-funfact"><strong>SPLIT FUN FACT.</strong> The Ribarnica was built in 1890 on top of a former sulphur thermal spring &mdash; and the local explanation for why no flies settle on the fish is the residual sulphur scent rising through the floor. Whether or not the chemistry holds up, the market really is fly-free, in the open air, in the Dalmatian summer. It is the only urban fish market on the Adriatic where you can buy a whole orata at 07:00 and walk it back through Diocletian&rsquo;s Palace to the boat in nine minutes.</div>
+
+                <!-- ========== THREE BERTHS ========== -->
+                <details class="sfold" id="three-berths">
+                    <summary>
+                        <div class="sfold__titlewrap">
+                            <div class="sfold__title">The Three Berths</div>
+                            <div class="sfold__desc">ACI Split &middot; Marina Kaštela &middot; Marina Lav &mdash; the shortlist any captain actually picks from.</div>
+                        </div>
+                        <span class="sfold__count">3 marinas</span>
+                        <span class="sfold__chev">&#9654;</span>
+                    </summary>
+                    <div class="sfold__body">
+
+                        <div class="three-berths">
+                            <div class="tb-col" id="p-aci-split">
+                                <h3>ACI Marina Split</h3>
+                                <div class="subtitle">Uvala Baluni &middot; ≤80 m &middot; walk to Ribarnica &middot; <a href="tel:+38521398548">+385 21 398 548</a></div>
+                                <ol><li><span class="meta">City port, 318 wet berths, vessels to 80 m on outer quay. Ten minutes&rsquo; walk to the Ribarnica and the Pazar &mdash; the only Split berth where the chef can do both market runs on foot. <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=ACI+Marina+Split" target="_blank" rel="noopener">📍 Maps</a></span></li></ol>
+                            </div>
+                            <div class="tb-col" id="p-kastela">
+                                <h3>Marina Kaštela</h3>
+                                <div class="subtitle">Big-boat &middot; ≤100 m &middot; 8 km airport &middot; <a href="tel:+38521204010">+385 21 204 010</a></div>
+                                <ol><li><span class="meta">Modern marina midway between Trogir and Split. 420 sea berths, vessels to ~100 m, full service hub, 25 m indoor pool. Closest berth to Split airport &mdash; the right call for charter changeovers. <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Marina+Ka%C5%A1tela" target="_blank" rel="noopener">📍 Maps</a></span></li></ol>
+                            </div>
+                            <div class="tb-col" id="p-lav">
+                                <h3>Marina Lav (Le Méridien)</h3>
+                                <div class="subtitle">Resort &middot; ≤40 m &middot; 5* hotel &middot; <a href="tel:+38521500388">+385 21 500 388</a></div>
+                                <ol><li><span class="meta">Eight kilometres south of Split, attached to a 5* resort. 74 berths to 40 m, summer transit quay for megayachts. Spa, beach, restaurants 50 m from the passerelle. <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Marina+Lav+Podstrana" target="_blank" rel="noopener">📍 Maps</a></span></li></ol>
+                            </div>
+                        </div>
+
+                    </div>
+                </details>
+
+                <!-- ========== BRIEF ========== -->
+                <details class="sfold" id="brief">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">The Brief</div><div class="sfold__desc">Why this port is different &mdash; and what to set up on day one.</div></div><span class="sfold__count">3 min</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+                        <p><strong>Port type: real city + serious daily market + wholesale ring road.</strong> Split is one of the rare Mediterranean ports where the daily fish market and the daily produce market are inside the historic walls, on foot, with no shuttle and no logistics gymnastics. The wholesale answer (METRO, Tommy hypermarkets) is fifteen minutes by van toward the airport. Pelješac for serious wine and Brač or Hvar for olive oil and lamb are a half-day commitment each, by ferry.</p>
+                        <div class="pc-pullq">Split is the only urban fish market on the Adriatic where you can buy a whole orata at 07:00 and walk it back through Diocletian&rsquo;s Palace to the boat in nine minutes.</div>
+                        <p><strong>Two things to brief your yacht agent on, in writing, 72 h before arrival:</strong> (1) full provision list with brand specs where they matter, plus VAT regime &mdash; commercial yacht recovery only works if the agent invoices through the right entity; (2) dietary requirements. <span class="cau cau--high" data-fix="Croatia is in the EU customs zone but VAT recovery on yacht provisions requires the right paperwork at the moment of purchase. Always provision through BWA or Adriatic Services so eligible items are invoiced under the yacht's commercial VAT regime. Walking into METRO with a personal card = no recovery.">Croatian VAT (PDV)</span></p>
+                    </div>
+                </details>
+
+                <!-- ========== AGENTS & LOGISTICS ========== -->
+                <details class="sfold" id="agents">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Agents &amp; Logistics</div><div class="sfold__desc">The first call before arrival. Customs, supplier coordination, dockside delivery, the Pelješac wine run.</div></div><span class="sfold__count">3 picks</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-bwa">
+                            <summary><div><div class="pfold__name">&#128205; BWA Yachting Croatia (Split)</div><div class="pfold__hook">Gat Sv. Duje 4, Split &middot; +385 51 703 773 &middot; 24/7</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Largest superyacht agency network in Croatia &middot; Split desk on Gat Sv. Duje &middot; the right first call</div>
+                                <p>The dominant superyacht agency on the Croatian coast, with offices in Split, Dubrovnik, Šibenik, Zadar, and Pula. Customs clearance, supplier coordination, dockside delivery, fuel, waste, crew transport. They have the standing relationship with ACI head office that gets you a berth in July when nobody else can. <span class="cau cau--high" data-fix="Brief BWA 72 h ahead with the provision list, dietary requirements, berth preference, and VAT regime. During charter peak (July–Aug) brief 14 days ahead — they pre-arrange supplier slots and customs windows before the rush.">Brief 72 h ahead</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Gat Sv. Duje 4, 21000 Split</div>
+                                    <div><strong>Phone</strong>+385 51 703 773</div>
+                                    <div><strong>Email</strong>croatia@bwayachting.com</div>
+                                    <div><strong>Web</strong>bwayachting.com/croatia/</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=BWA+Yachting+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-adriatic-services">
+                            <summary><div><div class="pfold__name">&#128205; Adriatic Services (Yacht Agency)</div><div class="pfold__hook">Gat Sv. Duje 1, Split &middot; +385 20 311 488</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Established Croatian agency &middot; Split + Dubrovnik desks &middot; useful as a second-quote agent</div>
+                                <p>Established Croatian yacht agency with desks in Split and Dubrovnik and operations into Montenegro. Useful as a second-quote agent or backup when BWA is fully booked during the July&ndash;August peak. The way to use them: get BWA&rsquo;s quote first, then ask Adriatic Services for the same scope, pick on relationship and price.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Gat Sv. Duje 1, 21000 Split</div>
+                                    <div><strong>Phone</strong>+385 20 311 488</div>
+                                    <div><strong>Email</strong>info@adriaticservices.hr</div>
+                                    <div><strong>Web</strong>adriaticservices.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Adriatic+Services+Yacht+Agency+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-lp-yacht">
+                            <summary><div><div class="pfold__name">&#128205; LP Yacht Support (Luka Peruzović)</div><div class="pfold__hook">Split harbour &middot; 24/7 EN/FR &middot; info@lp-ys.com</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Independent boutique-scale agent &middot; one named human running your boat</div>
+                                <p>Boutique independent agent. Useful when you want a single named contact handling your boat for the whole season rather than a shifting roster of duty managers. EN and FR fluent, 24/7. Pair with BWA&rsquo;s network for the heavy customs jobs; LP for the day-to-day relationship and the small fast asks.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Email</strong>info@lp-ys.com</div>
+                                    <div><strong>Web</strong>lp-ys.com</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=LP+Yacht+Support+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== WHOLESALE / MAINLAND ========== -->
+                <details class="sfold" id="wholesale">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Wholesale &amp; Hypermarket</div><div class="sfold__desc">METRO at Kaštel Sućurac for the bulk run. Tommy Žnjan for Croatian-owned product. Plan to do this on Friday morning.</div></div><span class="sfold__count">2 picks</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+
+                        <div class="pc-funfact"><strong>The Kaštel Sućurac run pattern.</strong> Rent or borrow the agent&rsquo;s van. Drive 15 minutes from ACI Marina (10 min from Kaštela) up the bay to METRO at Kaštel Sućurac. Load non-perishables, frozen, dairy, packaging, cleaning, drinks. Stop at Tommy Žnjan on the way back for Croatian-owned product the chains don&rsquo;t carry &mdash; pršut, Pag cheese, Dalmatian olive oil. Total round trip ~3 h. Range &euro;800&ndash;2,500 for a week of charter, paid through the agent so the VAT paperwork holds.</div>
+
+                        <details class="pfold top" id="p-metro">
+                            <summary><div><div class="pfold__name">&#128205; METRO Cash &amp; Carry Split</div><div class="pfold__hook">Ivana Pavla II 3, Kaštel Sućurac &middot; +385 21 708 222 &middot; B2B card required</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The wholesale answer &middot; 15 min from ACI &middot; the agent can lend a card</div>
+                                <p>The wholesale workhorse for Croatia. 15 minutes from ACI Marina, 10 minutes from Marina Kaštela. B2B membership card required at entry &mdash; the yacht agent can lend their card or arrange a temporary one for the duration of your visit. Bulk dry goods, frozen, dairy, cleaning, packaging, beverages, decent fresh produce, basic butcher counter. <span class="cau cau--med" data-fix="Closed Sundays. The Saturday rush during charter changeover days is brutal — every charter chef in central Dalmatia is in the building between 09:00 and 12:00. Do the bulk run Friday morning before 11:00.">Closed Sun &middot; avoid Sat AM</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Ivana Pavla II 3, 21212 Kaštel Sućurac</div>
+                                    <div><strong>Phone</strong>+385 21 708 222</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 06:00&ndash;21:00 &middot; closed Sun</div>
+                                    <div><strong>Web</strong>metro-cc.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=METRO+Cash+Carry+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-tommy-znjan">
+                            <summary><div><div class="pfold__name">&#128205; Tommy Hypermarket &mdash; Žnjan</div><div class="pfold__hook">Žnjanska 4, Split &middot; Croatian-owned chain &middot; strong on Dalmatian product</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Croatian-owned &middot; better on local product than Spar or Konzum &middot; 10 min from ACI</div>
+                                <p>Croatian-owned chain &mdash; consistently better on local product than the international chains. Pršut, Pag cheese, Dalmatian olive oil (including Brachia), local honey, Dalmatian wines. Žnjan branch is the largest in Split, ten minutes from ACI by van. Use Tommy as the &ldquo;everything METRO didn&rsquo;t have&rdquo; second stop; use Konzum or Spar only if Tommy is closed.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Žnjanska 4, 21000 Split</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 07:00&ndash;22:00 &middot; Sun 08:00&ndash;22:00</div>
+                                    <div><strong>Web</strong>tommy.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Tommy+%C5%BDnjan+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== FISH ========== -->
+                <details class="sfold" id="fish">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Fish &mdash; Ribarnica, Stobreč &amp; the Mall Counter</div><div class="sfold__desc">Ribarnica at 06:30 for the headline catch, Kantar in Stobreč for the local-trusted alternative, Gastro Brač in the Mall when the centre is shut, Vis fishermen for the rare boxes.</div></div><span class="sfold__count">4 picks</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-ribarnica">
+                            <summary><div><div class="pfold__name">&#128205; Ribarnica (Split Fish Market)</div><div class="pfold__hook">Kraj Sv. Marije 8, Marmontova &middot; since 1890 &middot; Mon&ndash;Sat 06:30&ndash;13:00</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The only urban daily fish market on the Adriatic &middot; built on a sulphur spring &middot; fly-free</div>
+                                <p>The fish hall on Marmontova has been operating in this exact spot since 1890. Whole orata, branzino, John Dory, scampi from the Kvarner gulf, octopus, cuttlefish (with ink &mdash; ask the fishmonger to keep it), spring squid, autumn red mullet. Arrive 06:30&ndash;08:00 for the full board. After 12:00 prices drop and so does the selection. <span class="cau cau--high" data-fix="The market is shut all day Sunday and shuts at 13:00 every other day. A Sunday-arrival charter starts with no fresh fish unless you bought Saturday and held on shaved ice with the head intact for 48 h, or pre-ordered direct from Vis fishermen via BWA.">Closed Sun &middot; closes 13:00 daily</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Kraj Sv. Marije 8, 21000 Split</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 06:30&ndash;13:00 &middot; closed Sun</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ribarnica+Split+Marmontova" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-kantar">
+                            <summary><div><div class="pfold__name">&#128205; Ribarnica Kantar (Stobreč)</div><div class="pfold__hook">Klanci 4, Stobreč &middot; small local fishmonger &middot; cleaning &euro;1/kg &middot; 12 min east of ACI</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The local-trusted alternative &middot; Stobreč fishing village &middot; same-day catch, no tourist mark-up</div>
+                                <p>Stobreč is the small fishing village twelve minutes east of ACI Marina, just past Žnjan. Ribarnica Kantar is the village fishmonger &mdash; the kind of small counter that buys direct from the Stobreč and Podstrana boats and turns the entire stock over once a day. Whole orata, brancin, šaragi, gilt-head bream, spring squid, octopus, sardines, scampi when the boats land them. Cleaning at &euro;1/kg done while you wait. The fish is the same Adriatic catch as the central Ribarnica, the price is meaningfully lower, and the queue is locals not cruise-ship tour groups. Pair the run with a Žnjan stop at Tommy on the way back. <span class="cau cau--med" data-fix="No web booking; ring ahead is informal. The way to use it: drive over the first day, introduce yourself as the chef from [your boat name], ask whether they will hold a particular fish if you ring at 07:00. After that you have a relationship and they will set aside a 4 kg orata when the call comes.">Build a phone relationship &mdash; no web booking</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Klanci 4, 21311 Stobreč</div>
+                                    <div><strong>Hours</strong>Mornings daily (verify by walk-in for current hours)</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Ribarnica+Kantar+Klanci+Stobre%C4%8D" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-gastro-brac">
+                            <summary><div><div class="pfold__name">&#128205; Gastro Ribarnica Brač (Mall of Split)</div><div class="pfold__hook">Josipa Jovića 93, Mall of Split &middot; +385 91 6132 458 &middot; daily 08:00&ndash;21:00</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The &lsquo;open when Ribarnica is closed&rsquo; answer &middot; Centaurus chain (11 fish counters) &middot; takes special orders</div>
+                                <p>The Centaurus group runs eleven fish counters across central Dalmatia and the Mall of Split branch is the one that matters for charter chefs: open daily 08:00&ndash;21:00 including Sundays, when the Ribarnica is shut. Fresh wild Adriatic catch (trawled and gear-line) plus farmed orata and brancin from the Brač and Cetina-mouth farms. Free fish cleaning with purchase, special orders accepted &mdash; ring 24 hours ahead for a whole tuna loin, a 6 kg dentex, scampi by the kilo. The way chefs use it: Friday Ribarnica run for the headline catch + Sunday morning Mall of Split run when Pazar and Ribarnica are both closed. Same building as <a href="#p-sakic" style="color:var(--color-sea); text-decoration: underline;">Mesnica Šakić</a> &mdash; one stop covers fish + meat + Sunday provisions in 25 minutes.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Josipa Jovića 93, 21000 Split (Mall of Split)</div>
+                                    <div><strong>Phone</strong>+385 91 6132 458</div>
+                                    <div><strong>Email</strong>info@centaurus.hr</div>
+                                    <div><strong>Hours</strong>Daily 08:00&ndash;21:00</div>
+                                    <div><strong>Web</strong>centaurus.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Gastro+Ribarnica+Bra%C4%8D+Mall+of+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-stinjive">
+                            <summary><div><div class="pfold__name">&#128205; Vis Fishermen (direct landings, Komiža + Vis town)</div><div class="pfold__hook">Via BWA Yachting or LP Yacht Support &middot; tuna, langoustine, lobster</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Remotest inhabited Croatian island &middot; fishermen sell direct on the quay</div>
+                                <p>Vis is the remotest inhabited island on the Croatian coast and the fishermen still land their catch on the quays at Komiža and Vis town. Best for Adriatic tuna, langoustine, lobster &mdash; the things the Ribarnica gets in small quantities. The way to do it: have <a href="#p-bwa" style="color:var(--color-sea); text-decoration: underline;">BWA</a> or <a href="#p-lp-yacht" style="color:var(--color-sea); text-decoration: underline;">LP Yacht Support</a> radio ahead the night before with what you want; the boxes are waiting on ice when you tie up. Useful when the principal wants something Split itself can&rsquo;t deliver in volume.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Where</strong>Komiža + Vis town quays, 21485 Vis</div>
+                                    <div><strong>Hours</strong>Daily mornings, weather permitting</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Komi%C5%BEa+Vis+fish+market" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== MEAT ========== -->
+                <details class="sfold" id="meat">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Meat &mdash; Certa, Škokić, Šakić + Hvar Lamb</div><div class="sfold__desc">Mesnica Certa for dry-aged + neighbourhood respect, Mesnica Škokić for the local-pazar walk-in, Šakić for Sunday opening + own breeding, Hvar lamb for the maquis-fed special.</div></div><span class="sfold__count">4 picks</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-certa">
+                            <summary><div><div class="pfold__name">&#128205; Mesnica Certa</div><div class="pfold__hook">Dubrovačka 20, Split (Lokve) &middot; +385 21 534 969 &middot; dry-aged maturation chamber</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Family artisan butcher &middot; own dry-aged maturation chamber &middot; the steakhouse-tier cut for under one-third of the restaurant price</div>
+                                <p>Small family butcher in the Lokve district, run by Ante Certa. The reason this shop matters: a proper dry-aged maturation chamber on premises &mdash; the same set-up the Split steakhouses (Bajamonti, Dva srca i kuhača) use to source their menu. Domestic Croatian beef aged 28&ndash;60 days, ribeye and sirloin and entrecôte cuts on the bone, simple Dalmatian-style charcuterie, fresh pork, lamb. The way to use it: ring Tuesday with the Friday principal-dinner specs (cut, weight, age), pick up Friday morning, pay roughly one-third of what the same cut would cost on a Riva restaurant menu. Twelve minutes by van from ACI. <span class="cau cau--med" data-fix="The dry-aged chamber holds limited weight at any given moment — when a single chef pre-orders a 12 kg côte de bœuf, it can clear the wall. Brief at least 5 days ahead for anything above 4 kg. Rushed walk-ins get the daily cuts; the aged cuts are pre-allocated.">Pre-order &gt;4 kg dry-aged 5 days ahead</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Dubrovačka 20, 21000 Split</div>
+                                    <div><strong>Phone</strong>+385 21 534 969 &middot; +385 21 534 415</div>
+                                    <div><strong>Owner</strong>Ante Certa</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 07:00&ndash;14:00 &amp; 17:00&ndash;20:00 &middot; closed Sun (verify by phone)</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Mesnica+Certa+Dubrova%C4%8Dka+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-skokic">
+                            <summary><div><div class="pfold__name">&#128205; Mesnica Škokić (Tržnica Sućidar / Plokite)</div><div class="pfold__hook">Vinkovačka 2, Plokite &middot; +385 21 538 387 &middot; inside the local-favorite pazar</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Local-pazar butcher &middot; inside <a href="#p-sucidar" style="color:var(--color-sea); text-decoration: underline;">Tržnica Sućidar</a> &middot; daily walk-in cuts, no tourist mark-up</div>
+                                <p>The other branch of the Škokić family meat business sits inside the Plokite market hall, in the same building as the Sućidar produce stalls and a permanent fish counter. Daily cuts &mdash; beef, pork, Dalmatian lamb, veal, house ćevapi, fresh kobasica &mdash; at neighbourhood prices, with a Stari Grad outlet on Hvar Island for when the boat moves there. Pair with the Sućidar produce run for a single forty-minute stop that covers the bulk of a midweek lunch service. <span class="cau cau--info" data-fix="Walk-in is fine for daily cuts. For lamb on the bone, suckling pig, or Pag spit-roast lamb, ring the day before — Croatian butchers don&rsquo;t hold those on the counter unless asked. Cash + card both accepted.">Walk-in for daily cuts; ring ahead for lamb</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Vinkovačka 2, 21000 Split (inside Tržnica Sućidar)</div>
+                                    <div><strong>Phone</strong>+385 21 538 387</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 06:30&ndash;13:30 (in line with the market hall)</div>
+                                    <div><strong>Other branches</strong>Stari Grad (Hvar) &middot; Kaštela</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Mesnica+%C5%A0koki%C4%87+Vinkova%C4%8Dka+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-sakic">
+                            <summary><div><div class="pfold__name">&#128205; Mesnica Šakić (Mall of Split)</div><div class="pfold__hook">Josipa Jovića 93 (Mall of Split) &middot; family butcher &middot; own cattle</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Family butcher &middot; own cattle inland &middot; open Sundays &middot; pair with Gastro Ribarnica Brač in the same building</div>
+                                <p>Family butcher with their own cattle breeding inland. Beef, pork, Dalmatian lamb, simple house charcuterie. The Mall of Split branch has the most consistent stock and is open Sundays &mdash; useful for Sunday-arrival charter when Certa and Škokić are both shut. Same building as <a href="#p-gastro-brac" style="color:var(--color-sea); text-decoration: underline;">Gastro Ribarnica Brač</a>: one Sunday-morning stop covers the entire fresh protein run. <span class="cau cau--med" data-fix="For Pag spit-roast lamb, dry-aged cuts, or whole-animal pre-orders, call 48–72 h ahead. The walk-in counter is for daily cuts only — specialty pre-orders are prepared off the floor. For dry-aged in particular, prefer Mesnica Certa (Dubrovačka 20).">Pre-order 48&ndash;72 h &middot; dry-aged: prefer Certa</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Josipa Jovića 93, 21000 Split (Mall of Split)</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 09:00&ndash;21:00 &middot; Sun 09:00&ndash;20:00</div>
+                                    <div><strong>Web</strong>mallofsplit.hr/en/mesnica-sakic/</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Mesnica+%C5%A0aki%C4%87+Mall+of+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-hvar-lavender">
+                            <summary><div><div class="pfold__name">&#128205; Hvar Lavender + Lamb (Velo Grablje)</div><div class="pfold__hook">Velo Grablje village above Hvar town &middot; ferry from Split 1&ndash;2 h</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Lamb grazed on lavender + immortelle maquis &middot; sea-bay ferry from Split</div>
+                                <p>Velo Grablje is the abandoned-then-reclaimed lavender village above Hvar town. Wild lavender, immortelle (smilje), rosemary, sage, and the maquis on which Hvar lamb is grazed. The way to use this: ask <a href="#p-sakic" style="color:var(--color-sea); text-decoration: underline;">Mesnica Šakić</a> to source &ldquo;Hvar lamb&rdquo; specifically (it is sold under that name in Split butchers when available) and pick up the herbs yourself if your itinerary touches Hvar. Ferry Split&ndash;Hvar 1 h on the catamaran, 2 h on the car ferry.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Where</strong>Velo Grablje, 21450 Hvar</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Velo+Grablje+Hvar" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== BREAD ========== -->
+                <details class="sfold" id="bread">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Bread &mdash; Kruščić</div><div class="sfold__desc">First serious artisan bakery in Split, two minutes from the Ribarnica. Pre-order anything above 6 loaves.</div></div><span class="sfold__count">1 pick</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-kruscic">
+                            <summary><div><div class="pfold__name">&#128205; Kruščić Artisan Bakery</div><div class="pfold__hook">Obrov 6, Split &middot; sourdough &middot; +385 91 538 8869</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">First serious artisan bakery in Split &middot; two minutes from the Ribarnica &middot; flour from a local watermill</div>
+                                <p>Sourdough, French and German recipes, four ingredients only (flour, water, salt, yeast), no additives, no preservatives. Local stone-mill flour. Two minutes&rsquo; walk from the Ribarnica &mdash; combine the morning fish run with bread pickup. <span class="cau cau--med" data-fix="Pre-order anything above 6 loaves the day before. The bakery is small-batch — walk-in for 12 sourdoughs at 09:00 will get you a polite no.">Pre-order &gt;6 loaves</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Obrov 6, 21000 Split</div>
+                                    <div><strong>Phone</strong>+385 91 538 8869</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 07:00&ndash;14:00 &middot; closed Sun</div>
+                                    <div><strong>Facebook</strong>Kruscic.Split</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Krus%C4%8Di%C4%87+Bakery+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== PRODUCE ========== -->
+                <details class="sfold" id="produce">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Produce &mdash; Pazar, Sućidar &amp; the Greengrocers</div><div class="sfold__desc">Pazar for the headline market, Sućidar at Plokite for the local-priced version, Voćarna Vitaminko for daily neighbourhood top-ups, Adria Supply for delivery to the marina.</div></div><span class="sfold__count">4 picks</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+
+                        <div class="pc-funfact"><strong>The two-pazar trick.</strong> Pazar (city centre) and Tržnica Sućidar (Plokite) sell roughly the same Kaštela-hinterland produce, but Sućidar prices run 20&ndash;35% lower because no cruise-ship traffic ever reaches it. Use Pazar for the Diocletian-Palace photo and the small premium things only the city stalls carry (lavender bundles, homemade pršut, Pag cheese in waxed paper). Use Sućidar for the bulk weekly tomato + pepper + courgette run, and to combine with <a href="#p-skokic" style="color:var(--color-sea); text-decoration: underline;">Mesnica Škokić</a> which sits inside the same market hall.</div>
+
+                        <details class="pfold top" id="p-pazar">
+                            <summary><div><div class="pfold__name">&#128205; Pazar (Green Market)</div><div class="pfold__hook">Stari Pazar, against the east wall of Diocletian&rsquo;s Palace &middot; daily 06:00&ndash;14:00</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Open since well before the Palace was a tourist site &middot; growers from Kaštela hinterland</div>
+                                <p>Open-air market that runs against the eastern wall of Diocletian&rsquo;s Palace, around the church of St Dominic. Tomatoes from the Kaštela hinterland, Pelješac figs in late August, Brač olive oil sold in old water bottles, homemade pršut, Pag cheese in waxed paper, lavender bundles from Hvar. The growers selling out of plastic crates are the ones to find &mdash; ask them where the produce was grown; if the answer is a village name, buy. <span class="cau cau--high" data-fix="The best growers (the women selling out of plastic crates from the Kaštela hinterland) sell out and go home by 11:30 in summer. Walk Pazar between 06:30 and 09:00. Identify the same growers each visit; ask what they will have tomorrow. Buy a full week of tomatoes and figs in one early run rather than daily top-ups.">Best stalls gone by 11:30</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Stari Pazar, 21000 Split</div>
+                                    <div><strong>Hours</strong>Daily 06:00&ndash;14:00</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Pazar+Split+Green+Market" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-sucidar">
+                            <summary><div><div class="pfold__name">&#128205; Tržnica Sućidar (Pazar Plokite)</div><div class="pfold__hook">Vinkovačka 2, Plokite &middot; the city&rsquo;s local-favorite neighbourhood market &middot; daily mornings</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">The neighbourhood market locals use &middot; same growers as Pazar, no cruise-ship pricing &middot; butcher + fishmonger on site</div>
+                                <p>The most-visited neighbourhood market in Split (the city operator counts 11 markets in total; Sućidar is the busiest after Pazar), eight minutes by van from ACI Marina. Same Kaštela-hinterland growers as Pazar, often the same families &mdash; but with no cruise-ship traffic the prices run 20&ndash;35% lower for the same tomato. The hall combines a covered produce ring with a permanent fish counter and <a href="#p-skokic" style="color:var(--color-sea); text-decoration: underline;">Mesnica Škokić</a>, so a single forty-minute stop covers the produce, the day&rsquo;s catch, and the lamb chops for that night&rsquo;s service. <span class="cau cau--med" data-fix="Best growers arrive 06:30 and most are gone by 10:30. Park on Vinkovačka or Velebitska — both wide enough for a chef van. Cash kuna/euro preferred at the small stalls; the larger fish + meat counters take cards.">Best stalls 06:30&ndash;10:00</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Vinkovačka 2, 21000 Split (Plokite)</div>
+                                    <div><strong>Hours</strong>Daily 06:30&ndash;13:30 (best 06:30&ndash;10:00)</div>
+                                    <div><strong>Operator</strong>Tržnice Split &middot; trznice@parkovi-st.hr &middot; +385 21 461 047</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Tr%C5%BEnica+Su%C4%87idar+Vinkova%C4%8Dka+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-vitaminko">
+                            <summary><div><div class="pfold__name">&#128205; Voćarna Vitaminko</div><div class="pfold__hook">Mostarska 33, Split (Brda) &middot; neighbourhood greengrocer &middot; phone orders welcome</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Small kvartovska voćarna &middot; daily resupply from TTTS Stobreč wholesale &middot; will hold an order if you ring ahead</div>
+                                <p>The kvartovska voćarna pattern &mdash; a small neighbourhood greengrocer of the kind that still anchors most Mediterranean cities. Family-run by Tihomir Vukušić in the Brda district, ten minutes by van from ACI. Daily resupply from the TTTS Stobreč wholesale market, so the rotation is fresher than any chain hypermarket and the price beats Pazar on bulk vegetables. Ring ahead with the chef list and they will set aside a crate; walk in five minutes before close and they will sell off the day&rsquo;s tomatoes at half price for next-morning&rsquo;s cold soup. The right back-up when the Pazar early-morning run was fully eaten by traffic. <span class="cau cau--info" data-fix="Mostarska 33 is in the Brda residential block — easy van parking on the side street, but the shop has no English signage. Ask for &lsquo;Vitaminko&rsquo; at the pavement.">Brda residential — no signage in English</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Mostarska 33, 21000 Split</div>
+                                    <div><strong>Owner</strong>Tihomir Vukušić</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Sat 07:00&ndash;20:00 &middot; Sun 07:00&ndash;13:00 (verify by phone)</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Vo%C4%87arna+Vitaminko+Mostarska+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-adriasupply">
+                            <summary><div><div class="pfold__name">&#128205; Adria Supply (Online &mdash; Daily Delivery to Marina)</div><div class="pfold__hook">adriasupply.com &middot; free delivery to ACI / Kaštela / Lav &middot; since 2016</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Online order &middot; free yacht delivery in Split, Zadar, Šibenik &middot; the no-time fallback when you can&rsquo;t walk Pazar</div>
+                                <p>The online answer when the morning ate itself: place a fruit + vegetable order the night before, free delivery to ACI Marina, Marina Kaštela, or Marina Lav by professional partner taxi the next morning. Operating since 2016 specifically for charter and villa supply. Useful for Sunday-arrival charter (when Pazar is closed and Sućidar is shut), and as the default route when the captain calls a same-day extension and you are already out of the hinterland tomatoes. Pair with <a href="#p-bwa" style="color:var(--color-sea); text-decoration: underline;">BWA Yachting</a> for VAT recovery on the invoice.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Web</strong>adriasupply.com</div>
+                                    <div><strong>Coverage</strong>Split, Zagreb, Zadar, Šibenik &middot; daily delivery to leading marinas</div>
+                                    <div><strong>Order window</strong>Place by 18:00 for next-morning delivery</div>
+                                </div>
+                                <a class="map-link" href="https://adriasupply.com/contact-us/" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== WINE & OIL ========== -->
+                <details class="sfold" id="wine">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">Wine, Olive Oil &amp; Specialty</div><div class="sfold__desc">Paradox + Vinoteka Terra in Split for fast restocks. Pelješac for serious case orders. Brač for olive oil.</div></div><span class="sfold__count">5 picks</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+
+                        <details class="pfold top" id="p-paradox">
+                            <summary><div><div class="pfold__name">&#128205; Paradox Wine &amp; Cheese Bar</div><div class="pfold__hook">Bana Josipa Jelačića 3, Split &middot; +385 21 787 778 &middot; sommelier on site</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">120+ Croatian labels &middot; sommeliers who will actually advise &middot; same-day delivery to the marina</div>
+                                <p>Serious Croatian wine cellar with sommeliers who can advise on Plavac Mali, Pošip, Graševina across Dalmatia, Pelješac, Istria. Case orders by phone, delivery to ACI Marina the same day. Useful for a fast, well-chosen wine restock when you didn&rsquo;t have time to drive to Pelješac.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Bana Josipa Jelačića 3, 21000 Split</div>
+                                    <div><strong>Phone</strong>+385 21 787 778</div>
+                                    <div><strong>Email</strong>info@paradox.hr</div>
+                                    <div><strong>Hours</strong>Daily 17:00&ndash;01:00 (call AM for daytime case orders)</div>
+                                    <div><strong>Web</strong>paradox.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Paradox+Wine+Cheese+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-vinoteka-terra">
+                            <summary><div><div class="pfold__name">&#128205; Vinoteka Terra</div><div class="pfold__hook">Put Firula 4, Split &middot; +385 21 482 247 &middot; since 1993</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Stone-vaulted cellar above Bačvice &middot; wholesale + retail &middot; serious case prices</div>
+                                <p>Stone-vaulted cellar above Bačvice beach, founded 1993. Premium Croatian wines and spirits. The place for serious case orders of Dingač, Postup, Pošip, travarica, rakija. They sell wholesale, so when you spend, expect a yacht-friendly price.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Put Firula 4, 21000 Split</div>
+                                    <div><strong>Phone</strong>+385 21 482 247</div>
+                                    <div><strong>Email</strong>info@vinoteka.hr</div>
+                                    <div><strong>Hours</strong>Mon&ndash;Fri 09:00&ndash;20:00 &middot; Sat 09:00&ndash;14:00 &middot; closed Sun</div>
+                                    <div><strong>Web</strong>vinoteka.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Vinoteka+Terra+Split" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-korta-katarina">
+                            <summary><div><div class="pfold__name">&#128205; Korta Katarina Winery (Pelješac)</div><div class="pfold__hook">Bana Jelačića 3, Orebić &middot; +385 20 713 817 &middot; by appointment</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Top-tier Pelješac estate &middot; Plavac Mali flagship &middot; ~3 h drive + 30 min ferry</div>
+                                <p>Top-tier Pelješac estate at Orebić. Reuben&rsquo;s Private Reserve is one of the best Dalmatian reds you can put on a charter wine list. ~3 h drive from Split plus the 30-minute Ploče&ndash;Trpanj ferry; arrange the visit directly or have <a href="#p-bwa" style="color:var(--color-sea); text-decoration: underline;">BWA</a> send a driver. Tasting room serious enough to take a principal.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Bana Jelačića 3, 20250 Orebić</div>
+                                    <div><strong>Phone</strong>+385 20 713 817</div>
+                                    <div><strong>Email</strong>info@kortakatarina.com</div>
+                                    <div><strong>Hours</strong>By appointment (Mon&ndash;Sat)</div>
+                                    <div><strong>Web</strong>kortakatarinawinery.com</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Korta+Katarina+Winery+Orebi%C4%87" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-matusko">
+                            <summary><div><div class="pfold__name">&#128205; Vina Matuško (Potomje, Pelješac)</div><div class="pfold__hook">Potomje village &middot; +385 20 742 393 &middot; Dingač DOC heart</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Family producer in the heart of Dingač DOC &middot; deep stone cellars carved into the cliff</div>
+                                <p>Family producer at Potomje on Pelješac, in the heart of the Dingač DOC. Deep stone cellars carved into the cliff, walking-tour cellars open to visitors. Dingač and Postup by the case &mdash; direct purchase is meaningfully cheaper than any Split wine merchant. ~3.5 h drive from Split with the ferry.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Potomje, 20244 Potomje</div>
+                                    <div><strong>Phone</strong>+385 20 742 393</div>
+                                    <div><strong>Email</strong>matusko-vina@du.t-com.hr</div>
+                                    <div><strong>Hours</strong>Daily 08:00&ndash;22:00 (summer) &middot; winter by appointment</div>
+                                    <div><strong>Web</strong>matusko-vina.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Vina+Matu%C5%A1ko+Potomje" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold top" id="p-brachia">
+                            <summary><div><div class="pfold__name">&#128205; Brachia Olive Oil (Brač)</div><div class="pfold__hook">Brač island &middot; Oblica variety &middot; ferry from Split 50 min</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Most awarded Croatian olive oil &middot; single-island Oblica &middot; cold-pressed</div>
+                                <p>Brač Oblica olives, cold-pressed, single-island provenance. The most awarded Croatian olive oil brand. Sold widely in Split (Tommy, Vinoteka Terra, Pazar) but a direct visit lets you taste the early-harvest lots and reserve the unfiltered, polyphenol-heavy bottles. Ferry from Split to Supetar 50 min. <span class="cau cau--high" data-fix="The single best month to buy Croatian olive oil is the four weeks immediately after pressing — mid-October to mid-November. Polyphenol-rich early-harvest lots sell out fast. Email info@brachia.hr in early September to reserve a case; visit between 20 Oct and 15 Nov to taste before buying.">Olive harvest window</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Bracia, 21420 Bol, Brač</div>
+                                    <div><strong>Email</strong>info@brachia.hr</div>
+                                    <div><strong>Hours</strong>By appointment</div>
+                                    <div><strong>Web</strong>brachia.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Brachia+Olive+Oil+Bra%C4%8D" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-sinovcic">
+                            <summary><div><div class="pfold__name">&#128205; OPG Sinovčić &mdash; Family Olive Oil (Brač)</div><div class="pfold__hook">Brač island &middot; smaller-batch family producer &middot; opgsinovcic.hr</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Small family producer &middot; direct relationship rather than a label</div>
+                                <p>Small family producer on Brač for chefs who want a direct relationship rather than a label on a shelf. Stone-mill press, the same Oblica variety as Brachia, far less marketing. Visit by appointment, walk away with crates and a phone number you can call from the boat next season.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Where</strong>Brač island (contact via web)</div>
+                                    <div><strong>Web</strong>opgsinovcic.hr/en/</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=OPG+Sinovcic+Bra%C4%8D" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <details class="pfold" id="p-frapa">
+                            <summary><div><div class="pfold__name">&#128205; Marina Frapa (Rogoznica)</div><div class="pfold__hook">Uvala Soline 1, Rogoznica &middot; +385 22 559 900 &middot; 45 min west of Split</div></div><span class="pfold__chev">&#9654;</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">Best-Croatian-marina 15&times; &middot; quieter than ACI &middot; full resort facilities</div>
+                                <p>45 minutes west of Split by car (or short hop by sea). 462 berths, 10 reserved for superyachts over 40 m. Quieter than Split city port, full resort facilities. The right call when you want a few days off the city before re-entering charter rotation, or as a staging berth before a Hvar / Vis run.</p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>Uvala Soline 1, 22203 Rogoznica</div>
+                                    <div><strong>Phone</strong>+385 22 559 900</div>
+                                    <div><strong>Email</strong>frapa@marinafrapa.hr</div>
+                                    <div><strong>Web</strong>marinafrapa.hr</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Marina+Frapa+Rogoznica" target="_blank" rel="noopener">&#128205; Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                    </div>
+                </details>
+
+                <!-- ========== WATCH-OUTS ========== -->
+                <details class="sfold" id="watchouts">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">&#9888; Watch-outs by Season &amp; Event</div><div class="sfold__desc">The few that will actually break your day. Smaller stuff is in the inline &#9888; pills next to each supplier above.</div></div><span class="sfold__count" id="wo-count">&mdash;</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+                        <div id="wo-list"></div>
+                    </div>
+                </details>
+
+                <!-- ========== BOTTOM LINE ========== -->
+                <details class="sfold" id="bottom">
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">The Bottom Line</div><div class="sfold__desc">If you read nothing else.</div></div><span class="sfold__count">2 min</span><span class="sfold__chev">&#9654;</span></summary>
+                    <div class="sfold__body">
+                        <p>Split is the most workable city port on the Mediterranean. Four operational moves do 80% of the work: <strong>brief BWA Yachting 72 h ahead</strong> (and reserve ACI in January for any July&ndash;August window), <strong>do the bulk run at METRO Kaštel Sućurac on Friday morning</strong> before the Saturday charter flip eats the road, <strong>walk the Ribarnica + Pazar before 09:00</strong> for the headline catch and the Diocletian-Palace photo, and &mdash; the move most charter chefs miss &mdash; <strong>do the weekly produce + meat run at Tržnica Sućidar (Plokite)</strong> with a stop at <strong>Ribarnica Kantar in Stobreč</strong> for the same Adriatic fish at neighbourhood prices.</p>
+                        <p><strong>Build relationships with three named humans:</strong> the Pazar grower whose tomatoes you want every visit; <a href="#p-certa" style="color:var(--color-sea); text-decoration: underline;">Ante Certa</a> at Mesnica Certa for the dry-aged côte; and the fishmonger at <a href="#p-kantar" style="color:var(--color-sea); text-decoration: underline;">Ribarnica Kantar Stobreč</a> who will set aside a 4 kg orata when you ring at 07:00. The phone relationship is the difference between getting what you ordered and getting what is on the counter.</p>
+                        <p><strong>Before you sail away,</strong> load Pelješac Plavac Mali by the case (Korta Katarina&rsquo;s Reuben&rsquo;s Private Reserve, Matuško Dingač), Brač Oblica olive oil &mdash; ideally the unfiltered early-harvest from Brachia or Sinovčić &mdash; Pag cheese, real pršut from a single producer rather than vacuum-pack from the chain, Hvar lavender for the dessert kitchen, and at least one bottle of homemade rakija from Pazar to give to the captain.</p>
+                        <p><strong>Avoid:</strong> any Saturday between June and September if you can plan around it (charter changeover gridlock); any Bura day for Brač / Hvar / Vis ferries (check pomorski-meteo.hr the morning of); any walk-up bid for ACI Split berthing in July or August (book in January or accept Marina Kaštela). And never promise a Sunday-arrival fish-driven menu without a frozen substitute &mdash; the Ribarnica is closed; the workaround is <a href="#p-gastro-brac" style="color:var(--color-sea); text-decoration: underline;">Gastro Ribarnica Brač</a> at Mall of Split or pre-ordered Vis-fishermen boxes via BWA.</p>
+                    </div>
+                </details>
+
+                <!-- Related -->
+                <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                    <strong>Also on Littoralicious</strong>
+                    <ul style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-3); list-style: none; padding: 0;">
+                        <li style="margin-bottom: var(--space-2);"><a href="port-call-venice.html" style="color: var(--color-sea); text-decoration: underline;">Port Call Venice: Provisioning a City With No Roads</a> &mdash; Same sea, opposite logistics.</li>
+                        <li style="margin-bottom: var(--space-2);"><a href="provisioning-miami-ftl.html" style="color: var(--color-sea); text-decoration: underline;">Port Call Miami &amp; Fort Lauderdale</a> &mdash; Different ocean, same rigour.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/littoralicious" method="post" target="popupwindow">
+                    <label for="footer-email-port-call-split">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-port-call-split" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">For those who feed others with intention.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="../shore-larder.html">Shore Larder</a></li>
+                            <li><a href="../the-method.html">The Method</a></li>
+                            <li><a href="../littoral-heritage.html">Heritage</a></li>
+                            <li><a href="../the-evidence.html">The Evidence</a></li>
+                            <li><a href="../the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="../about.html">Manifesto</a></li>
+                            <li><a href="../founder.html">Founder</a></li>
+                            <li><a href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Watch-outs section + interactive map both read from port-call-split-data.js -->
+    <script src="../assets/js/port-call-split-data.js"></script>
+    <script>
+        window.PCV_CONFIG = {
+            articleId: 'port-call-split',
+            center: [43.510, 16.440],
+            zoom: 11,
+            cityRadiusKm: 60
+        };
+    </script>
+    <script defer src="../assets/js/port-call-map-only.js"></script>
+    <script defer src="../assets/js/port-call-search.js"></script>
+    <script defer src="../assets/js/port-call-proximity.js"></script>
+    <script>
+    window.addEventListener('load', function () {
+        if (!window.PCV_DATA || !window.PCV_DATA.WATCHOUTS) return;
+        const list = document.getElementById('wo-list');
+        const cnt  = document.getElementById('wo-count');
+        const SEV_LABEL = { high: 'High · breaks the day', medium: 'Medium · annoying' };
+        const order = { high: 0, medium: 1 };
+        // Only surface high + medium severity in the section. Low/info-level items are
+        // expected to live as inline ⚠ caution pills next to the supplier they relate to.
+        const sorted = window.PCV_DATA.WATCHOUTS
+            .filter(function (w) { return w.severity === 'high' || w.severity === 'medium'; })
+            .sort(function (a, b) { return (order[a.severity]||9) - (order[b.severity]||9); });
+        cnt.textContent = sorted.length + ' to know';
+        list.innerHTML = sorted.map(function (w) {
+            return '<div class="wo-card sev-' + (w.severity || 'info') + '">'
+                + '<div class="wo-head"><span class="wo-title">' + w.title + '</span>'
+                + '<span class="wo-sev">' + (SEV_LABEL[w.severity] || 'info') + '</span></div>'
+                + '<div class="wo-when">' + w.when + '</div>'
+                + '<p class="wo-what">' + w.what + '</p>'
+                + '<div class="wo-fix"><b>Workaround</b>' + w.workaround + '</div>'
+                + '</div>';
+        }).join('');
+    });
+    </script>
+    <script defer src="../assets/js/draft-mode.js?v=20260509"></script>
+</body>
+</html>

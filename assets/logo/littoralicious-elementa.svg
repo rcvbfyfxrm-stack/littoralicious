@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Elementa — Overlapping element triangles
+    Fire and Water interlocked (hexagram)
+    Air and Earth as the bars
+  -->
+
+  <!-- Outer sacred circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="50" cy="50" r="44" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+
+  <!-- FIRE — Large upward triangle -->
+  <path d="M 50 12 L 82 68 L 18 68 Z" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- WATER — Large downward triangle -->
+  <path d="M 50 88 L 18 32 L 82 32 Z" fill="none" stroke="#0a0a0a" stroke-width="1.8" stroke-linejoin="round"/>
+
+  <!-- AIR bar — crosses fire triangle -->
+  <line x1="26" y1="55" x2="74" y2="55" stroke="#0a0a0a" stroke-width="2"/>
+
+  <!-- EARTH bar — crosses water triangle -->
+  <line x1="26" y1="45" x2="74" y2="45" stroke="#0a0a0a" stroke-width="2"/>
+
+  <!-- Center - the union -->
+  <circle cx="50" cy="50" r="3" fill="#0a0a0a"/>
+
+</svg>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Affair &mdash; Dimanche 29 Mars 2026</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; }
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+.masthead-subtitle { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 400; font-style: italic; color: #4a4540; margin-top: 6px; letter-spacing: 1px; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section-divider { display: flex; align-items: center; gap: 14px; margin: 32px 0 24px; font-size: 10px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; }
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.flash-box { background: #ede9e1; border: 1px solid #c8c0b4; border-left: 4px solid #8b3a3a; padding: 20px 24px; margin: 28px 0; }
+.flash-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #8b3a3a; margin-bottom: 12px; }
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li { font-size: 13px; color: #4a4540; line-height: 1.7; margin-bottom: 8px; list-style-type: '\2014 '; }
+.flash-box li strong { color: #1a1714; }
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0; border-top: 2px solid #1a1714; border-bottom: 1px solid #c8c0b4; }
+.hub-card { padding: 20px 20px 18px; border-bottom: 1px solid #c8c0b4; border-right: 1px solid #c8c0b4; text-decoration: none; color: inherit; transition: background 0.15s; position: relative; }
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+.hub-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+.hub-card-excerpt { font-size: 13px; color: #4a4540; line-height: 1.6; font-style: italic; }
+.hub-card-arrow { position: absolute; top: 20px; right: 16px; font-size: 16px; color: #c8c0b4; }
+.article-header { padding: 32px 0 20px; border-bottom: 2px solid #1a1714; margin-bottom: 28px; }
+.article-overline { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+.article-date { font-size: 12px; color: #8a847a; text-transform: uppercase; letter-spacing: 1px; }
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1714; }
+.article-body h2 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin: 24px 0 10px; padding-bottom: 4px; border-bottom: 1px solid #c8c0b4; }
+.article-body h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 20px 0 8px; }
+.article-body p { font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75; }
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol { margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540; }
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote { border-left: 3px solid #b5ad9f; padding: 12px 18px; margin: 14px 0; background: #ede9e1; font-size: 13px; color: #4a4540; line-height: 1.7; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0; }
+.article-body th { text-align: left; padding: 8px 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a; border-bottom: 2px solid #b5ad9f; font-weight: 700; }
+.article-body td { padding: 8px 10px; border-bottom: 1px solid #c8c0b4; }
+.article-body tr:hover td { background: #ede9e1; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; }
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .hub-grid { grid-template-columns: 1fr; } .hub-card { border-right: none; } .article-title { font-size: 24px; } .article-body { max-width: 100%; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Dimanche 29 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;58</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link active" href="2026-03-29.html">Premi&egrave;re Page</a><a class="nav-link" href="archive.html">Archives</a></nav><div class="page"><div class="flash-box"><div class="flash-title">En 60 Secondes</div><ul><li><strong>Guerre d'Iran : les Houthis frappent Israel</strong> &mdash; Missiles balistiques lances sur des sites militaires israeliens le 28 mars. L'operation Epic Fury entre dans son deuxieme mois, le detroit d'Ormuz reste paralyse, 20 % du petrole mondial retire.</li>
+<li><strong>Dow Jones en correction, recession a 49 %</strong> &mdash; Cinq semaines de baisse, 92 000 emplois perdus vs +59 000 attendus, Brent a 108 $/baril. Le modele Moody's frole le seuil de non-retour.</li>
+<li><strong>Pulsar Fusion : premier plasma dans un moteur-fusee a fusion</strong> &mdash; La startup britannique allume le Sunbird Mark I a la conference MARS de Jeff Bezos. Si ca fonctionne : Mars en deux fois moins de temps, Pluton en quatre ans.</li>
+<li><strong>SEC/CFTC classifient 18 cryptos en matieres premieres</strong> &mdash; Bitcoin, Ethereum, Solana echappent au statut de valeurs mobilieres. 1 700 milliards USD concernes. L'ere de la clarte reglementaire commence.</li>
+<li><strong>Le Parlement europeen bloque le Chat Control</strong> &mdash; Vote 311-228 : fin du scan de masse des messages prives. Le chiffrement de bout en bout est preserve. La Chine prend le chemin inverse avec sa loi cybercriminalite.</li>
+<li><strong>Alzheimer : 'interrupteur de mort' desactive chez la souris</strong> &mdash; L'universite de Heidelberg identifie le duo proteique toxique et le neutralise. Ralentissement de la maladie et reduction des plaques amyloides confirmes.</li></ul></div><div class="section-divider"><span>25 rubriques du jour</span></div><div class="hub-grid"><a class="hub-card" href="2026-03-29/llm-agents.html">
+  <div class="hub-card-overline" style="color:#6B4EFF">LLM &amp; Agents</div>
+  <div class="hub-card-title">La guerre des modeles s'intensifie : GPT-5.4, Gemini 3.1 et Claude 4.6 au coude a coude</div>
+  <div class="hub-card-excerpt">&laquo; Alors que les ecarts de performance entre modeles frontieres se reduisent a peau de chagrin, Google lance une offensive pour capter les utilisateurs de ses rivaux. L'ere de l'IA agentique redefinit les regles du jeu. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/gastronomie.html">
+  <div class="hub-card-overline" style="color:#C2185B">Gastronomie</div>
+  <div class="hub-card-title">Guide Michelin 2026 : Les Morainieres sacrees trois etoiles, Pierre Gagnaire couronne mentor</div>
+  <div class="hub-card-excerpt">&laquo; Avec 668 restaurants etoiles, un record absolu, le palmares 2026 celebre le terroir francais et consacre un couple savoyard au sommet de la gastronomie mondiale. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/geopolitique.html">
+  <div class="hub-card-overline" style="color:#D32F2F">Geopolitique</div>
+  <div class="hub-card-title">Guerre d'Iran : le detroit d'Ormuz paralyse, l'Ukraine sacrifiee sur l'autel du Moyen-Orient</div>
+  <div class="hub-card-excerpt">&laquo; Quatre semaines apres le debut de l'operation Epic Fury, le conflit irano-americano-israelien redessine l'ordre mondial. Les Houthis entrent en guerre, les negociations ukrainiennes sont gelees. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/innovation-startups.html">
+  <div class="hub-card-overline" style="color:#FF6D00">Innovation &amp; Startups</div>
+  <div class="hub-card-title">Fevrier 2026, mois record : 189 milliards de dollars leves, OpenAI et Anthropic ecrasent le venture capital</div>
+  <div class="hub-card-excerpt">&laquo; Trois entreprises captent a elles seules 82 % des fonds du mois le plus prolifique de l'histoire du capital-risque. La concentration du capital inquiete autant qu'elle fascine. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/finance-marches.html">
+  <div class="hub-card-overline" style="color:#1565C0">Finance &amp; Marches</div>
+  <div class="hub-card-title">Le Dow Jones entre en correction, la probabilite de recession atteint 49 % : Wall Street dans la tourmente</div>
+  <div class="hub-card-excerpt">&laquo; Cinq semaines consecutives de baisse, un marche de l'emploi qui se retourne et du petrole a 108 dollars : les marches affrontent leur pire sequence depuis le debut de la guerre d'Iran. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/science-tech.html">
+  <div class="hub-card-overline" style="color:#00838F">Science &amp; Tech</div>
+  <div class="hub-card-title">Un 'interrupteur de mort' cerebral identifie dans Alzheimer — et des scientifiques l'ont desactive chez la souris</div>
+  <div class="hub-card-excerpt">&laquo; Des chercheurs de Heidelberg decouvrent le duo proteique toxique qui detruit les neurones. Une therapie genique publiee dans Nature offre un analgesique sans opioides. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/sante-medecine.html">
+  <div class="hub-card-overline" style="color:#C62828">Sante &amp; Medecine</div>
+  <div class="hub-card-title">L'orforglipron aux portes de la FDA — la pilule GLP-1 qui pourrait democratiser le traitement de l'obesite</div>
+  <div class="hub-card-excerpt">&laquo; Eli Lilly attend l'approbation imminente du premier GLP-1 oral non peptidique. L'erythritol est soupconne de dommages cerebrovasculaires. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/espace-energie.html">
+  <div class="hub-card-overline" style="color:#1B5E20">Espace &amp; Energie</div>
+  <div class="hub-card-title">Pulsar Fusion allume le premier plasma dans un moteur-fusee a fusion nucleaire — Artemis II en route</div>
+  <div class="hub-card-excerpt">&laquo; Une startup britannique realise une premiere mondiale. La NASA acheve les preparatifs d'Artemis II, l'Inde prepare Gaganyaan, et le tokamak chinois EAST repousse les limites. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/cybersecurite-regulation.html">
+  <div class="hub-card-overline" style="color:#E65100">Cybersecurite &amp; Regulation</div>
+  <div class="hub-card-title">Le directeur du FBI pirate par l'Iran — la Commission europeenne victime d'une breche massive sur AWS</div>
+  <div class="hub-card-excerpt">&laquo; Handala Hack Team publie les emails de Kash Patel. Bruxelles confirme le vol de 350 Go de donnees. Une faille critique F5 BIG-IP exploitee activement. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/liberte-surveillance.html">
+  <div class="hub-card-overline" style="color:#4A148C">Liberte &amp; Surveillance</div>
+  <div class="hub-card-title">Le Parlement europeen bloque le scan de masse des messages prives — la Chine betonne sa loi cybercriminalite</div>
+  <div class="hub-card-excerpt">&laquo; Les eurodeputes rejettent l'extension du 'Chat Control'. Pekin propose un texte de 68 articles menacant les droits numeriques. Aux Etats-Unis, 20 Etats appliquent des lois de protection des donnees. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/maritime-sailing.html">
+  <div class="hub-card-overline" style="color:#0277BD">Maritime &amp; Sailing</div>
+  <div class="hub-card-title">Attaque de drone sur Salalah : Maersk suspend ses operations, le detroit d'Ormuz reste paralyse</div>
+  <div class="hub-card-excerpt">&laquo; Une attaque iranienne sur le port omanais de Salalah rappelle la fragilite des corridors maritimes mondiaux. En toile de fond, les regates des Caraibes battent leur plein. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/bonnes-nouvelles.html">
+  <div class="hub-card-overline" style="color:#2E7D32">Bonnes Nouvelles</div>
+  <div class="hub-card-title">Cellules souches in utero, renaissance d'un lac ukrainien et record renouvelable au Portugal</div>
+  <div class="hub-card-excerpt">&laquo; Une premiere mondiale en chirurgie fetale ouvre la voie a un traitement du spina bifida. Un lac ukrainien renait et le Portugal pulverise ses records d'energie verte. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/culture-societe.html">
+  <div class="hub-card-overline" style="color:#5D4037">Culture &amp; Societe</div>
+  <div class="hub-card-title">Le Market Theatre fete 50 ans de resistance, Lisa Kudrow affronte l'IA et Sheridan etend son empire</div>
+  <div class="hub-card-excerpt">&laquo; Le theatre qui a defie l'apartheid souffle ses cinquante bougies. A Hollywood, Valerie Cherish revient face a l'intelligence artificielle. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/podcasts-interviews.html">
+  <div class="hub-card-overline" style="color:#7B1FA2">Podcasts &amp; Interviews</div>
+  <div class="hub-card-title">Poilievre chez Rogan, le festival des femmes du podcast a Londres</div>
+  <div class="hub-card-excerpt">&laquo; Le leader conservateur canadien decroche un adoubement inattendu de Joe Rogan. A Londres, le podcast feminin s'organise en force. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/crypto.html">
+  <div class="hub-card-overline" style="color:#F57F17">Crypto</div>
+  <div class="hub-card-title">La SEC et la CFTC classifient 18 cryptos en matieres premieres : l'ere de la clarte reglementaire</div>
+  <div class="hub-card-excerpt">&laquo; 18 tokens dont Bitcoin et Ethereum echappent officiellement au statut de valeurs mobilieres. Le CLARITY Act negocie un compromis. Bitcoin stagne a 66 600 USD. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/culture-arts.html">
+  <div class="hub-card-overline" style="color:#795548">Culture Generale &amp; Arts</div>
+  <div class="hub-card-title">Raphael envahit le Met, le New Museum renait : New York epicentre mondial de l'art ce printemps</div>
+  <div class="hub-card-excerpt">&laquo; Le Metropolitan Museum inaugure la plus grande retrospective americaine de Raphael, le New Museum rouvre avec OMA et la Whitney Biennial interroge l'IA et le climat. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/design-culinaire.html">
+  <div class="hub-card-overline" style="color:#AD1457">Design Culinaire &amp; Photo</div>
+  <div class="hub-card-title">La photo culinaire a 0,40 $ l'image : l'IA bouleverse l'esthetique gastronomique</div>
+  <div class="hub-card-excerpt">&laquo; L'intelligence artificielle fait chuter le cout de la photo food de 1 000 %, le mouvement authenticite brute s'impose et les 50 Best s'exilent a Abu Dhabi. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/developpement-bienetre.html">
+  <div class="hub-card-overline" style="color:#00695C">Developpement &amp; Bien-etre</div>
+  <div class="hub-card-title">Neurowellness : la regulation du systeme nerveux devient le pilier central du bien-etre en 2026</div>
+  <div class="hub-card-excerpt">&laquo; Le Global Wellness Summit consacre le neurowellness comme tendance n1. 60 % des Fortune 500 integrent la pleine conscience structuree. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/droit-maritime.html">
+  <div class="hub-card-overline" style="color:#01579B">Droit Maritime &amp; Yachting</div>
+  <div class="hub-card-title">2026, l'annee ou l'Europe reecrit les regles du superyacht</div>
+  <div class="hub-card-excerpt">&laquo; L'EU ETS passe en phase pleine, FuelEU Maritime entre en conformite, et le marche du refit explose tandis que les commandes neuves plafonnent. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/entrepreneuriat-creatif.html">
+  <div class="hub-card-overline" style="color:#E64A19">Entrepreneuriat Creatif</div>
+  <div class="hub-card-title">Economie des createurs a 480 milliards : la newsletter devient le coffre-fort, l'audience louee meurt</div>
+  <div class="hub-card-excerpt">&laquo; 37 % des createurs migrent vers l'email comme canal de revenu direct, les abonnements payants explosent de 138 %. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/experiences-destinations.html">
+  <div class="hub-card-overline" style="color:#00838F">Experiences &amp; Destinations</div>
+  <div class="hub-card-title">Le Lac de Come sacre nouvelle mecque du luxe : EDITION ouvre son palazzo avec Colagreco aux fourneaux</div>
+  <div class="hub-card-excerpt">&laquo; Marriott EDITION inaugure un palazzo du XIXe siecle sur les rives du Lac de Come, avec le chef triplement etoile Mauro Colagreco. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/musique-son.html">
+  <div class="hub-card-overline" style="color:#6A1B9A">Musique &amp; Son</div>
+  <div class="hub-card-title">BTS pulverise Spotify avec Arirang, les Black Crowes enregistrent en dix jours : mars electrique</div>
+  <div class="hub-card-excerpt">&laquo; Le retour de BTS apres le service militaire brise tous les records de streaming. Les freres Robinson livrent un album de rock sudiste brut enregistre a Nashville. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/nutrition-cuisine.html">
+  <div class="hub-card-overline" style="color:#BF360C">Nutrition &amp; Cuisine</div>
+  <div class="hub-card-title">Dirty Dozen 2026 : des pesticides PFAS dans 60 % des fruits et legumes — The Lancet confirme l'urgence</div>
+  <div class="hub-card-excerpt">&laquo; Le rapport annuel de l'EWG revele la presence massive de polluants eternels PFAS dans les pesticides. The Lancet chiffre le cout sanitaire des aliments ultra-transformes. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/seamanship.html">
+  <div class="hub-card-overline" style="color:#1565C0">Seamanship &amp; Matelotage</div>
+  <div class="hub-card-title">Trofeo Princesa Sofia : 300 bateaux dans la baie de Palma — la saison olympique 2026 est lancee</div>
+  <div class="hub-card-excerpt">&laquo; La regate de Palma reunit 41 nations sur huit classes olympiques. La Rolex China Sea Race repousse ses dates et l'IA bouleverse le routage meteo. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-29/techniques-culinaires.html">
+  <div class="hub-card-overline" style="color:#4E342E">Techniques Culinaires</div>
+  <div class="hub-card-title">Le robot-chef apprend a 'voir' les aliments : CES 2026, fours combi et le grand retour de la fermentation</div>
+  <div class="hub-card-excerpt">&laquo; Les robots cuisiniers dotes de vision artificielle ajustent la cuisson en temps reel. Les fours combi envahissent les cuisines domestiques et la fermentation revient en force. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a></div><div class="bottom-nav"><a href="2026-03-25.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Mercredi 25 Mars 2026</span></a><a href="2026-04-01.html" style="text-align:right"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Mercredi 1 Avril 2026 &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; Edition N&deg;58</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT="worldaffair",KEY="nexus-passages-"+VAULT;
+  function getAll(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}
+  function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}
+  var selText="";
+  document.addEventListener("mouseup",function(e){var s=window.getSelection(),t=s.toString().trim(),b=document.getElementById("ps-save-btn");if(t.length>10){selText=t;b.style.display="block";b.style.left=(e.pageX+10)+"px";b.style.top=(e.pageY-40)+"px"}else{setTimeout(function(){b.style.display="none"},200)}});
+  window.psSave=function(){if(!selText)return;var p=getAll();p.push({text:selText.substring(0,2000),source:document.title,url:location.href,date:new Date().toISOString(),vault:VAULT});saveAll(p);document.getElementById("ps-save-btn").style.display="none";psRenderList();var t=document.getElementById("ps-toggle");t.style.background="#3d6b4f";setTimeout(function(){t.style.background="#1a1714"},600);selText=""};
+  window.psTogglePanel=function(){var p=document.getElementById("ps-panel");p.style.display=p.style.display==="none"?"block":"none";psRenderList()};
+  window.psRenderList=function(){var p=getAll(),el=document.getElementById("ps-list");document.getElementById("ps-count").textContent=p.length||"";if(!p.length){el.innerHTML="<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S&eacute;lectionne du texte et clique Sauvegarder</div>";return}el.innerHTML=p.slice().reverse().map(function(x,ri){var i=p.length-1-ri,d=new Date(x.date),ds=d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});return"<div style=\"padding:8px 0;border-bottom:1px solid #333;\"><div style=\"display:flex;justify-content:space-between;align-items:baseline;\"><span style=\"font-size:9px;color:#888;\">"+ds+" &mdash; "+(x.source||"").substring(0,30)+"</span><button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button></div><div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; "+x.text.substring(0,300)+(x.text.length>300?"...":"")+" &raquo;</div></div>"}).join("")};
+  window.psDelete=function(i){var p=getAll();p.splice(i,1);saveAll(p);psRenderList()};
+  window.psExport=function(){var p=getAll();if(!p.length)return;var md="# Passages sauvegard\u00e9s \u2014 "+VAULT+"\n\nExport\u00e9 le "+new Date().toLocaleDateString("fr-FR")+"\n\n---\n\n";p.forEach(function(x){md+="> "+x.text.replace(/\n/g,"\n> ")+"\n\n*Source: "+(x.source||"?")+" \u2014 "+new Date(x.date).toLocaleDateString("fr-FR")+"*\n\n---\n\n"});var b=new Blob([md],{type:"text/markdown"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="passages-"+VAULT+"-"+new Date().toISOString().slice(0,10)+".md";a.click()};
+  psRenderList();
+})();
+</script>
+</body></html>

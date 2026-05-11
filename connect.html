@@ -14,7 +14,7 @@
     <meta property="og:site_name" content="Littoralicious">
     <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
 
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
     <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
     <style>
         .connect-page {
@@ -276,59 +276,6 @@
             margin-top: var(--space-3);
         }
 
-        .profile-card__boat,
-        .profile-card__location {
-            font-size: var(--text-sm);
-            color: var(--color-muted);
-            margin-top: var(--space-2);
-            display: none;
-        }
-
-        /* Form row for side-by-side fields */
-        .auth-form__row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-4);
-        }
-
-        .auth-form__checkbox {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            margin-bottom: var(--space-4);
-        }
-
-        .auth-form__checkbox input[type="checkbox"] {
-            width: 16px;
-            height: 16px;
-            accent-color: var(--color-sea);
-        }
-
-        .auth-form__checkbox label {
-            margin-bottom: 0;
-            font-size: var(--text-sm);
-            text-transform: none;
-            letter-spacing: 0;
-            font-weight: 400;
-            color: var(--color-ink);
-        }
-
-        .auth-form select {
-            width: 100%;
-            border: 1px solid var(--color-border);
-            padding: var(--space-3) var(--space-4);
-            font-family: var(--font-sans);
-            font-size: var(--text-base);
-            background: var(--color-paper);
-            color: var(--color-ink);
-            margin-bottom: var(--space-4);
-        }
-
-        .auth-form select:focus {
-            border-color: var(--color-sea);
-            outline: none;
-        }
-
         .profile-edit {
             margin-top: var(--space-8);
             text-align: left;
@@ -452,9 +399,7 @@
                             <div class="profile-card__avatar" id="profile-avatar">C</div>
                             <div class="profile-card__name" id="profile-name">Chef</div>
                             <div class="profile-card__email" id="profile-email"></div>
-                            <span class="profile-card__role" id="profile-badge"><span id="profile-badge-name">Deckhand</span></span>
-                            <div class="profile-card__boat" id="profile-boat-info"></div>
-                            <div class="profile-card__location" id="profile-location-info"></div>
+                            <span class="profile-card__role">Chef</span>
                         </div>
 
                         <div class="profile-edit">
@@ -462,37 +407,6 @@
                             <form id="profile-form" class="auth-form">
                                 <label for="profile-name-input">Display Name</label>
                                 <input type="text" id="profile-name-input" name="name" required>
-
-                                <div class="auth-form__row">
-                                    <div>
-                                        <label for="profile-boat-name">Boat Name</label>
-                                        <input type="text" id="profile-boat-name" name="boatName" placeholder="e.g. M/Y Odyssey">
-                                    </div>
-                                    <div>
-                                        <label for="profile-boat-size">Boat Size (metres)</label>
-                                        <input type="text" id="profile-boat-size" name="boatSize" placeholder="e.g. 45">
-                                    </div>
-                                </div>
-
-                                <label for="profile-location">Current Location / Home Port</label>
-                                <input type="text" id="profile-location" name="location" placeholder="e.g. Antibes, France">
-
-                                <label for="profile-years">Years in the Industry</label>
-                                <select id="profile-years" name="yearsInIndustry">
-                                    <option value="0">Less than 1 year</option>
-                                    <option value="1">1–2 years</option>
-                                    <option value="3">3–4 years</option>
-                                    <option value="5">5–7 years</option>
-                                    <option value="8">8–11 years</option>
-                                    <option value="12">12–19 years</option>
-                                    <option value="20">20+ years</option>
-                                </select>
-
-                                <div class="auth-form__checkbox">
-                                    <input type="checkbox" id="profile-show-boat" name="showBoatInfo" checked>
-                                    <label for="profile-show-boat">Show my boat info publicly on comments</label>
-                                </div>
-
                                 <button type="submit">Update Profile</button>
                             </form>
                         </div>

@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Affair — Terroir Map</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #f4f1eb;
+    --ink: #1a1a1a;
+    --ink-light: #4a4a4a;
+    --accent: #8b6914;
+    --border: #d4cfc5;
+    --card-bg: #faf8f4;
+    --red: #8b2500;
+    --green: #2d5016;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .lang-switch {
+    display: flex;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+  .lang-switch a {
+    color: var(--ink-light);
+    text-decoration: none;
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--border);
+  }
+  .lang-switch a.active {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .lang-switch a:hover { color: var(--accent); }
+
+  header {
+    text-align: center;
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+
+  .subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--ink-light);
+    margin-top: 0.3rem;
+    font-size: 1rem;
+  }
+
+  .count {
+    font-size: 0.85rem;
+    color: var(--ink-light);
+    margin-top: 0.8rem;
+  }
+
+  .filters {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink-light);
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover, .filter-btn.active {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+
+  .place-card {
+    border: 1px solid var(--border);
+    background: var(--card-bg);
+    padding: 1.2rem 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .place-card .date {
+    font-size: 0.7rem;
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+  }
+
+  .place-card h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .place-card .region {
+    font-size: 0.8rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 0.6rem;
+  }
+
+  .place-card .description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+
+  .place-card .tip {
+    font-size: 0.82rem;
+    color: var(--green);
+    font-style: italic;
+  }
+
+  .place-card .tip::before { content: "\2192 "; }
+
+  .place-card .links {
+    margin-top: 0.8rem;
+    display: flex;
+    gap: 1rem;
+    font-size: 0.8rem;
+  }
+
+  .place-card .links a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+
+  .place-card .links a:hover { border-bottom-color: var(--accent); }
+
+  .tags { display: flex; gap: 0.3rem; margin-top: 0.5rem; flex-wrap: wrap; }
+
+  .tag {
+    font-size: 0.65rem;
+    padding: 0.15rem 0.5rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    color: var(--ink-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .empty-state {
+    text-align: center;
+    padding: 3rem;
+    color: var(--ink-light);
+    font-style: italic;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.75rem;
+    color: var(--ink-light);
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-switch">
+  <a href="terroir-map.html">FR</a>
+  <a href="terroir-map-en.html" class="active">EN</a>
+</div>
+
+<header>
+  <h1>Terroir Map</h1>
+  <p class="subtitle">Every place tells a story</p>
+  <p class="count"><span id="place-count">0</span> destinations</p>
+</header>
+
+<div class="filters" id="filters"></div>
+<div id="places"></div>
+<p class="empty-state" id="empty" style="display:none;">No destination matches that filter.</p>
+
+<footer>
+  The World Affair — Terroir &amp; Notable Destinations<br>
+  Updated automatically with every edition · <a href="index.html" style="color:var(--accent);text-decoration:none">← Back to the gazette</a>
+</footer>
+
+<script>
+// EN tag display labels (PLACES still tagged in FR for cross-lookup)
+const TAG_EN = {
+  "ville":"city","côte":"coast","gastronomie":"gastronomy","île":"island",
+  "montagne":"mountain","vin":"wine","all":"all"
+};
+
+// EN descriptions per slug — translated alongside FR. Keep in sync with publish-terroir.py.
+const EN_OVERRIDES = {
+  "Split-Dalmatie": {
+    description: "Split without the folklore — Diocletian's palace continuously inhabited, Pazar market against the Roman wall, the 1890 Ribarnica fish hall (no flies), Marjan running into the sea, and nine MICHELIN Guide addresses now anchoring a Dalmatian scene that finally takes itself seriously.",
+    tip: "Pašticada at Konoba Matejuška, brodet at Konoba Fetivi, Brač lamb peka at Dvor — order the peka 24 hours ahead."
+  },
+  "Faro-Algarve": {
+    description: "The authentic Faro — Cidade Velha, cataplana, Ria Formosa oysters, a Michelin star quietly growing inside the touristy Algarve.",
+    tip: "Alameda for the star, Tasca do Ricky for the soul, Ocean Restaurant for the grand gesture — 45 minutes drive but two stars."
+  }
+};
+
+const PLACES = [
+  {
+    "name": "Lons-le-Saunier",
+    "region": "Jura",
+    "country": "France",
+    "country_code": "FR",
+    "continent": "Europe",
+    "date": "2026-05-05",
+    "description": "Lons-le-Saunier doesn't show off. A 17,000-soul prefecture perched on the Revermont, where the Bresse plain dies into the first Jura plateau. The ground has been weeping salt since the Bronze Age — hence the name (saunier = salt-worker) — and that salt fixed everything else: the ",
+    "tip": "Three uncontested truths. Comté — not one cheese but a family: 18 months in cave, fatty and hazelnut ; 24 months, more saline and granular ; 36 months, dry and caramel. Tasting three ages side by side",
+    "tags": [
+      "gastronomy",
+      "city",
+      "wine"
+    ],
+    "lat": 46.6747,
+    "lng": 5.5538,
+    "slug": "lons-le-saunier-jura"
+  },
+  {
+    "name": "Split",
+    "region": "Dalmatia",
+    "country": "Croatia",
+    "country_code": "HR",
+    "continent": "Europe",
+    "date": "2026-04-29",
+    "description": "Split without the folklore — Diocletian's palace continuously inhabited, Pazar market against the Roman wall, the 1890 Ribarnica fish hall (no flies), Marjan running into the sea, and nine MICHELIN Guide addresses now anchoring a Dalmatian scene that finally takes itself seriously.",
+    "tip": "Pašticada at Konoba Matejuška, brodet at Konoba Fetivi, Brač lamb peka at Dvor — order the peka 24 hours ahead.",
+    "tags": [
+      "city",
+      "coast",
+      "gastronomy"
+    ],
+    "lat": 43.5081,
+    "lng": 16.4402,
+    "slug": "Split-Dalmatie"
+  },
+  {
+    "name": "Faro",
+    "region": "Algarve",
+    "country": "Portugal",
+    "country_code": "PT",
+    "continent": "Europe",
+    "date": "2026-04-04",
+    "description": "The authentic Faro — Cidade Velha, cataplana, Ria Formosa oysters, a Michelin star quietly growing inside the touristy Algarve.",
+    "tip": "Alameda for the star, Tasca do Ricky for the soul, Ocean Restaurant for the grand gesture — 45 minutes drive but two stars.",
+    "tags": [
+      "city",
+      "coast",
+      "gastronomy"
+    ],
+    "lat": 37.0194,
+    "lng": -7.9322,
+    "slug": "Faro-Algarve"
+  }
+];
+
+const placesEl = document.getElementById('places');
+const filtersEl = document.getElementById('filters');
+const countEl = document.getElementById('place-count');
+const emptyEl = document.getElementById('empty');
+let activeFilter = 'all';
+
+function getAllTags() {
+  const tags = new Set();
+  PLACES.forEach(p => p.tags.forEach(t => tags.add(t)));
+  return ['all', ...Array.from(tags).sort()];
+}
+
+function renderFilters() {
+  const tags = getAllTags();
+  filtersEl.innerHTML = tags.map(t =>
+    `<button class="filter-btn ${t === activeFilter ? 'active' : ''}" onclick="setFilter('${t}')">${t}</button>`
+  ).join('');
+}
+
+function gmapsUrl(p) {
+  return `https://www.google.com/maps/search/?api=1&query=${p.lat},${p.lng}`;
+}
+
+function guideUrl(p) {
+  return `../Terroir/html/${p.slug}-en.html`;
+}
+
+function renderPlaces() {
+  const filtered = activeFilter === 'all' ? PLACES : PLACES.filter(p => p.tags.includes(activeFilter));
+  countEl.textContent = filtered.length;
+  emptyEl.style.display = filtered.length === 0 ? 'block' : 'none';
+  placesEl.innerHTML = filtered
+    .sort((a, b) => b.date.localeCompare(a.date))
+    .map(p => `
+      <div class="place-card">
+        <span class="date">${p.date}</span>
+        <h2><a href="${guideUrl(p)}" style="color:inherit;text-decoration:none">${p.name}</a></h2>
+        <p class="region">${p.region} — ${p.continent}</p>
+        <p class="description">${p.description}</p>
+        ${p.tip ? `<p class="tip">${p.tip}</p>` : ''}
+        <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        <div class="links">
+          <a href="${guideUrl(p)}">Read the guide →</a>
+          <a href="${gmapsUrl(p)}" target="_blank" rel="noopener">Google Maps →</a>
+        </div>
+      </div>
+    `).join('');
+}
+
+function setFilter(tag) { activeFilter = tag; renderFilters(); renderPlaces(); }
+renderFilters();
+renderPlaces();
+</script>
+
+</body>
+</html>

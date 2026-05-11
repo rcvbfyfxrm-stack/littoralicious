@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synthèse — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Lundi 2 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;33</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-02.html">Premi&egrave;re Page</a><a class="nav-link active" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#8b3a3a">Synth&egrave;se Quotidienne</div>
+  <h1 class="article-title">Le Briefing du Jour</h1>
+  <div class="article-date">Lundi 2 Février 2026 &mdash; Edition N&deg;33</div>
+</div><div class="article-body"><h1>Briefing Quotidien — Synthèse Exécutive</h1>
+<h2>Date : 2026-02-02 (Dimanche)</h2>
+<hr>
+<h2>⚡ EN 60 SECONDES</h2>
+<blockquote>
+<p>- 🔴 <strong>Cyber</strong> : AI phishing atteint 54% de taux de clic — 4.5x plus efficace que le phishing classique</p>
+<p>- 💰 <strong>Finance</strong> : S&P 500 touche 7,000, PLTR +7% after-hours, mais Buffett reste à $330B cash</p>
+<p>- 🌍 <strong>Géopo</strong> : Négociations Iran-US "ont trébuché" — Iran exige retrait militaire US</p>
+<p>- 🚀 <strong>Espace</strong> : SpaceX incident upper stage, Rocket Lab décroche contrat record $816M</p>
+<p>- 💻 <strong>Tech</strong> : OpenAI lance Codex App vs Claude Code ($1B ARR), guerre des dev tools</p>
+<p>- 🪙 <strong>Crypto</strong> : BTC sous $80K, Saylor officiellement underwater</p>
+<p>- 🌿 <strong>Nature</strong> : Tortue verte officiellement sauvée — de "Endangered" à "Least Concern"</p>
+</blockquote>
+<hr>
+<h2>🔴 URGENT — À LIRE EN PRIORITÉ</h2>
+<h3>1. AI Phishing : 54% de Succès — Game Changer pour la Cybersécurité</h3>
+<p><strong>Domaine :</strong> Cybersécurité</p>
+<p><strong>En bref :</strong></p>
+<blockquote>
+<p>Microsoft révèle que les emails de phishing générés par AI ont un taux de clic de 54% contre 12% pour le phishing standard — <strong>4.5x plus efficace</strong>. Cela signifie que la formation humaine n'est plus une défense viable comme protection primaire. Les défenses AI-powered deviennent urgentes.</p>
+</blockquote>
+<p><strong>Chiffres clés :</strong></p>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Contexte</th></tr></thead><tbody>
+<tr><td>AI phishing success rate</td><td>54%</td><td>vs 12% standard</td></tr>
+<tr><td>Improvement factor</td><td>4.5x</td><td>Massif</td></tr>
+<tr><td>Ransomware attacks 2025</td><td>8,000+</td><td>+33% vs 2024</td></tr>
+</tbody></table>
+<p><strong>Ce que ça change pour toi :</strong></p>
+<blockquote>
+<p>Si tu diriges une équipe ou une entreprise, le training anti-phishing ne suffit plus. Investir dans des solutions de détection AI devient critique.</p>
+</blockquote>
+<hr>
+<h3>2. Iran-US : Négociations Bloquées</h3>
+<p><strong>Domaine :</strong> Géopolitique</p>
+<p><strong>En bref :</strong></p>
+<blockquote>
+<p>Les négociations Iran-US "appear to have stumbled" selon CNN. L'Iran pose une précondition maximale : le retrait des assets militaires américains du Moyen-Orient AVANT toute négociation. Impasse à court terme.</p>
+</blockquote>
+<p><strong>Chiffres clés :</strong></p>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Contexte</th></tr></thead><tbody>
+<tr><td>Doomsday Clock</td><td>89 secondes</td><td>Record historique</td></tr>
+<tr><td>US assets Moyen-Orient</td><td>Maintien</td><td>Iran exige retrait</td></tr>
+</tbody></table>
+<p><strong>Ce que ça change pour toi :</strong></p>
+<blockquote>
+<p>Risque géopolitique accru. Surveiller le pétrole et les actifs risqués.</p>
+</blockquote>
+<hr>
+<h3>3. S&P 500 Touche 7,000 — Mais Warnings Signals</h3>
+<p><strong>Domaine :</strong> Finance</p>
+<p><strong>En bref :</strong></p>
+<blockquote>
+<p>Le S&P 500 a touché le niveau psychologique de 7,000 cette semaine. Earnings season solide (78% beat rate). MAIS : Buffett à $330B cash record, Thiel vend NVDA/TSLA, government shutdown en cours.</p>
+</blockquote>
+<p><strong>Chiffres clés :</strong></p>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Contexte</th></tr></thead><tbody>
+<tr><td>S&P 500</td><td>6,976</td><td>+0.54%, près du ATH</td></tr>
+<tr><td>VIX</td><td>15.06</td><td>Complacent</td></tr>
+<tr><td>Buffett Cash</td><td>$330B</td><td>Record historique</td></tr>
+<tr><td>PLTR</td><td>+6.97% AH</td><td>Earnings beat</td></tr>
+</tbody></table>
+<p><strong>Pour ton portefeuille :</strong></p>
+<blockquote>
+<p>Marché proche des highs avec smart money en cash. Prudence sur le déploiement agressif.</p>
+</blockquote>
+<hr>
+<h3>4. Bitcoin Sous $80K — Saylor Underwater</h3>
+<p><strong>Domaine :</strong> Crypto</p>
+<p><strong>En bref :</strong></p>
+<blockquote>
+<p>BTC a cassé sous $80K dimanche pour la première fois depuis avril. Michael Saylor et Strategy sont maintenant officiellement underwater (cost basis $76,037). La zone $75-76K devient le support critique.</p>
+</blockquote>
+<p><strong>Chiffres clés :</strong></p>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Contexte</th></tr></thead><tbody>
+<tr><td>BTC</td><td>~$76-79K</td><td>-40% du ATH $126K</td></tr>
+<tr><td>Saylor holdings</td><td>712,647 BTC</td><td>Cost basis $76K</td></tr>
+<tr><td>Stablecoins</td><td>$300B</td><td>Dry powder record</td></tr>
+</tbody></table>
+<p><strong>Pour ton portefeuille crypto :</strong></p>
+<blockquote>
+<p>Wait and see. Zone $70-76K = make or break. Small adds seulement si support tient.</p>
+</blockquote>
+<hr>
+<h2>🟠 IMPORTANT — Développements Significatifs</h2>
+<h3>🧠 Science & Tech</h3>
+<p><strong>OpenAI Codex App vs Claude Code</strong></p>
+<blockquote>
+<p>OpenAI lance "Codex App" pour challenger Claude Code ($1B ARR). Permet de gérer multiple AI coding agents avec des "skills" bundlés. Demo : un jeu complet à partir d'un seul prompt (7M tokens).</p>
+<p><strong>So what :</strong> La guerre des dev tools AI est le nouveau battlefield. Watch market share evolution.</p>
+</blockquote>
+<hr>
+<h3>🏥 Santé</h3>
+<p><strong>Nouveau type de diabète découvert chez nourrissons</strong></p>
+<blockquote>
+<p>Découverte d'un nouveau type rare de diabète causé par mutations génétiques affectant les cellules productrices d'insuline. Permet diagnostic différentiel et potentiel thérapie ciblée.</p>
+<p><strong>So what :</strong> Avancée pour les familles touchées, ouvre la voie à la médecine personnalisée pédiatrique.</p>
+</blockquote>
+<hr>
+<h3>🚀 Espace & Énergie</h3>
+<p><strong>SpaceX : Incident Upper Stage</strong></p>
+<blockquote>
+<p>Lancement Starlink réussi mais upper stage "experienced off-nominal condition" pendant préparation du deorbit burn. Review en cours avant retour au vol.</p>
+<p><strong>So what :</strong> Rappel que même SpaceX n'est pas infaillible. Watch impact sur cadence Q1.</p>
+</blockquote>
+<p><strong>Rocket Lab : Contrat Record $816M</strong></p>
+<blockquote>
+<p>Plus gros contrat de l'histoire de Rocket Lab avec le Space Development Agency pour 18 satellites missile-defense.</p>
+<p><strong>So what :</strong> RKLB passe de "small sat specialist" à "serious defense contractor".</p>
+</blockquote>
+<hr>
+<h3>🌍 Géopolitique</h3>
+<p><strong>US = Source Principale de Risque Global (Eurasia Group)</strong></p>
+<blockquote>
+<p>Selon Eurasia Group, les États-Unis sont la "principal source of global risk in 2026". Government shutdown en cours, institutions sous pression.</p>
+<p><strong>So what :</strong> Alliés hedgent, adversaires testent. Multilatéralisme affaibli.</p>
+</blockquote>
+<hr>
+<h3>💰 Finance</h3>
+<p><strong>Peter Thiel Rotate son Portefeuille</strong></p>
+<blockquote>
+<p>Vend NVDA, TSLA. Réalloue vers 2 AI stocks représentant 61% du portefeuille (incluant PLTR-type plays).</p>
+<p><strong>So what :</strong> Smart money rotate hors des mega-caps AI vers des paris concentrés.</p>
+</blockquote>
+<hr>
+<h3>💡 Culture</h3>
+<p><strong>AI et Travail : Débat de Fond 2026</strong></p>
+<blockquote>
+<p>Question centrale : AI remplace-t-elle ou augmente-t-elle le travail humain ? Claude Code à $1B, OpenAI et Anthropic dans la santé. Première fois que "knowledge work" directement menacé.</p>
+<p><strong>So what :</strong> La question de distribution des gains AI devient centrale.</p>
+</blockquote>
+<hr>
+<h3>🍴 Gastronomie</h3>
+<p><strong>Chandeleur : Jour des Crêpes</strong></p>
+<blockquote>
+<p>Tradition française du 2 février liée à la lumière croissante. GLP-1 drugs continuent d'impacter les portions et préférences alimentaires.</p>
+<p><strong>So what :</strong> L'industrie food s'adapte à la polarisation "indulgence" vs "functional food".</p>
+</blockquote>
+<hr>
+<h2>🔗 CONNEXIONS CROSS-DOMAINES</h2>
+<h3>Insight #1 : AI comme Arme et comme Outil</h3>
+<p><strong>Domaines connectés :</strong> Cyber + Tech + Finance</p>
+<blockquote>
+<p>L'AI est simultanément :</p>
+<p>- <strong>Menace</strong> : 54% de succès phishing, attaques plus sophistiquées</p>
+<p>- <strong>Opportunité</strong> : Claude Code $1B, OpenAI Codex, productivité développeurs</p>
+<p>- <strong>Bulle potentielle</strong> : Anthropic valorisée à 350x revenue</p>
+<p></p>
+<p>La même technologie crée risque systémique ET valeur économique massive.</p>
+</blockquote>
+<p><strong>Implication :</strong> L'AI n'est ni "bonne" ni "mauvaise" — c'est une course aux armements où les défenses doivent évoluer aussi vite que les attaques.</p>
+<hr>
+<h3>Insight #2 : Institutions Sous Pression Partout</h3>
+<p><strong>Visible dans :</strong> Géopolitique + Culture + Santé</p>
+<blockquote>
+<p>Pattern transversal :</p>
+<p>- US = "principal global risk" (Eurasia Group)</p>
+<p>- Doomsday Clock à 89 secondes (record)</p>
+<p>- Vaccine hesitancy menace statut "measles-free" US</p>
+<p>- Confiance institutionnelle en déclin continu</p>
+<p></p>
+<p>Le déclin de confiance institutionnelle est un phénomène global, pas uniquement américain.</p>
+</blockquote>
+<p><strong>Implication :</strong> Les sociétés low-trust sont plus vulnérables aux crises. Surveillez les signaux d'instabilité politique.</p>
+<hr>
+<h2>🟡 FASCINANT — Pour la Culture</h2>
+<h3>😲 Fun Facts du Jour</h3>
+<ol>
+<li><strong>Espace</strong> : SpaceX a fait 165 flights en 2025 — mais n'est pas à l'abri d'incidents (upper stage anomaly ce jour)</li>
+</ol>
+<ol>
+<li><strong>Conservation</strong> : La tortue verte est officiellement sauvée après 50 ans d'efforts — de "Endangered" à "Least Concern"</li>
+</ol>
+<ol>
+<li><strong>Sailing</strong> : Si aucune équipe américaine ne participe à la 38th America's Cup, ce sera la première fois en 175 ans d'histoire</li>
+</ol>
+<ol>
+<li><strong>Startup</strong> : xAI de Musk a levé $42.7B total — pour un chatbot (Grok)</li>
+</ol>
+<h3>🤔 La Question qui Reste</h3>
+<blockquote>
+<p>Si l'AI phishing a 54% de succès et que l'AI coding génère $1B de revenus, sommes-nous en train de construire un monde où seuls ceux qui maîtrisent l'AI survivent professionnellement ?</p>
+</blockquote>
+<hr>
+<h2>📊 CHIFFRES DU JOUR</h2>
+<table><thead><tr><th>Domaine</th><th>Métrique</th><th>Valeur</th><th>Signal</th></tr></thead><tbody>
+<tr><td>Finance</td><td>S&P 500</td><td>6,976 (+0.54%)</td><td>Près ATH</td></tr>
+<tr><td>Finance</td><td>VIX</td><td>15.06</td><td>Complacent</td></tr>
+<tr><td>Crypto</td><td>BTC</td><td>~$76-79K</td><td>-40% ATH</td></tr>
+<tr><td>Crypto</td><td>Stablecoins</td><td>$300B</td><td>Dry powder</td></tr>
+<tr><td>Cyber</td><td>AI phishing</td><td>54% success</td><td>Alarme</td></tr>
+<tr><td>Cyber</td><td>Ransomware 2025</td><td>8,000+</td><td>+33% YoY</td></tr>
+<tr><td>Space</td><td>RKLB contract</td><td>$816M</td><td>Record</td></tr>
+<tr><td>Startup</td><td>xAI total raised</td><td>$42.7B</td><td>Massive</td></tr>
+</tbody></table>
+<hr>
+<h2>🎯 TON PORTEFEUILLE — Résumé</h2>
+<p><strong>Sentiment global :</strong> Neutre-Prudent</p>
+<p><strong>Actions suggérées :</strong></p>
+<table><thead><tr><th>Ticker</th><th>Action</th><th>Raison (1 phrase)</th></tr></thead><tbody>
+<tr><td>PLTR</td><td>HOLD/TRIM >$160</td><td>Earnings beat +7% AH</td></tr>
+<tr><td>RKLB</td><td>HOLD/ADD <$25</td><td>Contract $816M bullish</td></tr>
+<tr><td>NVDA</td><td>WATCH</td><td>Thiel selling, rotation</td></tr>
+<tr><td>BTC</td><td>WAIT</td><td>Zone $75-76K critique</td></tr>
+</tbody></table>
+<p><strong>Cash :</strong> HOLD — Marché près des highs, smart money en cash, shutdown uncertainty.</p>
+<p><strong>Approfondir :</strong> Voir rapport Finance & Marchés + Crypto</p>
+<hr>
+<h2>📅 DEMAIN À SURVEILLER</h2>
+<table><thead><tr><th>Heure</th><th>Événement</th><th>Impact</th><th>Domaine</th></tr></thead><tbody>
+<tr><td>Semaine</td><td>100+ S&P 500 earnings</td><td>🔴</td><td>Finance</td></tr>
+<tr><td>8-11 Fév</td><td>Artemis 2 GO/NO-GO</td><td>🟠</td><td>Espace</td></tr>
+<tr><td>Ongoing</td><td>SpaceX return to flight</td><td>🟠</td><td>Espace</td></tr>
+<tr><td>14-15 Fév</td><td>SailGP Auckland</td><td>🟡</td><td>Maritime</td></tr>
+</tbody></table>
+<hr>
+<h2>📖 POUR ALLER PLUS LOIN</h2>
+<p><strong>Si tu as 30 min de plus :</strong></p>
+<ol>
+<li><strong>Rapport Crypto</strong> — Analyse complète BTC/Saylor/ETFs</li>
+<li><strong>Rapport Cybersécurité</strong> — Détails sur AI phishing et breaches</li>
+</ol>
+<p><strong>Lecture longue recommandée :</strong></p>
+<blockquote>
+<p><a href="https://www.eurasiagroup.net/issues/top-risks-2026" target="_blank">Eurasia Group Top Risks 2026</a> — Pour comprendre pourquoi les US sont vus comme le risque principal global</p>
+</blockquote>
+<p><strong>Podcast recommandé :</strong></p>
+<blockquote>
+<p>Modern Wisdom #1042 — Andrew Huberman "How to Reclaim Your Brain in 2026"</p>
+</blockquote>
+<hr>
+<h2>💭 PENSÉE DU JOUR</h2>
+<blockquote>
+<p>"The world is getting better, even though it doesn't feel that way."</p>
+<p>— Hans Rosling</p>
+</blockquote>
+<p><em>Rappel : La tortue verte a été sauvée cette semaine après 50 ans d'efforts. Le progrès existe, il est juste lent et peu médiatisé.</em></p>
+<hr>
+<h2>Sources Principales</h2>
+<ul>
+<li>Rapports NEXUS du 2026-02-02 :</li>
+<li>Finance & Marchés, Crypto, Géopolitique, Science Tech, Espace Énergie</li>
+<li>Cybersécurité, Santé, Liberté & Surveillance, Culture & Société</li>
+<li>Gastronomie, Innovation & Startups, Maritime & Sailing</li>
+<li>Bonnes Nouvelles, Podcasts & Interviews</li>
+</ul></div><div class="bottom-nav">
+  <a href="../2026-02-02.html"><span class="bottom-nav-label">Retour</span><span class="bottom-nav-title">&larr; Premi&egrave;re Page</span></a>
+</div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; SYNTH&Egrave;SE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

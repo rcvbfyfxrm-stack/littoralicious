@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersécurité & Régulation — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Samedi 24 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;24</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-24.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#2c2c2c">Cybersécurité & Régulation</div>
+  <h1 class="article-title">ALERTES CRITIQUES</h1>
+  <div class="article-date">Samedi 24 Janvier 2026 &mdash; Edition N&deg;24</div>
+</div><div class="article-body"><h1>Rapport: Cybersécurité & Régulation Tech</h1>
+<h2>Date : 2026-01-24</h2>
+<hr>
+<h2>🔴 ALERTES CRITIQUES</h2>
+<ul>
+<li><strong>CVE-2026-20805</strong> : Zero-day Windows DWM exploité activement — CISA KEV, patch dispo</li>
+<li><strong>Microsoft Patch Tuesday</strong> : 113 CVEs dont 8 critiques, 2 Office RCE (CVSS 8.4)</li>
+<li><strong>GNU InetUtils</strong> : CVE critique (9.8 CVSS) non détecté pendant 11 ans</li>
+<li><strong>EU AI Act</strong> : Pleinement applicable août 2026 — compliance deadline approche</li>
+<li><strong>Google</strong> : Doit partager index de recherche avec concurrents (janvier 2026)</li>
+</ul>
+<hr>
+<h2>🛡️ CYBERSÉCURITÉ — PATCH TUESDAY JANVIER 2026</h2>
+<h3>Microsoft — 113 CVEs Corrigés</h3>
+<p><strong>Vue d'ensemble :</strong></p>
+<table><thead><tr><th>Sévérité</th><th>Nombre</th></tr></thead><tbody>
+<tr><td>Critique</td><td>8</td></tr>
+<tr><td>Important</td><td>105</td></tr>
+<tr><td>Zero-day exploité</td><td>1</td></tr>
+</tbody></table>
+<p><strong>Source primaire :</strong> Microsoft Security Response Center, Krebs on Security</p>
+<p><strong>🔒 Source de référence :</strong> Tenable, CrowdStrike — analyse indépendante</p>
+<hr>
+<h3>CVE-2026-20805 — Zero-Day Windows DWM ⚠️</h3>
+<p><strong>Détails :</strong></p>
+<table><thead><tr><th>Champ</th><th>Valeur</th></tr></thead><tbody>
+<tr><td>CVE</td><td>CVE-2026-20805</td></tr>
+<tr><td>CVSS</td><td>5.5 (Medium)</td></tr>
+<tr><td>Composant</td><td>Desktop Window Manager (DWM)</td></tr>
+<tr><td>Type</td><td>Information Disclosure</td></tr>
+<tr><td>Exploité ITW</td><td>✅ OUI</td></tr>
+<tr><td>CISA KEV</td><td>✅ Ajouté</td></tr>
+<tr><td>Deadline fédéral</td><td>3 février 2026</td></tr>
+</tbody></table>
+<p><strong>Analyse :</strong></p>
+<ul>
+<li>CVSS "medium" MAIS exploitation active confirmée</li>
+<li>DWM = composant critique de l'affichage Windows</li>
+<li>Microsoft confirme exploitation avant patch</li>
+</ul>
+<p><strong>Recommandation :</strong></p>
+<blockquote>
+<p><strong>PATCHER IMMÉDIATEMENT</strong> — Ne pas se fier au CVSS seul</p>
+</blockquote>
+<p><strong>Sources :</strong> <a href="https://krebsonsecurity.com/2026/01/patch-tuesday-january-2026-edition/" target="_blank">Krebs on Security</a>, <a href="https://www.theregister.com/2026/01/14/patch_tuesday_january_2026/" target="_blank">The Register</a></p>
+<hr>
+<h3>CVE-2026-20952 & CVE-2026-20953 — Microsoft Office RCE</h3>
+<p><strong>Détails :</strong></p>
+<table><thead><tr><th>Champ</th><th>Valeur</th></tr></thead><tbody>
+<tr><td>CVE</td><td>CVE-2026-20952, CVE-2026-20953</td></tr>
+<tr><td>CVSS</td><td>8.4 (Critical)</td></tr>
+<tr><td>Produit</td><td>Microsoft Office</td></tr>
+<tr><td>Type</td><td>Remote Code Execution</td></tr>
+<tr><td>Vecteur</td><td>Email malicieux, lien, <strong>preview pane</strong></td></tr>
+<tr><td>Auth requise</td><td>Non</td></tr>
+</tbody></table>
+<p><strong>Risque :</strong></p>
+<ul>
+<li>Preview pane = vecteur d'attaque (pas besoin d'ouvrir le fichier)</li>
+<li>Use-after-free exploitable</li>
+<li>Cible idéale pour phishing</li>
+</ul>
+<p><strong>Recommandation :</strong></p>
+<blockquote>
+<p><strong>CRITIQUE</strong> — Patcher + sensibiliser utilisateurs</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://www.tenable.com/blog/microsofts-january-2026-patch-tuesday-addresses-113-cves-cve-2026-20805" target="_blank">Tenable</a></p>
+<hr>
+<h2>🔓 VULNÉRABILITÉS CRITIQUES</h2>
+<h3>CVE-2026-24061 — GNU InetUtils Telnetd (CVSS 9.8)</h3>
+<p><strong>Détails :</strong></p>
+<table><thead><tr><th>Champ</th><th>Valeur</th></tr></thead><tbody>
+<tr><td>CVE</td><td>CVE-2026-24061</td></tr>
+<tr><td>CVSS</td><td>9.8 (Critical)</td></tr>
+<tr><td>Produit</td><td>GNU InetUtils telnetd</td></tr>
+<tr><td>Versions</td><td>1.9.3 à 2.7</td></tr>
+<tr><td>Durée non détecté</td><td><strong>11 ans</strong></td></tr>
+</tbody></table>
+<p><strong>Analyse :</strong></p>
+<ul>
+<li>Vulnérabilité dormante depuis 2014</li>
+<li>Telnet = obsolète mais encore présent (legacy systems, IoT)</li>
+<li>Exploitation = accès root potentiel</li>
+</ul>
+<p><strong>Recommandation :</strong></p>
+<blockquote>
+<p>Auditer présence telnetd, patcher ou désactiver</p>
+</blockquote>
+<hr>
+<h3>Schneider Electric ICS — Infrastructure Critique</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Vulnérabilité dans EcoStruxure Foxboro DCS</li>
+<li>Utilisé dans infrastructure critique (énergie, industrie)</li>
+<li>Impact : Australie et mondial</li>
+</ul>
+<p><strong>Recommandation :</strong></p>
+<blockquote>
+<p>Secteur ICS : Appliquer patches vendor, segmentation réseau</p>
+</blockquote>
+<p><strong>Source :</strong> <a href="https://www.cybernewscentre.com/21st-january-2026-cyber-update-schneider-electric-ics-flaw-exposes-critical-infrastructure/" target="_blank">Cyber News Centre</a></p>
+<hr>
+<h3>Firefox — 34 CVEs dont 2 Exploités</h3>
+<p><strong>Détails :</strong></p>
+<ul>
+<li>CVE-2026-0891 et CVE-2026-0892 : Exploitation suspectée</li>
+<li>Corrigés dans Firefox 147 (MFSA2026-01)</li>
+</ul>
+<p><strong>Recommandation :</strong></p>
+<blockquote>
+<p>Mettre à jour Firefox immédiatement</p>
+</blockquote>
+<hr>
+<h2>💰 RANSOMWARE & CYBERCRIME</h2>
+<h3>Osiris Ransomware — Nouvelle Famille</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Cible : Major food service franchisee (Asie du Sud-Est, novembre 2025)</li>
+<li>Technique : BYOVD (Bring Your Own Vulnerable Driver) avec POORTRY</li>
+<li>Objectif : Désarmer solutions de sécurité</li>
+</ul>
+<p><strong>Analyse :</strong></p>
+<ul>
+<li>BYOVD = tendance croissante ransomware</li>
+<li>Cible secteur food service = supply chain critique</li>
+<li>Technique sophistiquée</li>
+</ul>
+<hr>
+<h3>Black Basta — Identification des Opérateurs</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>2 Ukrainiens identifiés (Law enforcement Ukraine + Allemagne)</li>
+<li>Leader présumé : Oleg Evgenievich Nefedov (35 ans, Russe)</li>
+<li>Ajouté : EU Most Wanted + INTERPOL Red Notice</li>
+</ul>
+<p><strong>Analyse :</strong></p>
+<ul>
+<li>RaaS (Ransomware-as-a-Service) = modèle dominant</li>
+<li>Attribution progressive des groupes majeurs</li>
+<li>Pression law enforcement augmente</li>
+</ul>
+<hr>
+<h3>Gentlemen Ransomware — Infrastructure Énergétique</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Cible : Oltenia Energy Complex (Roumanie) — plus grand producteur charbon</li>
+<li>Impact : ERP, email, website down</li>
+<li>Opérations partiellement affectées</li>
+</ul>
+<p><strong>Analyse :</strong></p>
+<ul>
+<li>Infrastructure critique = cible de choix</li>
+<li>Énergie = haute pression pour payer</li>
+</ul>
+<hr>
+<h2>⚖️ RÉGULATION — ANTITRUST</h2>
+<h3>Google — Partage Index de Recherche (Janvier 2026)</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Court-mandated : Google doit partager index propriétaire avec concurrents</li>
+<li>Fin des deals d'exclusivité</li>
+<li>Implementation : Janvier 2026</li>
+</ul>
+<p><strong>Impact :</strong></p>
+<ul>
+<li>Potentiel émergence moteurs alternatifs</li>
+<li>Atteinte au moat Google Search</li>
+<li>Précédent majeur antitrust</li>
+</ul>
+<hr>
+<h3>Amendes EU 2025 — Bilan</h3>
+<table><thead><tr><th>Entreprise</th><th>Amende</th><th>Motif</th></tr></thead><tbody>
+<tr><td>Apple</td><td>€500M</td><td>Non-compliance DMA</td></tr>
+<tr><td>Meta</td><td>€200M</td><td>Non-compliance DMA</td></tr>
+<tr><td>Google</td><td>€2.95B</td><td>Antitrust ad tech</td></tr>
+<tr><td>X (Twitter)</td><td>€120M</td><td>DSA transparence</td></tr>
+</tbody></table>
+<p><strong>2026 :</strong></p>
+<ul>
+<li>Enforcement renforcé attendu</li>
+<li>Tensions US-EU en hausse (Trump vs régulateurs EU)</li>
+</ul>
+<p><strong>Sources :</strong> <a href="https://www.euronews.com/next/2025/12/17/eu-takes-on-big-tech-here-are-the-top-actions-regulators-have-taken-in-2025" target="_blank">Euronews</a>, <a href="https://www.techpolicy.press/reviewing-european-antitrust-activity-in-2025-and-what-it-all-means-for-2026/" target="_blank">TechPolicy.Press</a></p>
+<hr>
+<h3>EU Investigation — Google AI Training</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>9 décembre : Commission ouvre enquête formelle</li>
+<li>Sujet : Usage contenu web pour entraîner IA sans compensation</li>
+<li>Enjeu : AI Overviews dans Search</li>
+</ul>
+<p><strong>Implications :</strong></p>
+<ul>
+<li>Précédent pour compensation éditeurs</li>
+<li>Impact sur training data acquisition</li>
+<li>Lien avec Copyright Directive</li>
+</ul>
+<hr>
+<h3>Amazon — Procès FTC (Octobre 2026)</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Trial date : 13 octobre 2026</li>
+<li>Focus : "Project Nessie" pricing algorithm</li>
+<li>Allégation : Manipulation algorithmique des prix</li>
+</ul>
+<p><strong>À surveiller :</strong></p>
+<ul>
+<li>Premier procès majeur FTC vs Amazon</li>
+<li>Implications pricing algorithms secteur-wide</li>
+</ul>
+<hr>
+<h2>🤖 RÉGULATION IA</h2>
+<h3>EU AI Act — Timeline</h3>
+<p><strong>Dates clés :</strong></p>
+<table><thead><tr><th>Date</th><th>Milestone</th></tr></thead><tbody>
+<tr><td>Août 2025</td><td>Entrée en vigueur</td></tr>
+<tr><td>Février 2026</td><td>Interdictions IA prohibée</td></tr>
+<tr><td><strong>Août 2026</strong></td><td><strong>Pleinement applicable</strong></td></tr>
+</tbody></table>
+<p><strong>Obligations (High-Risk AI) :</strong></p>
+<ul>
+<li>Impact assessments rigoureux</li>
+<li>Human-in-the-loop obligatoire</li>
+<li>Documentation et traçabilité</li>
+</ul>
+<p><strong>Qui est affecté :</strong></p>
+<ul>
+<li>Hiring AI systems</li>
+<li>Law enforcement AI</li>
+<li>Healthcare AI</li>
+<li>Credit scoring AI</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.slaughterandmay.com/horizon-scanning/2026/digital/ai-update-for-2026/" target="_blank">Slaughter and May</a></p>
+<hr>
+<h2>🌍 TENSIONS US-EU</h2>
+<h3>Commerce Secretary Lutnick vs EU</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>US demande rollback régulation tech en échange deal acier/aluminium</li>
+<li>EU Competition Chief Ribera : "We're not going to undo our regulation"</li>
+<li>Big Tech promet data centers EU en échange de clémence</li>
+</ul>
+<p><strong>Analyse :</strong></p>
+<ul>
+<li>Régulation tech = outil géopolitique</li>
+<li>EU résiste (pour l'instant)</li>
+<li>2026 = année de confrontation</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.cnn.com/2026/01/12/tech/us-eu-tech-regulation-fight-explained" target="_blank">CNN</a></p>
+<hr>
+<h2>📊 MÉTRIQUES CYBER & RÉGULATION</h2>
+<h3>Cybersécurité</h3>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Source</th></tr></thead><tbody>
+<tr><td>CVEs Patch Tuesday Jan</td><td>113</td><td>Microsoft</td></tr>
+<tr><td>Zero-days exploités</td><td>1</td><td>CISA KEV</td></tr>
+<tr><td>Firefox CVEs</td><td>34 (2 exploités)</td><td>Mozilla</td></tr>
+</tbody></table>
+<h3>Régulation</h3>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Source</th></tr></thead><tbody>
+<tr><td>Amendes Big Tech EU 2025</td><td>€3.77B+</td><td>EC</td></tr>
+<tr><td>AI Act full enforcement</td><td>Août 2026</td><td>EU</td></tr>
+<tr><td>Amazon FTC trial</td><td>Oct 2026</td><td>FTC</td></tr>
+</tbody></table>
+<hr>
+<h2>🟡 À SURVEILLER</h2>
+<h3>Cybersécurité</h3>
+<ul>
+<li><strong>Février Patch Tuesday</strong> — Suivi zero-days</li>
+<li><strong>BYOVD trend</strong> — Ransomware évolution</li>
+<li><strong>ICS vulnerabilities</strong> — Infrastructure critique</li>
+</ul>
+<h3>Régulation</h3>
+<ul>
+<li><strong>Août 2026</strong> — AI Act pleinement applicable</li>
+<li><strong>Octobre 2026</strong> — Amazon FTC trial</li>
+<li><strong>2026</strong> — Google AI training investigation EU</li>
+</ul>
+<hr>
+<h2>🚩 RED FLAGS</h2>
+<h3>Cyber</h3>
+<ul>
+<li><strong>CVE-2026-20805</strong> : CVSS "medium" MAIS exploité — ne pas sous-estimer</li>
+<li><strong>11 ans sans détection</strong> (GNU InetUtils) — combien d'autres ?</li>
+<li><strong>BYOVD</strong> : Ransomware contourne EDR de plus en plus</li>
+</ul>
+<h3>Régulation</h3>
+<ul>
+<li><strong>US-EU tensions</strong> : Risque de fragmentation réglementaire</li>
+<li><strong>AI Act compliance</strong> : Beaucoup d'entreprises pas prêtes</li>
+<li><strong>Antitrust remedies</strong> : Efficacité à prouver</li>
+</ul>
+<hr>
+<h2>❓ QUESTIONS OUVERTES</h2>
+<ol>
+<li>Google partage son index — impact réel sur marché search ?</li>
+<li>AI Act enforcement — EU a-t-elle les moyens ?</li>
+<li>BYOVD ransomware — comment défendre sans EDR fiable ?</li>
+</ol>
+<hr>
+<p><em>Rapport généré le 2026-01-24</em></p></div><div class="bottom-nav"><a href="espace-energie.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Espace & Énergie</span></a><a href="science-tech.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Science & Tech &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; CYBERSÉCURITÉ & RÉGULATION</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

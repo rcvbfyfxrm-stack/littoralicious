@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!--
+    Compass rose — simplified
+    Navigation, knowledge, direction
+  -->
+
+  <!-- Outer circle -->
+  <circle cx="40" cy="40" r="35" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Inner circle -->
+  <circle cx="40" cy="40" r="8" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Cardinal points - N -->
+  <path d="M 40 32 L 36 12 L 40 8 L 44 12 Z" fill="#0a0a0a"/>
+
+  <!-- S -->
+  <path d="M 40 48 L 44 68 L 40 72 L 36 68 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- E -->
+  <path d="M 48 40 L 68 36 L 72 40 L 68 44 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- W -->
+  <path d="M 32 40 L 12 44 L 8 40 L 12 36 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+</svg>

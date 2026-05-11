@@ -1,0 +1,280 @@
+/* Terroir unified card (tcard) — applies a consistent visual across every section.
+ * Loaded after port-call.css; uses CSS variables defined there. */
+
+.tcard {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--rule, #d7d2c4);
+  border-left: 3px solid var(--sea, #2d4a5e);
+  padding: 16px 18px 14px;
+  margin: 10px 0;
+  font-family: Georgia, 'Times New Roman', serif;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.tcard.is-hover { border-left-color: var(--gold, #8a6a2e); box-shadow: 0 2px 8px rgba(0,0,0,0.07); }
+.tcard.is-pulse { border-left-color: var(--gold, #8a6a2e); }
+
+.tcard__rank {
+  position: absolute; top: 14px; right: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78em; color: var(--ink-3, #6a6a6a);
+  letter-spacing: 0.05em;
+}
+
+.tcard__type {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66em; letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3, #6a6a6a);
+  margin-bottom: 6px;
+}
+
+.tcard__name {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.08em; font-weight: 700;
+  color: var(--ink, #0a0a0a);
+  line-height: 1.25;
+  display: block;
+}
+.tcard__name .tcard__label {
+  display: inline-block;
+  margin-left: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.62em; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold, #8a6a2e);
+  font-weight: 500;
+  vertical-align: middle;
+}
+.tcard__name .tcard__where {
+  display: inline-block;
+  margin-left: 6px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.7em; font-weight: 400;
+  color: var(--ink-3, #6a6a6a);
+  text-transform: uppercase; letter-spacing: 0.1em;
+}
+
+.tcard__hook {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74em; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--sea-2, #1e3443);
+  margin: 8px 0 10px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.tcard__meta {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin: 8px 0 12px;
+}
+.tcard__chip {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.66em; letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2, #3a3a3a);
+  background: var(--paper-2, #f2efe8);
+  border: 1px solid var(--rule, #d7d2c4);
+  padding: 3px 8px;
+}
+.tcard__chip--price  { color: var(--brown-deep, #5b3a26); }
+.tcard__chip--access { color: var(--sea-2, #1e3443); }
+.tcard__chip--time   { color: var(--green, #3a6a45); }
+
+.tcard__body {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.94em; line-height: 1.7;
+  color: var(--ink, #0a0a0a);
+  margin: 4px 0 10px;
+}
+.tcard__body strong { color: var(--ink, #0a0a0a); }
+.tcard__body em { color: var(--ink-2, #3a3a3a); font-style: italic; }
+.tcard__body a { color: var(--sea-2, #1e3443); border-bottom: 1px dotted var(--sea, #2d4a5e); }
+
+.tcard__details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 6px 14px;
+  border-top: 1px dashed var(--rule, #d7d2c4);
+  padding-top: 8px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.8em;
+  color: var(--ink-2, #3a3a3a);
+}
+.tcard__details > div strong {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72em;
+  color: var(--sea, #2d4a5e);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+  font-weight: 500;
+}
+
+.tcard__actions {
+  display: flex; flex-wrap: wrap; gap: 12px;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--rule, #d7d2c4);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78em;
+}
+.tcard__actions a {
+  color: var(--sea-2, #1e3443);
+  border-bottom: 1px dotted var(--sea, #2d4a5e);
+  cursor: pointer;
+}
+.tcard__actions a:hover { color: var(--gold, #8a6a2e); border-bottom-color: var(--gold, #8a6a2e); }
+
+.tcard__votes {
+  margin-left: auto;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74em; letter-spacing: 0.1em;
+  color: var(--gold, #8a6a2e);
+  background: transparent; border: 1px solid var(--rule, #d7d2c4);
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  user-select: none;
+}
+.tcard__votes:hover { background: var(--gold, #8a6a2e); color: #fff; }
+.tcard__votes.has-voted { background: var(--gold, #8a6a2e); color: #fff; }
+.tcard__votes .star { font-size: 1.1em; line-height: 1; }
+
+/* Section-level color hints (left border tint) — match port-call categories */
+.tcard--restaurant { border-left-color: var(--brown-red, #7a3530); }
+.tcard--bougie     { border-left-color: var(--gold, #8a6a2e); background: #fcf8ee; }
+.tcard--bar        { border-left-color: var(--amber, #a86a2f); }
+.tcard--music      { border-left-color: var(--purple, #5a3a6a); }
+.tcard--market     { border-left-color: var(--teal, #2a6a6a); }
+.tcard--cafe       { border-left-color: var(--beige, #8a7350); }
+.tcard--walk       { border-left-color: var(--green, #3a6a45); }
+.tcard--culture    { border-left-color: var(--indigo, #3a3a6a); }
+.tcard--producer   { border-left-color: var(--brown-deep, #5b3a26); }
+.tcard--gem        { border-left-color: var(--mustard, #a07a20); background: #fcfaf2; }
+.tcard--hifi       { border-left-color: #1f2937; }
+.tcard--ethnic     { border-left-color: var(--red-orange, #b04a2a); }
+.tcard--streetfood { border-left-color: var(--red-orange, #b04a2a); }
+.tcard--burger     { border-left-color: #6b2a1a; }
+.tcard--event      { border-left-color: var(--indigo, #3a3a6a); }
+.tcard--library    { border-left-color: var(--brown-deep, #5b3a26); }
+.tcard--avoid      { border-left-color: var(--muted-red, #8a3a3a); background: #fbecec; }
+
+/* Pin-link spans inside prose — subtle dotted underline so they're discoverable */
+[data-pin] {
+  border-bottom: 1px dotted var(--sea, #2d4a5e);
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+}
+[data-pin]:hover {
+  color: var(--gold, #8a6a2e);
+  border-bottom-color: var(--gold, #8a6a2e);
+  background: rgba(196, 163, 90, 0.10);
+}
+/* When map is closed, hovering a name still shows the dotted underline + color
+ * change above (so the user knows it's clickable) but no pin glow happens
+ * because the map isn't visible anyway. Click opens the map AND scrolls to
+ * the matching article entry — see pin-hover.js. */
+
+/* Brief flash on the article entry when a [data-pin] click scrolls there.
+ * Tells the user "you're now reading the full description for what you clicked." */
+.is-entry-flash {
+  animation: entry-flash 1.6s ease-out;
+}
+@keyframes entry-flash {
+  0%   { background: rgba(196, 163, 90, 0.30); box-shadow: 0 0 0 4px rgba(196, 163, 90, 0.20); }
+  100% { background: transparent; box-shadow: 0 0 0 0 rgba(196, 163, 90, 0); }
+}
+
+/* Glow on map markers when a place mention is hovered */
+.leaflet-marker-icon.is-pin-active > div {
+  box-shadow: 0 0 0 6px rgba(196, 163, 90, 0.40), 0 0 0 2px #fff !important;
+  transform: scale(1.25);
+  transition: all 0.15s ease-out;
+  z-index: 1000;
+}
+
+/* Single floating map (medium-sized, manually toggled — closed by default) */
+.terroir-mini {
+  position: fixed;
+  right: 16px; bottom: 64px;
+  width: 380px; height: 300px;
+  z-index: 950;
+  background: #fff;
+  border: 1px solid var(--rule, #d7d2c4);
+  box-shadow: 0 6px 22px rgba(0,0,0,0.22);
+  display: none;
+  overflow: hidden;
+}
+.terroir-mini.is-visible { display: block; }
+.terroir-mini__head {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 7px 11px;
+  background: #1a2a3a; color: #c4a35a;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7em; letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.terroir-mini__head button {
+  background: none; border: none; color: #c4a35a;
+  cursor: pointer; font-size: 1.3em; line-height: 1;
+}
+.terroir-mini__map { width: 100%; height: calc(100% - 28px); }
+
+/* Toggle button (always visible — click to open the map) */
+.terroir-mini-toggle {
+  position: fixed; right: 16px; bottom: 16px; z-index: 951;
+  background: #1a2a3a; color: #c4a35a;
+  border: 1px solid #c4a35a;
+  padding: 9px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.74em; letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+.terroir-mini-toggle:hover { background: #c4a35a; color: #1a2a3a; }
+/* When the map is open, hide the toggle (× inside the head closes it) */
+.terroir-mini.is-visible ~ .terroir-mini-toggle { display: none; }
+
+/* Mobile: floating mini takes more room (full-width responsive overlay when open) */
+@media (max-width: 700px) {
+  .terroir-mini { width: 92vw; height: 60vh; right: 4vw; bottom: 70px; }
+}
+
+/* Pin hover highlight — works for venue (p-*), neighborhood (n-*), work (p-*), walks (w-*) */
+.is-pin-active { filter: drop-shadow(0 0 6px #c4a35a); transform: scale(1.18); transition: transform 0.12s; }
+.is-pin-area-active { stroke: #c4a35a !important; stroke-width: 3 !important; fill-opacity: 0.32 !important; }
+
+/* "Open map to see" floating hint — shown only while the map is closed and
+ * the user hovers a place mention. Click to open the map. */
+.terroir-pin-hint {
+  position: fixed;
+  z-index: 1100;
+  background: #1a2a3a;
+  color: #c4a35a;
+  border: 1px solid #c4a35a;
+  padding: 7px 11px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.28);
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity 0.12s ease-out, transform 0.12s ease-out;
+  pointer-events: auto;
+  user-select: none;
+}
+.terroir-pin-hint.is-visible { opacity: 1; transform: translateY(0); }
+.terroir-pin-hint:hover { background: #c4a35a; color: #1a2a3a; }
+.terroir-pin-hint__arrow { margin-left: 4px; }

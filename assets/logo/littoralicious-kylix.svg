@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 70">
+  <!--
+    Kylix — Greek drinking cup
+    Communal, nurture, the shared table
+    Fish inside like ancient pottery decoration
+  -->
+
+  <!-- Cup bowl -->
+  <path
+    d="M 15 30
+       Q 15 50, 50 50
+       Q 85 50, 85 30"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+
+  <!-- Rim -->
+  <ellipse cx="50" cy="30" rx="38" ry="8" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Stem and foot -->
+  <line x1="50" y1="50" x2="50" y2="58" stroke="#0a0a0a" stroke-width="1.5"/>
+  <ellipse cx="50" cy="62" rx="15" ry="4" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Handles -->
+  <path
+    d="M 12 30
+       C 5 28, 5 35, 12 35"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 88 30
+       C 95 28, 95 35, 88 35"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Simple fish inside - like pottery decoration -->
+  <path
+    d="M 38 38
+       C 45 34, 55 34, 62 38
+       C 55 42, 45 42, 38 38
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+  />
+  <circle cx="42" cy="38" r="1" fill="#0a0a0a"/>
+
+</svg>

@@ -3,329 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Littoralicious — Modern science and regional recipes from the sea. For those who feed others with intention.">
+    <meta name="description" content="Littoralicious — Modern science and regional littoral cooking for yacht chefs and food enthusiasts.">
 
-    <title>LITTORALICIOUS — Modern Science and Regional Recipes from the Sea</title>
+    <title>LITTORALICIOUS — Modern Science & Regional Littoral Cooking</title>
 
-    <meta property="og:title" content="LITTORALICIOUS">
-    <meta property="og:description" content="Modern science and regional recipes from the sea. For those who feed others with intention.">
+    <meta property="og:title" content="Littoralicious — Modern Science & Regional Littoral Cooking">
+    <meta property="og:description" content="Modern science and regional recipes from the sea. For yacht chefs and serious culinary practitioners. One purpose: Nurture.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.littoralicious.com/">
     <meta property="og:site_name" content="Littoralicious">
     <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
 
     <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506">
     <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
-    <style>
-        /* --- Hero --- */
-        .hero {
-            padding: var(--space-24) 0 var(--space-16);
-            text-align: center;
-            border-bottom: 1px solid var(--color-border);
-        }
-
-        .hero__tagline {
-            font-size: var(--text-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            color: var(--color-sea);
-            margin-bottom: var(--space-6);
-        }
-
-        .hero__title {
-            font-family: var(--font-serif);
-            font-size: var(--text-4xl);
-            font-weight: 400;
-            line-height: var(--leading-tight);
-            letter-spacing: -0.03em;
-            margin-bottom: var(--space-6);
-        }
-
-        .hero__subtitle {
-            font-family: var(--font-serif);
-            font-size: var(--text-lg);
-            line-height: var(--leading-relaxed);
-            color: var(--color-muted);
-            max-width: var(--max-width-prose);
-            margin: 0 auto var(--space-8);
-        }
-
-        .hero__cta {
-            display: inline-flex;
-            gap: var(--space-4);
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .hero__cta a {
-            padding: var(--space-3) var(--space-6);
-            font-family: var(--font-sans);
-            font-size: var(--text-sm);
-            font-weight: 600;
-            text-decoration: none;
-            transition: background var(--transition-fast), color var(--transition-fast);
-        }
-
-        .hero__cta-primary {
-            background: var(--color-sea);
-            color: var(--color-paper);
-            border: 2px solid var(--color-sea);
-        }
-
-        .hero__cta-primary:hover {
-            background: transparent;
-            color: var(--color-sea);
-        }
-
-        .hero__cta-secondary {
-            background: transparent;
-            color: var(--color-ink);
-            border: 1px solid var(--color-border);
-        }
-
-        .hero__cta-secondary:hover {
-            border-color: var(--color-sea);
-            color: var(--color-sea);
-        }
-
-        /* --- Featured --- */
-        .featured {
-            padding: var(--space-16) 0;
-        }
-
-        .featured__grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--space-8);
-            margin-top: var(--space-8);
-        }
-
-        .featured__card {
-            border: 1px solid var(--color-border);
-            padding: var(--space-6);
-            transition: border-color var(--transition-fast);
-        }
-
-        .featured__card:hover {
-            border-color: var(--color-sea);
-        }
-
-        .featured__card-category {
-            font-size: var(--text-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--color-sea);
-            font-weight: 600;
-        }
-
-        .featured__card-title {
-            font-family: var(--font-serif);
-            font-size: var(--text-lg);
-            font-weight: 400;
-            margin: var(--space-3) 0;
-            line-height: var(--leading-snug);
-        }
-
-        .featured__card-title a {
-            color: var(--color-ink);
-            text-decoration: none;
-        }
-
-        .featured__card-title a:hover {
-            color: var(--color-sea);
-        }
-
-        .featured__card-excerpt {
-            font-size: var(--text-sm);
-            color: var(--color-muted);
-            line-height: var(--leading-normal);
-        }
-
-        .featured__card-meta {
-            margin-top: var(--space-4);
-            font-size: var(--text-xs);
-            color: var(--color-salt);
-        }
-
-        /* --- Latest --- */
-        .latest {
-            padding: var(--space-16) 0;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .latest__list {
-            margin-top: var(--space-8);
-        }
-
-        .latest__item {
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: var(--space-4) 0;
-            border-bottom: 1px solid var(--color-border);
-            gap: var(--space-4);
-        }
-
-        .latest__item:first-child {
-            border-top: 1px solid var(--color-border);
-        }
-
-        .latest__item-category {
-            font-size: var(--text-xs);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--color-sea);
-            font-weight: 600;
-            flex-shrink: 0;
-            width: 100px;
-        }
-
-        .latest__item-title {
-            flex: 1;
-            font-family: var(--font-serif);
-            font-size: var(--text-base);
-        }
-
-        .latest__item-title a {
-            color: var(--color-ink);
-            text-decoration: none;
-        }
-
-        .latest__item-title a:hover {
-            color: var(--color-sea);
-        }
-
-        .latest__item-date {
-            font-size: var(--text-xs);
-            color: var(--color-salt);
-            flex-shrink: 0;
-        }
-
-        /* --- Newsletter CTA --- */
-        .newsletter-cta {
-            padding: var(--space-16) 0;
-            border-top: 1px solid var(--color-border);
-        }
-
-        .newsletter-cta__inner {
-            max-width: 560px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .newsletter-cta__title {
-            font-family: var(--font-serif);
-            font-size: var(--text-2xl);
-            font-weight: 400;
-            margin-bottom: var(--space-2);
-        }
-
-        .newsletter-cta__subtitle {
-            font-size: var(--text-sm);
-            color: var(--color-muted);
-            margin-bottom: var(--space-6);
-        }
-
-        .newsletter-cta__list {
-            list-style: none;
-            text-align: left;
-            margin-bottom: var(--space-8);
-        }
-
-        .newsletter-cta__list li {
-            padding: var(--space-3) 0;
-            border-bottom: 1px solid var(--color-border);
-            font-size: var(--text-sm);
-            line-height: var(--leading-normal);
-            color: var(--color-muted);
-        }
-
-        .newsletter-cta__list li:first-child {
-            border-top: 1px solid var(--color-border);
-        }
-
-        .newsletter-cta__list li strong {
-            color: var(--color-sea);
-            font-weight: 600;
-        }
-
-        .newsletter-cta__form-row {
-            display: flex;
-            gap: var(--space-3);
-            max-width: 420px;
-            margin: 0 auto;
-        }
-
-        .newsletter-cta__form-row input[type="email"] {
-            flex: 1;
-            border: 1px solid var(--color-border);
-            padding: var(--space-3) var(--space-4);
-            font-family: var(--font-sans);
-            font-size: var(--text-base);
-            background: var(--color-paper);
-            color: var(--color-ink);
-        }
-
-        .newsletter-cta__form-row input[type="email"]:focus {
-            border-color: var(--color-sea);
-            outline: none;
-        }
-
-        .newsletter-cta__form-row button[type="submit"] {
-            background: var(--color-sea);
-            color: var(--color-paper);
-            border: 2px solid var(--color-sea);
-            padding: var(--space-3) var(--space-6);
-            font-family: var(--font-sans);
-            font-size: var(--text-base);
-            font-weight: 600;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: background var(--transition-fast), color var(--transition-fast);
-        }
-
-        .newsletter-cta__form-row button[type="submit"]:hover {
-            background: transparent;
-            color: var(--color-sea);
-        }
-
-        .newsletter-cta__note {
-            font-size: var(--text-xs);
-            color: var(--color-salt);
-            margin-top: var(--space-3);
-        }
-
-        [data-theme="dark"] .newsletter-cta__form-row input[type="email"] {
-            background: var(--color-subtle);
-            border-color: var(--color-salt);
-        }
-
-        @media (max-width: 768px) {
-            .newsletter-cta__form-row {
-                flex-direction: column;
-            }
-            .newsletter-cta__form-row button[type="submit"] {
-                width: 100%;
-            }
-        }
-
-        /* --- Mobile --- */
-        @media (max-width: 768px) {
-            .hero__title { font-size: var(--text-3xl); }
-
-            .featured__grid {
-                grid-template-columns: 1fr;
-            }
-
-            .latest__item {
-                flex-direction: column;
-                gap: var(--space-1);
-            }
-
-            .latest__item-category { width: auto; }
-        }
-    </style>
 </head>
 <body>
 
@@ -334,167 +25,128 @@
         <div class="container">
             <div class="masthead__inner">
                 <div class="masthead__brand">
-                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
-                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
-                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
                 </div>
-                <nav class="masthead__nav">
-                    <a href="shore-larder.html">Shore Larder</a>
-                    <a href="the-method.html">The Method</a>
-                    <a href="littoral-heritage.html">Heritage</a>
-                    <a href="the-evidence.html">The Evidence</a>
-                    <a href="the-bridge.html">The Bridge</a>
-                </nav>
             </div>
         </div>
     </header>
 
     <main>
-
-        <!-- ========== HERO ========== -->
-        <section class="hero">
-            <div class="container">
-                <h1 class="hero__title">One purpose: Nurture.</h1>
-                <p class="hero__subtitle">
-                    No sponsors. No algorithms. No filler. Just science, technique, sourcing, tradition, and news &mdash; written for those who cook with intention.
+        <!-- Welcome Section -->
+        <section class="container" style="padding-top: var(--space-16); padding-bottom: var(--space-12);">
+            <div style="max-width: 700px; margin: 0 auto; text-align: center;">
+                <h1 style="font-family: var(--font-serif); font-size: var(--text-3xl); margin-bottom: var(--space-6);">
+                    One purpose: Nurture.
+                </h1>
+                <p style="color: var(--color-muted); font-size: var(--text-lg); line-height: 1.7; margin-bottom: var(--space-8);">
+                    Every recipe, every technique, every piece of science we publish exists to help you nourish the people you feed—and yourself.
+                </p>
+                <a href="newsletter.html" style="display: inline-block; background: var(--color-sea); color: #fff; padding: var(--space-3) var(--space-8); text-decoration: none; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; transition: opacity 150ms ease;">Join the Newsletter</a>
+                <p style="color: var(--color-muted); font-size: var(--text-sm); line-height: 1.8; margin-top: var(--space-6);">
+                    One email per month.
                 </p>
             </div>
         </section>
 
-        <!-- ========== FEATURED ========== -->
-        <section class="featured">
-            <div class="container">
-                <div class="divider">
-                    <span class="divider__text">Featured</span>
-                </div>
 
-                <div class="featured__grid">
-                    <div class="featured__card">
-                        <span class="featured__card-category">The Evidence</span>
-                        <h3 class="featured__card-title"><a href="articles/cooked-fire-made-us-human.html">Cooked: How Fire Made Us Human and Why the Person Holding the Pan Still Matters</a></h3>
-                        <p class="featured__card-excerpt">The anthropology of cooking, the chemistry of heat, and why the galley is the most important room on any vessel.</p>
-                        <div class="featured__card-meta">12 min read</div>
-                    </div>
+        <!-- Search -->
+        <section class="container" style="padding-bottom: var(--space-8);">
+            <div style="max-width: 500px; margin: 0 auto; position: relative;">
+                <input type="text" id="article-search" placeholder="Search articles and themes..." style="width: 100%; padding: var(--space-3) var(--space-4); padding-left: 40px; border: 1px solid var(--color-border); background: var(--color-paper); color: var(--color-ink); font-family: var(--font-sans); font-size: var(--text-sm); outline: none; transition: border-color 150ms ease;" onfocus="this.style.borderColor='var(--color-sea)'" onblur="this.style.borderColor='var(--color-border)'">
+                <svg style="position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 16px; height: 16px; color: var(--color-salt);" fill="none" stroke="currentColor" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35" stroke-linecap="round" stroke-width="2"/></svg>
+            </div>
+            <div id="search-filters" style="display: flex; flex-wrap: wrap; gap: var(--space-2); justify-content: center; margin-top: var(--space-3);">
+                <button class="search-filter active" data-filter="all" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">All</button>
+                <button class="search-filter" data-filter="Shore Larder" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">Shore Larder</button>
+                <button class="search-filter" data-filter="The Method" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">The Method</button>
+                <button class="search-filter" data-filter="Littoral Heritage" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">Heritage</button>
+                <button class="search-filter" data-filter="The Evidence" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">The Evidence</button>
+                <button class="search-filter" data-filter="The Bridge" style="background: none; border: 1px solid var(--color-border); padding: 4px 12px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; color: var(--color-muted); font-family: var(--font-sans); transition: all 150ms ease;">The Bridge</button>
+            </div>
+            <p id="search-count" style="text-align: center; font-size: var(--text-xs); color: var(--color-salt); margin-top: var(--space-2); display: none;"></p>
+        </section>
 
-                    <div class="featured__card">
-                        <span class="featured__card-category">The Evidence</span>
-                        <h3 class="featured__card-title"><a href="articles/silver-lining-protocol.html">The Silver Lining Protocol: A Science-Backed Survival Guide for Galley Sanity</a></h3>
-                        <p class="featured__card-excerpt">Burnout is not a badge of honour. The psychology of resilience, crew welfare, and why the best chefs protect their mind first.</p>
-                        <div class="featured__card-meta">15 min read</div>
-                    </div>
+        <!-- Articles -->
+        <section class="container" style="padding-bottom: var(--space-12);">
+            <div class="divider">
+                <span class="divider__text">Latest</span>
+            </div>
 
-                    <div class="featured__card">
-                        <span class="featured__card-category">The Evidence</span>
-                        <h3 class="featured__card-title"><a href="articles/medicinal-plants-your-galley.html">The Pharmacy in Your Spice Rack</a></h3>
-                        <p class="featured__card-excerpt">What science actually knows about medicinal plants in food. Phytochemistry stripped of marketing, translated for the galley.</p>
-                        <div class="featured__card-meta">14 min read</div>
-                    </div>
+            <div id="article-list" style="margin-top: var(--space-6);">
+                <!-- HOMEPAGE-ARTICLES:BEGIN -->
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint dessert sticky-toffee-pudding dates muscovado caramel whisky baking food-science charter-prep"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>9 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/sticky-toffee-pudding.html">Sticky Toffee Pudding: Dark Muscovado &amp; Whisky Caramel</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint dessert apple crumble baking brown-butter pectin food-science charter-prep"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>10 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/apple-crumble-perfect.html">Apple Crumble: The Perfect Version</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint soup chicken stock gelatin umami comfort convalescent galley-staple food-science"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>12 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/chicken-soup-perfect.html">Chicken Soup: The Perfect Version</a></h3></article>
+                <article class="article-card" data-category="Port Call" data-tags="provisioning venice italy rialto port-call vaporetto logistics"><div class="article-card__meta"><span class="article-card__category">Port Call</span><span>14 min</span><span class="article-card__subtag">Provisioning</span></div><h3 class="article-card__title"><a href="articles/port-call-venice.html">Port Call Venice: Provisioning a City With No Roads</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="garlic ingredient-deep-dive allium food-science history compounds"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>15 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/garlic-the-immortal-bulb.html">Garlic: The Immortal Bulb</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="mushrooms ingredient-deep-dive umami food-science sourcing glutamate"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>14 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/mushrooms-the-new-centre.html">Mushrooms: The New Centre of the Plate</a></h3></article>
+                <article class="article-card" data-category="Shore Larder" data-tags="tea ingredient-deep-dive tannins smoking infusion cooking-chemistry"><div class="article-card__meta"><span class="article-card__category">Shore Larder</span><span>14 min</span><span class="article-card__subtag">Ingredient Deep-Dive</span></div><h3 class="article-card__title"><a href="articles/tea-as-cooking-ingredient.html">Tea as a Cooking Ingredient</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="recipe blueprint baking banana quick-bread brown-butter miso food-science charter-prep"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>8 min</span><span class="article-card__subtag">Recipe Blueprint</span></div><h3 class="article-card__title"><a href="articles/banana-bread.html">Banana Bread: The Science-First Version</a></h3></article>
+                <article class="article-card" data-category="Port Call" data-tags="provisioning suppliers port-call coming-soon community"><div class="article-card__meta"><span class="article-card__category">Port Call</span><span>5 min</span><span class="article-card__subtag">Provisioning</span></div><h3 class="article-card__title"><a href="articles/preview-port-call.html">Port Call: Provisioning Guides Built by the Chefs Who Actually Dock There</a></h3></article>
+                <article class="article-card" data-category="The Evidence" data-tags="flavor-science food-pairing volatile-compounds molecules FlavorDB research cooking-chemistry"><div class="article-card__meta"><span class="article-card__category">The Evidence</span><span>16 min</span><span class="article-card__subtag">Food Science</span></div><h3 class="article-card__title"><a href="articles/flavordb-compound-pairing.html">FlavorDB: Compound-Level Flavor Pairing</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="technology AI Claude-Code galley automation PDF menus handover WhatsApp intelligence"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>18 min</span><span class="article-card__subtag">Tech &amp; AI</span></div><h3 class="article-card__title"><a href="articles/claude-code-galley.html">Claude Code in the Galley: The Power Tool</a></h3></article>
+                <article class="article-card" data-category="Trade Winds" data-tags="tax crew employment legal finance residency France Article-81-A CGI"><div class="article-card__meta"><span class="article-card__category">Trade Winds</span><span>18 min</span><span class="article-card__subtag">Career &amp; Industry</span></div><h3 class="article-card__title"><a href="articles/yacht-crew-tax-guide.html">The Truth About Paying Tax as Yacht Crew</a></h3></article>
+                <article class="article-card" data-category="Trade Winds" data-tags="career yacht-chef certification STCW crew employment industry"><div class="article-card__meta"><span class="article-card__category">Trade Winds</span><span>14 min</span><span class="article-card__subtag">Career &amp; Industry</span></div><h3 class="article-card__title"><a href="articles/how-to-become-a-yacht-chef.html">How to Become a Yacht Chef: The Real Path Nobody Advertises</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="technology AI tools galley efficiency automation claude-code menu-generation handover WhatsApp"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>18 min</span><span class="article-card__subtag">Tech &amp; AI</span></div><h3 class="article-card__title"><a href="articles/tech-in-the-galley.html">Technology in the Galley: Your AI Sous Chef</a></h3></article>
+                <article class="article-card" data-category="The Method" data-tags="WhatsApp intelligence trip handover AI workflow chef-ops"><div class="article-card__meta"><span class="article-card__category">The Method</span><span>12 min</span><span class="article-card__subtag">Tech &amp; AI</span></div><h3 class="article-card__title"><a href="articles/whatsapp-trip-intelligence.html">WhatsApp as Your Trip Intelligence System</a></h3></article>
+            <!-- HOMEPAGE-ARTICLES:END -->
+            </div>
+            <p id="no-results" style="display: none; text-align: center; color: var(--color-muted); padding: var(--space-8) 0; font-style: italic;">No articles match your search.</p>
 
-                    <div class="featured__card">
-                        <span class="featured__card-category">Shore Larder</span>
-                        <h3 class="featured__card-title"><a href="articles/provisioning-miami-ftl.html">Provisioning Miami & Fort Lauderdale: The Complete Playbook</a></h3>
-                        <p class="featured__card-excerpt">60+ suppliers, freezer-ready intel, chandler comparison. The complete provisioning database built from working yacht chef intel.</p>
-                        <div class="featured__card-meta">12 min read</div>
-                    </div>
-                </div>
+            <!-- View all archive link -->
+            <div style="text-align: center; margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                <a href="archive.html" style="display: inline-block; border: 1px solid var(--color-sea); color: var(--color-sea); padding: var(--space-3) var(--space-8); text-decoration: none; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; transition: all 150ms ease;">View all articles &rarr;</a>
             </div>
         </section>
 
-        <!-- ========== LATEST ========== -->
-        <section class="latest">
-            <div class="container">
-                <div class="divider">
-                    <span class="divider__text">Latest</span>
-                </div>
-
-                <div class="latest__list">
-                    <div class="latest__item">
-                        <span class="latest__item-category">The Method</span>
-                        <div class="latest__item-title"><a href="articles/ai-cookbook-extraction.html">The Cookbook Decoder: Extract the Best Recipes from Any Book with AI</a></div>
-                        <span class="latest__item-date">Mar 27</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">Shore Larder</span>
-                        <div class="latest__item-title"><a href="articles/provisioning-miami-ftl.html">Provisioning Miami & Fort Lauderdale</a></div>
-                        <span class="latest__item-date">Mar 5</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">The Method</span>
-                        <div class="latest__item-title"><a href="articles/tech-in-the-galley.html">Technology in the Galley: AI Is Your New Sous Chef</a></div>
-                        <span class="latest__item-date">Mar 4</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">Shore Larder</span>
-                        <div class="latest__item-title"><a href="articles/the-fat-index.html">The Fat Index: Every Cooking Fat Ranked by Science</a></div>
-                        <span class="latest__item-date">Mar 1</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">Shore Larder</span>
-                        <div class="latest__item-title"><a href="articles/the-salt-index.html">The Salt Index: Every Culinary Salt Ranked by Science</a></div>
-                        <span class="latest__item-date">Mar 1</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">Shore Larder</span>
-                        <div class="latest__item-title"><a href="articles/the-acid-index.html">The Acid Index: Every Culinary Acid Ranked by Science</a></div>
-                        <span class="latest__item-date">Mar 1</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">The Evidence</span>
-                        <div class="latest__item-title"><a href="articles/cooked-fire-made-us-human.html">Cooked: How Fire Made Us Human</a></div>
-                        <span class="latest__item-date">Mar 1</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">Heritage</span>
-                        <div class="latest__item-title"><a href="articles/spaghetti-ricci-di-mare.html">Spaghetti ai Ricci di Mare: Mondello, Sicily</a></div>
-                        <span class="latest__item-date">Feb 5</span>
-                    </div>
-                    <div class="latest__item">
-                        <span class="latest__item-category">The Bridge</span>
-                        <div class="latest__item-title"><a href="articles/myojaku-three-stars.html">Myojaku Earns Three Stars</a></div>
-                        <span class="latest__item-date">Feb 5</span>
-                    </div>
-                </div>
-            </div>
+        <!-- Meet the Crew -->
+        <section class="container" style="padding-bottom: var(--space-8); text-align: center;">
+            <a href="community.html" style="text-decoration: none; color: var(--color-ink); font-family: var(--font-serif); font-size: var(--text-lg); transition: color 150ms ease;">Meet the Crew <span id="home-chef-count" style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-sea);"></span> &rarr;</a>
         </section>
 
-        <!-- ========== NEWSLETTER SIGNUP ========== -->
-        <section class="newsletter-cta">
-            <div class="container">
-                <div class="newsletter-cta__inner">
-                    <h2 class="newsletter-cta__title">The Monthly Brief</h2>
-                    <p class="newsletter-cta__subtitle">One free email per month. Here's what's inside:</p>
+        <!-- Sections -->
+        <section class="container" style="padding-bottom: var(--space-12);">
+            <div class="divider">
+                <span class="divider__text">Sections</span>
+            </div>
 
-                    <ul class="newsletter-cta__list">
-                        <li><strong>Shore Larder</strong> &mdash; What's in season, where to source it, compound profiles</li>
-                        <li><strong>The Method</strong> &mdash; One technique per issue, tested at sea, with the science behind it</li>
-                        <li><strong>Heritage</strong> &mdash; A regional coastal dish, its origins, and how to serve it on board</li>
-                        <li><strong>The Evidence</strong> &mdash; One peer-reviewed paper, translated into practical terms</li>
-                        <li><strong>The Bridge</strong> &mdash; Chef news, regulatory changes, events, industry intel</li>
-                    </ul>
-
-                    <form class="newsletter-cta__form newsletter-form"
-                          action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
-                          method="post">
-                        <div class="newsletter-cta__form-row">
-                            <input type="email" name="email" placeholder="your@email.com" required>
-                            <button type="submit">Subscribe Free</button>
-                        </div>
-                    </form>
-                    <p class="newsletter-cta__note">No spam. Unsubscribe anytime. First week of every month.</p>
-                </div>
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-6); justify-content: center;">
+                <a href="shore-larder.html" style="border: 1px solid var(--color-border); padding: var(--space-3) var(--space-6); text-decoration: none; color: inherit; font-size: var(--text-sm); transition: border-color 150ms ease;"><span style="color: var(--color-sea); font-weight: 600;">Shore Larder</span></a>
+                <a href="the-method.html" style="border: 1px solid var(--color-border); padding: var(--space-3) var(--space-6); text-decoration: none; color: inherit; font-size: var(--text-sm); transition: border-color 150ms ease;"><span style="color: var(--color-sea); font-weight: 600;">The Method</span></a>
+                <a href="littoral-heritage.html" style="border: 1px solid var(--color-border); padding: var(--space-3) var(--space-6); text-decoration: none; color: inherit; font-size: var(--text-sm); transition: border-color 150ms ease;"><span style="color: var(--color-sea); font-weight: 600;">Littoral Heritage</span></a>
+                <a href="the-evidence.html" style="border: 1px solid var(--color-border); padding: var(--space-3) var(--space-6); text-decoration: none; color: inherit; font-size: var(--text-sm); transition: border-color 150ms ease;"><span style="color: var(--color-sea); font-weight: 600;">The Evidence</span></a>
+                <a href="the-bridge.html" style="border: 1px solid var(--color-border); padding: var(--space-3) var(--space-6); text-decoration: none; color: inherit; font-size: var(--text-sm); transition: border-color 150ms ease;"><span style="color: var(--color-sea); font-weight: 600;">The Bridge</span></a>
             </div>
         </section>
-
     </main>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form"
+                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
+                      method="post"
+                      target="popupwindow">
+                    <label for="footer-email-index">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-index" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
             <div class="footer__inner">
                 <div class="footer__about">
                     <div class="footer__brand">LITTORALICIOUS</div>
                     <p class="footer__description">One purpose: Nurture.</p>
-                    <p class="footer__tagline">For those who feed others with intention.</p>
+                    <p class="footer__tagline">
+                        For those who feed others with intention.
+                    </p>
                 </div>
                 <div class="footer__links">
                     <div class="footer__col">
@@ -512,7 +164,6 @@
                         <ul>
                             <li><a href="about.html">Manifesto</a></li>
                             <li><a href="founder.html">Founder</a></li>
-                            <li><a href="newsletter.html">Newsletter</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -526,9 +177,136 @@
 
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
     <script src="assets/js/firebase-config.js"></script>
-    <script src="assets/js/auth.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script>
+    // Load chef count on homepage
+    if (typeof db !== 'undefined') {
+        db.collection('chefs').get().then(function(snap) {
+            var el = document.getElementById('home-chef-count');
+            if (el && snap.size > 0) el.textContent = '(' + snap.size + ')';
+        }).catch(function() {});
+    }
 
+    // Article search and filter
+    (function() {
+        var searchInput = document.getElementById('article-search');
+        var articleList = document.getElementById('article-list');
+        var noResults = document.getElementById('no-results');
+        var searchCount = document.getElementById('search-count');
+        var filterBtns = document.querySelectorAll('.search-filter');
+        var activeFilter = 'all';
+
+        function filterArticles() {
+            var query = searchInput.value.toLowerCase().trim();
+            var visible = 0;
+            var articles = articleList.querySelectorAll('.article-card');
+
+            articles.forEach(function(card) {
+                var title = card.querySelector('.article-card__title').textContent.toLowerCase();
+                var category = card.getAttribute('data-category') || '';
+                var tags = card.getAttribute('data-tags') || '';
+                var searchable = title + ' ' + category.toLowerCase() + ' ' + tags;
+
+                var matchesFilter = activeFilter === 'all' || category === activeFilter;
+                var matchesQuery = !query || searchable.indexOf(query) !== -1;
+
+                if (matchesFilter && matchesQuery) {
+                    card.style.display = '';
+                    visible++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visible === 0 ? '' : 'none';
+
+            if (query || activeFilter !== 'all') {
+                searchCount.textContent = visible + ' of ' + articles.length + ' articles';
+                searchCount.style.display = '';
+            } else {
+                searchCount.style.display = 'none';
+            }
+        }
+
+        searchInput.addEventListener('input', filterArticles);
+
+        filterBtns.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterBtns.forEach(function(b) {
+                    b.classList.remove('active');
+                    b.style.borderColor = '';
+                    b.style.color = '';
+                });
+                btn.classList.add('active');
+                btn.style.borderColor = 'var(--color-sea)';
+                btn.style.color = 'var(--color-sea)';
+                activeFilter = btn.getAttribute('data-filter');
+                filterArticles();
+            });
+        });
+
+        // Set initial active style
+        filterBtns[0].style.borderColor = 'var(--color-sea)';
+        filterBtns[0].style.color = 'var(--color-sea)';
+    })();
+
+    // Auto-prepend any NEW non-draft articles (newer than latest already shown).
+    // Drafts are excluded; homepage caps at 15 cards (overflow is on archive.html).
+    (function autoPrependFromJson() {
+        var list = document.getElementById('article-list');
+        if (!list) return;
+        var HOMEPAGE_LIMIT = 15;
+        fetch('data/articles.json', { cache: 'no-store' }).then(function(r) {
+            return r.ok ? r.json() : null;
+        }).then(function(data) {
+            if (!data || !Array.isArray(data.articles)) return;
+            var present = {};
+            list.querySelectorAll('.article-card a[href^="articles/"]').forEach(function(a) {
+                var m = a.getAttribute('href').match(/articles\/([^.\/]+)\.html/);
+                if (m) present[m[1]] = true;
+            });
+            var cats = (data.categories) || {};
+            // Find max date among already-shown articles — only prepend things newer than that.
+            var presentDates = data.articles
+                .filter(function(a) { return a && a.slug && present[a.slug] && a.date; })
+                .map(function(a) { return a.date; });
+            var maxPresentDate = presentDates.length ? presentDates.sort().pop() : '';
+            var fresh = data.articles
+                .filter(function(a) {
+                    return a && a.slug && !a.draft && !present[a.slug] &&
+                        (!maxPresentDate || (a.date || '') > maxPresentDate);
+                })
+                .sort(function(a, b) { return (b.date || '').localeCompare(a.date || ''); });
+            if (fresh.length) {
+                var anchor = list.querySelector('.article-card');
+                fresh.forEach(function(a) {
+                    var catName = (cats[a.category] && cats[a.category].name) || a.category || '';
+                    var tags = (a.tags || []).join(' ').replace(/"/g, '');
+                    var subtag = a.subtag || '';
+                    var card = document.createElement('article');
+                    card.className = 'article-card';
+                    card.setAttribute('data-category', catName);
+                    card.setAttribute('data-tags', tags);
+                    card.innerHTML =
+                        '<div class="article-card__meta">' +
+                            '<span class="article-card__category">' + catName + '</span>' +
+                            '<span>' + (a.read_time ? a.read_time + ' min' : '') + '</span>' +
+                            (subtag ? '<span class="article-card__subtag">' + subtag + '</span>' : '') +
+                        '</div>' +
+                        '<h3 class="article-card__title">' +
+                            '<a href="articles/' + a.slug + '.html">' + a.title + '</a>' +
+                        '</h3>';
+                    if (anchor) list.insertBefore(card, anchor); else list.appendChild(card);
+                });
+            }
+            // Trim to HOMEPAGE_LIMIT (drop oldest cards beyond the cap).
+            var cards = list.querySelectorAll('.article-card');
+            for (var i = HOMEPAGE_LIMIT; i < cards.length; i++) {
+                cards[i].parentNode.removeChild(cards[i]);
+            }
+        }).catch(function() { /* fallback: hardcoded list still renders */ });
+    })();
+    </script>
 </body>
 </html>

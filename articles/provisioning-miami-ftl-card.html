@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Port Call Miami / FTL — printable field card for yacht chefs.">
+    <meta name="robots" content="noindex">
+    <title>Port Call Miami / FTL — Field Card — LITTORALICIOUS</title>
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
+    <link rel="stylesheet" href="../assets/css/port-call-card.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+    <div class="toolbar">
+        <h1>Port Call <span data-port-name>Miami / FTL</span> — Field Card</h1>
+        <div class="actions">
+            <a href="provisioning-miami-ftl.html">← Back to article</a>
+            <button onclick="window.print()" type="button">Print &middot; Save PDF</button>
+        </div>
+    </div>
+
+    <section class="sheet">
+        <div class="head">
+            <div class="head__brand"><b>LITTORALICIOUS</b><span>Port Call Field Card</span></div>
+            <div class="head__title"><b><span data-port-name>Miami / FTL</span> — Provisioning Brief</b><span id="card-date">Updated</span></div>
+        </div>
+
+        <h2 class="section">The Three Berths <span>pick by use case</span></h2>
+        <div class="berths" id="card-berths"></div>
+
+        <h2 class="section">South Florida &mdash; Numbered Map <span>numbers match the address book on page 2</span></h2>
+        <div id="card-map"></div>
+        <div class="map-legend">
+            <div><i style="background:#c4a35a;"></i>Berth</div>
+            <div><i style="background:#d97706;"></i>Market / Direct</div>
+            <div><i style="background:#059669;"></i>Specialty / Online</div>
+            <div><i style="background:#7c3aed;"></i>Wholesale / Bulk</div>
+            <div><i style="background:#2d4a5e;"></i>Logistics / Agent</div>
+        </div>
+
+        <h2 class="section">Quick Reference</h2>
+        <div class="strip">
+            <div><b>Wholesale duo</b>Costco Business Center (Doral) + Restaurant Depot &middot; covers 60–70%</div>
+            <div><b>Off-the-boat fish</b>Haulover Marina &middot; noon &amp; 17:00 &middot; cash &middot; 40–60% off</div>
+            <div><b>Caribbean stock-up</b>168 Market (Asian) + Restaurant Depot (12% bread flour)</div>
+            <div><b>Agent (zero-time)</b>Yacht Chandlers +1 954 761 1818 &middot; 15–18% markup</div>
+        </div>
+
+        <div class="foot"><span>littoralicious.com / provisioning-miami-ftl</span><span>Page 1 of 2</span></div>
+    </section>
+
+    <section class="sheet">
+        <div class="head">
+            <div class="head__brand"><b>LITTORALICIOUS</b><span>Port Call Field Card</span></div>
+            <div class="head__title"><b><span data-port-name>Miami / FTL</span> — Address Book</b><span>numbers match the map on page 1</span></div>
+        </div>
+
+        <h2 class="section">Address Book <span>by category &mdash; phone, address, hours</span></h2>
+        <div class="book" id="card-book"></div>
+
+        <div class="foot"><span>littoralicious.com / provisioning-miami-ftl</span><span>Page 2 of 2 &middot; Vote on the article so the next chef gets the same answer.</span></div>
+    </section>
+
+    <script src="../assets/js/port-call-miami-ftl-data.js"></script>
+    <script>
+        window.PCV_CONFIG = { portName: 'Miami / FTL', center: [26.000, -80.200], zoom: 9, cityRadiusKm: 90 };
+    </script>
+    <script defer src="../assets/js/port-call-card-render.js"></script>
+</body>
+</html>

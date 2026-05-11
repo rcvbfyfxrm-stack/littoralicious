@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Science & Tech — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 22 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;53</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-22.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#5a4a6a">Science & Tech</div>
+  <h1 class="article-title">Science, Technologie & Neurosciences</h1>
+  <div class="article-date">Dimanche 22 Février 2026 &mdash; Edition N&deg;53</div>
+</div><div class="article-body"><h1>JOURNAL LIBERTÉ</h1>
+<h2>Science, Technologie & Neurosciences</h2>
+<h3>22 février 2026</h3>
+<p><em>« La machine apprend à penser. Le cerveau apprend à guérir. Et quelque part entre les deux, une frontière s'efface. »</em></p>
+<hr>
+<h2>Édition du Jour</h2>
+<p>Trois fronts convergent cette semaine dans un tableau qui aurait semblé extravagant il y a cinq ans : la Chine transforme les interfaces cerveau-machine en industrie de masse, des circuits inspirés de la biologie surpassent les mathématiciens humains, et un supraconducteur découvert à Stanford pourrait stabiliser l'ordinateur quantique que personne n'a encore réussi à fiabiliser. Si l'on ajoute que des cellules souches restaurent la dopamine dans des cerveaux parkinsoniens et qu'un vaccin contre le zona pourrait protéger contre Alzheimer, on commence à percevoir les contours d'une année charnière — l'année où la convergence neuro-computationnelle cesse d'être un concept de conférence pour devenir un programme industriel.</p>
+<hr>
+<h2>Les Récits</h2>
+<h3>I. La Chine industrialise le cerveau connecté</h3>
+<p>Pendant que Neuralink fait la une avec chaque patient, la Chine fait autre chose : elle bâtit une industrie. Le mouvement est passé d'un registre purement académique à un déploiement commercial structuré, avec de nouvelles startups — certaines issues de laboratoires militaires, d'autres de l'écosystème Shenzhen — qui développent à la fois des BCI implantables et non invasifs. Le soutien politique est désormais explicite : subventions, voies réglementaires accélérées, essais cliniques élargis.</p>
+<p>Ce qui distingue l'approche chinoise, c'est l'échelle. Là où les projets occidentaux restent artisanaux — quelques patients, des années d'approbation — Pékin traite le BCI comme il a traité les panneaux solaires et les batteries : saturer le pipeline, itérer vite, baisser les coûts par le volume. Le risque éthique est réel, les questions de consentement dans un système autoritaire sont évidentes, mais nier la vélocité serait naïf. D'ici trois ans, les BCI chinois les moins chers pourraient coûter ce que coûte un appareil auditif haut de gamme aujourd'hui.</p>
+<p>La question stratégique n'est pas de savoir si le BCI fonctionnera — il fonctionne déjà, dans ses formes rudimentaires. La question est de savoir qui définira les normes, les protocoles, les limites de ce que l'on connecte au cerveau humain, et si l'Occident aura encore une voix dans cette conversation quand les standards seront fixés.</p>
+<h3>II. Des machines inspirées du cerveau, meilleures en maths que prévu</h3>
+<p>Une étude publiée le 13 février dans ScienceDaily rapporte que des circuits neuromorphiques — des puces conçues pour imiter le fonctionnement des neurones biologiques — résolvent des problèmes mathématiques avec une efficacité inattendue. L'architecture, qui traite l'information par impulsions (spikes) plutôt que par flux continu de données, s'avère particulièrement performante sur des tâches de raisonnement abstrait que les réseaux de neurones classiques abordent avec force brute computationnelle.</p>
+<p>La nuance est importante : il ne s'agit pas de « conscience artificielle » ni même d'intelligence générale. Il s'agit de découvrir que la géométrie du calcul biologique contient des raccourcis que l'ingénierie conventionnelle ne soupçonnait pas. C'est comme si, en copiant la forme d'une aile d'oiseau pour un avion en papier, on découvrait accidentellement des propriétés aérodynamiques utiles pour les drones.</p>
+<p>Les implications sont industrielles avant d'être philosophiques : ces puces consomment une fraction de l'énergie des GPU classiques. Si elles tiennent leurs promesses sur des tâches plus complexes, elles pourraient réduire le mur énergétique auquel se heurte l'intelligence artificielle — un mur qui, rappelons-le, est la principale contrainte réelle sur le déploiement de l'IA à grande échelle.</p>
+<h3>III. Le supraconducteur triplet : électricité et spin, résistance zéro</h3>
+<p>Des physiciens ont identifié un supraconducteur « triplet » — un matériau qui transmet simultanément le courant électrique et le spin de l'électron sans résistance. Jusqu'ici, les supraconducteurs conventionnels ne géraient que le courant ; le spin, cette propriété quantique qui fait tourner l'électron comme une toupie, était sacrifié en chemin.</p>
+<p>Pourquoi cela compte : les ordinateurs quantiques actuels sont fragiles. Les qubits perdent leur cohérence à la moindre perturbation thermique ou magnétique. Un matériau qui transporte à la fois courant et spin sans perte pourrait servir de « câblage parfait » entre composants quantiques, réduisant le bruit qui détruit les calculs. C'est un pas vers la stabilisation — le problème fondamental qui sépare les démonstrations de laboratoire des machines quantiques utilisables.</p>
+<p>Prudence cependant : nous en sommes au stade de l'observation en conditions contrôlées. Le chemin entre « nous avons vu un effet intéressant » et « nous avons câblé un ordinateur quantique avec » se mesure en années, voire en décennies. Mais la direction est la bonne.</p>
+<h3>IV. Des cellules souches pour redonner la dopamine aux parkinsoniens</h3>
+<p>Un essai clinique teste actuellement si des cellules souches reprogrammées peuvent être implantées dans le cerveau de patients atteints de Parkinson pour restaurer la production de dopamine — le neurotransmetteur dont la perte provoque les tremblements, la rigidité et la lenteur caractéristiques de la maladie.</p>
+<p>Le principe est élégant dans sa simplicité : plutôt que de compenser chimiquement le déficit (ce que fait la lévodopa, traitement standard depuis les années 1960), on réintroduit les cellules qui fabriquent la molécule manquante. Les cellules souches sont génétiquement modifiées en laboratoire pour devenir des neurones producteurs de dopamine, puis injectées dans le striatum, la zone cérébrale la plus affectée.</p>
+<p>Les résultats préliminaires sont encourageants mais précoces. La vraie question — celle que tout clinicien pose — est la durabilité : ces cellules implantées survivront-elles des mois, des années ? Continueront-elles à produire de la dopamine sans dériver vers des comportements cellulaires incontrôlés ? L'histoire de la médecine régénérative est jonchée de promesses magnifiques qui se sont heurtées à la biologie réelle une fois passé le cap de l'enthousiasme initial.</p>
+<h3>V. Trois médicaments repositionnés contre Alzheimer — et le zona en tête de peloton</h3>
+<p>La recherche sur Alzheimer prend un virage pragmatique. Plutôt que de chercher la molécule miracle, plusieurs équipes explorent le repositionnement de médicaments existants — des molécules dont la sécurité est déjà connue, les effets secondaires cartographiés, les chaînes de production en place.</p>
+<p>Trois candidats émergent, mais c'est le vaccin contre le zona (Shingrix, de GSK) qui attire le plus d'attention. Les données épidémiologiques sont frappantes : les personnes vaccinées contre le zona présentent un risque significativement réduit de développer une démence. L'hypothèse, qui gagne en crédibilité, lie les infections virales latentes — notamment les herpèsvirus — à la neuroinflammation chronique qui précède Alzheimer de plusieurs décennies.</p>
+<p>C'est un renversement de perspective considérable. Pendant vingt ans, la recherche Alzheimer a été dominée par l'hypothèse amyloïde — l'idée que les plaques de protéine dans le cerveau causent la maladie. Cette hypothèse a produit des milliards de dépenses et des échecs thérapeutiques en série. L'hypothèse infectieuse/inflammatoire, longtemps marginale, s'impose désormais comme alternative sérieuse. Si un vaccin déjà approuvé, déjà administré à des millions de personnes, réduit le risque de démence, c'est peut-être le développement le plus important en neurologie de la décennie.</p>
+<hr>
+<h2>Signal Transversal : L'IA dévore les données médicales</h2>
+<p>Un rapport conjoint UCSF/Wayne State démontre que des systèmes d'IA générative traitent des ensembles de données médicales plus rapidement que des équipes humaines de recherche — égalant ou surpassant des mois de travail d'analyse. Ce n'est pas un remplacement des chercheurs ; c'est une accélération du tri, de la corrélation, de la détection de patterns dans des jeux de données trop volumineux pour l'analyse humaine conventionnelle.</p>
+<p>Le signal à retenir : chaque découverte citée dans cette édition — le BCI chinois, le supraconducteur triplet, le repositionnement de médicaments — sera accélérée par ce type d'outil. La vitesse de la science change de régime, et avec elle, la vitesse à laquelle les implications éthiques, réglementaires et sociétales doivent être pensées.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<ul>
+<li>Les puces neuromorphiques posent une question énergétique autant que computationnelle : si l'IA peut fonctionner avec 100x moins d'énergie, les data centers actuels deviennent des dinosaures.</li>
+<li>La convergence BCI + IA thérapeutique crée un nouveau marché : la neuro-ingénierie personnalisée. Premiers produits commerciaux probables d'ici 2028.</li>
+<li>Le repositionnement de médicaments existants comme stratégie anti-Alzheimer pourrait redéfinir l'économie de la recherche pharmaceutique : pourquoi dépenser 2 milliards pour une nouvelle molécule si un vaccin à 200 euros fait le travail ?</li>
+</ul>
+<hr>
+<h2>Connexion</h2>
+<p>Ce qui relie ces histoires n'est pas la technologie — c'est le temps. La Chine industrialise le BCI en années, pas en décennies. L'IA comprime des mois de recherche en heures. Des vaccins existants pourraient protéger contre des maladies que l'on ne comprend pas encore entièrement. Le rythme de la découverte dépasse désormais le rythme de la régulation, de l'éthique, de la compréhension publique. La question qui traverse chaque récit de cette édition est la même : sommes-nous prêts à absorber ce que nous sommes en train de découvrir ? L'histoire suggère que non — mais elle suggère aussi que nous avançons quand même.</p>
+<hr>
+<p><em>Journal Liberté — Science, Technologie & Neurosciences — 22 février 2026</em></p></div><div class="bottom-nav"><a href="bonnes-nouvelles.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Bonnes Nouvelles</span></a><a href="maritime-sailing.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Maritime & Sailing &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; SCIENCE & TECH</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -9,6 +9,10 @@
     const VOTE_KEY = 'littoralicious-votes';
     const COMMENT_VOTE_KEY = 'littoralicious-comment-votes';
 
+    function log() {
+        if (window.DEBUG === true) console.log.apply(console, arguments);
+    }
+
     // ======================================================================
     // Helpers
     // ======================================================================
@@ -134,7 +138,7 @@
             const snap = await docRef.get();
             if (snap.exists) data = snap.data();
         } catch (err) {
-            console.log('Firestore read failed:', err.message);
+            log('Firestore read failed:', err.message);
         }
 
         function render(d) {
@@ -185,7 +189,7 @@
 
                 await docRef.set(updates, { merge: true });
             } catch (err) {
-                console.log('Firestore write failed:', err.message);
+                log('Firestore write failed:', err.message);
             }
 
             render(data);
@@ -212,27 +216,7 @@
         let html = '<div class="' + cls + '" data-comment-id="' + id + '">';
         html += '<div class="comment__header">';
         html += buildAvatarHTML(comment.name, comment.photoURL);
-        html += '<div class="comment__meta">';
         html += '<span class="comment__author">' + escapeHtml(comment.name) + '</span>';
-
-        // Badge
-        if (comment.badge) {
-            html += '<span class="comment__badge" style="color:' + escapeHtml(comment.badgeColor || '#94a3b8') + ';border-color:' + escapeHtml(comment.badgeColor || '#94a3b8') + '">' + escapeHtml(comment.badge) + '</span>';
-        }
-
-        // Boat & location info
-        var infoItems = [];
-        if (comment.boatName && comment.showBoatInfo !== false) {
-            var boatText = comment.boatName;
-            if (comment.boatSize) boatText += ' · ' + comment.boatSize + 'm';
-            infoItems.push(boatText);
-        }
-        if (comment.location) infoItems.push(comment.location);
-        if (infoItems.length > 0) {
-            html += '<span class="comment__info">' + escapeHtml(infoItems.join(' — ')) + '</span>';
-        }
-
-        html += '</div>'; // .comment__meta
         html += '<span class="comment__date">' + timeAgo(ts) + '</span>';
         html += '</div>';
         html += '<div class="comment__body">' + escapeHtml(comment.content) + '</div>';
@@ -301,7 +285,7 @@
             bindCommentActions(slug);
 
         } catch (err) {
-            console.log('Failed to load comments:', err.message);
+            log('Failed to load comments:', err.message);
             list.innerHTML = '<p class="comments-empty">Comments unavailable. Check back later.</p>';
         }
     }
@@ -352,7 +336,7 @@
                     if (countEl) countEl.textContent = parseInt(countEl.textContent) + 1;
                     saveCommentVote(id, type);
                 } catch (err) {
-                    console.log('Vote failed:', err.message);
+                    log('Vote failed:', err.message);
                 }
             });
         });
@@ -405,29 +389,6 @@
                             agrees: 0,
                             disagrees: 0,
                         };
-
-                        // Attach profile data if user is authenticated
-                        if (window.littoralAuth) {
-                            var authUser = window.littoralAuth.getUser();
-                            if (authUser) {
-                                replyData.uid = authUser.uid;
-                                try {
-                                    var profile = await window.littoralAuth.getUserProfile(authUser.uid);
-                                    if (profile) {
-                                        var badge = window.littoralAuth.getBadge(profile.yearsInIndustry);
-                                        replyData.badge = badge.name;
-                                        replyData.badgeColor = badge.color;
-                                        if (profile.showBoatInfo !== false) {
-                                            replyData.boatName = profile.boatName || '';
-                                            replyData.boatSize = profile.boatSize || '';
-                                            replyData.showBoatInfo = true;
-                                        }
-                                        replyData.location = profile.location || '';
-                                    }
-                                } catch (e) { /* proceed without profile data */ }
-                            }
-                        }
-
                         const docRef = await db.collection('articles').doc(slug)
                             .collection('comments').doc(parentId)
                             .collection('replies').add(replyData);
@@ -445,7 +406,7 @@
                         repliesContainer.appendChild(newReply);
                         bindCommentActions(slug);
                     } catch (err) {
-                        console.log('Reply failed:', err.message);
+                        log('Reply failed:', err.message);
                         submitBtn.textContent = 'Post Reply';
                         submitBtn.disabled = false;
                     }
@@ -537,7 +498,7 @@
                             body: formData,
                         });
                     } catch (err) {
-                        console.log('Newsletter subscription attempted');
+                        log('Newsletter subscription attempted');
                     }
                 }
 
@@ -548,7 +509,7 @@
                         try {
                             photoURL = await uploadAvatar(pendingPhoto);
                         } catch (err) {
-                            console.log('Photo upload failed:', err.message);
+                            log('Photo upload failed:', err.message);
                         }
                     }
 
@@ -560,28 +521,6 @@
                         disagrees: 0,
                     };
                     if (photoURL) commentData.photoURL = photoURL;
-
-                    // Attach profile data if user is authenticated
-                    if (window.littoralAuth) {
-                        var authUser = window.littoralAuth.getUser();
-                        if (authUser) {
-                            commentData.uid = authUser.uid;
-                            try {
-                                var profile = await window.littoralAuth.getUserProfile(authUser.uid);
-                                if (profile) {
-                                    var badge = window.littoralAuth.getBadge(profile.yearsInIndustry);
-                                    commentData.badge = badge.name;
-                                    commentData.badgeColor = badge.color;
-                                    if (profile.showBoatInfo !== false) {
-                                        commentData.boatName = profile.boatName || '';
-                                        commentData.boatSize = profile.boatSize || '';
-                                        commentData.showBoatInfo = true;
-                                    }
-                                    commentData.location = profile.location || '';
-                                }
-                            } catch (e) { /* proceed without profile data */ }
-                        }
-                    }
 
                     const docRef = await db.collection('articles').doc(slug)
                         .collection('comments').add(commentData);
@@ -613,7 +552,7 @@
                         submitBtn.disabled = false;
                     }, 2000);
                 } catch (err) {
-                    console.log('Comment failed:', err.message);
+                    log('Comment failed:', err.message);
                     submitBtn.textContent = 'Post Comment';
                     submitBtn.disabled = false;
                 }
@@ -629,7 +568,7 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         if (typeof firebase === 'undefined' || typeof db === 'undefined') {
-            console.log('Firebase not loaded — community features disabled');
+            log('Firebase not loaded — community features disabled');
             return;
         }
         initReactions();

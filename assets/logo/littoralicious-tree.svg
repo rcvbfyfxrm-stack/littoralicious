@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
+  <!--
+    Tree of Life (Etz Chaim) — Kabbalah
+    10 Sephiroth, 22 paths
+    Elements assigned to quarters
+  -->
+
+  <!-- The 10 Sephiroth -->
+  <!-- Kether (Crown) - top -->
+  <circle cx="50" cy="10" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Chokmah (Wisdom) - top right -->
+  <circle cx="75" cy="25" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Binah (Understanding) - top left -->
+  <circle cx="25" cy="25" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Chesed (Mercy) - right -->
+  <circle cx="75" cy="50" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Geburah (Severity) - left -->
+  <circle cx="25" cy="50" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Tiphareth (Beauty) - center -->
+  <circle cx="50" cy="55" r="7" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Netzach (Victory) - lower right -->
+  <circle cx="75" cy="80" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Hod (Glory) - lower left -->
+  <circle cx="25" cy="80" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Yesod (Foundation) - lower center -->
+  <circle cx="50" cy="90" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Malkuth (Kingdom) - bottom -->
+  <circle cx="50" cy="110" r="6" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Paths (simplified) -->
+  <line x1="50" y1="16" x2="50" y2="48" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="50" y1="62" x2="50" y2="84" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="50" y1="96" x2="50" y2="104" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="50" y1="16" x2="75" y2="25" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="50" y1="16" x2="25" y2="25" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="25" y1="31" x2="25" y2="44" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="75" y1="31" x2="75" y2="44" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="25" y1="56" x2="25" y2="74" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="75" y1="56" x2="75" y2="74" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="31" y1="50" x2="43" y2="55" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="69" y1="50" x2="57" y2="55" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="31" y1="80" x2="44" y2="90" stroke="#0a0a0a" stroke-width="0.6"/>
+  <line x1="69" y1="80" x2="56" y2="90" stroke="#0a0a0a" stroke-width="0.6"/>
+
+  <!-- FIRE — Chokmah position (top right) -->
+  <path d="M 75 25 L 78 21 L 72 21 Z" fill="#0a0a0a" transform="translate(0,-12)"/>
+
+  <!-- WATER — Binah position (top left) -->
+  <path d="M 25 13 L 22 17 L 28 17 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- AIR — Chesed position (right) -->
+  <path d="M 86 50 L 82 53 L 82 47 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="83" y1="51" x2="85" y2="51" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- EARTH — Geburah position (left) -->
+  <path d="M 14 50 L 18 47 L 18 53 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="15" y1="49" x2="17" y2="49" stroke="#0a0a0a" stroke-width="1"/>
+
+</svg>

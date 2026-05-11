@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innovation & Startups — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Lundi 2 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;33</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#7a6a2e">Innovation & Startups</div>
+  <h1 class="article-title">EN BREF  Innovations du Jour</h1>
+  <div class="article-date">Lundi 2 Février 2026 &mdash; Edition N&deg;33</div>
+</div><div class="article-body"><h1>Rapport Innovation & Startups</h1>
+<h2>Date : 2026-02-02</h2>
+<hr>
+<h2>🚀 EN BREF — Innovations du Jour</h2>
+<blockquote>
+<p>- <strong>AI</strong> : xAI lève $20B en Series E — Musk atteint $42.7B levés au total</p>
+<p>- <strong>Robotique</strong> : Waabi $750M pour robotaxis Uber — plus grosse levée tech canadienne</p>
+<p>- <strong>Biotech</strong> : Parabilis Medicines $305M pour plateforme peptides anti-cancer</p>
+<p>- <strong>AI Labs</strong> : Ricursive Intelligence $300M Series A, valorisation $4B</p>
+<p>- <strong>Robotique</strong> : Skild AI triple sa valorisation à $1.4B — "omni-bodied" robot brain</p>
+<p>- <strong>Cell Therapy</strong> : Cellares $257M pour manufacturing automatisé</p>
+</blockquote>
+<hr>
+<h2>💰 LEVÉES DE FONDS SIGNIFICATIVES</h2>
+<h3>xAI — $20B Series E</h3>
+<p><strong>Secteur :</strong> AI / Foundation Models</p>
+<p><strong>Valorisation :</strong> Non disclosed (massive)</p>
+<p><strong>Investisseurs Lead :</strong> Long liste de VCs et stratégiques</p>
+<p><strong>Total levé :</strong> $42.7B (debt + equity)</p>
+<p><strong>Ce qu'ils font :</strong></p>
+<blockquote>
+<p>Generative AI startup de Elon Musk, connue pour Grok chatbot. Compétition directe avec OpenAI, Anthropic, Google.</p>
+</blockquote>
+<p><strong>Pourquoi c'est intéressant :</strong></p>
+<ul>
+<li>Plus grosse levée AI de l'histoire</li>
+<li>Distribution via X (Twitter) = avantage unique</li>
+<li>Musk = access to compute (Tesla, SpaceX data)</li>
+</ul>
+<p><strong>Équipe :</strong></p>
+<ul>
+<li>Elon Musk (founder)</li>
+<li>Team ex-DeepMind, Google, OpenAI</li>
+</ul>
+<p><strong>Compétition :</strong></p>
+<ul>
+<li>OpenAI (~$250B valuation)</li>
+<li>Anthropic (~$60B)</li>
+<li>Google DeepMind</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<blockquote>
+<p>$42.7B levés en 2 ans = confiance massive des investisseurs. Grok 3 pourrait être le premier serious challenger à GPT-5. À surveiller : conversion des users X en paying customers.</p>
+</blockquote>
+<hr>
+<h3>Waabi — $750M Series C</h3>
+<p><strong>Secteur :</strong> Autonomous Vehicles / Physical AI</p>
+<p><strong>Valorisation :</strong> Non disclosed</p>
+<p><strong>Investisseurs Lead :</strong> Multiple VCs</p>
+<p><strong>Ce qu'ils font :</strong></p>
+<blockquote>
+<p>Plateforme "Physical AI" end-to-end pour self-driving trucks et robotaxis. Partenariat avec Uber pour robotaxi future.</p>
+</blockquote>
+<p><strong>Pourquoi c'est intéressant :</strong></p>
+<ul>
+<li>Plus grosse levée tech canadienne de l'histoire</li>
+<li>Approche "simulation-first" différenciée</li>
+<li>Uber partnership = path to market clair</li>
+</ul>
+<p><strong>Équipe :</strong></p>
+<ul>
+<li>Raquel Urtasun (CEO) — Ex-Chief Scientist Uber ATG</li>
+<li>Team AI/ML de calibre mondial</li>
+</ul>
+<p><strong>Compétition :</strong></p>
+<ul>
+<li>Waymo (Google)</li>
+<li>Cruise (GM — en restructuration)</li>
+<li>Tesla FSD</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<blockquote>
+<p>L'approche simulation-first de Waabi pourrait être plus scalable que le "miles driven" des concurrents. Uber partnership de-risks l'exécution commerciale.</p>
+</blockquote>
+<hr>
+<h3>Ricursive Intelligence — $300M Series A</h3>
+<p><strong>Secteur :</strong> Frontier AI</p>
+<p><strong>Valorisation :</strong> $4B</p>
+<p><strong>Stage :</strong> Series A (!!)</p>
+<p><strong>Ce qu'ils font :</strong></p>
+<blockquote>
+<p>Frontier AI lab développant next-gen foundation models. Détails techniques confidentiels.</p>
+</blockquote>
+<p><strong>Pourquoi c'est intéressant :</strong></p>
+<ul>
+<li>$300M pour un Series A = extraordinaire</li>
+<li>$4B valuation = confiance dans le team</li>
+<li>"Frontier lab" = vise GPT-5+ niveau</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<blockquote>
+<p>Un Series A à $4B suggère soit un breakthrough technique, soit un team exceptionnel. À surveiller de près — potentiel dark horse dans la AI race.</p>
+</blockquote>
+<hr>
+<h3>Skild AI — $1.4B</h3>
+<p><strong>Secteur :</strong> Robotique / Foundation Models</p>
+<p><strong>Valorisation :</strong> Triple depuis last round</p>
+<p><strong>Ce qu'ils font :</strong></p>
+<blockquote>
+<p>Développe un "omni-bodied" robot brain — un modèle unique capable d'opérer n'importe quel robot pour n'importe quelle tâche.</p>
+</blockquote>
+<p><strong>Pourquoi c'est intéressant :</strong></p>
+<ul>
+<li>Approche "foundation model for robots"</li>
+<li>Pas locked to un form factor</li>
+<li>Scalability massive si ça marche</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<blockquote>
+<p>Si Skild réussit le "GPT moment for robotics", c'est game-changing. Le triple de valorisation suggère progrès techniques significatifs.</p>
+</blockquote>
+<hr>
+<h2>🔬 BIOTECH SIGNIFICATIF</h2>
+<h3>Parabilis Medicines — $305M Series F</h3>
+<p><strong>Ce qu'ils font :</strong> Plateforme peptides pour cancer therapeutics</p>
+<p><strong>Lead investors :</strong> RA Capital, Fidelity, Janus Henderson</p>
+<p><strong>Usage :</strong> Clinical development continued</p>
+<h3>Cellares — $257M Series D</h3>
+<p><strong>Ce qu'ils font :</strong> Automated manufacturing de cell therapies à grande échelle</p>
+<p><strong>Lead investors :</strong> BlackRock, Eclipse</p>
+<p><strong>Total levé :</strong> $612M</p>
+<p><strong>Enjeu :</strong> Manufacturing bottleneck des CAR-T</p>
+<h3>Mirador Therapeutics — $250M Series B</h3>
+<p><strong>Ce qu'ils font :</strong> Precision medicine pour immune-mediated inflammatory diseases</p>
+<p><strong>Total levé :</strong> $650M+ depuis Mars 2024</p>
+<p><strong>HQ :</strong> San Diego</p>
+<h3>Soley Therapeutics — $200M Series C</h3>
+<p><strong>Ce qu'ils font :</strong> Cell stress sensing platform, neurodegenerative + metabolic diseases</p>
+<h3>Diagonal Therapeutics — $125M Series B</h3>
+<p><strong>Ce qu'ils font :</strong> Disease-modifying clustering antibodies</p>
+<p><strong>Lead investors :</strong> Sanofi Ventures, Janus Henderson</p>
+<hr>
+<h2>📊 MÉTRIQUES DU MARCHÉ</h2>
+<table><thead><tr><th>Métrique</th><th>Valeur</th><th>Tendance</th></tr></thead><tbody>
+<tr><td>AI startups % of VC</td><td>33%</td><td>↗️ Record</td></tr>
+<tr><td>Series A biotech avg valuation</td><td>$79.4M</td><td>↗️</td></tr>
+<tr><td>Series B biotech strong</td><td>$150M+</td><td>↗️</td></tr>
+<tr><td>Mega-rounds (>$100M)</td><td>Elevated</td><td>↗️</td></tr>
+</tbody></table>
+<hr>
+<h2>🎯 TENDANCES CLÉS 2026</h2>
+<h3>1. AI Megadeals Dominent</h3>
+<p>Les plus grosses levées sont toutes AI :</p>
+<ul>
+<li>xAI $20B</li>
+<li>Waabi $750M</li>
+<li>Skild $1.4B</li>
+<li>Ricursive $300M</li>
+</ul>
+<p><strong>Signal :</strong> Capital concentré sur les leaders potentiels.</p>
+<h3>2. Robotics Renaissance</h3>
+<p>Physical AI et robotique attirent des mega-rounds :</p>
+<ul>
+<li>Waabi (trucks/robotaxis)</li>
+<li>Skild (foundation model robots)</li>
+<li>Défense tech</li>
+</ul>
+<p><strong>Signal :</strong> Après les LLMs, le capital cible le monde physique.</p>
+<h3>3. Biotech + AI Convergence</h3>
+<ul>
+<li>Kailera Therapeutics : $600M avec ML pour drug discovery</li>
+<li>Biorce : $52M pour ML drug optimization</li>
+</ul>
+<p><strong>Signal :</strong> ML devient standard dans drug development.</p>
+<hr>
+<h2>🔮 SIGNAUX FAIBLES</h2>
+<ul>
+<li><strong>Ricursive $4B Series A</strong> : Nouvelle norme pour AI labs ou bulle ?</li>
+<li><strong>Canadian tech</strong> : Waabi prouve que les mega-deals peuvent être hors Silicon Valley</li>
+<li><strong>Robotics consolidation</strong> : Les gagnants émergent, les autres disparaissent</li>
+</ul>
+<hr>
+<h2>💭 PENSÉE DU JOUR</h2>
+<blockquote>
+<p>"The best time to invest in the best companies was yesterday. The second best time is today."</p>
+<p>— Marc Andreessen</p>
+</blockquote>
+<hr>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://news.crunchbase.com/venture/biggest-funding-rounds-xai-parabilis-medicines-soley-therapeutics/" target="_blank">Crunchbase — xAI, Parabilis, Soley</a></li>
+<li><a href="https://news.crunchbase.com/venture/biggest-funding-rounds-robotics-defense-tech-ai/" target="_blank">Crunchbase — Robotics, Defense Tech</a></li>
+<li><a href="https://news.crunchbase.com/venture/biggest-funding-rounds-ricursive-intelligence-cellares-ai-funding/" target="_blank">Crunchbase — AI Megadeals</a></li>
+<li><a href="https://qubit.capital/blog/ai-startup-fundraising-trends" target="_blank">Qubit Capital — AI Trends 2026</a></li>
+<li><a href="https://fundraiseinsider.com/blog/ai-startups/" target="_blank">Fundraise Insider — AI Startups</a></li>
+</ul></div><div class="bottom-nav"><a href="finance-marches.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Finance & Marchés</span></a><a href="culture-societe.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Culture & Société &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; INNOVATION & STARTUPS</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

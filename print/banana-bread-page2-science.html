@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banana Bread — The Science</title>
+    <style>
+        @page { size: A4; margin: 10mm; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 8.5pt;
+            line-height: 1.4;
+            color: #0a0a0a;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 8mm;
+        }
+        .header {
+            border-bottom: 2px solid #2d4a5e;
+            padding-bottom: 3mm;
+            margin-bottom: 5mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .brand {
+            font-family: Georgia, serif;
+            font-size: 7pt;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #2d4a5e;
+        }
+        h1 {
+            font-family: Georgia, serif;
+            font-size: 18pt;
+            font-weight: 700;
+            color: #2d4a5e;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5mm;
+        }
+        .full { grid-column: 1 / -1; }
+        h2 {
+            font-family: Georgia, serif;
+            font-size: 10pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #2d4a5e;
+            border-bottom: 2px solid #2d4a5e;
+            padding-bottom: 1.5mm;
+            margin-bottom: 3mm;
+        }
+        h3 {
+            font-family: Georgia, serif;
+            font-size: 9pt;
+            font-weight: 700;
+            color: #0a0a0a;
+            margin: 3mm 0 2mm 0;
+        }
+        .science-block {
+            background: #f8f9fa;
+            border-left: 3px solid #2d4a5e;
+            padding: 3mm;
+            margin-bottom: 3mm;
+        }
+        .science-block h3 {
+            margin-top: 0;
+            color: #2d4a5e;
+        }
+        .science-block p {
+            margin-bottom: 2mm;
+        }
+        .science-block p:last-child { margin-bottom: 0; }
+        .mechanism {
+            font-size: 7.5pt;
+            color: #6b7280;
+            font-style: italic;
+            margin-top: 1.5mm;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 8pt;
+        }
+        th {
+            text-align: left;
+            font-weight: 600;
+            padding: 1.5mm 2mm;
+            background: #2d4a5e;
+            color: #fafafa;
+            font-size: 7pt;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        td {
+            padding: 2mm;
+            vertical-align: top;
+            border-bottom: 1px solid #e2e2e2;
+        }
+        .mono {
+            font-family: "SF Mono", Consolas, monospace;
+            font-size: 7.5pt;
+        }
+        .mise-box {
+            border: 2px solid #0a0a0a;
+            padding: 3mm;
+            margin-bottom: 4mm;
+        }
+        .mise-box h2 {
+            color: #0a0a0a;
+            border-bottom-color: #0a0a0a;
+        }
+        ol {
+            padding-left: 4mm;
+            font-size: 8pt;
+        }
+        li { margin-bottom: 1.5mm; }
+        .tip {
+            font-size: 7pt;
+            color: #6b7280;
+            margin-top: 2mm;
+        }
+        .dark-section {
+            background: #0a0a0a;
+            color: #fafafa;
+            padding: 3mm;
+            margin-top: 4mm;
+        }
+        .dark-section h2 {
+            color: #fafafa;
+            border-bottom-color: #555;
+        }
+        .dark-section td {
+            border-bottom-color: #333;
+        }
+        .footer {
+            margin-top: 4mm;
+            padding-top: 2mm;
+            border-top: 1px solid #e2e2e2;
+            font-size: 6.5pt;
+            color: #6b7280;
+            display: flex;
+            justify-content: space-between;
+        }
+        @media print {
+            th, .dark-section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div>
+        <span class="brand">Littoralicious</span>
+        <h1>Banana Bread — The Science</h1>
+    </div>
+    <span class="mono">Page 2</span>
+</header>
+
+<!-- DEEP SCIENCE -->
+<section class="full">
+    <h2>Why This Recipe Works</h2>
+    <div class="grid">
+        <div class="science-block">
+            <h3>Banana Ripeness = Starch → Sugar</h3>
+            <p>A green banana is ~80% starch. As it ripens, amylase enzymes break long starch chains into simple sugars — sucrose, glucose, fructose. A black-spotted banana has converted most starch to sugar.</p>
+            <p><strong>Result:</strong> Sweeter bread with less added sugar. Softer texture. Underripe = starchy, gummy bread. There is no substitute for ripeness.</p>
+            <p class="mechanism">Source: Ali Bouzari, Ingredient (2016)</p>
+        </div>
+
+        <div class="science-block">
+            <h3>Melted vs Creamed Butter</h3>
+            <p>Creamed butter traps air pockets = lighter, cakier texture. Melted butter distributes fat evenly through batter = denser, moister crumb with no air pockets.</p>
+            <p><strong>Result:</strong> For banana bread, moist > light. Melted butter creates the fudgy, dense texture you want. Creaming makes it drier and more cake-like.</p>
+            <p class="mechanism">Source: Stella Parks, BraveTart</p>
+        </div>
+
+        <div class="science-block">
+            <h3>Yogurt Acidity</h3>
+            <p>Lactic acid in yogurt does three things: (1) tenderizes gluten for softer crumb, (2) reacts with baking soda for additional CO₂ lift, (3) adds tang that balances sweetness.</p>
+            <p><strong>Result:</strong> More tender, better rise, more complex flavor. Sour cream works too (richer, more fat).</p>
+            <p class="mechanism">Source: Harold McGee, On Food and Cooking</p>
+        </div>
+
+        <div class="science-block">
+            <h3>Baking Soda Chemistry</h3>
+            <p>Sodium bicarbonate reacts with acids (yogurt, banana) to produce CO₂ gas. Reaction starts immediately upon mixing. Most CO₂ produced in first 10-15 minutes.</p>
+            <p><strong>Result:</strong> Mix, pan, oven — fast. Batter sitting on counter = CO₂ escaping = flat bread. Soda also browns the crust (raises pH, accelerates Maillard).</p>
+            <p class="mechanism">Source: ChefSteps</p>
+        </div>
+
+        <div class="science-block">
+            <h3>Minimal Mixing</h3>
+            <p>Gluten (protein network) develops with mechanical agitation. In quick breads, you want minimal gluten — just enough to hold structure, not enough to make it chewy.</p>
+            <p><strong>Result:</strong> Overmix = tough, dense bread with tunnels. Fold gently, stop when you still see flour streaks. They'll hydrate in the oven.</p>
+            <p class="mechanism">Source: Rose Levy Beranbaum, The Cake Bible</p>
+        </div>
+
+        <div class="science-block">
+            <h3>Why 95°C Internal Temp</h3>
+            <p>At 95°C (203°F), starches are fully gelatinized and proteins are set. Below this = gummy, underbaked center. Above = drying out.</p>
+            <p><strong>Result:</strong> Instant-read thermometer is more reliable than toothpick test. Insert into center, pull at exactly 95°C.</p>
+            <p class="mechanism">Source: Modernist Cuisine</p>
+        </div>
+    </div>
+</section>
+
+<!-- ELEVATION SCIENCE -->
+<section style="margin-top: 4mm;">
+    <h2>Elevation Science</h2>
+    <table>
+        <thead>
+            <tr><th>Technique</th><th>What Happens</th><th>Why It Works</th></tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Brown butter</strong></td>
+                <td>Milk solids undergo Maillard reaction at ~120°C</td>
+                <td>Creates 100s of new flavor compounds: nutty, caramelized, toasty. Adds depth without adding ingredients.</td>
+            </tr>
+            <tr>
+                <td><strong>Roast bananas</strong></td>
+                <td>25% moisture evaporates. Sugars caramelize.</td>
+                <td>Concentrated banana flavor. Less water = no gummy layer. Caramelization adds complexity.</td>
+            </tr>
+            <tr>
+                <td><strong>White miso</strong></td>
+                <td>Glutamates enhance taste receptor sensitivity</td>
+                <td>Umami amplifies sweetness perception. 30g adds depth without detectable "miso" flavor. Salt in miso also suppresses bitter notes.</td>
+            </tr>
+            <tr>
+                <td><strong>Espresso powder</strong></td>
+                <td>Volatile aromatics complement banana compounds</td>
+                <td>Deepens, rounds flavor. No coffee taste at 1 tsp — just "more banana."</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<!-- MISE EN PLACE SYSTEMS -->
+<div class="grid" style="margin-top: 5mm;">
+    <section class="mise-box">
+        <h2>Frozen Batter System</h2>
+        <p style="margin-bottom: 2mm;">Make complete batter → freeze in lined pan → pop out block → vacuum seal. <strong>Keeps 6-8 weeks.</strong></p>
+
+        <h3 style="font-size: 8pt;">Best Quality (thaw first)</h3>
+        <ol>
+            <li>Thaw in fridge overnight or counter 2-3 hrs</li>
+            <li>Room temp 30 min</li>
+            <li>Bake immediately <span class="mono">175°C, 55-65 min</span></li>
+        </ol>
+
+        <h3 style="font-size: 8pt;">Fast (from frozen) — 90-95% quality</h3>
+        <ol>
+            <li>Bake from frozen <span class="mono">165°C, 70-80 min</span></li>
+        </ol>
+
+        <p class="tip"><strong>Why thaw wins:</strong> Even heat = consistent crumb. Soda reactivates fully. Higher temp = better Maillard crust.</p>
+        <p class="tip"><strong>Why frozen works:</strong> Lower temp prevents outside setting before center cooks. Trade-off: paler crust.</p>
+    </section>
+
+    <section class="mise-box">
+        <h2>Dry Kit System</h2>
+        <p style="margin-bottom: 2mm;">Pre-mix dry ingredients (NO soda). Add fresh soda day-of. <strong>Keeps 3-6 months.</strong></p>
+
+        <h3 style="font-size: 8pt;">The Kit</h3>
+        <p>240g flour + 4g salt + 2g cinnamon + 150g brown sugar + 50g white sugar</p>
+
+        <h3 style="font-size: 8pt;">Day-Of</h3>
+        <ol>
+            <li>Mash 400g bananas + 115g melted butter</li>
+            <li>Add dry kit, whisk</li>
+            <li>Add 2 eggs, 10g vanilla, 60g yogurt</li>
+            <li><strong>Add 6g baking soda LAST</strong>, fold briefly</li>
+            <li>Bake immediately</li>
+        </ol>
+
+        <p class="tip"><strong>Why no soda in kit:</strong> Soda degrades with humidity. Sugar is hygroscopic (absorbs moisture). Separate = full potency.</p>
+        <p class="tip"><strong>Test old soda:</strong> Drop in vinegar. Should fizz vigorously.</p>
+    </section>
+</div>
+
+<!-- TROUBLESHOOTING -->
+<section class="dark-section">
+    <h2>Troubleshooting</h2>
+    <table>
+        <thead>
+            <tr><th>Problem</th><th>Cause</th><th>Fix</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>Dense, heavy</td><td>Overmixed / too much flour</td><td>Fold gently. Weigh flour — don't scoop.</td></tr>
+            <tr><td>Sunk middle</td><td>Underbaked / old soda</td><td>Check at 55 min with thermometer. Test soda.</td></tr>
+            <tr><td>Gummy layer</td><td>Excess moisture</td><td>Drain banana liquid. Or roast bananas first.</td></tr>
+            <tr><td>Didn't rise</td><td>Dead soda / batter sat too long</td><td>Fresh soda. Bake immediately after mixing.</td></tr>
+            <tr><td>Pale top</td><td>Oven too low</td><td>Verify with oven thermometer.</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<footer class="footer">
+    <span>littoralicious.com | Sources: McGee, Bouzari, Parks, ChefSteps, Modernist Cuisine</span>
+    <span>← See page 1 for complete recipe</span>
+</footer>
+
+</body>
+</html>

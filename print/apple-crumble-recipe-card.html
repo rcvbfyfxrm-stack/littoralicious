@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Apple Crumble &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 7.8pt;
+            line-height: 1.3;
+            color: #0a0a0a;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 6mm 9mm 4mm;
+            overflow: hidden;
+            zoom: 0.92;
+        }
+        .header { border-bottom: 2px solid #0a0a0a; padding-bottom: 2mm; margin-bottom: 2.5mm; }
+        .brand { font-family: Georgia, serif; font-size: 7pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 6pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 22pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.02; margin: 0.5mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 8.5pt; color: #4a5568; line-height: 1.28; }
+        .meta-bar { display: flex; gap: 4mm; margin-top: 2mm; padding-top: 2mm; border-top: 1px solid #e2e2e2; font-size: 7.5pt; color: #6b7280; flex-wrap: wrap; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 36% 1fr; gap: 4mm; margin-bottom: 2mm; }
+        h2 { font-family: Georgia, serif; font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1mm; margin-bottom: 2mm; }
+
+        .ingredients-note { font-size: 6pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -1mm 0 1.5mm 0; }
+        .group-label { font-size: 7pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 1.8mm 0 0.5mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 7pt; }
+        .ingredients td { padding: 0.3mm 1mm; vertical-align: top; line-height: 1.25; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 6.5pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 42px; }
+        .ingredients td:nth-child(3) { font-size: 6pt; text-align: right; color: #6b7280; white-space: nowrap; width: 55px; padding-left: 2mm; }
+        .note { font-size: 6pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 6pt; color: #6b7280; margin-top: 2mm; padding-top: 1mm; border-top: 1px solid #f0f0f0; line-height: 1.3; }
+
+        .method ol { padding-left: 4.5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 0.9mm; padding-left: 1mm; counter-increment: step; position: relative; line-height: 1.28; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -4.5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.3mm 0; padding: 0.4mm 0 0.4mm 2.5mm; border-left: 2px solid #5c9ead; font-size: 6.3pt; font-style: italic; color: #4a5568; line-height: 1.25; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 1.5mm 2.5mm; margin-top: 2mm; font-size: 7.2pt; line-height: 1.3; }
+        .done strong { color: #2d4a5e; }
+
+        .elevation { border: 1.5px solid #2d4a5e; padding: 1.5mm 2.5mm; margin-bottom: 1.5mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5mm; }
+        .tier-label { font-weight: 700; font-size: 6pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.3mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3mm; font-size: 6.3pt; line-height: 1.25; }
+        .elevation li { margin-bottom: 0.2mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-bottom: 1mm; }
+        .bottom h2 { font-size: 7.5pt; margin-bottom: 1.5mm; padding-bottom: 0.8mm; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 6.3pt; border-collapse: collapse; }
+        .troubleshoot td, .charter td { padding: 0.3mm 1.5mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; line-height: 1.25; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 30%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 28%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 5.8pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1mm; border-top: 1px solid #e2e2e2; font-size: 5.5pt; color: #94a3b8; display: flex; justify-content: space-between; }
+        @media print { .done, .elevation, .charter tr:first-child td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint</span><span class="brand-tagline">Two apples, a pre-cook, brown butter, a flake of salt</span>
+    <h1>Apple Crumble</h1>
+    <p class="hook">Two varieties, one that holds shape and one that melts. A 71&deg;C pre-cook that activates pectin methylesterase and sets cell walls. Brown-butter oat crumble baked hot. A flake of Maldon on top.</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>23 cm</strong> (6&ndash;8)</span>
+        <span>Active: <strong>25 min</strong></span>
+        <span>Total: <strong>1 hr 30</strong></span>
+        <span>Oven: <strong>200&deg;C</strong> (400&deg;F)</span>
+        <span>Pre-cook: <strong>71&deg;C</strong></span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; volume right column</p>
+
+        <div class="group-label">Apples <span class="note">(60:40)</span></div>
+        <table>
+            <tr><td>Holds-shape <span class="note">(Braeburn / Granny / Honeycrisp / Pink Lady)</span></td><td>600g</td><td>~4</td></tr>
+            <tr><td>Melts <span class="note">(McIntosh / Golden / Cortland / Reinette)</span></td><td>400g</td><td>~2&ndash;3</td></tr>
+            <tr><td>Light brown sugar</td><td>60g</td><td>&frac14; cup</td></tr>
+            <tr><td>Lemon juice</td><td>15g</td><td>1 tbsp</td></tr>
+            <tr><td>Lemon zest</td><td>2g</td><td>1 tsp</td></tr>
+            <tr><td>Cornstarch <span class="note">(not flour)</span></td><td>10g</td><td>1 tbsp</td></tr>
+            <tr><td>Cinnamon (Ceylon)</td><td>2g</td><td>1 tsp</td></tr>
+            <tr><td>Cardamom <span class="note">(opt.)</span></td><td>0.5g</td><td>&frac14; tsp</td></tr>
+            <tr><td>Freshly grated nutmeg</td><td>&mdash;</td><td>pinch</td></tr>
+            <tr><td>Fine sea salt</td><td>2g</td><td>&frac13; tsp</td></tr>
+        </table>
+
+        <div class="group-label">Pre-Cook</div>
+        <table>
+            <tr><td>Unsalted butter</td><td>30g</td><td>2 tbsp</td></tr>
+        </table>
+
+        <div class="group-label">Brown-Butter Oat Crumble</div>
+        <table>
+            <tr><td>Butter <span class="note">(&rarr; brown)</span></td><td>140g</td><td>10 tbsp</td></tr>
+            <tr><td>Flour</td><td>150g</td><td>1&frac14; c</td></tr>
+            <tr><td>Rolled oats <span class="note">(NOT instant)</span></td><td>100g</td><td>1 c</td></tr>
+            <tr><td>Light brown sugar</td><td>100g</td><td>&frac12; c</td></tr>
+            <tr><td>Demerara</td><td>40g</td><td>3 tbsp</td></tr>
+            <tr><td>Fine salt</td><td>3g</td><td>&frac12; tsp</td></tr>
+            <tr><td>Flaky salt (Maldon) <span class="note">on top</span></td><td>&mdash;</td><td>2 pinch</td></tr>
+            <tr><td>Cinnamon</td><td>2g</td><td>1 tsp</td></tr>
+            <tr><td>Toasted pecans / hazelnuts <span class="note">(opt.)</span></td><td>60g</td><td>&frac12; c</td></tr>
+        </table>
+
+        <div class="group-label">To Serve</div>
+        <table>
+            <tr><td>Cr&egrave;me fra&icirc;che OR brown-butter ice cream OR</td><td colspan="2"></td></tr>
+            <tr><td>soft-whipped cream (unsweetened, soft peaks)</td><td colspan="2"></td></tr>
+        </table>
+
+        <p class="equipment">
+            <strong>Kit:</strong> 23 cm (9&Prime;) round dish, 5 cm deep &middot; 30 cm saut&eacute; pan &middot; light saucepan &middot; scale &middot; <em>instant-read thermometer</em>
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method</h2>
+        <ol>
+            <li>
+                <strong>Oven 200&deg;C (400&deg;F).</strong> Grease dish. Peel, core, cut apples to <strong>2 cm chunks</strong>.
+                <span class="why">2 cm = holds-shape stays distinct, melts still cooks through. Smaller &rarr; all sauce. Larger &rarr; raw centres.</span>
+            </li>
+            <li>
+                <strong>Toss.</strong> Acid first (lemon juice + zest &mdash; stops browning), then sugar + cornstarch + spices + salt.
+            </li>
+            <li>
+                <strong>Pre-cook.</strong> 30 g butter, medium-high, foaming. All apples + liquid in. Stir, 8&ndash;10 min, to <strong>71&deg;C (160&deg;F)</strong> centre and <em>visible reduced syrup</em> &mdash; not running water.
+                <span class="why">60&ndash;82&deg;C hold activates pectin methylesterase &rarr; low-ester pectin that cross-links with calcium and firms cells through baking. The difference between tender-and-intact vs. mush. <cite>&mdash; Kenji, SE 2013; McGee pp. 285-86</cite></span>
+            </li>
+            <li>
+                <strong>Transfer + cool.</strong> Into the baking dish. <em>Cool to warm</em> while you make the crumble. Hot filling under crumble &rarr; bottom steams instead of crisping.
+            </li>
+            <li>
+                <strong>Brown the butter.</strong> 140 g in light saucepan, medium heat, swirl. Deep golden solids, toasted-hazelnut smell, <span class="data">6&ndash;8 min</span>. Pull off immediately.
+                <span class="why">Maillard on milk proteins &rarr; hundreds of nutty, toasted compounds melted butter can't provide. The single biggest lift for 30 seconds of work. <cite>&mdash; McGee pp. 32-38</cite></span>
+            </li>
+            <li>
+                <strong>Build crumble.</strong> Whisk flour + oats + both sugars + fine salt + cinnamon. Pour warm brown butter over (every brown bit). Fork to <strong>pebbles pea-to-walnut</strong>, not sand. Fold in nuts if using. Range of sizes = textural range.
+                <span class="why">Old-fashioned oats absorb fat without dissolving, keeping topping pebbled + chewy. Instant oats melt back to streusel. <cite>&mdash; Figoni, How Baking Works 2010</cite></span>
+            </li>
+            <li>
+                <strong>Scatter over warm filling.</strong> Loose and craggy, <em>do not pack</em>. Air gaps let the oven crisp every piece. <strong>Two pinches Maldon on top.</strong>
+            </li>
+            <li>
+                <strong>Bake 200&deg;C (400&deg;F), 35&ndash;45 min</strong>, on a sheet pan (for bubble-over), rotate at halfway. <em>Not 180&deg;C &mdash; most pale soggy tops are baked 25&deg; too cool.</em>
+            </li>
+            <li>
+                <strong>Rest 10 min on a rack.</strong> Non-negotiable. The cornstarch-thickened juices have to cool from 95&deg;C to ~75&deg;C to set. Serve warm (not molten) with cr&egrave;me fra&icirc;che or brown-butter ice cream on the edge of the plate.
+                <span class="why">Maldon flake on top delivers discrete pulses of salt over 2&ndash;3 seconds &mdash; not seasoning, <em>contrast</em>. This is the element that makes the dish memorable. <cite>&mdash; Nosrat, Salt Fat Acid Heat 2017</cite></span>
+            </li>
+        </ol>
+
+        <div class="done">
+            <strong>Done:</strong> Deep golden-brown (mahogany edges). Visible bubbling through cracks in the topping &mdash; thick syrupy, not just edges. Internal filling <strong>93&ndash;96&deg;C (200&ndash;205&deg;F)</strong>.<br>
+            <strong>Serve warm</strong>, not hot. 10 min rest or the filling pours instead of spoons.
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; No Extra Time</div>
+            <ul>
+                <li><strong>Calvados / apple brandy</strong> &mdash; 15 ml in pre-cook</li>
+                <li><strong>Vanilla paste</strong> &mdash; &frac12; tsp in pre-cook</li>
+                <li><strong>Orange zest</strong> &mdash; 1 tsp with the lemon</li>
+                <li><strong>Toasted oats</strong> &mdash; dry-toast 3 min before mix</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; Worth It</div>
+            <ul>
+                <li><strong>Miso caramel</strong> &mdash; 100g sugar &rarr; caramel + 50g butter + 20g white miso + 75g cream</li>
+                <li><strong>Caramel core</strong> &mdash; 60g caramel over apples <em>before</em> topping</li>
+                <li><strong>Spiced brown butter</strong> &mdash; cardamom + clove + star anise in the browning butter, strain</li>
+                <li><strong>Quince swap</strong> &mdash; replace 200g melts apple w/ firm pear or quince</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>BB ice cream</strong> &mdash; 115g brown butter, 250+250 milk/cream, 6 yolks, 150g sugar, vanilla, 82&deg;C custard, chill, churn</li>
+                <li><strong>Dehydrated apple chip</strong> &mdash; 1 mm slices, simple syrup, 65&deg;C dehydrator</li>
+                <li><strong>Cidre reduction</strong> &mdash; 500 ml hard cider to 100 ml syrup</li>
+                <li><strong>Apple-miso caramel</strong> &mdash; 100g sugar dark caramel + 100ml cider + 15g miso + butter</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>Watery bottom</td><td>Skipped pre-cook. Reduce to syrup, not water.</td></tr>
+            <tr><td>All mush</td><td>One variety only / over pre-cooked. 60:40 + stop at 71&deg;C.</td></tr>
+            <tr><td>Raw centres</td><td>Chunks too big / no pre-cook. 2 cm max.</td></tr>
+            <tr><td>Pale soggy top</td><td>Oven too cool / packed / filling too hot. 200&deg;C, loose, cool filling.</td></tr>
+            <tr><td>Greasy top</td><td>Butter too hot / over-mixed. Warm not hot; stir to pebbles.</td></tr>
+            <tr><td>Burnt top, raw middle</td><td>Oven too hot / dish too shallow. Tent foil at 25 min.</td></tr>
+            <tr><td>No crunch</td><td>Instant oats / no demerara. Rolled only; demerara on top.</td></tr>
+            <tr><td>Flat flavour</td><td>No flaky salt on top / no acid. Always both.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Galley move</td><td>Par-freeze assembled unbaked. Bake from frozen at service.</td></tr>
+            <tr><td>Ramekins</td><td>6 &times; 250 ml. 190&deg;C, 35&ndash;40 min from frozen.</td></tr>
+            <tr><td>Crumble mix</td><td>1 wk fridge / 3 mo frozen. Airtight.</td></tr>
+            <tr><td>Apple filling</td><td>3 d fridge. Bake from cold +5 min.</td></tr>
+            <tr><td>Assembled whole</td><td>24 hr fridge / 3 mo frozen. Frozen: 190&deg;C 55&ndash;65 min.</td></tr>
+            <tr><td>Baked whole</td><td>3 d fridge / 3 mo frozen. Refresh 180&deg;C 10&ndash;15 min.</td></tr>
+            <tr><td>Scaling</td><td>&times;2 same temp. &times;4: 190&deg;C, 45&ndash;55 min. Never stack saut&eacute; pans in pre-cook.</td></tr>
+        </table>
+    </section>
+</div>
+
+<footer class="footer">
+    <span>Sources: Parks <em>BraveTart</em> &middot; Kenji SE 2013 &middot; McGee <em>On Food and Cooking</em> &middot; Figoni <em>How Baking Works</em> &middot; Nosrat <em>Salt Fat Acid Heat</em></span>
+    <span>littoralicious.com &mdash; The Blueprint</span>
+</footer>
+
+</body>
+</html>

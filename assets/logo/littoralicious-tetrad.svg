@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Tetrad — The sacred four
+    Square rotated 45° with element at each point
+    Pythagorean / mystical geometry
+  -->
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Sacred square (rotated 45°) -->
+  <rect x="22" y="22" width="56" height="56" transform="rotate(45 50 50)" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Inner circle touching square -->
+  <circle cx="50" cy="50" r="20" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- FIRE — Top point (large, filled) -->
+  <path d="M 50 6 L 58 20 L 42 20 Z" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom point -->
+  <path d="M 50 94 L 42 80 L 58 80 Z" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>
+
+  <!-- AIR — Right point -->
+  <path d="M 94 50 L 80 58 L 80 42 Z" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="82" y1="53" x2="90" y2="53" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- EARTH — Left point -->
+  <path d="M 6 50 L 20 42 L 20 58 Z" fill="none" stroke="#0a0a0a" stroke-width="2" stroke-linejoin="round"/>
+  <line x1="10" y1="47" x2="18" y2="47" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Center -->
+  <circle cx="50" cy="50" r="3" fill="#0a0a0a"/>
+
+</svg>

@@ -2,20 +2,261 @@
   "dispatches": [],
   "articles": [
     {
-      "slug": "ai-cookbook-extraction",
-      "title": "The Cookbook Decoder: Extract the Best Recipes from Any Book with AI",
-      "date": "2026-03-27",
+      "slug": "draft-twelve-food-labs-direction-of-cooking",
+      "title": "Inside the Test Kitchens — Twelve Food Labs Setting the Direction of Cooking",
+      "date": "2026-05-09",
+      "category": "the-bridge",
+      "subtag": "Industry Intelligence",
+      "tags": ["food-labs", "noma", "elbulli", "central", "aponiente", "mugaritz", "alchemist", "modernist-cuisine", "pujol", "disfrutar", "atelier-crenn", "geranium", "industry-intelligence", "rd"],
+      "read_time": 18,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "draft-crew-medicinal-food-combinations",
+      "title": "The Crew Pharmacy — Twelve Food Combinations Where the Pairing Does the Healing",
+      "date": "2026-05-09",
       "category": "the-method",
-      "tags": ["AI", "technology", "cookbooks", "technique", "recipe-extraction", "claude-code", "modernist-cuisine"],
+      "subtag": "Galley Health",
+      "tags": ["medicinal-food", "crew-health", "bioavailability", "synergy", "turmeric", "lycopene", "omega-3", "probiotic", "synbiotic", "anti-inflammatory", "sleep-recovery", "motion-sickness", "iron-loading", "weekly-rotation"],
+      "read_time": 14,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "draft-sous-vide-vegetable-arsenal",
+      "title": "Sous Vide Vegetables — The Bag You Open When Onshore Lunch Falls Through",
+      "date": "2026-05-09",
+      "category": "the-method",
+      "subtag": "Charter Rescue",
+      "tags": ["sous-vide", "vegetables", "mep", "charter-rescue", "mediterranean", "white-asparagus", "artichoke-barigoule", "beetroot-confit", "pesto", "technique", "food-science", "pectin", "freezer-arsenal"],
+      "read_time": 14,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "machine-hollandaise",
+      "title": "Machine Hollandaise: Vitamix & Thermomix, One Recipe",
+      "date": "2026-05-08",
+      "category": "the-method",
+      "subtag": "Recipe Blueprint",
+      "tags": ["recipe", "blueprint", "sauce", "hollandaise", "vitamix", "thermomix", "emulsion", "lecithin", "pasteurisation", "food-science", "machine-cooking"],
+      "read_time": 11,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "rational-sole-chef-operating-manual",
+      "title": "The Rational Is Your Sous-Chef: A Sole-Chef Operating Manual",
+      "date": "2026-05-05",
+      "category": "the-method",
+      "subtag": "Galley Efficiency",
+      "tags": ["galley", "efficiency", "workflow", "equipment", "rational", "combi-oven", "sole-chef", "protocol", "charter-prep", "mise-en-place", "chef-ops"],
+      "read_time": 8,
+      "featured": true,
+      "draft": true
+    },
+    {
+      "slug": "sticky-toffee-pudding",
+      "title": "Sticky Toffee Pudding: Dark Muscovado & Whisky Caramel",
+      "date": "2026-05-02",
+      "category": "the-method",
+      "subtag": "Recipe Blueprint",
+      "tags": ["recipe", "blueprint", "dessert", "sticky-toffee-pudding", "dates", "muscovado", "caramel", "whisky", "baking", "food-science", "charter-prep"],
+      "read_time": 9,
+      "featured": true
+    },
+    {
+      "slug": "build-your-own-recipe-library",
+      "title": "Build Your Own Recipe Library: Cookbooks, Open Archives, and AI",
+      "date": "2026-04-23",
+      "category": "the-method",
+      "subtag": "Tech & AI",
+      "tags": ["recipe-library", "cookbooks", "open-archives", "AI", "modernist-cuisine", "food-lab", "chefsteps", "research-workflow", "method"],
+      "read_time": 12,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "garlic-the-immortal-bulb",
+      "title": "Garlic: The Immortal Bulb",
+      "date": "2026-04-19",
+      "category": "shore-larder",
+      "subtag": "Ingredient Deep-Dive",
+      "tags": ["garlic", "ingredient-deep-dive", "allium", "food-science", "history", "compounds"],
+      "read_time": 15,
+      "featured": true
+    },
+    {
+      "slug": "mushrooms-the-new-centre",
+      "title": "Mushrooms: The New Centre of the Plate",
+      "date": "2026-04-19",
+      "category": "shore-larder",
+      "subtag": "Ingredient Deep-Dive",
+      "tags": ["mushrooms", "ingredient-deep-dive", "umami", "food-science", "sourcing", "glutamate"],
+      "read_time": 14,
+      "featured": true
+    },
+    {
+      "slug": "tea-as-cooking-ingredient",
+      "title": "Tea as a Cooking Ingredient",
+      "date": "2026-04-19",
+      "category": "shore-larder",
+      "subtag": "Ingredient Deep-Dive",
+      "tags": ["tea", "ingredient-deep-dive", "tannins", "smoking", "infusion", "cooking-chemistry"],
+      "read_time": 14,
+      "featured": false
+    },
+    {
+      "slug": "apple-crumble-perfect",
+      "title": "Apple Crumble: The Perfect Version",
+      "date": "2026-04-22",
+      "category": "the-method",
+      "subtag": "Recipe Blueprint",
+      "tags": ["recipe", "blueprint", "dessert", "apple", "crumble", "baking", "brown-butter", "pectin", "food-science", "charter-prep"],
+      "read_time": 10,
+      "featured": true
+    },
+    {
+      "slug": "chicken-soup-perfect",
+      "title": "Chicken Soup: The Perfect Version",
+      "date": "2026-04-22",
+      "category": "the-method",
+      "subtag": "Recipe Blueprint",
+      "tags": ["recipe", "blueprint", "soup", "chicken", "stock", "gelatin", "umami", "comfort", "convalescent", "galley-staple", "food-science"],
       "read_time": 12,
       "featured": true
+    },
+    {
+      "slug": "banana-bread",
+      "title": "Banana Bread: The Science-First Version",
+      "date": "2026-04-10",
+      "category": "the-method",
+      "subtag": "Recipe Blueprint",
+      "tags": ["recipe", "blueprint", "baking", "banana", "quick-bread", "brown-butter", "miso", "food-science", "charter-prep"],
+      "read_time": 8,
+      "featured": true
+    },
+    {
+      "slug": "preview-port-call",
+      "title": "Port Call: Provisioning Guides Built by the Chefs Who Actually Dock There",
+      "date": "2026-04-10",
+      "category": "port-call",
+      "subtag": "Provisioning",
+      "tags": ["provisioning", "suppliers", "port-call", "coming-soon", "community"],
+      "read_time": 5,
+      "featured": false
+    },
+    {
+      "slug": "preview-signal-fire",
+      "title": "Signal Fire: One Chef, One Idea That Changes Everything",
+      "date": "2026-04-10",
+      "category": "signal-fire",
+      "subtag": "Chef Ideas",
+      "tags": ["chef-profiles", "ideas", "techniques", "coming-soon", "community"],
+      "read_time": 4,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "preview-the-locker",
+      "title": "The Locker: Deep Pantry Guides for Chefs Who Stock Like an Arsenal",
+      "date": "2026-04-10",
+      "category": "the-locker",
+      "subtag": "Pantry Guide",
+      "tags": ["pantry", "sourcing", "ingredients", "brands", "coming-soon", "community"],
+      "read_time": 5,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "port-call-venice",
+      "title": "Port Call Venice: Provisioning a City With No Roads",
+      "date": "2026-04-20",
+      "category": "port-call",
+      "subtag": "Provisioning",
+      "tags": ["provisioning", "venice", "italy", "rialto", "port-call", "vaporetto", "logistics"],
+      "read_time": 14,
+      "featured": false
+    },
+    {
+      "slug": "port-call-split",
+      "title": "Port Call Split: The Dalmatian Hub Playbook",
+      "date": "2026-05-06",
+      "category": "port-call",
+      "subtag": "Provisioning",
+      "tags": ["provisioning", "croatia", "dalmatia", "suppliers", "yacht-specific"],
+      "read_time": 17,
+      "featured": false,
+      "draft": true
+    },
+    {
+      "slug": "flavordb-compound-pairing",
+      "title": "FlavorDB: Compound-Level Flavor Pairing",
+      "date": "2026-04-10",
+      "category": "the-evidence",
+      "subtag": "Food Science",
+      "tags": ["flavor-science", "food-pairing", "volatile-compounds", "molecules", "FlavorDB", "research", "cooking-chemistry"],
+      "read_time": 16,
+      "featured": false
+    },
+    {
+      "slug": "claude-code-galley",
+      "title": "Claude Code in the Galley: The Power Tool",
+      "date": "2026-04-09",
+      "category": "the-method",
+      "subtag": "Tech & AI",
+      "tags": ["technology", "AI", "Claude-Code", "galley", "automation", "PDF", "menus", "handover", "WhatsApp", "intelligence"],
+      "read_time": 18,
+      "featured": false
+    },
+    {
+      "slug": "yacht-crew-tax-guide",
+      "title": "The Truth About Paying Tax as Yacht Crew",
+      "date": "2026-04-08",
+      "category": "trade-winds",
+      "subtag": "Career & Industry",
+      "tags": ["tax", "crew", "employment", "legal", "finance", "residency", "France", "Article-81-A", "CGI"],
+      "read_time": 18,
+      "featured": false
+    },
+    {
+      "slug": "how-to-become-a-yacht-chef",
+      "title": "How to Become a Yacht Chef: The Real Path Nobody Advertises",
+      "date": "2026-04-08",
+      "category": "trade-winds",
+      "subtag": "Career & Industry",
+      "tags": ["career", "yacht-chef", "certification", "STCW", "crew", "employment", "industry"],
+      "read_time": 14,
+      "featured": false
+    },
+    {
+      "slug": "tech-in-the-galley",
+      "title": "Technology in the Galley: Your AI Sous Chef",
+      "date": "2026-04-08",
+      "category": "the-method",
+      "subtag": "Tech & AI",
+      "tags": ["technology", "AI", "tools", "galley", "efficiency", "automation", "claude-code", "menu-generation", "handover", "WhatsApp"],
+      "read_time": 18,
+      "featured": false
+    },
+    {
+      "slug": "whatsapp-trip-intelligence",
+      "title": "WhatsApp as Your Trip Intelligence System",
+      "date": "2026-03-07",
+      "category": "the-method",
+      "subtag": "Tech & AI",
+      "tags": ["WhatsApp", "intelligence", "trip", "handover", "AI", "workflow", "chef-ops"],
+      "read_time": 12,
+      "featured": false
     },
     {
       "slug": "provisioning-miami-ftl",
       "title": "Provisioning Miami & Fort Lauderdale: The Complete Playbook",
       "date": "2026-03-05",
-      "category": "shore-larder",
-      "tags": ["provisioning", "miami", "fort-lauderdale", "suppliers", "yacht-specific", "caribbean"],
+      "category": "port-call",
+      "subtag": "Provisioning",
+      "tags": ["provisioning", "miami", "fort-lauderdale", "suppliers", "usa", "port-call", "wholesale"],
       "read_time": 12,
       "featured": false
     },
@@ -24,6 +265,7 @@
       "title": "The Fat Index: Every Cooking Fat Ranked by Science",
       "date": "2026-03-01",
       "category": "shore-larder",
+      "subtag": "Ingredient Deep-Dive",
       "tags": ["fats", "nutrition", "food-science", "ingredients", "science", "omega-3", "cooking-chemistry"],
       "read_time": 15,
       "featured": false
@@ -33,6 +275,7 @@
       "title": "The Salt Index: Every Culinary Salt Ranked by Science",
       "date": "2026-03-01",
       "category": "shore-larder",
+      "subtag": "Ingredient Deep-Dive",
       "tags": ["salt", "seasoning", "food-science", "ingredients", "science", "mineral-content"],
       "read_time": 14,
       "featured": false
@@ -42,35 +285,9 @@
       "title": "The Acid Index: Every Culinary Acid Ranked by Science",
       "date": "2026-03-01",
       "category": "shore-larder",
+      "subtag": "Ingredient Deep-Dive",
       "tags": ["acid", "vinegar", "citrus", "food-science", "ingredients", "science", "flavour-balance"],
       "read_time": 14,
-      "featured": false
-    },
-    {
-      "slug": "sea-urchin-seasonal-guide",
-      "title": "Sea Urchin: Seasonal Guide, Compound Profile, and Sourcing",
-      "date": "2026-02-05",
-      "category": "shore-larder",
-      "tags": ["sea-urchin", "seasonal", "sourcing", "compound-profile", "ingredients"],
-      "read_time": 4,
-      "featured": false
-    },
-    {
-      "slug": "tech-in-the-galley",
-      "title": "Technology in the Galley: AI Is Your New Sous Chef",
-      "date": "2026-03-04",
-      "category": "the-method",
-      "tags": ["AI", "technology", "claude-code", "menu-agent", "galley-tools", "automation"],
-      "read_time": 10,
-      "featured": false
-    },
-    {
-      "slug": "sea-urchin-beurre-blanc",
-      "title": "Sea Urchin Beurre Blanc: Roe as Natural Emulsifier",
-      "date": "2026-02-05",
-      "category": "the-method",
-      "tags": ["sea-urchin", "technique", "emulsion", "beurre-blanc", "sauce"],
-      "read_time": 4,
       "featured": false
     },
     {
@@ -78,15 +295,47 @@
       "title": "Cooked: How Fire Made Us Human and Why the Person Holding the Pan Still Matters",
       "date": "2026-03-01",
       "category": "the-evidence",
+      "subtag": "Food Science",
       "tags": ["anthropology", "food-science", "cooking-chemistry", "evolution", "science"],
       "read_time": 12,
       "featured": true
+    },
+    {
+      "slug": "galley-efficiency-protocol",
+      "title": "Galley Efficiency Protocol: Maximizing Output in Minimal Space",
+      "date": "2026-01-26",
+      "category": "the-method",
+      "subtag": "Galley Efficiency",
+      "tags": ["galley", "workflow", "mise-en-place", "efficiency", "space", "protocol"],
+      "read_time": 12,
+      "featured": false
+    },
+    {
+      "slug": "sea-urchin-seasonal-guide",
+      "title": "Sea Urchin: Seasonal Guide, Compound Profile, and Sourcing",
+      "date": "2026-02-05",
+      "category": "shore-larder",
+      "subtag": "Ingredient Deep-Dive",
+      "tags": ["sea-urchin", "seasonal", "sourcing", "compound-profile", "ingredients"],
+      "read_time": 4,
+      "featured": false
+    },
+    {
+      "slug": "sea-urchin-beurre-blanc",
+      "title": "Sea Urchin Beurre Blanc: Roe as Natural Emulsifier",
+      "date": "2026-02-05",
+      "category": "the-method",
+      "subtag": "Recipe Blueprint",
+      "tags": ["sea-urchin", "technique", "emulsion", "beurre-blanc", "sauce"],
+      "read_time": 4,
+      "featured": false
     },
     {
       "slug": "silver-lining-protocol",
       "title": "The Silver Lining Protocol: A Science-Backed Survival Guide for Galley Sanity",
       "date": "2026-02-02",
       "category": "the-evidence",
+      "subtag": "Crew Welfare",
       "tags": ["mental-health", "resilience", "crew-welfare", "yacht-specific", "psychology"],
       "read_time": 15,
       "featured": true
@@ -96,6 +345,7 @@
       "title": "The Pharmacy in Your Spice Rack: What Science Actually Knows About Medicinal Plants in Food",
       "date": "2026-02-02",
       "category": "the-evidence",
+      "subtag": "Food Science",
       "tags": ["spices", "phytochemistry", "health", "ingredients", "science"],
       "read_time": 14,
       "featured": true
@@ -105,6 +355,7 @@
       "title": "Umami in Western Cuisine: Fermentation as the Universal Glutamate Engine",
       "date": "2026-02-05",
       "category": "the-evidence",
+      "subtag": "Food Science",
       "tags": ["umami", "fermentation", "glutamate", "food-science"],
       "read_time": 4,
       "featured": false
@@ -114,6 +365,7 @@
       "title": "Spaghetti ai Ricci di Mare: Mondello, Sicily",
       "date": "2026-02-05",
       "category": "littoral-heritage",
+      "subtag": "Heritage",
       "tags": ["sea-urchin", "sicily", "pasta", "tradition"],
       "read_time": 4,
       "featured": false
@@ -123,6 +375,7 @@
       "title": "Myojaku Earns Three Stars and STCW Anti-Harassment Training Goes Mandatory",
       "date": "2026-02-05",
       "category": "the-bridge",
+      "subtag": "Industry News",
       "tags": ["michelin", "umami", "STCW", "training", "industry"],
       "read_time": 4,
       "featured": false
@@ -153,6 +406,83 @@
       "name": "The Bridge",
       "description": "World chef news, yacht industry intelligence, and events",
       "slug": "the-bridge"
+    },
+    "port-call": {
+      "name": "Port Call",
+      "description": "Provisioning guides, supplier databases, and port-specific intel",
+      "slug": "port-call"
+    },
+    "signal-fire": {
+      "name": "Signal Fire",
+      "description": "One chef, one idea that changes everything",
+      "slug": "signal-fire"
+    },
+    "the-locker": {
+      "name": "The Locker",
+      "description": "Deep pantry guides and cuisine sourcing by tier",
+      "slug": "the-locker"
+    },
+    "trade-winds": {
+      "name": "Trade Winds",
+      "description": "Yacht industry intelligence, regulations, salary and certification",
+      "slug": "trade-winds"
+    },
+    "dispatch": {
+      "name": "Dispatch",
+      "description": "Short news items — single insight, under 300 words. Surfaces at The Bridge.",
+      "slug": "dispatch"
+    },
+    "galley-notes": {
+      "name": "Galley Notes",
+      "description": "Yacht-life intel — career, contracts, tooling, solo-chef ops. Not a recipe, not a port, not a profile.",
+      "slug": "galley-notes"
+    }
+  },
+  "themes": {
+    "recipes-techniques": {
+      "name": "Recipes & Techniques",
+      "description": "Blueprints, methods, sauces, and dishes built from first principles.",
+      "tags": ["recipe", "blueprint", "technique", "techniques", "baking", "soup", "sauce", "emulsion", "beurre-blanc", "brown-butter", "quick-bread", "pasta", "dessert", "crumble"]
+    },
+    "galley-efficiency": {
+      "name": "Galley Efficiency",
+      "description": "Workflow, mise-en-place, space, protocols, charter prep.",
+      "tags": ["galley", "galley-staple", "workflow", "mise-en-place", "efficiency", "space", "protocol", "charter-prep", "chef-ops", "handover"]
+    },
+    "ingredient-deep-dive": {
+      "name": "Ingredient Deep-Dive",
+      "description": "One ingredient, pulled apart down to the compound.",
+      "tags": ["ingredient-deep-dive", "ingredients", "garlic", "mushrooms", "tea", "allium", "sea-urchin", "fats", "salt", "acid", "vinegar", "citrus", "spices", "compound-profile", "seasonal", "sourcing"]
+    },
+    "food-science": {
+      "name": "Food Science",
+      "description": "Compounds, chemistry, fermentation, the why under the technique.",
+      "tags": ["food-science", "cooking-chemistry", "compounds", "molecules", "volatile-compounds", "flavor-science", "food-pairing", "FlavorDB", "umami", "glutamate", "fermentation", "pectin", "gelatin", "tannins", "smoking", "infusion", "mineral-content", "flavour-balance", "phytochemistry", "science", "research"]
+    },
+    "provisioning-ports": {
+      "name": "Provisioning & Ports",
+      "description": "Port-by-port supplier intel, logistics, wholesale channels.",
+      "tags": ["port-call", "provisioning", "suppliers", "wholesale", "logistics", "miami", "fort-lauderdale", "venice", "italy", "rialto", "vaporetto", "sicily", "usa", "pantry", "brands"]
+    },
+    "career-industry": {
+      "name": "Career & Industry",
+      "description": "Certifications, tax, salary, regulations — the business side.",
+      "tags": ["career", "yacht-chef", "certification", "STCW", "crew", "employment", "tax", "legal", "finance", "residency", "industry", "michelin", "training", "Article-81-A", "CGI"]
+    },
+    "crew-welfare": {
+      "name": "Crew Welfare",
+      "description": "Mental health, resilience, sanity at sea.",
+      "tags": ["mental-health", "resilience", "crew-welfare", "yacht-specific", "psychology", "health", "nutrition", "comfort", "convalescent"]
+    },
+    "tech-ai": {
+      "name": "Tech & AI",
+      "description": "Tools, automation, AI in the galley.",
+      "tags": ["technology", "tools", "AI", "automation", "Claude-Code", "claude-code", "menu-generation", "PDF", "menus", "WhatsApp", "intelligence", "trip"]
+    },
+    "heritage-culture": {
+      "name": "Heritage & Culture",
+      "description": "Traditions, anthropology, why people cook the way they do.",
+      "tags": ["tradition", "anthropology", "evolution", "history", "littoral-heritage", "chef-profiles", "ideas", "community"]
     }
   },
   "tags": [
@@ -165,10 +495,21 @@
     "acid", "vinegar", "citrus", "flavour-balance",
     "sea-urchin", "seasonal", "sourcing", "compound-profile",
     "emulsion", "beurre-blanc", "sauce",
-    "AI", "technology", "claude-code", "menu-agent", "galley-tools", "automation",
-    "provisioning", "miami", "fort-lauderdale", "suppliers", "caribbean",
     "umami", "fermentation", "glutamate",
     "sicily", "pasta", "tradition",
-    "michelin", "STCW", "training", "industry"
+    "michelin", "STCW", "training", "industry",
+    "garlic", "mushrooms", "tea",
+    "ingredient-deep-dive", "allium", "tannins", "smoking", "infusion",
+    "provisioning", "miami", "fort-lauderdale", "suppliers", "usa", "port-call", "wholesale",
+    "galley", "workflow", "mise-en-place", "efficiency", "protocol",
+    "WhatsApp", "intelligence", "trip", "handover", "AI", "chef-ops",
+    "tax", "crew", "employment", "legal", "finance", "residency",
+    "career", "yacht-chef", "certification",
+    "flavor-science", "food-pairing", "volatile-compounds", "molecules", "FlavorDB", "research",
+    "recipe", "blueprint", "baking", "banana", "quick-bread", "brown-butter", "miso", "charter-prep",
+    "pantry", "brands", "coming-soon", "community",
+    "chef-profiles", "ideas", "techniques",
+    "technology", "tools", "automation", "menu-generation",
+    "compounds", "history"
   ]
 }

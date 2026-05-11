@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!--
+    Scallop shell — pilgrimage symbol, timeless
+    Single line spiral
+  -->
+
+  <!-- Shell ribs radiating from base -->
+  <path d="M 40 70 L 40 20" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <path d="M 40 70 L 20 25" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <path d="M 40 70 L 60 25" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <path d="M 40 70 L 12 35" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <path d="M 40 70 L 68 35" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <path d="M 40 70 L 8 50" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <path d="M 40 70 L 72 50" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Shell outline -->
+  <path
+    d="M 8 50
+       Q 5 35, 12 25
+       Q 20 12, 40 10
+       Q 60 12, 68 25
+       Q 75 35, 72 50
+       Q 60 65, 40 70
+       Q 20 65, 8 50
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+
+</svg>

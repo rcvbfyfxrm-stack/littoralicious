@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonnes Nouvelles — The World Affair</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 52px; font-weight: 400; letter-spacing: 2px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Lundi 2 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;54</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3d6b4f">Bonnes Nouvelles</div>
+  <h1 class="article-title">Ce que le bruit recouvre</h1>
+  <div class="article-date">Lundi 2 Mars 2026 &mdash; Edition N&deg;54</div>
+</div><div class="article-body"><h1>Bonnes Nouvelles — Le signal sous le fracas</h1>
+<h3>2 mars 2026</h3>
+<p><em>« Le monde produit plus de bonnes nouvelles qu'il n'en consomme. Le problème n'est pas l'offre. C'est l'attention. »</em></p>
+<hr>
+<h2>L'Éditorial</h2>
+<p>Cette semaine, les missiles ont volé sur Téhéran, le détroit d'Hormuz s'est fermé, et les marchés ont à peine cligné. Dans ce vacarme, il serait facile de conclure que le monde ne produit que du chaos. Ce serait une erreur de lecture. Le chaos est bruyant. Le progrès est silencieux. Et cette semaine, le progrès a continué son travail sans demander la permission.</p>
+<p>Le taux d'homicide aux États-Unis a connu la chute la plus importante jamais enregistrée. L'aigle impérial est revenu en Serbie après avoir frôlé l'extinction locale. Un hôpital londonien a traité une forme de cécité que la médecine considérait comme incurable. Aucune de ces histoires ne fera la une. Toutes méritent d'être lues.</p>
+<hr>
+<h2>Les Grands Récits</h2>
+<h3>États-Unis : la plus forte baisse du taux d'homicide jamais enregistrée</h3>
+<p>Le taux de meurtres aux États-Unis a connu en 2025 sa <strong>baisse la plus importante de l'histoire statistique du pays</strong>. Le chiffre est d'autant plus remarquable qu'il succède à la flambée de violence de 2020-2021, quand le taux d'homicide avait bondi de 30 % en un an — la plus forte hausse depuis les années 1960.</p>
+<p>Les criminologues débattent encore des causes exactes. Plusieurs facteurs convergent : le reflux post-pandémique (les conditions sociales extrêmes de 2020 se sont normalisées), le retour des programmes communautaires de prévention de la violence dans les grandes villes, l'amélioration des temps de réponse des services d'urgence qui sauvent davantage de victimes de fusillades, et une stabilisation relative du marché des armes à feu après les pics d'achat de 2020-2021.</p>
+<p>Mais le fait le plus intéressant est peut-être celui-ci : la baisse est nationale. Elle ne concerne pas une ville ou une région. Elle traverse les lignes politiques, géographiques et démographiques. Les villes dirigées par des démocrates et celles dirigées par des républicains ont vu leurs taux baisser. Les quartiers riches et les quartiers pauvres. Les zones urbaines et les zones suburbaines.</p>
+<p>Quand un phénomène négatif est systémique, on exige des explications systémiques. Quand un phénomène positif l'est, on l'ignore. C'est un biais cognitif. C'est aussi un choix éditorial. Nous faisons le choix inverse.</p>
+<h3>L'aigle impérial revient en Serbie : de 1 couple à 19</h3>
+<p>En 2017, il restait <strong>un seul couple reproducteur</strong> d'aigle impérial oriental (<em>Aquila heliaca</em>) en Serbie. L'espèce, autrefois commune dans les plaines pannoniennes, avait été décimée par l'empoisonnement des carcasses destinées aux prédateurs, l'électrocution sur les lignes haute tension, et la destruction de l'habitat par l'agriculture intensive.</p>
+<p>En 2026, la Serbie compte <strong>19 couples reproducteurs</strong>.</p>
+<p>La multiplication par dix-neuf en neuf ans n'est pas un miracle. C'est le résultat d'un programme de conservation méthodique : isolation des lignes électriques dans les zones de nidification, surveillance par satellite des territoires de chasse, poursuites judiciaires systématiques contre l'empoisonnement des rapaces, et collaboration transfrontalière avec la Hongrie — qui abrite la plus grande population d'aigles impériaux d'Europe centrale.</p>
+<p>Le chiffre de 19 couples reste fragile. L'espèce est classée vulnérable par l'UICN. Mais la trajectoire est sans ambiguïté : quand les menaces sont identifiées, que les moyens sont alloués, et que la volonté politique existe, la conservation fonctionne. Ce n'est pas une histoire de chance. C'est une histoire de choix.</p>
+<h3>Moorfields Hospital traite une cécité « intratable »</h3>
+<p>L'hypotonie oculaire — une pression intraoculaire anormalement basse qui peut mener à la perte progressive de la vision — fait partie de ces diagnostics que la médecine accompagne plutôt qu'elle ne traite. Quand la pression dans l'œil chute trop bas, le globe se déforme, la rétine se plisse, et la vision se dégrade inexorablement. Les traitements existants — chirurgie, injections de gaz — offrent des résultats temporaires et souvent insuffisants.</p>
+<p>Une équipe du <strong>Moorfields Eye Hospital</strong> de Londres vient de traiter cette condition avec succès pour la première fois en injectant de l'<strong>hydroxypropyl methylcellulose</strong> (HPMC) — un polymère visqueux utilisé habituellement comme lubrifiant dans les interventions de cataracte — directement dans la cavité vitréenne de l'œil.</p>
+<p>Le principe est d'une élégance presque brutale : si la pression est trop basse, on injecte un fluide qui la maintient. L'HPMC a la propriété idéale : suffisamment visqueux pour rester en place pendant des mois, suffisamment biocompatible pour ne pas provoquer d'inflammation, et suffisamment transparent pour ne pas altérer le passage de la lumière.</p>
+<p>Le premier patient traité a vu sa vision s'améliorer significativement. L'essai est encore à un stade précoce — quelques patients, un seul centre — mais le principe de preuve est établi. Une condition que la médecine considérait comme terminale a désormais un traitement candidat.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<p>La baisse du taux d'homicide américain pourrait marquer le début d'un cycle long de déclin de la violence urbaine comparable à celui des années 1990. Si les données de 2026 confirment la tendance, les États-Unis pourraient retrouver des niveaux de violence non vus depuis les années 1960.</p>
+<p>Le retour de l'aigle impérial en Serbie s'inscrit dans une tendance plus large de rétablissement des grands rapaces en Europe. Le pygargue à queue blanche, le vautour fauve, et l'aigle de Bonelli montrent des courbes similaires dans leurs zones de réintroduction. Le facteur commun : l'isolation des lignes électriques, responsable de la majorité des morts non naturelles chez les grands rapaces.</p>
+<p>L'approche de Moorfields avec l'HPMC illustre une tendance en ophtalmologie : la réutilisation créative de matériaux existants plutôt que le développement de nouvelles molécules. C'est plus rapide, moins cher, et les profils de sécurité sont déjà connus. Quand l'innovation consiste à voir autrement ce que l'on a déjà, elle avance plus vite.</p>
+<hr>
+<h2>La Connexion</h2>
+<p>Un taux de meurtre qui s'effondre. Un rapace qui revient. Un aveugle qui voit. Ces trois histoires n'ont rien en commun — sauf ceci : elles sont le résultat de gens qui ont refusé d'accepter que les choses ne pouvaient pas changer.</p>
+<p>Les criminologues qui ont conçu les programmes de prévention de la violence n'ont pas attendu que le taux d'homicide baisse pour y croire. Les biologistes serbes n'ont pas attendu d'avoir 19 couples pour isoler les lignes électriques. Les ophtalmologistes de Moorfields n'ont pas attendu une nouvelle molécule pour essayer ce qu'ils avaient sous la main.</p>
+<p>Le progrès n'arrive pas quand le monde est prêt. Il arrive quand quelqu'un décide de commencer.</p>
+<hr>
+<p><em>Prochain numéro : suivi du programme de conservation de l'aigle impérial en Europe centrale — et les résultats à 6 mois de l'essai HPMC de Moorfields.</em></p></div><div class="bottom-nav"><a href="finance-marches.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Finance &amp; March&eacute;s</span></a><a href="culture-societe.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Culture &amp; Soci&eacute;t&eacute; &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; BONNES NOUVELLES</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

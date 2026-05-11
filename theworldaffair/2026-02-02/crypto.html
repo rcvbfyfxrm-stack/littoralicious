@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crypto — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Lundi 2 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;33</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#7a6a2e">Crypto</div>
+  <h1 class="article-title">SNAPSHOT CRYPTO</h1>
+  <div class="article-date">Lundi 2 Février 2026 &mdash; Edition N&deg;33</div>
+</div><div class="article-body"><h1>Rapport Finance & Marchés — Intelligence Institutionnelle : CRYPTO</h1>
+<h2>Date : 2026-02-02</h2>
+<hr>
+<h2>📊 SNAPSHOT CRYPTO</h2>
+<h3>Clôture / Dernière Cotation</h3>
+<table><thead><tr><th>Actif</th><th>Prix</th><th>Jour</th><th>vs ATH</th><th>Market Cap</th></tr></thead><tbody>
+<tr><td>Bitcoin (BTC)</td><td>~$76,000</td><td>-5%</td><td>-40% (ATH $126K, Oct 2025)</td><td>~$1.5T</td></tr>
+<tr><td>Ethereum (ETH)</td><td>~$2,410</td><td>-3%</td><td>-50%+</td><td>~$389B</td></tr>
+<tr><td>Solana (SOL)</td><td>~$102</td><td>-4%</td><td>-60%+</td><td>~$58B</td></tr>
+</tbody></table>
+<table><thead><tr><th>Indicateur</th><th>Niveau</th><th>Signal</th></tr></thead><tbody>
+<tr><td>BTC Dominance</td><td>~58%</td><td>Flight to quality dans la crypto</td></tr>
+<tr><td>Stablecoin Market Cap</td><td>~$300B</td><td>Record — liquidité en attente</td></tr>
+<tr><td>Bitcoin ETF AUM total</td><td>$123B+</td><td>Institutionnel ancré</td></tr>
+</tbody></table>
+<p><strong>Contexte historique :</strong></p>
+<ul>
+<li>BTC à -40% du ATH — les corrections de 30-40% arrivent dans chaque cycle. 2018: -84%, 2022: -77%. Celle-ci reste modérée.</li>
+<li>ETH/BTC ratio en compression — Ethereum perd du terrain relatif</li>
+<li>Stablecoins à $300B = "dry powder" massif en attente de redéploiement</li>
+</ul>
+<hr>
+<h2>🏦 SECTION 1 : SENTIMENT & POSITIONS INSTITUTIONNELLES</h2>
+<h3>Consensus des Grands Acteurs Crypto</h3>
+<table><thead><tr><th>Source</th><th>Vue</th><th>Horizon</th><th>Conviction</th></tr></thead><tbody>
+<tr><td>BlackRock</td><td>Bullish structurel</td><td>12+ mois</td><td>Haute — "core component of global financial system"</td></tr>
+<tr><td>Fidelity</td><td>Constructif</td><td>12 mois</td><td>Haute — continue d'accumuler via FBTC</td></tr>
+<tr><td>JPMorgan</td><td>Prudemment optimiste</td><td>2026</td><td>Moyenne — projette $15-40B d'inflows ETF</td></tr>
+<tr><td>Goldman Sachs</td><td>Constructif</td><td>2026</td><td>Moyenne — "regulation driving next wave"</td></tr>
+<tr><td>Grayscale</td><td>Bullish</td><td>2026</td><td>Haute — "Dawn of the Institutional Era"</td></tr>
+<tr><td>Bitwise</td><td>Très bullish</td><td>2026</td><td>Haute — ATH prévu pour BTC, ETH, SOL</td></tr>
+</tbody></table>
+<h3>Positions Clés</h3>
+<p><strong>BlackRock (Larry Fink) :</strong></p>
+<ul>
+<li>IBIT détient ~$70.6B en AUM — ETF Bitcoin dominant mondial</li>
+<li>Fink a pivoté de sceptique à "crypto = infrastructure financière"</li>
+<li>Stablecoins positionnés comme "bridge between TradFi and digital liquidity"</li>
+<li>🔍 <strong>Mon analyse</strong> : Quand le plus grand gestionnaire d'actifs au monde ($10T+) appelle crypto "core", c'est un changement de régime. Mais attention — BlackRock vend des ETF. Leur optimisme est aussi du marketing.</li>
+</ul>
+<p><strong>Michael Saylor / Strategy (ex-MicroStrategy) :</strong></p>
+<ul>
+<li><strong>712,647 BTC</strong> détenus — coût moyen $76,037/BTC</li>
+<li>Janvier 2026 : +40,151 BTC achetés (~$3.8B)</li>
+<li>BTC actuellement SOUS son coût moyen — position officiellement underwater</li>
+<li>$8.2B en dette convertible, mais pas de risque de liquidation forcée</li>
+<li>MSTR à $139 — -58% sur un an</li>
+<li>🔍 <strong>Mon analyse</strong> : Saylor est le test ultime de la thèse "Bitcoin treasury". Il n'a pas de marge de sécurité — c'est du all-in leveragé. Si BTC tombe à $60K, la pression sera immense. <strong>Pour un investisseur long terme, c'est un avertissement : la conviction sans diversification est dangereuse, même quand on a raison sur la direction.</strong></li>
+</ul>
+<p><strong>Warren Buffett / Berkshire :</strong></p>
+<ul>
+<li>Zéro BTC directement. Position inchangée malgré la retraite de Buffett (31 déc 2025)</li>
+<li>Greg Abel prend les rênes — aucun signal de changement de cap</li>
+<li>Exposition indirecte via Nu Holdings, BofA, Jefferies</li>
+<li>🔍 <strong>Mon analyse</strong> : Buffett a eu tort sur la direction du prix mais raison sur une chose : BTC ne génère pas de cash-flow. Pour un investisseur value, c'est toujours un asset spéculatif. La question est : Greg Abel finira-t-il par bouger ? Peu probable à court terme.</li>
+</ul>
+<p><strong>Cathie Wood / ARK :</strong></p>
+<ul>
+<li>Reste ultra-bullish sur BTC — target long terme inchangée ($1M+)</li>
+<li>🔍 <strong>Mon analyse</strong> : Wood a raison sur la direction narrative mais son timing est chroniquement prématuré. Sa target de $1M est un exercice de marketing plus qu'une analyse.</li>
+</ul>
+<h3>📊 Divergences à noter</h3>
+<table><thead><tr><th>Sujet</th><th>Bulls</th><th>Bears</th></tr></thead><tbody>
+<tr><td>BTC à $150K+ en 2026</td><td>Bitwise, ARK, Saylor, Sidney Powell</td><td>Carol Alexander (range $75-150K)</td></tr>
+<tr><td>ETF = game changer durable</td><td>BlackRock, Fidelity, Grayscale</td><td>Sceptiques sur outflows récents</td></tr>
+<tr><td>Cycle 4 ans cassé</td><td>Grayscale (ETF absorbe supply)</td><td>Analystes techniques (bear year classique)</td></tr>
+<tr><td>BTC comme réserve de valeur</td><td>Fonds souverains (Mubadala), Harvard</td><td>Buffett, traditionalistes</td></tr>
+</tbody></table>
+<hr>
+<h2>🌍 SECTION 2 : FACTEURS MACRO & CATALYSEURS</h2>
+<h3>Top 3 Facteurs Crypto Aujourd'hui</h3>
+<p><strong>1. Nomination Kevin Warsh à la Fed</strong></p>
+<ul>
+<li>Trump nomme Warsh — perçu comme hawkish</li>
+<li>Dollar fort = mauvais pour BTC à court terme</li>
+<li>BTC se comporte encore comme un risk asset, PAS comme "digital gold"</li>
+<li><strong>Impact</strong> : Pression baissière tant que le marché price un tightening prolongé</li>
+</ul>
+<p><strong>2. Géopolitique — Iran / Moyen-Orient</strong></p>
+<ul>
+<li>Explosion au port de Bandar Abbas — risk-off généralisé</li>
+<li>BTC vend avec les actions, pas comme hedge</li>
+<li><strong>Impact</strong> : Détruit la narrative "store of value" à court terme. BTC reste corrélé au risk-on.</li>
+</ul>
+<p><strong>3. Régulation US — GENIUS Act + Market Structure Bill</strong></p>
+<ul>
+<li>GENIUS Act signé (stablecoins) — règlements secondaires attendus juillet 2026</li>
+<li>Market Structure Bill (CFTC/SEC clarity) probable en 2026</li>
+<li>Parity Act : exemption fiscale stablecoins < $200</li>
+<li>Texas et Arizona expérimentent des réserves BTC étatiques</li>
+<li><strong>Impact</strong> : Le catalyseur structurel le plus important. La clarté réglementaire est ce qui débloquera les flux 401(k) ($90-130B potentiels selon JPM).</li>
+</ul>
+<hr>
+<h2>📈 SECTION 3 : FLUX ETF & ADOPTION</h2>
+<h3>Bitcoin ETFs — Bilan</h3>
+<table><thead><tr><th>Métrique</th><th>Donnée</th></tr></thead><tbody>
+<tr><td>Inflows cumulés depuis lancement (Jan 2024)</td><td>$87B globalement</td></tr>
+<tr><td>AUM total spot BTC ETFs US</td><td>$123.5B</td></tr>
+<tr><td>IBIT (BlackRock) AUM</td><td>$70.6B</td></tr>
+<tr><td>FBTC (Fidelity) AUM</td><td>$17.7B</td></tr>
+<tr><td>Inflows 1er jour 2026</td><td>$670M</td></tr>
+<tr><td>% US advised wealth en crypto</td><td><0.5%</td></tr>
+</tbody></table>
+<p><strong>Nouveaux entrants :</strong></p>
+<ul>
+<li>Morgan Stanley lance un Bitcoin Trust + trading crypto sur E*Trade (H1 2026)</li>
+</ul>
+<p><strong>Projections 2026 (JPMorgan) :</strong></p>
+<table><thead><tr><th>Scénario</th><th>Inflows projetés</th></tr></thead><tbody>
+<tr><td>Base case</td><td>$15B</td></tr>
+<tr><td>Bull case</td><td>$40B</td></tr>
+<tr><td>401(k) inclusion (1% allocation)</td><td>$90-130B</td></tr>
+</tbody></table>
+<p><strong>Outflows récents :</strong></p>
+<ul>
+<li>Journée à -$486M en janvier (IBIT -$129M, FBTC -$247M)</li>
+<li>Analystes : "recalibration, not weakness"</li>
+</ul>
+<p>🔍 <strong>Mon analyse</strong> : Les flux ETF sont LE facteur structurel. Moins de 0.5% de la wealth US est allouée — le potentiel de croissance est massif. MAIS attention : les ETF facilitent aussi les sorties. En crise, les outflows seront aussi rapides que les inflows. C'est une épée à double tranchant que le marché n'a pas encore testée en vrai stress.</p>
+<hr>
+<h2>⚠️ SECTION 4 : RISQUES</h2>
+<h3>Risques Majeurs Identifiés</h3>
+<p><strong>1. Cycle 4 ans : 2026 = bear year ?</strong></p>
+<ul>
+<li>Historiquement, l'année post-halving (+1) est bullish, l'année +2 est difficile</li>
+<li>ATH Oct 2025 à $126K → correction en cours</li>
+<li>MAIS : les institutionnels pourraient casser ce pattern</li>
+<li><strong>Probabilité</strong> : 50/50 — le cycle est affaibli mais pas mort</li>
+</ul>
+<p><strong>2. Saylor comme risque systémique</strong></p>
+<ul>
+<li>712K BTC = ~3.4% de l'offre totale, dans une seule entité leveragée</li>
+<li>Si MSTR doit vendre = cascade</li>
+<li>Pas de risque immédiat mais un tail risk réel</li>
+</ul>
+<p><strong>3. Corrélation BTC/Actions persistante</strong></p>
+<ul>
+<li>BTC ne protège PAS en risk-off</li>
+<li>Si récession US en 2026, BTC pourrait chuter avec les actions</li>
+<li>La narrative "digital gold" n'est pas prouvée empiriquement</li>
+</ul>
+<p><strong>4. Réglementation : le diable est dans les détails</strong></p>
+<ul>
+<li>GENIUS Act signé mais règlements secondaires en attente</li>
+<li>Market Structure Bill pas encore voté au Sénat</li>
+<li>Midterms nov 2026 = risque de paralysie politique</li>
+</ul>
+<hr>
+<h2>💰 SECTION 5 : GESTION DU CASH — CRYPTO</h2>
+<h3>Faut-il déployer du cash en crypto maintenant ?</h3>
+<table><thead><tr><th>Signal</th><th>Niveau</th><th>Historique</th><th>Verdict</th></tr></thead><tbody>
+<tr><td>BTC vs ATH</td><td>-40%</td><td>Corrections 30-40% = normales</td><td>Intéressant mais pas extrême</td></tr>
+<tr><td>Stablecoins supply</td><td>$300B record</td><td>Dry powder massif</td><td>Bullish structurel</td></tr>
+<tr><td>ETF flows</td><td>Positifs net YTD</td><td>Adoption continue</td><td>Supportif</td></tr>
+<tr><td>Fed policy</td><td>Hawkish (Warsh)</td><td>Mauvais pour risk assets</td><td>Attendre</td></tr>
+<tr><td>Sentiment</td><td>Fear élevée</td><td>Fear = opportunité historiquement</td><td>Modérément attractif</td></tr>
+<tr><td>Saylor cost basis</td><td>$76K ≈ prix actuel</td><td>Support psychologique</td><td>Fragile</td></tr>
+</tbody></table>
+<p><strong>Comparaison historique :</strong></p>
+<ul>
+<li>2018 bottom : -84% du ATH → on n'y est pas</li>
+<li>2022 bottom : -77% du ATH → on n'y est pas</li>
+<li>2020 COVID crash : -60% → on s'en rapproche (-40%)</li>
+<li>Niveau actuel ressemble plus à un mid-cycle pullback qu'à un bottom capitulaire</li>
+</ul>
+<h3>Verdict Cash Crypto :</h3>
+<blockquote>
+<p><strong>ATTENDRE / SMALL ADDS SEULEMENT</strong></p>
+<p></p>
+<p>Raison : La correction est significative (-40%) mais les catalyseurs négatifs (Fed hawkish, géopolitique) ne sont pas résolus. Le support $70-75K est le vrai test.</p>
+<p></p>
+<p><strong>Si déployer :</strong></p>
+<p>- BTC uniquement à ce stade (flight to quality crypto)</p>
+<p>- Achats fractionnés entre $70K-$76K</p>
+<p>- ETH seulement si BTC stabilise (ETH suit, ne mène pas)</p>
+<p>- SOL = trop spéculatif dans ce contexte</p>
+<p>- Maximum 2-5% du cash disponible par tranche</p>
+</blockquote>
+<hr>
+<h2>📝 SECTION 6 : SYNTHÈSE EXÉCUTIVE</h2>
+<h3>Résumé en 30 secondes</h3>
+<p><strong>Sentiment institutionnel crypto :</strong></p>
+<blockquote>
+<p>Les institutionnels sont structurellement bullish (BlackRock, Fidelity, Goldman) mais le marché subit un re-pricing violent dû à la Fed hawkish et la géopolitique. Divergence entre conviction long terme et douleur court terme.</p>
+</blockquote>
+<p><strong>Top 3 takeaways :</strong></p>
+<ol>
+<li><strong>BTC à -40% du ATH, Saylor underwater</strong> — Le marché teste la conviction. Pas de capitulation mais pression croissante. Zone $70-76K = make or break.</li>
+<li><strong>ETF = infrastructure permanente, pas un cycle</strong> — $87B d'inflows cumulés, <0.5% de la wealth US allouée. Le potentiel est immense mais les outflows en crise sont le risque non-testé.</li>
+<li><strong>Régulation US avance</strong> — GENIUS Act signé, Market Structure Bill probable. C'est le catalyseur le plus sous-estimé pour H2 2026.</li>
+</ol>
+<p><strong>Recommandation tactique crypto :</strong></p>
+<ul>
+<li><strong>Cash</strong> : HOLD principalement. Small adds BTC uniquement si $70-75K</li>
+<li><strong>Pas d'alt season</strong> dans un environnement risk-off — rester sur BTC</li>
+<li><strong>Monitorer</strong> : flux ETF hebdomadaires comme leading indicator</li>
+</ul>
+<p><strong>Risque principal :</strong></p>
+<blockquote>
+<p>Fed hawkish prolongée + BTC qui casse $70K = scénario bear confirmé. Si Saylor est forcé de réduire, c'est un risque de cascade.</p>
+</blockquote>
+<p><strong>Prochaine date clé :</strong></p>
+<blockquote>
+<p>Juillet 2026 — Règlements GENIUS Act + potentiel vote Market Structure Bill au Sénat</p>
+</blockquote>
+<hr>
+<p><em>Rappel : Tu investis pour 10-20 ans. BTC à -40% dans un monde où BlackRock, Harvard et Mubadala sont dedans, c'est différent de BTC à -40% en 2018 quand c'était du retail pur. Mais "différent" ne veut pas dire "sans risque". La patience et le sizing discipliné restent tes meilleurs outils.</em></p>
+<hr>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://www.bloomberg.com/news/articles/2026-02-01/bitcoin-s-break-below-80-000-signals-new-crisis-of-confidence" target="_blank">Bloomberg — Bitcoin's Break Below $80,000</a></li>
+<li><a href="https://www.thenationalnews.com/business/money/2026/02/01/bitcoin-prices-cryptocurrency/" target="_blank">The National — Bitcoin falls to lowest since April 2025</a></li>
+<li><a href="https://www.cnbc.com/2026/01/08/bitcoin-btc-price-predictions-for-2026.html" target="_blank">CNBC — Bitcoin price predictions for 2026</a></li>
+<li><a href="https://247wallst.com/investing/2026/01/12/wall-streets-crypto-takeover-morgan-stanley-joins-blackrock-fidelity-in-123-billion-bitcoin-etf-market/" target="_blank">24/7 Wall St — Wall Street's Crypto Takeover: $123B Bitcoin ETF Market</a></li>
+<li><a href="https://research.grayscale.com/reports/2026-digital-asset-outlook-dawn-of-the-institutional-era" target="_blank">Grayscale — 2026 Digital Asset Outlook</a></li>
+<li><a href="https://www.coindesk.com/business/2026/01/31/michael-saylor-s-bitcoin-stack-is-officially-underwater-but-here-s-why-he-likely-won-t-reach-for-the-panic-button/" target="_blank">CoinDesk — Saylor's bitcoin stack officially underwater</a></li>
+<li><a href="https://www.coindesk.com/markets/2026/01/20/michael-saylor-s-strategy-purchases-another-usd2-13-billion-in-bitcoin" target="_blank">CoinDesk — Strategy purchases $2.13B in Bitcoin</a></li>
+<li><a href="https://www.coindesk.com/markets/2026/01/05/goldman-sachs-sees-regulation-driving-next-wave-of-institutional-crypto-adoption" target="_blank">Goldman Sachs — Regulation driving institutional crypto adoption</a></li>
+<li><a href="https://finance.yahoo.com/news/top-us-crypto-bills-watch-100215687.html" target="_blank">Yahoo Finance — Top US Crypto Bills to Watch in 2026</a></li>
+<li><a href="https://cryptorank.io/news/feed/d3f4e-us-crypto-regulation-in-2026-senate-bills-stablecoin-rules-state-bitcoin-experiments" target="_blank">CryptoRank — US crypto regulation 2026</a></li>
+<li><a href="https://beincrypto.com/bitcoin-etfs-blackrock-crypto-infrastructure/" target="_blank">BeInCrypto — Bitcoin ETFs BlackRock crypto infrastructure</a></li>
+</ul></div><div class="bottom-nav"><a href="liberte-surveillance.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Liberté & Surveillance</span></a><a href="gastronomie.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Gastronomie &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; CRYPTO</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Faro &middot; Treasure Map &middot; Littoralicious</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper: #fafafa; --paper-2: #f2efe8; --ink: #0a0a0a; --ink-2: #3a3a3a; --ink-3: #6a6a6a; --salt: #94a3b8; --rule: #d7d2c4; --rule-2: #e2e2e2; --sea: #2d4a5e; --sea-2: #1e3443; --gold: #8a6a2e; --red: #7a2210; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d8d3c4; }
+  body { font-family: 'Libre Baskerville', Georgia, serif; color: var(--ink); -webkit-font-smoothing: antialiased; padding: 24px 12px 48px; min-height: 100vh; }
+  .map { width: 210mm; height: 297mm; margin: 0 auto; background: var(--paper); box-shadow: 0 10px 32px rgba(0,0,0,0.18); padding: 12mm 12mm 10mm; position: relative; overflow: hidden; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 5mm; }
+  .masthead { text-align: center; border-bottom: 2px solid var(--ink); padding-bottom: 4mm; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 7pt; color: var(--sea); letter-spacing: 4pt; text-transform: uppercase; margin-bottom: 2mm; }
+  .h1 { font-family: 'Playfair Display', serif; font-size: 32pt; font-weight: 900; letter-spacing: 5pt; line-height: 1; }
+  .h1-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 9.5pt; color: var(--sea); margin-top: 1.5mm; }
+  .h-meta { font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 1.6pt; color: var(--ink-3); text-transform: uppercase; margin-top: 2mm; }
+  .h-meta span { color: var(--sea); }
+  .lead-note { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 8.8pt; color: var(--ink-2); line-height: 1.4; }
+  .treasures { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+  .treasure { background: var(--paper-2); padding: 3mm 3mm 3.5mm; border-top: 2px solid var(--sea); position: relative; }
+  .treasure-num { font-family: 'JetBrains Mono', monospace; font-size: 6pt; letter-spacing: 1.5pt; color: var(--sea); text-transform: uppercase; margin-bottom: 1mm; display: flex; justify-content: space-between; align-items: center; }
+  .treasure-num .x { font-family: 'Playfair Display', serif; font-size: 11pt; color: var(--red); font-weight: 900; line-height: 0.9; }
+  .treasure-title { font-family: 'Playfair Display', serif; font-size: 10pt; font-weight: 700; line-height: 1.15; margin-bottom: 1mm; }
+  .treasure-where { font-family: 'JetBrains Mono', monospace; font-size: 6pt; letter-spacing: 0.8pt; color: var(--ink-3); text-transform: uppercase; margin-bottom: 1mm; }
+  .treasure-body { font-size: 7.5pt; line-height: 1.4; color: var(--ink-2); }
+  .pairings { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 4mm; }
+  .pairing { border-left: 2px solid var(--sea); padding: 1.4mm 3mm; background: var(--paper-2); font-size: 7.5pt; line-height: 1.4; }
+  .pairing strong { font-family: 'Playfair Display', serif; font-size: 9pt; font-weight: 700; color: var(--ink); display: block; margin-bottom: 0.3mm; line-height: 1.2; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--ink); padding-bottom: 1mm; margin-bottom: 1.5mm; }
+  .section-head h2 { font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 3pt; text-transform: uppercase; font-weight: 500; color: var(--ink); }
+  .section-head .count { font-family: 'Playfair Display', serif; font-style: italic; font-size: 7.5pt; color: var(--ink-3); }
+  .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; align-content: start; }
+  .col-stack > .section + .section { margin-top: 4mm; }
+  .item { display: grid; grid-template-columns: 3.5mm 1fr; gap: 1.8mm; padding: 1.2mm 0; border-bottom: 0.5px solid var(--rule-2); cursor: pointer; user-select: none; }
+  .item:last-child { border-bottom: none; }
+  .item .check { width: 3mm; height: 3mm; border: 1.2px solid var(--ink-3); background: var(--paper); margin-top: 1mm; flex-shrink: 0; position: relative; transition: background 0.12s; }
+  .item:hover .check { border-color: var(--sea); }
+  .item.is-found .check { background: var(--sea); border-color: var(--sea); }
+  .item.is-found .check::before { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--paper); font-weight: 700; font-size: 7.5pt; line-height: 1; }
+  .item-line { font-size: 7.8pt; line-height: 1.35; color: var(--ink-2); }
+  .item-line .name { font-family: 'Playfair Display', serif; font-size: 8.6pt; font-weight: 700; color: var(--ink); }
+  .item-line .where { color: var(--sea); font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 0.8pt; text-transform: uppercase; }
+  .item.is-found .item-line { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--salt); text-decoration-thickness: 0.6px; }
+  .item.is-found .item-line .where { text-decoration: none; }
+  .footer { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; padding-top: 2mm; border-top: 1px solid var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 1.4pt; color: var(--ink-3); text-transform: uppercase; align-items: baseline; }
+  .footer-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 8.5pt; color: var(--sea); letter-spacing: 0; text-transform: none; text-align: center; }
+  .footer-right { text-align: right; }
+  .toolbar { position: fixed; top: 16px; right: 16px; background: var(--paper); border: 1px solid var(--ink); padding: 6px 10px; z-index: 100; display: flex; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.18); }
+  .toolbar button, .toolbar a { background: transparent; border: 1px solid var(--ink); color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 8pt; letter-spacing: 1pt; text-transform: uppercase; padding: 5px 9px; cursor: pointer; text-decoration: none; transition: all 0.15s; }
+  .toolbar button:hover, .toolbar a:hover { background: var(--ink); color: var(--paper); }
+  @media print { html, body { background: white; padding: 0; } .toolbar { display: none !important; } .map { box-shadow: none; margin: 0; width: 100%; height: 100vh; padding: 9mm; } @page { size: A4 portrait; margin: 0; } }
+  @media (max-width: 720px) { body { padding: 0; } .map { width: 100%; height: auto; padding: 6mm; gap: 4mm; } .columns, .pairings, .treasures { grid-template-columns: 1fr; gap: 3mm; } .h1 { font-size: 26pt; letter-spacing: 3pt; } .footer { grid-template-columns: 1fr; text-align: center; } .footer-right { text-align: center; } }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">Print / PDF</button>
+  <a href="index.html">← Guide</a>
+  <button onclick="resetChecks()">Reset</button>
+</div>
+
+<article class="map">
+
+  <header class="masthead">
+    <div class="eyebrow">Carte au Trésor &middot; Treasure Map</div>
+    <h1 class="h1">FARO</h1>
+    <div class="h1-sub">Ria Formosa, clams, salt — the Algarve you don't see</div>
+    <div class="h-meta">Algarve &middot; Portugal <span>·</span> 7 May 2026 <span>·</span> Amêijoa-boa peak</div>
+  </header>
+
+  <p class="lead-note">A printable A4 of the must-do Faro — only the experiences you can have here and nowhere else. No filler, no generic. Tick a box; the mark stays until you reset.</p>
+
+  <div class="treasures">
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure I</span><span class="x">✕</span></div>
+      <div class="treasure-title">Cataplana de amêijoas</div>
+      <div class="treasure-where">Tasca do Ricky · 4 h ahead</div>
+      <div class="treasure-body">The hammered-copper pot opened at the table — Ria-Formosa clams, Alentejan pork, carolino rice, coriander, white wine. Order opened in front of you, otherwise it's a stew.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure II</span><span class="x">✕</span></div>
+      <div class="treasure-title">Estamine — Ilha Deserta</div>
+      <div class="treasure-where">11:00 ferry from Faro marina</div>
+      <div class="treasure-body">A solar-powered eco-restaurant on an uninhabited barrier sandbar — 7 km of beach, no roads, no shops. Razor clams, oysters, daily catch. The most singular lunch in southern Portugal.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure III</span><span class="x">✕</span></div>
+      <div class="treasure-title">Negra Mole at Morgado do Quintão</div>
+      <div class="treasure-where">Lagoa · book 48 h ahead</div>
+      <div class="treasure-body">A family quinta since 1810; Joana Maçanita's revival of the indigenous Algarve grape under a 2,000-year-old olive tree. Lunch at the family table, around the house wines.</div>
+    </div>
+  </div>
+
+  <div class="columns">
+
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>🍽 Must Eat · Only-here dishes</h2><span class="count">5</span></div>
+        <div class="item" data-key="d-cataplana"><div class="check"></div><div class="item-line"><span class="name">Cataplana de amêijoas</span> — copper pot opened at the table <span class="where">Tasca do Ricky</span></div></div>
+        <div class="item" data-key="d-arroz-lingueirao"><div class="check"></div><div class="item-line"><span class="name">Arroz de lingueirão</span> — razor-clam rice from the Ria <span class="where">Estamine · Ilha Deserta</span></div></div>
+        <div class="item" data-key="d-polvo-lagareiro"><div class="check"></div><div class="item-line"><span class="name">Polvo à lagareiro</span> — octopus roasted whole in olive oil <span class="where">Cidade Velha</span></div></div>
+        <div class="item" data-key="d-sardinhas"><div class="check"></div><div class="item-line"><span class="name">Sardinhas assadas (May–Sep)</span> — charcoal-grilled, peak now <span class="where">O Recife · Olhão tascas</span></div></div>
+        <div class="item" data-key="d-queijinho-figo"><div class="check"></div><div class="item-line"><span class="name">Queijinho de figo</span> — Moorish fig-almond-honey confection <span class="where">pastelarias</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🍷 Must Drink · The Algarve glass</h2><span class="count">5</span></div>
+        <div class="item" data-key="w-negra-mole"><div class="check"></div><div class="item-line"><span class="name">Negra Mole</span> — indigenous fragile red, near-extinct 1990s <span class="where">Morgado do Quintão</span></div></div>
+        <div class="item" data-key="w-crato-branco"><div class="check"></div><div class="item-line"><span class="name">Crato Branco</span> — saline-citrus Algarve white <span class="where">Quinta da Vinha · Cabrita</span></div></div>
+        <div class="item" data-key="w-medronho"><div class="check"></div><div class="item-line"><span class="name">Medronho</span> — arbutus eau-de-vie 48°, Monchique family stills <span class="where">resinous · digestif</span></div></div>
+        <div class="item" data-key="w-vinho-verde"><div class="check"></div><div class="item-line"><span class="name">Vinho Verde + grilled sardines</span> — light Atlantic spritz cuts the oil <span class="where">canonical Portuguese summer</span></div></div>
+        <div class="item" data-key="w-bago-flight"><div class="check"></div><div class="item-line"><span class="name">Three-glass Algarve flight at Bago</span> — Negra Mole different terroirs <span class="where">Centre · the reference list</span></div></div>
+      </section>
+
+    </div>
+
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>⚓ Must Book Tables</h2><span class="count">4</span></div>
+        <div class="item" data-key="t-alameda"><div class="check"></div><div class="item-line"><span class="name">Alameda</span> — Faro's first Michelin star (2026) · Rui Sequeira <span class="where">★ · €110–160 · 1 wk</span></div></div>
+        <div class="item" data-key="t-estamine"><div class="check"></div><div class="item-line"><span class="name">Estamine — Ilha Deserta</span> — solar-powered on uninhabited sandbar <span class="where">11:00 ferry · book both</span></div></div>
+        <div class="item" data-key="t-ricky"><div class="check"></div><div class="item-line"><span class="name">Tasca do Ricky</span> — cataplana opened in front of you <span class="where">Faro Centro · 1 d</span></div></div>
+        <div class="item" data-key="t-quintao-lunch"><div class="check"></div><div class="item-line"><span class="name">Lunch at Morgado do Quintão</span> — under the 2,000-year-old olive <span class="where">Lagoa · 48 h ahead</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🗝 Must Do · Only-here experiences</h2><span class="count">5</span></div>
+        <div class="item" data-key="x-olhao"><div class="check"></div><div class="item-line"><span class="name">Mercado de Olhão before 09:00</span> — two 1916 red-brick halls, sardines €4/kg <span class="where">15 km east · Sat peak</span></div></div>
+        <div class="item" data-key="x-cidade-velha"><div class="check"></div><div class="item-line"><span class="name">Cidade Velha intra muros walk</span> — Arco da Vila → Sé → Capela dos Ossos <span class="where">free · 1 h</span></div></div>
+        <div class="item" data-key="x-ilha-deserta"><div class="check"></div><div class="item-line"><span class="name">Ilha Deserta boat + Estamine lunch</span> — 7 km uninhabited beach <span class="where">11:00 ferry</span></div></div>
+        <div class="item" data-key="x-capela-ossos"><div class="check"></div><div class="item-line"><span class="name">Capela dos Ossos at last light</span> — 1,245 monks' skulls, baroque memento mori <span class="where">€2 · 17:00–17:30 May</span></div></div>
+        <div class="item" data-key="x-tavira"><div class="check"></div><div class="item-line"><span class="name">Tavira day-trip</span> — Roman bridge + Flor de Sal PDO salt pans <span class="where">35 km east</span></div></div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div>Littoralicious &middot; Carte au Trésor</div>
+    <div class="footer-quote">"The Algarve you don't see"</div>
+    <div class="footer-right">littoralicious.com</div>
+  </footer>
+
+</article>
+
+<script>
+  var STORAGE_KEY = 'treasure-faro';
+  function load() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; } }
+  function save(s) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {} }
+  function applyState() { var s = load(); document.querySelectorAll('.item').forEach(function (el) { if (s[el.dataset.key]) el.classList.add('is-found'); }); }
+  function resetChecks() { if (!confirm('Reset all marks?')) return; save({}); document.querySelectorAll('.item.is-found').forEach(function (el) { el.classList.remove('is-found'); }); }
+  document.querySelectorAll('.item').forEach(function (el) {
+    el.addEventListener('click', function () {
+      el.classList.toggle('is-found');
+      var s = load(); var k = el.dataset.key;
+      if (el.classList.contains('is-found')) s[k] = 1; else delete s[k];
+      save(s);
+    });
+  });
+  applyState();
+</script>
+
+</body>
+</html>

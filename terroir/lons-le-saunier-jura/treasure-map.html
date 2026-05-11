@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Lons-le-Saunier &middot; Treasure Map &middot; Littoralicious</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper: #fafafa; --paper-2: #f2efe8; --ink: #0a0a0a; --ink-2: #3a3a3a; --ink-3: #6a6a6a; --salt: #94a3b8; --rule: #d7d2c4; --rule-2: #e2e2e2; --sea: #2d4a5e; --sea-2: #1e3443; --gold: #8a6a2e; --gold-2: #b8893a; --red: #7a2210; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d8d3c4; }
+  body { font-family: 'Libre Baskerville', Georgia, serif; color: var(--ink); -webkit-font-smoothing: antialiased; padding: 24px 12px 48px; min-height: 100vh; }
+  .map { width: 210mm; height: 297mm; margin: 0 auto; background: var(--paper); box-shadow: 0 10px 32px rgba(0,0,0,0.18); padding: 12mm 12mm 10mm; position: relative; overflow: hidden; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 5mm; }
+  .masthead { text-align: center; border-bottom: 2px solid var(--ink); padding-bottom: 4mm; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 7pt; color: var(--sea); letter-spacing: 4pt; text-transform: uppercase; margin-bottom: 2mm; }
+  .h1 { font-family: 'Playfair Display', serif; font-size: 26pt; font-weight: 900; letter-spacing: 4pt; line-height: 1; }
+  .h1-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 9.5pt; color: var(--sea); margin-top: 1.5mm; }
+  .h-meta { font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 1.6pt; color: var(--ink-3); text-transform: uppercase; margin-top: 2mm; }
+  .h-meta span { color: var(--sea); }
+  .lead-note { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 8.8pt; color: var(--ink-2); line-height: 1.4; }
+  .treasures { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+  .treasure { background: var(--paper-2); padding: 3mm 3mm 3.5mm; border-top: 2px solid var(--sea); position: relative; }
+  .treasure.is-trinity { background: rgba(196,163,90,0.12); border-top: 2.5px solid var(--gold-2); }
+  .treasure-num { font-family: 'JetBrains Mono', monospace; font-size: 6pt; letter-spacing: 1.5pt; color: var(--sea); text-transform: uppercase; margin-bottom: 1mm; display: flex; justify-content: space-between; align-items: center; }
+  .treasure.is-trinity .treasure-num { color: var(--gold-2); }
+  .treasure-num .x { font-family: 'Playfair Display', serif; font-size: 11pt; color: var(--red); font-weight: 900; line-height: 0.9; }
+  .treasure-title { font-family: 'Playfair Display', serif; font-size: 10pt; font-weight: 700; line-height: 1.15; margin-bottom: 1mm; }
+  .treasure-where { font-family: 'JetBrains Mono', monospace; font-size: 6pt; letter-spacing: 0.8pt; color: var(--ink-3); text-transform: uppercase; margin-bottom: 1mm; }
+  .treasure-body { font-size: 7.5pt; line-height: 1.4; color: var(--ink-2); }
+  .pairings { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 4mm; }
+  .pairing { border-left: 2px solid var(--sea); padding: 1.4mm 3mm; background: var(--paper-2); font-size: 7.5pt; line-height: 1.4; }
+  .pairing.is-trinity { border-left: 3px solid var(--gold-2); background: rgba(196,163,90,0.14); grid-column: 1 / -1; padding: 2mm 3mm; }
+  .pairing.is-trinity strong { color: var(--ink); font-size: 9.5pt; font-weight: 900; }
+  .pairing strong { font-family: 'Playfair Display', serif; font-size: 9pt; font-weight: 700; color: var(--ink); display: block; margin-bottom: 0.3mm; line-height: 1.2; }
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--ink); padding-bottom: 1mm; margin-bottom: 1.5mm; }
+  .section-head h2 { font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 3pt; text-transform: uppercase; font-weight: 500; color: var(--ink); }
+  .section-head .count { font-family: 'Playfair Display', serif; font-style: italic; font-size: 7.5pt; color: var(--ink-3); }
+  .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; align-content: start; }
+  .col-stack > .section + .section { margin-top: 4mm; }
+  .item { display: grid; grid-template-columns: 3.5mm 1fr; gap: 1.8mm; padding: 1.2mm 0; border-bottom: 0.5px solid var(--rule-2); cursor: pointer; user-select: none; }
+  .item:last-child { border-bottom: none; }
+  .item .check { width: 3mm; height: 3mm; border: 1.2px solid var(--ink-3); background: var(--paper); margin-top: 1mm; flex-shrink: 0; position: relative; transition: background 0.12s; }
+  .item:hover .check { border-color: var(--sea); }
+  .item.is-found .check { background: var(--sea); border-color: var(--sea); }
+  .item.is-found .check::before { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--paper); font-weight: 700; font-size: 7.5pt; line-height: 1; }
+  .item-line { font-size: 7.8pt; line-height: 1.35; color: var(--ink-2); }
+  .item-line .name { font-family: 'Playfair Display', serif; font-size: 8.6pt; font-weight: 700; color: var(--ink); }
+  .item-line .where { color: var(--sea); font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 0.8pt; text-transform: uppercase; }
+  .item.is-found .item-line { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--salt); text-decoration-thickness: 0.6px; }
+  .item.is-found .item-line .where { text-decoration: none; }
+  .footer { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; padding-top: 2mm; border-top: 1px solid var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 1.4pt; color: var(--ink-3); text-transform: uppercase; align-items: baseline; }
+  .footer-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 8.5pt; color: var(--sea); letter-spacing: 0; text-transform: none; text-align: center; }
+  .footer-right { text-align: right; }
+  .toolbar { position: fixed; top: 16px; right: 16px; background: var(--paper); border: 1px solid var(--ink); padding: 6px 10px; z-index: 100; display: flex; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.18); }
+  .toolbar button, .toolbar a { background: transparent; border: 1px solid var(--ink); color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 8pt; letter-spacing: 1pt; text-transform: uppercase; padding: 5px 9px; cursor: pointer; text-decoration: none; transition: all 0.15s; }
+  .toolbar button:hover, .toolbar a:hover { background: var(--ink); color: var(--paper); }
+  @media print { html, body { background: white; padding: 0; } .toolbar { display: none !important; } .map { box-shadow: none; margin: 0; width: 100%; height: 100vh; padding: 9mm; } @page { size: A4 portrait; margin: 0; } }
+  @media (max-width: 720px) { body { padding: 0; } .map { width: 100%; height: auto; padding: 6mm; gap: 4mm; } .columns, .pairings, .treasures { grid-template-columns: 1fr; gap: 3mm; } .h1 { font-size: 22pt; letter-spacing: 2pt; } .footer { grid-template-columns: 1fr; text-align: center; } .footer-right { text-align: center; } }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">Print / PDF</button>
+  <a href="index.html">← Guide</a>
+  <button onclick="resetChecks()">Reset</button>
+</div>
+
+<article class="map">
+
+  <header class="masthead">
+    <div class="eyebrow">Carte au Trésor &middot; Treasure Map</div>
+    <h1 class="h1">LONS-LE-SAUNIER</h1>
+    <div class="h1-sub">Salt, Comté, Vin Jaune — slow France</div>
+    <div class="h-meta">Jura &middot; France <span>·</span> 7 May 2026 <span>·</span> Morilles + Vin Jaune nouveau</div>
+  </header>
+
+  <p class="lead-note">A printable A4 of the must-do Jura — only the experiences you can have here and nowhere else. No filler, no generic. Tick a box; the mark stays until you reset.</p>
+
+  <div class="treasures">
+    <div class="treasure is-trinity">
+      <div class="treasure-num"><span>⚜ The Trinity</span><span class="x">✕</span></div>
+      <div class="treasure-title">Vin Jaune + poularde aux morilles + Comté 36</div>
+      <div class="treasure-where">Jeunet (Arbois) · this week only</div>
+      <div class="treasure-body">Sotolon (Vin Jaune molecule) binds glutamate of dried morels and the fat of Bresse poultry. Closing window of fresh morels TODAY. Eat now or wait a year.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure II</span><span class="x">✕</span></div>
+      <div class="treasure-title">Three ages of Comté</div>
+      <div class="treasure-where">Fromagerie Vagne · rue du Commerce</div>
+      <div class="treasure-body">18 / 24 / 36 months side by side. Buttery young, crystalline middle, caramel-walnut old. The basic Jura cheese education in three forks.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure III</span><span class="x">✕</span></div>
+      <div class="treasure-title">Cellar visit at Macle (Château-Chalon)</div>
+      <div class="treasure-where">Domaine Macle · book 2 days ahead</div>
+      <div class="treasure-body">Taste the new 2019 (just bottled March 2026, 7-year wait) next to an older clavelin. The Vin Jaune AOC enclave — 50 ha total.</div>
+    </div>
+  </div>
+
+  <div class="columns">
+
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>🍽 Must Eat · Only-here dishes</h2><span class="count">5</span></div>
+        <div class="item" data-key="d-poularde-vj"><div class="check"></div><div class="item-line"><span class="name">Poularde de Bresse au Vin Jaune et morilles</span> — THE TRINITY <span class="where">Jeunet · Arbois</span></div></div>
+        <div class="item" data-key="d-comte-3ages"><div class="check"></div><div class="item-line"><span class="name">Three ages of Comté</span> — 18 / 24 / 36 months side by side <span class="where">Fromagerie Vagne</span></div></div>
+        <div class="item" data-key="d-morteau-lentilles"><div class="check"></div><div class="item-line"><span class="name">Saucisse de Morteau aux lentilles</span> — tuyé-smoked AOP sausage <span class="where">Le Comtois</span></div></div>
+        <div class="item" data-key="d-cancoillotte"><div class="check"></div><div class="item-line"><span class="name">Cancoillotte au Vin Jaune</span> — melted spread on warm bread <span class="where">in jars · take home</span></div></div>
+        <div class="item" data-key="d-galet"><div class="check"></div><div class="item-line"><span class="name">Galet de l'Ain</span> — chocolate-praline pebble, Pelen 1899 <span class="where">Pelen tea-room</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🍷 Must Drink · The Jura glass</h2><span class="count">5</span></div>
+        <div class="item" data-key="w-vin-jaune"><div class="check"></div><div class="item-line"><span class="name">Vin Jaune Château-Chalon 2019</span> — just bottled March 2026, 7-year wait <span class="where">Macle · Berthet-Bondet</span></div></div>
+        <div class="item" data-key="w-savagnin-ouille"><div class="check"></div><div class="item-line"><span class="name">Savagnin ouillé</span> — topped-up, no flor, blue-marl mineral <span class="where">Tissot</span></div></div>
+        <div class="item" data-key="w-trousseau"><div class="check"></div><div class="item-line"><span class="name">Trousseau</span> — light Jura red, pepper, red fruit <span class="where">Ganevat · Tissot</span></div></div>
+        <div class="item" data-key="w-cremant"><div class="check"></div><div class="item-line"><span class="name">Crémant du Jura</span> — méthode traditionnelle, the universal opener <span class="where">apéritif</span></div></div>
+        <div class="item" data-key="w-vin-paille"><div class="check"></div><div class="item-line"><span class="name">Vin de Paille (37.5 cl)</span> — raisined grapes, 200 g/L sugar <span class="where">end of meal</span></div></div>
+      </section>
+
+    </div>
+
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>⚓ Must Book Tables</h2><span class="count">4</span></div>
+        <div class="item" data-key="t-jeunet"><div class="check"></div><div class="item-line"><span class="name">Jean-Paul Jeunet</span> — Vin Jaune sanctuary since 1986, the Trinity dish <span class="where">Arbois · €110–180 · 10 d</span></div></div>
+        <div class="item" data-key="t-maison-carree"><div class="check"></div><div class="item-line"><span class="name">La Maison Carrée — V. Mercier</span> — the contemporary Jura voice <span class="where">Arbois · Bib · 1 wk</span></div></div>
+        <div class="item" data-key="t-comtois"><div class="check"></div><div class="item-line"><span class="name">Le Comtois</span> — Lons market bistro, slate menu, €22 lunch <span class="where">Place de la Comédie</span></div></div>
+        <div class="item" data-key="t-finette"><div class="check"></div><div class="item-line"><span class="name">La Finette — Taverne d'Arbois</span> — institution since 1971 <span class="where">Arbois · fir-syrup waffle</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🗝 Must Do · Only-here experiences</h2><span class="count">5</span></div>
+        <div class="item" data-key="x-marche"><div class="check"></div><div class="item-line"><span class="name">Marché de Lons (Thu / Sat 07:30)</span> — local producers, Comté + Morteau <span class="where">Place de la Comédie</span></div></div>
+        <div class="item" data-key="x-vagne"><div class="check"></div><div class="item-line"><span class="name">Three-age Comté tasting at Vagne</span> — 18 / 24 / 36 months side by side <span class="where">rue du Commerce · €8 plate</span></div></div>
+        <div class="item" data-key="x-macle"><div class="check"></div><div class="item-line"><span class="name">Cellar visit at Macle (Château-Chalon)</span> — taste 2019 + older clavelin <span class="where">2 d ahead</span></div></div>
+        <div class="item" data-key="x-pasteur"><div class="check"></div><div class="item-line"><span class="name">Maison Louis Pasteur (Arbois)</span> — only intact 19th-c. lab in France · microbiology born here <span class="where">€7–9 · Apr–Nov</span></div></div>
+        <div class="item" data-key="x-chateau-chalon"><div class="check"></div><div class="item-line"><span class="name">Château-Chalon village at sunset</span> — most beautiful Jura village, Vin Jaune AOC enclave <span class="where">15 km · free</span></div></div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div>Littoralicious &middot; Carte au Trésor</div>
+    <div class="footer-quote">"A terroir of patience"</div>
+    <div class="footer-right">littoralicious.com</div>
+  </footer>
+
+</article>
+
+<script>
+  var STORAGE_KEY = 'treasure-lons';
+  function load() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; } }
+  function save(s) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {} }
+  function applyState() { var s = load(); document.querySelectorAll('.item').forEach(function (el) { if (s[el.dataset.key]) el.classList.add('is-found'); }); }
+  function resetChecks() { if (!confirm('Reset all marks?')) return; save({}); document.querySelectorAll('.item.is-found').forEach(function (el) { el.classList.remove('is-found'); }); }
+  document.querySelectorAll('.item').forEach(function (el) {
+    el.addEventListener('click', function () {
+      el.classList.toggle('is-found');
+      var s = load(); var k = el.dataset.key;
+      if (el.classList.contains('is-found')) s[k] = 1; else delete s[k];
+      save(s);
+    });
+  });
+  applyState();
+</script>
+
+</body>
+</html>

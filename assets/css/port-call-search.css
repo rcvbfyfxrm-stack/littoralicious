@@ -1,0 +1,163 @@
+/* ====================================================================
+   Port Call — supplier search bar (top of article).
+   Self-mounts via port-call-search.js, sits above the interactive map.
+   Palette matches the existing pcv-* dark/gold scheme.
+   ==================================================================== */
+
+.pcs-wrap {
+    margin: var(--space-6) 0 var(--space-4);
+    border: 1px solid var(--color-border);
+    background: #1a2a3a;
+    color: #e8e0d4;
+    font-family: var(--font-sans);
+}
+
+.pcs-head {
+    display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border-bottom: 1px solid #2a3a4a;
+}
+.pcs-head strong {
+    color: #c4a35a;
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+}
+.pcs-head span {
+    font-size: var(--text-xs);
+    color: #94a3b8;
+    font-family: var(--font-mono);
+}
+
+.pcs-bar {
+    display: flex; align-items: stretch;
+    padding: var(--space-3) var(--space-4);
+    gap: var(--space-2);
+}
+.pcs-input {
+    flex: 1 1 auto;
+    background: #0e1720;
+    border: 1px solid #2a3a4a;
+    color: #fafafa;
+    padding: 12px 14px;
+    font-family: var(--font-sans);
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+.pcs-input::placeholder { color: #6b7c8e; }
+.pcs-input:focus {
+    border-color: #c4a35a;
+    box-shadow: 0 0 0 2px rgba(196,163,90,0.18);
+}
+.pcs-clear {
+    background: transparent;
+    border: 1px solid #2a3a4a;
+    color: #c8c0b4;
+    padding: 0 14px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s;
+}
+.pcs-clear:hover { border-color: #c4a35a; color: #fafafa; }
+.pcs-clear[hidden] { display: none; }
+
+.pcs-tags {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 0 var(--space-4) var(--space-3);
+}
+.pcs-tag {
+    display: inline-flex; align-items: center;
+    background: rgba(196,163,90,0.08);
+    border: 1px solid rgba(196,163,90,0.3);
+    color: #c4a35a;
+    padding: 4px 10px;
+    font-family: var(--font-sans);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.pcs-tag:hover { background: rgba(196,163,90,0.18); color: #fafafa; }
+.pcs-tag.is-on {
+    background: #c4a35a;
+    color: #1a2a3a;
+    border-color: #c4a35a;
+}
+
+.pcs-status {
+    padding: var(--space-2) var(--space-4);
+    background: #0e1720;
+    border-top: 1px solid #2a3a4a;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: #94a3b8;
+}
+.pcs-status b { color: #c4a35a; }
+
+.pcs-results {
+    max-height: 260px;
+    overflow-y: auto;
+    border-top: 1px solid #2a3a4a;
+}
+.pcs-results[hidden] { display: none; }
+.pcs-result {
+    display: block;
+    padding: 10px 16px;
+    border-bottom: 1px solid #2a3a4a;
+    color: #e8e0d4;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.12s;
+}
+.pcs-result:last-child { border-bottom: none; }
+.pcs-result:hover { background: #0e1720; }
+.pcs-result__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fafafa;
+    margin-bottom: 2px;
+}
+.pcs-result__name mark {
+    background: rgba(196,163,90,0.35);
+    color: #fafafa;
+    padding: 0 2px;
+}
+.pcs-result__hook {
+    font-size: 12px;
+    color: #94a3b8;
+    font-family: var(--font-mono);
+}
+.pcs-result__section {
+    display: inline-block;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #c4a35a;
+    margin-right: 8px;
+}
+
+/* When the search is filtering, hide non-matching pfolds */
+.pfold.pcs-hide { display: none; }
+/* Also dim sfold sections that have zero matching pfolds */
+.sfold.pcs-empty > summary { opacity: 0.35; }
+.sfold.pcs-empty > .sfold__body { display: none; }
+
+/* Highlight pulse when jumping to a result */
+@keyframes pcs-pulse {
+    0%   { box-shadow: 0 0 0 3px rgba(196,163,90,0.7); }
+    100% { box-shadow: 0 0 0 3px rgba(196,163,90,0); }
+}
+.pfold.pcs-flash {
+    animation: pcs-pulse 1.6s ease-out;
+}
+
+@media (max-width: 640px) {
+    .pcs-bar { flex-direction: column; }
+    .pcs-clear { padding: 10px; }
+    .pcs-results { max-height: 200px; }
+}

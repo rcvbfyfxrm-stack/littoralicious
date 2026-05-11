@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    ONE
+
+    The simplest possible expression.
+    A single shape that is simultaneously:
+    - Flame (fire)
+    - Drop (water, inverted)
+    - Breath (air, the curve)
+    - Rooted (earth, the base)
+
+    One stroke. Four elements. Nurture.
+  -->
+
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- The shape: flame/drop/breath -->
+  <path
+    d="M 50 15
+       C 70 35, 72 55, 50 75
+       C 28 55, 30 35, 50 15
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="2"
+  />
+
+  <!-- Inner essence -->
+  <circle cx="50" cy="50" r="4" fill="#0a0a0a"/>
+
+</svg>

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 100">
+  <!--
+    VESSEL
+
+    The amphora. Ancient. Perfect.
+    But the handles are flames.
+    The body holds water.
+    It sits on earth.
+    Steam (air) rises.
+
+    One object. Four elements.
+  -->
+
+  <!-- Steam/Air rising -->
+  <path d="M 32 12 Q 30 6, 34 2" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 40 10 Q 40 4, 42 0" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 48 12 Q 50 6, 46 2" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- Vessel neck -->
+  <path
+    d="M 32 18
+       L 32 28
+       C 32 32, 28 36, 24 40"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+  <path
+    d="M 48 18
+       L 48 28
+       C 48 32, 52 36, 56 40"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+
+  <!-- Rim -->
+  <ellipse cx="40" cy="18" rx="10" ry="3" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Body (water container) -->
+  <path
+    d="M 24 40
+       C 16 50, 14 65, 22 80
+       Q 40 92, 58 80
+       C 66 65, 64 50, 56 40"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+
+  <!-- Flame handles -->
+  <path
+    d="M 24 40
+       C 10 35, 8 50, 18 55
+       C 12 52, 10 45, 18 42"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+  <path
+    d="M 56 40
+       C 70 35, 72 50, 62 55
+       C 68 52, 70 45, 62 42"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+
+  <!-- Water wave inside -->
+  <path
+    d="M 26 60
+       Q 33 56, 40 60
+       T 54 60"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+  />
+
+  <!-- Earth/ground line -->
+  <line x1="18" y1="95" x2="62" y2="95" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/>
+
+</svg>

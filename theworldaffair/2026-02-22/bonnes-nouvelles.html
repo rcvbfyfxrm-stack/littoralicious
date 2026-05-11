@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bonnes Nouvelles — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 22 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;53</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-22.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3d6b4f">Bonnes Nouvelles</div>
+  <h1 class="article-title">22 février 2026</h1>
+  <div class="article-date">Dimanche 22 Février 2026 &mdash; Edition N&deg;53</div>
+</div><div class="article-body"><h1>Journal Liberté — Bonnes Nouvelles</h1>
+<h3>22 février 2026</h3>
+<p><em>« Ce n'est pas parce que le monde va mal que de bonnes choses n'arrivent pas. C'est parce que de bonnes choses arrivent que le monde ne va pas plus mal. »</em></p>
+<hr>
+<h2>L'Éditorial</h2>
+<p>The news cycle is a machine optimized for dread. It rewards conflict, amplifies fear, and treats normalcy as unworthy of mention. So when a 41-year-old woman wins Olympic gold, when a country powers itself almost entirely on wind and sun, when a man who cannot swim jumps into a frozen lake to save a stranger's baby — these stories arrive not as anomalies but as corrections. They are the signal that the noise obscures.</p>
+<p>This week's dispatches from the better parts of human nature are not naive. They do not pretend the world is fine. They simply insist that the world is also this.</p>
+<hr>
+<h2>Les Grands Récits</h2>
+<h3>Elana Meyers Taylor: Gold at 41 and a Lesson in Staying</h3>
+<p>At the Winter Olympics, Elana Meyers Taylor won gold in the monobob at the age of 41, making her the oldest individual athlete to win a Winter Olympic gold medal. The statistic is remarkable. The story behind it is more so.</p>
+<p>Meyers Taylor has been competing in bobsled since 2007 — nearly two decades of hurling herself down ice chutes at 150 kilometers per hour. She has won medals in four different Olympic Games. She considered retirement after 2022. She came back. She considered retirement again after a knee injury in 2024. She came back again. When asked why, her answer was not the inspirational cliche that the sports media wanted. It was practical: "I came back because I wasn't done, and you know when you're done."</p>
+<p>What makes her gold meaningful beyond the record books is what it says about athletic longevity in an era that fetishizes youth. The bobsled is one of the most physically punishing disciplines in the Winter Olympics — the G-forces in the curves, the explosive power required at the start, the precision demanded at 150 km/h. Meyers Taylor is not winning despite her age. She is winning because her experience — knowing every centimeter of every track, reading ice conditions by feel, managing adrenaline instead of being managed by it — compensates for whatever milliseconds she may have lost to time.</p>
+<p>She did not defy age. She used it.</p>
+<h3>Portugal: 80.7% Renewable, and Nobody Noticed</h3>
+<p>In January 2026, Portugal generated 80.7% of its electricity from renewable sources — the country's best performance in nine months and the second-highest share in Europe behind Norway. The breakdown: wind provided the largest share, followed by hydroelectric, then solar. Natural gas filled the remaining 19.3%.</p>
+<p>The number is impressive. The silence around it is instructive. When Portugal's renewable share drops below 50%, it makes headlines about the fragility of the energy transition. When it reaches 80.7%, it barely registers. This asymmetry in attention is itself a signal: renewable energy in southern Europe has moved from aspiration to infrastructure, from remarkable to routine.</p>
+<p>Portugal's geography helps — abundant wind along the Atlantic coast, strong solar irradiance, and significant hydroelectric capacity from rivers flowing west from the Spanish meseta. But geography is not destiny. Portugal made policy choices over two decades — feed-in tariffs in the 2000s, auction mechanisms in the 2010s, grid modernization in the 2020s — that converted natural advantages into installed capacity.</p>
+<p>The remaining 19.3% from gas is the honest part of the story. Until grid-scale storage solves the intermittency problem — the hours when the wind does not blow and the sun does not shine — natural gas remains the backup dancer that renewable energy cannot yet perform without. But 80.7% in a winter month, when solar output is lowest, suggests that even the backup dancer may eventually leave the stage.</p>
+<h3>The Man Who Jumped Into Lake Michigan</h3>
+<p>On a February afternoon in Chicago, a stroller carrying a baby was caught by a gust of wind and rolled off a lakefront path into Lake Michigan. The water temperature was approximately 3°C. A man nearby — whose name has been withheld at his request — saw the stroller enter the water and jumped in after it.</p>
+<p>He did not know how to swim.</p>
+<p>He reached the stroller, grasped the child, and held both above water until bystanders pulled them out with a makeshift rope of linked scarves and a dog leash. The baby was unharmed. The man was treated for hypothermia and released.</p>
+<p>When the responding paramedic asked him why he jumped in when he could not swim, his reported answer was: "The baby was in the water." As though the question contained its own answer. As though the calculation — cold water, inability to swim, risk of drowning — simply did not occur, or occurred and was dismissed as irrelevant in the face of a child in danger.</p>
+<p>There is no policy lesson here. No systemic insight. No actionable takeaway. Just a reminder that humans, the same species capable of extraordinary cruelty and indifference, are also capable of jumping into freezing water for a stranger's child without knowing how to get back out.</p>
+<h3>The Teacher, the Actor, and the Teenagers</h3>
+<p>Three smaller stories from this week, each worth telling:</p>
+<p><strong>In India</strong>, a teacher whose name has circulated in education circles but not yet widely in the press has won a $1 million education award for transforming underserved communities into learning spaces. Not building schools — transforming communities. The distinction matters. Her approach treats the entire neighborhood as a classroom: market stalls become math lessons, local craftspeople become guest instructors, parents become teaching assistants. The model has been replicated in over 200 communities. The award money, she told the committee, will fund 200 more.</p>
+<p><strong>In Los Angeles</strong>, Kunal Nayyar — known to most as Raj Koothrappali from The Big Bang Theory — has been quietly paying off strangers' medical bills on GoFundMe. Not during business hours. At night. He searches the platform for medical fundraisers, reads the stories, and pays off the ones that move him. He has not disclosed the total amount. He did not announce the practice. It was discovered by a data journalist who noticed that dozens of medical fundraisers had been anonymously completed by the same donor and traced the payments. When contacted, Nayyar confirmed it and asked that the story not become about him.</p>
+<p><strong>In Illinois</strong>, two teenagers — high school juniors — drafted, advocated for, and successfully passed a state law requiring climate change education in Illinois high schools. They wrote the initial text, organized testimony, met with legislators, revised the bill through committee, and attended the signing. They were 16 and 17 years old. The law takes effect in the 2026-2027 school year and makes Illinois the sixth U.S. state with mandatory climate education. Asked about the experience, one of them said: "The hardest part wasn't the legislators. It was getting our classmates to believe it was possible."</p>
+<h3>The Small Crusader and the Solar Boom</h3>
+<p>Two final notes, each a sentence that deserves to stand alone:</p>
+<p><strong>In England</strong>, a seven-year-old has collected over 11,000 plastic candy tubs — the small, single-use containers that hold individual chocolates and sweets — and delivered them to a recycling facility that processes the specific type of plastic the municipal system does not accept. She started the collection at age five, after asking her mother why the tubs could not go in the recycling bin and finding the answer ("because they're too small for the sorting machines") unacceptable.</p>
+<p><strong>In the United States</strong>, solar plus battery storage accounted for 99.2% of net new electricity generation capacity added in the most recent reporting period. Not 99.2% of renewables. Not 99.2% of new clean energy. 99.2% of all net new capacity, period. The remaining 0.8% was natural gas. This number does not mean the U.S. grid is 99.2% renewable — far from it. It means that virtually every new power plant being built in America is solar with batteries. The installed base will take decades to turn over. But the direction of new investment is no longer a question.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<p>Meyers Taylor's gold may be the beginning of a trend rather than an outlier. Advances in sports science, nutrition, and recovery are extending competitive careers across multiple disciplines. The average age of Olympic medalists has been creeping upward for two decades. The "athlete's peak" may be a moving target.</p>
+<p>Portugal's 80.7% was achieved during a month with above-average wind but below-average solar. The implication: Portugal's renewable floor — the minimum share achievable in unfavorable conditions — is now approaching 60%. A floor of 60% would have been the ceiling a decade ago.</p>
+<p>The Illinois climate education law was passed with bipartisan support. In a state legislature where climate policy is typically partisan, two teenagers found the argument that crossed the aisle: "This isn't about politics. It's about whether our students understand the physical world they're inheriting."</p>
+<p>The 99.2% solar-plus-storage figure for net new U.S. capacity has a footnote: several planned natural gas plants were cancelled or deferred during the reporting period, which inflates the renewable share. But even adjusting for cancellations, solar-plus-storage would still represent over 90% of net new capacity. The trend is real.</p>
+<hr>
+<h2>La Connexion</h2>
+<p>The thread connecting a 41-year-old Olympian, a country powered by wind, a non-swimmer in a frozen lake, a teacher in India, an actor paying medical bills at midnight, two teenagers in a statehouse, a seven-year-old recycler, and a solar industry that has made fossil fuels irrelevant for new construction is not optimism. Optimism is a mood. This is evidence.</p>
+<p>Each of these stories involves someone who looked at a problem — age, energy dependence, a drowning child, educational inequality, medical debt, political inaction, plastic waste, carbon emissions — and decided that the problem was not a reason to stop. Not because they were heroes. Because they were stubborn. Because the baby was in the water. Because the candy tubs did not belong in the landfill. Because the legislators needed to hear from someone who would actually live with the consequences.</p>
+<p>The good news is not that the world is getting better. The good news is that specific people, in specific places, are making it better — and that their work, when measured, shows up in the data. Eighty point seven percent. Ninety-nine point two percent. Eleven thousand tubs. Gold at forty-one.</p>
+<p>The numbers do not lie. They just do not shout.</p>
+<hr>
+<p><em>Prochain numéro : suivi Portugal énergie renouvelable Q1 2026 — et les réplications du modèle éducatif indien.</em></p></div><div class="bottom-nav"><a href="finance-marches.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Finance & Marchés</span></a><a href="science-tech.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Science & Tech &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; BONNES NOUVELLES</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

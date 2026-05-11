@@ -274,7 +274,7 @@
         /* ----- Photo (1:1) ----- */
         .post-card__photo {
             aspect-ratio: 1 / 1;
-            background: #f4f0e6;
+            background: var(--color-paper);
             position: relative;
             overflow: hidden;
             cursor: pointer;
@@ -330,18 +330,43 @@
 
         .post-card__photo input[type="file"] { display: none; }
 
-        .post-card__num {
+        .post-card__saved-mark {
             position: absolute;
             top: var(--space-3);
             left: var(--space-3);
-            background: var(--color-paper);
-            color: var(--color-ink);
-            font-family: var(--font-serif);
+            background: var(--color-ink);
+            color: var(--color-paper);
             font-size: var(--text-sm);
-            padding: 4px var(--space-3);
-            letter-spacing: 0.05em;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             z-index: 2;
-            border: 1px solid var(--color-ink);
+            line-height: 1;
+        }
+
+        /* ----- Triage row (Save / Discard) ----- */
+        .post-card__triage {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2);
+            padding-top: var(--space-2);
+        }
+
+        .post-card__triage .post-btn {
+            font-size: 0.7rem;
+        }
+
+        .post-btn--danger {
+            color: var(--color-muted);
+        }
+
+        .post-btn--danger:hover {
+            background: #6b1a1a;
+            color: var(--color-paper);
+            border-color: #6b1a1a;
         }
 
         /* ----- Body ----- */
@@ -656,6 +681,10 @@
                 </div>
                 <div class="post-mast__stats">
                     <div class="post-mast__stat">
+                        <span class="post-mast__stat-num" id="stat-saved">0</span>
+                        <span class="post-mast__stat-label">Saved</span>
+                    </div>
+                    <div class="post-mast__stat">
                         <span class="post-mast__stat-num" id="stat-published">0</span>
                         <span class="post-mast__stat-label">Published</span>
                     </div>
@@ -672,10 +701,12 @@
             <div class="post-progress"><div class="post-progress__bar" id="progress-bar" style="width: 0%"></div></div>
             <div class="post-mast__filters">
                 <button class="post-filter is-active" data-filter="all">All</button>
+                <button class="post-filter" data-filter="saved">★ Saved</button>
                 <button class="post-filter" data-filter="queued">Unscheduled</button>
                 <button class="post-filter" data-filter="scheduled">Scheduled</button>
                 <button class="post-filter" data-filter="published">Published</button>
                 <button class="post-filter" data-filter="needs-photo">Needs photo</button>
+                <button class="post-filter" data-filter="deleted">Deleted</button>
                 <button class="post-filter" data-sort="order">Sort: order</button>
                 <button class="post-filter" data-sort="schedule">Sort: schedule</button>
             </div>
@@ -1040,39 +1071,27 @@ Cooking is a teaching tool we forgot we were using.`,
         const cx = size / 2;
         const scale = size / 1080;
 
-        // Background — warm paper (notebook / editorial)
-        ctx.fillStyle = "#f4f0e6";
+        // Background — pure Littoralicious paper
+        ctx.fillStyle = "#fafafa";
         ctx.fillRect(0, 0, size, size);
-
-        // Faint inner hairline frame (editorial mat)
-        ctx.strokeStyle = "#d9d2bf";
-        ctx.lineWidth = 1 * scale;
-        ctx.strokeRect(60 * scale, 60 * scale, size - 120 * scale, size - 120 * scale);
 
         const supportsLetterSpacing = "letterSpacing" in ctx;
         ctx.textAlign = "center";
         ctx.textBaseline = "alphabetic";
 
         // ----- Wordmark (top) -----
-        ctx.fillStyle = "#1a1a1a";
+        ctx.fillStyle = "#0a0a0a";
         if (supportsLetterSpacing) ctx.letterSpacing = (8 * scale) + "px";
         ctx.font = `600 ${Math.round(20 * scale)}px system-ui, -apple-system, "Segoe UI", sans-serif`;
-        ctx.fillText("LITTORALICIOUS", cx, 165 * scale);
+        ctx.fillText("LITTORALICIOUS", cx, 170 * scale);
         if (supportsLetterSpacing) ctx.letterSpacing = "0px";
 
         // wordmark rule
-        ctx.fillStyle = "#8a8270";
-        ctx.fillRect(cx - 22 * scale, 195 * scale, 44 * scale, 1 * scale);
-
-        // tagline under wordmark
-        ctx.fillStyle = "#6b6451";
-        if (supportsLetterSpacing) ctx.letterSpacing = (3 * scale) + "px";
-        ctx.font = `400 ${Math.round(11 * scale)}px system-ui, sans-serif`;
-        ctx.fillText("A NOTE FROM THE GALLEY", cx, 220 * scale);
-        if (supportsLetterSpacing) ctx.letterSpacing = "0px";
+        ctx.fillStyle = "#c4c4c4";
+        ctx.fillRect(cx - 22 * scale, 200 * scale, 44 * scale, 1 * scale);
 
         // ----- Hook (centered, Georgia italic, ink-black) -----
-        ctx.fillStyle = "#111111";
+        ctx.fillStyle = "#0a0a0a";
         const hookSize = Math.round(62 * scale);
         ctx.font = `italic 400 ${hookSize}px Georgia, "Times New Roman", serif`;
         const maxW = size - 240 * scale;
@@ -1084,31 +1103,17 @@ Cooking is a teaching tool we forgot we were using.`,
             ctx.fillText(line, cx, startY + i * lineH);
         });
 
-        // ----- Bottom block -----
-        ctx.fillStyle = "#8a8270";
-        ctx.fillRect(cx - 12 * scale, size - 215 * scale, 24 * scale, 1 * scale);
+        // ----- Bottom block (category only — no post number on the image) -----
+        ctx.fillStyle = "#c4c4c4";
+        ctx.fillRect(cx - 12 * scale, size - 175 * scale, 24 * scale, 1 * scale);
 
-        ctx.fillStyle = "#2a2a2a";
-        ctx.font = `italic 400 ${Math.round(24 * scale)}px Georgia, serif`;
-        ctx.fillText(`Nº ${String(post.id).padStart(2, "0")}`, cx, size - 170 * scale);
-
-        ctx.fillStyle = "#5a5443";
+        ctx.fillStyle = "#6b7280";
         if (supportsLetterSpacing) ctx.letterSpacing = (6 * scale) + "px";
         ctx.font = `600 ${Math.round(12 * scale)}px system-ui, -apple-system, sans-serif`;
-        ctx.fillText(post.category.toUpperCase(), cx, size - 130 * scale);
+        ctx.fillText(post.category.toUpperCase(), cx, size - 140 * scale);
         if (supportsLetterSpacing) ctx.letterSpacing = "0px";
 
-        // small site mark at bottom
-        ctx.fillStyle = "#8a8270";
-        ctx.font = `400 ${Math.round(10 * scale)}px system-ui, sans-serif`;
-        if (supportsLetterSpacing) ctx.letterSpacing = (2 * scale) + "px";
-        ctx.fillText("LITTORALICIOUS.COM", cx, size - 90 * scale);
-        if (supportsLetterSpacing) ctx.letterSpacing = "0px";
-
-        // Subtle paper grain at export resolution
-        if (size >= 800) addPaperGrain(ctx, size);
-
-        return canvas.toDataURL("image/jpeg", 0.92);
+        return canvas.toDataURL("image/jpeg", 0.94);
     }
 
     function wrapTextLines(ctx, text, maxWidth) {
@@ -1231,7 +1236,7 @@ Cooking is a teaching tool we forgot we were using.`,
 
     function getPostState(id) {
         const s = loadState();
-        return Object.assign({ published: false, photo: null, scheduledAt: null }, s[id] || {});
+        return Object.assign({ published: false, photo: null, scheduledAt: null, saved: false, deleted: false }, s[id] || {});
     }
 
     function setPostState(id, patch) {
@@ -1305,6 +1310,13 @@ Cooking is a teaching tool we forgot we were using.`,
 
         getOrderedPosts().forEach(p => {
             const st = getPostState(p.id);
+            // Hide deleted by default, only show on Deleted filter
+            if (filter === "deleted") {
+                if (!st.deleted) return;
+            } else {
+                if (st.deleted) return;
+            }
+            if (filter === "saved"       && !st.saved) return;
             if (filter === "queued"      && (st.published || st.scheduledAt)) return;
             if (filter === "scheduled"   && (!st.scheduledAt || st.published))  return;
             if (filter === "published"   && !st.published) return;
@@ -1322,7 +1334,7 @@ Cooking is a teaching tool we forgot we were using.`,
 
             card.innerHTML = `
                 <div class="post-card__photo" data-id="${p.id}">
-                    <span class="post-card__num">${String(p.id).padStart(2, "0")} / 20</span>
+                    ${st.saved ? `<span class="post-card__saved-mark" title="Saved for later">★</span>` : ""}
                     <img src="${previewSrc}" alt="" class="${imgClass}">
                     <button class="post-card__photo-replace" data-action="trigger-upload" data-id="${p.id}">
                         ${st.photo ? "↺ Replace" : "+ Your photo"}
@@ -1340,15 +1352,29 @@ Cooking is a teaching tool we forgot we were using.`,
                     </a>
                     <p class="post-card__shotnote">${escapeHtml(p.photoHint)}</p>
                     ${scheduleHtml}
-                    <div class="post-card__actions">
-                        <button class="post-btn" data-action="copy" data-id="${p.id}">Copy caption</button>
-                        <button class="post-btn" data-action="save-photo" data-id="${p.id}">Save image</button>
-                        <button class="post-btn post-btn--full post-btn--accent" data-action="prepare" data-id="${p.id}">↗ Prepare for Instagram</button>
-                        <button class="post-btn post-btn--full ${st.published ? "is-active" : ""}" data-action="toggle-published" data-id="${p.id}">
-                            ${st.published ? "✓ Published — undo" : "Mark as published"}
-                        </button>
-                        ${st.photo ? `<button class="post-btn post-btn--full post-btn--ghost" data-action="remove-photo" data-id="${p.id}">Revert to quote card</button>` : ""}
-                    </div>
+                    ${st.deleted ? `
+                        <div class="post-card__actions">
+                            <button class="post-btn post-btn--full" data-action="restore" data-id="${p.id}">↶ Restore</button>
+                        </div>
+                    ` : `
+                        <div class="post-card__triage">
+                            <button class="post-btn post-btn--ghost ${st.saved ? "is-active" : ""}" data-action="toggle-saved" data-id="${p.id}">
+                                ${st.saved ? "★ Saved" : "☆ Save for later"}
+                            </button>
+                            <button class="post-btn post-btn--ghost post-btn--danger" data-action="delete" data-id="${p.id}">
+                                ✕ Discard
+                            </button>
+                        </div>
+                        <div class="post-card__actions">
+                            <button class="post-btn" data-action="copy" data-id="${p.id}">Copy caption</button>
+                            <button class="post-btn" data-action="save-photo" data-id="${p.id}">Save image</button>
+                            <button class="post-btn post-btn--full post-btn--accent" data-action="prepare" data-id="${p.id}">↗ Prepare for Instagram</button>
+                            <button class="post-btn post-btn--full ${st.published ? "is-active" : ""}" data-action="toggle-published" data-id="${p.id}">
+                                ${st.published ? "✓ Published — undo" : "Mark as published"}
+                            </button>
+                            ${st.photo ? `<button class="post-btn post-btn--full post-btn--ghost" data-action="remove-photo" data-id="${p.id}">Revert to quote card</button>` : ""}
+                        </div>
+                    `}
                 </div>
             `;
             grid.appendChild(card);
@@ -1428,16 +1454,20 @@ Cooking is a teaching tool we forgot we were using.`,
 
     function updateStats() {
         const s = loadState();
-        let pub = 0, sched = 0;
+        let pub = 0, sched = 0, saved = 0, deleted = 0;
         POSTS.forEach(p => {
             const st = s[p.id] || {};
+            if (st.deleted) { deleted++; return; }
+            if (st.saved) saved++;
             if (st.published) pub++;
             else if (st.scheduledAt) sched++;
         });
+        const active = POSTS.length - deleted;
+        document.getElementById("stat-saved").textContent = saved;
         document.getElementById("stat-published").textContent = pub;
         document.getElementById("stat-scheduled").textContent = sched;
-        document.getElementById("stat-queued").textContent = POSTS.length - pub - sched;
-        document.getElementById("progress-bar").style.width = (pub / POSTS.length * 100) + "%";
+        document.getElementById("stat-queued").textContent = Math.max(0, active - pub - sched);
+        document.getElementById("progress-bar").style.width = active > 0 ? (pub / active * 100) + "%" : "0%";
     }
 
     function escapeHtml(s) {
@@ -1549,6 +1579,25 @@ Cooking is a teaching tool we forgot we were using.`,
         if (action === "clear-schedule") {
             setPostState(id, { scheduledAt: null });
             render();
+        }
+
+        if (action === "toggle-saved") {
+            const st = getPostState(id);
+            setPostState(id, { saved: !st.saved });
+            render();
+            toast(st.saved ? "Removed from saved" : "★ Saved for later");
+        }
+
+        if (action === "delete") {
+            setPostState(id, { deleted: true });
+            render();
+            toast("Discarded · use filter to restore");
+        }
+
+        if (action === "restore") {
+            setPostState(id, { deleted: false });
+            render();
+            toast("Restored");
         }
     });
 

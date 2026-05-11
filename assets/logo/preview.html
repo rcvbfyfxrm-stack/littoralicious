@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logo Options — Littoralicious</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Georgia, serif;
+            background: #fafafa;
+            padding: 40px;
+            color: #0a0a0a;
+        }
+        h1 {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #6b7280;
+            margin-bottom: 40px;
+            font-weight: 400;
+        }
+        .section-title {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #2d4a5e;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e2e2e2;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        .card {
+            background: #fff;
+            border: 1px solid #e2e2e2;
+            padding: 30px;
+        }
+        .card h2 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #0a0a0a;
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+        .card p {
+            font-size: 12px;
+            color: #6b7280;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+            background: #fafafa;
+            padding: 20px;
+            margin-bottom: 12px;
+        }
+        .logo-container img {
+            max-width: 100%;
+            max-height: 80px;
+            height: auto;
+        }
+        .dark .logo-container {
+            background: #0a0a0a;
+        }
+        .dark .logo-container img {
+            filter: invert(1);
+        }
+        .toggle {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #94a3b8;
+            cursor: pointer;
+            border: none;
+            background: none;
+            padding: 6px 0;
+        }
+        .toggle:hover { color: #0a0a0a; }
+        .full-width { grid-column: 1 / -1; }
+    </style>
+</head>
+<body>
+
+<h1>Littoralicious Logo Options</h1>
+
+<p class="section-title">The Best — Simple. Powerful. True.</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Drop</h2>
+        <p>The essential shape. Water drop. Flame. Tear. Seed. Four elements in perfect balance inside.</p>
+        <div class="logo-container">
+            <img src="littoralicious-drop.svg" alt="Drop">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Eternal</h2>
+        <p>Four drops in rotation. Fire filled, others open. The cycle. Transformation.</p>
+        <div class="logo-container">
+            <img src="littoralicious-eternal.svg" alt="Eternal">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Flame</h2>
+        <p>Single flame of nurture. Contains all: fire (shape), air (rising), water (curve), earth (base).</p>
+        <div class="logo-container">
+            <img src="littoralicious-flame.svg" alt="Flame">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Horizon</h2>
+        <p>Absolute minimal. Sun rising from sea line. The littoral moment. Three strokes.</p>
+        <div class="logo-container">
+            <img src="littoralicious-horizon.svg" alt="Horizon 2">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>One</h2>
+        <p>Single shape: flame, drop, breath, root. One stroke. Four elements. Nurture at center.</p>
+        <div class="logo-container">
+            <img src="littoralicious-one.svg" alt="One">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Vessel</h2>
+        <p>The amphora perfected. Flame handles. Water inside. Steam rising. Earth below.</p>
+        <div class="logo-container">
+            <img src="littoralicious-vessel.svg" alt="Vessel">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Original — Created for Littoralicious</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Sacred</h2>
+        <p>The complete symbol. Horizon (littoral) divides sky/sea. Flame rises. Wave flows. Earth grounds. Four elements at cardinal points. This is the one.</p>
+        <div class="logo-container">
+            <img src="littoralicious-sacred.svg" alt="Sacred">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Littoral</h2>
+        <p>The shore. Horizon line where all elements meet. Fire/air above, water/earth below. The galley is a littoral zone.</p>
+        <div class="logo-container">
+            <img src="littoralicious-original.svg" alt="Littoral">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Genesis</h2>
+        <p>The cauldron. Earth holds water. Fire transforms. Air rises. Cooking as alchemy. Nurture as creation.</p>
+        <div class="logo-container">
+            <img src="littoralicious-genesis.svg" alt="Genesis">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Unity</h2>
+        <p>Convergence. Four elements flow to center. The center is the plate. The center is nurture.</p>
+        <div class="logo-container">
+            <img src="littoralicious-unity.svg" alt="Unity">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Essence</h2>
+        <p>One continuous line through all elements. Matisse simplicity. The point is nurture.</p>
+        <div class="logo-container">
+            <img src="littoralicious-essence.svg" alt="Essence">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Sacred Geometry — The Most Beautiful Symbols + Four Elements</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Seal of Solomon</h2>
+        <p>Hexagram. Fire △ + Water ▽ interlocked. The most powerful protective symbol.</p>
+        <div class="logo-container">
+            <img src="littoralicious-solomon.svg" alt="Seal of Solomon">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Flower of Life</h2>
+        <p>Creation pattern. Overlapping circles. Genesis geometry.</p>
+        <div class="logo-container">
+            <img src="littoralicious-flower.svg" alt="Flower of Life">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Seed of Life</h2>
+        <p>7 circles. The beginning. Elements at cardinal seeds.</p>
+        <div class="logo-container">
+            <img src="littoralicious-seed.svg" alt="Seed of Life">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Metatron's Cube</h2>
+        <p>Contains all Platonic solids. 13 circles. Archangel's geometry.</p>
+        <div class="logo-container">
+            <img src="littoralicious-metatron.svg" alt="Metatron's Cube">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Sri Yantra</h2>
+        <p>Hindu sacred geometry. 9 interlocking triangles. Shiva/Shakti union.</p>
+        <div class="logo-container">
+            <img src="littoralicious-yantra.svg" alt="Sri Yantra">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Tree of Life</h2>
+        <p>Kabbalah. 10 Sephiroth. Elements at the pillars.</p>
+        <div class="logo-container">
+            <img src="littoralicious-tree.svg" alt="Tree of Life">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Esoteric Four Elements — △ Fire · ▽ Water · △̶ Air · ▽̶ Earth</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Quattro</h2>
+        <p>Four alchemical triangles. Bold, cardinal. Quintessence at center.</p>
+        <div class="logo-container">
+            <img src="littoralicious-quattro.svg" alt="Quattro">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Elementa</h2>
+        <p>Fire/water triangles interlocked. Air/earth as crossing bars.</p>
+        <div class="logo-container">
+            <img src="littoralicious-elementa.svg" alt="Elementa">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Tetrad</h2>
+        <p>Sacred four. Rotated square with elements at each point.</p>
+        <div class="logo-container">
+            <img src="littoralicious-tetrad.svg" alt="Tetrad">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Magnum Opus</h2>
+        <p>The great work. Circle > square > elements > stone.</p>
+        <div class="logo-container">
+            <img src="littoralicious-magnum.svg" alt="Magnum Opus">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Prima Materia</h2>
+        <p>First matter. Four elements radiating from center origin.</p>
+        <div class="logo-container">
+            <img src="littoralicious-prima.svg" alt="Prima Materia">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Quadrant</h2>
+        <p>Circle divided in four. Each quarter holds its element.</p>
+        <div class="logo-container">
+            <img src="littoralicious-quadrant.svg" alt="Quadrant">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">More Esoteric — Hermetic · Occult</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Ouroboros</h2>
+        <p>Serpent eating tail. Eternal cycle. Elements in sacred square.</p>
+        <div class="logo-container">
+            <img src="littoralicious-ouroboros.svg" alt="Ouroboros">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Vesica Piscis</h2>
+        <p>Sacred geometry. Two circles = the fish. Creation, source.</p>
+        <div class="logo-container">
+            <img src="littoralicious-vesica.svg" alt="Vesica Piscis">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Arcana</h2>
+        <p>Hidden knowledge. Layered circles. Elements at cardinal points.</p>
+        <div class="logo-container">
+            <img src="littoralicious-arcana.svg" alt="Arcana">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Four Elements — Simpler Versions</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Elements — Stacked</h2>
+        <p>Steam + flame + waves + shore.</p>
+        <div class="logo-container">
+            <img src="littoralicious-elements.svg" alt="Elements Stacked">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Elements — Minimal</h2>
+        <p>Pure symbols. Wisps, flame, wave, ground.</p>
+        <div class="logo-container">
+            <img src="littoralicious-elements-minimal.svg" alt="Elements Minimal">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Elements — Vessel</h2>
+        <p>Earth (pot) contains all. Galley as alchemical vessel.</p>
+        <div class="logo-container">
+            <img src="littoralicious-elements-vessel.svg" alt="Elements Vessel">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Antique — Littoral + Nurture + Cooking</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Amphora</h2>
+        <p>Greek storage vessel. Coastal trade. The original pantry.</p>
+        <div class="logo-container">
+            <img src="littoralicious-amphora.svg" alt="Amphora">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Fish Plate</h2>
+        <p>4th c. BCE artifact. Plates made for serving fish. Southern Italy.</p>
+        <div class="logo-container">
+            <img src="littoralicious-fishplate.svg" alt="Fish Plate">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Kylix</h2>
+        <p>Greek drinking cup. Fish decoration. The shared table.</p>
+        <div class="logo-container">
+            <img src="littoralicious-kylix.svg" alt="Kylix">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Hearth</h2>
+        <p>Flame over waves. Hestia. Fire + water = the galley.</p>
+        <div class="logo-container">
+            <img src="littoralicious-hearth.svg" alt="Hearth">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Olive</h2>
+        <p>Mediterranean branch. Peace, abundance, cooking.</p>
+        <div class="logo-container">
+            <img src="littoralicious-olive.svg" alt="Olive">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Cauldron</h2>
+        <p>Bronze age pot. Nurture rising. The original galley.</p>
+        <div class="logo-container">
+            <img src="littoralicious-cauldron.svg" alt="Cauldron">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Timeless Icons</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Fish</h2>
+        <p>Simple. One line, one eye.</p>
+        <div class="logo-container">
+            <img src="littoralicious-fish.svg" alt="Fish">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Shell</h2>
+        <p>Scallop. Pilgrimage symbol. Santiago.</p>
+        <div class="logo-container">
+            <img src="littoralicious-shell.svg" alt="Shell">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Octopus</h2>
+        <p>Intelligence. Adaptability. The galley.</p>
+        <div class="logo-container">
+            <img src="littoralicious-octopus.svg" alt="Octopus">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Wave</h2>
+        <p>Greek meander. Ancient, architectural.</p>
+        <div class="logo-container">
+            <img src="littoralicious-wave.svg" alt="Wave">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Horizon</h2>
+        <p>Sun over water. Universal. Pure.</p>
+        <div class="logo-container">
+            <img src="littoralicious-horizon.svg" alt="Horizon">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Maritime Symbols</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Anchor</h2>
+        <p>Stability. Tradition. The vessel.</p>
+        <div class="logo-container">
+            <img src="littoralicious-anchor.svg" alt="Anchor">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Compass</h2>
+        <p>Navigation. Knowledge. Direction.</p>
+        <div class="logo-container">
+            <img src="littoralicious-compass.svg" alt="Compass">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Trident</h2>
+        <p>Poseidon. The sea. Mythology.</p>
+        <div class="logo-container">
+            <img src="littoralicious-trident.svg" alt="Trident">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Typography</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Monogram</h2>
+        <p>Serif L. Classic letterform.</p>
+        <div class="logo-container">
+            <img src="littoralicious-monogram.svg" alt="Monogram">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Wordmark</h2>
+        <p>Typography with wave underline.</p>
+        <div class="logo-container">
+            <img src="littoralicious-wordmark.svg" alt="Wordmark">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+<p class="section-title">Combinations</p>
+<div class="grid">
+
+    <div class="card">
+        <h2>Icon (Seal)</h2>
+        <p>Circle frame. Fish-wave-L continuous line.</p>
+        <div class="logo-container">
+            <img src="littoralicious-icon.svg" alt="Icon">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Mark (Cut-out)</h2>
+        <p>Matisse bold. Amphora with wave negative space.</p>
+        <div class="logo-container">
+            <img src="littoralicious-mark.svg" alt="Mark">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card">
+        <h2>Line</h2>
+        <p>One stroke: wave becomes fish becomes horizon.</p>
+        <div class="logo-container">
+            <img src="littoralicious-line.svg" alt="Line">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+    <div class="card full-width">
+        <h2>Full Logo</h2>
+        <p>Icon + wordmark. Primary use.</p>
+        <div class="logo-container">
+            <img src="littoralicious-full.svg" alt="Full logo">
+        </div>
+        <button class="toggle" onclick="this.parentElement.classList.toggle('dark')">Toggle dark</button>
+    </div>
+
+</div>
+
+</body>
+</html>

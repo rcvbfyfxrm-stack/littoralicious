@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Sri Yantra inspired — Interlocking triangles
+    9 triangles (simplified to key geometry)
+    Fire/Water union, Air/Earth manifest
+  -->
+
+  <!-- Outer square (Bhupura) -->
+  <rect x="8" y="8" width="84" height="84" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- Inner circle -->
+  <circle cx="50" cy="50" r="32" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- Upward triangles (Shiva/Fire) -->
+  <path d="M 50 14 L 82 70 L 18 70 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <path d="M 50 22 L 74 62 L 26 62 Z" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <path d="M 50 30 L 66 54 L 34 54 Z" fill="none" stroke="#0a0a0a" stroke-width="0.6"/>
+
+  <!-- Downward triangles (Shakti/Water) -->
+  <path d="M 50 86 L 18 30 L 82 30 Z" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <path d="M 50 78 L 26 38 L 74 38 Z" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <path d="M 50 70 L 34 46 L 66 46 Z" fill="none" stroke="#0a0a0a" stroke-width="0.6"/>
+
+  <!-- Bindu - center point -->
+  <circle cx="50" cy="50" r="3" fill="#0a0a0a"/>
+
+  <!-- FIRE symbol at top -->
+  <path d="M 50 3 L 53 9 L 47 9 Z" fill="#0a0a0a"/>
+
+  <!-- WATER symbol at bottom -->
+  <path d="M 50 97 L 47 91 L 53 91 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- AIR at right gate -->
+  <line x1="94" y1="48" x2="94" y2="52" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="96" y1="50" x2="92" y2="50" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- EARTH at left gate -->
+  <line x1="6" y1="48" x2="6" y2="52" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="4" y1="50" x2="8" y2="50" stroke="#0a0a0a" stroke-width="1.5"/>
+
+</svg>

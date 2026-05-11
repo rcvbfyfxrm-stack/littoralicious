@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Yorkshire Pudding &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 8pt;
+            line-height: 1.32;
+            color: #0a0a0a;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 7mm 9mm 5mm;
+            overflow: hidden;
+        }
+        .header { border-bottom: 2.5px solid #0a0a0a; padding-bottom: 2.5mm; margin-bottom: 3mm; }
+        .brand { font-family: Georgia, serif; font-size: 7.2pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 6.2pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 24pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0.8mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 9pt; color: #4a5568; line-height: 1.32; }
+        .meta-bar { display: flex; gap: 4.5mm; margin-top: 2.2mm; padding-top: 2.2mm; border-top: 1px solid #e2e2e2; font-size: 7.6pt; color: #6b7280; flex-wrap: wrap; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 36% 1fr; gap: 4.5mm; margin-bottom: 2.5mm; }
+        h2 { font-family: Georgia, serif; font-size: 9.2pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1.2mm; margin-bottom: 2.2mm; }
+
+        .ingredients-note { font-size: 6.2pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -1mm 0 1.5mm 0; }
+        .group-label { font-size: 7.2pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 2mm 0 0.6mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 7.5pt; }
+        .ingredients td { padding: 0.4mm 1mm; vertical-align: top; line-height: 1.25; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 50px; }
+        .ingredients td:nth-child(3) { font-size: 6.5pt; text-align: right; color: #6b7280; white-space: nowrap; width: 60px; padding-left: 2mm; }
+        .note { font-size: 6.4pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 6.6pt; color: #6b7280; margin-top: 2mm; padding-top: 1.2mm; border-top: 1px solid #f0f0f0; line-height: 1.3; }
+
+        .method ol { padding-left: 4.5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 1mm; padding-left: 1mm; counter-increment: step; position: relative; line-height: 1.3; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -4.5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.4mm 0; padding: 0.5mm 0 0.5mm 2.8mm; border-left: 2px solid #5c9ead; font-size: 6.6pt; font-style: italic; color: #4a5568; line-height: 1.28; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 1.8mm 2.5mm; margin-top: 2mm; font-size: 7.5pt; line-height: 1.3; }
+        .done strong { color: #2d4a5e; }
+
+        .elevation { border: 1.5px solid #2d4a5e; padding: 1.8mm 2.5mm; margin-bottom: 2mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1.2mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5mm; }
+        .tier-label { font-weight: 700; font-size: 6.3pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3mm; font-size: 6.6pt; line-height: 1.28; }
+        .elevation li { margin-bottom: 0.3mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 1.5mm; }
+        .bottom h2 { font-size: 7.8pt; margin-bottom: 1.5mm; padding-bottom: 0.8mm; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 6.6pt; border-collapse: collapse; }
+        .troubleshoot td, .charter td { padding: 0.4mm 1.5mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; line-height: 1.27; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 30%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 30%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 6pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1.2mm; border-top: 1px solid #e2e2e2; font-size: 5.8pt; color: #94a3b8; display: flex; justify-content: space-between; }
+        @media print { .done, .elevation, .charter tr:first-child td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint</span><span class="brand-tagline">Bread flour. Smoking fat. Sealed oven.</span>
+    <h1>Yorkshire Pudding</h1>
+    <p class="hook">A steam balloon held up by a fragile gluten-and-egg shell. Bread flour for the cage. ~115% hydration for the steam. Smoking-hot dripping for the seal. A sealed oven door for the climb.</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>12 muffin / 4 popover</strong></span>
+        <span>Active: <strong>20 min</strong></span>
+        <span>Total: <strong>35 min</strong></span>
+        <span>Oven: <strong>230&deg;C</strong> (450&deg;F)</span>
+        <span>Fat: <strong>smoking</strong></span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; volume in right column</p>
+
+        <div class="group-label">The Batter</div>
+        <table>
+            <tr><td>Strong bread flour <span class="note">(12&ndash;14% protein)</span></td><td>140g</td><td>1 cup</td></tr>
+            <tr><td>Whole eggs, large <span class="note">(weigh: 220g shelled)</span></td><td>220g</td><td>&times;4</td></tr>
+            <tr><td>Whole milk <span class="note">(fridge-cold)</span></td><td>220g</td><td>~225 ml</td></tr>
+            <tr><td>Fine sea salt <span class="note">(at the start, not late)</span></td><td>4g</td><td>&frac34; tsp</td></tr>
+            <tr><td>Cold water <span class="note">(opt. thin)</span></td><td>0&ndash;30g</td><td>0&ndash;2 tbsp</td></tr>
+        </table>
+
+        <div class="group-label">The Fat <span class="note">(must smoke)</span></div>
+        <table>
+            <tr><td>Beef dripping <span class="note">(or lard / refined oil)</span></td><td>60&ndash;80g</td><td>&mdash;</td></tr>
+            <tr><td>Per muffin cup</td><td>5&ndash;7g</td><td>1 tsp</td></tr>
+            <tr><td>Per popover cup</td><td>12&ndash;15g</td><td>2&frac12; tsp</td></tr>
+        </table>
+
+        <div class="group-label">The Four Non-Negotiables</div>
+        <table>
+            <tr><td><strong>1.</strong> Bread flour</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td><strong>2.</strong> ~115% hydration</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td><strong>3.</strong> Smoking fat</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td><strong>4.</strong> Sealed oven, no peek</td><td>&mdash;</td><td>&mdash;</td></tr>
+        </table>
+
+        <p class="equipment">
+            <strong>Kit:</strong> carbon-steel popover or 12-cup muffin tin &middot; oven thermometer (most ovens read 15&ndash;20&deg;C low) &middot; 1 L jug &middot; whisk &middot; sieve &middot; digital scale.
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method</h2>
+        <ol>
+            <li>
+                <strong>Sieve flour + salt</strong> into a bowl. Make a well. Crack eggs into the well; whisk hard <em>into</em> the flour from the centre out &mdash; paste, then thick batter, then smooth.
+                <span class="why">Salt with the flour, never on rested batter &mdash; it won&rsquo;t dissolve and you&rsquo;ll taste grains in the crust.</span>
+            </li>
+            <li>
+                <strong>Stream in cold milk</strong> while whisking until the batter has the consistency of single cream. Pass through a sieve into a 1 L jug.
+                <span class="why">~115% hydration is the steam fuel. Drier batter = no climb. Volume cups under-pack flour; weigh the four numbers above. <cite>&mdash; Kenji 2014</cite></span>
+            </li>
+            <li>
+                <strong>Rest the batter &mdash; or don&rsquo;t.</strong> 30 min room temp / overnight in fridge / not at all. Heston rests; Kenji&rsquo;s side-by-side found no difference. Both right.
+                <span class="why">The four non-negotiables matter more than rest. <cite>&mdash; Heston 2006 / Kenji 2014</cite></span>
+            </li>
+            <li>
+                <strong>Heat oven to 230&deg;C</strong> (450&deg;F) fan-off, or 220&deg;C fan. Place empty tin on the centre rack. Verify with thermometer.
+            </li>
+            <li>
+                <strong>Add fat</strong> after 5 min &mdash; 1 tsp dripping per muffin cup, or 2&frac12; tsp per popover. Heat <strong>8&ndash;10 min until visibly smoking</strong>. Not shimmering &mdash; smoking.
+                <span class="why">Smoke = 200&deg;C+, hot enough to set the batter base in 1&ndash;2 sec and trap steam inside. RSC 2008: &ldquo;very hot fat&rdquo; is binding. <cite>&mdash; RSC 2008</cite></span>
+            </li>
+            <li>
+                <strong>Pull tin onto open oven door.</strong> Pour cold batter fast &mdash; fill each cup &frac12; to &frac23;. Will hiss and spit. Correct.
+            </li>
+            <li>
+                <strong>Slide tin in. Close the door. Do not open it again.</strong>
+                <span class="why">Each door-open at 230&deg;C drops oven 25&ndash;40&deg;C; recovery 90 sec. Unset puddings collapse and never recover. The #1 home failure. <cite>&mdash; Cloake 2012</cite></span>
+            </li>
+            <li>
+                <strong>Bake 230&deg;C &times; 15 min</strong>, undisturbed. Climb happens at minutes 6&ndash;12 &mdash; watch through the glass.
+            </li>
+            <li>
+                <strong>Drop to 190&deg;C</strong> without opening the door. Continue <strong>5&ndash;10 min</strong> until deep amber and the rims dry. Total 20&ndash;25 min muffin / 25&ndash;30 min popover.
+                <span class="why">Drop dries the crust without scorching. First 15 min makes the climb; final 5&ndash;10 min sets the colour.</span>
+            </li>
+            <li>
+                <strong>Pull tin out. Lift puddings free.</strong> 5&ndash;7 cm tall (muffin) or 8&ndash;12 cm (popover) with a deep crater.
+            </li>
+        </ol>
+
+        <div class="done">
+            <strong>Done:</strong> Deep amber, rims dry, hollow crater. <strong>Eat within 5 minutes</strong> &mdash; deflates from peak in 10. Time the bake to land as the beef rests.<br>
+            <strong>If you must hold:</strong> 90&deg;C oven, rack, uncovered, max 8 min. Never stack. Never foil.
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; No Extra Time</div>
+            <ul>
+                <li><strong>True beef dripping</strong> &mdash; render from roast trim, freeze in ice-cube trays</li>
+                <li><strong>+1 yolk</strong> &mdash; richer crust, more tender centre</li>
+                <li><strong>Maldon at the rim</strong> &mdash; sprinkle as they leave the tin</li>
+                <li><strong>Carbon-steel popover</strong> &mdash; 8&ndash;12 cm climb vs 5&ndash;7 cm</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; Worth It</div>
+            <ul>
+                <li><strong>12-hr fridge rest</strong> &mdash; Heston&rsquo;s signature; pull 30 min before pour</li>
+                <li><strong>Toad-in-the-hole</strong> &mdash; brown sausages in dripping, pour batter around</li>
+                <li><strong>Used dripping from the roast tin</strong> &mdash; peak savoury layer</li>
+                <li><strong>Onion gravy fill</strong> &mdash; pour into pudding crater at service</li>
+                <li><strong>Horseradish cream</strong> &mdash; cr&egrave;me fra&icirc;che + grated fresh root</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>Suet-rendered dripping</strong> &mdash; pre-1950s tradition, deepest savoury</li>
+                <li><strong>Plate-sized filled Yorkshire</strong> &mdash; pudding as the bowl, beef + greens + gravy</li>
+                <li><strong>Compound-fat tin</strong> &mdash; 60% dripping + 30% bone-marrow + 10% shallot oil</li>
+                <li><strong>Yorkshire wrap</strong> &mdash; flat tray, slice warm, fill with thin beef + horseradish</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>No rise / flat</td><td>Fat not hot. Smoke 8&ndash;10 min. Verify oven 230&deg;C.</td></tr>
+            <tr><td>Climbed then collapsed</td><td>Door opened / pulled too early. Bake full 25 min.</td></tr>
+            <tr><td>Rim crisp, base soggy</td><td>Insufficient fat / batter overfilled. 2&ndash;3 mm fat depth, fill &frac12;&ndash;&frac23;.</td></tr>
+            <tr><td>Greasy crust</td><td>Fat below smoke point. Wait for visible smoke.</td></tr>
+            <tr><td>Dense, eggy</td><td>Plain flour / under-egged. Bread flour, weigh 220g eggs.</td></tr>
+            <tr><td>Lopsided climb</td><td>Fat uneven / oven hot-spot. Spoon evenly.</td></tr>
+            <tr><td>Pale crust</td><td>Oven too low. Verify thermometer; bake to amber.</td></tr>
+            <tr><td>Stuck to tin</td><td>Tin not hot at fat-in. Heat tin first, then add fat.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Pre-mix batter</td><td>Mix morning before, fridge sealed jug. Pull 30 min ahead.</td></tr>
+            <tr><td>Beef-dripping cubes</td><td>Render from each roast, freeze in ice-cube trays (~5g each).</td></tr>
+            <tr><td>Bake to order</td><td>Time to land as beef rests. Never hold &gt; 8 min.</td></tr>
+            <tr><td>No fan oven</td><td>230&deg;C, drop to 200&deg;C at min 15. Same climb.</td></tr>
+            <tr><td>Rough seas</td><td>Don&rsquo;t. Pourable hot fat in motion = fire risk.</td></tr>
+            <tr><td>Don&rsquo;t freeze</td><td>Raw batter: eggs/milk separate. Cooked: bake to order.</td></tr>
+            <tr><td>Shelf life</td><td>5 min peak &middot; 10 min decline &middot; gone</td></tr>
+            <tr><td>Scaling</td><td>&times;2 same temp, two trays. &times;4: two batches back-to-back.</td></tr>
+        </table>
+    </section>
+</div>
+
+<footer class="footer">
+    <span>Sources: Heston Blumenthal &middot; J. Kenji L&oacute;pez-Alt &middot; Felicity Cloake &middot; Harold McGee &middot; Royal Society of Chemistry 2008</span>
+    <span>littoralicious.com &mdash; The Blueprint</span>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Géopolitique — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 25 Janvier 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;25</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-01-25.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#8b3a3a">Géopolitique</div>
+  <h1 class="article-title">VUE D'ENSEMBLE</h1>
+  <div class="article-date">Dimanche 25 Janvier 2026 &mdash; Edition N&deg;25</div>
+</div><div class="article-body"><h1>Rapport Géopolitique Quotidien</h1>
+<h2>Date : 2026-01-25</h2>
+<hr>
+<h2>🌍 VUE D'ENSEMBLE</h2>
+<p><strong>Tensions principales aujourd'hui :</strong></p>
+<table><thead><tr><th>Region</th><th>Niveau</th><th>Evolution</th><th>Evenement cle</th></tr></thead><tbody>
+<tr><td>Europe de l'Est (Ukraine)</td><td>🔴</td><td>↔️</td><td>Attaque massive russe : 375 drones, 21 missiles; pourparlers Abu Dhabi sans percee</td></tr>
+<tr><td>Moyen-Orient (Gaza)</td><td>🟠</td><td>↔️</td><td>Cessez-le-feu fragile, violations quotidiennes, 414 Palestiniens tues depuis octobre</td></tr>
+<tr><td>Syrie</td><td>🟠</td><td>↘️</td><td>Offensive gouvernementale contre les FDS, cessez-le-feu negocie par les USA</td></tr>
+<tr><td>Amerique Latine (Venezuela)</td><td>🔴</td><td>↗️</td><td>Tensions USA-Colombie post-extraction de Maduro, 30 000 soldats colombiens a la frontiere</td></tr>
+<tr><td>Asie-Pacifique</td><td>🟠</td><td>↔️</td><td>Tir de missiles hypersoniques nord-coreens, tensions Mer de Chine Sud</td></tr>
+<tr><td>Sahel</td><td>🟡</td><td>↔️</td><td>Alliance AES consolidee, influence russe croissante</td></tr>
+</tbody></table>
+<p><strong>Ce qui a change en 24h :</strong></p>
+<ul>
+<li>Attaque russe massive sur l'Ukraine (375 drones) — 1,2 million de foyers sans electricite</li>
+<li>Pourparlers trilateraux Ukraine-Russie-USA a Abu Dhabi sans percee majeure</li>
+<li>ONU : Prolongation de 6 mois du monitoring des attaques Houthis en mer Rouge</li>
+<li>Trump recule sur les tarifs Groenland apres accord-cadre avec Rutte (OTAN)</li>
+</ul>
+<hr>
+<h2>🇺🇸🇨🇳🇷🇺🇪🇺 GRANDES PUISSANCES</h2>
+<h3>Relations USA-Chine : Detente fragile, tensions structurelles</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Enquete AmCham China (16 janvier 2026) : 79% des entreprises US ont une vision neutre ou positive des relations — amelioration de 30 points</li>
+<li>Guerre commerciale : Tarifs US jusqu'a 145% sur certains produits chinois, riposte chinoise a 125%</li>
+<li>Commerce bilateral : -44,2% sur 9 mois (582,9 Mds$ en 2024 → 324,4 Mds$ en 2025)</li>
+<li>Visite de Trump en Chine prevue en avril 2026</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.china-briefing.com/news/us-china-relations-in-2026-what-to-watch/" target="_blank">AmCham China Business Climate Survey 2026</a></p>
+<p><strong>Verification :</strong></p>
+<ul>
+<li>✅ Confirme par : China Briefing, CNBC, CSIS</li>
+<li>Confiance : ELEVEE</li>
+</ul>
+<p><strong>Contexte historique :</strong></p>
+<ul>
+<li>Pic de la guerre commerciale en avril 2025</li>
+<li>Tensions Taiwan : Declaration du State Department (1er janvier 2026) exhortant Pekin a la retenue</li>
+<li>Vente d'armes US a Taiwan (decembre 2025) denoncee par la Chine</li>
+</ul>
+<p><strong>Perspectives multiples :</strong></p>
+<table><thead><tr><th>Acteur</th><th>Position</th><th>Interets</th></tr></thead><tbody>
+<tr><td>USA (Trump)</td><td>Detente tactique, pression maintenue</td><td>Gains electoraux midterms, leverage negociation</td></tr>
+<tr><td>Chine (Xi)</td><td>Dialogue conditionnel, lignes rouges Taiwan</td><td>Stabilite economique, reunification</td></tr>
+<tr><td>Experts CSIS</td><td>1/3 pessimistes, 1/3 optimistes, 1/3 statu quo</td><td>—</td></tr>
+</tbody></table>
+<p><strong>Analyse structurelle :</strong></p>
+<ul>
+<li>Competition strategique structurelle inchangee</li>
+<li>Decoupling technologique accelere (semiconducteurs)</li>
+<li>Visite Trump en avril = test de la detente</li>
+</ul>
+<p><strong>Implications :</strong></p>
+<ul>
+<li>Court terme : Apaisement rhetorique avant visite</li>
+<li>Moyen terme : Tensions Taiwan demeurent le point de rupture potentiel</li>
+<li>Long terme : Recomposition des chaines d'approvisionnement mondiales</li>
+</ul>
+<hr>
+<h3>Politique tarifaire Trump : Record historique</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>Taux tarifaire moyen US au 23 janvier 2026 : 14% (le plus haut depuis 1946)</li>
+<li>Cout moyen par foyer americain : 1 300$ en 2026</li>
+<li>17 janvier : Menace de tarifs 10-25% sur 8 pays europeens (Groenland)</li>
+<li>21 janvier : Recul apres accord-cadre avec Mark Rutte (OTAN)</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://taxfoundation.org/research/all/federal/trump-tariffs-trade-war/" target="_blank">Tax Foundation</a>, <a href="https://www.cnbc.com/2026/01/21/trump-tariffs-nato-greenland-davos.html" target="_blank">CNBC</a></p>
+<p><strong>Verification :</strong></p>
+<ul>
+<li>✅ Confirme par : Tax Foundation, CNBC, Atlantic Council</li>
+<li>Confiance : ELEVEE</li>
+</ul>
+<p><strong>Cui bono ?</strong></p>
+<ul>
+<li>Incidence des tarifs selon Goldman Sachs : 37% consommateurs US, 51% entreprises US, 9% exportateurs etrangers</li>
+<li>Les tarifs = taxe deguisee sur les consommateurs americains</li>
+</ul>
+<hr>
+<h2>🔥 CONFLITS ACTIFS</h2>
+<h3>Ukraine — Jour 1 431</h3>
+<p><strong>Situation terrain (24h) :</strong></p>
+<ul>
+<li>Attaque russe massive dans la nuit du 25 janvier : 375 drones + 21 missiles (dont 2 Tsirkon)</li>
+<li>Kiev : 1 mort, 4 blesses, hopital touche</li>
+<li>Kharkiv : 30 blesses dont un enfant, maternite touchee</li>
+<li>1,2 million de foyers sans electricite (800 000 a Kiev, 400 000 a Tchernihiv)</li>
+<li>Contre-attaque ukrainienne "massive" sur Belgorod (Russie)</li>
+</ul>
+<p><strong>Sources :</strong></p>
+<ul>
+<li><a href="https://www.aljazeera.com/news/2026/1/25/russia-ukraine-war-list-of-key-events-day-1431" target="_blank">Al Jazeera</a> — perspective arabe/internationale</li>
+<li><a href="https://www.aljazeera.com/news/2026/1/25/not-optimistic-in-ukraine-scepticism-surrounds-russia-war-peace-talks" target="_blank">Reuters via Al Jazeera</a> — perspective occidentale</li>
+</ul>
+<p><strong>Pourparlers Abu Dhabi (24-25 janvier) :</strong></p>
+<ul>
+<li>Participants : Umerov + Budanov (Ukraine), delegues russes, envoi US Witkoff</li>
+<li>Resultat : "Premier pas vers la paix" selon les parties — mais pas de percee</li>
+<li>Zelensky : "Discussions constructives sur les parametres possibles"</li>
+</ul>
+<p><strong>Perspectives des parties :</strong></p>
+<p><strong>Russie :</strong></p>
+<ul>
+<li>Objectifs declares : Demilitarisation, neutralite Ukraine</li>
+<li>Objectifs probables : Consolidation territoriale, regime change Kiev</li>
+<li>Contraintes : Pertes militaires, sanctions, fatigue economique</li>
+</ul>
+<p><strong>Ukraine :</strong></p>
+<ul>
+<li>Objectifs declares : Retrait total russe, integrite territoriale</li>
+<li>Objectifs probables : Cessez-le-feu favorable, garanties de securite</li>
+<li>Contraintes : Fatigue, dependance aide occidentale, infrastructure devastee</li>
+</ul>
+<p><strong>Mon analyse :</strong></p>
+<ul>
+<li>Tendance : <strong>Stagnation avec escalade episodique</strong></li>
+<li>Les experts s'accordent : fin improbable en 2026, Russie sans volonte de concessions majeures</li>
+<li>Variable critique : Soutien US sous Trump 2.0</li>
+</ul>
+<p><strong>Ce qu'on ne sait PAS :</strong></p>
+<ul>
+<li>Position reelle de Moscou sur les concessions territoriales</li>
+<li>Niveau reel de fatigue de guerre des deux cotes</li>
+<li>Role exact des mediateurs emiratis</li>
+</ul>
+<hr>
+<h3>Gaza — Cessez-le-feu fragile</h3>
+<p><strong>Situation :</strong></p>
+<ul>
+<li>Cessez-le-feu en vigueur depuis le 8 octobre 2025 (plan US "Comprehensive Plan")</li>
+<li><strong>Violations quotidiennes</strong> : 414 Palestiniens tues, 1 145 blesses depuis octobre</li>
+<li>Israel occupe physiquement >50% de Gaza</li>
+<li>70 000+ Palestiniens tues depuis octobre 2023</li>
+</ul>
+<p><strong>Sources :</strong></p>
+<ul>
+<li><a href="https://www.aljazeera.com/news/2026/1/5/israel-extends-gaza-occupation-beyond-yellow-line-in-north-bombs-south" target="_blank">Al Jazeera</a> — perspective arabe</li>
+<li><a href="https://www.timesofisrael.com/us-plans-to-start-2nd-phase-of-gaza-deal-before-hamas-disarmed-last-hostages-body-returned/" target="_blank">Times of Israel</a> — perspective israelienne</li>
+<li><a href="https://www.securitycouncilreport.org/monthly-forecast/2026-01/the-middle-east-including-the-palestinian-question-23.php" target="_blank">Security Council Report</a> — institutionnel</li>
+</ul>
+<p><strong>Developpements recents :</strong></p>
+<ul>
+<li>21 janvier : Netanyahu rejoint le "Board of Peace" de Trump (reconstruction Gaza)</li>
+<li>21 janvier : 3 journalistes tues par frappe israelienne (dont contributeur CBS)</li>
+<li>Interdiction de 37 agences humanitaires par Israel (1er janvier)</li>
+</ul>
+<p><strong>Humanitaire :</strong></p>
+<ul>
+<li>1,9 million de deplaces</li>
+<li>Appel de 8 pays (Qatar, Egypte, Jordanie, Arabie Saoudite, EAU, Turquie, Pakistan, Indonesie) pour lever les restrictions</li>
+<li>UNRWA : Capacite operationnelle severement reduite</li>
+</ul>
+<p><strong>🚩 Alerte :</strong> Mandat d'arret CPI contre Netanyahu pour crimes de guerre — ignore par les USA et Israel</p>
+<p><strong>Mon analyse :</strong></p>
+<ul>
+<li>Le cessez-le-feu existe juridiquement mais pas factuellement</li>
+<li>Strategie israelienne : expansion territoriale de facto ("yellow line")</li>
+<li>Phase 2 du deal = incertaine, Hamas non desarme</li>
+</ul>
+<hr>
+<h3>Syrie — Transition post-Assad</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>1 an depuis la chute d'Assad (8 decembre 2024)</li>
+<li>Gouvernement transitoire d'Ahmed al-Sharaa</li>
+<li>13-18 janvier : Offensive gouvernementale contre les Forces Democratiques Syriennes (FDS/Kurdes)</li>
+<li>Raqqa et larges pans du nord-est repris en 2 jours</li>
+</ul>
+<p><strong>Cessez-le-feu (20 janvier) :</strong></p>
+<ul>
+<li>Mediation : Tom Barrack (envoye US)</li>
+<li>Termes : Integration FDS, transfert Raqqa/Deir ez-Zor, camps ISIS, frontieres, champs petroliers</li>
+<li>Delai : 4 jours pour plan d'integration</li>
+</ul>
+<p><strong>Sources :</strong></p>
+<ul>
+<li><a href="https://www.securitycouncilreport.org/monthly-forecast/2026-01/syria-87.php" target="_blank">Security Council Report</a></li>
+<li><a href="https://www.aljazeera.com/news/2026/1/20/syrian-government-sdf-agree-on-a-four-day-ceasefire" target="_blank">Al Jazeera</a></li>
+<li><a href="https://www.cnn.com/2026/01/18/middleeast/syria-military-takeover-kurdish-sdf-explainer-intl" target="_blank">CNN</a></li>
+</ul>
+<p><strong>Acteurs externes :</strong></p>
+<ul>
+<li>USA : Partenaire principal du nouveau gouvernement (remplace FDS)</li>
+<li>UE : 620M€ d'aide 2026-2027 (Von der Leyen, 9 janvier)</li>
+<li>Israel : A detruit l'essentiel de l'arsenal militaire syrien post-Assad</li>
+<li>Russie : Tente de relancer le partenariat securitaire</li>
+</ul>
+<p><strong>Ce qu'on ne sait PAS :</strong></p>
+<ul>
+<li>Viabilite a long terme du gouvernement Sharaa</li>
+<li>Sort des 3 millions de refugies rentres</li>
+<li>Menace ISIS residuelle</li>
+</ul>
+<hr>
+<h3>Venezuela — Crise regionale majeure</h3>
+<p><strong>Les faits :</strong></p>
+<ul>
+<li>3 janvier 2026 : Extraction militaire US de Nicolas Maduro</li>
+<li>~40 morts selon les rapports</li>
+<li>Colombie deploie 30 000 soldats a la frontiere (2 219 km)</li>
+</ul>
+<p><strong>Sources :</strong></p>
+<ul>
+<li><a href="https://www.aljazeera.com/news/2026/1/3/colombia-braces-with-alarm-after-maduros-removal-in-venezuela-by-us" target="_blank">Al Jazeera</a></li>
+<li><a href="https://news.un.org/en/story/2026/01/1166706" target="_blank">UN News</a></li>
+</ul>
+<p><strong>Reactions internationales :</strong></p>
+<ul>
+<li>Colombie (Petro) : "Assaut contre la souverainete" de l'Amerique latine</li>
+<li>Bresil : "Ligne inacceptable franchie"</li>
+<li>Mexique : "Changement de regime impose = violation du droit international"</li>
+<li>ONU Conseil de Securite : Division profonde</li>
+</ul>
+<p><strong>Tensions USA-Colombie :</strong></p>
+<ul>
+<li>Trump qualifie Petro de "vieil homme malade", l'accuse de narcotrafic</li>
+<li>Petro avertit d'une "menace reelle" d'action militaire US contre la Colombie</li>
+<li>Appel telephonique Trump-Petro = desescalade temporaire</li>
+</ul>
+<p><strong>Risques :</strong></p>
+<ul>
+<li>>1 million de refugies supplementaires potentiels vers la Colombie</li>
+<li>Groupes armes (ELN, FARC dissidents) actifs des deux cotes de la frontiere</li>
+</ul>
+<hr>
+<h2>💰 ECONOMIE MONDIALE & SANCTIONS</h2>
+<h3>Sanctions UE contre la Russie — 20e paquet en preparation</h3>
+<p><strong>Faits :</strong></p>
+<ul>
+<li>Sanctions economiques prolongees jusqu'au 31 juillet 2026</li>
+<li>A partir du 25 janvier 2026 : Interdiction de connexion aux systemes de paiement russes (SBP, Mir)</li>
+<li>Price cap petrole : Reduit de 47,60$ a 44,10$ (31 janvier)</li>
+<li>20e paquet prevu fin fevrier (anniversaire invasion)</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.consilium.europa.eu/en/policies/sanctions-against-russia/timeline-sanctions-against-russia/" target="_blank">Consilium EU</a></p>
+<p><strong>Mesures envisagees (20e paquet) :</strong></p>
+<ul>
+<li>Service ban maritime complet sur navires transportant hydrocarbures russes</li>
+<li>~600 navires de la "flotte fantome" deja sous ban</li>
+</ul>
+<p><strong>Efficacite reelle :</strong></p>
+<ul>
+<li>Contournements persistants via pays tiers</li>
+<li>Flotte fantome operative</li>
+<li>Chine et Inde = principaux acheteurs</li>
+</ul>
+<hr>
+<h3>BRICS — Dedollarisation acceleree</h3>
+<p><strong>Faits :</strong></p>
+<ul>
+<li>10 membres pleins (+ Egypte, Ethiopie, Iran, EAU, Indonesie)</li>
+<li>9 pays partenaires (Belarus, Bolivie, Cuba, Kazakhstan, Malaisie, Thailande, Ouganda, Ouzbekistan, Vietnam)</li>
+<li>BRICS Unit lance en 2026 (40% or, 60% devises BRICS)</li>
+<li>>90% du commerce Russie-Inde-Chine hors dollar</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://watcher.guru/news/brics-de-dollarization-agenda-for-2026-advances-with-global-launch" target="_blank">Watcher Guru</a></p>
+<p><strong>Limites :</strong></p>
+<ul>
+<li>Yuan = <5% reserves mondiales vs dollar = 59%</li>
+<li>Inde refuse officiellement de "remplacer le dollar"</li>
+<li>Menace Trump : 100% tarifs si monnaie commune BRICS</li>
+</ul>
+<p><strong>Analyse :</strong></p>
+<ul>
+<li>Dedollarisation = processus reel mais lent</li>
+<li>Alternative credible au dollar = 10-20 ans minimum</li>
+<li>Fragmentation du bloc BRICS sur la question monetaire</li>
+</ul>
+<hr>
+<h2>🏛️ INSTITUTIONS & DIPLOMATIE</h2>
+<h3>OTAN — Davos et defense europeenne</h3>
+<p><strong>Faits :</strong></p>
+<ul>
+<li>13 janvier : Rutte au Parlement europeen — appel a cooperation OTAN-UE</li>
+<li>20-22 janvier : Davos — panel "L'Europe peut-elle se defendre ?"</li>
+<li>Objectif : 5% PIB en defense d'ici 2035 (3,5% defense, 1,5% securite)</li>
+<li>21-22 janvier : Reunion Comite militaire OTAN a Bruxelles</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.nato.int/en/news-and-events/articles/news/2026/01/22/nato-secretary-general-discusses-transatlantic-security-champions-defence-investments-and-ukraine-support-in-davos" target="_blank">NATO</a></p>
+<p><strong>Accord-cadre Groenland/Arctique :</strong></p>
+<ul>
+<li>Trump rencontre Rutte a Davos</li>
+<li>Accord "concept of a deal" sur l'Arctique</li>
+<li>Tarifs sur 8 pays europeens annules</li>
+</ul>
+<p><strong>Enjeu Arctique :</strong></p>
+<ul>
+<li>Routes maritimes en ouverture</li>
+<li>Presence croissante Chine-Russie</li>
+<li>Interet strategique US</li>
+</ul>
+<hr>
+<h3>Mer Rouge — Houthis en pause</h3>
+<p><strong>Faits :</strong></p>
+<ul>
+<li>Aucune attaque Houthi depuis le cessez-le-feu Gaza (8 octobre 2025)</li>
+<li>Resolution 2812 (2026) : Monitoring prolonge de 6 mois (13 pour, 0 contre, 2 abstentions)</li>
+<li>84% de baisse des attaques vs 2024</li>
+</ul>
+<p><strong>Source primaire :</strong> <a href="https://www.securitycouncilreport.org/monthly-forecast/2026-01/yemen-86.php" target="_blank">Security Council Report</a></p>
+<p><strong>Risque :</strong></p>
+<ul>
+<li>Reprise quasi-certaine si conflit Gaza reprend</li>
+<li>Capacites Houthis intactes</li>
+<li>Situation sud-Yemen volatile (offensive STC/EAU)</li>
+</ul>
+<hr>
+<h2>🗺️ PAR REGION</h2>
+<h3>Asie-Pacifique</h3>
+<p><strong>Coree du Nord (4-5 janvier) :</strong></p>
+<ul>
+<li>Premier tir 2026 : Missiles hypersoniques depuis Pyongyang</li>
+<li>Portee : 900 km (mer du Japon)</li>
+<li>Timing : Veille sommet Lee-Xi, post-extraction Maduro</li>
+<li>Message selon experts : "Attaquer la Coree du Nord ne serait pas aussi facile que le Venezuela"</li>
+</ul>
+<p><strong>Mer de Chine Sud :</strong></p>
+<ul>
+<li>Philippines = president ASEAN 2026</li>
+<li>Negociations Code of Conduct accelerees (objectif : fin 2026)</li>
+<li>500+ exercices militaires USA-Philippines prevus</li>
+<li>Japon : 6M$ aide securitaire aux Philippines (14 janvier)</li>
+<li>23 janvier : Cargo singapourien chavire pres de Scarborough — 2 morts</li>
+</ul>
+<p><strong>Sources :</strong> <a href="https://www.aljazeera.com/news/2026/1/4/north-korea-fires-missiles-towards-sea-as-south-korean-leader-visits-china" target="_blank">Al Jazeera</a>, <a href="https://www.aljazeera.com/news/2026/1/15/japan-philippines-sign-new-defence-pacts-amid-surging-china-tensions" target="_blank">Al Jazeera</a></p>
+<hr>
+<h3>Afrique — Sahel</h3>
+<p><strong>Alliance des Etats du Sahel (AES) :</strong></p>
+<ul>
+<li>Mali, Burkina Faso, Niger = bloc consolide</li>
+<li>Force conjointe de 5 000 soldats (janvier 2025)</li>
+<li>Retrait d'ECOWAS effectif</li>
+</ul>
+<p><strong>Influence russe :</strong></p>
+<ul>
+<li>Wagner/Africa Corps present au Mali, Burkina, Libye, Centrafrique</li>
+<li>France expulsee (troupes, RFI, France 24)</li>
+<li>USA expulses du Niger (bases 101 et 201)</li>
+</ul>
+<p><strong>Developpements recents :</strong></p>
+<ul>
+<li>Tentative de coup au Benin (decembre 2025) — soutien francais discret</li>
+<li>Guinee : Doumbouya proclame president</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://www.theafricareport.com/403296/sahel-in-2026-which-way-will-the-wind-blow-in-the-coup-belt/" target="_blank">The Africa Report</a></p>
+<hr>
+<h3>Iran</h3>
+<p><strong>Sanctions renforcees :</strong></p>
+<ul>
+<li>23 janvier : Sanctions US sur traders petroliers illicites</li>
+<li>15 janvier : Sanctions sur entites nucleaires (AEOI, TESA)</li>
+<li>Snapback ONU effectif depuis septembre 2025 (E3)</li>
+</ul>
+<p><strong>Position Russie/Chine :</strong></p>
+<ul>
+<li>Russie : Ne reconnait pas les sanctions ONU</li>
+<li>Chine : Continue d'acheter le petrole iranien</li>
+</ul>
+<p><strong>Source :</strong> <a href="https://home.treasury.gov/news/press-releases/sb0077" target="_blank">US Treasury</a></p>
+<hr>
+<h2>📊 INDICATEURS STRATEGIQUES</h2>
+<table><thead><tr><th>Indicateur</th><th>Valeur</th><th>Tendance</th><th>Signification</th></tr></thead><tbody>
+<tr><td>Tarifs US moyens</td><td>14%</td><td>↗️</td><td>Plus haut depuis 1946</td></tr>
+<tr><td>Commerce US-Chine (9 mois)</td><td>-44,2%</td><td>↘️</td><td>Decouplage accelere</td></tr>
+<tr><td>Reserves $ mondiales</td><td>59%</td><td>↔️</td><td>Dominance maintenue</td></tr>
+<tr><td>Commerce Russie-Inde-Chine hors $</td><td>>90%</td><td>↗️</td><td>Dedollarisation regionale</td></tr>
+<tr><td>CIPS participants</td><td>1 467</td><td>↗️</td><td>Alternative SWIFT</td></tr>
+<tr><td>Guerre Ukraine</td><td>Jour 1 431</td><td>↔️</td><td>Stagnation</td></tr>
+<tr><td>Oil Price Cap russe</td><td>44,10$</td><td>↘️</td><td>Pression UE</td></tr>
+</tbody></table>
+<hr>
+<h2>🟡 A SURVEILLER</h2>
+<ul>
+<li><strong>Fin janvier</strong> : 20e paquet sanctions UE (preparation)</li>
+<li><strong>Fevrier</strong> : 4e anniversaire invasion Ukraine — timing politique</li>
+<li><strong>Avril 2026</strong> : Visite Trump en Chine — test de la detente</li>
+<li><strong>2026</strong> : Negociations Code of Conduct Mer de Chine Sud (Philippines ASEAN)</li>
+<li><strong>Permanent</strong> : Stabilite cessez-le-feu Gaza — determinante pour Mer Rouge</li>
+</ul>
+<hr>
+<h2>🚩 PROPAGANDA ALERT</h2>
+<ol>
+<li><strong>Chiffres de pertes Ukraine/Russie</strong> — Les deux camps mentent systematiquement. Aucun chiffre fiable. Sourcer avec "selon [X]".</li>
+</ol>
+<ol>
+<li><strong>"Board of Peace" Gaza</strong> — Nom orwellien pour un organe incluant un homme sous mandat CPI. Reconstruction ≠ paix si occupation continue.</li>
+</ol>
+<ol>
+<li><strong>"Concept of a deal" Groenland</strong> — Langage vague de Trump. Aucun detail concret. Victoire rhetorque sans substance verifiable.</li>
+</ol>
+<ol>
+<li><strong>Dedollarisation "imminente"</strong> — Narratif BRICS exagere. Dollar = 59% reserves. Yuan <5%. Processus = decennies, pas mois.</li>
+</ol>
+<ol>
+<li><strong>Venezuela — Framing divergent</strong> :</li>
+</ol>
+<ul>
+<li>US : "Liberation" / "regime change"</li>
+<li>Amerique latine : "Violation souverainete" / "precedent dangereux"</li>
+<li>Realite : Operation militaire US extraterritoriale — fait inedit moderne</li>
+</ul>
+<hr>
+<h2>❓ QUESTIONS OUVERTES</h2>
+<ol>
+<li><strong>Trump et l'Ukraine</strong> : Les USA maintiendront-ils le soutien ? Position reelle de l'administration vs rhetorique de campagne ?</li>
+</ol>
+<ol>
+<li><strong>Gaza Phase 2</strong> : Le cessez-le-feu peut-il tenir sans desarmement Hamas ? Israel acceptera-t-il un retrait significatif ?</li>
+</ol>
+<ol>
+<li><strong>Syrie post-Assad</strong> : Le gouvernement Sharaa peut-il unifier le pays ? Sort des camps ISIS ?</li>
+</ol>
+<ol>
+<li><strong>Precedent Venezuela</strong> : L'extraction de Maduro ouvre-t-elle la porte a d'autres interventions US en Amerique latine ?</li>
+</ol>
+<ol>
+<li><strong>OTAN defense 5%</strong> : L'Europe peut-elle atteindre cet objectif ? Volonte politique reelle ?</li>
+</ol>
+<hr>
+<p><strong>Rapport genere le 2026-01-25</strong></p>
+<p><strong>Sources principales :</strong></p>
+<ul>
+<li><a href="https://www.aljazeera.com" target="_blank">Al Jazeera</a> | <a href="https://www.reuters.com" target="_blank">Reuters</a> | <a href="https://www.scmp.com" target="_blank">SCMP</a></li>
+<li><a href="https://www.securitycouncilreport.org" target="_blank">Security Council Report</a> | <a href="https://www.nato.int" target="_blank">NATO</a></li>
+<li><a href="https://taxfoundation.org" target="_blank">Tax Foundation</a> | <a href="https://www.consilium.europa.eu" target="_blank">Consilium EU</a></li>
+<li><a href="https://www.china-briefing.com" target="_blank">China Briefing</a> | <a href="https://www.theafricareport.com" target="_blank">The Africa Report</a></li>
+</ul>
+<hr>
+<p><em>La geopolitique est le domaine de la propagande par excellence. Ce rapport presente les faits verifies, de multiples perspectives, et les interets en jeu. Pas mon job : decider qui a raison.</em></p></div><div class="bottom-nav"><a href="bonnes-nouvelles.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Bonnes Nouvelles</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; GÉOPOLITIQUE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arnaud Callier — QR Card</title>
+    <style>
+        @page {
+            size: 90mm 55mm;
+            margin: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Georgia, 'Times New Roman', serif;
+            background: #fff;
+            color: #0a0a0a;
+        }
+
+        .card {
+            width: 90mm;
+            height: 55mm;
+            padding: 5mm;
+            display: flex;
+            gap: 4mm;
+            background: #fff;
+        }
+
+        .left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .right {
+            width: 35mm;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right img {
+            width: 100%;
+            height: auto;
+        }
+
+        .name {
+            font-size: 14pt;
+            font-weight: 400;
+            margin-bottom: 1mm;
+        }
+
+        .title {
+            font-size: 7pt;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #6b7280;
+            margin-bottom: 3mm;
+        }
+
+        .projects {
+            font-size: 8pt;
+            line-height: 1.5;
+        }
+
+        .project-name {
+            font-weight: 600;
+        }
+
+        .project-url {
+            color: #6b7280;
+            font-size: 7pt;
+        }
+
+        .contact {
+            font-size: 7pt;
+            color: #6b7280;
+        }
+
+        .contact a {
+            color: #0a0a0a;
+            text-decoration: none;
+        }
+
+        .tagline {
+            font-size: 6pt;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 2mm;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="left">
+        <div>
+            <h1 class="name">Arnaud Callier</h1>
+            <p class="title">Founder & Creator</p>
+        </div>
+
+        <div class="projects">
+            <p>
+                <span class="project-name">Educated Traveler</span><br>
+                <span class="project-url">educatedtraveler.app</span>
+            </p>
+            <p style="margin-top: 2mm;">
+                <span class="project-name">Littoralicious</span><br>
+                <span class="project-url">littoralicious.com</span>
+            </p>
+        </div>
+
+        <div class="contact">
+            <a href="mailto:arnaudcallier@pm.me">arnaudcallier@pm.me</a><br>
+            <a href="https://wa.me/33695903520">+33 6 95 90 35 20</a>
+        </div>
+
+        <p class="tagline">Scan to connect →</p>
+    </div>
+
+    <div class="right">
+        <img src="../assets/qr-connect.svg" alt="QR Code">
+    </div>
+</div>
+
+</body>
+</html>

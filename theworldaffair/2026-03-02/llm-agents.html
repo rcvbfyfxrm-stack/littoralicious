@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM & Agents — The World Affair</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 52px; font-weight: 400; letter-spacing: 2px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Lundi 2 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;54</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#2c2c2c">LLM & Agents</div>
+  <h1 class="article-title">LLM, Agents & Intelligence Artificielle</h1>
+  <div class="article-date">Lundi 2 Mars 2026 &mdash; Edition N&deg;54</div>
+</div><div class="article-body"><h1>The World Affair — LLM Agents & Intelligence Artificielle</h1>
+<h3>2 mars 2026</h3>
+<p><em>« L'argent ne ment pas. Quand 110 milliards de dollars changent de mains en un seul tour de table, le message est clair : ceux qui paient pensent que l'intelligence artificielle va tout changer. La question est de savoir s'ils ont raison — ou s'ils sont simplement trop investis pour avoir tort. »</em></p>
+<hr>
+<h2>L'Éditorial</h2>
+<p>Cette semaine, trois histoires dessinent le contour exact du moment que traverse l'industrie de l'IA en mars 2026. La première est une question d'argent — 110 milliards de dollars, pour être précis. La deuxième est une question de compétition — un modèle chinois qui rivalise avec ce que l'Occident produit de mieux, à une fraction du coût. La troisième est une question de fragilité — l'IA qui échoue silencieusement, sans que personne ne s'en aperçoive, jusqu'au jour où tout le monde s'en aperçoit en même temps. Ensemble, ces trois récits racontent l'histoire d'une industrie qui avance plus vite que sa capacité à comprendre ses propres conséquences.</p>
+<hr>
+<h2>Les Récits</h2>
+<h3>I. OpenAI lève 110 milliards de dollars : l'IA entre dans l'ère des infrastructures souveraines</h3>
+<p>Le chiffre mérite d'être répété parce qu'il défie l'intuition : <strong>110 milliards de dollars</strong> levés en un seul tour de table. Amazon contribue 50 milliards, SoftBank 30 milliards, Nvidia 30 milliards. La valorisation pre-money atteint 730 milliards de dollars — ce qui placerait OpenAI, si elle était cotée, parmi les dix entreprises les plus valorisées au monde. Plus que Samsung. Plus que TSMC. Plus que la totalité du marché boursier de la plupart des pays européens.</p>
+<p>Mais le chiffre brut masque la vraie nouvelle. Le partenariat AWS élargi à 138 milliards de dollars inclut <strong>5 gigawatts de capacité compute dédiée</strong> — 3 GW pour l'inférence, 2 GW pour l'entraînement — sur les systèmes Vera Rubin de Nvidia. Pour mettre ce chiffre en perspective : 5 GW, c'est la consommation électrique d'un pays comme la Croatie. OpenAI ne construit plus un produit logiciel. Elle construit une infrastructure énergétique.</p>
+<p>La dépendance croisée Amazon-Nvidia-OpenAI crée un oligopole de facto sur l'infrastructure IA mondiale. Quand trois entités contrôlent simultanément le capital (Amazon), le matériel (Nvidia) et le modèle (OpenAI), la notion même de « marché concurrentiel de l'IA » devient une fiction polie. Et cette concentration de ressources arrive au moment précis où les puces mémoire DRAM et HBM ont déjà vu leurs prix doubler au T1 2026 — chaque dollar investi dans le compute IA est un dollar qui renchérit les smartphones, les serveurs, et toute l'électronique grand public.</p>
+<p>La question stratégique n'est plus « l'IA va-t-elle transformer l'économie ? » — le capital a répondu. La question est : qui possède l'infrastructure sur laquelle cette transformation repose, et que se passe-t-il quand la réponse est « trois entreprises américaines » ?</p>
+<h3>II. MiniMax M2.5 : la Chine rivalise avec Claude Opus à moindre coût</h3>
+<p>Pendant que la Silicon Valley célèbre des tours de table à douze chiffres, un laboratoire chinois rappelle que la compétition ne se gagne pas uniquement avec du capital. <strong>MiniMax M2.5</strong>, le dernier modèle du laboratoire basé à Shanghai, est salué par les benchmarks indépendants pour des performances rivales avec Claude Opus 4.6 d'Anthropic — le modèle considéré comme la référence actuelle en raisonnement complexe.</p>
+<p>La différence cruciale : le coût. MiniMax M2.5 opère à un prix par token significativement inférieur à ses concurrents américains. Ce n'est pas un accident. C'est le résultat d'une stratégie délibérée d'optimisation architecturale et d'entraînement sur des datasets diversifiés, combinée à des coûts d'infrastructure et de main-d'œuvre structurellement plus bas. Le modèle DeepSeek avait ouvert la voie en janvier ; MiniMax confirme la tendance.</p>
+<p>L'implication est systémique. La course aux modèles n'est plus un duopole américain Anthropic-OpenAI avec Google en arbitre. C'est un marché mondial où la Chine produit des modèles comparables à une fraction du prix. La pression sur les marges va s'accélérer. Et pour les entreprises qui déploient l'IA en production, la question « pourquoi payer trois fois plus pour un modèle américain ? » va se poser avec une insistance croissante — surtout quand la réponse implique de financer indirectement un oligopole de 730 milliards de dollars.</p>
+<h3>III. « Silent failure at scale » — le risque IA que personne ne mesure</h3>
+<p>CNBC publie cette semaine une analyse qui devrait hanter les directeurs techniques de toutes les entreprises ayant déployé de l'IA en production : le concept de <strong>« silent failure at scale »</strong>. L'idée est simple et terrifiante. Les systèmes d'IA ne s'effondrent pas de manière spectaculaire. Ils introduisent des erreurs mineures — une donnée mal classée, une recommandation légèrement biaisée, un calcul approximatif — qui, prises individuellement, passent sous le radar de tout contrôle qualité. Mais accumulées sur des semaines et des mois, ces micro-erreurs créent des défaillances systémiques.</p>
+<p>Le parallèle le plus juste n'est pas informatique — il est médical. C'est le mécanisme exact de la maladie chronique : pas un événement catastrophique, mais une accumulation silencieuse de dommages qui ne deviennent visibles qu'au moment où le système est déjà compromis. Le patient ne sent rien pendant des années, puis tout se dégrade simultanément.</p>
+<p>Ce qui rend le problème particulièrement pernicieux dans le contexte de l'IA, c'est l'échelle. Quand un humain commet une erreur, l'erreur est locale — elle affecte un dossier, un client, un calcul. Quand un modèle d'IA commet la même erreur, elle se réplique instantanément sur des millions d'opérations. Le taux d'erreur peut être infime — 0,1%, 0,01% — et le dommage agrégé peut être colossal. Et personne ne le voit venir, parce que chaque erreur individuelle est trop petite pour déclencher une alerte.</p>
+<p>L'article de CNBC ne propose pas de solution — parce qu'il n'en existe pas encore de satisfaisante. Les systèmes de monitoring actuels sont conçus pour détecter les défaillances catastrophiques, pas les dérives graduelles. C'est comme utiliser un détecteur de fumée pour prévenir l'empoisonnement au monoxyde de carbone : l'outil est bon, mais il mesure la mauvaise chose.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<ul>
+<li>La levée OpenAI de 110 Md$ représente plus que le PIB annuel de 130 pays. La concentration de capital IA dans trois entreprises américaines pose une question de souveraineté numérique que l'Europe n'a toujours pas résolue — et que la compétition chinoise rend plus urgente chaque mois.</li>
+<li>Le succès de MiniMax M2.5 à bas coût suggère que les modèles de langage suivent la trajectoire des panneaux solaires : la Chine entre tard, copie vite, optimise mieux, et finit par fixer les prix mondiaux. Si ce parallèle se confirme, les marges des laboratoires américains sont structurellement menacées.</li>
+<li>Le « silent failure » est le prochain scandale IA. Pas une IA qui ment de manière spectaculaire — cela, on sait le détecter. Une IA qui se trompe de manière imperceptible, systématiquement, à l'échelle industrielle. Le premier cas documenté d'une entreprise découvrant des mois de données corrompues par une IA défaillante n'a pas encore fait la une. Il fera la une.</li>
+</ul>
+<hr>
+<h2>La Connexion</h2>
+<p>Le fil rouge de cette semaine est la disproportion entre la vitesse de déploiement et la vitesse de compréhension. OpenAI déploie 5 GW de compute avant que quiconque ait défini ce qu'est un « taux d'erreur acceptable » pour un système IA en production. MiniMax démocratise l'accès à des modèles puissants avant que les cadres réglementaires ne soient en place pour les encadrer. Et le « silent failure » s'accumule dans des milliers d'entreprises qui ont déployé l'IA parce que le marché l'exigeait, sans disposer des outils pour surveiller ce qu'elles ont déployé.</p>
+<p>Nous ne sommes pas dans une bulle IA — les capacités sont réelles, les gains de productivité mesurables, la demande authentique. Nous sommes dans quelque chose de plus subtil et de plus dangereux : une accélération sans instrumentation. L'équivalent d'un avion qui vole à Mach 2 avec un altimètre de cessna. L'avion vole. Il vole vite. Mais personne à bord ne sait exactement à quelle altitude.</p>
+<hr>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://techcrunch.com/2026/02/27/openai-raises-110b-in-one-of-the-largest-private-funding-rounds-in-history/">TechCrunch — OpenAI $110B funding round</a></li>
+<li><a href="https://www.cnbc.com/2026/02/27/open-ai-funding-round-amazon.html">CNBC — OpenAI Amazon partnership</a></li>
+<li><a href="https://www.cnbc.com/2026/03/01/ai-artificial-intelligence-economy-business-risks.html">CNBC — Silent failure at scale</a></li>
+<li><a href="https://blog.mean.ceo/new-ai-model-releases-news-march-2026/">Blog Mean.ceo — MiniMax M2.5 and new model releases</a></li>
+</ul>
+<hr>
+<p><em>The World Affair — LLM Agents & Intelligence Artificielle — 2 mars 2026</em></p></div><div class="bottom-nav"><a href="gastronomie.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Gastronomie &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; LLM & AGENTS</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

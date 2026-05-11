@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 90">
+  <!--
+    Four Elements — Hearth edition
+    Air (steam) + Fire (flame) + Water (waves) + Earth (vessel)
+    Ancient philosophy meets the galley
+  -->
+
+  <!-- AIR — Steam rising at top -->
+  <path d="M 32 8 Q 30 4, 33 2" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 40 6 Q 40 2, 42 0" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+  <path d="M 48 8 Q 50 4, 47 2" fill="none" stroke="#0a0a0a" stroke-width="1" stroke-linecap="round"/>
+
+  <!-- FIRE — Flame -->
+  <path
+    d="M 40 12
+       C 48 22, 54 28, 54 38
+       C 54 48, 46 54, 40 54
+       C 34 54, 26 48, 26 38
+       C 26 28, 32 22, 40 12
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+
+  <!-- Inner flame -->
+  <path
+    d="M 40 24
+       C 44 30, 47 34, 47 40
+       C 47 46, 44 50, 40 50
+       C 36 50, 33 46, 33 40
+       C 33 34, 36 30, 40 24
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+  />
+
+  <!-- WATER — Waves -->
+  <path
+    d="M 8 62
+       Q 24 56, 40 62
+       T 72 62"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <path
+    d="M 8 70
+       Q 24 64, 40 70
+       T 72 70"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!-- EARTH — Ground line / shore -->
+  <line x1="5" y1="82" x2="75" y2="82" stroke="#0a0a0a" stroke-width="2" stroke-linecap="round"/>
+
+</svg>

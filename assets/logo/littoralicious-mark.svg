@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <!--
+    LITTORALICIOUS Mark
+    Matisse cut-out inspired: bold organic shape
+    References: amphora, wave, coastal silhouette
+  -->
+
+  <!-- Outer shape - like a Greek amphora or vessel silhouette -->
+  <path
+    d="M 60 10
+       C 75 10, 85 15, 90 25
+       C 95 35, 100 50, 100 65
+       C 100 80, 95 95, 85 105
+       C 75 110, 60 112, 60 112
+       C 60 112, 45 110, 35 105
+       C 25 95, 20 80, 20 65
+       C 20 50, 25 35, 30 25
+       C 35 15, 45 10, 60 10
+       Z"
+    fill="#0a0a0a"
+  />
+
+  <!-- Interior wave cutout - negative space like Matisse -->
+  <path
+    d="M 40 55
+       Q 50 45, 60 55
+       T 80 55
+       L 80 75
+       Q 70 85, 60 75
+       T 40 75
+       Z"
+    fill="#fafafa"
+  />
+
+  <!-- Small wave detail -->
+  <path
+    d="M 45 65
+       Q 52 60, 60 65
+       T 75 65"
+    fill="none"
+    stroke="#fafafa"
+    stroke-width="2"
+    stroke-linecap="round"
+  />
+
+</svg>

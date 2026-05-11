@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 80">
+  <!--
+    Amphora — Greek storage vessel
+    Coastal trade, provisions, nurture
+    The original pantry
+  -->
+
+  <!-- Vessel body -->
+  <path
+    d="M 20 25
+       C 15 30, 12 45, 15 60
+       Q 18 72, 30 72
+       Q 42 72, 45 60
+       C 48 45, 45 30, 40 25"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+
+  <!-- Neck -->
+  <path
+    d="M 20 25
+       C 20 20, 22 15, 25 12
+       L 25 8
+       L 35 8
+       L 35 12
+       C 38 15, 40 20, 40 25"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+
+  <!-- Handles -->
+  <path
+    d="M 22 18
+       C 12 20, 10 35, 18 40"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 38 18
+       C 48 20, 50 35, 42 40"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!-- Wave decoration on body -->
+  <path
+    d="M 18 50
+       Q 24 47, 30 50
+       T 42 50"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1"
+    stroke-linecap="round"
+  />
+
+</svg>

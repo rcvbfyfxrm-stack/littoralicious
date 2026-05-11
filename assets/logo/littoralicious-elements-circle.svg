@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Four Elements — Circular
+    Ancient alchemical arrangement
+    Fire (top) + Air (right) + Water (bottom) + Earth (left)
+  -->
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Inner circle - the hearth -->
+  <circle cx="50" cy="50" r="12" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE — Top (flame pointing up) -->
+  <path
+    d="M 50 8
+       C 54 14, 56 18, 56 22
+       C 56 26, 53 28, 50 28
+       C 47 28, 44 26, 44 22
+       C 44 18, 46 14, 50 8
+       Z"
+    fill="#0a0a0a"
+  />
+
+  <!-- WATER — Bottom (waves) -->
+  <path
+    d="M 38 78
+       Q 44 74, 50 78
+       T 62 78"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+  <path
+    d="M 40 84
+       Q 46 80, 52 84
+       T 64 84"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linecap="round"
+  />
+
+  <!-- AIR — Right (three lines/wind) -->
+  <line x1="75" y1="44" x2="88" y2="44" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="78" y1="50" x2="92" y2="50" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="75" y1="56" x2="88" y2="56" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- EARTH — Left (mountain/triangle) -->
+  <path
+    d="M 8 56
+       L 18 40
+       L 28 56
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+  />
+
+</svg>

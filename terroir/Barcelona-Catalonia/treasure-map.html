@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Barcelona &middot; Treasure Map &middot; Littoralicious</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --paper:#fafafa; --paper-2:#f2efe8; --ink:#0a0a0a; --ink-2:#3a3a3a; --ink-3:#6a6a6a; --salt:#94a3b8; --rule:#d7d2c4; --rule-2:#e2e2e2; --sea:#2d4a5e; --sea-2:#1e3443; --gold:#8a6a2e; --red:#7a2210; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html, body { background:#d8d3c4; }
+  body { font-family:'Libre Baskerville',Georgia,serif; color:var(--ink); -webkit-font-smoothing:antialiased; padding:24px 12px 48px; min-height:100vh; }
+  .map { width:210mm; height:297mm; margin:0 auto; background:var(--paper); box-shadow:0 10px 32px rgba(0,0,0,0.18); padding:12mm 12mm 10mm; position:relative; overflow:hidden; display:grid; grid-template-rows:auto auto auto 1fr auto; gap:5mm; }
+  .masthead { text-align:center; border-bottom:2px solid var(--ink); padding-bottom:4mm; }
+  .eyebrow { font-family:'JetBrains Mono',monospace; font-size:7pt; color:var(--sea); letter-spacing:4pt; text-transform:uppercase; margin-bottom:2mm; }
+  .h1 { font-family:'Playfair Display',serif; font-size:32pt; font-weight:900; letter-spacing:5pt; line-height:1; }
+  .h1-sub { font-family:'Playfair Display',serif; font-style:italic; font-size:9.5pt; color:var(--sea); margin-top:1.5mm; }
+  .h-meta { font-family:'JetBrains Mono',monospace; font-size:6.5pt; letter-spacing:1.6pt; color:var(--ink-3); text-transform:uppercase; margin-top:2mm; }
+  .h-meta span { color:var(--sea); }
+  .lead-note { text-align:center; font-family:'Playfair Display',serif; font-style:italic; font-size:8.8pt; color:var(--ink-2); line-height:1.4; }
+  .treasures { display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; }
+  .treasure { background:var(--paper-2); padding:3mm 3mm 3.5mm; border-top:2px solid var(--sea); position:relative; }
+  .treasure-num { font-family:'JetBrains Mono',monospace; font-size:6pt; letter-spacing:1.5pt; color:var(--sea); text-transform:uppercase; margin-bottom:1mm; display:flex; justify-content:space-between; align-items:center; }
+  .treasure-num .x { font-family:'Playfair Display',serif; font-size:11pt; color:var(--red); font-weight:900; line-height:0.9; }
+  .treasure-title { font-family:'Playfair Display',serif; font-size:10pt; font-weight:700; line-height:1.15; margin-bottom:1mm; }
+  .treasure-where { font-family:'JetBrains Mono',monospace; font-size:6pt; letter-spacing:0.8pt; color:var(--ink-3); text-transform:uppercase; margin-bottom:1mm; }
+  .treasure-body { font-size:7.5pt; line-height:1.4; color:var(--ink-2); }
+  .pairings { display:grid; grid-template-columns:1fr 1fr; gap:1.5mm 4mm; }
+  .pairing { border-left:2px solid var(--sea); padding:1.4mm 3mm; background:var(--paper-2); font-size:7.5pt; line-height:1.4; }
+  .pairing strong { font-family:'Playfair Display',serif; font-size:9pt; font-weight:700; color:var(--ink); display:block; margin-bottom:0.3mm; line-height:1.2; }
+  .section-head { display:flex; align-items:baseline; justify-content:space-between; border-bottom:1px solid var(--ink); padding-bottom:1mm; margin-bottom:1.5mm; }
+  .section-head h2 { font-family:'JetBrains Mono',monospace; font-size:7.5pt; letter-spacing:3pt; text-transform:uppercase; font-weight:500; color:var(--ink); }
+  .section-head .count { font-family:'Playfair Display',serif; font-style:italic; font-size:7.5pt; color:var(--ink-3); }
+  .columns { display:grid; grid-template-columns:1fr 1fr; gap:6mm; align-content:start; }
+  .col-stack > .section + .section { margin-top:4mm; }
+  .item { display:grid; grid-template-columns:3.5mm 1fr; gap:1.8mm; padding:1.2mm 0; border-bottom:0.5px solid var(--rule-2); cursor:pointer; user-select:none; }
+  .item:last-child { border-bottom:none; }
+  .item .check { width:3mm; height:3mm; border:1.2px solid var(--ink-3); background:var(--paper); margin-top:1mm; flex-shrink:0; position:relative; transition:background 0.12s; }
+  .item:hover .check { border-color:var(--sea); }
+  .item.is-found .check { background:var(--sea); border-color:var(--sea); }
+  .item.is-found .check::before { content:'✓'; position:absolute; inset:0; display:flex; align-items:center; justify-content:center; color:var(--paper); font-weight:700; font-size:7.5pt; line-height:1; }
+  .item-line { font-size:7.8pt; line-height:1.35; color:var(--ink-2); }
+  .item-line .name { font-family:'Playfair Display',serif; font-size:8.6pt; font-weight:700; color:var(--ink); }
+  .item-line .where { color:var(--sea); font-family:'JetBrains Mono',monospace; font-size:6.5pt; letter-spacing:0.8pt; text-transform:uppercase; }
+  .item.is-found .item-line { color:var(--ink-3); text-decoration:line-through; text-decoration-color:var(--salt); text-decoration-thickness:0.6px; }
+  .item.is-found .item-line .where { text-decoration:none; }
+  .footer { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; padding-top:2mm; border-top:1px solid var(--ink); font-family:'JetBrains Mono',monospace; font-size:6.5pt; letter-spacing:1.4pt; color:var(--ink-3); text-transform:uppercase; align-items:baseline; }
+  .footer-quote { font-family:'Playfair Display',serif; font-style:italic; font-size:8.5pt; color:var(--sea); letter-spacing:0; text-transform:none; text-align:center; }
+  .footer-right { text-align:right; }
+  .toolbar { position:fixed; top:16px; right:16px; background:var(--paper); border:1px solid var(--ink); padding:6px 10px; z-index:100; display:flex; gap:6px; box-shadow:0 4px 12px rgba(0,0,0,0.18); }
+  .toolbar button, .toolbar a { background:transparent; border:1px solid var(--ink); color:var(--ink); font-family:'JetBrains Mono',monospace; font-size:8pt; letter-spacing:1pt; text-transform:uppercase; padding:5px 9px; cursor:pointer; text-decoration:none; transition:all 0.15s; }
+  .toolbar button:hover, .toolbar a:hover { background:var(--ink); color:var(--paper); }
+  @media print { html, body { background:white; padding:0; } .toolbar { display:none !important; } .map { box-shadow:none; margin:0; width:100%; height:100vh; padding:9mm; } @page { size:A4 portrait; margin:0; } }
+  @media (max-width:720px) { body { padding:0; } .map { width:100%; height:auto; padding:6mm; gap:4mm; } .columns, .pairings, .treasures { grid-template-columns:1fr; gap:3mm; } .h1 { font-size:26pt; letter-spacing:3pt; } .footer { grid-template-columns:1fr; text-align:center; } .footer-right { text-align:center; } }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">Print / PDF</button>
+  <a href="index.html">← Guide</a>
+  <button onclick="resetChecks()">Reset</button>
+</div>
+
+<article class="map">
+
+  <header class="masthead">
+    <div class="eyebrow">Carte au Trésor &middot; Treasure Map</div>
+    <h1 class="h1">BARCELONA</h1>
+    <div class="h1-sub">Bread, oil, tomato — everything else is interpretation</div>
+    <div class="h-meta">Catalonia &middot; Spain <span>·</span> 7 May 2026 <span>·</span> L'Hora del Vermut peak</div>
+  </header>
+
+  <p class="lead-note">A printable A4 of the must-do Barcelona — only the experiences you can have here and nowhere else. No filler, no generic. Tick a box; the mark stays until you reset.</p>
+
+  <!-- THREE TREASURES -->
+  <div class="treasures">
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure I</span><span class="x">✕</span></div>
+      <div class="treasure-title">Bomba origin at La Cova Fumada</div>
+      <div class="treasure-where">Barceloneta · since 1944 · cash only</div>
+      <div class="treasure-body">The bomba — fried potato bomb stuffed with meat ragù, two sauces — was invented at this barceloneta tasca in 1944. No sign on the door, chalk menu on butcher's paper, three generations of fishermen-and-dockers. Lunch only, closed Sun. Eat it where it was born.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure II</span><span class="x">✕</span></div>
+      <div class="treasure-title">L'hora del vermut at Quimet i Quimet</div>
+      <div class="treasure-where">Poble Sec · since 1914 · 6 m² standing</div>
+      <div class="treasure-body">Five generations behind the same six-square-metre counter since 1914. Walls floor-to-ceiling with preserved-fish tins. Sunday 12:30: vermut on the rocks + the canonical montadito (anchovy + foie gras + black-truffle honey, salmon + yogurt + truffle). The Catalan ritual.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure III</span><span class="x">✕</span></div>
+      <div class="treasure-title">Bunkers del Carmel sunset</div>
+      <div class="treasure-where">Carmel hill · free · 360°</div>
+      <div class="treasure-body">A 1937 anti-aircraft battery at the top of Carmel hill — concrete platforms, no rails, full 360° over the city, the Sagrada Família and the Mediterranean. Free. Locals climb it Sunday with cava and bocadillos. Bring a bottle, watch the city go gold.</div>
+    </div>
+  </div>
+
+  <div class="columns">
+
+    <!-- COL 1 -->
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>🍽 Must Eat · Only-here dishes</h2><span class="count">5</span></div>
+        <div class="item" data-key="d-pa-tomaquet"><div class="check"></div><div class="item-line"><span class="name">Pa amb tomàquet</span> — bread + ripe tomato cut + olive oil + salt <span class="where">first plate at every table</span></div></div>
+        <div class="item" data-key="d-bomba"><div class="check"></div><div class="item-line"><span class="name">Bomba de la Barceloneta</span> — fried potato bomb, two sauces <span class="where">La Cova Fumada · the origin</span></div></div>
+        <div class="item" data-key="d-esqueixada"><div class="check"></div><div class="item-line"><span class="name">Esqueixada</span> — raw shredded salt cod + tomato + peppers + olives <span class="where">Cal Pep · Cañete</span></div></div>
+        <div class="item" data-key="d-suquet"><div class="check"></div><div class="item-line"><span class="name">Suquet de peix</span> — Costa Brava fisherman's stew with picada <span class="where">order ahead at Cañete</span></div></div>
+        <div class="item" data-key="d-crema"><div class="check"></div><div class="item-line"><span class="name">Crema catalana</span> — orange-cinnamon custard, brûlée'd at the table <span class="where">predates French crème brûlée</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🍷 Must Drink · The Catalan glass</h2><span class="count">5</span></div>
+        <div class="item" data-key="w-vermut"><div class="check"></div><div class="item-line"><span class="name">Vermut català on the rocks</span> — olive + orange slice <span class="where">Yzaguirre · Casa Mariol · Sun 12:30</span></div></div>
+        <div class="item" data-key="w-cava-pages"><div class="check"></div><div class="item-line"><span class="name">Cava de pagès</span> — small-grower, NOT supermarket <span class="where">Recaredo · Gramona · Raventós i Blanc</span></div></div>
+        <div class="item" data-key="w-priorat"><div class="check"></div><div class="item-line"><span class="name">Priorat DOQ</span> — schist-and-llicorella Garnatxa <span class="where">Clos Mogador · Mas Doix · Palacios</span></div></div>
+        <div class="item" data-key="w-xarello"><div class="check"></div><div class="item-line"><span class="name">Penedès Xarel·lo</span> — indigenous structured white <span class="where">Albet i Noya · Pares Balta</span></div></div>
+        <div class="item" data-key="w-brutal-flight"><div class="check"></div><div class="item-line"><span class="name">Three-glass natural-wine flight at Bar Brutal</span> — 5,000-bottle cellar <span class="where">Born · the BCN reference</span></div></div>
+      </section>
+
+    </div>
+
+    <!-- COL 2 -->
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>⚓ Must Book Tables</h2><span class="count">4</span></div>
+        <div class="item" data-key="t-disfrutar"><div class="check"></div><div class="item-line"><span class="name">Disfrutar</span> — World's #1 Restaurant 2024, 3★ Michelin <span class="where">Eixample · book 3–4 mo</span></div></div>
+        <div class="item" data-key="t-canete"><div class="check"></div><div class="item-line"><span class="name">Bar Cañete</span> — counter dining, grilled vegetables, the classic <span class="where">Raval · book lunch</span></div></div>
+        <div class="item" data-key="t-cal-pep"><div class="check"></div><div class="item-line"><span class="name">Cal Pep</span> — counter only, no menu, ask Pep what's on <span class="where">Born · arrive 12:45 or 19:30</span></div></div>
+        <div class="item" data-key="t-direkte"><div class="check"></div><div class="item-line"><span class="name">Direkte Boqueria</span> — 1★ Michelin 8-seat counter, inside the market <span class="where">book months</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🗝 Must Do · Only-here experiences</h2><span class="count">5</span></div>
+        <div class="item" data-key="x-bunkers"><div class="check"></div><div class="item-line"><span class="name">Bunkers del Carmel sunset</span> — 1937 anti-aircraft hill, free 360° <span class="where">bring cava + bocadillo</span></div></div>
+        <div class="item" data-key="x-vermut-sunday"><div class="check"></div><div class="item-line"><span class="name">Sunday l'hora del vermut crawl</span> — Quimet → Bormuth → La Confiteria <span class="where">12:30–14:00</span></div></div>
+        <div class="item" data-key="x-marsella"><div class="check"></div><div class="item-line"><span class="name">Absinthe ritual at Bar Marsella (1820)</span> — sugar, slow water drip <span class="where">Picasso · Hemingway · Gaudí</span></div></div>
+        <div class="item" data-key="x-boqueria-9am"><div class="check"></div><div class="item-line"><span class="name">Boqueria 09:00 weekday — back perimeter only</span> — fish hall, mushroom stalls <span class="where">NOT the Las Ramblas front rows</span></div></div>
+        <div class="item" data-key="x-sant-ponc"><div class="check"></div><div class="item-line"><span class="name">Diada de Sant Ponç (May 11)</span> — Carrer Hospital herb-and-honey market, since 1801 <span class="where">date-specific · once a year</span></div></div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div>Littoralicious &middot; Carte au Trésor</div>
+    <div class="footer-quote">"Bread, oil, tomato — everything else is interpretation"</div>
+    <div class="footer-right">littoralicious.com</div>
+  </footer>
+
+</article>
+
+<script>
+  var STORAGE_KEY = 'treasure-barcelona';
+  function load() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; } }
+  function save(s) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {} }
+  function applyState() { var s = load(); document.querySelectorAll('.item').forEach(function (el) { if (s[el.dataset.key]) el.classList.add('is-found'); }); }
+  function resetChecks() { if (!confirm('Reset all marks?')) return; save({}); document.querySelectorAll('.item.is-found').forEach(function (el) { el.classList.remove('is-found'); }); }
+  document.querySelectorAll('.item').forEach(function (el) {
+    el.addEventListener('click', function () {
+      el.classList.toggle('is-found');
+      var s = load(); var k = el.dataset.key;
+      if (el.classList.contains('is-found')) s[k] = 1; else delete s[k];
+      save(s);
+    });
+  });
+  applyState();
+</script>
+
+</body>
+</html>

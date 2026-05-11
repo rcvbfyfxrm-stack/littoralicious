@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Podcasts &amp; Interviews &mdash; The World Affair</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; }
+a { color: inherit; text-decoration: none; transition: color 0.15s; } a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; } .masthead-title a:hover { color: #1a1714; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; } .masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; } .nav-link:hover { background: #e6e1d8; color: #1a1714; } .nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.article-header { padding: 32px 0 20px; border-bottom: 2px solid #1a1714; margin-bottom: 28px; }
+.article-overline { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+.article-date { font-size: 12px; color: #8a847a; text-transform: uppercase; letter-spacing: 1px; }
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1714; }
+.article-body h2 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin: 24px 0 10px; padding-bottom: 4px; border-bottom: 1px solid #c8c0b4; }
+.article-body h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 20px 0 8px; }
+.article-body p { font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75; }
+.article-body strong { color: #1a1714; } .article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; } .article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol { margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540; }
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote { border-left: 3px solid #b5ad9f; padding: 12px 18px; margin: 14px 0; background: #ede9e1; font-size: 13px; color: #4a4540; line-height: 1.7; font-style: italic; }
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0; }
+.article-body th { text-align: left; padding: 8px 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a; border-bottom: 2px solid #b5ad9f; font-weight: 700; }
+.article-body td { padding: 8px 10px; border-bottom: 1px solid #c8c0b4; }
+.article-body tr:hover td { background: #ede9e1; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; } .bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .article-title { font-size: 24px; } .article-body { max-width: 100%; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Jeudi 19 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;56</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-19.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#5a4a6a">Podcasts &amp; Interviews</div>
+  <h1 class="article-title">19 mars 2026</h1>
+  <div class="article-date">Jeudi 19 Mars 2026 &mdash; Edition N&deg;56</div>
+</div><div class="article-body"><h1>Les voix qui comptent cette semaine</h1>
+
+<p><em>&laquo; Ryan Coogler chez Fresh Air avec 16 nominations aux Oscars, Lex Fridman explore les futurs de l'IA dans un marathon de quatre heures, et Good Hang remporte le tout premier Golden Globe du podcast. La semaine en audio. &raquo;</em></p>
+
+<hr>
+
+<h2>I. Fresh Air : Ryan Coogler, le cin&eacute;aste qui ne c&eacute;l&egrave;bre pas</h2>
+
+<p>Ryan Coogler, r&eacute;alisateur de <em>Sinners</em>, son dernier film avec Michael B. Jordan, est l'invit&eacute; de Terry Gross sur Fresh Air (NPR). Le film cumule 16 nominations aux Oscars &mdash; un chiffre qui le place parmi les plus nomm&eacute;s de l'histoire de l'Acad&eacute;mie. Coogler, 39 ans, auteur de <em>Fruitvale Station</em>, <em>Creed</em> et <em>Black Panther</em>, discute de son refus du spectacle hollywoodien, de sa m&eacute;thode de travail collaborative avec Jordan, et de la repr&eacute;sentation du Sud am&eacute;ricain dans le cin&eacute;ma.</p>
+
+<p>L'entretien est remarquable par sa densit&eacute; : Coogler parle de la fa&ccedil;on dont il &eacute;crit pour des acteurs sp&eacute;cifiques plut&ocirc;t que pour des arch&eacute;types, de son rapport au succ&egrave;s commercial (il dit ne pas regarder les chiffres du box-office), et de la tension entre la vision d'auteur et les exigences d'un studio. Un &eacute;pisode essentiel pour quiconque s'int&eacute;resse au processus cr&eacute;atif.</p>
+
+<h2>II. Lex Fridman : quatre heures sur les futurs de l'IA</h2>
+
+<p>Lex Fridman publie un &eacute;pisode marathon de quatre heures avec un panel compos&eacute; de Sam Altman (OpenAI), Dario Amodei (Anthropic), et Demis Hassabis (Google DeepMind). L'&eacute;pisode, enregistr&eacute; &agrave; Austin, est le premier o&ugrave; les trois dirigeants des principales entreprises d'IA se retrouvent dans la m&ecirc;me pi&egrave;ce.</p>
+
+<p>Les &eacute;changes portent sur l'&eacute;ch&eacute;ance de l'AGI (Altman dit 2027, Amodei dit &laquo; d&eacute;pend de la d&eacute;finition &raquo;, Hassabis dit &laquo; le concept lui-m&ecirc;me est mal pos&eacute; &raquo;), sur la r&eacute;gulation (convergence surprenante sur la n&eacute;cessit&eacute; d'un cadre f&eacute;d&eacute;ral am&eacute;ricain), et sur la s&eacute;curit&eacute; (Amodei est le plus alarmiste, Hassabis le plus technique). Le moment le plus r&eacute;v&eacute;lateur : quand Fridman demande &agrave; chacun ce qui le tient &eacute;veill&eacute; la nuit, et que les trois r&eacute;pondent des variantes de la m&ecirc;me chose &mdash; la course elle-m&ecirc;me.</p>
+
+<h2>III. Good Hang remporte le Golden Globe du podcast</h2>
+
+<p>Les Golden Globes ont d&eacute;cern&eacute; pour la premi&egrave;re fois un prix du meilleur podcast, r&eacute;compens&eacute; &agrave; <em>Good Hang</em>, une s&eacute;rie narrative sur la sc&egrave;ne du stand-up comedy new-yorkais post-pand&eacute;mie. Le podcast, produit par Spotify Studios, m&ecirc;le interviews intimes de com&eacute;diens et reportage immersif dans les clubs de Manhattan.</p>
+
+<table>
+<tr><th>Podcast</th><th>H&ocirc;te / Producteur</th><th>&Eacute;v&eacute;nement</th></tr>
+<tr><td>Fresh Air</td><td>Terry Gross (NPR)</td><td>Ryan Coogler, 16 nominations Oscars</td></tr>
+<tr><td>Lex Fridman Podcast</td><td>Lex Fridman</td><td>Altman, Amodei, Hassabis &mdash; 4h sur l'IA</td></tr>
+<tr><td>Good Hang</td><td>Spotify Studios</td><td>Premier Golden Globe du podcast</td></tr>
+<tr><td>The Daily</td><td>Michael Barbaro (NYT)</td><td>S&eacute;rie sp&eacute;ciale guerre Iran</td></tr>
+<tr><td>Acquired</td><td>Ben Gilbert, David Rosenthal</td><td>&Eacute;pisode NVIDIA ($4T company)</td></tr>
+</table>
+
+<hr>
+
+<h2>Signaux Faibles</h2>
+
+<ul>
+<li>Le Golden Globe du podcast marque l'int&eacute;gration officielle du m&eacute;dium dans l'&eacute;cosyst&egrave;me de r&eacute;compenses de l'entertainment traditionnel.</li>
+<li>Les quatre heures de Fridman avec Altman-Amodei-Hassabis constituent un document historique &mdash; la premi&egrave;re confrontation directe des trois visions de l'IA qui dominent la d&eacute;cennie.</li>
+<li>Les 16 nominations de <em>Sinners</em> sugg&egrave;rent que l'Acad&eacute;mie est pr&ecirc;te &agrave; sacrer un film de genre (horreur/thriller) comme meilleur film de l'ann&eacute;e.</li>
+</ul>
+
+<hr>
+
+<p><em>The World Affair &mdash; Podcasts &amp; Interviews &mdash; 19 mars 2026</em></p></div><div class="bottom-nav"><a href="innovation-startups.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Innovation &amp; Startups</span></a><a href="finance-marches.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Finance &amp; March&eacute;s &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; PODCASTS &amp; INTERVIEWS</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span>
+    <div><button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button><button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button></div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT="worldaffair",KEY="nexus-passages-"+VAULT;function getAll(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}var selText="";document.addEventListener("mouseup",function(e){var s=window.getSelection(),t=s.toString().trim(),b=document.getElementById("ps-save-btn");if(t.length>10){selText=t;b.style.display="block";b.style.left=(e.pageX+10)+"px";b.style.top=(e.pageY-40)+"px"}else{setTimeout(function(){b.style.display="none"},200)}});window.psSave=function(){if(!selText)return;var p=getAll();p.push({text:selText.substring(0,2000),source:document.title,url:location.href,date:new Date().toISOString(),vault:VAULT});saveAll(p);document.getElementById("ps-save-btn").style.display="none";psRenderList();psFlash();selText=""};function psFlash(){var t=document.getElementById("ps-toggle");t.style.background="#3d6b4f";setTimeout(function(){t.style.background="#1a1714"},600)}window.psTogglePanel=function(){var p=document.getElementById("ps-panel");p.style.display=p.style.display==="none"?"block":"none";psRenderList()};window.psRenderList=function(){var p=getAll(),el=document.getElementById("ps-list");document.getElementById("ps-count").textContent=p.length||"";if(!p.length){el.innerHTML="<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S\u00e9lectionne du texte et clique Sauvegarder</div>";return}el.innerHTML=p.slice().reverse().map(function(x,ri){var i=p.length-1-ri,d=new Date(x.date),ds=d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});return"<div style=\"padding:8px 0;border-bottom:1px solid #333;\"><div style=\"display:flex;justify-content:space-between;align-items:baseline;\"><span style=\"font-size:9px;color:#888;\">"+ds+" &mdash; "+(x.source||"").substring(0,30)+"</span><button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button></div><div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; "+x.text.substring(0,300)+(x.text.length>300?"...":"")+" &raquo;</div></div>"}).join("")};window.psDelete=function(i){var p=getAll();p.splice(i,1);saveAll(p);psRenderList()};window.psExport=function(){var p=getAll();if(!p.length)return;var md="# Passages sauvegard\u00e9s \u2014 "+VAULT+"\n\n";md+="Export\u00e9 le "+new Date().toLocaleDateString("fr-FR")+"\n\n---\n\n";p.forEach(function(x){var d=new Date(x.date).toLocaleDateString("fr-FR");md+="> "+x.text.replace(/\n/g,"\n> ")+"\n\n";md+="*Source: "+(x.source||"?")+" \u2014 "+d+"*\n\n---\n\n"});var blob=new Blob([md],{type:"text/markdown"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="passages-"+VAULT+"-"+new Date().toISOString().slice(0,10)+".md";a.click()};psRenderList();
+})();
+</script>
+</body></html>

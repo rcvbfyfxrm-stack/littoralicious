@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    DROP
+
+    The essential shape.
+    A drop of water. A flame. A tear. A seed.
+    Inside: the four elements in perfect balance.
+
+    This is it.
+  -->
+
+  <!-- The drop/flame shape - bold -->
+  <path
+    d="M 50 5
+       C 80 40, 85 60, 50 92
+       C 15 60, 20 40, 50 5
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="2"
+  />
+
+  <!-- Inside: four elements in cross -->
+
+  <!-- Fire - top -->
+  <path d="M 50 25 L 54 33 L 46 33 Z" fill="#0a0a0a"/>
+
+  <!-- Water - bottom -->
+  <path d="M 50 75 L 46 67 L 54 67 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- Air - right -->
+  <path d="M 68 50 L 60 54 L 60 46 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="61" y1="51.5" x2="66" y2="51.5" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Earth - left -->
+  <path d="M 32 50 L 40 46 L 40 54 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="34" y1="48.5" x2="39" y2="48.5" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Center - the source -->
+  <circle cx="50" cy="50" r="3" fill="#0a0a0a"/>
+
+</svg>

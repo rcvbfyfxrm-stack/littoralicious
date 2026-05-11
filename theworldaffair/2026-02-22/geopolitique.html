@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Géopolitique — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 22 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;53</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-22.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#8b3a3a">Géopolitique</div>
+  <h1 class="article-title">Géopolitique & Relations Internationales</h1>
+  <div class="article-date">Dimanche 22 Février 2026 &mdash; Edition N&deg;53</div>
+</div><div class="article-body"><h1>JOURNAL LIBERTÉ</h1>
+<h2>Géopolitique & Relations Internationales</h2>
+<h3>22 février 2026</h3>
+<p><em>« Quatre ans de guerre. Quatre ans de réalignement. Le monde d'avant le 24 février 2022 n'existe plus — et celui qui le remplace n'est pas encore né. »</em></p>
+<hr>
+<h2>Édition du Jour</h2>
+<p>Dans deux jours, le 24 février marquera le quatrième anniversaire de l'invasion russe de l'Ukraine. Quatre ans. Le temps qu'il a fallu aux Alliés pour gagner la Seconde Guerre mondiale. Le temps qu'il faut à un étudiant pour obtenir un diplôme universitaire. Le temps, surtout, qu'il a fallu pour redessiner la carte des alliances, des dépendances énergétiques et des certitudes stratégiques de tout un continent. Cette édition regarde le conflit non pas à travers le prisme du champ de bataille — les lignes ont à peine bougé en un an — mais à travers celui des conséquences structurelles qui, elles, n'ont cessé de s'accélérer.</p>
+<hr>
+<h2>Les Récits</h2>
+<h3>I. Ukraine, an IV : l'anniversaire que personne ne veut célébrer</h3>
+<p>Le 24 février 2022, les chars russes ont traversé la frontière ukrainienne. Quatre ans plus tard, la guerre ressemble à un patient sous perfusion : vivant, stable, mais loin de la guérison. Les fronts sont largement gelés. Les pertes s'accumulent des deux côtés dans une arithmétique sinistre que ni Moscou ni Kiev ne publient avec honnêteté. L'attention internationale, ce carburant volatil, s'est en partie détournée — vers Gaza, vers l'IA, vers les élections américaines.</p>
+<p>Mais les effets de second ordre sont immenses. L'Europe s'est réarmée — lentement, maladroitement, mais réellement. L'OTAN s'est élargie à la Finlande et à la Suède, un basculement stratégique que la Russie a provoqué en cherchant exactement l'inverse. Le marché de l'énergie européen a été restructuré en temps de crise, à coups de terminaux GNL construits en mois plutôt qu'en années. Et la Russie elle-même a muté : plus autoritaire, plus militarisée, plus dépendante de la Chine, et paradoxalement plus fragile économiquement qu'elle ne le laisse paraître.</p>
+<p>Foreign Policy consacre cette semaine une analyse à ce qu'ils appellent « le réalignement silencieux » : l'idée que la guerre d'Ukraine, indépendamment de son issue militaire, a déjà produit un nouveau système international. Un système où la dissuasion nucléaire ne protège plus contre l'agression conventionnelle, où les chaînes d'approvisionnement sont des armes, et où le mot « neutralité » a perdu sa crédibilité.</p>
+<h3>II. Genève, 26 février : la diplomatie reprend son souffle</h3>
+<p>Les pourparlers de paix pourraient reprendre à Genève le 26 février, deux jours après l'anniversaire de l'invasion. La précédente session, tenue les 17 et 18 février, avait duré plus de six heures. Le négociateur russe Vladimir Medinsky les a qualifiés de « difficiles mais professionnels » — un langage diplomatique qui signifie que personne n'a claqué la porte, ce qui, dans le contexte actuel, constitue un progrès.</p>
+<p>Les contours d'un accord restent flous. L'Ukraine exige des garanties de sécurité contraignantes. La Russie exige la reconnaissance de facto des territoires occupés. Les États-Unis, sous l'administration Trump, oscillent entre impatience de conclure un deal et réticence à offrir des garanties que le Congrès ne ratifierait jamais. L'Europe, qui paie une partie significative de la facture, n'est pas à la table.</p>
+<p>Le scénario le plus probable — et le plus insatisfaisant pour tout le monde — reste un cessez-le-feu de type coréen : pas de paix formelle, une ligne de contact gelée, des garanties ambiguës, et une Ukraine partiellement amputée mais souveraine. Ce n'est pas la victoire que Kiev mérite ni la défaite que Moscou a gagnée. C'est le compromis que la fatigue impose.</p>
+<h3>III. 2026, dernière année du gaz russe en Europe</h3>
+<p>Le chiffre est encore massif : 22 milliards d'euros de GNL et de gaz acheminés par pipeline de la Russie vers l'Europe en 2025. Mais la date de péremption est inscrite dans le marbre réglementaire : l'interdiction totale de l'UE entre en vigueur en 2027.</p>
+<p>Cela signifie que 2026 est l'année de la dernière récolte pour Gazprom et ses substituts. L'année où les derniers contrats à long terme sont honorés, les derniers cargos de GNL russe déchargés dans les terminaux européens. C'est aussi l'année où la Russie doit trouver — ou accepter de ne pas trouver — des acheteurs alternatifs pour des volumes considérables de gaz que l'infrastructure existante ne permet pas de rediriger facilement vers l'Asie.</p>
+<p>Le pipeline Power of Siberia 2, censé relier la Russie à la Chine via la Mongolie, reste au stade de projet. Pékin, en position de force, négocie des prix qui feraient pleurer un trader de Rotterdam. La réalité économique est brutale : la Russie perd son client le plus lucratif et ne peut pas le remplacer à parité. Les revenus gaziers, qui finançaient une part significative du budget fédéral, se contractent au moment précis où les dépenses militaires explosent.</p>
+<h3>IV. La TVA à 22% : quand la guerre mange le budget</h3>
+<p>En janvier 2026, la Russie a relevé sa TVA de 20 à 22%. Un ajustement discret, technique, presque bureaucratique — mais qui raconte une histoire plus large que n'importe quel communiqué du Kremlin. Les dépenses militaires russes ont atteint des niveaux records. Les revenus pétroliers et gaziers, sous l'effet des sanctions et de la perte du marché européen, ne couvrent plus la facture.</p>
+<p>L'inflation reste élevée. Le rouble tient artificiellement, soutenu par des contrôles de capitaux que la banque centrale préférerait ne pas maintenir. Le marché du travail est tendu — non par prospérité, mais parce que des centaines de milliers d'hommes ont été envoyés au front ou ont quitté le pays. L'économie de guerre fonctionne, mais au prix d'une cannibalisation de l'économie civile qui deviendra visible dans les deux à trois prochaines années.</p>
+<p>La hausse de la TVA est un signal fiscal : Moscou cherche de l'argent partout où il reste. Ce qui signifie que la marge de manoeuvre budgétaire se réduit, et avec elle, la capacité de la Russie à soutenir indéfiniment un effort militaire de cette ampleur.</p>
+<h3>V. L'Europe finance l'Ukraine : 90 milliards et après ?</h3>
+<p>L'Union européenne a mis en place un mécanisme de prêt de 90 milliards d'euros pour financer l'État ukrainien à travers 2026 et 2027. C'est un montant considérable — supérieur au PIB de la plupart des membres de l'UE — et il sert principalement à maintenir les fonctions régaliennes : payer les fonctionnaires, les enseignants, les médecins, les pompiers. En d'autres termes, à empêcher l'effondrement institutionnel d'un pays en guerre.</p>
+<p>Ce financement repose en partie sur les intérêts générés par les actifs russes gelés — une innovation juridique dont la légalité fait encore débat dans les chancelleries. Le message politique est clair : l'Europe ne lâchera pas l'Ukraine. Le message financier est plus nuancé : 90 milliards, c'est beaucoup pour des budgets européens déjà sous tension. La reconstruction d'après-guerre, estimée à 500 milliards minimum, reste un problème que personne ne veut encore chiffrer sérieusement.</p>
+<h3>VI. Trump à 15% : les tarifs comme politique étrangère</h3>
+<p>En parallèle du théâtre ukrainien, l'administration Trump a relevé les tarifs douaniers à 15%, un geste qui affecte les marchés mondiaux et complique les relations commerciales transatlantiques au moment même où l'Europe a besoin de cohésion économique pour soutenir son effort ukrainien.</p>
+<p>L'ironie est structurelle : les États-Unis demandent à l'Europe de dépenser plus pour sa défense tout en taxant ses exportations. C'est une politique étrangère par la contradiction, où chaque levier actionné d'un côté affaiblit la position de l'autre. Les marchés, qui n'aiment pas l'incertitude, réagissent : les futures sont en baisse, les flux de capitaux se repositionnent, et la confiance des investisseurs dans la stabilité du cadre commercial mondial s'érode un peu plus.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<ul>
+<li>La Mongolie, pays de transit obligé du pipeline Power of Siberia 2, devient un acteur géopolitique inattendu — elle a les deux superpuissances comme voisins et un droit de veto de fait sur l'infrastructure.</li>
+<li>Les pays du Golfe diversifient leurs achats d'armement vers la Corée du Sud et la Turquie — signal d'une perte de confiance progressive dans la fiabilité des fournisseurs occidentaux traditionnels.</li>
+<li>Le volume de céréales ukrainiennes exportées via le corridor de la mer Noire a retrouvé 85% de son niveau d'avant-guerre — une victoire logistique sous-rapportée qui stabilise les prix alimentaires mondiaux.</li>
+</ul>
+<hr>
+<h2>Connexion</h2>
+<p>Le fil qui traverse cette édition est celui de la durabilité. Une guerre qui dure quatre ans ne se gagne pas sur le champ de bataille — elle se gagne dans les budgets, les usines, les réserves de patience des populations. La Russie relève sa TVA parce que l'argent manque. L'Europe emprunte 90 milliards parce que la solidarité a un coût. Les États-Unis imposent des tarifs qui fracturent l'unité qu'ils prétendent défendre. Et à Genève, des diplomates cherchent un compromis que personne ne veut mais que tout le monde finira par accepter — parce que la durabilité, en géopolitique comme en physique, n'est pas une vertu mais une contrainte.</p>
+<hr>
+<p><em>Journal Liberté — Géopolitique — 22 février 2026</em></p></div><div class="bottom-nav"><a href="gastronomie.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Gastronomie</span></a><a href="innovation-startups.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Innovation & Startups &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; GÉOPOLITIQUE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

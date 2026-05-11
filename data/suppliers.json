@@ -1,0 +1,78 @@
+{
+  "_meta": {
+    "created": "2026-04-23",
+    "purpose": "Single source of truth for Port Call supplier data. Port Call articles (template 10) pull their Quick Map table and Category Detail sections from this file. When WhatsApp intel arrives, update this file first — then regenerate the affected Port Call.",
+    "schema_version": 1,
+    "categories": [
+      "general",
+      "fish",
+      "meat",
+      "bread",
+      "produce",
+      "dry-store",
+      "frozen",
+      "ethnic",
+      "wine-spirits",
+      "agent"
+    ],
+    "tiers": ["premium", "standard", "budget"],
+    "fields": {
+      "name": "string, supplier name",
+      "port": "string, one of the port slugs",
+      "category": "string, one of the categories above",
+      "tier": "string, one of the tiers above",
+      "markup_pct": "integer, approximate markup over wholesale",
+      "online_order": "string, url or 'whatsapp' or 'phone-only'",
+      "contact": "object: { whatsapp?, email?, phone?, address? }",
+      "lead_time_hours": "integer, typical lead time in hours",
+      "min_order": "string, e.g. '€500' or 'none'",
+      "notes": "string, free text — what they're best for, gotchas",
+      "last_verified": "string, YYYY-MM-DD",
+      "source": "string, e.g. 'whatsapp:chefs-helping-chefs:2026-01-15' or 'personal'"
+    }
+  },
+  "ports": {
+    "miami": {
+      "country": "US",
+      "region": "caribbean-us-east",
+      "agent_notes": "Most agents charge 10-15% on provisioning. Worth negotiating flat fee for >$20k orders."
+    },
+    "san-juan": {
+      "country": "PR",
+      "region": "caribbean-us-east"
+    },
+    "sxm": {
+      "country": "SX",
+      "region": "caribbean-us-east",
+      "aka": ["St Maarten", "Sint Maarten"]
+    },
+    "antigua": {"country": "AG", "region": "caribbean-us-east"},
+    "palma": {"country": "ES", "region": "med-west"},
+    "barcelona": {"country": "ES", "region": "med-west"},
+    "antibes": {"country": "FR", "region": "med-west"},
+    "monaco": {"country": "MC", "region": "med-west"},
+    "la-ciotat": {"country": "FR", "region": "med-west"},
+    "genova": {"country": "IT", "region": "med-west"},
+    "naples": {"country": "IT", "region": "med-central"},
+    "athens": {"country": "GR", "region": "med-east"},
+    "mykonos": {"country": "GR", "region": "med-east"},
+    "montenegro": {"country": "ME", "region": "med-east"},
+    "venice": {"country": "IT", "region": "med-east"}
+  },
+  "suppliers": [
+    {
+      "name": "_EXAMPLE_ — replace with real entries from content/review/Draft - 2026-02-07 - port call provisioning mediterranean.md",
+      "port": "palma",
+      "category": "fish",
+      "tier": "premium",
+      "markup_pct": 35,
+      "online_order": "whatsapp",
+      "contact": {"whatsapp": "+34 XXX XXX XXX", "email": ""},
+      "lead_time_hours": 24,
+      "min_order": "€300",
+      "notes": "Example entry. Migrate real data from existing Port Call drafts.",
+      "last_verified": "2026-04-23",
+      "source": "example"
+    }
+  ]
+}

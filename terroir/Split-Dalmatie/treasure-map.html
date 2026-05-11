@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Split &middot; Treasure Map &middot; Littoralicious</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #fafafa; --paper-2: #f2efe8; --ink: #0a0a0a; --ink-2: #3a3a3a; --ink-3: #6a6a6a;
+    --salt: #94a3b8; --rule: #d7d2c4; --rule-2: #e2e2e2;
+    --sea: #2d4a5e; --sea-2: #1e3443; --gold: #8a6a2e; --red: #7a2210;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #d8d3c4; }
+  body {
+    font-family: 'Libre Baskerville', Georgia, serif;
+    color: var(--ink); -webkit-font-smoothing: antialiased;
+    padding: 24px 12px 48px; min-height: 100vh;
+  }
+
+  /* SINGLE A4 */
+  .map {
+    width: 210mm; height: 297mm;
+    margin: 0 auto;
+    background: var(--paper);
+    box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+    padding: 12mm 12mm 10mm;
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: auto auto auto 1fr auto;
+    gap: 5mm;
+  }
+
+  /* MASTHEAD */
+  .masthead { text-align: center; border-bottom: 2px solid var(--ink); padding-bottom: 4mm; }
+  .eyebrow { font-family: 'JetBrains Mono', monospace; font-size: 7pt; color: var(--sea); letter-spacing: 4pt; text-transform: uppercase; margin-bottom: 2mm; }
+  .h1 { font-family: 'Playfair Display', serif; font-size: 32pt; font-weight: 900; letter-spacing: 5pt; line-height: 1; }
+  .h1-sub { font-family: 'Playfair Display', serif; font-style: italic; font-size: 9.5pt; color: var(--sea); margin-top: 1.5mm; }
+  .h-meta { font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 1.6pt; color: var(--ink-3); text-transform: uppercase; margin-top: 2mm; }
+  .h-meta span { color: var(--sea); }
+
+  /* LEAD NOTE */
+  .lead-note { text-align: center; font-family: 'Playfair Display', serif; font-style: italic; font-size: 8.8pt; color: var(--ink-2); line-height: 1.4; }
+
+  /* THREE TREASURES */
+  .treasures { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3mm; }
+  .treasure { background: var(--paper-2); padding: 3mm 3mm 3.5mm; border-top: 2px solid var(--sea); position: relative; }
+  .treasure-num { font-family: 'JetBrains Mono', monospace; font-size: 6pt; letter-spacing: 1.5pt; color: var(--sea); text-transform: uppercase; margin-bottom: 1mm; display: flex; justify-content: space-between; align-items: center; }
+  .treasure-num .x { font-family: 'Playfair Display', serif; font-size: 11pt; color: var(--red); font-weight: 900; line-height: 0.9; }
+  .treasure-title { font-family: 'Playfair Display', serif; font-size: 10pt; font-weight: 700; line-height: 1.15; margin-bottom: 1mm; }
+  .treasure-where { font-family: 'JetBrains Mono', monospace; font-size: 6pt; letter-spacing: 0.8pt; color: var(--ink-3); text-transform: uppercase; margin-bottom: 1mm; }
+  .treasure-body { font-size: 7.5pt; line-height: 1.4; color: var(--ink-2); }
+
+  /* PAIRINGS — 2 column */
+  .pairings { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm 4mm; }
+  .pairing { border-left: 2px solid var(--sea); padding: 1.4mm 3mm; background: var(--paper-2); font-size: 7.5pt; line-height: 1.4; }
+  .pairing strong { font-family: 'Playfair Display', serif; font-size: 9pt; font-weight: 700; color: var(--ink); display: block; margin-bottom: 0.3mm; line-height: 1.2; }
+
+  /* SECTIONS */
+  .section-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 1px solid var(--ink); padding-bottom: 1mm; margin-bottom: 1.5mm; }
+  .section-head h2 { font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: 3pt; text-transform: uppercase; font-weight: 500; color: var(--ink); }
+  .section-head .count { font-family: 'Playfair Display', serif; font-style: italic; font-size: 7.5pt; color: var(--ink-3); }
+
+  /* TWO COLUMNS */
+  .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; align-content: start; }
+  .col-stack > .section + .section { margin-top: 4mm; }
+
+  /* COMPACT ITEM ROW */
+  .item { display: grid; grid-template-columns: 3.5mm 1fr; gap: 1.8mm; padding: 1.2mm 0; border-bottom: 0.5px solid var(--rule-2); cursor: pointer; user-select: none; }
+  .item:last-child { border-bottom: none; }
+  .item .check { width: 3mm; height: 3mm; border: 1.2px solid var(--ink-3); background: var(--paper); margin-top: 1mm; flex-shrink: 0; position: relative; transition: background 0.12s; }
+  .item:hover .check { border-color: var(--sea); }
+  .item.is-found .check { background: var(--sea); border-color: var(--sea); }
+  .item.is-found .check::before { content: '✓'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--paper); font-weight: 700; font-size: 7.5pt; line-height: 1; }
+  .item-line {
+    font-size: 7.8pt; line-height: 1.35; color: var(--ink-2);
+  }
+  .item-line .name { font-family: 'Playfair Display', serif; font-size: 8.6pt; font-weight: 700; color: var(--ink); }
+  .item-line .where { color: var(--sea); font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 0.8pt; text-transform: uppercase; }
+  .item.is-found .item-line { color: var(--ink-3); text-decoration: line-through; text-decoration-color: var(--salt); text-decoration-thickness: 0.6px; }
+  .item.is-found .item-line .where { text-decoration: none; }
+
+  /* FOOTER */
+  .footer { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; padding-top: 2mm; border-top: 1px solid var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 6.5pt; letter-spacing: 1.4pt; color: var(--ink-3); text-transform: uppercase; align-items: baseline; }
+  .footer-quote { font-family: 'Playfair Display', serif; font-style: italic; font-size: 8.5pt; color: var(--sea); letter-spacing: 0; text-transform: none; text-align: center; }
+  .footer-right { text-align: right; }
+
+  /* TOOLBAR */
+  .toolbar { position: fixed; top: 16px; right: 16px; background: var(--paper); border: 1px solid var(--ink); padding: 6px 10px; z-index: 100; display: flex; gap: 6px; box-shadow: 0 4px 12px rgba(0,0,0,0.18); }
+  .toolbar button, .toolbar a { background: transparent; border: 1px solid var(--ink); color: var(--ink); font-family: 'JetBrains Mono', monospace; font-size: 8pt; letter-spacing: 1pt; text-transform: uppercase; padding: 5px 9px; cursor: pointer; text-decoration: none; transition: all 0.15s; }
+  .toolbar button:hover, .toolbar a:hover { background: var(--ink); color: var(--paper); }
+
+  @media print {
+    html, body { background: white; padding: 0; }
+    .toolbar { display: none !important; }
+    .map { box-shadow: none; margin: 0; width: 100%; height: 100vh; padding: 9mm; }
+    @page { size: A4 portrait; margin: 0; }
+  }
+
+  @media (max-width: 720px) {
+    body { padding: 0; }
+    .map { width: 100%; height: auto; padding: 6mm; gap: 4mm; }
+    .columns, .pairings, .treasures { grid-template-columns: 1fr; gap: 3mm; }
+    .h1 { font-size: 26pt; letter-spacing: 3pt; }
+    .footer { grid-template-columns: 1fr; text-align: center; }
+    .footer-right { text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <button onclick="window.print()">Print / PDF</button>
+  <a href="index.html">← Guide</a>
+  <button onclick="resetChecks()">Reset</button>
+</div>
+
+<article class="map">
+
+  <header class="masthead">
+    <div class="eyebrow">Carte au Trésor &middot; Treasure Map</div>
+    <h1 class="h1">SPLIT</h1>
+    <div class="h1-sub">Stone, wind, pošip — the Dalmatia that lives within</div>
+    <div class="h-meta">Dalmatia &middot; Croatia <span>·</span> 7 May 2026 <span>·</span> Sudamja</div>
+  </header>
+
+  <p class="lead-note">A printable A4 of the must-do Split — only the experiences you can have here and nowhere else. No filler, no generic. Tick a box; the mark stays until you reset.</p>
+
+  <!-- THREE TREASURES -->
+  <div class="treasures">
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure I</span><span class="x">✕</span></div>
+      <div class="treasure-title">Pašticada with home-made gnocchi</div>
+      <div class="treasure-where">Apetit · upstairs · since 1981</div>
+      <div class="treasure-body">Beef larded with pork fat, marinated 24 h in vinegar, braised 4 h with prunes and Prošek. Brown-leather sauce on dense Croatian gnocchi. The Sunday-feast dish — and today's Sudamja plate.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure II</span><span class="x">✕</span></div>
+      <div class="treasure-title">Octopus peka under the iron bell</div>
+      <div class="treasure-where">Konoba Matejuška · 24h ahead</div>
+      <div class="treasure-body">Iron bell heated white on embers over octopus, potatoes, rosemary; covered with red ash 2 hours. Probably Illyrian — predates Romanization. Matejuška's stone-house version is the institution.</div>
+    </div>
+    <div class="treasure">
+      <div class="treasure-num"><span>Treasure III</span><span class="x">✕</span></div>
+      <div class="treasure-title">Three Pelješac terroirs side by side</div>
+      <div class="treasure-where">Paradox Wine &amp; Cheese · Centre</div>
+      <div class="treasure-body">Plavac across Dingač (south, near-vertical), Postup (north, structured) and the broader slope. Three glasses, one grape, three readings — the Croatian wine education in 20 minutes.</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="columns">
+
+    <!-- COL 1 -->
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>🍽 Must Eat · Only-here dishes</h2><span class="count">5</span></div>
+        <div class="item" data-key="d-pasticada"><div class="check"></div><div class="item-line"><span class="name">Pašticada</span> — beef · 24h vinegar · Plavac · Prošek · gnocchi <span class="where">Apetit · Fife · Sunday-feast</span></div></div>
+        <div class="item" data-key="d-peka"><div class="check"></div><div class="item-line"><span class="name">Peka</span> — octopus / lamb under the iron bell, 2h slow + ash <span class="where">Matejuška / Šperun · 24h ahead</span></div></div>
+        <div class="item" data-key="d-gregada"><div class="check"></div><div class="item-line"><span class="name">Gregada</span> — Hvar fish stew, no tomato (predates Venice) <span class="where">Konoba Fetivi · ask</span></div></div>
+        <div class="item" data-key="d-soparnik"><div class="check"></div><div class="item-line"><span class="name">Soparnik</span> — Poljica chard flatbread, Croatian PGI 2016 <span class="where">inland konobas only</span></div></div>
+        <div class="item" data-key="d-prsut-paski"><div class="check"></div><div class="item-line"><span class="name">Pršut + paški sir + travarica</span> — bura ham, salt-grass cheese, herb rakija <span class="where">apéritif trinity · any konoba</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🍷 Must Drink · The Dalmatian glass</h2><span class="count">5</span></div>
+        <div class="item" data-key="w-plavac-dingac"><div class="check"></div><div class="item-line"><span class="name">Plavac Mali Dingač</span> — Pelješac near-vertical schist, 14°+ <span class="where">Grgić · Saints Hills</span></div></div>
+        <div class="item" data-key="w-posip"><div class="check"></div><div class="item-line"><span class="name">Pošip — Korčula</span> — apricot-honey indigenous white, IGP 1967 <span class="where">Toreta · Krajančić</span></div></div>
+        <div class="item" data-key="w-tribidrag"><div class="check"></div><div class="item-line"><span class="name">Tribidrag (Crljenak)</span> — the original Zinfandel rootstock (UC Davis 2001) <span class="where">at Zinfandel Bar</span></div></div>
+        <div class="item" data-key="w-vugava"><div class="check"></div><div class="item-line"><span class="name">Vugava</span> — Vis indigenous saline white, ages <span class="where">Lipanović · Roki's</span></div></div>
+        <div class="item" data-key="w-paradox-flight"><div class="check"></div><div class="item-line"><span class="name">Three-glass Plavac flight</span> — Dingač / Postup / broader Pelješac <span class="where">Paradox Wine &amp; Cheese · Centre</span></div></div>
+      </section>
+
+    </div>
+
+    <!-- COL 2 -->
+    <div class="col-stack">
+
+      <section class="section">
+        <div class="section-head"><h2>⚓ Must Book Tables</h2><span class="count">4</span></div>
+        <div class="item" data-key="t-zoi"><div class="check"></div><div class="item-line"><span class="name">Zoï</span> — Veli Varoš · sea-view fine dining, finesse over folklore <span class="where">★ Plate · book 1 wk</span></div></div>
+        <div class="item" data-key="t-matejuska"><div class="check"></div><div class="item-line"><span class="name">Konoba Matejuška</span> — 19th-c. stone, octopus peka, the institution <span class="where">Veli Varoš · 24h ahead for peka</span></div></div>
+        <div class="item" data-key="t-fife"><div class="check"></div><div class="item-line"><span class="name">Fife</span> — workers' canteen, cheapest serious pašticada <span class="where">Matejuška · cash · no booking</span></div></div>
+        <div class="item" data-key="t-villa-spiza"><div class="check"></div><div class="item-line"><span class="name">Villa Spiza</span> — 10 stools, no menu, what the cook bought <span class="where">Palace · go before 12:30</span></div></div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>🗝 Must Do · Only-here experiences</h2><span class="count">5</span></div>
+        <div class="item" data-key="x-pazar"><div class="check"></div><div class="item-line"><span class="name">Pazar + Ribarnica before 09:00</span> — green market + 1890 fish hall <span class="where">Silver Gate · Sat peak</span></div></div>
+        <div class="item" data-key="x-palace-dawn"><div class="check"></div><div class="item-line"><span class="name">Diocletian's Palace at dawn</span> — peristyle empty before cruise tours <span class="where">06:30–08:00</span></div></div>
+        <div class="item" data-key="x-marjan-jerome"><div class="check"></div><div class="item-line"><span class="name">Saint Jerome chapel sunset</span> — Marjan summit 178 m · 360° islands view <span class="where">1 h walk · head torch</span></div></div>
+        <div class="item" data-key="x-bacvice-picigin"><div class="check"></div><div class="item-line"><span class="name">Bačvice picigin at sunset</span> — UNESCO-listed urban ritual on the sandbar <span class="where">May–Oct daily</span></div></div>
+        <div class="item" data-key="x-klapa"><div class="check"></div><div class="item-line"><span class="name">Klapa concert at the peristyle</span> — UNESCO 2012 a-cappella, Roman acoustics <span class="where">summer · free · informal</span></div></div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <footer class="footer">
+    <div>Littoralicious &middot; Carte au Trésor</div>
+    <div class="footer-quote">"A lived-in museum"</div>
+    <div class="footer-right">littoralicious.com</div>
+  </footer>
+
+</article>
+
+<script>
+  var STORAGE_KEY = 'treasure-split';
+  function load() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); } catch (e) { return {}; } }
+  function save(s) { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); } catch (e) {} }
+  function applyState() { var s = load(); document.querySelectorAll('.item').forEach(function (el) { if (s[el.dataset.key]) el.classList.add('is-found'); }); }
+  function resetChecks() { if (!confirm('Reset all marks?')) return; save({}); document.querySelectorAll('.item.is-found').forEach(function (el) { el.classList.remove('is-found'); }); }
+  document.querySelectorAll('.item').forEach(function (el) {
+    el.addEventListener('click', function () {
+      el.classList.toggle('is-found');
+      var s = load(); var k = el.dataset.key;
+      if (el.classList.contains('is-found')) s[k] = 1; else delete s[k];
+      save(s);
+    });
+  });
+  applyState();
+</script>
+
+</body>
+</html>

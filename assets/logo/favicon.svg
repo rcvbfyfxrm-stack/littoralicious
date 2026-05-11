@@ -1,4 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-  <path d="M4 20 Q10 8 16 20 Q22 32 28 20" stroke="#2d4a5e" stroke-width="3" fill="none" stroke-linecap="round"/>
-  <path d="M6 26 Q12 14 18 26 Q24 38 30 26" stroke="#2d4a5e" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.4"/>
+  <!-- Favicon version - simplified for small sizes -->
+  <circle cx="16" cy="16" r="15" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <path
+    d="M 16 5
+       C 13 10, 11 14, 11 19
+       C 11 25, 16 28, 16 28
+       C 16 28, 21 25, 21 19
+       C 21 14, 19 10, 16 5
+       Z"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.2"
+  />
+  <path
+    d="M 16 11
+       C 14.5 14, 13.5 16, 13.5 19
+       C 13.5 23, 16 25, 16 25
+       C 16 25, 18.5 23, 18.5 19
+       C 18.5 16, 17.5 14, 16 11
+       Z"
+    fill="#0a0a0a"
+  />
+  <line x1="11" y1="28" x2="21" y2="28" stroke="#0a0a0a" stroke-width="1.2" stroke-linecap="round"/>
 </svg>

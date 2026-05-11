@@ -3,37 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="The complete provisioning playbook for Miami and Fort Lauderdale. Master supplier database, provision schedule, freezer-ready intel, and money-saving strategies — built from working yacht chef intel.">
-    <title>Provisioning Miami &amp; Fort Lauderdale: The Complete Playbook &mdash; LITTORALICIOUS</title>
-    <meta property="og:title" content="Provisioning Miami &amp; Fort Lauderdale: The Complete Playbook &mdash; LITTORALICIOUS">
-    <meta property="og:description" content="The complete provisioning playbook for Miami and Fort Lauderdale. Master supplier database, provision schedule, freezer-ready intel, and money-saving strategies — built from working yacht chef intel.">
+    <meta name="description" content="The complete provisioning playbook for Miami and Fort Lauderdale. Three berths, wholesale infrastructure, off-the-boat fish, the Hialeah Asian stock-up, season-aware cautions. Built from working yacht-chef intel.">
+    <title>Provisioning Miami &amp; Fort Lauderdale — Port Call · LITTORALICIOUS</title>
+    <meta property="og:title" content="Provisioning Miami &amp; Fort Lauderdale — Port Call · LITTORALICIOUS">
+    <meta property="og:description" content="The provisioning capital of the Americas — if you know which Costco to drive to. Three berths, the wholesale unlocks, off-the-boat fish, season watch-outs.">
     <meta property="og:type" content="article">
     <meta property="og:url" content="https://www.littoralicious.com/articles/provisioning-miami-ftl.html">
     <meta property="og:site_name" content="Littoralicious">
-    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
-
     <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20260506b">
+    <link rel="stylesheet" href="../assets/css/port-call-content.css">
+    <link rel="stylesheet" href="../assets/css/port-call.css">
     <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
+
+    <!-- Leaflet for the interactive port-call map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
+
+    <!-- Sticky right-side foldable mini-map (hidden under 980px viewport) -->
+    <aside class="pcv-mini is-collapsed" id="pcv-mini" aria-label="South Florida map of provisioning points">
+        <button class="pcv-mini__handle" id="pcv-mini-handle" aria-expanded="false" title="Click to fold / unfold the South Florida map">South FL Map</button>
+        <div id="pcv-mini-body">
+            <div class="pcv-mini__head">
+                <strong>Where you are</strong>
+                <span>scroll · hover · zoom</span>
+            </div>
+            <div id="pcv-mini-map"></div>
+            <div class="pcv-mini__active" id="pcv-mini-active">
+                <b>Hover any pin or scroll</b>
+                <span>The big map is in the article body — this side panel mirrors it as you read.</span>
+            </div>
+        </div>
+    </aside>
 
     <header class="masthead">
         <div class="container">
             <div class="masthead__inner">
                 <div class="masthead__brand">
-                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
-                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
-                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
                 </div>
                 <nav class="masthead__nav">
-                    <a href="../shore-larder.html" class="active">Shore Larder</a>
+                    <a href="../shore-larder.html">Shore Larder</a>
                     <a href="../the-method.html">The Method</a>
                     <a href="../littoral-heritage.html">Heritage</a>
                     <a href="../the-evidence.html">The Evidence</a>
-                    <a href="../the-bridge.html">The Bridge</a>
-                    <a href="../newsletter.html">Newsletter</a>
-                    <a href="../connect.html" class="auth-nav-link">Sign In</a>
+                    <a href="../the-bridge.html" class="active">The Bridge</a>
                 </nav>
             </div>
         </div>
@@ -43,914 +64,835 @@
         <article class="article">
             <header class="article__header container">
                 <div class="article__meta">
-                    <span class="article__category">Shore Larder</span>
-                    <time class="article__date">March 5, 2026</time>
-                    <span class="article__reading-time">12 min read</span>
+                    <span class="article__category">Port Call</span>
+                    <time class="article__date">Updated April 28, 2026</time>
+                    <span class="article__reading-time">14 min read</span>
                 </div>
                 <h1 class="article__title">Provisioning Miami &amp; Fort Lauderdale: The Complete Playbook</h1>
                 <p class="article__lede">
-                    The best provisioning city in the western hemisphere. Zero import tax, massive wholesale infrastructure, every cuisine represented. This is the complete supplier database and money-saving playbook &mdash; built from working yacht chef intel.
+                    The provisioning capital of the Americas &mdash; if you know which Costco to drive to. Zero import tax, multiple wholesale clubs that grant free membership with boat registration, suppliers covering every quality tier from crew-grade to A5 Wagyu &mdash; and provisioning agents marking the same Halpern&rsquo;s beef up 18% because the chef did not know to walk past them. This is the playbook to skip the markup, time the seasons, and load everything you can carry before the Caribbean leg starts.
                 </p>
             </header>
 
-            <div class="article__content container" style="max-width: 65ch; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+            <div class="article__content container" style="max-width: 70ch; margin: 0 auto; padding: var(--space-8) var(--space-4);">
 
-                <!-- Table of Contents -->
-                <div class="article-toc">
-                    <p class="article-toc__title">In This Article</p>
-                    <ol>
-                        <li><a href="#the-brief">The Brief</a></li>
-                        <li><a href="#provision-map">The Provision Map</a></li>
-                        <li><a href="#how-to-provision">How to Provision</a></li>
-                        <li><a href="#category-deep-dives">Category Deep Dives</a></li>
-                        <li><a href="#freezer-ready">Freezer-Ready Intel</a></li>
-                        <li><a href="#the-agent">The Agent</a></li>
-                        <li><a href="#local-gems">Local Gems</a></li>
-                        <li><a href="#bottom-line">The Bottom Line</a></li>
-                    </ol>
-                </div>
-
-                <!-- 1. The Brief -->
-                <h2 id="the-brief">The Brief</h2>
-
-                <p>
-                    <strong>Port type: Major hub.</strong> Agent markup in this port runs 15&ndash;18%. On a USD 15,000 provision, self-sourcing saves USD 2,200&ndash;2,700. The wholesale infrastructure is so good here that using an agent is paying someone to do what you can do better yourself &mdash; unless you genuinely have zero time.
-                </p>
-
-                <div class="note note--key">
-                    <p><strong>Costco Business Center is not regular Costco.</strong> The Business Center in Doral (also Pompano Beach) carries restaurant-format packaging &mdash; 5 kg flour bags, case lots, portion-controlled proteins. Make the extra 20-minute drive. This distinction alone changes your entire provision. Regular Costco sells consumer packs. The Business Center sells professional packs. The difference in value and format is significant.</p>
-                </div>
-
-                <p>
-                    Miami has zero import tax, multiple wholesale clubs that grant free membership with boat registration, and suppliers covering every quality tier from crew-grade to A5 Wagyu. If your season starts here or you transit through, load everything you can carry. Prices only go up from here.
-                </p>
-
-                <p>
-                    <strong>Restaurant Depot membership is free.</strong> Bring boat registration, a business card, and the captain&rsquo;s ID. One card covers every Restaurant Depot in the US. Between Costco Business Center and Restaurant Depot, you cover 60&ndash;70% of any provision at wholesale prices.
-                </p>
-
-                <!-- 2. The Provision Map -->
-                <h2 id="provision-map">The Provision Map</h2>
-
-                <p>
-                    The one-page reference. Screenshot this.
-                </p>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Category</th>
-                                <th>Order Online</th>
-                                <th>Go In Person</th>
-                                <th>The Move</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>General / One-Stop</strong></td>
-                                <td>Instacart (Costco, Whole Foods)</td>
-                                <td><strong>Costco Business Center</strong> (Doral)</td>
-                                <td>Business Center, not regular Costco &mdash; professional packs</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Fish &amp; Seafood</strong></td>
-                                <td><strong>Browne Trading</strong> (overnight ship)</td>
-                                <td><strong>Captain Jim&rsquo;s</strong> (N Miami Beach)</td>
-                                <td>Before 08:00. Buy whole fish &mdash; price per kg drops, you control the butchery</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Meat &amp; Protein</strong></td>
-                                <td><strong>Halpern&rsquo;s</strong> (wholesale account)</td>
-                                <td><strong>Restaurant Depot</strong> (membership)</td>
-                                <td>Halpern&rsquo;s is where provisioning agents source from &mdash; go direct</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Deli / Cheese / Caviar</strong></td>
-                                <td><strong>Marky&rsquo;s</strong> (wholesale.markys.com)</td>
-                                <td><strong>Miami Cheese Shop</strong></td>
-                                <td>Use the Marky&rsquo;s wholesale portal, not retail</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Specialty / Guest-Level</strong></td>
-                                <td><strong>Regalis Foods</strong> (2-day ship)</td>
-                                <td>&mdash;</td>
-                                <td>Truffles, A5 Wagyu, Japanese wasabi, firefly squid</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Bread &amp; Bakery</strong></td>
-                                <td><strong>Zak the Baker</strong> (online ordering)</td>
-                                <td><strong>Zak the Baker</strong> (Wynwood)</td>
-                                <td>Order 48h ahead for volume. Stock Caputo flour at Restaurant Depot</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Produce &amp; Fruit</strong></td>
-                                <td>&mdash;</td>
-                                <td><strong>Robert Is Here</strong> (Homestead)</td>
-                                <td>Tropical exotics unavailable anywhere else in the US</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Dry Store &amp; Pantry</strong></td>
-                                <td>Amazon Fresh (order D-5)</td>
-                                <td><strong>Costco Business Center</strong></td>
-                                <td>Business Center for case lots. Amazon for specialty</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ethnic &amp; Specialty</strong></td>
-                                <td>&mdash;</td>
-                                <td><strong>168 Market</strong> (Hialeah)</td>
-                                <td>Last reliable large Asian source before the Caribbean &mdash; stock up</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Wine &amp; Spirits</strong></td>
-                                <td>Total Wine (online)</td>
-                                <td><strong>Total Wine</strong> (multiple)</td>
-                                <td>Duty-free spirits at the port if heading international</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- 3. How to Provision -->
-                <h2 id="how-to-provision">How to Provision</h2>
-
-                <p>
-                    Plan ahead. The day before a trip is not for shopping &mdash; it is for finalising preparations and cooking ahead. If you are running around shops the day before guests arrive, you have already lost.
-                </p>
-
-                <p>
-                    <strong>If you are sole chef,</strong> separate your orders by category across different days. One day for proteins &mdash; order from your butcher and fishmonger separately, let them prepare your cuts and portions. Another day for dry store &mdash; the wholesale run where you load flour, oils, pasta, canned goods, supplies. Another day for fresh produce and specialty items. Each run has a different rhythm and different suppliers. Trying to do everything in one day means you rush the decisions that matter most.
-                </p>
-
-                <p>
-                    <strong>If you have a team,</strong> split the runs. One person on proteins, one on dry store and produce. Same principle: separate by category, not by urgency.
-                </p>
-
-                <div style="background: var(--color-subtle, #f8f8f8); border-left: 3px solid var(--color-sea); padding: var(--space-4) var(--space-6); margin: var(--space-6) 0;">
-                    <p style="margin: 0;"><strong>The rule:</strong> Your last day before departure is for prep and cook-ahead only. Stocks simmering, sauces reducing, bread proofing, mise en place locked in. Not for standing in a queue at Restaurant Depot. Plan your shopping so you never have to choose between sourcing and cooking on the same day.</p>
-                </div>
-
-                <!-- 4. Category Deep Dives -->
-                <h2 id="category-deep-dives">Category Deep Dives</h2>
-
-                <!-- General / One-Stop / Wholesale -->
-                <h3 id="cat-general">General / One-Stop / Wholesale</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Costco Business Center</strong></td>
-                                <td>Wholesale, in-person</td>
-                                <td>Doral + Pompano Beach. Restaurant-grade bulk. Professional packs, case lots, 5 kg flour bags. The heavy-lift run. Covers 40% of your dry store and pantry.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Restaurant Depot</strong></td>
-                                <td>Wholesale, in-person</td>
-                                <td>FTL, Pompano Beach, Miami, Medley. Free membership with boat registration + business card. Bulk proteins, dairy, dry goods, supplies, produce. Covers every location in the US.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Costco (regular)</strong></td>
-                                <td>Wholesale, in-person</td>
-                                <td>Multiple locations (Davie, N Miami, etc.). Kirkland organics, spirits, bulk consumer packs. Kirkland sushi-grade fish is surprisingly good for price.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>BJ&rsquo;s Wholesale</strong></td>
-                                <td>Wholesale, in-person</td>
-                                <td>Multiple locations. Similar to Costco. Sometimes better on specific items.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Instacart</strong></td>
-                                <td>Online delivery</td>
-                                <td>Pulls from Costco, Whole Foods, Publix. Schedule delivery to the marina. General grocery run when you cannot leave the boat.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Amazon Fresh</strong></td>
-                                <td>Online delivery</td>
-                                <td>Order D&minus;5, arrives next day. Good for specialty dry goods and anything you cannot find at wholesale.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Whole Foods</strong></td>
-                                <td>Retail + provisioning service</td>
-                                <td>Free provisioning service: call ahead, give list, they shop it, store temperature-controlled, ready for pickup. No markup beyond retail. Best for organic produce, specialty dietary items, fresh herbs, cheese counter.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Publix</strong></td>
-                                <td>Retail</td>
-                                <td>Everywhere. BOGO deals on proteins/dairy/staples (check weekly flyer). Bakery, Boar&rsquo;s Head deli counter. Emergency provisions &mdash; open early/late.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Trader Joe&rsquo;s</strong></td>
-                                <td>Retail</td>
-                                <td>Snacks, wine, frozen appetisers for crew. Good cheese for the price.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="note note--key">
-                    <p><strong>Whole Foods free provisioning service.</strong> Call ahead, they shop your list, store it temperature-controlled, and hold for pickup. No markup beyond retail price. Not a chandler &mdash; a free service most chefs do not know about.</p>
-                </div>
-
-                <!-- Fish & Seafood -->
-                <h3 id="cat-fish">Fish &amp; Seafood</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Captain Jim&rsquo;s Fish Market</strong></td>
-                                <td>In-person, N Miami Beach</td>
-                                <td>Local catch, stone crab (Oct&ndash;May), Florida lobster. Fishmongers know yacht chefs. Arrive before 08:00 for best selection.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Haulover Marina</strong></td>
-                                <td>In-person, Sunny Isles</td>
-                                <td>Boats come in at noon and 17:00. Buy directly off the boat. Cash preferred. Yellowtail snapper, mahi, swordfish, tuna at 40&ndash;60% below retail. Build the relationship.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Sea Salt Fish Market</strong></td>
-                                <td>In-person, 3020 N Federal Hwy, FTL</td>
-                                <td>Wild-caught, responsibly harvested. USD 8 prep fee for cleaning/filleting. Call ahead with order.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>The Fish Peddler</strong></td>
-                                <td>In-person, 2805 E Commercial Blvd, FTL</td>
-                                <td>Solid daily quality. Good for routine needs.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Plaza Seafood Market</strong></td>
-                                <td>In-person, Allapattah, Miami</td>
-                                <td>Cheapest whole fish and shellfish in Miami. Not pretty. Very good.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Krudo Fish Market</strong></td>
-                                <td>In-person, N Miami Beach</td>
-                                <td>Sushi-grade, kosher-certified. When you need guaranteed quality.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Finster Murphy&rsquo;s</strong></td>
-                                <td>In-person, FTL</td>
-                                <td>Premium. Caviar, tobiko, specialty seafood. When guests want the best.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Garcia&rsquo;s Seafood</strong></td>
-                                <td>In-person, Miami River</td>
-                                <td>Good snapper, stone crab in season. Market + restaurant combo.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Browne Trading</strong></td>
-                                <td>Online, ships overnight from ME</td>
-                                <td>Premium day-boat fish, caviar, smoked fish. Overnight to Miami. Guest-level seafood when local catch is not what you need.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Halpern&rsquo;s</strong></td>
-                                <td>Wholesale account, FL distribution</td>
-                                <td>2,000+ products including seafood. Where provisioning agents source from.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Manny&rsquo;s Seafood</strong></td>
-                                <td>Wholesale delivery, all South Florida</td>
-                                <td>Minimum order. Ask for yacht chef rates. Competitive pricing.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Bar Harbor Seafood</strong></td>
-                                <td>Wholesale, Miami (65,000 sq ft facility)</td>
-                                <td>Large orders only. Miami distribution centre.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="note note--key">
-                    <p><strong>The Haulover Marina hack.</strong> Boats come in at noon and 17:00 at Sunny Isles. Buy directly off the boat &mdash; cash preferred. Yellowtail snapper, mahi, swordfish, tuna at 40&ndash;60% below retail. Build the relationship and they will call you when they catch something special.</p>
-                </div>
-
-                <!-- Meat & Protein -->
-                <h3 id="cat-meat">Meat &amp; Protein</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Halpern&rsquo;s</strong></td>
-                                <td>Wholesale account, FL distribution</td>
-                                <td>The source behind the agents. 2,000+ products. Beef and seafood. Cut out the 15&ndash;18% middleman. Since 1966.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Restaurant Depot</strong></td>
-                                <td>Wholesale, multiple locations</td>
-                                <td>USDA Prime and Choice at wholesale. Best value for standard guest and crew proteins.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Josh&rsquo;s Premium Meats</strong></td>
-                                <td>In-person + online, SW 57th Ave, Miami</td>
-                                <td>Wagyu specialist (Australian + Japanese). Wild-caught seafood. Same-day Miami-Dade delivery. Top 5 Miami butcher (Infatuation).</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Wild Fork Foods</strong></td>
-                                <td>Online + retail, multiple Miami-Dade stores</td>
-                                <td>Broad range crew-grade to Wagyu. 48h lead time for full catalogue. Marina delivery. Products arrive frozen and vac-packed from facility.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Snake River Farms</strong></td>
-                                <td>Online, ships nationwide</td>
-                                <td>American Wagyu beef + Kurobuta pork. THE pork specialist. Flat-rate shipping. Ships frozen and vac-packed. Order 3 days ahead.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Meat N&rsquo; Bone</strong></td>
-                                <td>Online</td>
-                                <td>Grass-fed, dry-aged, ethically sourced. USDA Prime, Wagyu, Picanha. Next-day ship.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Four Star Poultry &amp; Provision</strong></td>
-                                <td>Wholesale delivery, South Florida</td>
-                                <td>Since 1967. Locally owned. Delivers to marina with minimum order.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Jomara Seafood &amp; Meats</strong></td>
-                                <td>Wholesale, Miami</td>
-                                <td>30 years. Frozen meats, poultry, cheeses.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>MDist (Martinez Distributors)</strong></td>
-                                <td>Wholesale, Miami</td>
-                                <td>Family-owned, 20+ years. Latin American specialties + standard provisions.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Deli / Charcuterie / Cheese / Caviar -->
-                <h3 id="cat-deli">Deli / Charcuterie / Cheese / Caviar</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Marky&rsquo;s</strong></td>
-                                <td>Wholesale (wholesale.markys.com)</td>
-                                <td>Best deli meats in South Florida. Caviar, foie gras, truffles, charcuterie, A5 Wagyu. Use the wholesale portal, NOT the retail site.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Miami Cheese Shop</strong></td>
-                                <td>In-person, 2900 NE 7th Ave, Miami</td>
-                                <td>Imported and local cheeses. Truffles, olives, jams, pastas, honey, vinegars. One stop for charcuterie board.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Ch&egrave;vre Miami</strong></td>
-                                <td>In-person + online, multiple locations</td>
-                                <td>Cheeses and wines from worldwide. Online ordering &mdash; have it ready for pickup.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mimmo&rsquo;s Mozzarella</strong></td>
-                                <td>In-person, Miami Beach</td>
-                                <td>Fresh mozzarella and burrata made daily. Italian imports. The real thing.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Mari&rsquo;s Kitchen Italian Market</strong></td>
-                                <td>In-person, FTL</td>
-                                <td>Authentic Italian imports. Dried pasta selection alone is worth the trip.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Specialty / Guest-Level -->
-                <h3 id="cat-specialty">Specialty / Guest-Level</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Regalis Foods</strong></td>
-                                <td>Online, ships 2-day</td>
-                                <td>Truffles, caviar, A5 Wagyu, foie gras, specialty mushrooms, live seafood, Japanese wasabi, firefly squid. Also good for premium poultry.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>The Chef&rsquo;s Garden</strong></td>
-                                <td>Online, ships overnight from Ohio</td>
-                                <td>Microgreens, edible flowers, specialty vegetables, herbs. 400-acre regenerative farm. Guest garnish and tasting menu produce.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Browne Trading</strong></td>
-                                <td>Online, ships overnight from ME</td>
-                                <td>Premium seafood, caviar, smoked fish. Day-boat fish.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Marky&rsquo;s</strong></td>
-                                <td>Wholesale (wholesale.markys.com)</td>
-                                <td>Caviar, foie gras, truffle products. When the guest expects the best.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Bread & Bakery -->
-                <h3 id="cat-bread">Bread &amp; Bakery</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Zak the Baker</strong></td>
-                                <td>Online + in-person, Wynwood</td>
-                                <td>Artisan sourdough, challah, focaccia. Order 48h ahead for volume. Delivers.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="note note--key">
-                    <p><strong>Flour warning.</strong> Stock Caputo flour and bread flour at Restaurant Depot or Costco Business Center. 12%+ protein flour is scarce and expensive in the Caribbean. Buy 10&ndash;20 kg here.</p>
-                </div>
-
-                <!-- Produce & Fruit -->
-                <h3 id="cat-produce">Produce &amp; Fruit</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Robert Is Here</strong></td>
-                                <td>In-person, Homestead</td>
-                                <td>Tropical exotics: mamey, sapodilla, jackfruit, starfruit, dragon fruit. Unavailable elsewhere in the US. Worth the drive.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Yellow Green Farmers Market</strong></td>
-                                <td>In-person, Hollywood (Sat/Sun)</td>
-                                <td>190,000 sq ft, 600+ vendors. Overwhelming &mdash; go with a list. Best farmers market in South Florida.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>MKT at Las Olas Oceanside Park</strong></td>
-                                <td>In-person, 3000 E Las Olas Blvd, FTL</td>
-                                <td>Walking distance from marinas. Organic produce, local cheese, baked goods. Convenient.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Legion Park Market</strong></td>
-                                <td>In-person, 6601 Biscayne Blvd, Miami</td>
-                                <td>Best organic selection in Miami proper.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Lauderdale-by-the-Sea Market</strong></td>
-                                <td>In-person, El Prado Park (Sundays 09:00&ndash;13:00)</td>
-                                <td>December&ndash;May only. Seasonal.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Restaurant Depot</strong></td>
-                                <td>Wholesale, multiple</td>
-                                <td>Standard produce in bulk at wholesale prices.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Presidente Supermarket</strong></td>
-                                <td>Retail, multiple (Miami)</td>
-                                <td>Latin American specialty. Tropical produce, yuca, plantains. Cheapest in Miami.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p>
-                    <strong>November&ndash;April:</strong> Peak growing season in South Florida. Tomatoes, avocados, tropical fruits at their best and cheapest. For guest garnish and tasting menu produce &mdash; microgreens, edible flowers, specialty vegetables &mdash; <strong>The Chef&rsquo;s Garden</strong> (Ohio) ships overnight.
-                </p>
-
-                <!-- Ethnic & Specialty -->
-                <h3 id="cat-ethnic">Ethnic &amp; Specialty</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>168 Market</strong></td>
-                                <td>In-person, Hialeah</td>
-                                <td>Full Asian supermarket. Best Asian selection in South Florida. Lemongrass, galangal, kaffir lime, miso, dashi, nori, rice noodles, Thai curry pastes, wonton wrappers.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Sedano&rsquo;s</strong></td>
-                                <td>In-person, multiple locations</td>
-                                <td>Cuban/Latin. Plantains, yuca, black beans, mojo, sazon, achiote.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Presidente Supermarket</strong></td>
-                                <td>In-person, multiple (Miami)</td>
-                                <td>Latin American specialty. Tropical produce, spices. Cheapest in Miami for Latin ingredients.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="note note--key">
-                    <p><strong>168 Market is the last reliable large Asian source before the Caribbean.</strong> Buy your entire Asian pantry here in bulk. Lemongrass, galangal, kaffir lime, miso, dashi, nori, rice noodles, Thai curry pastes, wonton wrappers. What you do not buy now, you will not find at the next port.</p>
-                </div>
-
-                <!-- Wine & Spirits -->
-                <h3 id="cat-wine">Wine &amp; Spirits</h3>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Total Wine</strong></td>
-                                <td>Online + in-person, multiple locations</td>
-                                <td>Broadest selection in South Florida.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Costco</strong></td>
-                                <td>In-person, multiple</td>
-                                <td>Kirkland brand spirits are repackaged premium products. Good wine selection.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Duty-free at port</strong></td>
-                                <td>In-person, Port of Miami / Port Everglades</td>
-                                <td>If heading international. Buy all spirits for the Caribbean leg here &mdash; prices only go up from here.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- 5. Freezer-Ready Intel -->
-                <h2 id="freezer-ready">Freezer-Ready Intel</h2>
-
-                <p>
-                    Most of what you buy gets frozen. The suppliers who vac-pack, portion, and blast-chill before you collect save hours of galley prep and preserve quality.
-                </p>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Vac-Pack</th>
-                                <th>Portioning</th>
-                                <th>Blast Chill / Pre-Frozen</th>
-                                <th>Lead Time</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Wild Fork Foods</strong></td>
-                                <td>Yes (most products)</td>
-                                <td>Individual portions standard</td>
-                                <td>Products arrive frozen from facility</td>
-                                <td class="num">48h</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Snake River Farms</strong></td>
-                                <td>Yes</td>
-                                <td>Individual cuts standard</td>
-                                <td>Shipped frozen</td>
-                                <td class="num">3 days</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Halpern&rsquo;s</strong></td>
-                                <td>TBC &mdash; confirm on account setup</td>
-                                <td>TBC</td>
-                                <td>TBC</td>
-                                <td>TBC</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Josh&rsquo;s Premium Meats</strong></td>
-                                <td>TBC &mdash; ask on Wagyu orders</td>
-                                <td>TBC</td>
-                                <td>TBC</td>
-                                <td>Same day Miami-Dade</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Browne Trading</strong></td>
-                                <td>TBC &mdash; ask for larger orders</td>
-                                <td>TBC</td>
-                                <td>Ships overnight on ice</td>
-                                <td>Overnight</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Restaurant Depot</strong></td>
-                                <td>No (self-service)</td>
-                                <td>No</td>
-                                <td>No</td>
-                                <td>Walk in</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Meat N&rsquo; Bone</strong></td>
-                                <td>TBC</td>
-                                <td>TBC</td>
-                                <td>TBC</td>
-                                <td>Next day</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p>
-                    <strong>What to ask every protein supplier:</strong> (1) Can you vac-pack? (2) Can you portion &mdash; whole fillet AND individual cuts? (3) What lead time for packed orders? (4) Blast chiller available? A supplier who vac-packs and blast-chills is worth a 10% premium.
-                </p>
-
-                <p>
-                    <strong>Buy here, freeze for later:</strong> Wild Fork and Snake River Farms arrive already frozen and vac-packed &mdash; best quality for freezer loading. For proteins heading to the Caribbean, these two are your cleanest freezer-ready option.
-                </p>
-
-                <p>
-                    <strong>Do not freeze from here:</strong> Fish. Buy fish fresh at the next port. Frozen fish from Miami competes poorly with fresh local catch in the Caribbean.
-                </p>
-
-                <!-- Logistics -->
-                <p style="margin-top: var(--space-6);">
-                    <strong>Logistics and delivery:</strong> Uber XL (USD 20&ndash;40 per trip to marina, phone ahead, have orders bagged and ready). Uber Direct (express courier, 30 min&ndash;2 hours in FTL area). Reliable Couriers knows every marina slip in Lauderdale &mdash; Pier 66, Bahia Mar, 17th Street, Las Olas.
-                </p>
-
-                <!-- 6. The Agent -->
-                <h2 id="the-agent">The Agent</h2>
-
-                <p>
-                    Sometimes you dock at 14:00 and charter starts at 18:00 the next day.
-                </p>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 700px;">
-                        <thead>
-                            <tr>
-                                <th>Supplier</th>
-                                <th>Type</th>
-                                <th>Key Intel</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Yacht Provisions USA</strong></td>
-                                <td>Full-service agent</td>
-                                <td>15&ndash;18% markup. Sources from Halpern&rsquo;s and the same wholesale suppliers. Only worth it when you have zero time. On a USD 15,000 provision, that is USD 2,250&ndash;2,700.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Yacht Chandlers</strong></td>
-                                <td>Chandler</td>
-                                <td>29 years. Daily delivery FTL, Miami, West Palm Beach. Team led by an exec chef with 15+ years yachting.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>National Marine Suppliers</strong></td>
-                                <td>Chandler</td>
-                                <td>Direct farm/ranch relationships. Good for protein sourcing.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>ODP (On Demand Provisions)</strong></td>
-                                <td>Chandler</td>
-                                <td>Run by an executive yacht chef. Understands galley realities.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Just Provisions</strong></td>
-                                <td>Chandler</td>
-                                <td>Direct gangway delivery to superyachts. Fort Lauderdale.</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Whole Foods Provisioning</strong></td>
-                                <td>Free service</td>
-                                <td>They shop, store temperature-controlled, and hold for pickup. No markup beyond retail. Not a chandler &mdash; a free service.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <p>
-                    Use the agent only when your charter starts in 24 hours and you have not left the boat. Miami&rsquo;s wholesale infrastructure is so accessible that the agent markup is harder to justify here than anywhere else.
-                </p>
-
-                <p>
-                    <strong>Red flags:</strong> Any agent who cannot tell you exactly where they source proteins. If they are vague, they are marking up Restaurant Depot.
-                </p>
-
-                <!-- 7. Local Gems -->
-                <h2 id="local-gems">Local Gems</h2>
-
-                <p>
-                    What Miami does better or cheaper than anywhere else. Stock up &mdash; you will not find this at the next stop.
-                </p>
-
-                <div style="overflow-x: auto; margin: var(--space-6) 0;">
-                    <table class="data-table" style="min-width: 600px;">
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Where</th>
-                                <th>Why Here</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><strong>Stone crab claws (Oct&ndash;May)</strong></td>
-                                <td>Captain Jim&rsquo;s / Haulover Marina</td>
-                                <td>Peak season, direct from boats, half restaurant price</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Tropical exotics</strong> (mamey, sapodilla, jackfruit)</td>
-                                <td>Robert Is Here, Homestead</td>
-                                <td>Grown in South Florida, unavailable elsewhere</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Asian pantry staples (bulk)</strong></td>
-                                <td>168 Market, Hialeah</td>
-                                <td>Last reliable source before Caribbean &mdash; buy everything</td>
-                            </tr>
-                            <tr>
-                                <td><strong>12%+ protein bread flour</strong></td>
-                                <td>Restaurant Depot / Costco Business Center</td>
-                                <td>Scarce and expensive once you leave the US</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Cuban bread and pastries</strong></td>
-                                <td>Any Sedano&rsquo;s or Latin bakery</td>
-                                <td>Authentic, cheap, crew will thank you</td>
-                            </tr>
-                            <tr>
-                                <td><strong>Fresh mozzarella and burrata</strong></td>
-                                <td>Mimmo&rsquo;s Mozzarella, Miami Beach</td>
-                                <td>Made daily. The real thing.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- 8. The Bottom Line -->
-                <h2 id="bottom-line">The Bottom Line</h2>
-
-                <p>
-                    Miami is the provisioning capital of the Americas. Zero import tax, wholesale infrastructure everywhere, every cuisine and quality tier covered from crew-grade to A5 Wagyu. The single best move is getting the Costco Business Center and Restaurant Depot memberships on day one &mdash; between them, they cover 60&ndash;70% of any provision at wholesale prices. Before you leave, load flour, Asian pantry staples, and frozen vac-packed proteins for the next three ports. Prices and suppliers shift season to season &mdash; verify before committing.
-                </p>
-
-                <div class="article-sources">
-                    <strong>Sources</strong>
-                    <p>Aggregated from recommendations across the Chefs Helping Chefs (~1,025 members) and Yacht Chef Group (~300+ members) WhatsApp communities, July 2025 &ndash; February 2026. Supplier recommendations from working yacht chefs based in Fort Lauderdale and Miami. All sources anonymised. Prices and availability subject to change &mdash; verify before committing.</p>
-                </div>
-
-                <!-- Article Actions -->
-                <div class="article-actions">
-                    <button class="print-btn" data-action="print">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M6 9V2h12v7"/>
-                            <path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/>
-                            <rect x="6" y="14" width="12" height="8"/>
-                        </svg>
-                        Print
-                    </button>
-                    <button class="download-btn" data-action="download">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/>
-                            <polyline points="7,10 12,15 17,10"/>
-                            <line x1="12" y1="15" x2="12" y2="3"/>
-                        </svg>
-                        Save PDF
-                    </button>
-                </div>
-
-                <!-- Article Engagement Section -->
-                <div class="article-engagement">
-
-                    <!-- Community Pulse -->
-                    <div class="community-pulse">
-                        <span class="community-pulse__count">Loading...</span>
+                <!-- ================= INTERACTIVE MAP (top of article) ================= -->
+                <div class="pcv-map-wrap" role="region" aria-label="Interactive map of Miami / FTL provisioning points">
+                    <div class="pcv-map-head">
+                        <strong>South Florida &mdash; Where Everything Is</strong>
+                        <span>Click any pin for phone, hours, maps link &middot; toggle categories below</span>
                     </div>
-
-                    <!-- Reactions -->
-                    <div class="article-reactions" data-article-id="provisioning-miami-ftl">
-                        <p class="reactions-prompt">Will this change how you provision in Miami?</p>
-                        <div class="reactions-buttons">
-                            <button class="reaction-btn" data-reaction="agree">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3"/>
-                                </svg>
-                                <span>Useful</span>
-                                <span class="reaction-count reaction-count--agree">0</span>
-                            </button>
-                            <button class="reaction-btn" data-reaction="disagree">
-                                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17"/>
-                                </svg>
-                                <span>Disagree</span>
-                                <span class="reaction-count reaction-count--disagree">0</span>
-                            </button>
-                        </div>
-                        <div class="article-reactions__stats"></div>
-                        <div class="article-reactions__bar"><div class="article-reactions__bar-fill"></div></div>
+                    <div id="pcv-map"></div>
+                    <div class="pcv-legend" id="pcv-legend">
+                        <button data-cat="berth"><i class="dot-berth"></i> Berths</button>
+                        <button data-cat="market"><i class="dot-market"></i> Markets &amp; Direct</button>
+                        <button data-cat="shop"><i class="dot-shop"></i> Specialty &amp; Online</button>
+                        <button data-cat="mainland"><i class="dot-mainland"></i> Wholesale / Bulk</button>
+                        <button data-cat="logistics"><i class="dot-logistics"></i> Logistics &amp; Agent</button>
                     </div>
+                </div>
 
-                    <!-- Share -->
-                    <div class="article-share">
-                        <span class="share-label">Share:</span>
-                        <button class="share-btn" data-share="twitter" title="Share on Twitter">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                            </svg>
-                        </button>
-                        <button class="share-btn" data-share="linkedin" title="Share on LinkedIn">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
-                                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
-                            </svg>
-                        </button>
-                        <button class="share-btn" data-share="copy" title="Copy link">
-                            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
-                                <rect x="9" y="9" width="13" height="13" rx="2"/>
-                                <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/>
-                            </svg>
-                        </button>
+                <nav class="pc-quicknav">
+                    <a href="#three-berths">Three Berths</a><span class="sep">&middot;</span>
+                    <a href="#pcv-map">Map</a><span class="sep">&middot;</span>
+                    <a href="#brief">Brief</a><span class="sep">&middot;</span>
+                    <a href="#wholesale">Wholesale</a><span class="sep">&middot;</span>
+                    <a href="#fish">Fish</a><span class="sep">&middot;</span>
+                    <a href="#meat">Meat</a><span class="sep">&middot;</span>
+                    <a href="#specialty">Specialty</a><span class="sep">&middot;</span>
+                    <a href="#bread">Bread</a><span class="sep">&middot;</span>
+                    <a href="#produce">Produce</a><span class="sep">&middot;</span>
+                    <a href="#asian">Asian</a><span class="sep">&middot;</span>
+                    <a href="#wine">Wine</a><span class="sep">&middot;</span>
+                    <a href="#agents">Agents</a><span class="sep">&middot;</span>
+                    <a href="#watchouts" class="warn">⚠ Watch-outs</a>
+                </nav>
+
+
+            <div class="pc-funfact"><strong>Costco Business Center is not regular Costco.</strong> The Doral and Pompano Beach branches carry restaurant-format packaging &mdash; 5 kg flour bags, case lots, portion-controlled proteins. Make the 20-minute drive. Regular Costco sells consumer packs; the Business Center sells professional packs. The difference in value and format is the single biggest unlock in this port.</div>
+
+            <!-- ================= THREE BERTHS ================= -->
+            <details class="sfold" id="three-berths" open>
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">The Three Berths</div>
+                        <div class="sfold__desc">Pier 66 &middot; Bahia Mar &middot; Island Gardens &mdash; the shortlist any captain actually picks from.</div>
                     </div>
+                    <span class="sfold__count">3 marinas</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
 
-                    <!-- Comments Section -->
-                    <div class="article-comments">
-                        <h3 class="comments-title">Join the conversation</h3>
+                <div class="pc-berths">
+                    <div class="pc-berth" id="p-pier66">
+                        <h3>Pier Sixty-Six Marina</h3>
+                        <div class="pc-berth__sub">FTL &middot; ≤100m &middot; 2024 rebuild &middot; <a href="tel:+19547283578">+1 954 728 3578</a> &middot; VHF 16 / 71</div>
+                        <ol>
+                            <li><span class="meta">2301 SE 17th St Causeway &middot; 164 floating-concrete slips, easiest base for the 17th St supplier corridor (chandlers, couriers, rental cars within 2 km). <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Pier+Sixty-Six+Marina+Fort+Lauderdale" target="_blank" rel="noopener">📍 Maps</a></span></li>
+                        </ol>
+                    </div>
+                    <div class="pc-berth" id="p-bahiamar">
+                        <h3>Bahia Mar Yachting Center</h3>
+                        <div class="pc-berth__sub">FTL &middot; ≤90m &middot; Yacht Show host &middot; <a href="tel:+19546276309">+1 954 627 6309</a> &middot; VHF 16</div>
+                        <ol>
+                            <li><span class="meta">801 Seabreeze Boulevard &middot; 250+ slips on the beach side of the Intracoastal, host of the FTL International Boat Show (late Oct / early Nov). <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Bahia+Mar+Fort+Lauderdale" target="_blank" rel="noopener">📍 Maps</a></span></li>
+                        </ol>
+                    </div>
+                    <div class="pc-berth" id="p-islandgardens">
+                        <h3>Island Gardens Deep Harbour</h3>
+                        <div class="pc-berth__sub">Miami &middot; ≤170m &middot; Watson Island &middot; <a href="tel:+13055211300">+1 305 521 1300</a> &middot; VHF 16</div>
+                        <ol>
+                            <li><span class="meta">888 MacArthur Causeway &middot; vessels to 170m, deep water, walk to downtown Miami, hop to Wynwood. The Miami answer when FTL doesn&rsquo;t fit. <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Island+Gardens+Deep+Harbour+Miami" target="_blank" rel="noopener">📍 Maps</a></span></li>
+                        </ol>
+                    </div>
+                </div>
 
-                        <div class="comments-sort">
-                            <button class="comments-sort__btn active" data-sort="newest">Newest</button>
-                            <button class="comments-sort__btn" data-sort="most-agreed">Most agreed</button>
+                </div>
+            </details>
+
+            <!-- ================= BRIEF ================= -->
+            <details class="sfold" id="brief">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">The Brief</div>
+                        <div class="sfold__desc">Why this port is different &mdash; and what to set up on day one.</div>
+                    </div>
+                    <span class="sfold__count">5 min</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+                    <p><strong>Port type: major hub.</strong> Agent markup runs 15&ndash;18%. On a USD 15,000 provision, self-sourcing saves USD 2,200&ndash;2,700. The wholesale infrastructure is so good here that using an agent is paying someone to do what you can do better yourself &mdash; unless you genuinely have zero time.</p>
+
+                    <div class="pc-pullq">If your season starts here or you transit through, load everything you can carry. Prices only go up from here.</div>
+
+                    <p>Miami has zero import tax, multiple wholesale clubs that grant free membership with boat registration, and suppliers covering every quality tier from crew-grade to A5 Wagyu. Two memberships secured on day one &mdash; Costco Business Center + Restaurant Depot &mdash; cover 60&ndash;70% of any provision at wholesale prices.</p>
+
+                    <p><strong>If you are sole chef,</strong> separate your orders by category across different days. One day for proteins. Another for dry store. Another for fresh produce + specialty. Each run has a different rhythm and different suppliers. Trying to do everything in one day means you rush the decisions that matter most.</p>
+                </div>
+            </details>
+
+            <!-- ================= WHOLESALE ================= -->
+            <details class="sfold" id="wholesale">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Wholesale &amp; One-Stop</div>
+                        <div class="sfold__desc">The big run. 60&ndash;70% of any provision at wholesale prices &mdash; if you have the right card.</div>
+                    </div>
+                    <span class="sfold__count">5 sources</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <details class="pfold top" id="p-costco-bc">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Costco Business Center (Doral)</div>
+                            <div class="pfold__hook">5800 NW 105th Ave, Doral &middot; restaurant packs &middot; case lots &middot; 5 kg flour bags</div>
                         </div>
-
-                        <div class="comment-form">
-                            <form>
-                                <div class="comment-form__row">
-                                    <input type="text" name="name" placeholder="Your name" required>
-                                    <input type="email" name="email" placeholder="Email (optional)">
-                                </div>
-                                <label class="photo-upload" title="Add your photo">
-                                    <input type="file" name="photo" accept="image/*" hidden>
-                                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                                    <span class="photo-upload__preview"></span>
-                                </label>
-                                <textarea name="comment" placeholder="Share your thoughts, experience, or questions..." rows="4" required></textarea>
-                                <div class="comment-form__footer">
-                                    <label class="comment-form__subscribe">
-                                        <input type="checkbox" name="subscribe" checked>
-                                        <span>Subscribe to the newsletter</span>
-                                    </label>
-                                    <button type="submit">Post Comment</button>
-                                </div>
-                            </form>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">The top &mdash; covers 40% of dry store + pantry &middot; not regular Costco</div>
+                        <p>NOT regular Costco. Restaurant-format packaging &mdash; 5 kg flour bags, case lots, portion-controlled proteins. Make the 20-min drive from FTL. Also a Pompano Beach branch closer to FTL. <span class="cau cau--med" data-fix="Closed Sundays year-round. Reduced hours other days (Mon–Fri 07:00–18:00, Sat 07:00–17:00). Plan the bulk run for Mon–Sat morning.">Closed Sundays</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>5800 NW 105th Ave, Doral, FL 33178</div>
+                            <div><strong>Phone</strong>+1 305 463 9450</div>
+                            <div><strong>Hours</strong>Mon&ndash;Fri 07:00&ndash;18:00 &middot; Sat 07:00&ndash;17:00 &middot; Sun closed</div>
+                            <div><strong>Web</strong>costcobusinesscenter.com</div>
                         </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Costco+Business+Center+Doral" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
 
-                        <div class="comments-list">
-                            <!-- Comments loaded from Firebase -->
+                <details class="pfold top" id="p-restaurant-depot">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Restaurant Depot (Pompano)</div>
+                            <div class="pfold__hook">1751 SW 1st Way, Deerfield Beach &middot; USDA Prime &middot; bulk dairy &middot; bulk produce</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Free membership with boat registration &middot; one card covers every Restaurant Depot in the US</div>
+                        <p>Free membership with boat registration + business card + captain&rsquo;s ID. One card covers every Restaurant Depot in the US. USDA Prime / Choice at wholesale, bulk proteins, dairy, dry goods, cleaning. Multiple FL locations: Pompano, FTL, Miami, Medley. <span class="cau cau--info" data-fix="First-time setup at the FL branch takes 15–30 min. Bring boat documentation, business card, captain's ID. Apply at Pompano Beach branch first — least crowded.">Day-1 Setup</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>1751 SW 1st Way, Deerfield Beach, FL 33441</div>
+                            <div><strong>Phone</strong>+1 954 363 4810</div>
+                            <div><strong>Hours</strong>Mon&ndash;Sat 07:00&ndash;18:00 &middot; Sun 09:00&ndash;15:00 (reduced)</div>
+                            <div><strong>Web</strong>restaurantdepot.com</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Restaurant+Depot+Pompano+Beach" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-halperns">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Halpern&rsquo;s Steak &amp; Seafood</div>
+                            <div class="pfold__hook">FL distribution Doral &middot; the agent source &middot; +1 800 793 5043</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Where provisioning agents source from &middot; cut the 15&ndash;18% middleman</div>
+                        <p>Where provisioning agents source from. Beef, seafood, 2,000+ products. Open a wholesale account and cut out the 15&ndash;18% middleman. Since 1966.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 800 793 5043</div>
+                            <div><strong>Email</strong>sales@halperns.com</div>
+                            <div><strong>Hours</strong>Account-based</div>
+                            <div><strong>Web</strong>halperns.com</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Halperns+Doral+Florida" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-whole-foods">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Whole Foods Provisioning Service</div>
+                            <div class="pfold__hook">Multiple FTL/Miami locations &middot; FREE service most chefs don&rsquo;t know about</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Free provisioning service &middot; no markup beyond retail</div>
+                        <p>Free provisioning service most chefs don&rsquo;t know about. Call ahead, give your list, they shop it, store it temperature-controlled, hold it for pickup. No markup beyond retail. Best for organic produce, fresh herbs, cheese counter, dietary specialty.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Closest FTL</strong>2000 N Federal Hwy</div>
+                            <div><strong>Hours</strong>Daily</div>
+                            <div><strong>Web</strong>wholefoodsmarket.com/stores</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Whole+Foods+Federal+Hwy+Fort+Lauderdale" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-publix">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Publix &amp; BJ&rsquo;s (backups)</div>
+                            <div class="pfold__hook">Everywhere &middot; emergency provisions, BOGO deals, late hours</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">The fallback when the wholesale clubs are closed</div>
+                        <p><strong>Publix</strong> &mdash; everywhere in FL. BOGO deals on proteins/dairy/staples (check weekly flyer). Boar&rsquo;s Head deli counter. Open early/late. <strong>BJ&rsquo;s Wholesale</strong> &mdash; similar to Costco, sometimes better on specific items. <strong>Trader Joe&rsquo;s</strong> &mdash; snacks, wine, frozen appetisers for crew. Good cheese for the price.</p>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= FISH ================= -->
+            <details class="sfold" id="fish">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Fish &amp; Seafood</div>
+                        <div class="sfold__desc">Stone crab Oct&ndash;May. Yellowtail and mahi off the boat at noon. Don&rsquo;t freeze for the next port &mdash; Caribbean fresh wins.</div>
+                    </div>
+                    <span class="sfold__count">6 picks</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <div class="pc-funfact"><strong>The Haulover Marina hack.</strong> Boats come in at noon and 17:00 at Sunny Isles. Buy directly off the boat &mdash; cash preferred. Yellowtail snapper, mahi, swordfish, tuna at 40&ndash;60% below retail. Build the relationship and they will call you when they catch something special.</div>
+
+                <details class="pfold top" id="p-haulover">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Haulover Marina (off-the-boat)</div>
+                            <div class="pfold__hook">10800 Collins Ave, Sunny Isles &middot; cash preferred &middot; noon &amp; 17:00</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">The direct &mdash; 40&ndash;60% below retail &middot; cash &middot; build the relationship</div>
+                        <p>Boats come in at noon and 17:00. Buy directly off the boat. Yellowtail snapper, mahi, swordfish, tuna at 40&ndash;60% below retail. <span class="cau cau--high" data-fix="Cash only — sometimes the only option. Carry $200–500 cash. Sundays the lanes fill with recreational traffic — slower delivery. Arrive 15 min before the boats land.">Cash &middot; 60-min window</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>10800 Collins Ave, Sunny Isles, FL 33154</div>
+                            <div><strong>Phone</strong>+1 305 947 3525</div>
+                            <div><strong>Land times</strong>Daily ~12:00 and ~17:00</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Haulover+Marina+Sunny+Isles+Beach" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold cult" id="p-captain-jims">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Captain Jim&rsquo;s Fish Market</div>
+                            <div class="pfold__hook">12950 W Dixie Hwy, North Miami &middot; local catch, stone crab, FL lobster &middot; before 08:00</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">N Miami Beach fishmonger &middot; stone crab Oct&ndash;May &middot; FL lobster</div>
+                        <p>Local catch, stone crab in season (Oct&ndash;May), Florida lobster. The fishmongers know yacht chefs. <span class="cau cau--med" data-fix="Closed Mondays. Best selection 09:00–10:00. After 11:00 only the leftovers. Pre-call to reserve a whole fish.">Closed Mon &middot; early bird</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>12950 W Dixie Hwy, North Miami, FL 33161</div>
+                            <div><strong>Phone</strong>+1 305 892 2812</div>
+                            <div><strong>Hours</strong>Tue&ndash;Sat 09:00&ndash;18:00 &middot; Sun 09:00&ndash;15:00 &middot; closed Mon</div>
+                            <div><strong>Web</strong>captjims.com</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Captain+Jims+Fish+Market+North+Miami+Beach" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-browne">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Browne Trading (Maine &mdash; overnight)</div>
+                            <div class="pfold__hook">Premium day-boat fish, caviar, smoked fish &middot; ships overnight</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Guest-level seafood when local catch isn&rsquo;t what you need</div>
+                        <p>Premium day-boat fish, caviar, smoked fish &mdash; ships overnight from Portland, Maine. <span class="cau cau--med" data-fix="Order by ~14:00 EST for next-day Miami arrival. Friday cut-off for Saturday delivery; no Sunday/Monday delivery in many cases.">Order by 14:00 EST</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 207 766 2402</div>
+                            <div><strong>Email</strong>info@brownetrading.com</div>
+                            <div><strong>Web</strong>brownetrading.com</div>
                         </div>
                     </div>
+                </details>
+
+                <details class="pfold" id="p-sea-salt">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Sea Salt Fish Market</div>
+                            <div class="pfold__hook">3020 N Federal Hwy, FTL &middot; wild-caught &middot; $8 prep fee</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">FTL fishmonger &middot; wild-caught, responsibly harvested</div>
+                        <p>Wild-caught, responsibly harvested. USD 8 prep fee for cleaning/filleting. Call ahead with order. The FTL alternative to driving to N Miami.</p>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-plaza">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Plaza Seafood Market (Allapattah)</div>
+                            <div class="pfold__hook">Cheapest whole fish + shellfish in Miami &middot; not pretty &middot; very good</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">The crew-grade workhorse &middot; cash, broken English, no-frills counter</div>
+                        <p>Cheapest whole fish and shellfish in Miami. Not pretty. Very good. Where the Cuban-American crew of the FTL fleet sources their family seafood.</p>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-krudo">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Krudo Fish Market</div>
+                            <div class="pfold__hook">N Miami Beach &middot; sushi-grade, kosher-certified</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">When you need guaranteed sushi-grade quality</div>
+                        <p>Sushi-grade, kosher-certified. When you need guaranteed quality for raw service.</p>
+                    </div>
+                </details>
 
                 </div>
+            </details>
+
+            <!-- ================= MEAT ================= -->
+            <details class="sfold" id="meat">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Meat &amp; Protein</div>
+                        <div class="sfold__desc">Wagyu, dry-aged, frozen vac-pack for the Caribbean leg. Halpern&rsquo;s is the wholesale answer; Snake River is the freezer-load answer.</div>
+                    </div>
+                    <span class="sfold__count">5 picks</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <details class="pfold top" id="p-josh">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Josh&rsquo;s Premium Meats (Miami)</div>
+                            <div class="pfold__hook">3107 SW 57th Ave &middot; Wagyu specialist &middot; same-day Miami-Dade delivery</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Top 5 Miami butcher (Infatuation) &middot; Wagyu specialist (AU + JP)</div>
+                        <p>Wagyu specialist (Australian + Japanese). Wild-caught seafood. Same-day Miami-Dade delivery. <span class="cau cau--med" data-fix="A5 Wagyu allocations sell out fast. For Art Basel week (early Dec) order 10 days ahead — premium suppliers max out for VIP catering.">A5 allocations</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>3107 SW 57th Ave, Miami, FL 33155</div>
+                            <div><strong>Phone</strong>+1 305 902 3400</div>
+                            <div><strong>Hours</strong>Mon&ndash;Sat 09:00&ndash;19:00</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Joshs+Premium+Meats+Miami" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold top" id="p-wildfork">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Wild Fork Foods</div>
+                            <div class="pfold__hook">Multiple Miami-Dade &middot; crew-grade to Wagyu &middot; frozen vac-pack &middot; marina delivery</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">The freezer-load answer &middot; 48 h lead &middot; marina delivery available</div>
+                        <p>Broad protein range crew-grade to Wagyu. 48h lead time for the full catalogue. Marina delivery available. Products arrive frozen and vac-packed &mdash; perfect for freezer loading before the Caribbean leg.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 786 605 4140</div>
+                            <div><strong>Web</strong>wildforkfoods.com</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-snake-river">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Snake River Farms (online)</div>
+                            <div class="pfold__hook">Boise, ID &middot; American Wagyu + Kurobuta pork &middot; ships frozen vac-packed</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">THE pork specialist &middot; best freezer-loading option for the Caribbean leg</div>
+                        <p>American Wagyu beef + Kurobuta pork &mdash; THE pork specialist. Flat-rate shipping, ships frozen and vac-packed. Order 3 days ahead.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 877 736 0193</div>
+                            <div><strong>Web</strong>snakeriverfarms.com</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-meat-bone">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Meat N&rsquo; Bone (online)</div>
+                            <div class="pfold__hook">Grass-fed, dry-aged, USDA Prime, Wagyu, Picanha &middot; next-day ship</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <p>Grass-fed, dry-aged, ethically sourced. USDA Prime, Wagyu, Picanha. Next-day ship. Useful when Halpern&rsquo;s account is not yet open and Wild Fork doesn&rsquo;t have what you need.</p>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-four-star">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Four Star Poultry &amp; Provision</div>
+                            <div class="pfold__hook">Wholesale delivery, South Florida &middot; since 1967 &middot; marina delivery</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <p>Since 1967. Locally owned. Delivers to marina with minimum order. The poultry source for chefs who want a single supplier for chicken, duck, quail.</p>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= SPECIALTY ================= -->
+            <details class="sfold" id="specialty">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Cheese, Charcuterie &amp; Caviar</div>
+                        <div class="sfold__desc">Marky&rsquo;s wholesale portal is the unlock. Mimmo&rsquo;s makes mozzarella daily. Use the wholesale portal, never the retail site.</div>
+                    </div>
+                    <span class="sfold__count">4 picks</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <details class="pfold top" id="p-markys">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Marky&rsquo;s (wholesale portal)</div>
+                            <div class="pfold__hook">687 NE 79th St, Miami &middot; caviar, foie gras, A5 Wagyu, charcuterie</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Best deli + caviar in South Florida &middot; USE THE WHOLESALE PORTAL</div>
+                        <p>Best deli meats, caviar, foie gras, truffle products in South Florida. <span class="cau cau--high" data-fix="Use wholesale.markys.com — NOT the retail markys.com site. Different prices, different terms. Wholesale account requires business documentation; once open, prices drop ~30%.">Wholesale portal only</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>687 NE 79th St, Miami, FL 33138</div>
+                            <div><strong>Phone</strong>+1 305 758 9288</div>
+                            <div><strong>Hours</strong>Mon&ndash;Fri 09:00&ndash;17:00</div>
+                            <div><strong>Web</strong>wholesale.markys.com</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Markys+Caviar+Miami+79th+Street" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-mimmos">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Mimmo&rsquo;s Mozzarella</div>
+                            <div class="pfold__hook">7000 Biscayne Blvd, Miami &middot; mozzarella + burrata made daily</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Made daily on the premises &middot; Italian imports &middot; the real thing</div>
+                        <p>Fresh mozzarella and burrata made daily on the premises. Italian imports. The real thing &mdash; order ahead for volume.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 305 757 8895</div>
+                            <div><strong>Hours</strong>Tue&ndash;Sun 10:00&ndash;19:00 &middot; closed Mon</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-regalis">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Regalis Foods (online, 2-day ship)</div>
+                            <div class="pfold__hook">NYC HQ &middot; truffles, A5 Wagyu, Japanese wasabi, firefly squid</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">The guest-tier online specialist &middot; 2-day ship to Miami</div>
+                        <p>Truffles, caviar, A5 Wagyu, foie gras, specialty mushrooms, live seafood, Japanese wasabi, firefly squid. The guest-tier online specialist.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 718 433 4787</div>
+                            <div><strong>Web</strong>regalisfoods.com</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-chefs-garden">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">The Chef&rsquo;s Garden (Ohio, overnight)</div>
+                            <div class="pfold__hook">Microgreens, edible flowers, tasting-menu produce &middot; 400-acre regenerative farm</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Guest garnish + tasting-menu produce when Florida won&rsquo;t carry the dish</div>
+                        <p>Microgreens, edible flowers, specialty vegetables, herbs from a 400-acre regenerative farm. Guest garnish + tasting-menu produce when the Florida produce won&rsquo;t carry the dish.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 800 289 4644</div>
+                            <div><strong>Web</strong>chefs-garden.com</div>
+                        </div>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= BREAD ================= -->
+            <details class="sfold" id="bread">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Bread &amp; Bakery</div>
+                        <div class="sfold__desc">Zak the Baker is the 48-h-ahead artisan answer. Caputo flour at Restaurant Depot is the freezer-bound staple.</div>
+                    </div>
+                    <span class="sfold__count">2 picks + flour note</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <div class="pc-funfact"><strong>Flour warning.</strong> Stock Caputo flour and bread flour at Restaurant Depot or Costco Business Center. 12%+ protein flour is scarce and expensive in the Caribbean. Buy 10&ndash;20 kg here.</div>
+
+                <details class="pfold top" id="p-zak">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Zak the Baker (Wynwood)</div>
+                            <div class="pfold__hook">295 NW 26th St, Miami &middot; sourdough, challah, focaccia &middot; 48 h ahead for volume</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Artisan sourdough &middot; the production bakery in Wynwood</div>
+                        <p>Artisan sourdough, challah, focaccia. <span class="cau cau--high" data-fix="Volume orders need 48 h lead time. For the standard charter delivery (12+ loaves), call Tuesday for Friday. Closed Mondays — plan accordingly.">48 h lead &middot; closed Mon</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>295 NW 26th St, Miami, FL 33127</div>
+                            <div><strong>Phone</strong>+1 786 294 0876</div>
+                            <div><strong>Hours</strong>Tue&ndash;Sun 07:00&ndash;17:00 &middot; closed Mon</div>
+                            <div><strong>Web</strong>zakthebaker.com</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Zak+the+Baker+Wynwood" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= PRODUCE ================= -->
+            <details class="sfold" id="produce">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Produce, Tropical &amp; Farmers Markets</div>
+                        <div class="sfold__desc">Robert Is Here for the tropical exotics. Yellow Green for the weekend market run. Restaurant Depot for bulk.</div>
+                    </div>
+                    <span class="sfold__count">3 picks</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <details class="pfold top" id="p-robert">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Robert Is Here (Homestead)</div>
+                            <div class="pfold__hook">19200 SW 344th St &middot; mamey, sapodilla, jackfruit, dragon fruit</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Tropical exotics unavailable elsewhere in the US &middot; 90 min from FTL</div>
+                        <p>Tropical exotics: mamey, sapodilla, jackfruit, starfruit, dragon fruit. Unavailable elsewhere in the US. <span class="cau cau--med" data-fix="90-min drive south from FTL. Closed September–October. Don't trust the distance — combine with one big errand or skip and use Sedano's tropical aisle as alternative.">90 min &middot; closed Sept&ndash;Oct</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>19200 SW 344th St, Homestead, FL 33034</div>
+                            <div><strong>Phone</strong>+1 305 246 1592</div>
+                            <div><strong>Hours</strong>Daily 08:00&ndash;19:00 (Nov&ndash;Aug)</div>
+                            <div><strong>Web</strong>robertishere.com</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Robert+Is+Here+Homestead" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-yellow-green">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Yellow Green Farmers Market (Hollywood)</div>
+                            <div class="pfold__hook">3000 Stirling Rd &middot; 190,000 sq ft &middot; 600+ vendors &middot; Sat/Sun only</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Best farmers market in South Florida &middot; weekend only</div>
+                        <p>190,000 sq ft, 600+ vendors. Best farmers market in South Florida. <span class="cau cau--med" data-fix="Saturdays and Sundays only — 08:00–16:00. Overwhelming — go with a written list. Parking saturated by 11:00; arrive at opening or after 14:00.">Sat/Sun only &middot; go with a list</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>3000 Stirling Rd, Hollywood, FL 33021</div>
+                            <div><strong>Phone</strong>+1 954 513 3990</div>
+                            <div><strong>Hours</strong>Sat&ndash;Sun 08:00&ndash;16:00</div>
+                        </div>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= ASIAN ================= -->
+            <details class="sfold" id="asian">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Asian Pantry &mdash; Pre-Caribbean Stock-Up</div>
+                        <div class="sfold__desc">168 Market in Hialeah is the last reliable Asian source before the Caribbean. Buy your entire pantry here in bulk.</div>
+                    </div>
+                    <span class="sfold__count">1 pick</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <div class="pc-funfact"><strong>168 Market is the last reliable large Asian source before the Caribbean.</strong> Lemongrass, galangal, kaffir lime, miso, dashi, nori, rice noodles, Thai curry pastes, wonton wrappers. What you do not buy now, you will not find at the next port.</div>
+
+                <details class="pfold top" id="p-168">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">168 Market (Hialeah)</div>
+                            <div class="pfold__hook">5750 NW 167th St &middot; full Asian supermarket &middot; bulk pantry</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">The Caribbean stock-up &middot; bulk &middot; last reliable source</div>
+                        <p>Full Asian supermarket. Best Asian selection in South Florida. Lemongrass, galangal, kaffir lime, miso, dashi, nori, rice noodles, Thai curry pastes, wonton wrappers. <span class="cau cau--high" data-fix="If your itinerary continues into the Caribbean, this is a one-shot stock-up. Bring the master list. Plan to spend 90 minutes minimum and budget freezer space ahead of time.">Caribbean stock-up</span></p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>5750 NW 167th St, Hialeah, FL 33015</div>
+                            <div><strong>Phone</strong>+1 305 769 9890</div>
+                            <div><strong>Hours</strong>Mon&ndash;Sun 09:00&ndash;21:00</div>
+                        </div>
+                        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=168+Market+Hialeah" target="_blank" rel="noopener">Open in Google Maps &rarr;</a>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= WINE ================= -->
+            <details class="sfold" id="wine">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Wine &amp; Spirits</div>
+                        <div class="sfold__desc">Total Wine for selection, duty-free at the port for the Caribbean leg.</div>
+                    </div>
+                    <span class="sfold__count">2 picks</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <details class="pfold" id="p-total-wine">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Total Wine</div>
+                            <div class="pfold__hook">Multiple FTL/Miami &middot; broadest selection in South FL</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <p>Broadest selection in South Florida. Online ordering, store pickup, marina delivery via 3rd-party courier. Use for case orders.</p>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-duty-free">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Duty-free at the port</div>
+                            <div class="pfold__hook">Port of Miami / Port Everglades &middot; if heading international</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">Buy all spirits for the Caribbean leg here &middot; prices only go up from here</div>
+                        <p>If heading international. Buy all spirits for the Caribbean leg here &mdash; prices only go up from here.</p>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= LOGISTICS / AGENTS ================= -->
+            <details class="sfold" id="agents">
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">Agents, Couriers &amp; Logistics</div>
+                        <div class="sfold__desc">Use the agent only when the charter starts in 24 hours. Otherwise the wholesale infrastructure is so accessible the markup is hard to justify.</div>
+                    </div>
+                    <span class="sfold__count">5 picks</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+
+                <details class="pfold top" id="p-yacht-chandlers">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Yacht Chandlers</div>
+                            <div class="pfold__hook">29 yrs &middot; daily delivery FTL/Miami/WPB &middot; team led by exec chef</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <div class="pfold__recog">29-year established chandler &middot; exec-chef-led, understands galley reality</div>
+                        <p>29-year established chandler. Daily delivery FTL, Miami, West Palm Beach. Team led by an exec chef with 15+ years yachting &mdash; they understand galley reality. Use when you have zero time.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Address</strong>2410 SE 16th St, Fort Lauderdale, FL 33316</div>
+                            <div><strong>Phone</strong>+1 954 761 1818</div>
+                            <div><strong>Email</strong>info@yachtchandlers.com</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-national-marine">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">National Marine Suppliers</div>
+                            <div class="pfold__hook">Direct farm/ranch &middot; protein focus</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <p>Chandler with direct farm/ranch relationships. Strong protein sourcing. Useful when the agent run is itself the proof of provenance for the principal.</p>
+                        <div class="pfold__meta">
+                            <div><strong>Phone</strong>+1 954 764 5374</div>
+                        </div>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-reliable">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Reliable Couriers</div>
+                            <div class="pfold__hook">Knows every FTL slip &middot; same-day &middot; cheaper than a chandler</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <p>Knows every marina slip in Lauderdale &mdash; Pier 66, Bahia Mar, 17th Street, Las Olas. Same-day courier for orders you place yourself but cannot collect. Cheaper than a full chandler when you only need delivery.</p>
+                    </div>
+                </details>
+
+                <details class="pfold" id="p-uber-direct">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">Uber Direct &amp; Uber XL</div>
+                            <div class="pfold__hook">$20&ndash;40 to marina &middot; 30 min &ndash; 2 hours in FTL area</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <p><strong>Uber XL</strong> &mdash; USD 20&ndash;40 to marina, phone ahead, have orders bagged and ready. <strong>Uber Direct</strong> &mdash; express courier, 30 min to 2 hours in the FTL area. <span class="cau cau--med" data-fix="During Spring Break and Boat Show, surge pricing 2–3×. Allow 30 min extra. For perishables, schedule pickup before 11:00 to avoid traffic.">Surge windows</span></p>
+                    </div>
+                </details>
+
+                <details class="pfold warn" id="p-agent-skip">
+                    <summary>
+                        <div>
+                            <div class="pfold__name">When to skip the agent</div>
+                            <div class="pfold__hook">15&ndash;18% markup &middot; on $15K provision = $2,200&ndash;2,700</div>
+                        </div>
+                        <span class="pfold__chev">&#9656;</span>
+                    </summary>
+                    <div class="pfold__body">
+                        <p>Agent markup runs 15&ndash;18%. On a USD 15,000 provision, self-sourcing saves USD 2,200&ndash;2,700. The wholesale infrastructure here is so accessible that using a full-service agent is hard to justify. <strong>Red flags:</strong> Any agent who cannot tell you exactly where they source proteins. If they are vague, they are marking up Restaurant Depot.</p>
+                    </div>
+                </details>
+
+                </div>
+            </details>
+
+            <!-- ================= WATCH-OUTS ================= -->
+            <details class="sfold" id="watchouts" open>
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">⚠ Watch-outs by Season &amp; Event</div>
+                        <div class="sfold__desc">The few that will actually break your day. Smaller stuff is in the inline ⚠ pills next to each supplier above.</div>
+                    </div>
+                    <span class="sfold__count" id="wo-count">&mdash;</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+                    <div id="wo-list"></div>
+                </div>
+            </details>
+
+            <!-- ================= BOTTOM LINE ================= -->
+            <details class="sfold" id="bottom-line" open>
+                <summary>
+                    <div class="sfold__titlewrap">
+                        <div class="sfold__title">The Bottom Line</div>
+                        <div class="sfold__desc">If you read nothing else.</div>
+                    </div>
+                    <span class="sfold__count">2 min</span>
+                    <span class="sfold__chev">&#9656;</span>
+                </summary>
+                <div class="sfold__body">
+                    <p>Miami is the provisioning capital of the Americas. Zero import tax, wholesale infrastructure everywhere, every cuisine and quality tier covered from crew-grade to A5 Wagyu. The single best move is getting the <strong>Costco Business Center</strong> and <strong>Restaurant Depot</strong> memberships on day one &mdash; between them, they cover 60&ndash;70% of any provision at wholesale prices. Add a wholesale account with <strong>Halpern&rsquo;s</strong> and you cut out the agent markup on proteins.</p>
+
+                    <p>Before you leave, load <strong>Caputo flour, Asian pantry staples (168 Market), and frozen vac-packed proteins (Wild Fork / Snake River)</strong> for the next three ports.</p>
+
+                    <p>Avoid the late-October Boat Show, the December Art Basel week, and any named-storm watch June&ndash;November. Those three windows alone account for most of the operational pain in this port.</p>
+                </div>
+            </details>
+
+            <!-- Related -->
+            <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                <strong>Also on Littoralicious</strong>
+                <ul style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-3); list-style: none; padding: 0;">
+                    <li style="margin-bottom: var(--space-2);"><a href="port-call-venice.html" style="color: var(--color-sea); text-decoration: underline;">Port Call &mdash; Venice</a> &mdash; The Adriatic counterpoint: Rialto pescheria, Mestre wholesale, acqua alta watch-outs.</li>
+                    <li style="margin-bottom: var(--space-2);"><a href="how-to-become-a-yacht-chef.html" style="color: var(--color-sea); text-decoration: underline;">How to Become a Yacht Chef</a> &mdash; The path into the galley, from culinary school to first charter.</li>
+                    <li style="margin-bottom: var(--space-2);"><a href="galley-efficiency-protocol.html" style="color: var(--color-sea); text-decoration: underline;">Galley Efficiency Protocol</a> &mdash; The freezer-load discipline that makes 168 Market and Wild Fork worth the trip.</li>
+                </ul>
+            </div>
 
             </div>
         </article>
@@ -959,61 +901,55 @@
     <footer class="footer">
         <div class="container">
             <div class="footer__newsletter">
-                <form class="footer-newsletter-form newsletter-form"
-                      action="https://buttondown.com/api/emails/embed-subscribe/littoralicious"
-                      method="post"
->
-                    <label for="footer-email-provisioning-miami">Get the monthly brief</label>
-                    <div class="footer-newsletter-form__row">
-                        <input type="email" name="email" id="footer-email-provisioning-miami" placeholder="your@email.com" required>
-                        <button type="submit">Subscribe</button>
-                    </div>
+                <form class="footer-newsletter-form newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/littoralicious" method="post" target="popupwindow">
+                    <label for="footer-email-provisioning-miami-ftl">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row"><input type="email" name="email" id="footer-email-provisioning-miami-ftl" placeholder="your@email.com" required><button type="submit">Subscribe</button></div>
                 </form>
             </div>
             <div class="footer__inner">
-                <div class="footer__about">
-                    <div class="footer__brand">LITTORALICIOUS</div>
-                    <p class="footer__description">One purpose: Nurture.</p>
-                    <p class="footer__tagline">
-                        For those who feed others with intention.
-                    </p>
-                </div>
+                <div class="footer__about"><div class="footer__brand">LITTORALICIOUS</div><p class="footer__description">One purpose: Nurture.</p><p class="footer__tagline">For those who feed others with intention.</p></div>
                 <div class="footer__links">
-                    <div class="footer__col">
-                        <h4>Sections</h4>
-                        <ul>
-                            <li><a href="../shore-larder.html">Shore Larder</a></li>
-                            <li><a href="../the-method.html">The Method</a></li>
-                            <li><a href="../littoral-heritage.html">Heritage</a></li>
-                            <li><a href="../the-evidence.html">The Evidence</a></li>
-                            <li><a href="../the-bridge.html">The Bridge</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer__col">
-                        <h4>About</h4>
-                        <ul>
-                            <li><a href="../about.html">Manifesto</a></li>
-                            <li><a href="../founder.html">Founder</a></li>
-                            <li><a href="../newsletter.html">Newsletter</a></li>
-                            <li><a href="../contact.html">Contact</a></li>
-                        </ul>
-                    </div>
+                    <div class="footer__col"><h4>Sections</h4><ul><li><a href="../shore-larder.html">Shore Larder</a></li><li><a href="../the-method.html">The Method</a></li><li><a href="../littoral-heritage.html">Heritage</a></li><li><a href="../the-evidence.html">The Evidence</a></li><li><a href="../the-bridge.html">The Bridge</a></li></ul></div>
+                    <div class="footer__col"><h4>About</h4><ul><li><a href="../about.html">Manifesto</a></li><li><a href="../founder.html">Founder</a></li><li><a href="../contact.html">Contact</a></li></ul></div>
                 </div>
             </div>
-            <div class="footer__legal">
-                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
-            </div>
+            <div class="footer__legal"><p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p></div>
         </div>
     </footer>
 
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-storage-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="../assets/js/firebase-config.js"></script>
+    <script src="../assets/js/port-call-miami-ftl-data.js"></script>
+    <script>
+        window.PCV_CONFIG = {
+            articleId: 'port-call-miami-ftl',
+            center: [26.000, -80.200],
+            zoom: 10,
+            cityRadiusKm: 90
+        };
+    </script>
+    <script defer src="../assets/js/port-call-map-only.js"></script>
+    <script>
+    window.addEventListener('load', function () {
+        if (!window.PCV_DATA || !window.PCV_DATA.WATCHOUTS) return;
+        var list = document.getElementById('wo-list');
+        var cnt  = document.getElementById('wo-count');
+        var SEV_LABEL = { high: 'High · breaks the day', medium: 'Medium · annoying' };
+        var order = { high: 0, medium: 1 };
+        // Surface only high + medium severity. Low/info-level items live as inline ⚠ caution pills next to suppliers.
+        var sorted = window.PCV_DATA.WATCHOUTS
+            .filter(function (w) { return w.severity === 'high' || w.severity === 'medium'; })
+            .sort(function (a, b) { return (order[a.severity]||9) - (order[b.severity]||9); });
+        cnt.textContent = sorted.length + ' to know';
+        list.innerHTML = sorted.map(function (w) {
+            return '<div class="wo-card sev-' + (w.severity || 'info') + '">'
+                + '<div class="wo-head"><span class="wo-title">' + w.title + '</span>'
+                + '<span class="wo-sev">' + (SEV_LABEL[w.severity] || 'info') + '</span></div>'
+                + '<div class="wo-when">' + w.when + '</div>'
+                + '<p class="wo-what">' + w.what + '</p>'
+                + '<div class="wo-fix"><b>Workaround</b>' + w.workaround + '</div>'
+                + '</div>';
+        }).join('');
+    });
+    </script>
     <script src="../assets/js/main.js"></script>
-    <script src="../assets/js/auth.js"></script>
-    <script src="../assets/js/community.js"></script>
-
 </body>
 </html>

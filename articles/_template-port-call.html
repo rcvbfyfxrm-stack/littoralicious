@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<!--
+  PORT CALL — canonical Littoralicious template (long-form prose + foldable + cautions + watch-outs).
+  Same shell as every other Littoralicious article (style.css) + the port-call content layer (port-call-content.css).
+
+  Reference implementations:
+    articles/port-call-venice.html
+    articles/provisioning-miami-ftl.html
+
+  Workflow for a new port:
+    1. Copy this file → articles/port-call-{slug}.html
+    2. Replace every __PORT__, __SLUG__, __DATE__, __SUBHEAD__, __LEAD_PARA__ marker
+    3. Fill the Three Berths grid + each section's <details class="pfold"> entries (name, hook, recog, body, meta)
+    4. Add inline cautions where they matter (see schema below)
+    5. Make sure assets/js/port-call-{slug}-data.js exists and exports a WATCHOUTS = [...] array
+       (≥5 watch-outs, ≥3 of them sev-high; every workaround includes a concrete number/phone/supplier)
+    6. Update sitemap.xml + feed.xml + the-bridge.html
+
+  CAUTION BADGE schema (inline, hover-revealed):
+    <span class="cau cau--high|cau--med|cau--info" data-fix="What to do about it">Short label</span>
+
+    cau--high (red)    — will break the day if ignored
+    cau--med  (amber)  — annoying, recoverable
+    cau--info (blue)   — good to know, low impact
+
+  Examples:
+    <span class="cau cau--high" data-fix="Cash only — sometimes the only option. Carry $200–500.">Cash · 60-min window</span>
+    <span class="cau cau--med"  data-fix="Closed Sundays year-round. Plan for Mon–Sat morning.">Closed Sun</span>
+    <span class="cau cau--info" data-fix="First-time setup at the FL branch takes 15–30 min.">Day-1 Setup</span>
+-->
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Port Call __PORT__ — verified suppliers, inline cautions, watch-outs by season. The provisioning playbook for yacht chefs.">
+    <title>Port Call __PORT__: __SUBHEAD__ &mdash; LITTORALICIOUS (TEMPLATE)</title>
+    <meta property="og:title" content="Port Call __PORT__ &mdash; LITTORALICIOUS">
+    <meta property="og:description" content="The provisioning playbook for __PORT__.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://www.littoralicious.com/articles/port-call-__SLUG__.html">
+    <meta property="og:site_name" content="Littoralicious">
+    <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
+
+    <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
+    <link rel="stylesheet" href="../assets/css/style.css?v=20260506b">
+    <link rel="stylesheet" href="../assets/css/port-call-content.css">
+    <link rel="stylesheet" href="../assets/css/port-call.css">
+    <link rel="icon" type="image/svg+xml" href="../assets/logo/favicon.svg">
+
+    <!-- Leaflet for the interactive port-call map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+<body>
+
+    <!-- Sticky right-side foldable mini-map (hidden under 980px viewport) -->
+    <aside class="pcv-mini is-collapsed" id="pcv-mini" aria-label="__PORT__ map">
+        <button class="pcv-mini__handle" id="pcv-mini-handle" aria-expanded="false" title="Click to fold / unfold the map">__PORT_SHORT__ Map</button>
+        <div id="pcv-mini-body">
+            <div class="pcv-mini__head"><strong>Where you are</strong><span>scroll · hover · zoom</span></div>
+            <div id="pcv-mini-map"></div>
+            <div class="pcv-mini__active" id="pcv-mini-active"><b>Hover any pin or scroll</b><span>The big map is in the article body — this side panel mirrors it as you read.</span></div>
+        </div>
+    </aside>
+
+    <header class="masthead">
+        <div class="container">
+            <div class="masthead__inner">
+                <div class="masthead__brand">
+                    <a href="/" class="masthead__logo"><img src="../assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
+                </div>
+                <nav class="masthead__nav">
+                    <a href="../shore-larder.html">Shore Larder</a>
+                    <a href="../the-method.html">The Method</a>
+                    <a href="../littoral-heritage.html">Heritage</a>
+                    <a href="../the-evidence.html">The Evidence</a>
+                    <a href="../the-bridge.html" class="active">The Bridge</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <article class="article">
+            <header class="article__header container">
+                <div class="article__meta">
+                    <span class="article__category">Port Call</span>
+                    <time class="article__date">__DATE__</time>
+                    <span class="article__reading-time">__READ_TIME__ min read</span>
+                </div>
+                <h1 class="article__title">Port Call __PORT__: __SUBHEAD__</h1>
+                <p class="article__lede">__LEAD_PARA__</p>
+            </header>
+
+            <div class="article__content container" style="max-width: 70ch; margin: 0 auto; padding: var(--space-8) var(--space-4);">
+
+                <!-- ========== INTERACTIVE MAP (top of article) ========== -->
+                <div class="pcv-map-wrap" role="region" aria-label="Interactive map of __PORT__ provisioning points">
+                    <div class="pcv-map-head">
+                        <strong>__PORT__ &mdash; Where Everything Is</strong>
+                        <span>Click any pin for phone, hours, maps link &middot; toggle categories below</span>
+                    </div>
+                    <div id="pcv-map"></div>
+                    <div class="pcv-legend" id="pcv-legend">
+                        <button data-cat="berth"><i class="dot-berth"></i> Berths</button>
+                        <button data-cat="market"><i class="dot-market"></i> Markets &amp; Direct</button>
+                        <button data-cat="shop"><i class="dot-shop"></i> Specialty</button>
+                        <button data-cat="mainland"><i class="dot-mainland"></i> Wholesale / Mainland</button>
+                        <button data-cat="logistics"><i class="dot-logistics"></i> Logistics</button>
+                    </div>
+                </div>
+
+                <nav class="pc-quicknav">
+                    <a href="#three-berths">Three Berths</a><span class="sep">&middot;</span>
+                    <a href="#pcv-map">Map</a><span class="sep">&middot;</span>
+                    <a href="#brief">Brief</a><span class="sep">&middot;</span>
+                    <a href="#agents">Agents &amp; Logistics</a><span class="sep">&middot;</span>
+                    <a href="#wholesale">Wholesale</a><span class="sep">&middot;</span>
+                    <a href="#fish">Fish</a><span class="sep">&middot;</span>
+                    <a href="#meat">Meat</a><span class="sep">&middot;</span>
+                    <a href="#specialty">Specialty</a><span class="sep">&middot;</span>
+                    <a href="#bread">Bread</a><span class="sep">&middot;</span>
+                    <a href="#produce">Produce</a><span class="sep">&middot;</span>
+                    <a href="#wine">Wine</a><span class="sep">&middot;</span>
+                    <a href="#watchouts" class="warn">⚠ Watch-outs</a><span class="sep">&middot;</span>
+                    <a href="#bottom">Bottom Line</a>
+                </nav>
+
+                <!-- Use the strong-numbered pattern: <strong>(1)</strong> ... <strong>(2)</strong> ... etc. -->
+                <p>__OPENING_PARAGRAPH_THREE_THINGS_TO_SET_UP__</p>
+                <p><strong>The warning.</strong> __WARNING_LINE__</p>
+
+                <div class="pc-funfact"><strong>__PORT__ FUN FACT.</strong> __FUN_FACT_BODY__</div>
+
+                <!-- ========== THREE BERTHS ========== -->
+                <details class="sfold" id="three-berths" open>
+                    <summary>
+                        <div class="sfold__titlewrap">
+                            <div class="sfold__title">The Three Berths</div>
+                            <div class="sfold__desc">__BERTH_INTRO__</div>
+                        </div>
+                        <span class="sfold__count">3 marinas</span>
+                        <span class="sfold__chev">▶</span>
+                    </summary>
+                    <div class="sfold__body">
+
+                        <div class="three-berths">
+                            <div class="tb-col">
+                                <h3>__BERTH_1_SHORT__</h3>
+                                <div class="subtitle">__BERTH_1_TAGS__</div>
+                                <ol><li><a href="#p-berth1">__BERTH_1_FULL_NAME__</a><span class="meta">__BERTH_1_META__</span></li></ol>
+                            </div>
+                            <div class="tb-col">
+                                <h3>__BERTH_2_SHORT__</h3>
+                                <div class="subtitle">__BERTH_2_TAGS__</div>
+                                <ol><li><a href="#p-berth2">__BERTH_2_FULL_NAME__</a><span class="meta">__BERTH_2_META__</span></li></ol>
+                            </div>
+                            <div class="tb-col">
+                                <h3>__BERTH_3_SHORT__</h3>
+                                <div class="subtitle">__BERTH_3_TAGS__</div>
+                                <ol><li><a href="#p-berth3">__BERTH_3_FULL_NAME__</a><span class="meta">__BERTH_3_META__</span></li></ol>
+                            </div>
+                        </div>
+
+                        <details class="pfold cult" id="p-berth1">
+                            <summary><div><div class="pfold__name">📍 __BERTH_1_FULL_NAME__</div><div class="pfold__hook">__BERTH_1_HOOK__</div></div><span class="pfold__chev">▶</span></summary>
+                            <div class="pfold__body">
+                                <div class="pfold__recog">__BERTH_1_RECOG__</div>
+                                <p>__BERTH_1_BODY__ <span class="cau cau--high|cau--med|cau--info" data-fix="__BERTH_1_CAUTION_FIX__">__BERTH_1_CAUTION_LABEL__</span></p>
+                                <div class="pfold__meta">
+                                    <div><strong>Address</strong>__BERTH_1_ADDRESS__</div>
+                                    <div><strong>Phone</strong>__BERTH_1_PHONE__</div>
+                                    <div><strong>Email</strong>__BERTH_1_EMAIL__</div>
+                                    <div><strong>Web</strong>__BERTH_1_WEB__</div>
+                                </div>
+                                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=__BERTH_1_MAPS_QUERY__" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+                            </div>
+                        </details>
+
+                        <!-- Repeat for berth2, berth3 -->
+
+                    </div>
+                </details>
+
+
+                <!-- ========== BRIEF · AGENTS · WHOLESALE · FISH · MEAT · SPECIALTY · BREAD · PRODUCE · WINE ========== -->
+                <!-- Repeat the same details.sfold pattern for each section.
+                     Use <details class="pfold top"> for the section's flagship; "cult" for cultural; "warn" for "skip this".
+                     Add inline <span class="cau cau--high|cau--med|cau--info" data-fix="..."> on every entry with an operational gotcha. -->
+
+                <!-- ========== WATCH-OUTS — REQUIRED ========== -->
+                <details class="sfold" id="watchouts" open>
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">⚠ Watch-outs by Season &amp; Event</div><div class="sfold__desc">The few that will actually break your day. Smaller stuff is in the inline ⚠ pills next to each supplier above.</div></div><span class="sfold__count" id="wo-count">—</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+                        <div id="wo-list"></div>
+                    </div>
+                </details>
+
+                <!-- ========== BOTTOM LINE ========== -->
+                <details class="sfold" id="bottom" open>
+                    <summary><div class="sfold__titlewrap"><div class="sfold__title">The Bottom Line</div><div class="sfold__desc">If you read nothing else.</div></div><span class="sfold__count">2 min</span><span class="sfold__chev">▶</span></summary>
+                    <div class="sfold__body">
+                        <p>__BOTTOM_LINE_PARA_1__</p>
+                        <p>__BOTTOM_LINE_PARA_2_LOAD_BEFORE_LEAVING__</p>
+                        <p>__BOTTOM_LINE_PARA_3_AVOID_THESE_DATES__</p>
+                    </div>
+                </details>
+
+                <!-- Related -->
+                <div style="margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid var(--color-border);">
+                    <strong>Also on Littoralicious</strong>
+                    <ul style="font-size: var(--text-sm); color: var(--color-muted); margin-top: var(--space-3); list-style: none; padding: 0;">
+                        <li style="margin-bottom: var(--space-2);"><a href="port-call-venice.html" style="color: var(--color-sea); text-decoration: underline;">Port Call Venice</a> &mdash; Different ocean, same rigour.</li>
+                        <li style="margin-bottom: var(--space-2);"><a href="provisioning-miami-ftl.html" style="color: var(--color-sea); text-decoration: underline;">Port Call Miami &amp; Fort Lauderdale</a> &mdash; The provisioning capital of the Americas.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__newsletter">
+                <form class="footer-newsletter-form newsletter-form" action="https://buttondown.com/api/emails/embed-subscribe/littoralicious" method="post" target="popupwindow">
+                    <label for="footer-email-port-call-__SLUG__">Get the monthly brief</label>
+                    <div class="footer-newsletter-form__row">
+                        <input type="email" name="email" id="footer-email-port-call-__SLUG__" placeholder="your@email.com" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+            <div class="footer__inner">
+                <div class="footer__about">
+                    <div class="footer__brand">LITTORALICIOUS</div>
+                    <p class="footer__description">One purpose: Nurture.</p>
+                    <p class="footer__tagline">For those who feed others with intention.</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__col">
+                        <h4>Sections</h4>
+                        <ul>
+                            <li><a href="../shore-larder.html">Shore Larder</a></li>
+                            <li><a href="../the-method.html">The Method</a></li>
+                            <li><a href="../littoral-heritage.html">Heritage</a></li>
+                            <li><a href="../the-evidence.html">The Evidence</a></li>
+                            <li><a href="../the-bridge.html">The Bridge</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4>About</h4>
+                        <ul>
+                            <li><a href="../about.html">Manifesto</a></li>
+                            <li><a href="../founder.html">Founder</a></li>
+                            <li><a href="../contact.html">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p>&copy; 2026 Littoralicious. No rights reserved. Information wants to be free.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Map + Watch-outs both read from the port's data file -->
+    <script src="../assets/js/port-call-__SLUG__-data.js"></script>
+    <script>
+        window.PCV_CONFIG = {
+            articleId: 'port-call-__SLUG__',
+            center: [__LAT__, __LNG__],
+            zoom: __ZOOM__,
+            cityRadiusKm: __CITY_RADIUS_KM__   // 25 (compact city) / 50 (default) / 90 (multi-city port)
+        };
+    </script>
+    <script defer src="../assets/js/port-call-map-only.js"></script>
+    <script>
+    window.addEventListener('load', function () {
+        if (!window.PCV_DATA || !window.PCV_DATA.WATCHOUTS) return;
+        const list = document.getElementById('wo-list');
+        const cnt  = document.getElementById('wo-count');
+        const SEV_LABEL = { high: 'High · breaks the day', medium: 'Medium · annoying' };
+        const order = { high: 0, medium: 1 };
+        // Surface only high + medium severity. Low/info-level items live as inline ⚠ caution pills next to suppliers.
+        const sorted = window.PCV_DATA.WATCHOUTS
+            .filter(function (w) { return w.severity === 'high' || w.severity === 'medium'; })
+            .sort(function (a, b) { return (order[a.severity]||9) - (order[b.severity]||9); });
+        cnt.textContent = sorted.length + ' to know';
+        list.innerHTML = sorted.map(function (w) {
+            return '<div class="wo-card sev-' + (w.severity || 'info') + '">'
+                + '<div class="wo-head"><span class="wo-title">' + w.title + '</span>'
+                + '<span class="wo-sev">' + (SEV_LABEL[w.severity] || 'info') + '</span></div>'
+                + '<div class="wo-when">' + w.when + '</div>'
+                + '<p class="wo-what">' + w.what + '</p>'
+                + '<div class="wo-fix"><b>Workaround</b>' + w.workaround + '</div>'
+                + '</div>';
+        }).join('');
+    });
+    </script>
+</body>
+</html>

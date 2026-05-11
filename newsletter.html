@@ -15,7 +15,7 @@
     <meta property="og:image" content="https://www.littoralicious.com/assets/logo/og-image.png">
 
     <link rel="alternate" type="application/rss+xml" title="Littoralicious" href="https://www.littoralicious.com/feed.xml">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
     <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
     <style>
         /* ======================================================
@@ -282,9 +282,12 @@
         <div class="container">
             <div class="masthead__inner">
                 <div class="masthead__brand">
-                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 54px; display: block; margin: 0 auto 2px;">LITTORALICIOUS</a>
-                    <span class="masthead__tagline">MODERN SCIENCE AND REGIONAL RECIPES FROM THE SEA</span>
-                    <span class="masthead__description">Sailing around the plate - Littoraly Delicious</span>
+                    <a href="/" class="masthead__logo"><img src="assets/logo/logo.svg" alt="Littoralicious" style="height: 60px; display: block; margin: 0 auto;">LITTORALICIOUS</a>
+                    <span class="masthead__tagline">Modern Science &middot; Regional Recipes &middot; From the Sea</span>
+                    <div class="masthead__description">
+                        <div class="masthead__description-main">Sailing Around The Plate</div>
+                        <div class="masthead__description-sub">Littoraly Delicious</div>
+                    </div>
                 </div>
                 <nav class="masthead__nav">
                     <a href="shore-larder.html">Shore Larder</a>
@@ -292,8 +295,7 @@
                     <a href="littoral-heritage.html">Heritage</a>
                     <a href="the-evidence.html">The Evidence</a>
                     <a href="the-bridge.html">The Bridge</a>
-                    <a href="newsletter.html">Newsletter</a>
-                    <a href="connect.html" class="auth-nav-link">Sign In</a>
+                    <a href="newsletter.html" class="active">Newsletter</a>
                 </nav>
             </div>
         </div>
@@ -467,7 +469,6 @@
                         <ul>
                             <li><a href="about.html">Manifesto</a></li>
                             <li><a href="founder.html">Founder</a></li>
-                            <li><a href="newsletter.html">Newsletter</a></li>
                             <li><a href="contact.html">Contact</a></li>
                         </ul>
                     </div>
@@ -530,10 +531,5 @@
     })();
     </script>
 
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-    <script src="assets/js/firebase-config.js"></script>
-    <script src="assets/js/auth.js"></script>
 </body>
 </html>

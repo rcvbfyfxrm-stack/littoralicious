@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Ouroboros with Elements
+    Serpent eating tail - eternal cycle
+    Elements in the corners of internal square
+  -->
+
+  <!-- Ouroboros - serpent circle -->
+  <circle cx="50" cy="50" r="40" fill="none" stroke="#0a0a0a" stroke-width="3"/>
+
+  <!-- Serpent head eating tail -->
+  <path
+    d="M 88 45
+       C 95 45, 95 55, 88 55
+       C 85 55, 82 52, 82 50
+       C 82 48, 85 45, 88 45"
+    fill="#0a0a0a"
+  />
+
+  <!-- Eye -->
+  <circle cx="89" cy="50" r="1" fill="#fafafa"/>
+
+  <!-- Internal square - rotated 45° -->
+  <rect x="30" y="30" width="40" height="40" transform="rotate(45 50 50)" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE — Top -->
+  <path d="M 50 18 L 54 26 L 46 26 Z" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom -->
+  <path d="M 50 82 L 46 74 L 54 74 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- AIR — Right -->
+  <path d="M 82 50 L 74 54 L 74 46 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="75" y1="51" x2="79" y2="51" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- EARTH — Left -->
+  <path d="M 18 50 L 26 46 L 26 54 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+  <line x1="21" y1="49" x2="25" y2="49" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Center point -->
+  <circle cx="50" cy="50" r="2" fill="#0a0a0a"/>
+
+</svg>

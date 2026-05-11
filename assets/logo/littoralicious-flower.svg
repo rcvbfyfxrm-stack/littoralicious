@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Flower of Life — Sacred geometry
+    Overlapping circles, creation pattern
+    Four elements at cardinal petals
+  -->
+
+  <!-- Central circle -->
+  <circle cx="50" cy="50" r="16" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- Six petals around center -->
+  <circle cx="50" cy="34" r="16" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="50" cy="66" r="16" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="36" cy="42" r="16" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="64" cy="42" r="16" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="36" cy="58" r="16" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+  <circle cx="64" cy="58" r="16" fill="none" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- Outer containing circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE — Top -->
+  <path d="M 50 6 L 54 14 L 46 14 Z" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom -->
+  <path d="M 50 94 L 46 86 L 54 86 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- AIR — Right -->
+  <path d="M 94 50 L 86 54 L 86 46 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="87" y1="51.5" x2="92" y2="51.5" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- EARTH — Left -->
+  <path d="M 6 50 L 14 46 L 14 54 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="8" y1="48.5" x2="13" y2="48.5" stroke="#0a0a0a" stroke-width="1.2"/>
+
+</svg>

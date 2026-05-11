@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80">
+  <!--
+    Octopus — single line, minimal
+    Intelligence, adaptability
+  -->
+
+  <!-- Head -->
+  <ellipse cx="40" cy="25" rx="18" ry="15" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Eyes -->
+  <circle cx="34" cy="24" r="2" fill="#0a0a0a"/>
+  <circle cx="46" cy="24" r="2" fill="#0a0a0a"/>
+
+  <!-- Tentacles - flowing curves -->
+  <path d="M 25 35 Q 15 50, 20 65 Q 22 70, 25 68" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 30 38 Q 25 55, 30 70 Q 32 75, 35 72" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 40 40 Q 40 58, 42 72 Q 43 76, 46 74" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 50 38 Q 55 55, 52 70 Q 50 75, 48 72" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+  <path d="M 55 35 Q 65 50, 60 65 Q 58 70, 55 68" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linecap="round"/>
+
+</svg>

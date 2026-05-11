@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maritime &amp; Sailing &mdash; The World Affair</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; } html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; } a { color: inherit; text-decoration: none; transition: color 0.15s; } a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; } .masthead-title a:hover { color: #1a1714; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; } .masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; } .nav-link:hover { background: #e6e1d8; color: #1a1714; } .nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.article-header { padding: 32px 0 20px; border-bottom: 2px solid #1a1714; margin-bottom: 28px; }
+.article-overline { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+.article-date { font-size: 12px; color: #8a847a; text-transform: uppercase; letter-spacing: 1px; }
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1714; }
+.article-body h2 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin: 24px 0 10px; padding-bottom: 4px; border-bottom: 1px solid #c8c0b4; }
+.article-body p { font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75; }
+.article-body strong { color: #1a1714; } .article-body em { font-style: italic; }
+.article-body ul, .article-body ol { margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540; } .article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote { border-left: 3px solid #b5ad9f; padding: 12px 18px; margin: 14px 0; background: #ede9e1; font-size: 13px; color: #4a4540; line-height: 1.7; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0; }
+.article-body th { text-align: left; padding: 8px 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a; border-bottom: 2px solid #b5ad9f; font-weight: 700; }
+.article-body td { padding: 8px 10px; border-bottom: 1px solid #c8c0b4; } .article-body tr:hover td { background: #ede9e1; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; } .bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .article-title { font-size: 24px; } .article-body { max-width: 100%; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta"><span>Jeudi 19 Mars 2026</span><span class="masthead-dot">&bull;</span><span>Edition N&deg;56</span><span class="masthead-dot">&bull;</span><span>NEXUS Intelligence</span></div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-19.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3a5a6a">Maritime &amp; Sailing</div>
+  <h1 class="article-title">Hormuz : transit quasi nul, 2 000 navires bloqu&eacute;s</h1>
+  <div class="article-date">Jeudi 19 Mars 2026 &mdash; Edition N&deg;56</div>
+</div><div class="article-body"><h1>La g&eacute;ographie du commerce maritime se reconfigure</h1>
+
+<p><em>&laquo; Le d&eacute;troit d'Hormuz, par lequel transitait 20 &agrave; 30% du p&eacute;trole mondial, est d&eacute;sormais ferm&eacute; de facto. Plus de 2 000 navires sont bloqu&eacute;s ou d&eacute;rout&eacute;s. L'Arabie saoudite redirige massivement via Yanbu. Les armateurs suspendent les transits. Le commerce maritime mondial se reconfigure en temps r&eacute;el. &raquo;</em></p>
+
+<hr>
+
+<h2>I. &Eacute;tat du d&eacute;troit : fermeture effective</h2>
+
+<p>Depuis la pose de mines par l'IRGC et les attaques sur les navires commerciaux, le transit par le d&eacute;troit d'Hormuz a chut&eacute; &agrave; quasi z&eacute;ro. Les quatre grands armateurs mondiaux &mdash; Maersk, MSC, Hapag-Lloyd et CMA CGM &mdash; ont suspendu int&eacute;gralement leurs transits. Les assureurs de guerre (Lloyd's, IGPI) ont class&eacute; la zone en &laquo; exclusion totale &raquo;, rendant tout transit non assurable et donc &eacute;conomiquement impossible.</p>
+
+<p>Plus de 2 000 navires sont bloqu&eacute;s ou d&eacute;rout&eacute;s. Les p&eacute;troliers VLCC en provenance d'Irak et du Kowe&iuml;t ne peuvent plus atteindre les march&eacute;s asiatiques par la route habituelle. Les vraquiers transportant du minerai de fer et du GNL sont &eacute;galement affect&eacute;s. Le co&ucirc;t du fret conteneuris&eacute; Asie-Europe a doubl&eacute; en trois semaines.</p>
+
+<h2>II. La r&eacute;orientation saoudienne : le pipeline East-West</h2>
+
+<p>L'Arabie saoudite a activ&eacute; le pipeline East-West (Petroline), qui relie les champs p&eacute;troliers de l'est du royaume au port de Yanbu sur la mer Rouge. Le volume transport&eacute; via cette route a augment&eacute; de 330%, mais la capacit&eacute; maximale du pipeline (5 millions de barils/jour) ne compense qu'une fraction des 17 millions de barils/jour qui transitaient normalement par Hormuz.</p>
+
+<table>
+<tr><th>M&eacute;trique maritime</th><th>Avant conflit</th><th>19 mars 2026</th><th>Variation</th></tr>
+<tr><td>Transit quotidien Hormuz</td><td>~60 navires/jour</td><td>~0</td><td>-100%</td></tr>
+<tr><td>Navires bloqu&eacute;s/d&eacute;rout&eacute;s</td><td>0</td><td>2 000+</td><td>N/A</td></tr>
+<tr><td>Volume Yanbu (pipeline E-W)</td><td>~1,5M bbl/j</td><td>~5M bbl/j</td><td>+330%</td></tr>
+<tr><td>Co&ucirc;t fret Asie-Europe</td><td>$2 200/TEU</td><td>$4 500/TEU</td><td>+105%</td></tr>
+<tr><td>Prime assurance guerre Golfe</td><td>0,1% valeur cargaison</td><td>Exclusion totale</td><td>N/A</td></tr>
+<tr><td>D&eacute;lai moyen reroutage</td><td>N/A</td><td>+12-15 jours</td><td>Via Cap de Bonne-Esp.</td></tr>
+</table>
+
+<h2>III. Reroutage par le Cap : la le&ccedil;on de 2024</h2>
+
+<p>Le reroutage des navires via le Cap de Bonne-Esp&eacute;rance ajoute 12 &agrave; 15 jours de navigation et $500 000 &agrave; $1,5 million de co&ucirc;ts suppl&eacute;mentaires par trajet pour un VLCC. C'est exactement le sc&eacute;nario que le commerce mondial avait exp&eacute;riment&eacute; lors de la crise Houthi en mer Rouge en 2024 &mdash; mais &agrave; une &eacute;chelle bien sup&eacute;rieure, car Hormuz transporte cinq fois plus de volume qu'Aden.</p>
+
+<p>La congestion dans les ports d'Afrique du Sud (Le Cap, Durban) augmente rapidement. Les ravitaillements en carburant de soute dans ces ports ont tripl&eacute;, cr&eacute;ant des goulets d'&eacute;tranglement secondaires. Le canal de Suez, d&eacute;j&agrave; sous pression depuis la crise Houthi, voit &eacute;galement son trafic augmenter pour les navires qui choisissent la route M&eacute;diterran&eacute;e-mer Rouge-oc&eacute;an Indien.</p>
+
+<hr>
+
+<h2>Signaux Faibles</h2>
+
+<ul>
+<li>La crise acc&eacute;l&egrave;re les investissements dans les pipelines terrestres alternatifs au Moyen-Orient &mdash; un mouvement qui pourrait r&eacute;duire structurellement la d&eacute;pendance mondiale &agrave; Hormuz.</li>
+<li>Les constructeurs navals re&ccedil;oivent des commandes urgentes pour des navires &agrave; plus grande autonomie, capables de contourner les chokepoints sans ravitaillement.</li>
+<li>La marine am&eacute;ricaine d&eacute;ploie des drones d&eacute;mineurs exp&eacute;rimentaux dans le d&eacute;troit &mdash; premi&egrave;re utilisation op&eacute;rationnelle de cette technologie.</li>
+</ul>
+
+<hr>
+
+<p><em>The World Affair &mdash; Maritime &amp; Sailing &mdash; 19 mars 2026</em></p></div><div class="bottom-nav"><a href="science-tech.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Science &amp; Tech</span></a><a href="crypto.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Crypto &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; MARITIME &amp; SAILING</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);"><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;"><span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span><div><button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button><button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button></div></div><div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div></div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>(function(){var VAULT="worldaffair",KEY="nexus-passages-"+VAULT;function getAll(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}var selText="";document.addEventListener("mouseup",function(e){var s=window.getSelection(),t=s.toString().trim(),b=document.getElementById("ps-save-btn");if(t.length>10){selText=t;b.style.display="block";b.style.left=(e.pageX+10)+"px";b.style.top=(e.pageY-40)+"px"}else{setTimeout(function(){b.style.display="none"},200)}});window.psSave=function(){if(!selText)return;var p=getAll();p.push({text:selText.substring(0,2000),source:document.title,url:location.href,date:new Date().toISOString(),vault:VAULT});saveAll(p);document.getElementById("ps-save-btn").style.display="none";psRenderList();psFlash();selText=""};function psFlash(){var t=document.getElementById("ps-toggle");t.style.background="#3d6b4f";setTimeout(function(){t.style.background="#1a1714"},600)}window.psTogglePanel=function(){var p=document.getElementById("ps-panel");p.style.display=p.style.display==="none"?"block":"none";psRenderList()};window.psRenderList=function(){var p=getAll(),el=document.getElementById("ps-list");document.getElementById("ps-count").textContent=p.length||"";if(!p.length){el.innerHTML="<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S\u00e9lectionne du texte et clique Sauvegarder</div>";return}el.innerHTML=p.slice().reverse().map(function(x,ri){var i=p.length-1-ri,d=new Date(x.date),ds=d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});return"<div style=\"padding:8px 0;border-bottom:1px solid #333;\"><div style=\"display:flex;justify-content:space-between;align-items:baseline;\"><span style=\"font-size:9px;color:#888;\">"+ds+" &mdash; "+(x.source||"").substring(0,30)+"</span><button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button></div><div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; "+x.text.substring(0,300)+(x.text.length>300?"...":"")+" &raquo;</div></div>"}).join("")};window.psDelete=function(i){var p=getAll();p.splice(i,1);saveAll(p);psRenderList()};window.psExport=function(){var p=getAll();if(!p.length)return;var md="# Passages sauvegard\u00e9s \u2014 "+VAULT+"\n\n";md+="Export\u00e9 le "+new Date().toLocaleDateString("fr-FR")+"\n\n---\n\n";p.forEach(function(x){var d=new Date(x.date).toLocaleDateString("fr-FR");md+="> "+x.text.replace(/\n/g,"\n> ")+"\n\n";md+="*Source: "+(x.source||"?")+" \u2014 "+d+"*\n\n---\n\n"});var blob=new Blob([md],{type:"text/markdown"});var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="passages-"+VAULT+"-"+new Date().toISOString().slice(0,10)+".md";a.click()};psRenderList()})();</script>
+</body></html>

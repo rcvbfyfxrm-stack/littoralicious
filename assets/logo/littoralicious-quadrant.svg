@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    Quadrant — Four elements in quarters
+    Each quadrant holds its element symbol
+    Mystical division of the circle
+  -->
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Cross dividing quadrants -->
+  <line x1="50" y1="4" x2="50" y2="96" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="4" y1="50" x2="96" y2="50" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Inner circle -->
+  <circle cx="50" cy="50" r="12" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE — Top right quadrant -->
+  <path d="M 65 22 L 72 35 L 58 35 Z" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom left quadrant -->
+  <path d="M 35 78 L 28 65 L 42 65 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linejoin="round"/>
+
+  <!-- AIR — Top left quadrant (triangle + bar) -->
+  <path d="M 35 22 L 42 35 L 28 35 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="30" y1="30" x2="40" y2="30" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- EARTH — Bottom right quadrant (inverted + bar) -->
+  <path d="M 65 78 L 58 65 L 72 65 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5" stroke-linejoin="round"/>
+  <line x1="60" y1="70" x2="70" y2="70" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- Center dot -->
+  <circle cx="50" cy="50" r="3" fill="#0a0a0a"/>
+
+</svg>

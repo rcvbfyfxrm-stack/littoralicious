@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liberte, Surveillance &amp; Open Source &mdash; The World Affair</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; background: #f4f1eb; color: #1a1714; line-height: 1.6; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+::selection { background: #2d4a5e; color: #f4f1eb; }
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+.masthead { text-align: center; padding: 40px 24px 0; border-bottom: 4px double #b5ad9f; }
+.masthead-rule-top { display: flex; align-items: center; gap: 14px; font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 16px; }
+.masthead-rule-top::before, .masthead-rule-top::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.masthead-title { font-family: 'UnifrakturMaguntia', 'Playfair Display', serif; font-size: 52px; font-weight: 400; letter-spacing: 2px; color: #1a1714; line-height: 1; margin: 0; }
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+.masthead-subtitle { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 400; font-style: italic; color: #4a4540; margin-top: 6px; letter-spacing: 1px; }
+.masthead-meta { display: flex; justify-content: center; align-items: center; gap: 20px; font-size: 11px; color: #8a847a; letter-spacing: 1px; text-transform: uppercase; margin-top: 14px; padding-bottom: 16px; }
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+.nav-bar { display: flex; justify-content: center; gap: 0; border-bottom: 1px solid #c8c0b4; background: #ede9e1; padding: 0; }
+.nav-link { padding: 10px 20px; font-family: 'Libre Baskerville', serif; font-size: 11px; font-weight: 400; color: #4a4540; text-decoration: none; text-transform: uppercase; letter-spacing: 1.5px; border-right: 1px solid #c8c0b4; transition: all 0.15s; }
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+.section-divider { display: flex; align-items: center; gap: 14px; margin: 32px 0 24px; font-size: 10px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase; }
+.section-divider::before, .section-divider::after { content: ''; flex: 1; height: 1px; background: #c8c0b4; }
+.flash-box { background: #ede9e1; border: 1px solid #c8c0b4; border-left: 4px solid #8b3a3a; padding: 20px 24px; margin: 28px 0; }
+.flash-title { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 900; text-transform: uppercase; letter-spacing: 2px; color: #8b3a3a; margin-bottom: 12px; }
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li { font-size: 13px; color: #4a4540; line-height: 1.7; margin-bottom: 8px; list-style-type: '\2014 '; }
+.flash-box li strong { color: #1a1714; }
+.hub-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 0; border-top: 2px solid #1a1714; border-bottom: 1px solid #c8c0b4; }
+.hub-card { padding: 20px 20px 18px; border-bottom: 1px solid #c8c0b4; border-right: 1px solid #c8c0b4; text-decoration: none; color: inherit; transition: background 0.15s; position: relative; }
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 6px; }
+.hub-card-title { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; line-height: 1.3; margin-bottom: 8px; }
+.hub-card-excerpt { font-size: 13px; color: #4a4540; line-height: 1.6; font-style: italic; }
+.hub-card-arrow { position: absolute; top: 20px; right: 16px; font-size: 16px; color: #c8c0b4; }
+.article-header { padding: 32px 0 20px; border-bottom: 2px solid #1a1714; margin-bottom: 28px; }
+.article-overline { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; font-weight: 700; margin-bottom: 8px; }
+.article-title { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 900; line-height: 1.2; margin-bottom: 8px; }
+.article-date { font-size: 12px; color: #8a847a; text-transform: uppercase; letter-spacing: 1px; }
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 900; margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 2px solid #1a1714; }
+.article-body h2 { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; margin: 24px 0 10px; padding-bottom: 4px; border-bottom: 1px solid #c8c0b4; }
+.article-body h3 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; margin: 20px 0 8px; }
+.article-body p { font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75; }
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol { margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540; }
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote { border-left: 3px solid #b5ad9f; padding: 12px 18px; margin: 14px 0; background: #ede9e1; font-size: 13px; color: #4a4540; line-height: 1.7; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0; }
+.article-body th { text-align: left; padding: 8px 10px; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a; border-bottom: 2px solid #b5ad9f; font-weight: 700; }
+.article-body td { padding: 8px 10px; border-bottom: 1px solid #c8c0b4; }
+.article-body tr:hover td { background: #ede9e1; }
+.bottom-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; padding: 16px 0; border-top: 2px solid #b5ad9f; }
+.bottom-nav a { font-size: 13px; color: #4a4540; text-decoration: none; padding: 8px 0; transition: color 0.15s; }
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label { display: block; font-size: 9px; color: #8a847a; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px; }
+.bottom-nav-title { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px; }
+.site-footer { text-align: center; padding: 24px; margin-top: 24px; border-top: 4px double #b5ad9f; font-family: 'Playfair Display', serif; font-size: 10px; color: #8a847a; letter-spacing: 2px; text-transform: uppercase; }
+@media (max-width: 700px) { .masthead-title { font-size: 44px; } .masthead { padding: 24px 16px 0; } .nav-bar { flex-wrap: wrap; } .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; } .hub-grid { grid-template-columns: 1fr; } .hub-card { border-right: none; } .article-title { font-size: 24px; } .article-body { max-width: 100%; } .page { padding: 0 16px; } }
+@media print { .nav-bar, .bottom-nav { display: none !important; } body { background: white; } .masthead-title { font-size: 36px; } }
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="../index.html">The World Affair</a></h1>
+  <div class="masthead-subtitle">Le jour ou l'ingenierie sociale est devenue la nouvelle norme du logiciel libre</div>
+  <div class="masthead-meta">
+    <span>Vendredi 8 Mai 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;124</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-05-08.html">Premi&egrave;re Page</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#4A148C">Liberte, Surveillance &amp; Open Source</div>
+  <h1 class="article-title">Trois angles d'attaque, un seul objet : briser l'autonomie cryptographique de l'individu</h1>
+  <div class="article-date">Vendredi 8 Mai 2026 &mdash; Edition N&deg;124 &mdash; Test scan v5 Meta-Agent</div>
+</div><div class="article-body">
+
+<div class="flash-box">
+  <div class="flash-title">En 60 Secondes</div>
+  <ul>
+    <li><strong>Chat Control 2.0</strong> &mdash; le trilogue europeen a repris le 4 mai ; Signal redit que si le client-side scanning passe, il quitte l'Union.</li>
+    <li><strong>TeamPCP</strong> &mdash; Trivy, KICS, axios npm : la chaine d'ingenierie sociale contre les mainteneurs isoles est passee au stade industriel ; +73 % de paquets malveillants en 2025.</li>
+    <li><strong>Quasar Linux (QLNX)</strong> &mdash; un RAT vise specifiquement les credentials des developpeurs : .npmrc, .pypirc, .aws/credentials, .git-credentials.</li>
+    <li><strong>L'Atelier</strong> &mdash; Linux 7.1-rc2 publie, prep 7.2 ete ; CVE Linux ajoutee au KEV CISA ; MetInfo CMS sous attaque active.</li>
+  </ul>
+</div>
+
+<h2>Chat Control 2.0 reprend, Signal menace de quitter l'Europe</h2>
+
+<p>Le trilogue europeen sur le reglement CSAR &mdash; la version permanente de ce que tout le monde appelle &laquo; Chat Control &raquo; &mdash; a repris le 4 mai a Bruxelles. La Commission, le Parlement et le Conseil cherchent un accord politique pour juillet. Signal, par la voix de Meredith Whittaker, a redit cette semaine ce qu'elle dit depuis 2022 : si la version du Conseil &mdash; qui prevoit un <em>client-side scanning</em> obligatoire &mdash; l'emporte, Signal quitte l'Union europeenne plutot que d'introduire le mecanisme dans son protocole.</p>
+
+<p>Le contexte n'est pas mince. La derogation temporaire qui autorisait depuis 2021 Google, Meta, Microsoft et TikTok a scanner volontairement les messages prives au nom de la lutte contre les contenus pedopornographiques a expire le 3 avril, apres le rejet par le Parlement europeen (311 voix contre 228) de toute extension. Pendant cinq semaines, les plateformes operant en Europe se sont retrouvees sans base legale pour ce scan de masse &mdash; un precedent rare en matiere de privacy europeenne. Le reglement permanent qui revient maintenant ressemble a la version 2.0 du meme probleme : sous le nouveau vocabulaire de &laquo; risk mitigation measures &raquo; et de &laquo; voluntary activities &raquo;, le mecanisme de scan client-side reste sur la table, et la verification d'age generalisee glisse vers le statut de defaut.</p>
+
+<p>C'est ici que la frontiere surveillance / open source devient floue. Briser le chiffrement de bout en bout dans Signal n'est pas une operation cote serveur : c'est une operation cote code. Pour un protocole open source, c'est un fork force &mdash; et l'EFF, La Quadrature du Net et l'OSI ont tous note que la formulation actuelle du reglement criminaliserait de fait toute messagerie chiffree non auditee par l'UE. La consequence pratique : ce n'est pas seulement Signal qui sort, c'est tout l'ecosysteme des messageries federees (Matrix, XMPP+OMEMO) qui devient juridiquement risque pour ses operateurs europeens.</p>
+
+<p><strong>Le chiffre :</strong> 311 contre 228 &mdash; la marge du rejet d'avril, etroite mais reelle. Le vote de juillet se jouera probablement dans le meme couloir.</p>
+
+<blockquote>&#128206; <strong>Sources :</strong> <a href="https://www.eff.org/deeplinks/2026/04/eu-parliament-blocks-mass-scanning-our-chats-whats-next">EFF &mdash; EU Parliament Blocks Mass-Scanning of Our Chats: What's Next?</a> &middot; <a href="https://stateofsurveillance.org/news/eu-chat-control-expires-april-3-scanning-ends-whats-next-2026/">State of Surveillance &mdash; Chat Control Is Dead. Long Live Chat Control.</a></blockquote>
+
+<h2>TeamPCP : la nouvelle ecole d'attaque vise les humains, pas les depots</h2>
+
+<p>Depuis mars 2026, un groupe identifie sous le nom de <strong>TeamPCP</strong> a compromis successivement Trivy (le scanner de vulnerabilites open source maintenu par Aqua Security), KICS (analyse de code statique de Checkmarx), puis a essaime via npm en empoisonnant des paquets telecharges des dizaines de millions de fois par semaine. Le mode operatoire n'est pas un <em>zero-day</em> dans le code : c'est une chaine d'<strong>ingenierie sociale</strong> meticuleuse contre les mainteneurs. Dans le cas axios, l'attaquant s'est presente a Jason Saayman comme le fondateur d'une entreprise cherchant a sponsoriser le projet, l'a invite dans un faux Slack, puis sur un appel Teams a obtenu l'installation d'un &laquo; outil de diagnostic &raquo; qui a en realite exfiltre ses tokens de publication npm.</p>
+
+<p>Ce n'est plus l'exception, c'est le motif. La sequence &mdash; flatterie, faux contexte professionnel, pression legere, demande d'action concrete &mdash; replique exactement le manuel utilise contre Lasse Collin avec xz-utils en 2024. Sauf que cette fois, l'operation a ete menee a l'echelle industrielle : plusieurs identites synthetiques actives en parallele, des semaines de pre-positionnement sur GitHub avec de vraies contributions techniques pour batir la credibilite, et des tokens revendus a des operateurs aval (un <em>initial access broker</em> du logiciel libre, en somme). Le rapport ReversingLabs date de cette semaine quantifie la derive : <strong>+73 % de paquets open source malveillants</strong> en 2025, avec une acceleration nette en 2026.</p>
+
+<p>Pour le defenseur, le probleme est structurel. Tant que des projets critiques pour l'infrastructure mondiale dependent d'une seule personne epuisee, sans budget, sans support juridique, et sans formation a la securite operationnelle, l'angle d'attaque humain reste ouvert. La Software Freedom Conservancy et l'OpenSSF poussent pour des modeles de financement direct des mainteneurs, mais le tempo du financement reste ridiculement en retard sur le tempo de l'attaque.</p>
+
+<p><strong>Le chiffre :</strong> <strong>454 600</strong> paquets malveillants identifies sur les depots publics en 2025, contre 55 000 en 2022 &mdash; une multiplication par 8 en trois ans.</p>
+
+<blockquote>&#128206; <strong>Sources :</strong> <a href="https://www.huntress.com/blog/axios-npm-compromise">Huntress &mdash; Tradecraft Tuesday Recap: axios npm Supply Chain Compromise</a> &middot; <a href="https://www.reversinglabs.com/press-releases/reversinglabs-2026-software-supply-chain-security-report-identifies-73-increase-in-malicious-open-source-packages">ReversingLabs &mdash; 2026 Software Supply Chain Security Report</a></blockquote>
+
+<h2>Quasar Linux (QLNX) : le RAT qui aspire les credentials du developpeur</h2>
+
+<p>Trend Micro a publie cette semaine l'analyse complete d'un RAT (<em>remote access trojan</em>) Linux baptise <strong>Quasar Linux (QLNX)</strong>, dont la signature operationnelle est sans ambiguite : il vise les machines de developpeurs et d'ingenieurs DevOps. La cible n'est pas la donnee utilisateur, c'est la <strong>cle du royaume</strong> : <code>.npmrc</code> (tokens npm), <code>.pypirc</code> (PyPI), <code>.git-credentials</code>, <code>.aws/credentials</code>, <code>.kube/config</code>, fichiers <code>.env</code>. Une fois ces fichiers exfiltres, l'attaquant a tout ce qu'il faut pour publier des paquets empoisonnes, deployer du code en production, ou acceder a l'infrastructure cloud cible.</p>
+
+<p>C'est la jonction logique avec la story precedente. La ou TeamPCP attaque la psychologie du mainteneur, QLNX attaque sa machine. Combines, les deux vecteurs forment une chaine complete : compromettre le developpeur &rarr; publier le paquet &rarr; atteindre les utilisateurs aval &rarr; boucler par les credentials cloud. Le rootkit PAM integre et le module <em>backdoor PAM</em> signalent une qualite d'ingenierie qui n'est plus celle d'un script-kiddie &mdash; c'est de l'outillage d'acteur etatique ou para-etatique, vendu ou distribue dans des cercles fermes.</p>
+
+<p>L'angle Liberte ici depasse la cybersecurite technique. Si le poste de travail du developpeur d'un protocole de privacy (Signal, Tor, Tails) tombe, ce n'est pas une fuite de donnees &mdash; c'est une victoire potentielle sur le chiffrement lui-meme, par le bas. La separation hygiene operationnelle / poste de travail principal, longtemps consideree comme la paranoia des cryptographes, redevient une exigence de base.</p>
+
+<blockquote>&#128206; <strong>Source :</strong> <a href="https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html">Trend Micro &mdash; Quasar Linux (QLNX): A Silent Foothold in the Software Supply Chain</a></blockquote>
+
+<div class="section-divider"><span>L'Atelier &mdash; Open Source du jour</span></div>
+
+<p><em>Une bascule de cycle (Linux 7.1 &rarr; 7.2), un CMS open source en feu, et une question qui revient : qui finance la maintenance ?</em></p>
+
+<h3>Linux 7.1-rc2 publie</h3>
+
+<p>Torvalds a sorti la deuxieme <em>release candidate</em> de la 7.1 le 3 mai apres une fenetre de fusion calme. Le travail de queue pour la 7.2 commence deja : pull request initiale <code>drm-misc-next</code> envoyee, et la mainline 7.2 est attendue pour l'ete. Cote drivers, le RTL8159 entre en mainline &mdash; modeste, mais c'est ce genre d'increment qui rend Linux installable &laquo; out of the box &raquo; sur du materiel recent sans plonger dans des depots tiers. Pour le developpeur sur Lenovo Legion ou Framework, la 7.2 sera celle qui reduit encore la liste des composants necessitant des firmwares non-libres.</p>
+
+<blockquote>&#128206; <strong>Source :</strong> <a href="https://www.phoronix.com/news/Linux-6.19-rc2-Released">Phoronix &mdash; Linux 7.1-rc2 Released Following A Quiet Week</a></blockquote>
+
+<h3>MetInfo (CMS open source) sous attaque active</h3>
+
+<p>CVE-2026-29014 a declenche une vague d'exploitations a partir du 1er mai, concentree sur les IP chinoises et hongkongaises. C'est le genre de news qu'on classerait normalement en cybersecurite &mdash; mais elle pose une question Liberte concrete : MetInfo est massivement utilise pour heberger des sites de petites entreprises et d'associations en Asie, dont des structures civiques locales. Une vague d'exploitations massives sur ce socle ouvre la porte a des defacages politiques cibles &mdash; pas seulement a du minage de cryptomonnaie.</p>
+
+<blockquote>&#128206; <strong>Source :</strong> <a href="https://thehackernews.com/2026/05/metinfo-cms-cve-2026-29014-exploited.html">The Hacker News &mdash; MetInfo CMS CVE-2026-29014 Exploited for Remote Code Execution Attacks</a></blockquote>
+
+<h3>CVE-2026-31431 &mdash; escalade locale Linux ajoutee au KEV CISA</h3>
+
+<p>L'agence americaine a confirme l'exploitation active dans la nature d'une elevation de privileges affectant plusieurs distributions. Patch dans tous les bons canaux ; a pousser dans la maintenance des Pi/Lenovo Legion / serveurs auto-heberges du week-end.</p>
+
+<blockquote>&#128206; <strong>Source :</strong> <a href="https://thehackernews.com/2026/05/cisa-adds-actively-exploited-linux-root.html">The Hacker News &mdash; CISA Adds Actively Exploited Linux Root Access Bug CVE-2026-31431 to KEV</a></blockquote>
+
+<h3>Tableau de signal</h3>
+
+<table>
+<thead>
+<tr><th>Projet</th><th>Signal</th><th>Action</th></tr>
+</thead>
+<tbody>
+<tr><td>Linux 7.1-rc2</td><td>Cycle stable, prep 7.2 ete</td><td>Surveiller &mdash; pas d'urgence prod</td></tr>
+<tr><td>MetInfo CMS</td><td>Exploitation active CVE-2026-29014</td><td>Patcher si en exposition publique</td></tr>
+<tr><td>Linux KEV CVE-2026-31431</td><td>Elevation locale active</td><td>Mettre a jour kernel ce week-end</td></tr>
+<tr><td>axios / npm</td><td>Token mainteneur compromis</td><td>Audit <code>package-lock.json</code> ; pin versions ; hash check</td></tr>
+</tbody>
+</table>
+
+<div class="section-divider"><span>La Menace du Jour</span></div>
+
+<h2>L'industrialisation de l'ingenierie sociale contre les mainteneurs</h2>
+
+<p>Le pattern qu'on appelait encore &laquo; affaire xz &raquo; en 2024 est devenu une categorie d'attaque a part entiere. <strong>Acteur :</strong> groupes professionnels (TeamPCP et probablement plusieurs autres non encore nommes). <strong>Mecanisme :</strong> pre-positionnement de longue duree comme contributeur, gain de confiance, escalade vers une demande d'installation ou d'acces, exfiltration de tokens. <strong>Victime :</strong> le mainteneur isole, financierement precaire, socialement expose sur des forges publiques. <strong>Resistance :</strong> OpenSSF (Alpha-Omega program), Software Freedom Conservancy, GitHub Security Lab &mdash; mais le delta entre attaquants finances et defenseurs benevoles continue de s'elargir.</p>
+
+<p>Le point politique est rarement nomme. La societe de l'information dans son ensemble depend gratuitement du travail d'individus a qui elle ne paie ni assurance, ni temps de formation securite, ni avocat quand un Etat vient frapper. Tant que ce desequilibre persiste, chaque nouvelle attaque contre un mainteneur n'est pas un accident &mdash; c'est la consequence previsible d'un modele economique qui externalise la securite de toute l'infrastructure numerique sur des benevoles.</p>
+
+<div class="section-divider"><span>Signaux Faibles</span></div>
+
+<ul>
+<li><strong>Trellix</strong> confirme une fuite de code source partielle ; RansomHouse revendique le 7 mai. A surveiller &mdash; un editeur de XDR/EDR dont le code fuite est un risque structurel pour ses clients.</li>
+<li><strong>&laquo; 2026: The Year of AI-Assisted Attacks &raquo;</strong> &mdash; la lecture <em>The Hacker News</em> converge avec celle d'OpenSSF : la velocite d'attaque a bascule avec la generalisation des LLMs offensifs ; la velocite de defense, non.</li>
+<li><strong>Compromis GitHub Actions de Trivy / KICS</strong> &mdash; premier cas documente ou la chaine d'outils de securite elle-meme devient le vecteur. La meta-question : qui scanne le scanner ?</li>
+</ul>
+
+<div class="section-divider"><span>La Connexion</span></div>
+
+<p>Trois histoires aujourd'hui, un seul fil. Chat Control 2.0 cherche a briser le chiffrement par la loi ; TeamPCP cherche a le briser par la psychologie ; QLNX cherche a le briser par la machine. Trois angles d'attaque sur le meme objet &mdash; l'autonomie cryptographique de l'individu &mdash; depuis trois directions differentes. Ce qui rend la defense difficile, c'est que la resistance a chacune releve d'institutions distinctes (Parlement europeen pour la premiere, OpenSSF/SFC pour la seconde, hygiene operationnelle individuelle pour la troisieme), qui ne parlent pas la meme langue et ne partagent pas le meme calendrier.</p>
+
+<p>L'open source est le terrain commun. C'est lui qui rend Signal possible, lui qui rend les paquets npm utiles, lui qui rend Linux installable sans signer un EULA hostile. Quand on l'attaque, on attaque la condition materielle de la liberte numerique &mdash; pas seulement &laquo; du code &raquo;.</p>
+
+<div class="section-divider"><span>Trois Hypotheses pour la Semaine</span></div>
+
+<ol>
+<li><strong>Surveiller</strong> les positions des Etats membres cles (Allemagne, France, Pays-Bas) avant le trilogue suivant &mdash; l'Allemagne pourrait basculer et modifier l'equilibre du vote de juillet sur Chat Control.</li>
+<li><strong>Surveiller</strong> le rapport OpenSSF attendu sur la sante des projets <em>single-maintainer</em> : il pourrait servir de base a une proposition de financement structurel europeen via l'EU Sovereign Tech Fund.</li>
+<li><strong>Surveiller</strong> un nouvel incident TeamPCP-like avant fin mai &mdash; le tempo observe depuis mars (un compromis majeur toutes les 4-6 semaines) suggere qu'un nouveau paquet structurant tombera avant le 1er juin.</li>
+</ol>
+
+<div class="section-divider"><span>Signaux Inter-Domaines</span></div>
+
+<blockquote>&#128279; <strong>Signal pour Cybersecurite</strong> : QLNX et TeamPCP forment ensemble le cas d'etude le plus complet de chaine supply-chain en 2026 &mdash; vecteur humain + vecteur machine. Merite une couverture technique dediee par l'agent Cybersecurite.</blockquote>
+
+<blockquote>&#128279; <strong>Signal pour Geopolitique</strong> : la qualite d'outillage de QLNX (rootkit PAM, persistance, modules custom) pointe vers un acteur etatique ou para-etatique. A mettre en regard du debat europeen sur l'autonomie numerique.</blockquote>
+
+<blockquote>&#128279; <strong>Signal pour Innovation &amp; Startups</strong> : les modeles de financement des mainteneurs (Sovereign Tech Fund, OpenSSF Alpha-Omega, GitHub Sponsors) deviennent un sous-secteur de l'investissement public et prive &mdash; opportunite structurelle si l'EU passe a l'echelle.</blockquote>
+
+<blockquote>&#128279; <strong>Signal pour Culture &amp; Societe</strong> : le debat philosophique sous Chat Control &mdash; &laquo; le chiffrement est-il un droit fondamental ou un privilege conditionnel ? &raquo; &mdash; merite un traitement dedie hors cadre technique.</blockquote>
+
+<hr>
+
+<p><em>Sous-prompts executes ce jour : SP-1 (OSINT-SCAN-HN), SP-3 (OSINT-SCAN-FOSS-PRESS), SP-4 (OSS-THREAT-SCAN), SP-5 (SURVEILLANCE-SCAN). SP-2 (GitHub Trending) ecarte &mdash; redondance avec SP-1 sur cette session. Composition motivee par : (a) reprise officielle du trilogue Chat Control 2.0 le 4 mai, (b) accumulation TeamPCP / axios / QLNX sur les dernieres semaines convergeant vers une categorie d'attaque structurelle, (c) rythme normal de presse FOSS (Linux 7.1-rc2). Aucun sous-prompt juge &laquo; zero signal &raquo; ce jour ; tous reconduits pour la prochaine session.</em></p>
+
+<p><em>Premiere sortie du meta-agent v5. Prochaine iteration : integrer une lecture systematique de LWN.net et OSI blog (sous-utilises dans ce premier scan).</em></p>
+
+<hr>
+<p><em>The World Affair &mdash; LIBERTE, SURVEILLANCE &amp; OPEN SOURCE &mdash; 8 mai 2026 &mdash; Test scan v5 Meta-Agent</em></p>
+</div><div class="bottom-nav"><a href="../2026-05-08.html"><span class="bottom-nav-label">Retour</span><span class="bottom-nav-title">&larr; Premi&egrave;re Page</span></a><a href="../archive.html"><span class="bottom-nav-label">Toutes les editions</span><span class="bottom-nav-title">Archives &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; Edition N&deg;124</div><div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT="worldaffair",KEY="nexus-passages-"+VAULT;
+  function getAll(){try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]}}
+  function saveAll(a){localStorage.setItem(KEY,JSON.stringify(a))}
+  var selText="";
+  document.addEventListener("mouseup",function(e){var s=window.getSelection(),t=s.toString().trim(),b=document.getElementById("ps-save-btn");if(t.length>10){selText=t;b.style.display="block";b.style.left=(e.pageX+10)+"px";b.style.top=(e.pageY-40)+"px"}else{setTimeout(function(){b.style.display="none"},200)}});
+  window.psSave=function(){if(!selText)return;var p=getAll();p.push({text:selText.substring(0,2000),source:document.title,url:location.href,date:new Date().toISOString(),vault:VAULT});saveAll(p);document.getElementById("ps-save-btn").style.display="none";psRenderList();var t=document.getElementById("ps-toggle");t.style.background="#3d6b4f";setTimeout(function(){t.style.background="#1a1714"},600);selText=""};
+  window.psTogglePanel=function(){var p=document.getElementById("ps-panel");p.style.display=p.style.display==="none"?"block":"none";psRenderList()};
+  window.psRenderList=function(){var p=getAll(),el=document.getElementById("ps-list");document.getElementById("ps-count").textContent=p.length||"";if(!p.length){el.innerHTML="<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S&eacute;lectionne du texte et clique Sauvegarder</div>";return}el.innerHTML=p.slice().reverse().map(function(x,ri){var i=p.length-1-ri,d=new Date(x.date),ds=d.toLocaleDateString("fr-FR",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});return"<div style=\"padding:8px 0;border-bottom:1px solid #333;\"><div style=\"display:flex;justify-content:space-between;align-items:baseline;\"><span style=\"font-size:9px;color:#888;\">"+ds+" &mdash; "+(x.source||"").substring(0,30)+"</span><button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button></div><div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; "+x.text.substring(0,300)+(x.text.length>300?"...":"")+" &raquo;</div></div>"}).join("")};
+  window.psDelete=function(i){var p=getAll();p.splice(i,1);saveAll(p);psRenderList()};
+  window.psExport=function(){var p=getAll();if(!p.length)return;var md="# Passages sauvegardés — "+VAULT+"\n\nExporté le "+new Date().toLocaleDateString("fr-FR")+"\n\n---\n\n";p.forEach(function(x){md+="> "+x.text.replace(/\n/g,"\n> ")+"\n\n*Source: "+(x.source||"?")+" — "+new Date(x.date).toLocaleDateString("fr-FR")+"*\n\n---\n\n"});var b=new Blob([md],{type:"text/markdown"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="passages-"+VAULT+"-"+new Date().toISOString().slice(0,10)+".md";a.click()};
+  psRenderList();
+})();
+</script>
+</body></html>

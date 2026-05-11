@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gastronomie — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Dimanche 22 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;53</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-22.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#4a5a30">Gastronomie</div>
+  <h1 class="article-title">22 février 2026  Édition du samedi</h1>
+  <div class="article-date">Dimanche 22 Février 2026 &mdash; Edition N&deg;53</div>
+</div><div class="article-body"><h1>Journal Liberté — Gastronomie</h1>
+<h3>22 février 2026 | Édition du samedi</h3>
+<p><em>Ce que le monde mange, et pourquoi cela compte plus qu'on ne le croit</em></p>
+<hr>
+<h2>La Grande Affaire</h2>
+<h3>Michelin 2026 : le feu, le bocal, et le retour du chariot</h3>
+<p>Le Guide Michelin a dévoilé ses tendances pour 2026, et la liste ressemble à un manifeste de contre-réforme culinaire. Après une décennie de cuisine moléculaire, de fermentation scientifique et de menus dégustation en vingt-deux services, les inspecteurs détectent un mouvement de retour vers quelque chose de plus ancien, de plus tactile, de plus théâtral.</p>
+<p>Cuisiner au feu. Fermenter et conserver. Servir à table, devant le client, avec un geste et une explication.</p>
+<p>Il faut décoder ce que Michelin dit vraiment. "Cooking over fire" ne signifie pas que les chefs découvrent le barbecue — cela signifie que la flamme redevient un outil de signature, pas un accessoire rustique. Le feu est imprécis, imprévisible, vivant. Il est le contraire exact du bain-marie à 56,3 degrés. Quand Michelin valorise le feu, il valorise le risque, la main du cuisinier, le moment irréproductible.</p>
+<p>Les saveurs préservées et fermentées — lacto-fermentation, garum, misos d'inspiration locale — sont la deuxième colonne de ce retour. La fermentation est vieille comme l'agriculture, mais elle est devenue, grâce au travail de Noma et de ses disciples, un vocabulaire culinaire à part entière. Ce que Michelin observe en 2026, c'est que cette technique a quitté les laboratoires nordiques pour devenir un outil standard dans les cuisines du monde entier. Le kimchi n'est plus exotique. Le kombucha n'est plus branché. Ils sont normaux.</p>
+<p>Et puis il y a le service à table — le chariot de fromage, la découpe devant le client, le flambage au guéridon. Cela ressemble à du nostalgie, mais c'est plus subtil que cela. Dans un monde où la cuisine est de plus en plus photographiée et de moins en moins vécue, le service tableside est un acte de résistance : il crée un moment qui n'existe que pour les personnes présentes, qui ne se réduit pas à une image, qui exige une conversation entre celui qui sert et celui qui mange.</p>
+<hr>
+<h2>Les Histoires qui Comptent</h2>
+<h3>Le champignon monte au générique</h3>
+<p>Parmi les tendances que tous les analystes de l'industrie identifient en 2026, une se distingue par sa discrétion et son ampleur : le champignon n'est plus un accompagnement. Il est le plat principal.</p>
+<p>Les shiitakes grillés remplacent le steak. Les pleurotes rôties entières arrivent au centre de l'assiette. Les champignons king oyster, tranchés en pavés épais et saisis comme des escalopes, prennent la place que le veau occupait il y a dix ans. Ce n'est pas du véganisme militant — c'est du pragmatisme gustatif. Un bon champignon, correctement traité, a l'umami d'une viande maturée et la texture d'un produit noble. Les chefs l'ont compris. Les clients suivent.</p>
+<p>Le thé connaît une trajectoire parallèle. Pas le thé comme boisson — le thé comme ingrédient de cuisine. Des infusions de hojicha dans les sauces. Du matcha dans les marinades. Du lapsang souchong fumé dans les jus de cuisson. Le thé apporte une complexité aromatique que les fonds classiques ne peuvent pas reproduire, et les chefs de 2026 l'utilisent avec la même rigueur qu'ils utilisaient le vin il y a vingt ans.</p>
+<p>Le caviar, lui, traverse les frontières stylistiques. On le trouve désormais sur des tacos, dans des bao, au sommet de pizzas blanches, mélangé à du beurre sur des pâtes simples. La démocratisation du caviar d'élevage (sturgeon farming en Chine, en Italie, en Uruguay) a fait chuter les prix suffisamment pour qu'il devienne un condiment de luxe accessible, et non plus un produit réservé aux tables à nappe blanche.</p>
+<h3>Fibermaxxing : la fibre est la nouvelle protéine</h3>
+<p>Il y a un néologisme qui circule sur les réseaux nutritionnels et qui mérite qu'on s'y arrête : "fibermaxxing." Le concept est simple — consommer autant de fibres que possible, en faire le pilier de l'alimentation plutôt qu'une pensée accessoire.</p>
+<p>Les aliments qui montent : l'avoine (encore et toujours), la racine de chicorée, le manioc, les haricots secs, les grains entiers. Ce ne sont pas des superaliments exotiques — ce sont les aliments les plus anciens, les plus disponibles, les moins chers. La science nutritionnelle rattrape ce que les grand-mères savaient : les fibres alimentent le microbiome, régulent la glycémie, et sont associées à la réduction de presque toutes les maladies chroniques.</p>
+<p>Le "fibermaxxing" est intéressant parce qu'il inverse la logique des tendances nutritionnelles des vingt dernières années. Pas de supplément. Pas de poudre. Pas de marque. Juste des haricots, du pain complet et de la patience.</p>
+<h3>Pikliz : Haïti arrive à table</h3>
+<p>Le pikliz — le condiment haïtien de légumes marinés au piment — est en train de vivre son moment. Les food writers américains le découvrent avec l'enthousiasme typique de ceux qui croient inventer ce qu'ils ne connaissaient pas. Le pikliz existe depuis des générations dans les cuisines haïtiennes — chou, carotte, poivron, piment Scotch bonnet, vinaigre, parfois clou de girofle. C'est un condiment de pauvre, fait pour transformer n'importe quel plat simple en quelque chose de vivant.</p>
+<p>Son ascension s'inscrit dans une tendance plus large que Michelin et les analystes appellent "flavor specificity" — le refus de la catégorie fourre-tout. On ne dit plus "cuisine asiatique du Sud-Est." On dit cuisine filipine, cuisine laotienne, cuisine thaïlandaise du Nord-Est. On ne dit plus "cuisine caribéenne." On dit pikliz haïtien, sofrito portoricain, pepper sauce trinidadienne. Chaque tradition retrouve son nom propre.</p>
+<h3>Le suif revient, le congélateur aussi</h3>
+<p>Deux micro-tendances qui se croisent dans les cuisines de 2026 : le retour du suif (tallow) et la réhabilitation du congélateur dans la haute cuisine.</p>
+<p>Le suif — graisse de boeuf rendue — avait été chassé des cuisines par la peur du gras saturé. Il revient par la porte de la saveur. Les chefs qui font frire au suif obtiennent un croustillant et une profondeur de goût que les huiles végétales ne peuvent pas reproduire. Les frites au suif de boeuf sont devenues un marqueur de sérieux culinaire, un signe que le chef ne suit pas les modes nutritionnelles mais les lois de la physique du goût.</p>
+<p>Quant au congélateur, il sort du placard de la honte. Des chefs étoilés admettent ouvertement qu'ils congèlent des bouillons, des pâtes feuilletées, des bases de sauce — et que le résultat est identique, voire supérieur, au frais quotidien. La congélation, correctement exécutée, n'est pas un compromis : c'est un outil de gestion du temps et de la qualité que le dogme du "tout frais" avait injustement disqualifié.</p>
+<h3>Food Network couronne ses créateurs, Chicago perd un pionnier</h3>
+<p>Food Network a désigné onze créateurs de contenu comme "voices of the year" le 14 février, totalisant quatre-vingt-dix millions d'abonnés combinés. L'institution télévisuelle adoube les enfants du numérique — signe que la frontière entre médias traditionnels et créateurs en ligne n'existe plus que dans les organigrammes.</p>
+<p>Et à Chicago, Bloom Plant Based Kitchen a définitivement fermé ses portes le 21 février. Le restaurant 100% végétal avait ouvert avec l'ambition de prouver que la cuisine plant-based pouvait être gastronomique et économiquement viable. La fermeture ne condamne pas le mouvement — mais elle rappelle que la viabilité économique d'un restaurant reste, en 2026 comme en 1926, une affaire de loyer, de marge, et de régularité de la clientèle, pas seulement de vision culinaire.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<p>Le fil conducteur de toutes ces tendances est un retour à la matérialité. Le feu plutôt que le sous-vide. Le champignon entier plutôt que l'extrait. Le suif plutôt que l'huile raffinée. La fibre plutôt que le supplément. Le pikliz fait à la main plutôt que la sauce industrielle. Après une décennie de haute technologie culinaire, le monde gastronomique semble dire : ce qui est vieux est neuf, ce qui est simple est profond, et ce qui est local a un nom.</p>
+<p>La fermeture de Bloom à Chicago est un signal qu'il ne faut pas ignorer. Le plant-based continue de croître en tant qu'ingrédient et en tant que philosophie — mais le restaurant exclusivement plant-based reste un modèle économique fragile. Les clients veulent des options, pas des ultimatums.</p>
+<hr>
+<h2>Connexion</h2>
+<p>La gastronomie de février 2026 raconte une histoire que l'industrie technologique ne veut pas entendre : parfois, le progrès consiste à revenir en arrière. Pas par nostalgie, mais par intelligence. Le feu existait avant le four à convection. La fermentation existait avant le réfrigérateur. Le champignon existait avant le steak de synthèse. Et le pikliz existait avant que les food writers de Brooklyn ne lui trouvent un hashtag. La cuisine la plus avancée de 2026 est celle qui a la mémoire la plus longue.</p></div><div class="bottom-nav"><a href="llm-agents.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; LLM & Agents</span></a><a href="geopolitique.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Géopolitique &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; GASTRONOMIE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

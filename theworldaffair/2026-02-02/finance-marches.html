@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance & Marchés — Liberté</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 72px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Intelligence &middot; V&eacute;rit&eacute; &middot; Libert&eacute;</span></div>
+  <h1 class="masthead-title"><a href="index.html">Libert&eacute;</a></h1>
+  <div class="masthead-subtitle">The World Affair</div>
+  <div class="masthead-meta">
+    <span>Lundi 2 Février 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;33</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-02-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3d6b4f">Finance & Marchés</div>
+  <h1 class="article-title">SNAPSHOT MARCHÉS</h1>
+  <div class="article-date">Lundi 2 Février 2026 &mdash; Edition N&deg;33</div>
+</div><div class="article-body"><h1>Rapport Finance & Marchés — Intelligence Institutionnelle</h1>
+<h2>Date : 2026-02-02</h2>
+<hr>
+<h2>📊 SNAPSHOT MARCHÉS</h2>
+<h3>Clôture / Dernière Cotation</h3>
+<table><thead><tr><th>Indice</th><th>Niveau</th><th>Jour</th><th>YTD</th><th>vs ATH</th></tr></thead><tbody>
+<tr><td>S&P 500</td><td>6,976.44</td><td>+0.54%</td><td>+3.2%</td><td>-0.3% (ATH ~7,000)</td></tr>
+<tr><td>Nasdaq 100</td><td>23,592.11</td><td>+0.56%</td><td>+4.1%</td><td>-2%</td></tr>
+<tr><td>Dow Jones</td><td>49,407.66</td><td>+1.05%</td><td>+2.8%</td><td>-1%</td></tr>
+</tbody></table>
+<table><thead><tr><th>Taux</th><th>Niveau</th><th>Variation</th><th>Contexte historique</th></tr></thead><tbody>
+<tr><td>US 10Y</td><td>4.17%</td><td>-5 bp</td><td>Stable vs moyenne 2025</td></tr>
+<tr><td>Fed Funds</td><td>3.50-3.75%</td><td>Unchanged</td><td>En pause depuis janvier</td></tr>
+</tbody></table>
+<table><thead><tr><th>Indicateur</th><th>Niveau</th><th>Signal</th></tr></thead><tbody>
+<tr><td>VIX</td><td>15.06</td><td>Complacent — proche des lows</td></tr>
+<tr><td>CNN Fear & Greed</td><td>52</td><td>Neutral</td></tr>
+</tbody></table>
+<p><strong>Contexte historique :</strong></p>
+<ul>
+<li>S&P 500 a touché 7,000 cette semaine — niveau psychologique majeur</li>
+<li>Fed en pause après 3 cuts consécutifs en 2025</li>
+<li>Government shutdown en cours — jobs report reporté</li>
+</ul>
+<hr>
+<h2>🏦 SECTION 1 : SENTIMENT & PRÉVISIONS INSTITUTIONNELLES</h2>
+<h3>Consensus des Grands Fonds</h3>
+<p><strong>Direction générale :</strong></p>
+<table><thead><tr><th>Source</th><th>Vue</th><th>Horizon</th><th>Conviction</th></tr></thead><tbody>
+<tr><td>BlackRock</td><td>Constructif</td><td>12 mois</td><td>Moyenne — "earnings growth strongest in 4 years"</td></tr>
+<tr><td>JPMorgan</td><td>Bullish tactique</td><td>6 mois</td><td>Haute — 78% beat rate earnings</td></tr>
+<tr><td>Deutsche Bank</td><td>Optimiste</td><td>2026</td><td>Haute — "strongest earnings growth in 4 years"</td></tr>
+</tbody></table>
+<h3>Positions des Légendes</h3>
+<p><strong>Warren Buffett / Berkshire :</strong></p>
+<ul>
+<li>Cash pile : Record historique ~$330B</li>
+<li>Greg Abel maintenant CEO (depuis 31 déc 2025)</li>
+<li>Achats récents : Sélectifs, focus financières et énergie</li>
+<li>🔍 <strong>Mon analyse</strong> : Le cash record reste un warning. Berkshire ne trouve pas de valorisations attractives malgré le marché proche des ATH.</li>
+</ul>
+<p><strong>Peter Thiel (via 13F) :</strong></p>
+<ul>
+<li>Ventes récentes : Nvidia, Tesla</li>
+<li>Achats : Focus sur 2 AI stocks représentant 61% du portefeuille</li>
+<li>🔍 <strong>Mon analyse</strong> : Rotation des "AI winners" classiques vers des paris plus concentrés. Signal que les évaluations des big tech AI sont tendues.</li>
+</ul>
+<h3>📊 Divergences à noter</h3>
+<table><thead><tr><th>Sujet</th><th>Bulls</th><th>Bears</th></tr></thead><tbody>
+<tr><td>S&P 7,000+</td><td>Deutsche Bank, earnings momentum</td><td>Buffett cash pile, Thiel selling tech</td></tr>
+<tr><td>AI stocks</td><td>Still institutional favorite</td><td>Valuations stretched, rotations</td></tr>
+<tr><td>Fed policy</td><td>Pause = supportive</td><td>Shutdown uncertainty, inflation sticky</td></tr>
+</tbody></table>
+<hr>
+<h2>🌍 SECTION 2 : TENDANCES MACRO & POSITIONNEMENT</h2>
+<h3>Top 3 Facteurs Macro Aujourd'hui</h3>
+<p><strong>1. Earnings Season — Strongest in 4 Years</strong></p>
+<ul>
+<li>~1/3 des S&P 500 ont reporté</li>
+<li>78% beat rate (vs 75% historique)</li>
+<li>100+ companies à reporter cette semaine</li>
+<li><strong>Impact</strong> : Support technique pour le marché</li>
+</ul>
+<p><strong>2. Government Shutdown</strong></p>
+<ul>
+<li>Jobs report (Jan) reporté indéfiniment</li>
+<li>BLS ne publie pas tant que funding pas restauré</li>
+<li><strong>Impact</strong> : Incertitude sur données macro clés</li>
+</ul>
+<p><strong>3. Fed en Pause</strong></p>
+<ul>
+<li>Taux maintenus à 3.50-3.75%</li>
+<li>Première pause depuis juillet après 3 cuts</li>
+<li>Kevin Warsh nominé pour succéder (hawkish signal)</li>
+<li><strong>Impact</strong> : Marché price une Fed attentiste en 2026</li>
+</ul>
+<hr>
+<h2>📈 SECTION 3 : SECTEURS & THÉMATIQUES</h2>
+<h3>Top 3 Secteurs/Thèmes — Vue Institutionnelle</h3>
+<p><strong>1. Manufacturing Revival</strong></p>
+<ul>
+<li>ISM Manufacturing au plus haut depuis 2022</li>
+<li>Economically sensitive sectors leading</li>
+<li><strong>Implication</strong> : Rotation vers cycliques en cours</li>
+</ul>
+<p><strong>2. AI & Tech — Rotation</strong></p>
+<ul>
+<li>Peter Thiel vend NVDA, TSLA</li>
+<li>Réallocation vers "second wave" AI plays</li>
+<li>Valuations des mega-caps AI tendues</li>
+<li><strong>Implication</strong> : Stock picking > ETF dans AI</li>
+</ul>
+<p><strong>3. Precious Metals Crash</strong></p>
+<ul>
+<li>Silver -30% vendredi (worst day since 1980)</li>
+<li>Gold également en forte baisse</li>
+<li><strong>Implication</strong> : Risk-off brutal sur commodities, pas sur actions</li>
+</ul>
+<hr>
+<h2>⚠️ SECTION 4 : RISQUES & ÉVÉNEMENTS</h2>
+<h3>Risque Majeur Identifié</h3>
+<p><strong>Government Shutdown</strong></p>
+<ul>
+<li>Data vacuum sur emploi, inflation</li>
+<li>Prolongation incertaine</li>
+<li>Marchés ignorent pour l'instant mais risque de repricing</li>
+</ul>
+<h3>Calendrier Critique</h3>
+<table><thead><tr><th>Date</th><th>Événement</th><th>Impact</th><th>Note</th></tr></thead><tbody>
+<tr><td>Feb 6</td><td>Jobs Report (Jan)</td><td>❌ REPORTÉ</td><td>Shutdown</td></tr>
+<tr><td>Cette semaine</td><td>100+ S&P 500 earnings</td><td>🔴</td><td>Critical</td></tr>
+<tr><td>En cours</td><td>Fed policy statements</td><td>🟠</td><td>Watch Warsh nomination</td></tr>
+</tbody></table>
+<hr>
+<h2>🎯 SECTION 5 : TON PORTEFEUILLE — ANALYSE POSITIONS</h2>
+<h3>Watchlist Personnelle</h3>
+<table><thead><tr><th>Ticker</th><th>Nom</th><th>Prix</th><th>Chg Jour</th><th>Signal</th></tr></thead><tbody>
+<tr><td>PLTR</td><td>Palantir</td><td>$147.76</td><td>+0.80%</td><td>Earnings beat +6.97% AH</td></tr>
+<tr><td>NVDA</td><td>Nvidia</td><td>~$890</td><td>Mixed</td><td>Thiel selling, watch</td></tr>
+<tr><td>TSLA</td><td>Tesla</td><td>~$380</td><td>Flat</td><td>Thiel selling</td></tr>
+<tr><td>RKLB</td><td>Rocket Lab</td><td>~$28</td><td>+3%</td><td>$816M SDA contract</td></tr>
+<tr><td>AMZN</td><td>Amazon</td><td>~$215</td><td>+1.2%</td><td>Earnings watch</td></tr>
+<tr><td>LLY</td><td>Eli Lilly</td><td>~$780</td><td>+0.5%</td><td>GLP-1 dominance</td></tr>
+</tbody></table>
+<h3>Position Clé : PLTR</h3>
+<p><strong>News du jour :</strong></p>
+<ul>
+<li>Earnings beat — stock +6.97% after hours</li>
+<li>Peter Thiel rebalancing portfolio (selling other AI, concentrated in PLTR-type plays)</li>
+</ul>
+<p><strong>Recommandation tactique :</strong></p>
+<table><thead><tr><th>Action</th><th>Condition</th><th>Sizing</th></tr></thead><tbody>
+<tr><td>HOLD</td><td>Core position</td><td>—</td></tr>
+<tr><td>TRIM 10%</td><td>Si >$160</td><td>Prendre profits</td></tr>
+<tr><td>ADD</td><td>Si correction <$130</td><td>3% du cash</td></tr>
+</tbody></table>
+<h3>Position Clé : RKLB</h3>
+<p><strong>News du jour :</strong></p>
+<ul>
+<li>$816M contract SDA (largest ever)</li>
+<li>Neutron fairing arrived at Virginia spaceport</li>
+<li>Launch cadence: 21 en 2025, targeting 30+ en 2026</li>
+</ul>
+<p><strong>Recommandation :</strong></p>
+<table><thead><tr><th>Action</th><th>Condition</th><th>Sizing</th></tr></thead><tbody>
+<tr><td>HOLD</td><td>Thesis intact</td><td>—</td></tr>
+<tr><td>ADD</td><td>Sur pullback <$25</td><td>2% du cash</td></tr>
+</tbody></table>
+<hr>
+<h2>🪙 SECTION 6 : CRYPTO — INTELLIGENCE INSTITUTIONNELLE</h2>
+<h3>Snapshot Crypto</h3>
+<table><thead><tr><th>Actif</th><th>Prix</th><th>Jour</th><th>vs ATH</th><th>Market Cap</th></tr></thead><tbody>
+<tr><td>BTC</td><td>~$79,000</td><td>-3%</td><td>-37% (ATH $126K)</td><td>~$1.56T</td></tr>
+<tr><td>ETH</td><td>~$2,450</td><td>-2%</td><td>-48%</td><td>~$295B</td></tr>
+<tr><td>SOL</td><td>~$105</td><td>-4%</td><td>-55%</td><td>~$51B</td></tr>
+</tbody></table>
+<table><thead><tr><th>Indicateur</th><th>Niveau</th><th>Signal</th></tr></thead><tbody>
+<tr><td>BTC Dominance</td><td>~58%</td><td>Flight to quality crypto</td></tr>
+<tr><td>Stablecoin Market Cap</td><td>~$300B</td><td>Dry powder record</td></tr>
+<tr><td>Bitcoin ETF AUM total</td><td>$123B+</td><td>Institutionnel ancré</td></tr>
+</tbody></table>
+<p><strong>Développements clés :</strong></p>
+<ul>
+<li>BTC passé sous $80K dimanche (first since April)</li>
+<li>Silver crash -30% = risk-off généralisé</li>
+<li>Saylor/Strategy : 712,647 BTC, cost basis $76,037 — marginally underwater</li>
+</ul>
+<h3>Verdict Crypto :</h3>
+<blockquote>
+<p><strong>ATTENDRE / SMALL ADDS BTC</strong></p>
+<p>Support $75-76K (Saylor cost basis) = zone critique</p>
+<p>Si tient, opportunité d'accumulation DCA</p>
+<p>Si casse, $70K next support</p>
+</blockquote>
+<hr>
+<h2>💰 SECTION 7 : GESTION DU CASH</h2>
+<h3>État Actuel — Opportunité de Déploiement ?</h3>
+<table><thead><tr><th>Signal</th><th>Niveau</th><th>Historique</th><th>Verdict</th></tr></thead><tbody>
+<tr><td>VIX</td><td>15</td><td>Low = complacent</td><td>Wait for spike</td></tr>
+<tr><td>S&P vs ATH</td><td>-0.3%</td><td>Near highs</td><td>Expensive</td></tr>
+<tr><td>Earnings</td><td>78% beat</td><td>Strong</td><td>Supportive</td></tr>
+<tr><td>Buffett Cash</td><td>$330B record</td><td>Warning</td><td>Wait</td></tr>
+<tr><td>Government</td><td>Shutdown</td><td>Uncertainty</td><td>Caution</td></tr>
+</tbody></table>
+<p><strong>Verdict Cash :</strong></p>
+<blockquote>
+<p><strong>HOLD</strong></p>
+<p>Raison : Marché proche des ATH, VIX bas, shutdown uncertainty. Pas d'opportunité claire.</p>
+<p>Exception : Positions spécifiques sur pullbacks (RKLB, PLTR si correction)</p>
+</blockquote>
+<hr>
+<h2>📝 SECTION 8 : SYNTHÈSE EXÉCUTIVE</h2>
+<h3>Résumé en 30 secondes</h3>
+<p><strong>Sentiment institutionnel global :</strong></p>
+<blockquote>
+<p>Constructif sur earnings, mais rotation en cours. Smart money (Thiel, Buffett) prend des profits ou reste en cash. Marché ignore le shutdown pour l'instant.</p>
+</blockquote>
+<p><strong>Top 3 takeaways :</strong></p>
+<ol>
+<li><strong>S&P touche 7,000</strong> — Milestone psychologique, mais upside limité avec Buffett à $330B cash</li>
+<li><strong>PLTR earnings beat</strong> — +7% AH, AI winners concentrated continue de performer</li>
+<li><strong>Silver crash -30%</strong> — Risk-off sur commodities mais pas sur actions (pour l'instant)</li>
+</ol>
+<p><strong>Pour ton portefeuille :</strong></p>
+<ul>
+<li>PLTR : Hold, trim si >$160</li>
+<li>RKLB : Hold, add sur pullback (contract $816M bullish)</li>
+<li>BTC : Wait, zone $75-76K critique</li>
+<li>Cash : Hold, pas de deployment urgent</li>
+</ul>
+<p><strong>Risque principal à monitorer :</strong></p>
+<blockquote>
+<p>Government shutdown prolongé → data vacuum → repricing volatilité possible</p>
+</blockquote>
+<p><strong>Prochaine date clé :</strong></p>
+<blockquote>
+<p>Cette semaine : 100+ earnings S&P 500. Jobs report reporté.</p>
+</blockquote>
+<hr>
+<h2>Sources</h2>
+<ul>
+<li><a href="https://247wallst.com/investing/2026/02/02/stock-market-live-february-2-2026-sp-500-spy-red-on-tech-weakness/" target="_blank">24/7 Wall St — Stock Market Live February 2, 2026</a></li>
+<li><a href="https://www.cnbc.com/2026/02/02/stock-market-today-live-updates.html" target="_blank">CNBC — Stock Market Today February 2, 2026</a></li>
+<li><a href="https://finance.yahoo.com/quote/PLTR/" target="_blank">Yahoo Finance — Palantir PLTR</a></li>
+<li><a href="https://www.fool.com/investing/2026/02/02/peter-thiel-sell-nvidia-tesla-buy-2-ai-stocks/" target="_blank">Motley Fool — Peter Thiel Sells Nvidia Tesla</a></li>
+<li><a href="https://www.fool.com/investing/2026/02/02/how-rocket-labs-new-contract-will-propel-it-to-new/" target="_blank">Motley Fool — Rocket Lab Contract</a></li>
+</ul></div><div class="bottom-nav"><a href="geopolitique.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Géopolitique</span></a><a href="innovation-startups.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Innovation & Startups &rarr;</span></a></div></div><div class="site-footer">Libert&eacute;: The World Affair &mdash; FINANCE & MARCHÉS</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

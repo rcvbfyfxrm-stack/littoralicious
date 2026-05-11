@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LLM &amp; Agents &mdash; The World Affair</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 52px; font-weight: 400; letter-spacing: 2px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Jeudi 19 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;56</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-19.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#2c2c2c">LLM &amp; Agents</div>
+  <h1 class="article-title">GPT-5.4 contre Claude Opus 4.6 : la guerre des mod&egrave;les</h1>
+  <div class="article-date">Jeudi 19 Mars 2026 &mdash; Edition N&deg;56</div>
+</div><div class="article-body"><h1>La course aux mod&egrave;les entre dans une nouvelle phase</h1>
+
+<p><em>&laquo; La semaine du 17 mars 2026 marque un tournant dans la guerre des grands mod&egrave;les de langage. OpenAI lance GPT-5.4 avec une fen&ecirc;tre de contexte d'un million de tokens et une r&eacute;duction de 33% des erreurs factuelles. Anthropic r&eacute;pond imm&eacute;diatement avec le mode auto de Claude Opus 4.6, tandis que NVIDIA entre dans la course avec Nemotron 3. Le duopole am&eacute;ricain est d&eacute;sormais un oligopole plan&eacute;taire. &raquo;</em></p>
+
+<hr>
+
+<h2>I. GPT-5.4 : un million de tokens, un tiers d'erreurs en moins</h2>
+
+<p>OpenAI a lanc&eacute; GPT-5.4 le 17 mars, son mod&egrave;le le plus ambitieux depuis GPT-5. La fen&ecirc;tre de contexte passe &agrave; un million de tokens &mdash; suffisant pour ing&eacute;rer un roman entier, un dossier juridique complet, ou une base de code de plusieurs dizaines de milliers de lignes. La r&eacute;duction de 33% du taux d'hallucination, mesur&eacute;e sur les benchmarks internes d'OpenAI, repr&eacute;sente le progr&egrave;s le plus significatif en fiabilit&eacute; depuis la s&eacute;rie GPT-4.</p>
+
+<p>Mais les benchmarks internes ne sont pas des audits ind&eacute;pendants. La communaut&eacute; attend les r&eacute;sultats sur MMLU-Pro, HumanEval, et les &eacute;valuations de s&eacute;curit&eacute; METR avant de valider les revendications d'OpenAI. L'histoire r&eacute;cente enseigne la prudence : chaque g&eacute;n&eacute;ration de mod&egrave;le a &eacute;t&eacute; pr&eacute;sent&eacute;e comme r&eacute;volutionnaire &agrave; sa sortie, avant que les cas limites et les modes de d&eacute;faillance n'apparaissent en production.</p>
+
+<h2>II. Claude Opus 4.6 : le mode auto comme r&eacute;ponse strat&eacute;gique</h2>
+
+<p>Anthropic n'a pas attendu pour r&eacute;pondre. Le mode auto de Claude Opus 4.6, d&eacute;ploy&eacute; cette semaine, permet au mod&egrave;le de s&eacute;lectionner dynamiquement son niveau de raisonnement en fonction de la complexit&eacute; de la t&acirc;che. Pour une question simple, le mod&egrave;le r&eacute;pond rapidement avec un raisonnement l&eacute;ger. Pour un probl&egrave;me de code complexe ou une analyse juridique, il active automatiquement le raisonnement approfondi. Cette approche adaptative vise &agrave; r&eacute;duire la latence sans sacrifier la qualit&eacute; sur les t&acirc;ches difficiles.</p>
+
+<p>En parall&egrave;le, Anthropic a engag&eacute; une proc&eacute;dure judiciaire contre le Pentagone concernant l'utilisation de ses mod&egrave;les &agrave; des fins militaires. Cette d&eacute;marche, sans pr&eacute;c&eacute;dent dans l'industrie de l'IA, signale la volont&eacute; d'Anthropic de maintenir une ligne rouge sur les applications l&eacute;tales &mdash; m&ecirc;me au prix d'une confrontation directe avec le d&eacute;partement de la D&eacute;fense am&eacute;ricain.</p>
+
+<h2>III. NVIDIA Nemotron 3 et l'&eacute;largissement du champ de bataille</h2>
+
+<p>NVIDIA, jusqu'ici fournisseur de l'infrastructure mat&eacute;rielle de l'IA, franchit un pas d&eacute;cisif en lan&ccedil;ant Nemotron 3, son propre grand mod&egrave;le de langage. La strat&eacute;gie est limpide : contr&ocirc;ler &agrave; la fois le silicium et le logiciel, comme Apple l'a fait avec l'iPhone. Nemotron 3 est optimis&eacute; pour les GPU NVIDIA, ce qui pourrait cr&eacute;er un avantage de performance significatif sur le mat&eacute;riel maison.</p>
+
+<p>La d&eacute;couverte de 24 000 comptes chinois frauduleux utilisant des mod&egrave;les LLM pour des op&eacute;rations d'influence sur les r&eacute;seaux sociaux occidentaux illustre une autre dimension de la course : les mod&egrave;les ne sont pas seulement des outils de productivit&eacute;. Ils sont des armes informationnelles dont l'efficacit&eacute; croissante pose un d&eacute;fi fondamental aux d&eacute;mocraties.</p>
+
+<table>
+<tr><th>Mod&egrave;le</th><th>Entreprise</th><th>Contexte</th><th>Nouveaut&eacute; cl&eacute;</th></tr>
+<tr><td>GPT-5.4</td><td>OpenAI</td><td>1M tokens</td><td>-33% hallucinations</td></tr>
+<tr><td>Claude Opus 4.6</td><td>Anthropic</td><td>200K tokens</td><td>Mode auto adaptatif</td></tr>
+<tr><td>Nemotron 3</td><td>NVIDIA</td><td>N/A</td><td>Optimis&eacute; GPU NVIDIA</td></tr>
+<tr><td>Grok-3</td><td>xAI</td><td>128K tokens</td><td>Int&eacute;gration X/Twitter</td></tr>
+</table>
+
+<h2>IV. Le &laquo; silent failure at scale &raquo;</h2>
+
+<p>Au-del&agrave; de la course aux benchmarks, un probl&egrave;me structurel &eacute;merge dans les d&eacute;ploiements d'agents IA en entreprise. Les &eacute;checs silencieux &mdash; ces cas o&ugrave; l'agent produit un r&eacute;sultat qui semble correct mais contient des erreurs subtiles &mdash; augmentent avec l'&eacute;chelle des d&eacute;ploiements. Les syst&egrave;mes d'&eacute;valuation automatique ne d&eacute;tectent pas ces d&eacute;faillances, et les utilisateurs humains, conditionn&eacute;s &agrave; faire confiance au mod&egrave;le, ne les v&eacute;rifient pas.</p>
+
+<p>Ce probl&egrave;me est structurellement diff&eacute;rent d'un bug logiciel classique. Un bug est d&eacute;terministe et reproductible. Un &eacute;chec silencieux d'un LLM est stochastique, contextuel, et souvent ind&eacute;tectable sans expertise du domaine. La course aux capacit&eacute;s brutes masque cette r&eacute;alit&eacute; : la fiabilit&eacute; op&eacute;rationnelle des agents IA reste tr&egrave;s en dessous de ce que les benchmarks sugg&egrave;rent.</p>
+
+<hr>
+
+<h2>Signaux Faibles</h2>
+
+<ul>
+<li>La poursuite d'Anthropic contre le Pentagone pourrait &eacute;tablir un pr&eacute;c&eacute;dent juridique sur le droit d'un fournisseur d'IA &agrave; refuser des applications militaires de ses mod&egrave;les.</li>
+<li>L'entr&eacute;e de NVIDIA dans les LLM acc&eacute;l&egrave;re la verticalisation de la cha&icirc;ne de valeur IA &mdash; un mouvement que les r&eacute;gulateurs antitrust pourraient examiner.</li>
+<li>Les 24 000 comptes chinois frauduleux d&eacute;tect&eacute;s ne sont probablement que la partie visible d'une infrastructure d'influence beaucoup plus vaste.</li>
+</ul>
+
+<hr>
+
+<p><em>The World Affair &mdash; LLM &amp; Agents &mdash; 19 mars 2026</em></p></div><div class="bottom-nav"><a href="gastronomie.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Gastronomie &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; LLM &amp; AGENTS</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+  var selText = "", selRange = null;
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) { selText = txt; btn.style.display = "block"; btn.style.left = (e.pageX + 10) + "px"; btn.style.top = (e.pageY - 40) + "px"; } else { setTimeout(function(){ btn.style.display = "none"; }, 200); }
+  });
+  window.psSave = function(){ if (!selText) return; var passages = getAll(); passages.push({ text: selText.substring(0, 2000), source: document.title, url: location.href, date: new Date().toISOString(), vault: VAULT }); saveAll(passages); document.getElementById("ps-save-btn").style.display = "none"; psRenderList(); psFlash(); selText = ""; };
+  function psFlash(){ var t = document.getElementById("ps-toggle"); t.style.background = "#3d6b4f"; setTimeout(function(){ t.style.background = "#1a1714"; }, 600); }
+  window.psTogglePanel = function(){ var p = document.getElementById("ps-panel"); p.style.display = p.style.display === "none" ? "block" : "none"; psRenderList(); };
+  window.psRenderList = function(){ var passages = getAll(); var el = document.getElementById("ps-list"); document.getElementById("ps-count").textContent = passages.length || ""; if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S\u00e9lectionne du texte et clique Sauvegarder</div>"; return; } el.innerHTML = passages.slice().reverse().map(function(p, ri){ var i = passages.length - 1 - ri; var d = new Date(p.date); var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"}); return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\"><div style=\"display:flex;justify-content:space-between;align-items:baseline;\"><span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span><button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button></div><div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div></div>"; }).join(""); };
+  window.psDelete = function(i){ var passages = getAll(); passages.splice(i, 1); saveAll(passages); psRenderList(); };
+  window.psExport = function(){ var passages = getAll(); if (!passages.length) return; var md = "# Passages sauvegard\u00e9s \u2014 " + VAULT + "\n\n"; md += "Export\u00e9 le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n"; passages.forEach(function(p){ var d = new Date(p.date).toLocaleDateString("fr-FR"); md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n"; md += "*Source: " + (p.source||"?") + " \u2014 " + d + "*\n\n---\n\n"; }); var blob = new Blob([md], {type:"text/markdown"}); var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md"; a.click(); };
+  psRenderList();
+})();
+</script>
+</body></html>

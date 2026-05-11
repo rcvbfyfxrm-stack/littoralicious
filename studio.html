@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Studio — LITTORALICIOUS</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        body { background: var(--color-paper); }
+        .studio {
+            display: grid;
+            grid-template-columns: 320px 1fr 420px;
+            gap: 0;
+            height: 100vh;
+            font-size: var(--text-sm);
+        }
+        .studio__col {
+            overflow-y: auto;
+            border-right: 1px solid var(--color-border);
+            padding: var(--space-4);
+            box-sizing: border-box;
+        }
+        .studio__col:last-child { border-right: none; }
+        .studio__header {
+            position: sticky;
+            top: 0;
+            background: var(--color-paper);
+            border-bottom: 1px solid var(--color-border);
+            padding: var(--space-3) 0;
+            margin: calc(var(--space-4) * -1) calc(var(--space-4) * -1) var(--space-4);
+            padding-left: var(--space-4);
+            padding-right: var(--space-4);
+            z-index: 5;
+        }
+        .studio__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-base);
+            margin: 0;
+        }
+        .studio__sub {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .filter-row { display: flex; gap: var(--space-2); margin-top: var(--space-2); }
+        .filter-row input, .filter-row select {
+            flex: 1;
+            padding: 6px 8px;
+            border: 1px solid var(--color-border);
+            background: var(--color-paper);
+            font-family: inherit;
+            font-size: var(--text-xs);
+            color: var(--color-ink);
+        }
+        .draft-item {
+            padding: var(--space-3);
+            border-bottom: 1px solid var(--color-border);
+            cursor: pointer;
+            transition: background 0.1s;
+        }
+        .draft-item:hover { background: var(--color-subtle); }
+        .draft-item.selected { background: var(--color-subtle); border-left: 3px solid var(--color-ink); padding-left: calc(var(--space-3) - 3px); }
+        .draft-item.queued { border-left: 3px solid var(--color-sea); padding-left: calc(var(--space-3) - 3px); }
+        .draft-item.next { border-left: 3px solid #c8862a; padding-left: calc(var(--space-3) - 3px); }
+        .draft-item__title {
+            font-family: var(--font-serif);
+            font-size: var(--text-base);
+            margin: 0 0 4px 0;
+            line-height: 1.3;
+        }
+        .draft-item__meta {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--color-salt);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .draft-item__excerpt {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+        .badge {
+            display: inline-block;
+            padding: 1px 6px;
+            font-family: var(--font-mono);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            background: var(--color-ink);
+            color: var(--color-paper);
+            margin-left: 4px;
+        }
+        .badge.review { background: var(--color-sea); }
+        .badge.next { background: #c8862a; }
+        .badge.published { background: #2d6a4f; }
+        .draft-item.published { opacity: 0.72; }
+        .draft-item.published .draft-item__title { color: var(--color-muted); }
+        .status-tabs {
+            display: flex;
+            gap: 0;
+            margin-top: var(--space-2);
+            border: 1px solid var(--color-border);
+        }
+        .status-tabs button {
+            flex: 1;
+            padding: 6px 4px;
+            border: none;
+            border-right: 1px solid var(--color-border);
+            background: var(--color-paper);
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: var(--color-muted);
+            cursor: pointer;
+        }
+        .status-tabs button:last-child { border-right: none; }
+        .status-tabs button.active { background: var(--color-ink); color: var(--color-paper); }
+        .preview-meta {
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: var(--space-2);
+        }
+        .preview-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-2xl);
+            margin: 0 0 var(--space-2) 0;
+        }
+        .preview-subtitle {
+            font-family: var(--font-serif);
+            font-style: italic;
+            color: var(--color-muted);
+            font-size: var(--text-base);
+            margin-bottom: var(--space-4);
+        }
+        .preview-body {
+            font-size: var(--text-sm);
+            line-height: 1.7;
+            max-width: 70ch;
+        }
+        .preview-body h1, .preview-body h2, .preview-body h3 {
+            font-family: var(--font-serif);
+            margin-top: var(--space-5);
+        }
+        .preview-body p { margin: var(--space-3) 0; }
+        .preview-actions {
+            display: flex;
+            gap: var(--space-2);
+            margin-top: var(--space-4);
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 8px 14px;
+            border: 1px solid var(--color-ink);
+            background: var(--color-paper);
+            color: var(--color-ink);
+            font-family: inherit;
+            font-size: var(--text-xs);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--color-ink); color: var(--color-paper); }
+        .btn--primary { background: var(--color-ink); color: var(--color-paper); }
+        .btn--primary:hover { background: var(--color-sea); border-color: var(--color-sea); }
+        .btn--gold { border-color: #c8862a; color: #c8862a; }
+        .btn--gold:hover { background: #c8862a; color: var(--color-paper); }
+        .newsletter {
+            border: 1px solid var(--color-border);
+            padding: var(--space-5);
+            background: var(--color-paper);
+            font-family: Georgia, serif;
+        }
+        .newsletter__masthead {
+            text-align: center;
+            border-bottom: 2px solid var(--color-ink);
+            padding-bottom: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        .newsletter__brand {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            letter-spacing: 0.15em;
+            font-weight: bold;
+        }
+        .newsletter__date {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: var(--color-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+        .newsletter__lead {
+            border-left: 3px solid #c8862a;
+            padding-left: var(--space-3);
+            margin-bottom: var(--space-4);
+        }
+        .newsletter__lead-label {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #c8862a;
+        }
+        .newsletter__lead-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-lg);
+            margin: 4px 0;
+        }
+        .newsletter__lead-excerpt {
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            line-height: 1.5;
+        }
+        .newsletter__item {
+            padding: var(--space-3) 0;
+            border-top: 1px solid var(--color-border);
+        }
+        .newsletter__item-cat {
+            font-family: var(--font-mono);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-sea);
+        }
+        .newsletter__item-title {
+            font-family: var(--font-serif);
+            font-size: var(--text-base);
+            margin: 2px 0;
+        }
+        .newsletter__item-excerpt {
+            font-size: 11px;
+            color: var(--color-muted);
+            line-height: 1.5;
+        }
+        .newsletter__footer {
+            margin-top: var(--space-5);
+            padding-top: var(--space-3);
+            border-top: 1px solid var(--color-border);
+            font-size: 10px;
+            color: var(--color-muted);
+            text-align: center;
+        }
+        .empty {
+            text-align: center;
+            color: var(--color-muted);
+            padding: var(--space-8) var(--space-4);
+            font-style: italic;
+        }
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: var(--text-xs);
+            color: var(--color-muted);
+            padding: var(--space-2) 0;
+            border-bottom: 1px dashed var(--color-border);
+        }
+        @media (max-width: 1100px) {
+            .studio { grid-template-columns: 1fr; height: auto; }
+            .studio__col { border-right: none; border-bottom: 1px solid var(--color-border); max-height: 60vh; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="studio">
+
+    <!-- LEFT: Drafts list -->
+    <aside class="studio__col" id="col-list">
+        <div class="studio__header">
+            <h2 class="studio__title">Drafts</h2>
+            <div class="studio__sub" id="draft-counter">— loading —</div>
+            <div class="filter-row">
+                <input type="search" id="search" placeholder="Search title, tag, body…">
+            </div>
+            <div class="filter-row">
+                <select id="filter-category">
+                    <option value="">All categories</option>
+                </select>
+            </div>
+            <div class="status-tabs" id="status-tabs">
+                <button data-status="all" class="active">All</button>
+                <button data-status="draft">Drafts</button>
+                <button data-status="review">Review</button>
+                <button data-status="published">Published</button>
+            </div>
+        </div>
+        <div id="list"></div>
+    </aside>
+
+    <!-- CENTER: Selected draft preview -->
+    <main class="studio__col" id="col-preview">
+        <div class="studio__header">
+            <h2 class="studio__title">Preview</h2>
+            <div class="studio__sub" id="preview-source">— select a draft —</div>
+        </div>
+        <div id="preview"><div class="empty">Click a draft on the left to preview it.</div></div>
+    </main>
+
+    <!-- RIGHT: Newsletter composer -->
+    <aside class="studio__col" id="col-newsletter">
+        <div class="studio__header">
+            <h2 class="studio__title">Next Newsletter</h2>
+            <div class="studio__sub" id="news-counter">0 items queued</div>
+        </div>
+
+        <div class="stat-row"><span>Lead story</span><span id="stat-lead">— none —</span></div>
+        <div class="stat-row"><span>Dispatches</span><span id="stat-dispatches">0</span></div>
+        <div class="stat-row"><span>Total read time</span><span id="stat-read">0 min</span></div>
+
+        <div class="preview-actions">
+            <button class="btn" id="btn-clear">Clear queue</button>
+            <button class="btn btn--primary" id="btn-export">Export JSON</button>
+        </div>
+
+        <h3 style="margin-top: var(--space-5); font-family: var(--font-serif); font-size: var(--text-base);">Live preview</h3>
+        <div id="newsletter" class="newsletter"></div>
+
+        <p style="font-size: var(--text-xs); color: var(--color-muted); margin-top: var(--space-3); line-height: 1.5;">
+            Selections persist in <code>localStorage</code>. To regenerate the draft index, run:<br>
+            <code style="font-size: 10px;">python3 scripts/build-drafts-index.py</code>
+        </p>
+    </aside>
+
+</div>
+
+<script>
+(async () => {
+    const STORAGE_KEY = 'littoralicious.studio.queue.v1';
+    const state = {
+        drafts: [],                // unified: drafts + review + published
+        selected: null,
+        nextLead: null,
+        queued: new Set(),
+        filter: { q: '', status: 'all', category: '' }
+    };
+
+    // Restore
+    try {
+        const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+        if (saved.nextLead) state.nextLead = saved.nextLead;
+        if (Array.isArray(saved.queued)) state.queued = new Set(saved.queued);
+    } catch (e) {}
+
+    const persist = () => {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify({
+            nextLead: state.nextLead,
+            queued: Array.from(state.queued)
+        }));
+    };
+
+    // Load both drafts and published
+    const [draftsRes, articlesRes] = await Promise.all([
+        fetch('data/drafts.json', { cache: 'no-cache' }),
+        fetch('data/articles.json', { cache: 'no-cache' })
+    ]);
+    const draftsData = await draftsRes.json();
+    const articlesData = await articlesRes.json();
+
+    const draftItems = (draftsData.drafts || []).map(d => ({
+        ...d,
+        status: d.source === 'review' ? 'review' : 'draft'
+    }));
+    const publishedItems = (articlesData.articles || []).map(a => ({
+        id: 'published/' + a.slug,
+        slug: a.slug,
+        source: 'articles',
+        status: 'published',
+        filename: a.slug + '.html',
+        title: a.title,
+        subtitle: '',
+        date: a.date,
+        category: a.category,
+        tags: a.tags || [],
+        word_count: (a.read_time || 0) * 220,
+        read_time: a.read_time || 0,
+        excerpt: '',
+        body_md: '',
+        url: 'articles/' + a.slug + '.html',
+        featured: !!a.featured
+    }));
+
+    state.drafts = [...draftItems, ...publishedItems]
+        .sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    // Categories
+    const cats = Array.from(new Set(state.drafts.map(d => d.category).filter(Boolean))).sort();
+    const catSel = document.getElementById('filter-category');
+    cats.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c; opt.textContent = c;
+        catSel.appendChild(opt);
+    });
+
+    // Filters
+    document.getElementById('search').addEventListener('input', e => { state.filter.q = e.target.value.trim().toLowerCase(); renderList(); });
+    document.getElementById('filter-category').addEventListener('change', e => { state.filter.category = e.target.value; renderList(); });
+    document.querySelectorAll('#status-tabs button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            state.filter.status = btn.dataset.status;
+            document.querySelectorAll('#status-tabs button').forEach(b => b.classList.toggle('active', b === btn));
+            renderList();
+        });
+    });
+
+    document.getElementById('btn-clear').addEventListener('click', () => {
+        if (!confirm('Clear the entire newsletter queue (lead + dispatches)?')) return;
+        state.nextLead = null;
+        state.queued.clear();
+        persist();
+        renderList(); renderNewsletter();
+    });
+
+    document.getElementById('btn-export').addEventListener('click', () => {
+        const lead = state.drafts.find(d => d.id === state.nextLead);
+        const items = Array.from(state.queued).map(id => state.drafts.find(d => d.id === id)).filter(Boolean);
+        const out = {
+            generated_at: new Date().toISOString(),
+            lead: lead ? { id: lead.id, title: lead.title, source: lead.source } : null,
+            dispatches: items.map(i => ({ id: i.id, title: i.title, category: i.category, source: i.source }))
+        };
+        const blob = new Blob([JSON.stringify(out, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'newsletter-queue.json'; a.click();
+        URL.revokeObjectURL(url);
+    });
+
+    function filteredDrafts() {
+        const q = state.filter.q;
+        return state.drafts.filter(d => {
+            if (state.filter.status !== 'all' && d.status !== state.filter.status) return false;
+            if (state.filter.category && d.category !== state.filter.category) return false;
+            if (q) {
+                const hay = (d.title + ' ' + d.filename + ' ' + (d.tags || []).join(' ') + ' ' + (d.excerpt || '')).toLowerCase();
+                if (!hay.includes(q)) return false;
+            }
+            return true;
+        });
+    }
+
+    function statusBadge(d) {
+        if (d.status === 'published') return '<span class="badge published">published</span>';
+        if (d.status === 'review') return '<span class="badge review">review</span>';
+        return '<span class="badge">draft</span>';
+    }
+
+    function statusCounts() {
+        const c = { draft: 0, review: 0, published: 0 };
+        state.drafts.forEach(d => { c[d.status]++; });
+        return c;
+    }
+
+    function renderList() {
+        const list = document.getElementById('list');
+        const items = filteredDrafts();
+        const c = statusCounts();
+        document.getElementById('draft-counter').textContent =
+            `${items.length} shown · ${c.draft} draft · ${c.review} review · ${c.published} published`;
+        if (!items.length) {
+            list.innerHTML = '<div class="empty">Nothing matches.</div>';
+            return;
+        }
+        list.innerHTML = items.map(d => {
+            const classes = ['draft-item', d.status];
+            if (d.id === state.selected) classes.push('selected');
+            if (d.id === state.nextLead) classes.push('next');
+            else if (state.queued.has(d.id)) classes.push('queued');
+            const nextBadge = d.id === state.nextLead ? '<span class="badge next">lead</span>' : '';
+            return `
+                <div class="${classes.join(' ')}" data-id="${escapeAttr(d.id)}">
+                    <div class="draft-item__meta">${d.date || '—'} &middot; ${d.category} &middot; ${d.read_time}m ${statusBadge(d)}${nextBadge}</div>
+                    <h4 class="draft-item__title">${escapeHtml(d.title)}</h4>
+                    <div class="draft-item__excerpt">${escapeHtml(d.excerpt || (d.status === 'published' ? '↗ live on the site' : ''))}</div>
+                </div>
+            `;
+        }).join('');
+        list.querySelectorAll('.draft-item').forEach(el => {
+            el.addEventListener('click', () => {
+                state.selected = el.dataset.id;
+                renderList();
+                renderPreview();
+            });
+        });
+    }
+
+    function renderPreview() {
+        const d = state.drafts.find(x => x.id === state.selected);
+        const target = document.getElementById('preview');
+        const sub = document.getElementById('preview-source');
+        if (!d) {
+            sub.textContent = '— select a draft —';
+            target.innerHTML = '<div class="empty">Click a draft on the left to preview it.</div>';
+            return;
+        }
+        sub.textContent = d.status === 'published' ? 'PUBLISHED · ' + d.url : d.id;
+        const inLead = state.nextLead === d.id;
+        const inQueue = state.queued.has(d.id);
+        const isPub = d.status === 'published';
+        const bodyHtml = isPub
+            ? `<div class="empty" style="padding: var(--space-6) 0;">Published article — preview lives on the site.<br><a href="${d.url}" target="_blank" style="color: var(--color-sea);">Open ${d.url} ↗</a></div>`
+            : marked.parse(d.body_md || '');
+        target.innerHTML = `
+            <div class="preview-meta">${d.date || '—'} &middot; ${d.category} &middot; ${d.read_time} min &middot; ${d.word_count} words &middot; ${statusBadge(d)}</div>
+            <h1 class="preview-title">${escapeHtml(d.title)}</h1>
+            ${d.subtitle ? `<div class="preview-subtitle">${escapeHtml(d.subtitle)}</div>` : ''}
+            <div class="preview-actions">
+                <button class="btn btn--gold" id="act-lead">${inLead ? '★ Lead story' : (isPub ? 'Feature as lead (re-share)' : 'Set as lead')}</button>
+                <button class="btn ${inQueue ? 'btn--primary' : ''}" id="act-queue">${inQueue ? '✓ In dispatches' : (isPub ? 'Re-share in dispatches' : 'Add to dispatches')}</button>
+                ${isPub ? `<a class="btn" href="${d.url}" target="_blank">Open live ↗</a>` : ''}
+            </div>
+            <div class="preview-body">${bodyHtml}</div>
+        `;
+        document.getElementById('act-lead').addEventListener('click', () => {
+            state.nextLead = state.nextLead === d.id ? null : d.id;
+            // can't be both lead and dispatch
+            if (state.nextLead === d.id) state.queued.delete(d.id);
+            persist(); renderList(); renderPreview(); renderNewsletter();
+        });
+        document.getElementById('act-queue').addEventListener('click', () => {
+            if (state.queued.has(d.id)) state.queued.delete(d.id);
+            else { state.queued.add(d.id); if (state.nextLead === d.id) state.nextLead = null; }
+            persist(); renderList(); renderPreview(); renderNewsletter();
+        });
+    }
+
+    function renderNewsletter() {
+        const lead = state.drafts.find(d => d.id === state.nextLead);
+        const items = Array.from(state.queued).map(id => state.drafts.find(d => d.id === id)).filter(Boolean);
+        const totalRead = (lead ? lead.read_time : 0) + items.reduce((s, i) => s + i.read_time, 0);
+
+        document.getElementById('news-counter').textContent =
+            `${(lead ? 1 : 0) + items.length} item${(lead ? 1 : 0) + items.length === 1 ? '' : 's'} queued`;
+        document.getElementById('stat-lead').textContent = lead ? trunc(lead.title, 28) : '— none —';
+        document.getElementById('stat-dispatches').textContent = items.length;
+        document.getElementById('stat-read').textContent = totalRead + ' min';
+
+        const today = new Date();
+        const dateStr = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+
+        let html = `
+            <div class="newsletter__masthead">
+                <div class="newsletter__brand">LITTORALICIOUS</div>
+                <div class="newsletter__date">Monthly Brief &middot; ${dateStr}</div>
+            </div>
+        `;
+        if (lead) {
+            html += `
+                <div class="newsletter__lead">
+                    <div class="newsletter__lead-label">Lead story</div>
+                    <div class="newsletter__lead-title">${escapeHtml(lead.title)}</div>
+                    <div class="newsletter__lead-excerpt">${escapeHtml(lead.excerpt || '')}</div>
+                </div>
+            `;
+        } else {
+            html += `<div class="empty" style="padding: var(--space-4) 0;">No lead story selected.</div>`;
+        }
+        if (items.length) {
+            html += `<div style="font-family: var(--font-mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-muted); margin: var(--space-3) 0 0 0;">Also in this issue</div>`;
+            items.forEach(i => {
+                html += `
+                    <div class="newsletter__item">
+                        <div class="newsletter__item-cat">${i.category} &middot; ${i.read_time} min</div>
+                        <div class="newsletter__item-title">${escapeHtml(i.title)}</div>
+                        <div class="newsletter__item-excerpt">${escapeHtml(trunc(i.excerpt || '', 180))}</div>
+                    </div>
+                `;
+            });
+        }
+        html += `<div class="newsletter__footer">For those who feed others with intention. &middot; littoralicious.com</div>`;
+        document.getElementById('newsletter').innerHTML = html;
+    }
+
+    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]); }
+    function escapeAttr(s) { return escapeHtml(s); }
+    function trunc(s, n) { return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+
+    renderList();
+    renderPreview();
+    renderNewsletter();
+})();
+</script>
+
+</body>
+</html>

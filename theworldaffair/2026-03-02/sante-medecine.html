@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sant&eacute; &amp; M&eacute;decine &mdash; The World Affair</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 52px; font-weight: 400; letter-spacing: 2px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Lundi 2 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;54</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3a5a52">Santé & Médecine</div>
+  <h1 class="article-title">Santé & Médecine</h1>
+  <div class="article-date">Lundi 2 Mars 2026 &mdash; Edition N&deg;54</div>
+</div><div class="article-body"><h1>JOURNAL LIBERTÉ</h1>
+<h2>Santé & Médecine</h2>
+<h3>2 mars 2026</h3>
+<p><em>« La médecine progresse par deux chemins : les molécules que personne n'attendait, et les connexions que personne n'avait vues. Cette semaine offre les deux. »</em></p>
+<hr>
+<h2>Édition du Jour</h2>
+<p>Le paysage pharmaceutique de ce début mars 2026 est marqué par trois dynamiques distinctes mais convergentes. D'abord, l'émergence d'un traitement oral pour une maladie orpheline que la pharmacologie avait jusqu'ici traitée par des palliatifs. Ensuite, une vague de décisions réglementaires sur une classe thérapeutique — les Antibody-Drug Conjugates — qui pourrait redéfinir le traitement des cancers. Enfin, depuis les laboratoires de Rice University, un atlas moléculaire du cerveau Alzheimer qui n'est pas qu'une prouesse technique mais un changement de paradigme dans la compréhension de la maladie.</p>
+<hr>
+<h2>Les Récits</h2>
+<h3>I. Oveporexton : la narcolepsie entre enfin dans l'ère du traitement oral</h3>
+<p>Takeda prévoit de soumettre à la FDA, fin mars 2026, le dossier d'homologation de l'oveporexton — un inhibiteur first-in-class conçu pour le traitement de la narcolepsie de type 1. Si l'agence accepte le dossier et maintient ses délais habituels, une décision pourrait intervenir d'ici la fin de l'année.</p>
+<p>Pour comprendre pourquoi cette molécule compte, il faut comprendre ce qu'est la narcolepsie de type 1. Ce n'est pas « s'endormir n'importe quand », comme le caricature la culture populaire. C'est une maladie auto-immune dans laquelle le système immunitaire détruit les neurones producteurs d'hypocrétine (aussi appelée orexine) — un neuropeptide qui régule le cycle veille-sommeil. Sans hypocrétine, le cerveau perd sa capacité à maintenir l'état de veille de manière stable. Les patients subissent des attaques de sommeil irrépressibles, de la cataplexie (perte soudaine du tonus musculaire déclenchée par les émotions), des hallucinations hypnagogiques et une paralysie du sommeil. Environ 200 000 personnes vivent avec cette condition aux États-Unis, la plupart diagnostiquées avec des années de retard.</p>
+<p>Les traitements actuels sont des rustines. Le modafinil et les amphétamines maintiennent la vigilance par stimulation brute du système nerveux central — elles ne corrigent pas le déficit en orexine, elles le contournent. Le sodium oxybate (Xyrem) est efficace contre la cataplexie mais doit être pris en deux doses nocturnes, avec un profil de sécurité complexe et un coût prohibitif.</p>
+<p>L'oveporexton est différent parce qu'il agit sur la cible biologique correcte. En tant qu'agoniste — ou modulateur — du système orexinergique, il vise à restaurer la signalisation que la maladie a détruite. Les essais cliniques ont montré des améliorations cliniquement significatives de la vigilance diurne et une réduction de la cataplexie. Et c'est un comprimé oral. Pas une injection, pas une perfusion, pas un liquide à prendre à 2 heures du matin. Un comprimé. Pour une maladie chronique qui dure toute la vie, la forme galénique n'est pas un détail — c'est ce qui détermine l'observance, et donc l'efficacité réelle.</p>
+<h3>II. Les ADC : quand l'anticorps devient missile guidé</h3>
+<p>Le premier trimestre 2026 verra une série de décisions FDA sur les Antibody-Drug Conjugates (ADC) en oncologie — une classe thérapeutique qui est en train de transformer silencieusement le traitement des cancers.</p>
+<p>Le principe des ADC est d'une élégance meurtrière. Un anticorps monoclonal — une protéine conçue pour reconnaître un marqueur spécifique à la surface des cellules cancéreuses — est couplé chimiquement à un agent cytotoxique puissant (une chimiothérapie). L'anticorps sert de système de guidage : il circule dans le sang, identifie les cellules tumorales, s'y fixe, et délivre sa charge toxique directement dans la cellule cible. C'est le missile à tête chercheuse de l'oncologie — la chimiothérapie classique bombarde tout le corps ; l'ADC frappe chirurgicalement.</p>
+<p>Le précédent qui a ouvert les vannes s'appelle Enhertu (trastuzumab-deruxtecan), un ADC développé par Daiichi Sankyo et AstraZeneca, qui a montré des résultats spectaculaires dans le cancer du sein HER2-positif, puis dans des indications où le marqueur HER2 est faiblement exprimé — des patientes qui ne répondaient pas aux traitements anti-HER2 classiques. Cette extension d'indication a été un tournant conceptuel : elle a montré que les ADC pouvaient toucher des cibles que les anticorps nus ne voyaient pas.</p>
+<p>Les décisions attendues au Q1 2026 concernent l'expansion de l'immunothérapie combinée aux ADC dans les cancers gastro-intestinaux et d'autres tumeurs solides. Si les résultats confirment les données de phase III, nous assisterons à un déplacement du centre de gravité de l'oncologie : des traitements systémiques non ciblés vers des frappes moléculaires de précision. Le marché des ADC, estimé à 15 milliards de dollars en 2025, pourrait dépasser les 40 milliards d'ici 2030.</p>
+<h3>III. Rice University et l'atlas moléculaire d'Alzheimer : voir la maladie sans la colorier</h3>
+<p>Des chercheurs de Rice University ont réalisé ce qu'aucune équipe n'avait accompli : le premier atlas moléculaire complet d'un cerveau atteint de la maladie d'Alzheimer, sans utiliser de colorant ni de marqueur chimique. La technique combine l'imagerie laser avancée et le machine learning pour cartographier la distribution spatiale des molécules dans le tissu cérébral — protéines, lipides, métabolites — avec une résolution qui permet de distinguer les régions saines des régions malades, cellule par cellule.</p>
+<p>Pourquoi l'absence de colorant est-elle importante ? Parce que les colorants conventionnels (immunohistochimie, coloration amyloïde) ne montrent que ce qu'on cherche. On colore les plaques amyloïdes, on voit les plaques amyloïdes. On colore la protéine tau, on voit la protéine tau. C'est un biais de confirmation intégré dans la méthode : la technique ne peut trouver que ce que le chercheur a décidé de chercher. L'approche de Rice University est fondamentalement différente : elle cartographie tout, sans a priori, et laisse les algorithmes identifier les patterns. C'est la différence entre chercher ses clés sous le lampadaire et allumer toutes les lumières de la rue.</p>
+<p>La connexion avec la section Science & Tech de cette édition est directe. L'atlas de Rice University n'est pas qu'un outil de recherche fondamentale — c'est un instrument de diagnostic potentiel. Couplé au test sanguin p-tau217 (qui peut prédire l'apparition des symptômes trois à quatre ans à l'avance, comme rapporté par Mass General Brigham), il dessine un avenir où Alzheimer sera détecté, cartographié et éventuellement traité avant que le patient ne perde un seul souvenir. Nous n'en sommes pas là. Mais pour la première fois, le chemin est visible.</p>
+<hr>
+<h2>Signaux Faibles</h2>
+<ul>
+<li><strong>L'ère des agonistes orexinergiques s'ouvre.</strong> L'oveporexton de Takeda n'est que le premier. Si le mécanisme d'action se confirme, d'autres molécules ciblant le système orexinergique pourraient émerger pour des troubles du sommeil au-delà de la narcolepsie — insomnie résistante, hypersomnie idiopathique, fatigue chronique post-Covid.</li>
+<li><strong>Les ADC vont cannibaliser la chimiothérapie classique.</strong> Pas immédiatement, pas complètement, mais la tendance est irréversible. Chaque nouvelle approbation FDA réduit le domaine d'indication de la chimio non ciblée. D'ici 2030, la chimiothérapie cytotoxique classique pourrait être réservée aux cas où aucun ADC ou immunothérapie n'est disponible — c'est-à-dire de moins en moins de cas.</li>
+<li><strong>L'atlas moléculaire sans colorant est transposable.</strong> Ce que Rice University a fait pour Alzheimer peut être fait pour Parkinson, la SLA, les tumeurs cérébrales. La méthode n'est pas spécifique à une maladie — c'est une nouvelle façon de regarder le tissu biologique. Les implications dépassent la neurologie.</li>
+</ul>
+<hr>
+<h2>Connexion</h2>
+<p>Trois récits, un fil conducteur : la précision remplace la force brute. L'oveporexton cible le système orexinergique au lieu de stimuler le cerveau entier. Les ADC délivrent la chimiothérapie dans la cellule cancéreuse au lieu de bombarder le corps entier. L'atlas de Rice cartographie chaque molécule au lieu de colorier ce qu'on s'attend à trouver. La médecine de 2026 ne frappe plus plus fort — elle frappe plus juste. Et c'est cette précision, paradoxalement, qui ouvre les portes les plus larges : quand on comprend le mécanisme exact, les applications se multiplient. L'outil précis est toujours plus polyvalent que le marteau.</p>
+<hr>
+<p><em>The World Affair — Santé & Médecine — 2 mars 2026</em></p></div><div class="bottom-nav"><a href="crypto.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Crypto</span></a><a href="liberte-surveillance.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Libert&eacute; &amp; Surveillance &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; SANT&Eacute; &amp; M&Eacute;DECINE</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

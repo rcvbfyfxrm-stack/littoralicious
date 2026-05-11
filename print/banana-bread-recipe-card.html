@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banana Bread &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 8.5pt;
+            line-height: 1.38;
+            color: #0a0a0a;
+            background: #fff;
+            max-width: 210mm;
+            margin: 0 auto;
+            padding: 8mm 10mm 7mm;
+        }
+        .header { border-bottom: 3px solid #0a0a0a; padding-bottom: 3mm; margin-bottom: 3.5mm; }
+        .brand { font-family: Georgia, serif; font-size: 7.5pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 6.5pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 26pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.05; margin: 1mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 9.5pt; color: #4a5568; line-height: 1.35; }
+        .meta-bar { display: flex; gap: 5mm; margin-top: 2.5mm; padding-top: 2.5mm; border-top: 1px solid #e2e2e2; font-size: 8pt; color: #6b7280; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 37% 1fr; gap: 5mm; margin-bottom: 3mm; }
+        h2 { font-family: Georgia, serif; font-size: 9.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1.5mm; margin-bottom: 2.5mm; }
+
+        .ingredients-note { font-size: 6.5pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -1.5mm 0 2mm 0; }
+        .group-label { font-size: 7.5pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 2.5mm 0 1mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 8pt; }
+        .ingredients td { padding: 0.7mm 1mm; vertical-align: top; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7.5pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 42px; }
+        .ingredients td:nth-child(3) { font-size: 7pt; text-align: right; color: #6b7280; white-space: nowrap; width: 60px; padding-left: 2mm; }
+        .note { font-size: 7pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 7pt; color: #6b7280; margin-top: 2.5mm; padding-top: 1.5mm; border-top: 1px solid #f0f0f0; line-height: 1.35; }
+
+        .method ol { padding-left: 4.5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 1.5mm; padding-left: 1mm; counter-increment: step; position: relative; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -4.5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7.5pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.5mm 0 0.5mm 0; padding: 0.7mm 0 0.7mm 3mm; border-left: 2px solid #5c9ead; font-size: 7pt; font-style: italic; color: #4a5568; line-height: 1.3; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 2mm 3mm; margin-top: 2.5mm; font-size: 8pt; line-height: 1.35; }
+        .done strong { color: #2d4a5e; }
+
+        .elevation { border: 2px solid #2d4a5e; padding: 2mm 2.5mm; margin-bottom: 2mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1.5mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5mm; }
+        .tier-label { font-weight: 700; font-size: 6.5pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.5mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3mm; font-size: 7pt; line-height: 1.3; }
+        .elevation li { margin-bottom: 0.3mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 1.5mm; }
+        .bottom h2 { font-size: 8pt; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 7pt; border-collapse: collapse; }
+        .troubleshoot td, .charter td { padding: 0.5mm 1.5mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 28%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 28%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 6.5pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1.5mm; border-top: 1px solid #e2e2e2; font-size: 6pt; color: #94a3b8; display: flex; justify-content: space-between; }
+        @media print { .done, .elevation, .charter tr:first-child td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint</span><span class="brand-tagline">The recipe you actually want to read</span>
+    <h1>Banana Bread</h1>
+    <p class="hook">Brown butter for Maillard depth. Roasted bananas for concentration. White miso for umami that amplifies sweetness.</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>1 loaf</strong> (10&ndash;12 slices)</span>
+        <span>Active: <strong>20 min</strong></span>
+        <span>Total: <strong>1 hr 30 min</strong></span>
+        <span>Oven: <strong>175&deg;C</strong> (350&deg;F)</span>
+        <span>Done: <strong>95&deg;C</strong> internal</span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; US volume in right column</p>
+
+        <div class="group-label">Dry</div>
+        <table>
+            <tr><td>All-purpose flour</td><td>240g</td><td>2 cups</td></tr>
+            <tr><td>Baking soda</td><td>6g</td><td>1 tsp</td></tr>
+            <tr><td>Fine sea salt</td><td>4g</td><td>&frac34; tsp</td></tr>
+            <tr><td>Cinnamon <span class="note">(opt.)</span></td><td>2g</td><td>1 tsp</td></tr>
+        </table>
+
+        <div class="group-label">Brown Butter + Sugar</div>
+        <table>
+            <tr><td>Unsalted butter <span class="note">(&rarr; brown)</span></td><td>115g</td><td>1 stick</td></tr>
+            <tr><td>Light brown sugar</td><td>150g</td><td>&frac34; cup</td></tr>
+            <tr><td>Granulated sugar</td><td>50g</td><td>&frac14; cup</td></tr>
+            <tr><td>White miso</td><td>30g</td><td>2 tbsp</td></tr>
+        </table>
+
+        <div class="group-label">Wet</div>
+        <table>
+            <tr><td>Eggs, large <span class="note">(room temp)</span></td><td>&times;2</td><td>&times;2</td></tr>
+            <tr><td>Vanilla extract</td><td>10g</td><td>2 tsp</td></tr>
+            <tr><td>Greek yogurt</td><td>60g</td><td>&frac14; cup</td></tr>
+        </table>
+
+        <div class="group-label">Banana</div>
+        <table>
+            <tr><td>Very ripe <span class="note">(&rarr; 340g roasted)</span></td><td>450g</td><td>~4 med</td></tr>
+        </table>
+
+        <div class="group-label">Fold-Ins <span class="note">(optional)</span></div>
+        <table>
+            <tr><td>Walnuts or pecans, toasted</td><td>100g</td><td>1 cup</td></tr>
+            <tr><td>Dark chocolate 60&ndash;70%</td><td>100g</td><td>2/3 cup</td></tr>
+        </table>
+
+        <p class="equipment">
+            <strong>Kit:</strong> 23&times;13 cm (9&times;5&Prime;) loaf pan &middot; light saucepan &middot; scale &middot; thermometer &middot; parchment
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method</h2>
+        <ol>
+            <li>
+                <strong>Roast bananas.</strong> 150&deg;C (300&deg;F), unpeeled on parchment-lined sheet, 25&ndash;30 min until black and jammy. Set aside.
+                <span class="why">Drives off ~25% moisture while caramelizing sugars. More flavour per gram, less soggy crumb. <cite>&mdash; Parks, Serious Eats 2017</cite></span>
+            </li>
+            <li>
+                <strong>Brown the butter.</strong> Tablespoons in light saucepan, medium heat, swirl. Golden-brown solids and nutty, 6&ndash;8 min &mdash; pull off heat.
+                <span class="why">Milk proteins undergo Maillard reaction &rarr; hundreds of new flavour compounds melted butter can&rsquo;t provide. <cite>&mdash; McGee 2004</cite></span>
+            </li>
+            <li>
+                <strong>Butter + sugars + miso.</strong> Pour brown butter into bowl (scrape every bit). Add both sugars and miso while warm. Whisk 2 min.
+                <span class="why">Miso glutamates amplify perceived sweetness without adding sugar. 30g is undetectable as miso. <cite>&mdash; ChefSteps 2018</cite></span>
+            </li>
+            <li>
+                <strong>Oven to 175&deg;C</strong> (350&deg;F). Line pan with parchment sling. Add eggs one at a time, beat well. Then vanilla and yogurt.
+                <span class="why">Yogurt&rsquo;s lactic acid tenderizes gluten. Tang balances sweetness.</span>
+            </li>
+            <li>
+                <strong>Add bananas.</strong> Peel roasted bananas, discard skins and pooled liquid. Mash roughly (~340g). Stir into wet mix.
+                <span class="why">Black-spotted = max starch &rarr; sugar conversion via amylase. Underripe = starchy, gummy. <cite>&mdash; Bouzari 2016</cite></span>
+            </li>
+            <li>
+                <strong>Fold in dry mix</strong> in two additions. Spatula. Stop at <em>just combined</em> &mdash; streaks of flour = perfect. Fold in nuts/chocolate if using.
+                <span class="why">Every fold develops gluten. Minimal mixing = tender crumb. Overmixing = dense, tunnelled.</span>
+            </li>
+            <li>
+                <strong>Bake 175&deg;C (350&deg;F), 55&ndash;65 min.</strong> Smooth top. Tent with foil at 45 min if browning too fast.
+            </li>
+        </ol>
+
+        <div class="done">
+            <strong>Done:</strong> Internal <strong>95&deg;C</strong> (203&deg;F). Toothpick: moist crumbs, not wet batter. Domed, cracked, deep golden.<br>
+            <strong>Cool:</strong> 15 min in pan, then rack 30 min before slicing.
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; No Extra Time</div>
+            <ul>
+                <li><strong>Espresso powder</strong> (1 tsp) &mdash; deepens banana, no coffee taste</li>
+                <li><strong>Dark brown sugar</strong> swap &mdash; more molasses depth</li>
+                <li><strong>Sour cream</strong> for yogurt &mdash; richer, more tang</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; Worth It (+10 min)</div>
+            <ul>
+                <li><strong>Tahini swirl</strong> &mdash; 3 tbsp on top, knife through</li>
+                <li><strong>Miso-butter glaze</strong> &mdash; 2T BB, 1T miso, &frac12;c icing sugar, cream</li>
+                <li><strong>Toast the nuts</strong> &mdash; 175&deg;C, 8 min</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>BB streusel</strong> &mdash; &frac12;c flour, &frac14;c sugar, 3T cold BB, salt. Scatter before baking</li>
+                <li><strong>Brul&eacute;ed slice</strong> &mdash; sugar + torch to order</li>
+                <li><strong>Freeze-dried banana powder</strong> &mdash; sprinkle on warm slices</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>Dense / tough</td><td>Overmixed. Fold gently, stop at streaks.</td></tr>
+            <tr><td>Gummy layer</td><td>Excess moisture. Roast bananas. Drain liquid.</td></tr>
+            <tr><td>Sunk middle</td><td>Underbaked. Must hit 95&deg;C internal.</td></tr>
+            <tr><td>Pale top</td><td>Oven too low or wrong rack. Middle rack.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Freeze baked</td><td>Bake first, always. Raw batter = leavening dies.</td></tr>
+            <tr><td>Method</td><td>Slice cold &rarr; vacuum seal or wrap + foil. 3 months.</td></tr>
+            <tr><td>To serve</td><td>Toast from frozen. Or thaw + oven 150&deg;C, 10 min.</td></tr>
+            <tr><td>Prep-ahead</td><td>Banana: 340g bags, freeze flat. Dry mix: 1 mo. BB: 2 wk fridge.</td></tr>
+            <tr><td>Shelf life</td><td>3 days RT &middot; 1 wk fridge &middot; 3 mo freezer</td></tr>
+            <tr><td>Scaling</td><td>&times;2 same temp. &times;4: 165&deg;C, +5 min. Minis 35 &middot; Muffins 22 min.</td></tr>
+        </table>
+    </section>
+</div>
+
+<footer class="footer">
+    <span>Adapted from Stella Parks (Serious Eats) + ChefSteps &nbsp;|&nbsp; Science: McGee &middot; Bouzari &middot; Parks &middot; ChefSteps</span>
+    <span>littoralicious.com &mdash; The Blueprint</span>
+</footer>
+
+</body>
+</html>

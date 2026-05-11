@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 120">
+  <!--
+    Vesica Piscis — Sacred geometry
+    Two circles overlapping = the fish (piscis)
+    Birth, creation, the source
+    Elements at cardinal points
+  -->
+
+  <!-- Left circle -->
+  <circle cx="35" cy="60" r="35" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Right circle -->
+  <circle cx="65" cy="60" r="35" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- Vesica outline (the fish shape) - emphasized -->
+  <path
+    d="M 50 25
+       C 35 35, 35 85, 50 95
+       C 65 85, 65 35, 50 25"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+
+  <!-- FIRE — Top of vesica -->
+  <path d="M 50 18 L 54 28 L 46 28 Z" fill="#0a0a0a"/>
+
+  <!-- WATER — Bottom of vesica -->
+  <path d="M 50 102 L 46 92 L 54 92 Z" fill="none" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- AIR — Right intersection -->
+  <circle cx="78" cy="60" r="4" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="78" y1="56" x2="78" y2="64" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- EARTH — Left intersection -->
+  <circle cx="22" cy="60" r="4" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+  <line x1="18" y1="60" x2="26" y2="60" stroke="#0a0a0a" stroke-width="0.8"/>
+
+  <!-- Center point - the source -->
+  <circle cx="50" cy="60" r="2" fill="#0a0a0a"/>
+
+</svg>

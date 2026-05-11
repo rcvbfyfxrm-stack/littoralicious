@@ -1,46 +1,12 @@
 /**
  * Littoralicious — Authentication
- * Firebase Auth: sign-up, login, logout, profile with boat/industry info & badges
+ * Firebase Auth: sign-up, login, logout, profile management
  */
 
 (function () {
     'use strict';
 
     const auth = firebase.auth();
-
-    // ======================================================================
-    // Badge System — nautical-themed ranks by years in the industry
-    // ======================================================================
-
-    const BADGES = [
-        { min: 0, max: 1, name: 'Beachcomber', color: '#94a3b8' },
-        { min: 1, max: 3, name: 'Rockpooler', color: '#5c9ead' },
-        { min: 3, max: 5, name: 'Tide Reader', color: '#2d4a5e' },
-        { min: 5, max: 8, name: 'Salt Keeper', color: '#4caf50' },
-        { min: 8, max: 12, name: 'Reef Master', color: '#d4a816' },
-        { min: 12, max: 20, name: 'Deep Water', color: '#e67e22' },
-        { min: 20, max: 99, name: 'Old Salt', color: '#7b1fa2' },
-    ];
-
-    function getBadge(years) {
-        var y = parseInt(years) || 0;
-        for (var i = 0; i < BADGES.length; i++) {
-            if (y >= BADGES[i].min && y < BADGES[i].max) return BADGES[i];
-        }
-        return BADGES[BADGES.length - 1];
-    }
-
-    // Expose globally for community.js
-    window.littoralAuth = {
-        getBadge: getBadge,
-        getUser: function () { return auth.currentUser; },
-        getUserProfile: function (uid) {
-            return db.collection('users').doc(uid).get().then(function (snap) {
-                return snap.exists ? snap.data() : null;
-            });
-        },
-        onAuthStateChanged: function (cb) { auth.onAuthStateChanged(cb); }
-    };
 
     // ======================================================================
     // Auth State Observer
@@ -90,56 +56,11 @@
     function renderProfile(user) {
         var nameEl = document.getElementById('profile-name');
         var emailEl = document.getElementById('profile-email');
-        var avatarEl = document.getElementById('profile-avatar');
         var nameInput = document.getElementById('profile-name-input');
 
         if (nameEl) nameEl.textContent = user.displayName || 'Chef';
         if (emailEl) emailEl.textContent = user.email;
-        if (avatarEl) avatarEl.textContent = (user.displayName || 'C').charAt(0).toUpperCase();
         if (nameInput) nameInput.value = user.displayName || '';
-
-        // Load extended profile from Firestore
-        db.collection('users').doc(user.uid).get().then(function (snap) {
-            if (!snap.exists) return;
-            var data = snap.data();
-
-            var boatInput = document.getElementById('profile-boat-name');
-            var sizeInput = document.getElementById('profile-boat-size');
-            var locationInput = document.getElementById('profile-location');
-            var yearsInput = document.getElementById('profile-years');
-            var showBoatCheckbox = document.getElementById('profile-show-boat');
-            var badgeEl = document.getElementById('profile-badge');
-            var badgeNameEl = document.getElementById('profile-badge-name');
-            var boatInfoEl = document.getElementById('profile-boat-info');
-            var locationInfoEl = document.getElementById('profile-location-info');
-
-            if (boatInput) boatInput.value = data.boatName || '';
-            if (sizeInput) sizeInput.value = data.boatSize || '';
-            if (locationInput) locationInput.value = data.location || '';
-            if (yearsInput) yearsInput.value = data.yearsInIndustry || '';
-            if (showBoatCheckbox) showBoatCheckbox.checked = data.showBoatInfo !== false;
-
-            // Show badge
-            var badge = getBadge(data.yearsInIndustry);
-            if (badgeEl) {
-                badgeEl.style.borderColor = badge.color;
-                badgeEl.style.color = badge.color;
-            }
-            if (badgeNameEl) badgeNameEl.textContent = badge.name;
-
-            // Show boat info on card
-            if (boatInfoEl && data.boatName && data.showBoatInfo !== false) {
-                var text = data.boatName;
-                if (data.boatSize) text += ' · ' + data.boatSize + 'm';
-                boatInfoEl.textContent = text;
-                boatInfoEl.style.display = 'block';
-            }
-
-            if (locationInfoEl && data.location) {
-                locationInfoEl.textContent = data.location;
-                locationInfoEl.style.display = 'block';
-            }
-        });
     }
 
     // ======================================================================
@@ -206,15 +127,12 @@
                         return cred.user.updateProfile({ displayName: name });
                     })
                     .then(function () {
+                        // Save user profile to Firestore
                         return db.collection('users').doc(auth.currentUser.uid).set({
                             name: name,
                             email: email,
                             joinedAt: firebase.firestore.FieldValue.serverTimestamp(),
-                            yearsInIndustry: 0,
-                            boatName: '',
-                            boatSize: '',
-                            location: '',
-                            showBoatInfo: true
+                            role: 'chef'
                         });
                     })
                     .then(function () {
@@ -262,16 +180,13 @@
                 var provider = new firebase.auth.GoogleAuthProvider();
                 auth.signInWithPopup(provider)
                     .then(function (result) {
+                        // Save profile if new user
                         if (result.additionalUserInfo && result.additionalUserInfo.isNewUser) {
                             return db.collection('users').doc(result.user.uid).set({
                                 name: result.user.displayName || '',
                                 email: result.user.email || '',
                                 joinedAt: firebase.firestore.FieldValue.serverTimestamp(),
-                                yearsInIndustry: 0,
-                                boatName: '',
-                                boatSize: '',
-                                location: '',
-                                showBoatInfo: true
+                                role: 'chef'
                             });
                         }
                     })
@@ -297,13 +212,7 @@
             profileForm.addEventListener('submit', function (e) {
                 e.preventDefault();
                 var newName = document.getElementById('profile-name-input').value.trim();
-                var boatName = document.getElementById('profile-boat-name').value.trim();
-                var boatSize = document.getElementById('profile-boat-size').value.trim();
-                var location = document.getElementById('profile-location').value.trim();
-                var years = document.getElementById('profile-years').value.trim();
-                var showBoat = document.getElementById('profile-show-boat').checked;
                 var btn = profileForm.querySelector('button[type="submit"]');
-
                 if (!newName) return;
 
                 btn.textContent = 'Saving...';
@@ -312,19 +221,11 @@
                 var user = auth.currentUser;
                 user.updateProfile({ displayName: newName })
                     .then(function () {
-                        return db.collection('users').doc(user.uid).update({
-                            name: newName,
-                            boatName: boatName,
-                            boatSize: boatSize,
-                            location: location,
-                            yearsInIndustry: parseInt(years) || 0,
-                            showBoatInfo: showBoat
-                        });
+                        return db.collection('users').doc(user.uid).update({ name: newName });
                     })
                     .then(function () {
                         btn.textContent = 'Saved!';
                         updateNavAuth(user);
-                        renderProfile(user);
                         setTimeout(function () {
                             btn.textContent = 'Update Profile';
                             btn.disabled = false;

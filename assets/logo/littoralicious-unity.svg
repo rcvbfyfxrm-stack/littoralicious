@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!--
+    LITTORALICIOUS UNITY
+
+    The Convergence — Four becoming one
+
+    Concept: Four elements flow into a central point.
+    That point is nurture. That point is the plate.
+    That point is the moment of feeding another.
+
+    The geometry is original: four curved paths
+    converging to center, each carrying its element.
+  -->
+
+  <!-- Outer circle -->
+  <circle cx="50" cy="50" r="46" fill="none" stroke="#0a0a0a" stroke-width="1"/>
+
+  <!-- FIRE path — from top, curves to center -->
+  <path
+    d="M 50 4
+       C 50 15, 60 30, 50 50"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+  <!-- Fire symbol at origin -->
+  <path d="M 50 4 L 54 12 L 46 12 Z" fill="#0a0a0a"/>
+
+  <!-- WATER path — from bottom, curves to center -->
+  <path
+    d="M 50 96
+       C 50 85, 40 70, 50 50"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+  <!-- Water symbol at origin -->
+  <path d="M 50 96 L 46 88 L 54 88 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+
+  <!-- AIR path — from right, curves to center -->
+  <path
+    d="M 96 50
+       C 85 50, 70 40, 50 50"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+  <!-- Air symbol at origin -->
+  <path d="M 96 50 L 88 54 L 88 46 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="89" y1="51.5" x2="94" y2="51.5" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- EARTH path — from left, curves to center -->
+  <path
+    d="M 4 50
+       C 15 50, 30 60, 50 50"
+    fill="none"
+    stroke="#0a0a0a"
+    stroke-width="1.5"
+  />
+  <!-- Earth symbol at origin -->
+  <path d="M 4 50 L 12 46 L 12 54 Z" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <line x1="6" y1="48.5" x2="11" y2="48.5" stroke="#0a0a0a" stroke-width="1.2"/>
+
+  <!-- CENTER — The point of nurture -->
+  <!-- Plate/circle -->
+  <circle cx="50" cy="50" r="10" fill="none" stroke="#0a0a0a" stroke-width="1.5"/>
+  <!-- Inner essence -->
+  <circle cx="50" cy="50" r="4" fill="#0a0a0a"/>
+
+  <!-- Subtle rotation marks suggesting motion/transformation -->
+  <path d="M 50 40 Q 55 42, 58 46" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+  <path d="M 60 50 Q 58 55, 54 58" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+  <path d="M 50 60 Q 45 58, 42 54" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+  <path d="M 40 50 Q 42 45, 46 42" fill="none" stroke="#0a0a0a" stroke-width="0.5"/>
+
+</svg>

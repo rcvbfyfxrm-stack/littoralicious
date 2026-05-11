@@ -1,0 +1,1948 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Templates draft — internal review of the 14 editorial templates. Each carries the Littoralicious DNA and its own color. Click any paragraph to annotate.">
+    <title>Templates — Draft Review · LITTORALICIOUS</title>
+    <link rel="stylesheet" href="assets/css/style.css?v=20260506b">
+    <link rel="icon" type="image/svg+xml" href="assets/logo/favicon.svg">
+
+    <style>
+
+        body { background: #fafafa; color: #1a1714; }
+
+        .tshell { max-width: 1180px; margin: 0 auto; padding: var(--space-8) var(--space-6) 120px; }
+
+        /* Mini masthead */
+        .tbar { display: flex; align-items: center; justify-content: space-between;
+                border-bottom: 2px solid #1a1714; padding-bottom: var(--space-4);
+                margin-bottom: var(--space-8); gap: var(--space-4); }
+        .tbar__brand { font-family: var(--font-serif); font-size: var(--text-2xl); font-weight: 400; letter-spacing: 0.02em; }
+        .tbar__brand b { font-weight: 700; }
+        .tbar__hint { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; background: #1a1714; color: #fafafa; padding: 4px 10px; }
+        .tbar__back a { color: var(--color-muted); font-size: 12px; text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; }
+        .tbar__back a:hover { color: #1a1714; }
+
+        /* Hero */
+        .thero { margin-bottom: var(--space-12); display: grid; grid-template-columns: 2fr 1fr; gap: var(--space-8); align-items: end; border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-8); }
+        .thero__pre { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.22em; color: #c4a35a; margin-bottom: var(--space-3); }
+        .thero__title { font-family: var(--font-serif); font-size: clamp(2.2rem, 4.5vw, 3.6rem); font-weight: 400; line-height: 1.05; margin: 0 0 var(--space-4); letter-spacing: -0.01em; }
+        .thero__lede { font-family: var(--font-serif); font-size: 1.05rem; color: #4a4540; line-height: 1.55; max-width: 60ch; margin: 0; }
+        .thero__meta { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-muted); border-left: 2px solid #1a1714; padding-left: var(--space-4); line-height: 1.8; }
+        .thero__meta b { color: #1a1714; }
+
+        /* DNA strip */
+        .tdna { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-bottom: var(--space-12); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); }
+        .tdna__pillar { padding: var(--space-5) var(--space-4); border-right: 1px solid var(--color-border); }
+        .tdna__pillar:last-child { border-right: 0; }
+        .tdna__num { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; color: var(--color-muted); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 6px; }
+        .tdna__name { font-family: var(--font-serif); font-size: 1.4rem; font-weight: 400; margin: 0 0 6px; }
+        .tdna__role { font-family: var(--font-serif); font-style: italic; font-size: 0.9rem; color: #4a4540; line-height: 1.5; margin: 0; }
+
+        /* Legend */
+        .tlegend { display: grid; grid-template-columns: 1.2fr 2.5fr; gap: var(--space-6); margin-bottom: var(--space-12); padding: var(--space-6); background: #fdfcf8; border: 1px solid var(--color-border); border-left: 3px solid #c4a35a; }
+        .tlegend__title { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-muted); margin: 0 0 var(--space-3); }
+        .tlegend__head { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; margin: 0; line-height: 1.2; }
+        .tlegend__list { list-style: none; margin: 0; padding: 0; font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.65; color: #1a1714; }
+        .tlegend__list li { padding: 2px 0; }
+        .tlegend__list b { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; background: #f1ede4; padding: 2px 8px; margin-right: 8px; font-weight: 700; }
+
+        /* Cluster */
+        .tcluster { margin-bottom: var(--space-12); }
+        .tcluster__head { display: flex; align-items: baseline; gap: var(--space-4); margin-bottom: var(--space-6); border-bottom: 2px solid #1a1714; padding-bottom: var(--space-3); }
+        .tcluster__name { font-family: var(--font-serif); font-size: 2rem; font-weight: 400; margin: 0; letter-spacing: -0.005em; }
+        .tcluster__sub { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-muted); }
+
+        /* Card grid */
+        .tgrid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-6); align-items: start; }
+        @media (max-width: 880px) {
+            .tgrid { grid-template-columns: 1fr; }
+            .thero { grid-template-columns: 1fr; }
+            .tdna { grid-template-columns: 1fr; }
+            .tdna__pillar { border-right: 0; border-bottom: 1px solid var(--color-border); }
+            .tdna__pillar:last-child { border-bottom: 0; }
+            .tlegend { grid-template-columns: 1fr; }
+        }
+
+        /* Card */
+        .tcard { background: #fff; border: 1px solid var(--color-border); border-top: 0; display: flex; flex-direction: column; position: relative; }
+        .tcard__rule { height: 5px; width: 100%; background: var(--card-color, #999); }
+        .tcard__head { display: flex; justify-content: space-between; align-items: baseline; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-muted); padding: var(--space-4) var(--space-5) 0; gap: var(--space-2); flex-wrap: wrap; }
+        .tcard__num { color: var(--card-color, #999); font-weight: 700; font-size: 12px; }
+        .tcard__words { font-size: 10px; opacity: 0.85; }
+
+        .tcard__title-row { padding: var(--space-2) var(--space-5) 0; display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); flex-wrap: wrap; }
+        .tcard__name { font-family: var(--font-serif); font-size: 1.85rem; font-weight: 400; margin: 0; line-height: 1.1; color: #1a1714; letter-spacing: -0.01em; }
+        .tcard__status { font-family: 'SF Mono', Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; padding: 3px 8px; border: 1px solid currentColor; white-space: nowrap; }
+        .status--live { color: #4a7c4a; }
+        .status--new { color: #c45e1a; background: #fff3e8; border-color: #c45e1a; }
+        .status--dormant { color: var(--color-muted); }
+        .status--format { color: #1d4d6b; }
+
+        .tcard__archetype { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--card-color, #4a4540); margin: 4px var(--space-5) var(--space-4); font-weight: 400; letter-spacing: 0.005em; }
+
+        .tcard__attrs { margin: 0; padding: 0 var(--space-5); display: grid; grid-template-columns: 110px 1fr; gap: 0; row-gap: 4px; font-size: 0.88rem; line-height: 1.5; }
+        .tcard__attrs dt { font-family: 'SF Mono', Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--color-muted); padding-top: 4px; white-space: nowrap; }
+        .tcard__attrs dd { font-family: var(--font-serif); color: #1a1714; margin: 0; padding: 0 0 var(--space-2); }
+        .tcard__attrs dd em { color: var(--color-muted); font-style: italic; font-size: 0.85rem; }
+        .tcard__attrs dd b { color: var(--card-color, #1a1714); font-weight: 700; }
+        .tcard__swatch { display: inline-block; width: 14px; height: 14px; background: var(--card-color); margin-right: 8px; vertical-align: -2px; border: 1px solid rgba(0,0,0,0.1); }
+
+        .tcard__voice { margin: var(--space-4) var(--space-5) 0; padding: var(--space-4); background: #fbf9f4; border-left: 2px solid var(--card-color, #999); font-family: var(--font-serif); font-size: 0.95rem; line-height: 1.6; color: #1a1714; }
+        .tcard__voice-label { display: block; font-family: 'SF Mono', Consolas, monospace; font-size: 9px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--card-color, var(--color-muted)); margin-bottom: 6px; font-weight: 700; }
+        .tcard__voice p { margin: 0; font-style: italic; }
+        .tcard__voice p + p { margin-top: 0.5em; }
+        .tcard__voice strong { font-style: normal; font-weight: 700; }
+        .tcard__voice mark { background: #fff59d; padding: 0 2px; }
+
+        /* Expandable full template body */
+        .tcard__details { border-top: 1px solid var(--color-border); margin-top: var(--space-4); }
+        .tcard__details[open] { background: #fdfcf8; }
+        .tcard__summary { list-style: none; cursor: pointer; padding: var(--space-3) var(--space-5); display: flex; align-items: center; justify-content: space-between; font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--card-color, var(--color-muted)); font-weight: 700; user-select: none; }
+        .tcard__summary::-webkit-details-marker { display: none; }
+        .tcard__summary:hover { background: rgba(0,0,0,0.02); }
+        .tcard__chev { display: inline-block; transition: transform 0.2s; font-size: 14px; }
+        .tcard__details[open] .tcard__chev { transform: rotate(180deg); }
+
+        .tcard__body {
+            padding: var(--space-4) var(--space-5) var(--space-6);
+            font-family: var(--font-serif);
+            font-size: 0.95rem;
+            line-height: 1.65;
+            color: #1a1714;
+            border-top: 1px dashed var(--color-border);
+        }
+        .tcard__body h1, .tcard__body h2, .tcard__body h3, .tcard__body h4 { font-family: var(--font-serif); font-weight: 400; line-height: 1.2; margin: 1.4em 0 0.4em; color: #1a1714; }
+        .tcard__body h1 { font-size: 1.4rem; }
+        .tcard__body h2 { font-size: 1.25rem; border-bottom: 1px solid var(--color-border); padding-bottom: 6px; }
+        .tcard__body h3 { font-size: 1.05rem; color: var(--card-color); font-weight: 700; }
+        .tcard__body h4 { font-size: 0.95rem; font-weight: 700; }
+        .tcard__body p { margin: 0 0 0.9em; }
+        .tcard__body ul, .tcard__body ol { padding-left: 1.4em; margin: 0 0 1em; }
+        .tcard__body li { margin-bottom: 4px; }
+        .tcard__body strong { font-weight: 700; color: #1a1714; }
+        .tcard__body em { font-style: italic; }
+        .tcard__body code { background: #f1ede4; padding: 1px 5px; font-family: 'SF Mono', Consolas, monospace; font-size: 0.85em; }
+        .tcard__body pre { background: #1a1714; color: #fafafa; padding: var(--space-3) var(--space-4); overflow-x: auto; font-family: 'SF Mono', Consolas, monospace; font-size: 0.85em; line-height: 1.5; margin: 0 0 1em; }
+        .tcard__body pre code { background: transparent; color: inherit; padding: 0; }
+        .tcard__body blockquote { border-left: 3px solid var(--card-color); padding-left: var(--space-3); margin: 0 0 1em; color: #4a4540; font-style: italic; }
+        .tcard__body table { border-collapse: collapse; width: 100%; margin: 0 0 1em; font-size: 0.9em; }
+        .tcard__body th, .tcard__body td { border: 1px solid var(--color-border); padding: 6px 10px; text-align: left; vertical-align: top; }
+        .tcard__body th { background: #f5f3ee; font-family: 'SF Mono', Consolas, monospace; font-size: 0.78em; text-transform: uppercase; letter-spacing: 0.08em; color: #1a1714; }
+        .tcard__body hr { border: 0; border-top: 1px solid var(--color-border); margin: 1.6em 0; }
+        .tcard__body a { color: var(--card-color); text-decoration: underline; text-underline-offset: 3px; }
+
+        .tcard__foot { padding: var(--space-4) var(--space-5); display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--color-border); font-family: 'SF Mono', Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-muted); }
+        .tcard__foot a { color: #1a1714; text-decoration: none; border-bottom: 1px solid var(--card-color, #999); padding-bottom: 2px; }
+        .tcard__foot a:hover { background: var(--card-color); color: #fff; border-bottom-color: transparent; padding: 2px 6px 4px; margin: -2px -6px -4px; }
+
+        /* Retired & footer */
+        .tretired { margin-top: var(--space-12); padding: var(--space-6); background: #f5f3ee; border: 1px dashed var(--color-border); }
+        .tretired__title { font-family: 'SF Mono', Consolas, monospace; font-size: 11px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-muted); margin: 0 0 var(--space-3); }
+        .tretired__list { list-style: none; padding: 0; margin: 0; display: grid; gap: var(--space-3); font-family: var(--font-serif); font-size: 0.95rem; color: #4a4540; line-height: 1.5; }
+        .tretired__list b { color: #1a1714; }
+
+        .treview-questions { margin-top: var(--space-12); padding: var(--space-6); background: #fff; border: 1px solid #1a1714; border-left: 5px solid #c4a35a; }
+        .treview-questions h2 { font-family: var(--font-serif); font-size: 1.6rem; font-weight: 400; margin: 0 0 var(--space-3); }
+        .treview-questions ol { margin: 0; padding-left: var(--space-5); font-family: var(--font-serif); font-size: 1rem; line-height: 1.7; color: #1a1714; }
+        .treview-questions ol li { padding: 4px 0; }
+        .treview-questions ol li b { color: #c45e1a; }
+
+        .tfoot { margin-top: var(--space-12); padding-top: var(--space-4); border-top: 1px solid var(--color-border); font-family: 'SF Mono', Consolas, monospace; font-size: 10px; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-muted); text-align: center; }
+
+        /* Print */
+        @media print {
+            body { background: #fff; }
+            .tbar__hint, .tbar__back, .tcard__foot a { display: none; }
+            .tcard { break-inside: avoid; page-break-inside: avoid; border: 1px solid #999; }
+            .tcluster { page-break-before: always; }
+            .tcluster:first-of-type { page-break-before: auto; }
+            .tcard__details { /* Force-show in print */ }
+            .tcard__details[open] .tcard__body { display: block; }
+        }
+
+        /* Annotation tweaks specific to this page */
+        .tcard__body .dm-marker { left: -28px; top: 2px; }
+        @media (max-width: 1100px) {
+            .tcard__body .dm-marker { left: -22px; }
+        }
+        .tcard__voice .dm-marker { left: -28px; }
+
+    </style>
+
+    <script>
+      // Auto-activate annotation mode on this page (draft-mode.js requires ?draft=1)
+      (function () {
+        if (!new URLSearchParams(window.location.search).has('draft')) {
+          var url = new URL(window.location);
+          url.searchParams.set('draft', '1');
+          window.history.replaceState(null, '', url);
+        }
+      })();
+    </script>
+</head>
+<body>
+
+<div class="tshell">
+
+    <!-- Mini masthead -->
+    <header class="tbar dm-skip">
+        <div class="tbar__brand"><b>LITTORALICIOUS</b></div>
+        <div class="tbar__hint">Templates · Internal · Noindex</div>
+        <div class="tbar__back"><a href="/">← Site</a></div>
+    </header>
+
+    <!-- Hero -->
+    <header class="thero dm-skip">
+        <div>
+            <div class="thero__pre">Editorial system · Draft for review · 2026-05-09</div>
+            <h1 class="thero__title">Fourteen templates,<br>one DNA, fourteen colors.</h1>
+            <p class="thero__lede">
+                Every template carries the three pillars — Grandmother, Scientist, Yacht Chef — but each leans differently and sounds differently. The cards below lock in each template's archetype, its lead pillar, its signature move, the tone it must never slip into, and a short voice sample showing what it actually reads like on the page. <strong>Click any paragraph below</strong> (in a voice sample or inside an expanded full template) to annotate. Notes appear at the bottom of the page.
+            </p>
+        </div>
+        <aside class="thero__meta">
+            <b>14</b> active templates<br>
+            <b>9</b> live categories<br>
+            <b>4</b> clusters: Editorial · Intelligence · Operations · Output<br>
+            <b>2</b> archived: 01b Shore Larder Deep-Dive, 13 The Lab
+        </aside>
+    </header>
+
+    <!-- DNA reminder strip -->
+    <section class="tdna dm-skip" aria-label="The three pillars">
+        <div class="tdna__pillar">
+            <div class="tdna__num">PILLAR I</div>
+            <h2 class="tdna__name">The Grandmother</h2>
+            <p class="tdna__role">Warmth, generosity, tradition as living wisdom. The voice that nurtures.</p>
+        </div>
+        <div class="tdna__pillar">
+            <div class="tdna__num">PILLAR II</div>
+            <h2 class="tdna__name">The Scientist</h2>
+            <p class="tdna__role">Evidence over opinion. Sources named, funding disclosed, uncertainty acknowledged.</p>
+        </div>
+        <div class="tdna__pillar">
+            <div class="tdna__num">PILLAR III</div>
+            <h2 class="tdna__name">The Yacht Chef</h2>
+            <p class="tdna__role">Direct, practical, irreverent earned through mastery. The plate must leave the pass.</p>
+        </div>
+    </section>
+
+    <!-- Legend (aside → automatically excluded from annotation) -->
+    <aside class="tlegend">
+        <div>
+            <div class="tlegend__title">How to read each card</div>
+            <h3 class="tlegend__head">Same DNA. Different weight, different signature, different color.</h3>
+        </div>
+        <ul class="tlegend__list">
+            <li><b>Archetype</b>The character behind the writing — who is talking when this template is used.</li>
+            <li><b>Lead pillar</b>Which of the three voices leads. The other two are always present, in support.</li>
+            <li><b>Color</b>The figurative palette — the texture and surface this template should evoke on the page.</li>
+            <li><b>Signature</b>The one structural device or sentence that, if missing, means the template wasn't followed.</li>
+            <li><b>Forbidden</b>The voices it must never slip into. The drift to watch for.</li>
+            <li><b>In voice</b>A sample paragraph in the template's actual register — the test of whether the character feels itself.</li>
+            <li><b>Full template</b>Click "View full template" inside any card to read the complete scaffold. Every paragraph there is click-to-annotate.</li>
+        </ul>
+    </aside>
+
+    <!-- Annotation container — draft-mode.js scans this -->
+    <main class="article__content">
+
+    <section class="tcluster">
+        <aside class="tcluster__head dm-skip">
+            <h2 class="tcluster__name">I · Editorial</h2>
+            <div class="tcluster__sub">Ingredient · Technique · Heritage · Evidence · Recipe</div>
+        </aside>
+        <div class="tgrid">
+            <article class="tcard" style="--card-color: #8b6f47;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">01</span> · Editorial</span>
+                    <span class="tcard__words">700–900 words · 3–4 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Shore Larder</h3>
+                    <span class="tcard__status status--live">Live · 7 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Curator</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Scientist</b></dd>
+                    <dt>Support</dt><dd>Grandmother (the tradition section), Yacht Chef (the move tonight)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Sepia · herbarium plate</dd>
+                    <dt>Signature</dt><dd>Opening number that reframes what they thought they knew</dd>
+                    <dt>Forbidden</dt><dd><em>Travel writing, "did you know," superfood marketing</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p><strong>150,000.</strong> The number of crocus flowers it takes to produce one kilogram of dried saffron. Three Iranian grandmothers, an enamelled mortar, and a single lump of sugar that somehow knows how to grind a stigma without bruising it.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A love letter written by a scientist. Reverent but not romantic. You're introducing the reader to something they think they know — then proving they don't.</p>
+<p><strong>Rhythm:</strong> Open with a number that stops them. Ground it in tradition. Go deep on the science. Show them where they've been getting it wrong — gently, so they laugh and learn. End with something they'll try tonight.</p>
+<p><strong>Word Count:</strong> 700-900 · <strong>Read Time:</strong> 3-4 min</p>
+<hr>
+<h2>[INGREDIENT NAME]</h2>
+<p><em>[Latin name] · [Origin region] · [Peak season]</em></p>
+<p><strong>[NUMBER].</strong> [One-sentence fact that reframes everything. A number, a historical detail, a chemical truth that earns the next paragraph.]</p>
+<p><strong>What It Actually Is:</strong> [2-3 sentences. Botanical or zoological reality. What part of what organism. What process creates the flavor you know. Not Wikipedia — the details a chef should be embarrassed not to know.]</p>
+<p><strong>The Story That Sticks:</strong> [One paragraph. A person, a place, a moment in time. Not "it was traded along the Silk Road" — who traded it, why, what happened when it arrived. A funeral, a war, a monopoly, a grandmother. Something they'll retell.]</p>
+<p><strong>The Tradition:</strong> [One paragraph. How this ingredient has been used in its homeland for centuries — the preparation that defines it, the ritual, the context. Not museum-piece history — living practice. What a grandmother in [origin] would recognize. What the commercial version lost. What we can learn from the original use that improves how we handle it today.]</p>
+<p><strong>The Compound That Matters:</strong></p>
+<table class="tcard__table"><thead><tr>
+<th>Compound</th>
+<th>Also Found In</th>
+<th>What It Does</th>
+</tr></thead><tbody>
+<tr>
+<td>[Primary aroma/flavor compound]</td>
+<td>[2-3 surprising foods]</td>
+<td>[Flavor effect + any bioactive role]</td>
+</tr>
+<tr>
+<td>[Secondary compound]</td>
+<td>[2-3 foods]</td>
+<td>[Effect]</td>
+</tr>
+</tbody></table>
+<p><strong>Three Pairings You Haven't Tried:</strong> <em>Based on shared volatile compounds (VCF database / Foodpairing analysis):</em></p>
+<ol><li><strong>[Ingredient] + [Surprise]</strong> — [Shared compound]. [One sentence on why it works and how to use it.]</li><li><strong>[Ingredient] + [Surprise]</strong> — [Shared compound]. [Application.]</li><li><strong>[Ingredient] + [Surprise]</strong> — [Shared compound]. [Application.]</li></ol>
+<p><strong>The Science That Surprises:</strong> [One genuinely surprising nutritional or physiological finding. Not superfood marketing — peer-reviewed, specific, verifiable. The kind of finding that makes a chef rethink how they use this ingredient or what they tell curious guests. Cite the study: institution, journal, year, key number. If the finding has a limitation or a "but," say it. Always name what commercial processing does to the science.]</p>
+<p><strong>Where Most Go Wrong:</strong> [2-3 common mistakes. Not a lecture — a recognition scene. The reader should see themselves in at least one of these. Write it conspiratorial, not condescending: "We've all done it." Each mistake follows: what people do → why it fails (the science) → what to do instead. Keep it entertaining — the reader should smile while learning something they'll actually remember.]</p>
+<ol><li><strong>[Mistake name.]</strong> [What people do. Why everyone does it — make it recognizable. One sentence on the science of why it fails. The fix.]</li><li><strong>[Mistake name.]</strong> [Same structure. Make it specific enough that the reader thinks "that was last Tuesday."]</li><li><strong>[Mistake name.]</strong> [Optional third. Only if genuinely useful — two strong beats better than three weak ones.]</li></ol>
+<p><strong>Sourcing:</strong></p>
+<ul><li>[What to look for: color, texture, smell]</li><li>[What to avoid: specific red flags]</li><li>[The difference between good and great (and whether great is worth it)]</li></ul>
+<p><strong>On Board:</strong></p>
+<ul><li><strong>Storage:</strong> [Temperature, wrapping, container. Standard yacht AC applies — only flag unusual storage hacks when they genuinely extend shelf life or improve quality beyond the obvious.]</li><li><strong>Shelf life:</strong> [Honest, not packaging claims]</li><li><strong>The move:</strong> [One preparation in 3-4 sentences. Not a full recipe — an idea. Something unexpected that takes under 5 minutes and makes guests remember you.]</li></ul>
+<p><strong>Sources:</strong> [Named references — book, database, researcher. For science claims: full citation with journal, year, DOI if available.]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Opening fact genuinely surprises (not "did you know vanilla is expensive")?</li><li>[ ] Story has a human name or specific place?</li><li>[ ] Tradition section shows living practice, not textbook history?</li><li>[ ] At least one pairing they've never seen?</li><li>[ ] Compound data is verifiable?</li><li>[ ] Science claim is peer-reviewed with named source?</li><li>[ ] Common mistakes — reader recognizes themselves in at least one?</li><li>[ ] Common mistakes are entertaining, not preachy?</li><li>[ ] Storage advice is practical? (Skip the obvious — most yachts have AC. Only flag storage hacks when they're genuinely worth knowing.)</li><li>[ ] Every claim sourced or clearly marked as professional experience?</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Editorial · 01</span>
+                    <a href="content/template/Template%20-%20Editorial%20-%2001%20Shore%20Larder.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #3a4750;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">02</span> · Editorial</span>
+                    <span class="tcard__words">No limit · concise</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">The Method</h3>
+                    <span class="tcard__status status--live">Live · 10 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Coach at the Pass</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Yacht Chef</b></dd>
+                    <dt>Support</dt><dd>Scientist (the why), Grandmother (the recognition scene of the mistake)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Polished steel · blade</dd>
+                    <dt>Signature</dt><dd>"The Move" — one sentence at the top, then five steps maximum</dd>
+                    <dt>Forbidden</dt><dd><em>Theory without practice, "you might consider," recipe-blog padding</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p><strong>The Move.</strong> Stop searing on a hot pan. Pull the protein cold from the fridge, sear at <mark>165°C in cast-iron preheated nine minutes</mark>: crust without the grey band. The grey band is heat travelling faster than denaturation can absorb it.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A coach, not a teacher. Short sentences. Imperative mood. You're in the galley standing next to them. No theory without immediate practice.</p>
+<p><strong>Rhythm:</strong> Provoke, instruct, explain, prove. Every section earns the next. If they stop reading after "The Move," they're already better. Say in one sentence what others say in a book.</p>
+<p><strong>Word Count:</strong> No limit — but every sentence must earn its place. If a word doesn't teach, cut it. Concise does not mean short. It means nothing wasted.</p>
+<hr>
+<h2>[TECHNIQUE NAME]: [Subtitle that kills a sacred cow]</h2>
+<p><strong>The Move:</strong> [One sentence. What you're going to do differently starting now.]</p>
+<p><strong>Do This:</strong></p>
+<ol><li>[Action — precise, no ambiguity. Include temperature, time, visual cue.]</li><li>[Action]</li><li>[Action]</li><li>[Action — maximum 5 steps. If it needs more, it's not a technique brief, it's a recipe.]</li></ol>
+<p><strong>Why It Works:</strong> [2-3 sentences. Name the reaction, the compound, the physics. Numbers. Not "high heat makes things brown."]</p>
+<p><strong>The Variables:</strong></p>
+<table class="tcard__table"><thead><tr>
+<th>Factor</th>
+<th>What Happens</th>
+<th>Adjust By</th>
+</tr></thead><tbody>
+<tr>
+<td>[Variable]</td>
+<td>[Effect]</td>
+<td>[Compensation]</td>
+</tr>
+<tr>
+<td>[Variable]</td>
+<td>[Effect]</td>
+<td>[Compensation]</td>
+</tr>
+<tr>
+<td>[Variable]</td>
+<td>[Effect]</td>
+<td>[Compensation]</td>
+</tr>
+</tbody></table>
+<p><strong>You Know It Worked When:</strong> [Measurable outcome. Temperature reading, visual cue, texture test, taste marker. Not "it looks good." Specific.]</p>
+<p><strong>Where Most Go Wrong:</strong> [1-2 common mistakes with this technique. Not theory — the specific thing you've watched people do wrong. Written so the reader thinks "I did that yesterday." Each mistake: what they do → why it fails → the fix. Keep it short and useful — this section should feel like a friend tapping your shoulder, not a teacher grading your work.]</p>
+<ol><li><strong>[Mistake.]</strong> [What people do. Why it fails — name the science. The fix in one sentence.]</li><li><strong>[Mistake.]</strong> [Same. Make it recognizable. Make the fix memorable.]</li></ol>
+<p><strong>At Sea:</strong> [One sentence. Motion, humidity, equipment, timing — the yacht-specific consideration that separates this from a food blog.]</p>
+<p><strong>Source:</strong> [Named researcher, book, or paper.]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Can be executed during service, not just during prep?</li><li>[ ] At least one specific number (temp, time, ratio, percentage)?</li><li>[ ] Names the scientific principle by name?</li><li>[ ] Kills a common myth or corrects a widespread mistake?</li><li>[ ] Common mistakes — reader recognizes themselves? Entertaining, not preachy?</li><li>[ ] Interesting enough that a chef reads it twice, not because they have to — because they want to?</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Editorial · 02</span>
+                    <a href="content/template/Template%20-%20Editorial%20-%2002%20The%20Method.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #7a6a55;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">03</span> · Editorial</span>
+                    <span class="tcard__words">No limit · concise</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Littoral Heritage</h3>
+                    <span class="tcard__status status--live">Live · 1 article</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Keeper</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Grandmother</b></dd>
+                    <dt>Support</dt><dd>Scientist (the chemistry that explains the tradition), Yacht Chef (the showstopper aboard)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Sea-weathered wood · harbour timber</dd>
+                    <dt>Signature</dt><dd>Place the reader in the village before any method</dd>
+                    <dt>Forbidden</dt><dd><em>"Legend has it," fusion, "modern interpretation," Instagram aesthetics</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>In Caminha, where the Minho meets the Atlantic, the women have washed lampreys in the same stretch of cold water since before the boats had engines. The eel is bitter without it. They know — and the bitterness, it turns out, is bile released by bruising. The cold water keeps the muscle calm enough not to spill.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A grandmother who happens to have a chemistry degree. She doesn't give you the recipe first — she sits you down and tells you why this dish exists. Warm but precise. Opinionated. The reader should feel the salt air and hear the harbour before they see a single ingredient.</p>
+<p><strong>Rhythm:</strong> Place them there → Tell them why this dish had to exist → Show them the tradition → Prove it with science → Bring it aboard. This is not a how-to. This is a preservation act.</p>
+<p><strong>Word Count:</strong> No limit — but concise. Every paragraph must earn its place. If it doesn't make the reader feel like they were there when this dish was born, cut it.</p>
+<hr>
+<h2>[DISH NAME]</h2>
+<p><em>[Original language name] · [Literal translation if revealing]</em></p>
+<p><strong>[Village/Port/Coastline], [Region]</strong> — [One sentence that places this dish on a specific stretch of coast. Not a country — a harbour, a fishing village, a stretch of shore. Name it.]</p>
+<h3>The Origin</h3>
+<p>[The true story. Not mythology, not "legend has it" — verified history. A named person if possible, a specific decade at minimum, a real circumstance. Why did this dish come into being? What problem did it solve? Was it poverty, abundance, preservation, celebration, survival? Place the reader in that moment. They should smell the kitchen, hear the language, feel the necessity.</p>
+<p>Cross-check every claim. If the origin is disputed, say so — and present what's documented.]</p>
+<h3>Why It Mattered</h3>
+<p>[1-2 paragraphs. The role this dish played in its community. Was it daily sustenance or feast-day ritual? Did it feed fishermen before dawn or celebrate a catch? What does it say about the people who made it — their coastline, their economy, their relationship with the sea? What would be lost if this dish disappeared?</p>
+<p>This section earns the recipe. If the reader doesn't understand why this dish needed to exist, the rest is just instructions.]</p>
+<h3>The Tradition</h3>
+<p>[How it was made — and still is, where authenticity survives. Not a step-by-step recipe. The method as narrative. The grandmother's hands, the specific clay pot, the wood fire, the tide-dependent timing. What makes the traditional preparation different from what a restaurant does today? What shortcuts have diluted it? What's non-negotiable?</p>
+<p>Only include method detail that matters for an advanced chef — the technique that defines the dish, the step most people get wrong, the timing that separates good from true. Skip the obvious.]</p>
+<p><strong>The Non-Negotiables:</strong></p>
+<table class="tcard__table"><thead><tr>
+<th>Element</th>
+<th>Traditional</th>
+<th>Why It Matters</th>
+</tr></thead><tbody>
+<tr>
+<td>[Key ingredient or technique]</td>
+<td>[How it was/is done authentically]</td>
+<td>[What changes if you compromise]</td>
+</tr>
+<tr>
+<td>[Element]</td>
+<td>[Traditional approach]</td>
+<td>[Consequence of deviation]</td>
+</tr>
+<tr>
+<td>[Element]</td>
+<td>[Traditional approach]</td>
+<td>[Consequence]</td>
+</tr>
+</tbody></table>
+<h3>Why It Works (The Science)</h3>
+<p>[The chemistry and physics behind the tradition. Why did the grandmother's method produce something that modern shortcuts can't replicate? Name the reactions — Maillard, enzymatic browning, protein denaturation, emulsification, fermentation, osmosis. Cite the science. The tradition got there by instinct; explain it with evidence.</p>
+<p>This is not a textbook. One or two key scientific truths that make the reader respect the tradition more, not less.]</p>
+<h3>On Board — The Yacht Showstopper</h3>
+<p>[How to bring this dish aboard with integrity. Not a dumbed-down version — a respectful adaptation that honours the origin while working within yacht service.</p>
+<p>Think: crossing the coastline where this dish was born and serving it that evening. Or bringing a guest back to a memory of that region. What makes this a story on the plate, not just food?</p>
+<p>Be specific about what to adapt and what to protect. Plating that respects the dish's nature. Service timing. The one thing to say when a guest asks "what is this?" — the sentence that makes them put down their phone.]</p>
+<h3>Pairing</h3>
+<p>[One wine, spirit, or drink from the same coast or tradition. Specific — a grape, a region, a style. One sentence on why it belongs with this dish. If the traditional pairing is water, say so.]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Origin story is factually verified — no "legend has it" without documented source?</li><li>[ ] A named person, specific place, or documented historical moment anchors the story?</li><li>[ ] The reader understands why this dish had to exist before seeing any method?</li><li>[ ] Science section names specific reactions and is verifiable?</li><li>[ ] Traditional method detail is limited to what an advanced chef needs — no basics?</li><li>[ ] Yacht adaptation respects the dish — it's a showstopper, not a shortcut?</li><li>[ ] Every claim is cross-checked? If disputed, the dispute is acknowledged?</li></ul>
+<h2>Selection Criteria</h2>
+<ul><li>Coastal or littoral origin — born from the sea, the shore, or the port</li><li>Documented tradition — not invented, not "inspired by"</li><li>A story that earns telling — necessity, survival, celebration, identity</li><li>The science is interesting — something happens in this dish that rewards understanding</li><li>Can be served aboard as a genuine moment, not just a menu item</li></ul>
+<h2>Red Lines</h2>
+<ul><li>This is NOT a recipe article. No step-by-step how-to format.</li><li>No dishes without verifiable coastal/littoral roots</li><li>No romanticised origins — if you can't source it, don't claim it</li><li>No "fusion" or "modern interpretation" as the subject — the tradition is the subject</li><li>No dishes chosen for Instagram appeal over cultural substance</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Editorial · 03</span>
+                    <a href="content/template/Template%20-%20Editorial%20-%2003%20Littoral%20Heritage.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #2d6a8e;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">04</span> · Editorial</span>
+                    <span class="tcard__words">200–300 words · 1 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">The Evidence</h3>
+                    <span class="tcard__status status--live">Live · 6 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Translator</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Scientist</b></dd>
+                    <dt>Support</dt><dd>Yacht Chef (the galley translation), Grandmother (the honest limitation)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Lab white · peer-review blue</dd>
+                    <dt>Signature</dt><dd>"What This Does Not Mean" — kill the overclaim before it spreads</dd>
+                    <dt>Forbidden</dt><dd><em>Superfood, "may help prevent," news-outlet rewrite, single-study generalisations</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>A 2024 meta-analysis in <em>Food Chemistry</em> (n=47 trials, NIH-funded, no industry conflicts) finds extra-virgin olive oil holds peroxide values below <mark>20 mEq/kg up to 207°C</mark> — eight degrees higher than the figure most cookbooks still cite. <strong>What this does not mean:</strong> olive oil is a deep-fryer. The study tested 90-second exposures, not 12-minute fries.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A translator between science and the kitchen. Clinical precision, practical language. You read the paper so they don't have to. No hype, no fear, no "superfoods."</p>
+<p><strong>Rhythm:</strong> What did they find → Why should you care → What should you do → What should you not overclaim. Fast.</p>
+<p><strong>Word Count:</strong> 200-300 · <strong>Read Time:</strong> 1 min</p>
+<p><strong>Source Standard:</strong> Top-tier only. Peer-reviewed journals, systematic reviews, meta-analyses. Nothing that hasn't survived scientific verification. If the study hasn't been replicated or is from a predatory journal, it doesn't exist for our purposes.</p>
+<hr>
+<h2>[HEADLINE: Plain statement of finding — what the research showed, not what you wish it showed]</h2>
+<p><strong>The Study:</strong> [One paragraph. Who (institution), what (study type: RCT, meta-analysis, observational, systematic review), where (journal, year, impact factor if notable), how big (n=participants or studies), funding source. This is the credibility paragraph. Only cite from indexed, peer-reviewed journals. If the journal isn't in PubMed, Scopus, or Web of Science — find a better source.]</p>
+<p><strong>Key Finding:</strong> [One sentence. Plain language. The main takeaway.]</p>
+<p><strong>The Numbers:</strong></p>
+<table class="tcard__table"><thead><tr>
+<th>Finding</th>
+<th>Data</th>
+<th>Context</th>
+</tr></thead><tbody>
+<tr>
+<td>[Specific finding]</td>
+<td>[Number, percentage, measurement]</td>
+<td>[Why this matters practically]</td>
+</tr>
+<tr>
+<td>[Finding 2]</td>
+<td>[Data]</td>
+<td>[Context]</td>
+</tr>
+</tbody></table>
+<p><strong>What This Means in the Galley:</strong> [2-3 sentences. Translate to action. How does this change what they do tomorrow? Be concrete — name a dish, a technique, a decision point.]</p>
+<p><strong>What This Does Not Mean:</strong> [1-2 sentences. The overclaim people will make. Kill it before it spreads.]</p>
+<p><strong>Limitations:</strong></p>
+<ul><li>[Limitation 1 — sample size, population, methodology, industry funding]</li><li>[Limitation 2 — what the study didn't test]</li></ul>
+<p><strong>Your Move:</strong> [One sentence. One action. Or: "No action needed — this confirms what you're already doing."]</p>
+<p><strong>Source:</strong> [Full citation with DOI or journal link]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Study is peer-reviewed and published in an indexed journal (PubMed, Scopus, or Web of Science)?</li><li>[ ] Published within last 3 years (unless foundational and repeatedly cited)?</li><li>[ ] Funding source disclosed — industry-funded studies flagged explicitly?</li><li>[ ] Limitations stated honestly?</li><li>[ ] No health claims beyond what the study supports?</li><li>[ ] "What This Does Not Mean" section is included?</li><li>[ ] Source citation includes DOI or direct journal link?</li></ul>
+<h2>Red Lines</h2>
+<ul><li>No "superfoods"</li><li>No single-study claims presented as fact</li><li>No health advice beyond "here's what the research shows"</li><li>No supplement recommendations</li><li>No diet endorsements</li><li>No "may help prevent cancer" clickbait</li><li>No preprints, conference abstracts, or non-peer-reviewed sources as primary evidence</li><li>No studies from predatory or pay-to-publish journals</li><li>No industry-funded research cited without disclosing the funding source</li><li>No nutritional claims from news outlets, blogs, or press releases — go to the paper itself</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Editorial · 04</span>
+                    <a href="content/template/Template%20-%20Editorial%20-%2004%20The%20Evidence.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #1d4d6b;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">05</span> · Editorial</span>
+                    <span class="tcard__words">8–15 min read</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">The Blueprint</h3>
+                    <span class="tcard__status status--format">Format · ships under The Method</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Architect</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Yacht Chef</b></dd>
+                    <dt>Support</dt><dd>Scientist (the why behind each phase), Grandmother (Tier 3 elevation = restaurant respect)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Drafting paper · architect's grid</dd>
+                    <dt>Signature</dt><dd>Phased method with named checkpoints + three elevation tiers</dd>
+                    <dt>Forbidden</dt><dd><em>Home-cook prose, undated cookbook claims, "until done"</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p><strong>PHASE 2 — The Braise.</strong> 3. Reduce stock by 40%. <strong>Checkpoint:</strong> Liquid coats the back of a spoon and falls in slow ribbons; an instant-read at <mark>92°C</mark>. If you read 88°C, your gas is undersized — reduce another six minutes. <strong>Tier 2 elevation:</strong> swap half the stock for the previous day's roast jus.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> Active verbs, specific numbers, visual cues. "Whisk" not "The ingredients should be whisked." Every recipe from scientifically tested sources (ChefSteps, Food Lab, Modernist Cuisine, Serious Eats, ATK, Harold McGee).</p>
+<p><strong>Rhythm:</strong> Hook → At a Glance → Ingredients by mise group → Phased method with checkpoints → Science → Elevation tiers → Prep-ahead → Troubleshooting → Quick reference card.</p>
+<p><strong>Word Count:</strong> Variable by complexity · <strong>Read Time:</strong> 8-15 min</p>
+<hr>
+<pre><code class="lang-yaml">---
+title: "[Recipe Name]: The [Adjective] Version"
+date: YYYY-MM-DD
+category: recipe
+tags: [category, technique, key-ingredient, cuisine]
+read_time: [estimate]
+source: "[Primary source — ChefSteps, Food Lab, etc.]"
+yield: "[portions/quantity]"
+active_time: "[hands-on time]"
+total_time: "[including resting, chilling, etc.]"
+---</code></pre>
+<hr>
+<h1>[RECIPE NAME]</h1>
+<p><strong>[One-line hook — why this version is different]</strong></p>
+<p>[2-3 sentence introduction: What makes this recipe work. What problem it solves. Why the science matters.]</p>
+<hr>
+<h2>AT A GLANCE</h2>
+<table class="tcard__table"><thead><tr>
+<th>Yield</th>
+<th>Active Time</th>
+<th>Total Time</th>
+<th>Difficulty</th>
+</tr></thead><tbody>
+<tr>
+<td>[X portions]</td>
+<td>[X min]</td>
+<td>[X hours]</td>
+<td>[Easy/Medium/Advanced]</td>
+</tr>
+</tbody></table>
+<p><strong>Source:</strong> [Primary scientific source with link if available] <strong>Key technique:</strong> [The one thing that makes this recipe work]</p>
+<hr>
+<h2>INGREDIENTS</h2>
+<p><em>Organized by mise en place groups — prep in this order, combine when indicated</em></p>
+<h3>GROUP A: [Name — e.g., "Dry Mix"]</h3>
+<p><em>[When this group is used in the recipe]</em></p>
+<table class="tcard__table"><thead><tr>
+<th>Ingredient</th>
+<th>Weight</th>
+<th>Volume</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>[Ingredient]</td>
+<td>[g]</td>
+<td>[cups/tbsp]</td>
+<td>[Prep notes, substitutions]</td>
+</tr>
+</tbody></table>
+<h3>GROUP B: [Name — e.g., "Wet Mix"]</h3>
+<p><em>[When this group is used in the recipe]</em></p>
+<table class="tcard__table"><thead><tr>
+<th>Ingredient</th>
+<th>Weight</th>
+<th>Volume</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>[Ingredient]</td>
+<td>[g]</td>
+<td>[cups/tbsp]</td>
+<td>[Temp if matters]</td>
+</tr>
+</tbody></table>
+<h3>EQUIPMENT NEEDED</h3>
+<ul><li>[Essential equipment — not optional]</li><li><strong>Helpful:</strong> [Nice to have but not essential]</li></ul>
+<hr>
+<h2>METHOD</h2>
+<h3>PHASE 1: [Name]</h3>
+<p><em>[Estimated time for this phase]</em></p>
+<p><strong>1.</strong> [Action verb first. Specific temperatures. Specific times. Visual/tactile cues.]</p>
+<p><strong>2.</strong> [Next step. Include WHY if it's not obvious.]</p>
+<blockquote><p><strong>Checkpoint:</strong> [What should it look/feel/smell like at this point?]</p></blockquote>
+<h3>PHASE 2: [Name]</h3>
+<p><em>[Estimated time]</em></p>
+<p><strong>3.</strong> [Step...]</p>
+<blockquote><p><strong>Done when:</strong> [Precise doneness indicator — internal temp, visual cue, touch test]</p></blockquote>
+<h3>PHASE 3: [Rest &amp; Serve]</h3>
+<p><strong>4.</strong> [Resting instructions with WHY]</p>
+<hr>
+<h2>THE SCIENCE</h2>
+<p><em>Why this recipe works — the mechanisms behind the technique</em></p>
+<h3>[Key Principle 1]</h3>
+<p>[2-3 sentences explaining the science. Cite source.]</p>
+<p><strong>What's happening:</strong> [Simple mechanism explanation] <strong>Why it matters:</strong> [How this affects the final product]</p>
+<p><em>Source: [Book/article, author, year]</em></p>
+<hr>
+<h2>ELEVATION</h2>
+<p><em>Tested modifications that genuinely improve the result</em></p>
+<h3>TIER 1: Simple Upgrades (No Extra Time)</h3>
+<table class="tcard__table"><thead><tr>
+<th>Modification</th>
+<th>What It Does</th>
+<th>How Much</th>
+</tr></thead><tbody>
+<tr>
+<td>[e.g., Add miso]</td>
+<td>[Adds umami depth]</td>
+<td>[2 tbsp per batch]</td>
+</tr>
+</tbody></table>
+<h3>TIER 2: Worth the Extra Effort</h3>
+<table class="tcard__table"><thead><tr>
+<th>Modification</th>
+<th>What It Does</th>
+<th>Extra Time</th>
+<th>How To</th>
+</tr></thead><tbody>
+<tr>
+<td>[e.g., Brown the butter]</td>
+<td>[Maillard notes]</td>
+<td>+5 min</td>
+<td>[Method]</td>
+</tr>
+</tbody></table>
+<h3>TIER 3: Restaurant-Level</h3>
+<table class="tcard__table"><thead><tr>
+<th>Modification</th>
+<th>What It Does</th>
+<th>Extra Time</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>[e.g., Bruleed top]</td>
+<td>[Textural contrast]</td>
+<td>+2 min</td>
+<td>[Method]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>MISE EN PLACE &amp; PREP-AHEAD</h2>
+<table class="tcard__table"><thead><tr>
+<th>Component</th>
+<th>How Far Ahead</th>
+<th>Storage</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>[Component]</td>
+<td>[Time]</td>
+<td>[Method]</td>
+<td>[Details]</td>
+</tr>
+</tbody></table>
+<h3>BATCH SCALING</h3>
+<table class="tcard__table"><thead><tr>
+<th>Original</th>
+<th>x2</th>
+<th>x4</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>[Key item]</td>
+<td>[Amount]</td>
+<td>[Amount]</td>
+<td>[Non-linear notes]</td>
+</tr>
+</tbody></table>
+<h3>SERVICE FORMATS</h3>
+<table class="tcard__table"><thead><tr>
+<th>Format</th>
+<th>Prep Notes</th>
+<th>Best For</th>
+</tr></thead><tbody>
+<tr>
+<td>[Format]</td>
+<td>[Adjustments]</td>
+<td>[Context]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>TROUBLESHOOTING</h2>
+<table class="tcard__table"><thead><tr>
+<th>Problem</th>
+<th>Cause</th>
+<th>Fix</th>
+</tr></thead><tbody>
+<tr>
+<td>[Issue]</td>
+<td>[Why]</td>
+<td>[Solution]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>SOURCES &amp; FURTHER READING</h2>
+<ul><li><strong>Primary source:</strong> [Full citation with link]</li><li><strong>Science reference:</strong> [McGee, Bouzari, etc.]</li></ul>
+<hr>
+<h2>QUICK REFERENCE</h2>
+<p><em>Print this for the galley</em></p>
+<pre><code class="lang-plain">YIELD: [X]  |  ACTIVE: [X min]  |  TOTAL: [X]  |  OVEN: [X°C/°F]
+
+DRY: [ingredients list, brief]
+WET: [ingredients list, brief]
+
+METHOD:
+1. [Ultra-brief step]
+2. [Ultra-brief step]
+3. [Ultra-brief step]
+
+INTERNAL TEMP: [if applicable]
+STORAGE: [brief]</code></pre>
+<hr>
+<h2>Required Elements</h2>
+<ul><li>[ ] Weight AND volume measurements (weight preferred)</li><li>[ ] Temperatures in Celsius (Fahrenheit in parentheses)</li><li>[ ] At least one checkpoint in method</li><li>[ ] Doneness indicator (temp, visual, tactile)</li><li>[ ] At least 2 science explanations with sources</li><li>[ ] At least 3 elevation options across tiers</li><li>[ ] Prep-ahead timeline</li><li>[ ] Troubleshooting section</li><li>[ ] Quick reference card</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Editorial · 05</span>
+                    <a href="content/template/Template%20-%20Editorial%20-%2005%20The%20Blueprint.md">View .md →</a>
+                </footer>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="tcluster">
+        <aside class="tcluster__head dm-skip">
+            <h2 class="tcluster__name">II · Intelligence</h2>
+            <div class="tcluster__sub">Chef ideas · Chef news · Industry intel · Wire dispatch</div>
+        </aside>
+        <div class="tgrid">
+            <article class="tcard" style="--card-color: #c45e1a;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">06</span> · Intelligence</span>
+                    <span class="tcard__words">500–800 words · 3–4 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Signal Fire</h3>
+                    <span class="tcard__status status--dormant">Dormant · 1 preview</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Embed</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Scientist (the idea is the payload)</b></dd>
+                    <dt>Support</dt><dd>Yacht Chef (the steal), Grandmother (the moment that made the idea)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Beacon orange · flame seen from a long way off</dd>
+                    <dt>Signature</dt><dd>The idea stated in five words or fewer</dd>
+                    <dt>Forbidden</dt><dd><em>Hagiography, biography, "journey," restaurant promo</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p><strong>The idea:</strong> discard a quarter of every plate. After eighteen years, this chef stopped trying to make beautiful food look like itself, and a third of every bowl became deliberate negative space. <strong>What you can steal:</strong> on the next tasting menu, leave the largest plate in your stack two-thirds empty. Watch the table go quiet.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A war correspondent embedded in someone else's obsession. You're not profiling a chef — you're dissecting a single idea that happened to come from one. The chef is the vehicle, the idea is the payload.</p>
+<p><strong>Rhythm:</strong> Name the idea in one line. Prove the chef earned the right to have it. Show the idea working. Give the reader something to steal. Done.</p>
+<p><strong>Word Count:</strong> 500-800 · <strong>Read Time:</strong> 3-4 min</p>
+<hr>
+<h2>[CHEF NAME]: [THE IDEA IN FIVE WORDS OR FEWER]</h2>
+<p><em>[Restaurant/Vessel/Position] · [Location] · [Years in kitchens]</em></p>
+<p><strong>The Idea:</strong> [One sentence. The single concept, technique, or principle this chef built something around. Not a biography — a thesis statement. If you can't say it in one sentence, you haven't found the idea yet.]</p>
+<p><strong>How They Got There:</strong> [One paragraph. The specific moment, failure, or observation that produced this idea. A named place, a real year, a concrete event. Not "after years of experience" — the actual story. What broke, what didn't work, what they saw that nobody else noticed.]</p>
+<p><strong>The Idea in Practice:</strong></p>
+<table class="tcard__table"><thead><tr>
+<th>Application</th>
+<th>What They Do</th>
+<th>Why It Works</th>
+</tr></thead><tbody>
+<tr>
+<td>[Specific dish, technique, or system]</td>
+<td>[Precise description — temperatures, times, ratios]</td>
+<td>[The principle at work]</td>
+</tr>
+<tr>
+<td>[Second application]</td>
+<td>[Description]</td>
+<td>[Principle]</td>
+</tr>
+<tr>
+<td>[Third application]</td>
+<td>[Description]</td>
+<td>[Principle]</td>
+</tr>
+</tbody></table>
+<p><strong>What You Can Steal:</strong> [2-3 sentences. The transferable principle. Strip it from their context and put it in the reader's galley. Not "be inspired by" — a specific action. Name a dish category, a service moment, a prep protocol where this idea applies tomorrow.]</p>
+<p><strong>At Sea:</strong> [1-2 sentences. How this idea adapts — or doesn't — to yacht conditions. Motion, scale, provisioning constraints, guest variability. Be honest if it needs modification.]</p>
+<p><strong>In Their Words:</strong></p>
+<blockquote><p>"[Direct quote from the chef — one sentence that captures the idea better than you can. Not motivational poster material — something specific, technical, earned.]"</p></blockquote>
+<p><strong>Source:</strong> [Interview date, publication, or direct conversation. Named.]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] The idea is one thing, not a career summary?</li><li>[ ] Could another chef execute something from this piece tomorrow?</li><li>[ ] The story has a specific moment, not a vague timeline?</li><li>[ ] At least one application includes measurable specifics (temp, time, ratio)?</li><li>[ ] The quote sounds like a real person, not a press release?</li><li>[ ] This is NOT a profile — would it survive if the chef's name were removed and only the idea remained?</li></ul>
+<h2>Red Lines</h2>
+<ul><li>This is not a chef profile. If the piece works better as a biography, it doesn't belong here.</li><li>No hagiography. Earned respect, not worship.</li><li>No "journey" narratives. One idea. One piece.</li><li>No promotional language for restaurants or brands.</li><li>No ideas that only work with a brigade of 12 and an unlimited budget — it must scale down.</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Intelligence · 06</span>
+                    <a href="content/template/Template%20-%20Intelligence%20-%2006%20Signal%20Fire.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #a8742c;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">07</span> · Intelligence</span>
+                    <span class="tcard__words">200–400 words · 1–2 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">The Horizon</h3>
+                    <span class="tcard__status status--dormant">Dormant · 0 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Returning Friend</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Scientist (verified)</b></dd>
+                    <dt>Support</dt><dd>Yacht Chef (relevance to the working chef), Grandmother (warmth without inflation)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Far-light gold · horizon line at sundown</dd>
+                    <dt>Signature</dt><dd>"The Detail Worth Knowing" — the one specific that beats the headline</dd>
+                    <dt>Forbidden</dt><dd><em>"Culinary world stunned by," "puts X on the map," celebrity gossip</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>In Lima, Mil at Moray took a third star this April — the second altitude restaurant ever to do so. <strong>The detail worth knowing:</strong> their bread is leavened with a wild <em>kawa</em> yeast they only collect above <mark>3,400 m</mark>. Below that elevation the strain dies inside a week.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A trusted colleague who just got back from somewhere and has one thing worth telling you. No cheerleading, no PR copy — genuine recognition of work that matters. If it wouldn't make a tired chef look up from their prep list, it doesn't run.</p>
+<p><strong>Rhythm:</strong> What happened → Who did it → Why it matters to someone holding a knife right now. Celebration without inflation.</p>
+<p><strong>Word Count:</strong> 200-400 · <strong>Read Time:</strong> 1-2 min</p>
+<hr>
+<h2>[HEADLINE: What happened, stated plainly — no superlatives]</h2>
+<p><em>[Date] · [Location]</em></p>
+<p><strong>What Happened:</strong> [One paragraph. The event, achievement, or development. Named people, named places, named dates. What actually occurred — not what a publicist wants you to think occurred. If it's an award, name the criteria. If it's an event, name the scale.]</p>
+<p><strong>Who:</strong> [1-2 sentences. The chef(s) or organization involved. Relevant background only — years in kitchens, what they're known for technically, where they trained. Not a biography. If they're already well-known, one sentence. If they're not, earn the reader's attention with specifics.]</p>
+<p><strong>Why This Matters:</strong> [2-3 sentences. The significance beyond the headline. What does this signal for the profession? A technique gaining recognition, a region emerging, a standard being raised, a barrier being broken. Connect it to something the reader cares about professionally.]</p>
+<p><strong>The Detail Worth Knowing:</strong> [One paragraph. The single specific detail that separates this from every other news summary. A number, a technique mentioned, a quote, a policy change, a menu detail. Something concrete that rewards the reader for reading past the headline.]</p>
+<p><strong>Source:</strong> [Named publication, official announcement, or wire service with date]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Would a chef in any country find this worth knowing?</li><li>[ ] The achievement or event is verified, not rumored?</li><li>[ ] The piece celebrates without inflating — no "groundbreaking," "revolutionary," "iconic"?</li><li>[ ] At least one specific detail goes beyond what a headline could convey?</li><li>[ ] Positive without being promotional — no restaurant plugs disguised as news?</li><li>[ ] Relevant to the craft, not just celebrity?</li></ul>
+<h2>Selection Criteria</h2>
+<ul><li><strong>Run it:</strong> Record-setting achievements backed by data. Events that advance the profession. Recognition of technical excellence. Policy changes that affect working chefs. Emerging regions or traditions gaining deserved attention.</li><li><strong>Kill it:</strong> Award announcements with no technical substance. Celebrity chef gossip. Restaurant openings (unless the concept genuinely advances something). Anything that reads like a press release. "Youngest chef to..." unless the work itself is remarkable.</li></ul>
+<h2>Banned Framing</h2>
+<ul><li>No "culinary world stunned by..." — the culinary world is working, not being stunned</li><li>No "puts [city] on the map" — the city was already there</li><li>No "redefines [cuisine]" — it doesn't, and that's fine</li><li>No listicle roundups — one story, told properly</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Intelligence · 07</span>
+                    <a href="content/template/Template%20-%20Intelligence%20-%2007%20The%20Horizon.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #4a4540;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">08</span> · Intelligence</span>
+                    <span class="tcard__words">250–500 words · 1–2 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Trade Winds</h3>
+                    <span class="tcard__status status--live">Live · 2 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Dock Steward</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Yacht Chef</b></dd>
+                    <dt>Support</dt><dd>Scientist (named regulation, named figures), Grandmother (the calm explanation)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Document grey · contract ledger</dd>
+                    <dt>Signature</dt><dd>"Your Move" — one action sentence, or "Monitor only"</dd>
+                    <dt>Forbidden</dt><dd><em>Lifestyle copy, broker marketing, "the future of yacht cheffing"</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>From <mark>1 September</mark> the Cayman flag will require all charter chefs to hold an in-date Ship Sanitation Certificate or the vessel cannot clear any US port. Cost: $180 / 2 hours / Antibes Marine Centre. <strong>Your move:</strong> book it before mid-August or you'll be the reason the charter sits at quarantine.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> Your most informed colleague at the dock, the one who actually reads the contracts and knows which agencies are hiring. Direct, practical, zero fluff. This is trade intelligence, not lifestyle media.</p>
+<p><strong>Rhythm:</strong> What changed → What it means for your next season → What to do about it. If there's no actionable takeaway, it's not industry news — it's gossip.</p>
+<p><strong>Word Count:</strong> 250-500 · <strong>Read Time:</strong> 1-2 min</p>
+<hr>
+<h2>[HEADLINE: Specific development stated plainly — no hype]</h2>
+<p><em>[Date] · [Region/Scope: Mediterranean / Caribbean / Global / Flag State]</em></p>
+<p><strong>The Development:</strong> [One paragraph. What changed, who announced it, when it takes effect. Regulation, certification, hiring trend, agency news, event, training program, insurance change, flag state policy, charter market shift. Named organizations, specific dates, exact figures where available.]</p>
+<p><strong>Who's Affected:</strong> [1-2 sentences. Which chefs this impacts and how. Be specific: all yacht chefs? Only chefs on vessels over 500GT? Only those working charter? Only those with specific certifications? Define the scope.]</p>
+<p><strong>What It Means:</strong> [2-3 sentences. Practical translation. How does this change what a yacht chef does, earns, plans, or prepares for? If it's a regulation — what's the compliance timeline? If it's a market shift — what does demand look like? If it's an event — what's the actual value of attending?]</p>
+<p><strong>Key Details:</strong></p>
+<table class="tcard__table"><thead><tr>
+<th>Detail</th>
+<th>Specifics</th>
+</tr></thead><tbody>
+<tr>
+<td>[Effective date / Event date]</td>
+<td>[Date]</td>
+</tr>
+<tr>
+<td>[Cost / Salary range / Fee]</td>
+<td>[Figures in EUR and $ where applicable]</td>
+</tr>
+<tr>
+<td>[Requirements / Eligibility]</td>
+<td>[Who qualifies, what's needed]</td>
+</tr>
+<tr>
+<td>[Deadline / Registration]</td>
+<td>[Date and how]</td>
+</tr>
+</tbody></table>
+<p><strong>Your Move:</strong> [One sentence. One action. Update a certification, register for something, adjust a budget, talk to your captain, review a contract clause. Or: "Monitor only — no action needed yet."]</p>
+<p><strong>Source:</strong> [Named organization, publication, or official announcement with date and link if available]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Verified through official source, not dock rumor?</li><li>[ ] Directly relevant to working yacht chefs (not superyacht owners, brokers, or builders)?</li><li>[ ] Includes at least one specific number (date, salary figure, vessel size threshold, cost)?</li><li>[ ] Actionable — the reader knows what to do or explicitly knows no action is needed?</li><li>[ ] Distinguishes between confirmed and upcoming/proposed changes?</li></ul>
+<h2>Coverage Areas</h2>
+<ul><li><strong>Regulations &amp; Compliance:</strong> MLC updates, STCW changes, flag state requirements, food safety certifications (Ship Sanitation, EHO), visa/work permit changes</li><li><strong>Employment &amp; Market:</strong> Salary benchmarks, hiring trends, agency developments, charter season forecasts, crew placement data</li><li><strong>Training &amp; Certification:</strong> New courses, certification changes, recognised qualifications, training provider updates</li><li><strong>Events &amp; Community:</strong> Yacht chef competitions, industry conferences, networking events, association news</li><li><strong>Insurance &amp; Legal:</strong> P&amp;I changes affecting galley operations, liability updates, contract developments</li><li><strong>Technology &amp; Equipment:</strong> Marine galley equipment standards, provisioning platform changes, relevant proven tech</li></ul>
+<h2>Red Lines</h2>
+<ul><li>No lifestyle coverage disguised as industry news</li><li>No broker/charter marketing dressed as market analysis</li><li>No unverified salary claims — cite the source or don't publish</li><li>No "the future of yacht cheffing" speculation — report what's happening, not what might</li><li>No coverage of yacht shows unless there's a specific chef-relevant development</li><li>No sponsored content or preferred agency promotion</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Intelligence · 08</span>
+                    <a href="content/template/Template%20-%20Intelligence%20-%2008%20Trade%20Winds.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #1f5a3a;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">14</span> · Intelligence</span>
+                    <span class="tcard__words">100–300 words · &lt; 1 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Dispatch</h3>
+                    <span class="tcard__status status--new">New · ready</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Wire</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Scientist (verified, sourced)</b></dd>
+                    <dt>Support</dt><dd>Yacht Chef (the so-what), Grandmother (the calm)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Telex green · bulletin</dd>
+                    <dt>Signature</dt><dd>First sentence stands alone — if everything after disappeared, it would still inform</dd>
+                    <dt>Forbidden</dt><dd><em>Press-release rewrite, "buzzing about," clickbait, "everyone is talking"</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>The Japan Ikejime Federation has revised its recommended bleeding time for Pacific bluefin from 45 to <mark>62 minutes</mark>. The new figure aligns with 2024 Toyosu core-temperature data. <strong>For the working chef:</strong> if you age tuna over 24 hours, add the extra time to your protocol — the difference shows up in inosinate yield.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A wire-service correspondent who knows the kitchen. State the news, place it, move on. No headline editorialising. No padding. The reader has 90 seconds before service starts again — give them what changed and what to do about it.</p>
+<p><strong>Rhythm:</strong> Lead with the news → place it → say what it means for someone holding a knife → cite. Done.</p>
+<p><strong>Word Count:</strong> 100–300 · <strong>Read Time:</strong> under 60 seconds</p>
+<p><strong>Where it lives:</strong> The Bridge (alongside Signal Fire, Horizon, Trade Winds). Use Dispatch when the item is too small to support a full Horizon or Trade Winds piece on its own, but specific enough that it shouldn't get buried in a Weekly Brief.</p>
+<hr>
+<pre><code class="lang-yaml">---
+title: "[Headline as it appears on the dispatch list]"
+date: YYYY-MM-DD
+category: dispatch
+tags: [dispatch, [domain], [region], [topic]]
+read_time: 1
+template: 14
+status: review
+---</code></pre>
+<hr>
+<h2>[HEADLINE: State the news flat. No "explosive," no "groundbreaking." If the news isn't interesting on its own, it isn't a Dispatch.]</h2>
+<p><em>[Date] · [Location / Scope]</em></p>
+<p><strong>[The lead.]</strong> [1–2 sentences. What happened. Named people, named places, named numbers. The first sentence stands alone — if everything after it disappeared, this would still tell the chef something true.]</p>
+<p>[2–3 sentences. Context or implications. What this changes. Who's affected. The specific detail that earns the reader past the headline — a temperature, a percentage, a date, a price, a vessel-size threshold.]</p>
+<p><strong>For the working chef:</strong> [1–2 sentences. The "so what." A specific action, a thing to watch for, a planning beat to update. If no action is needed, say so plainly: "Monitor only."]</p>
+<p><strong>Source:</strong> [Named outlet, official announcement, study, or wire service with date and link]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Headline states the news directly — no editorialising, no superlatives?</li><li>[ ] First sentence stands alone — would still inform if everything after it were cut?</li><li>[ ] At least one specific number, date, or named entity?</li><li>[ ] The "so what" is concrete, not abstract?</li><li>[ ] Source is named and linkable — not "reports suggest" or "sources say"?</li><li>[ ] Under 300 words including headline?</li></ul>
+<h2>Red Lines</h2>
+<ul><li>No press-release rewrites — find the angle a publicist wouldn't write</li><li>No "the culinary world is buzzing about..." — the culinary world is working</li><li>No clickbait framing — if a Dispatch needs a hook, it isn't worth running</li><li>No unverified rumours, gossip, or "everyone's talking about"</li><li>No restaurant or product plugs disguised as news</li><li>No multi-beat pieces — if it has two distinct news items, run two Dispatches or upgrade to a Horizon piece</li></ul>
+<h2>When to Use Dispatch vs. Other Templates</h2>
+<table class="tcard__table"><thead><tr>
+<th>Situation</th>
+<th>Template</th>
+<th>Why</th>
+</tr></thead><tbody>
+<tr>
+<td>Single news item, ≤300 words</td>
+<td><strong>Dispatch (#14)</strong></td>
+<td>Smallest unit. Fast in, fast out.</td>
+</tr>
+<tr>
+<td>Chef news with technical depth, 200–400 words</td>
+<td>The Horizon (#07)</td>
+<td>Needs a "Detail Worth Knowing" paragraph.</td>
+</tr>
+<tr>
+<td>Industry / regulatory news with action steps, 250–500 words</td>
+<td>Trade Winds (#08)</td>
+<td>Has a Key Details table and a "Your Move."</td>
+</tr>
+<tr>
+<td>One chef, one transferable idea, 500–800 words</td>
+<td>Signal Fire (#06)</td>
+<td>The story IS the article.</td>
+</tr>
+<tr>
+<td>Weekly aggregation across categories</td>
+<td>Weekly Brief (#12)</td>
+<td>Pulls from everything above.</td>
+</tr>
+</tbody></table>
+<h2>Selection Criteria</h2>
+<ul><li><strong>Run it:</strong> A new study from an indexed journal worth a paragraph; a regulation effective in &lt;90 days; an award where the technique behind it is interesting; a price or supply event that changes provisioning maths; a retirement, opening, or move of consequence to the trade.</li><li><strong>Kill it:</strong> Anything that reads like a recruitment ad, a brand campaign, or a content-marketing post. Anything where "the news" is that someone announced something — the news is what's actually changing.</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Intelligence · 14</span>
+                    <a href="content/template/Template%20-%20Intelligence%20-%2014%20Dispatch.md">View .md →</a>
+                </footer>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="tcluster">
+        <aside class="tcluster__head dm-skip">
+            <h2 class="tcluster__name">III · Operations</h2>
+            <div class="tcluster__sub">Workflow · Provisioning · Pantry · Yacht-life intel</div>
+        </aside>
+        <div class="tgrid">
+            <article class="tcard" style="--card-color: #365972;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">09</span> · Operations</span>
+                    <span class="tcard__words">150–250 words · 1 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Tight Ship</h3>
+                    <span class="tcard__status status--dormant">Dormant · 0 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Systems Engineer</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Yacht Chef</b></dd>
+                    <dt>Support</dt><dd>Scientist (the principle), Grandmother (the warning, the catch)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Schematic blue · engineering draft</dd>
+                    <dt>Signature</dt><dd>Before/After proof table + "The Catch" (honest limitation)</dd>
+                    <dt>Forbidden</dt><dd><em>Productivity-bro language, "hack," "10x," gadget evangelism</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p><strong>The Pain.</strong> Two trays per service moved by hand from cold-pass to plating block. <strong>The Move.</strong> Single vertical rack on a 30-degree casters base. <strong>The Proof:</strong> 40 min saved on plate-up, four fewer crew movements per cover. <strong>The Catch:</strong> only fits boats with bulkhead clearance over <mark>1.85 m</mark>. Below that, you're back to two trays.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A systems engineer who cooks. No fluff. Problem → solution → proof. If it can't be quantified, it doesn't belong here.</p>
+<p><strong>Rhythm:</strong> Name the pain. Fix the pain. Prove you fixed it. Warn what can break.</p>
+<p><strong>Word Count:</strong> 150-250 · <strong>Read Time:</strong> 1 min</p>
+<hr>
+<h2>[PROTOCOL NAME]</h2>
+<p><em>[Category: Prep / Service / Storage / Cleanup / Provisioning / Equipment / Workflow]</em></p>
+<p><strong>The Pain:</strong> [One sentence. A specific frustration they feel daily or weekly. Not abstract — visceral.]</p>
+<p><strong>The Protocol:</strong></p>
+<ol><li>[Action — verb first, specific, measurable]</li><li>[Action]</li><li>[Action]</li><li>[Action]</li><li>[Action — maximum 5 steps. If it needs more, split into two protocols.]</li></ol>
+<p><strong>Why It Works:</strong> [One paragraph. The principle — workflow science, thermodynamics, ergonomics, cognitive load reduction. Not just "it's faster." Why is it faster?]</p>
+<p><strong>The Proof:</strong></p>
+<table class="tcard__table"><thead><tr>
+<th>Metric</th>
+<th>Before</th>
+<th>After</th>
+</tr></thead><tbody>
+<tr>
+<td>Time</td>
+<td>[X minutes]</td>
+<td>[Y minutes]</td>
+</tr>
+<tr>
+<td>Steps/movements</td>
+<td>[Count]</td>
+<td>[Count]</td>
+</tr>
+<tr>
+<td>Error rate</td>
+<td>[Frequency]</td>
+<td>[Frequency]</td>
+</tr>
+</tbody></table>
+<p><strong>The Catch:</strong> [What can go wrong. When NOT to use this. An honest limitation. This builds trust.]</p>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Solves a problem they face daily or weekly?</li><li>[ ] Implementable today with zero new equipment?</li><li>[ ] Includes at least one specific number (time, quantity, percentage)?</li><li>[ ] Acknowledges a real limitation?</li><li>[ ] Tested personally?</li></ul>
+<h2>Category Rotation</h2>
+<ul><li>Prep workflow (mise, batch cooking, staging)</li><li>Station organization (zones, tray systems, labeling)</li><li>Service timing (hold strategies, fire sequences, delay management)</li><li>Provisioning (shopping routes, ordering systems, inventory)</li><li>Cleaning &amp; maintenance (equipment care, deep clean protocols)</li><li>Storage (vacuum sealing, rotation, small-space solutions)</li><li>Crew integration (communication systems, handoff protocols)</li><li>Waste reduction (trim utilization, portion control, stock cycling)</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Operations · 09</span>
+                    <a href="content/template/Template%20-%20Operations%20-%2009%20Tight%20Ship.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #5a6b3a;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">10</span> · Operations</span>
+                    <span class="tcard__words">2,000–3,500 words · 8–14 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Port Call</h3>
+                    <span class="tcard__status status--live">Live · 4 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Local Fixer</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Yacht Chef</b></dd>
+                    <dt>Support</dt><dd>Grandmother (the named market stand, the rapport line), Scientist (verified phone + maps, double-cross sourcing)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Waxed canvas · harbour green</dd>
+                    <dt>Signature</dt><dd>Three Berths grid + go-and-see-and-deliver gold pattern + Watch-outs by Season &amp; Event</dd>
+                    <dt>Forbidden</dt><dd><em>Travel-blog "hidden gems," "must-visit," nameless market mention</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>Rialto Pescheria — ask for <strong>Marco at the third stall on the right</strong> for line-caught seabass; he holds back the day-boat tag. Open <mark>07:30</mark>, but the good fish is gone by 08:30. Cash. <em>“Dimmi cosa è arrivato stamattina”</em> — if you want him to reach behind the counter.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>HTML template:</strong> <code>articles/_template-port-call.html</code> — copy this for every new port. Long-form prose + foldable sections + inline caution badges + watch-outs by season. Mirrors the Venice terroir guide's reading experience but for provisioning intel. Reference implementation: <code>articles/provisioning-miami-ftl.html</code>.</p>
+<p><strong>Polish conventions (mirror across every port — applied to Miami 2026-04-28):</strong></p>
+<ul><li>The opening "Four things to set up on day one" / "Three things to set up before arrival" paragraph uses <strong>strong-bolded numbers</strong>: <code>&lt;strong&gt;(1)&lt;/strong&gt; … &lt;strong&gt;(2)&lt;/strong&gt; … &lt;strong&gt;(3)&lt;/strong&gt; …</code> — visually scannable, not flat parentheses.</li><li>The follow-on warning sentence is <code>&lt;p&gt;&lt;strong&gt;The warning.&lt;/strong&gt; If you …&lt;/p&gt;</code> — <strong>period after "warning", not colon.</strong> Same for any "The bottom line." / "The hack." sentence-leads.</li><li>Funfact and pull-quote boxes use the <strong><code>pc-funfact</code></strong> and <strong><code>pc-pullq</code></strong> class names (the unprefixed <code>funfact</code> / <code>pullq</code> are kept as aliases but the prefixed forms are canonical for port-call articles).</li><li>Inline cross-references to suppliers in the prose use <code>&lt;a href="#p-{id}" style="color:var(--color-sea); text-decoration: underline;"&gt;Name&lt;/a&gt;</code> — the underline matters; flat sea-coloured text reads as muted, not as a link.</li><li>The quicknav strip ends with <code>&lt;a href="#watchouts" class="warn"&gt;⚠ Watch-outs&lt;/a&gt;</code> (red, bold) — the only nav item that breaks the gold accent.</li><li>Use proper HTML entities: <code>&amp;mdash;</code> for em-dashes, <code>&amp;rsquo;</code> for curly apostrophes, <code>&amp;euro;</code> for €, <code>&amp;ndash;</code> for en-dashes in price ranges. Avoid raw "—" / "'" / "€" / "–" in HTML files — they survive but the entity form is safer across editors.</li></ul>
+<p><strong>Voice:</strong> The chef who has provisioned this port three times and is handing you the shortcut. No options paralysis — one or two picks per category, tested, with the move that saves you time or money. Direct, supplier-specific, price-conscious.</p>
+<p><strong>Contact-detail rule (mandatory since 2026-05-01) — double-cross every supplier:</strong> Every supplier entry — Tier 1, 2, 3, companion file, all of them — MUST carry a verified <strong>phone number</strong> and a <strong>Google Maps link</strong> (<code>https://www.google.com/maps/search/?api=1&amp;query=...</code> or a <code>?q=lat,lng</code> form). Both must be cross-checked from at least two independent sources (official site + TripAdvisor / Localshop / camera di commercio / direct call) before publication. If a number cannot be double-confirmed, mark it <code>phone: TBC — verify</code> and ship without it rather than print a wrong digit. Maps link is non-negotiable: a chef on the dock with no Italian and 40 min before service must be able to tap the entry and walk. WhatsApp number, when different from the landline, is added in addition (e.g., <code>+39 041 522 3028 · WhatsApp +39 347 603 2087</code>). The data file schema (<code>port-call-{city}-data.js</code>) already has <code>phone:</code> and <code>maps:</code> fields — fill them; never leave them empty for a published entry.</p>
+<p><strong>"Go-and-see + deliver" rule (mandatory since 2026-05-01) — the gold pattern:</strong> When a supplier lets the chef <strong>walk in, inspect the produce/fish, build rapport, AND</strong> get a morning delivery to the boat, that supplier is gold and MUST be surfaced in the Port Call article — not buried in the companion file. Blind-order-only suppliers are second-tier; market-only (no delivery) suppliers are third-tier. The Port Call must always answer: "Who can I see in person AND who will deliver to my dock?" If a port has no go-and-see+deliver supplier, say so explicitly in the Bottom Line — the chef needs to know that gap. Every go-and-see+deliver entry must carry: walk-in hours, delivery cutoff (e.g., "WhatsApp by 18:00 D-1"), morning delivery window, dock/gate access notes, and a one-line "be specific" reminder (variety, ripeness, count — never "good tomatoes").</p>
+<p><strong>Market-stand rule (mandatory since 2026-04-29):</strong> Every time the article points the reader to an open-air or covered market (Mercato di Rialto, Marché Forville, Mercat de la Boqueria, Pescheria, halles, fish auction quay, farmers' market, etc.) it MUST also name the <strong>specific stand / vendor / counter</strong> to ask for — and what that stand is the best at. "Go to Rialto Pescheria" is template fail. "Go to Rialto Pescheria — ask for <strong>Marco at the third stall on the right</strong> for line-caught seabass; he holds back the day-boat tag" is the standard.</p>
+<p>For each market mentioned, the article must answer:</p>
+<ul><li><strong>Which stand</strong> (name of vendor, family, stall number, signage, or "third on the left from the X entrance" — whatever lets a stranger find it)</li><li><strong>What that stand is best at</strong> (one or two categories — fish only, or shellfish + day-boat fish, or heritage breed pork only, etc.)</li><li><strong>What to ask for by name</strong> (species, cut, breed, named fisherman/farmer, vintage)</li><li><strong>When to arrive</strong> (open time vs the time the good stuff is gone — markets fail readers who arrive at "open")</li><li><strong>Cash or card</strong> (most market stands are cash; budget accordingly)</li><li><strong>One useful rapport line</strong> in the local language if it changes treatment ("dimmi cosa è arrivato stamattina", "qu'est-ce qui est tombé du bateau ce matin", etc.)</li></ul>
+<p>Do not list a market generically. If you do not yet know which stand, the article is not ready — go find out, or cut the market reference and replace it with a direct supplier the chef can rely on. <strong>A nameless market is options paralysis on the dock with a guest list waiting.</strong></p>
+<p><strong>Structure (mirrors the Venice terroir Guide):</strong> Hero · quicknav strip · short brief · <strong>Three Berths</strong> grid (top picks, like Venice's "Three Tables") · foldable sections (Wholesale · Fish · Meat · Specialty · Bread · Produce · Asian · Wine · Agents/Logistics) · <strong>Watch-outs by Season &amp; Event</strong> (city-wide events only) · Bottom Line. Every entry is a <code>&lt;details class="pfold"&gt;</code>; every section is a <code>&lt;details class="sfold"&gt;</code>. Open by default for the most-read sections (Three Berths, Watch-outs, Bottom Line). <strong>No standalone "What to Buy / Local Gems / Seasonal Specialties" section</strong> — sparkle that intel through the relevant supplier paragraphs (with red <code>cau--high</code> pills for tight windows or fragile harvests).</p>
+<p><strong>Inline caution badges (mandatory):</strong> Every entry that has an operational gotcha gets a small inline <code>&lt;span class="cau cau--high|cau--med|cau--info" data-fix="..."&gt;...&lt;/span&gt;</code> right next to its name. The label is short ("Cash · 60-min window", "Closed Sun", "Boat Show Surge"); the <code>data-fix</code> attribute holds the workaround in plain English. Hover reveals the workaround as a dark tooltip. Three severities:</p>
+<ul><li><code>cau--high</code> (red) — will break the day if ignored</li><li><code>cau--med</code> (amber) — annoying, recoverable</li><li><code>cau--info</code> (blue) — good to know, low impact</li></ul>
+<p>Examples:</p>
+<ul><li><em>Haulover Marina:</em> <code>&lt;span class="cau cau--high" data-fix="Cash only — sometimes the only option. Carry $200–500."&gt;Cash · 60-min window&lt;/span&gt;</code></li><li><em>Costco Business Center:</em> <code>&lt;span class="cau cau--med" data-fix="Closed Sundays year-round. Plan the bulk run for Mon–Sat morning."&gt;Closed Sun&lt;/span&gt;</code></li><li><em>Restaurant Depot:</em> <code>&lt;span class="cau cau--info" data-fix="First-time setup at the FL branch takes 15–30 min. Bring boat docs + business card + captain's ID."&gt;Day-1 Setup&lt;/span&gt;</code></li></ul>
+<p><strong>Rhythm:</strong> Local reality → Three berths → Foldable sections by category (with seasonal specialties woven inline + red <code>cau--high</code> pills for tight windows) → <strong>Watch-outs by Season &amp; Event</strong> (city-wide events only) → Bottom line.</p>
+<p><strong>Word Count:</strong> 2,000-3,500 · <strong>Read Time:</strong> 8-14 min</p>
+<p><strong>Design principle:</strong> A chef should be able to scan this on a phone, pick their tier based on time available, and move. Each tier is self-contained — the 24-hour chef never has to read the time-rich section. One or two suppliers per slot per tier. No decision fatigue.</p>
+<p><strong>Companion file:</strong> Every Port Call article has a companion file: <code>[city]-suppliers-extended.md</code> in the same directory. The article is the shortcut. The companion file is the encyclopedia.</p>
+<p><strong>Watch-outs section (mandatory since 2026-04-28, refined 2026-04-30):</strong> Every Port Call MUST include a <strong>⚠ Watch-outs by Season &amp; Event</strong> section, but <strong>keep it short</strong> — the section is reserved for <strong>city-wide / port-wide events</strong> that affect logistics across multiple suppliers (festival lock-outs, weather windows, public-holiday closures, hurricane watch). It is NOT a catalogue of seasonal produce.</p>
+<p><strong>Seasonal product / single-supplier gotchas live INLINE,</strong> as a red <code>&lt;span class="cau cau--high" data-fix="..."&gt;...&lt;/span&gt;</code> pill on the supplier or market entry where the chef is already reading — never as a standalone card. The renderer filters out <code>low</code> and <code>info</code> automatically; further trim <code>medium</code> items that are really single-supplier seasonality.</p>
+<p><strong>No dedicated "What to Buy / Local Gems" section.</strong> Seasonal specialties (castraure, moeche, white asparagus, Cartizze Prosecco, summer truffle, etc.) are woven into the relevant supplier paragraph — what it is, when, how to use it, and a red caution pill if the window is tight or the harvest is fragile. A standalone "What to Buy" section duplicates intel and bloats the page.</p>
+<p>Two examples that justify the split:</p>
+<ul><li><em>Venice — Biennale opening week (high, in section):</em> "Water taxis fully booked. Hotels block the entire Consorzio Motoscafi fleet 2–3 weeks ahead. Walk-up motoscafo near impossible. Workaround: book 14 days ahead in writing with deposit, vaporetto + carrello fallback, marina portage from Piazzale Roma."</li><li><em>Venice — castraure (inline, NOT in section):</em> <code>&lt;span class="cau cau--high" data-fix="Castraure season is ~10 days then over — last week of April into the first week of May. Phone I Sapori di Sant'Erasmo +39 347 059 4687 to confirm the year's window before promising the dish on a printed menu."&gt;Castraure: 10-day window, ends abruptly&lt;/span&gt;</code> — sits on the Erbaria entry where the chef is already deciding what to buy.</li></ul>
+<p>The dividing line: if it affects <strong>multiple suppliers across the port at once</strong>, it's a watch-out. If it lives at <strong>one supplier or one ingredient</strong>, it's an inline red pill on that entry.</p>
+<p>Real examples that ARE watch-outs:</p>
+<ul><li><em>Venice</em> — water taxis fully booked during Biennale opening week / Mostra; Giudecca canal closed for the Redentore pontoon bridge in July; acqua alta floods half the city Nov–Jan; Ferragosto closes half the trattorie 2–3 weeks; Carnevale jams Piazza San Marco.</li><li><em>Miami / FTL</em> — Boat Show late Oct/early Nov locks the entire port; Art Basel first week of December saturates Wynwood/South Beach; hurricane season strips supermarket shelves in 24 h on a named-storm watch; Spring Break March chaos.</li><li><em>St. Barth</em> — eggs and dairy disappear from the island around New Year; produce arrives only 2× a week by ferry; restaurant reservations need 6 weeks for the Christmas/NYE window.</li></ul>
+<p>Real examples that are NOT watch-outs (inline red pills only):</p>
+<ul><li>Castraure 10-day window (Venice → Erbaria entry)</li><li>Moeche fragile harvest (Venice → Pescheria entry)</li><li>Cartizze single-cru Prosecco availability (Venice → Mascari entry)</li><li>Single-supplier closing days (Pescheria closed Sun + Mon → on the Pescheria entry, not in the section)</li></ul>
+<p>Each watch-outs entry: <strong>title · when · severity (high/medium) · what (concrete consequence across multiple suppliers) · workaround (concrete fix with numbers, lead times, names)</strong>. Author the entries in the data file's <code>WATCHOUTS = [...]</code> array — see <code>assets/js/port-call-venice-data.js</code> and <code>assets/js/port-call-miami-ftl-data.js</code> for the schema. The shared renderer (<code>port-call-render.js</code>) emits them automatically into any <code>#pcv-watchouts</code> container.</p>
+<p>Cross-check before publishing: <strong>the dedicated Watch-outs section is short</strong> (3–6 entries, all city-wide events). Anything seasonal-but-single-supplier was reclassified as an inline <code>.cau cau--high</code> pill and appears next to the supplier in its section. Every workaround includes a concrete number / phone / supplier name. <strong>Trim aggressively</strong> — the goal is "the things that will actually break your day across the port", not an inventory of every gotcha.</p>
+<hr>
+<pre><code class="lang-yaml">---
+title: "Provisioning [City]: The One-Page Playbook"
+date: YYYY-MM-DD
+category: port-call
+tags: [provisioning, [region], suppliers, yacht-specific]
+read_time: [estimate]
+template: 10
+status: review
+badges:
+  season: [season]
+  region: [region]
+  type: provisioning-guide
+companion: "[city]-suppliers-extended.md"
+---</code></pre>
+<hr>
+<h2>OPENING — The Local Reality (60-120 words)</h2>
+<ul><li>One sentence: what kind of provisioning port is this? (Hub, transit stop, bare minimum, logistical trap)</li><li>The geography that matters (mainland vs island, market vs industrial zone, cars allowed vs not)</li><li>Chandler/agent markup range in this port and what self-sourcing saves on a typical provision</li><li>The single most important thing to know before you start</li></ul>
+<hr>
+<h2>THE THREE-TIER DECISION</h2>
+<p>Pick the tier that matches the time you actually have. Do not mix tiers — the economics and logistics break down.</p>
+<table class="tcard__table"><thead><tr>
+<th>Tier</th>
+<th>Time window</th>
+<th>Best for</th>
+<th>Typical markup / loss</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Tier 1 — Agent Run</strong></td>
+<td>Under 24 hours dock-to-charter</td>
+<td>Fast turnarounds, late arrivals, guest preferences change</td>
+<td>15-22% over self-source</td>
+</tr>
+<tr>
+<td><strong>Tier 2 — Efficient Run</strong></td>
+<td>2-3 days</td>
+<td>Standard turnaround, one chef, minimal help</td>
+<td>3-7% over best price, saves a full day of driving</td>
+</tr>
+<tr>
+<td><strong>Tier 3 — Artisan Map</strong></td>
+<td>4+ days, or provisioning for a long charter</td>
+<td>Premium guest list, flagship menu, quality-first</td>
+<td>-10 to +5% vs Tier 2, better quality end-to-end</td>
+</tr>
+</tbody></table>
+<hr>
+<h1>TIER 1 — 24 HOURS: THE AGENT RUN</h1>
+<p>You docked at 14:00. Charter starts tomorrow evening. You are not leaving the boat. This is when the agent earns the markup — if you pick the right one.</p>
+<h2>The pick</h2>
+<p><strong>Primary agent:</strong> <strong>[Agent Name]</strong> — [Contact + WhatsApp]. [Markup %]. [Lead time to confirm]. [Delivery cutoff]. [One line on what they actually do well — produce sourcing, meat quality, guest special orders, off-hours delivery, etc.]</p>
+<p><strong>Backup agent:</strong> <strong>[Agent Name]</strong> — [Contact]. [When to use instead — e.g., "cheaper on dry store, weaker on fish" or "only one who delivers after 20:00"].</p>
+<h2>What you pay for (the quality vs price math)</h2>
+<table class="tcard__table"><thead><tr>
+<th>Category</th>
+<th>Agent quality level</th>
+<th>vs best self-source</th>
+<th>Worth it?</th>
+</tr></thead><tbody>
+<tr>
+<td>Produce</td>
+<td>[Premium / standard / retail]</td>
+<td>[+X%]</td>
+<td>[Yes / no / only for X]</td>
+</tr>
+<tr>
+<td>Fish &amp; seafood</td>
+<td>[Premium / standard / retail]</td>
+<td>[+X%]</td>
+<td>[Yes / no / only for X]</td>
+</tr>
+<tr>
+<td>Meat &amp; protein</td>
+<td>[Premium / standard / retail]</td>
+<td>[+X%]</td>
+<td>[Yes / no / only for X]</td>
+</tr>
+<tr>
+<td>Dry store</td>
+<td>[Premium / standard / retail]</td>
+<td>[+X%]</td>
+<td>[Yes / no — usually not, too much markup on commodity]</td>
+</tr>
+<tr>
+<td>Wine &amp; spirits</td>
+<td>[Premium / standard / retail]</td>
+<td>[+X%]</td>
+<td>[Yes / no]</td>
+</tr>
+</tbody></table>
+<h2>The 24-hour sequence</h2>
+<ol><li><strong>T-24h:</strong> Send the full list by WhatsApp + PDF. Specify brands where brand matters, specs where it matters (size, grade, vintage, cut). Do not say "good steak" — say "Black Angus striploin, 2.5-3kg per piece, dry-aged 28+ days."</li><li><strong>T-18h:</strong> Confirm price and substitutions in writing. Get a quote line-item, not a lump sum.</li><li><strong>T-12h:</strong> Confirm delivery window and dock/gate access.</li><li><strong>T-0 (delivery):</strong> Check every crate against the list on the dock, before signing. Refuse anything below spec.</li></ol>
+<blockquote><p><strong>The move:</strong> [The insider tip for this port. e.g., "Send the list 72h before arrival even if it's a 24h job — the agent uses the extra time to source, not to bill you more."]</p></blockquote>
+<p><strong>Red flags:</strong> [Agents or services to avoid in this port, with reason — no names of individuals unless public, but specific company names OK]</p>
+<hr>
+<h1>TIER 2 — 2-3 DAYS: THE EFFICIENT RUN</h1>
+<p>You have two or three days. You will do the work yourself (or with one crew helper). The goal is the <strong>least displacement</strong> — fewest stops, shortest driving, best quality at each stop. Online where it beats in-person. In-person where it beats online.</p>
+<h2>The route</h2>
+<p><strong>Total stops:</strong> [N] · <strong>Total driving:</strong> [X km / Y hours] · <strong>Key constraint:</strong> [e.g., "cars cannot enter historic centre — everything via mainland + one boat transfer"]</p>
+<table class="tcard__table"><thead><tr>
+<th>Order</th>
+<th>Category</th>
+<th>Where</th>
+<th>Mode</th>
+<th>Time</th>
+<th>The "why here"</th>
+</tr></thead><tbody>
+<tr>
+<td>1</td>
+<td>General / one-stop</td>
+<td>[Supplier]</td>
+<td>[Online / in person]</td>
+<td>[30 min]</td>
+<td>[Covers X% of list in one stop]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Dry store + pantry</td>
+<td>[Supplier]</td>
+<td>[Online / in person]</td>
+<td>[45 min]</td>
+<td>[Case lots, best price on commodity]</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Meat &amp; protein</td>
+<td>[Supplier]</td>
+<td>[Online / in person]</td>
+<td>[60 min]</td>
+<td>[Vac-pack, portioning, single best quality in the port]</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Fish &amp; seafood</td>
+<td>[Supplier]</td>
+<td>[Online / in person]</td>
+<td>[45 min]</td>
+<td>[Market timing — arrive at X time]</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Produce &amp; fruit</td>
+<td>[Supplier]</td>
+<td>[Online / in person]</td>
+<td>[30 min]</td>
+<td>[Season/local note]</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Bread &amp; bakery</td>
+<td>[Supplier]</td>
+<td>[Online / in person]</td>
+<td>[15 min]</td>
+<td>[Lead time for volume]</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Wine &amp; spirits</td>
+<td>[Supplier]</td>
+<td>[Online / in person]</td>
+<td>[30 min]</td>
+<td>[Duty-free advantage / distributor]</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Ethnic &amp; specialty</td>
+<td>[Supplier / "not available here"]</td>
+<td>[Online / in person]</td>
+<td>[30 min]</td>
+<td>[Last reliable source for X before next stop]</td>
+</tr>
+</tbody></table>
+<h2>Per-stop detail</h2>
+<p><em>Repeat this block for each row above.</em></p>
+<h3>[CATEGORY NAME] — [Supplier]</h3>
+<p><strong>Mode:</strong> [Online — Platform/website] OR [In person — Address, hours] <strong>What they do well:</strong> [One line] <strong>What to skip:</strong> [One line — do not buy X here] <strong>Marina delivery:</strong> [Yes / No / conditional] <strong>Lead time:</strong> [e.g., "48h for bulk orders"] <strong>Payment:</strong> [Card / cash / account / business account needed]</p>
+<blockquote><p><strong>The move:</strong> [The efficiency tip. e.g., "Place the online order at T-4 days, pick up dry store and meat together on D-2 morning — one trip, one invoice."]</p></blockquote>
+<hr>
+<h2>What the efficient run leaves out</h2>
+<p>Honest list: the suppliers and quality levels you will not reach at this tier. If any of these matter for this charter, escalate to Tier 3.</p>
+<ul><li>[e.g., "Dry-aged beef beyond 28 days — requires pre-order from specialist butcher"]</li><li>[e.g., "Line-caught local tuna — requires 04:30 dawn run to Chioggia"]</li><li>[e.g., "Artisan sourdough in volume — baker needs 72h for &gt;10 loaves"]</li></ul>
+<hr>
+<h1>TIER 3 — TIME-RICH: THE ARTISAN MAP</h1>
+<p>You have four or more days. The guest list justifies the effort. This tier is about <strong>only the best of the best</strong> — the boucher who hangs his own, the fisherman who lands at 05:00 and sells direct, the épicier whose family has stocked the same shelves for 80 years.</p>
+<p>Every entry below includes two options: <strong>delivery</strong> (they come to you, with full detail) and <strong>go-to</strong> (you travel to them). Pick the mode that fits the shipment size and your schedule.</p>
+<h2>FISHMONGER / PESCHERIA</h2>
+<p><strong>Go-to:</strong> <strong>[Shop or quay name]</strong> — [Address]. [Hours]. [What they land / stock]. [Cash only / card]. [Best day of week]. <strong>If it's a multi-stand market — which stand:</strong> [Vendor name OR stall number OR "third on the right from the canal entrance"]. <strong>Best at:</strong> [day-boat seabass / shellfish only / cuttlefish + octopus / etc.]. <strong>When to arrive:</strong> [opens at X but the good stuff is gone by Y]. <strong>Rapport line:</strong> [e.g., "dimmi cosa è arrivato stamattina"]. What to ask for by name: [Species, cuts, specific fisherman if relevant].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [€X or Xkg]. <strong>Lead time:</strong> [hours]. <strong>Delivery days:</strong> [M/T/W/T/F/S]. <strong>Delivery window:</strong> [e.g., 07:00-10:00]. <strong>Contact:</strong> [WhatsApp / phone / email]. <strong>Vehicle:</strong> [refrigerated truck / insulated box / own boat]. <strong>Vac-pack included?</strong> [Y/N]. <strong>Invoicing:</strong> [business account / per-delivery invoice].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "Ask for the day-boat tag — they write the vessel name on the box. Refuse anything without it."]</p></blockquote>
+<hr>
+<h2>BUTCHER / MACELLERIA</h2>
+<p><strong>Go-to:</strong> <strong>[Shop]</strong> — [Address]. [Hours]. [Specialty cuts, ageing programme, source farms]. [Lead time for whole primals or portioned vac-pack]. <strong>If it's a market hall (Boqueria, Marché des Capucins, Mercato di Mezzo, etc.) — which counter:</strong> [Family name or stall sign]. <strong>Best at:</strong> [heritage-breed pork / dry-aged beef / lamb only / charcuterie cured on site]. What to ask for by name: [Cut, ageing days, breed, farm if named on the shop board].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [€X or Xkg]. <strong>Lead time:</strong> [e.g., "72h for dry-aged, 24h for standard cuts"]. <strong>Delivery days:</strong> [specify]. <strong>Delivery window:</strong> [hours]. <strong>Contact:</strong> [WhatsApp / phone]. <strong>Vac-pack and portioning:</strong> [included / extra charge / specify per cut]. <strong>Blast chill available:</strong> [Y/N]. <strong>Invoicing:</strong> [terms].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "Call first, do not email. Speak the cuts in the local language — the form matters."]</p></blockquote>
+<hr>
+<h2>FISHERMAN DIRECT / QUAYSIDE</h2>
+<p><strong>Go-to:</strong> <strong>[Quay, port or auction]</strong> — [Address]. [Auction or open-sale time]. [What boats come in when]. [Cash / card]. [Language spoken]. <strong>Which boat / which name:</strong> [Specific vessel name(s), captain's first name, or the cooperative window to ask at]. <strong>Best at:</strong> [what THIS boat consistently lands — e.g., "day-boat St-Pierre and red mullet, never tuna"]. <strong>When to be there:</strong> [the realistic window — auction is X but small sales open at Y].</p>
+<p><strong>Delivery:</strong> [Rare / yes / no].</p>
+<ul><li>If yes: <strong>Who arranges:</strong> [the cooperative / a named wholesaler / a buyer's agent]. <strong>Minimum order:</strong> [kg]. <strong>Lead time:</strong> [e.g., "Order the evening before, delivered dockside by 09:00"]. <strong>Delivery window:</strong> [hours]. <strong>Contact:</strong> [phone / WhatsApp]. <strong>Packaging:</strong> [ice box, vac-pack, whole/gutted/filleted]. <strong>Invoicing:</strong> [terms].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "The auction is pros only — go with the agent or the cooperative, not solo."]</p></blockquote>
+<hr>
+<h2>ÉPICERIE FINE / DELICATESSEN</h2>
+<p><strong>Go-to:</strong> <strong>[Shop]</strong> — [Address]. [Hours]. [What's legendary here — the one or two categories worth the trip]. [Gift-wrap for guest items: Y/N].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [€X]. <strong>Lead time:</strong> [hours/days]. <strong>Delivery days:</strong> [specify]. <strong>Delivery window:</strong> [hours]. <strong>Contact:</strong> [WhatsApp / phone / email / online portal]. <strong>Packaging:</strong> [ambient / refrigerated / both]. <strong>Invoicing:</strong> [terms]. <strong>Notes:</strong> [e.g., "will pre-portion cheese and charcuterie to spec if asked 48h ahead"].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "Ask for the owner, name the yacht, hand over a menu — you will be treated differently the second time."]</p></blockquote>
+<hr>
+<h2>ETHNIC &amp; SPECIALTY</h2>
+<p><strong>Go-to:</strong> <strong>[Shop]</strong> — [Address]. [Hours]. [Cuisine / region covered]. [What's reliably stocked vs what to bring from elsewhere].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [€X]. <strong>Lead time:</strong> [hours]. <strong>Delivery days:</strong> [specify]. <strong>Delivery window:</strong> [hours]. <strong>Contact:</strong> [WhatsApp / phone]. <strong>Packaging:</strong> [specify]. <strong>Invoicing:</strong> [terms].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "The halal butcher two doors down has better lamb than the supermarket — different counter, same building."]</p></blockquote>
+<hr>
+<h2>BAKER / PANIFICIO</h2>
+<p><strong>Go-to:</strong> <strong>[Bakery]</strong> — [Address]. [Hours]. [Specialty breads, flours used, sourdough or industrial]. [Volume lead time].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [loaves or €X]. <strong>Lead time:</strong> [e.g., "72h for 10+ loaves or specialty shapes"]. <strong>Delivery days:</strong> [specify — note early morning]. <strong>Delivery window:</strong> [hours, typically 05:00-08:00]. <strong>Contact:</strong> [phone / WhatsApp]. <strong>Packaging:</strong> [paper, cloth, crates]. <strong>Invoicing:</strong> [terms].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "Freeze half the volume the day you take delivery — the good stuff goes stale fast."]</p></blockquote>
+<hr>
+<h2>CAVISTE / WINE MERCHANT</h2>
+<p><strong>Go-to:</strong> <strong>[Shop or enoteca]</strong> — [Address]. [Hours]. [Regional focus, cellar depth, tasting welcome]. [Duty-free handling for bonded yachts: Y/N].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [€X or bottles]. <strong>Lead time:</strong> [hours/days]. <strong>Delivery days:</strong> [specify]. <strong>Delivery window:</strong> [hours]. <strong>Contact:</strong> [email / phone]. <strong>Customs/duty paperwork handled:</strong> [Y/N — crucial for bonded vessels]. <strong>Invoicing:</strong> [terms].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "Walk in with the guest list and food pairings — the caviste will pick better than you would."]</p></blockquote>
+<hr>
+<h2>FROMAGER / CHEESE</h2>
+<p><strong>Go-to:</strong> <strong>[Shop]</strong> — [Address]. [Hours]. [Affineur on site or re-seller]. [Pre-cut vs cut-to-order]. [Crémerie hours differ from produce].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [€X]. <strong>Lead time:</strong> [hours]. <strong>Delivery days:</strong> [specify]. <strong>Delivery window:</strong> [hours]. <strong>Contact:</strong> [phone / WhatsApp]. <strong>Packaging:</strong> [specify — cheese paper, vac-pack on request]. <strong>Invoicing:</strong> [terms].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "Ask them to portion and wrap per cheese for plating — saves 45 min of galley work."]</p></blockquote>
+<hr>
+<h2>PRIMEUR / PRODUCE — TOP TIER</h2>
+<p><strong>Go-to:</strong> <strong>[Farm shop, market stall, urban primeur]</strong> — [Address]. [Hours]. [What's in season now vs supermarket equivalents]. [Organic / local / imported distinction]. <strong>If it's a market — which stall:</strong> [Family/vendor name, stall number, or signage]. <strong>Best at:</strong> [tomatoes only / leafy greens + herbs / heritage citrus / mushroom specialist]. <strong>Avoid the resellers:</strong> [how to spot a producer-stall vs a reseller — visible crates from the farm, dirt-on-roots, hand-written prices, owner not employees]. <strong>Rapport line:</strong> [e.g., "qu'est-ce que vous avez tiré du jardin ce matin ?"].</p>
+<p><strong>Delivery:</strong> [Yes / No].</p>
+<ul><li>If yes: <strong>Minimum order:</strong> [€X]. <strong>Lead time:</strong> [hours]. <strong>Delivery days:</strong> [specify]. <strong>Delivery window:</strong> [hours]. <strong>Contact:</strong> [phone / WhatsApp]. <strong>Packaging:</strong> [crates / boxes / returnable]. <strong>Invoicing:</strong> [terms].</li></ul>
+<blockquote><p><strong>The move:</strong> [e.g., "Phone the evening before with the menu — they pre-select and you collect, no wandering the market."]</p></blockquote>
+<hr>
+<h1>FREEZER-READY</h1>
+<p>Most of what you buy gets frozen. Suppliers who vac-pack, portion, and blast-chill before you collect save hours of galley prep and preserve quality.</p>
+<table class="tcard__table"><thead><tr>
+<th>Supplier</th>
+<th>Vac-Pack</th>
+<th>Portioning</th>
+<th>Blast Chill / Pre-Frozen</th>
+<th>Lead Time</th>
+</tr></thead><tbody>
+<tr>
+<td>[Supplier]</td>
+<td>Yes/No</td>
+<td>Whole fillet / individual / both</td>
+<td>Blast chill on request / arrives frozen from facility / No</td>
+<td>[e.g., "24h for portioned orders"]</td>
+</tr>
+<tr>
+<td>[Supplier]</td>
+<td>Yes/No</td>
+<td>[Details]</td>
+<td>[Details]</td>
+<td>[e.g., "Same day if ordered by 10:00"]</td>
+</tr>
+</tbody></table>
+<blockquote><p><strong>What to ask every protein supplier:</strong> (1) Can you vac-pack? (2) Can you portion — whole fillet AND individual cuts? (3) What lead time for packed orders? (4) Blast chiller available? A supplier who vac-packs and blast-chills is worth a 10% premium. If nobody in this port blast-chills, buy already-frozen vac-packed products — they were blast-chilled at the processing facility.</p></blockquote>
+<p><strong>Buy here, freeze for later:</strong> [Items worth buying in volume — quality/price better here than the next 2-3 stops] <strong>Already frozen, high quality:</strong> [Suppliers selling frozen vac-packed proteins better than buying fresh and freezing yourself] <strong>Do not freeze from here:</strong> [Items that freeze poorly from this port — buy fresh at the next stop]</p>
+<hr>
+<h1>LOCAL GEMS — INLINE, NOT A SECTION</h1>
+<p>What this port does better or cheaper than anywhere else gets <strong>woven into the relevant supplier paragraphs</strong>, never collected into a standalone "Local Gems" / "What to Buy" section. The chef is already reading the Erbaria entry when they need to know about castraure; the chef is already reading the Pescheria entry when they need to know about moeche. Putting it twice is bloat.</p>
+<p>For each local gem, in the supplier paragraph that already names the source:</p>
+<ul><li><strong>What it is</strong> — one short clause</li><li><strong>When</strong> — calendar window, with the year if it shifts</li><li><strong>How to use</strong> — one canonical preparation</li><li><strong>Red caution pill</strong> if the window is tight (≤2 weeks), the harvest is fragile, or the dish must never be promised on a printed menu</li></ul>
+<p>Example (Venice / Erbaria entry, inline): "*Castraure di Sant'Erasmo — the apical-bud first artichokes, raw with olive oil and Parmigiano shavings or fried whole. &lt;span class='cau cau--high'&gt;Castraure: 10-day window, ends abruptly&lt;/span&gt;*"</p>
+<p>If a port has a "buy here, you will not find this at the next stop" intel that does not naturally attach to one supplier, surface it in the Bottom Line paragraph instead — not as a new section.</p>
+<hr>
+<h1>THE BOTTOM LINE (60-90 words)</h1>
+<ul><li>One-sentence summary of this port's provisioning character</li><li>The single best move for each tier (24h / 2-3d / time-rich)</li><li>What to stock up on before you leave (provision forward)</li><li>Prices and suppliers shift season to season — verify before committing</li></ul>
+<hr>
+<h2>TEMPLATE NOTES (for authors — remove before publication)</h2>
+<h3>What makes a good Port Call article</h3>
+<ol><li><strong>Three tiers, clean split.</strong> Each tier is self-contained. A chef on a 24-hour turnaround never needs to read the artisan map. A chef with a week should not be bored by the agent section.</li><li><strong>Quality/price math is explicit.</strong> Do not just list the agent — state the markup, state what quality grade you get, state whether it's worth it by category.</li><li><strong>"The move" is the value.</strong> Anyone can list a shop name. The tip that saves 2 hours or EUR 500 is what earns the bookmark.</li><li><strong>Per-entry in Tier 3, split delivery vs go-to.</strong> If a supplier delivers, the detail block is non-negotiable: minimum order, lead time, delivery days, window, contact method, packaging, invoicing. A chef planning a 4-day provision should be able to build the order schedule from the article alone.</li><li><strong>Provision forward.</strong> Every article tells the reader what to buy here that disappears at the next port.</li><li><strong>Freezer-ready is a priority.</strong> Vac-pack, portioning, blast-chill — identify and highlight. Applies across all three tiers.</li><li><strong>Source everything.</strong> Every recommendation comes from working yacht chefs, not from Google.</li></ol>
+<h3>Tier decision checklist</h3>
+<p>Tier 1 — Agent Run:</p>
+<ul><li>[ ] Named primary agent with contact</li><li>[ ] Named backup agent</li><li>[ ] Markup stated numerically by category</li><li>[ ] Quality-vs-price table present</li><li>[ ] Red flags listed</li></ul>
+<p>Tier 2 — Efficient Run:</p>
+<ul><li>[ ] Total stops, total driving time stated</li><li>[ ] Route ordered by time, not category</li><li>[ ] Online vs in-person chosen per slot (not both)</li><li>[ ] What this tier leaves out is honest</li></ul>
+<p>Tier 3 — Artisan Map:</p>
+<ul><li>[ ] Fishmonger, butcher, fisherman-direct, épicerie, ethnic, baker, caviste, fromager, primeur — all covered or marked "not available"</li><li>[ ] Each entry has both go-to AND delivery lines (delivery "No" is acceptable, omission is not)</li><li>[ ] Delivery entries include: minimum, lead time, days, window, contact, packaging, invoicing</li></ul>
+<h3>Freezer-ready checklist</h3>
+<p>For every meat/fish/seafood supplier:</p>
+<ul><li>[ ] Vacuum-pack? (free or charged?)</li><li>[ ] Portion on request? (whole fillet, individual, both?)</li><li>[ ] Lead time for portioned/packed orders?</li><li>[ ] Blast chiller? (will they blast-chill your order?)</li><li>[ ] Pre-frozen vac-packed products? (already blast-chilled at source)</li><li>[ ] Minimum order for vac-pack/portioning service?</li></ul>
+<h3>Smart tips to look for</h3>
+<ul><li>Online ordering / click-and-collect / apps</li><li>Wholesale card logistics (Metro, Costco — documents needed)</li><li>Marina / dock delivery (who does, who does not, who has truck access)</li><li>WhatsApp ordering (butchers, fishmongers, specialty)</li><li><strong>Go-and-see + deliver suppliers</strong> — walk in, inspect, build rapport, then get morning delivery to the boat (the gold pattern; surface these in the article, not the companion file)</li><li><strong>Phone + Google Maps link on every entry</strong> — double-cross-checked from two sources; never publish a wrong number, never publish without a maps link</li><li>Cross-border or mainland-vs-island provisioning (Mestre not Venice, La Linea not Gibraltar, Nice not Monaco)</li><li>Duty-free advantages / import tax traps / bonded vessel handling</li><li>Market timing (arrival times, auction times, online cutoffs)</li><li>Language — what to ask for in the local tongue</li><li>What to buy HERE that disappears at the next port</li><li>Freezer-ready intel (vac-pack, portioning, blast-chill)</li></ul>
+<h3>Companion file template</h3>
+<p>Every Port Call article gets a companion file: <code>[city]-suppliers-extended.md</code></p>
+<p>This file contains:</p>
+<ul><li><strong>Every</strong> supplier recommendation (not just the top 1-2 per category per tier)</li><li>Full contact details, addresses, phone numbers, websites</li><li>Extended notes, hours, seasonal variations</li><li>Suppliers that did not make the article cut but are still useful</li><li>Guest-level / premium tier suppliers</li><li>Historical intel (closed, changed, declined)</li><li>Reader/community feedback and updates</li></ul>
+<p>The companion file is the living database. The article is the curated extract.</p>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Operations · 10</span>
+                    <a href="content/template/Template%20-%20Operations%20-%2010%20Port%20Call.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #6b4423;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">11</span> · Operations</span>
+                    <span class="tcard__words">2,500–4,000 words · 12–18 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">The Locker</h3>
+                    <span class="tcard__status status--dormant">Dormant · 1 preview</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Quartermaster</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Yacht Chef</b></dd>
+                    <dt>Support</dt><dd>Scientist (named brands, with reason), Grandmother (the philosophy of the cuisine)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Apothecary brown · wax-sealed jar</dd>
+                    <dt>Signature</dt><dd>Three tiers (Essentials → Up Your Game → Luxurious) + Starter Kit budget</dd>
+                    <dt>Forbidden</dt><dd><em>"Curated," "artisanal," brand-marketing copy</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>Soy sauce, Essentials tier: <strong>Yamasa Marudaizu 1L</strong> — whole-soybean, traditionally brewed, fishery-grade clarity. €11. Up Your Game: <strong>Kishibori Shoyu</strong>, double-aged in cedar barrels, one of three remaining producers in Setouchi. €38. The Luxurious tier — Yugeta seven-year cedar — is for the dish that needs to stop a guest mid-sentence, not the daily braise.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> The chef who stocks the pantry like an arsenal. Specific brands, specific reasons, no marketing language. Assume competence — don't explain what miso is; explain which miso and why.</p>
+<p><strong>Rhythm:</strong> Philosophy → Category by category (Essentials → Up Your Game → Luxurious) → Fresh components → Sourcing matrix → Starter kit → Common mistakes.</p>
+<p><strong>Word Count:</strong> 2,500-4,000 · <strong>Read Time:</strong> 12-18 min</p>
+<p><strong>Produces two files:</strong> A deep-dive guide + an actionable checklist.</p>
+<hr>
+<pre><code class="lang-yaml">---
+title: "The [Cuisine] Pantry: A Sourcing Guide for Professional Galleys"
+date: YYYY-MM-DD
+category: galley
+tags: [pantry, provisioning, [cuisine-tag], ingredients, sourcing]
+read_time: [12-18]
+---</code></pre>
+<hr>
+<h2>Opening Hook (50-100 words)</h2>
+<p>[Why does this cuisine's pantry matter? What separates competent from exceptional? Ground in professional context — a charter scenario, a guest request, a moment where the right ingredient made the difference.]</p>
+<h2>Philosophy Note (75-150 words)</h2>
+<p>[Core principle of this cuisine's pantry. What do the best practitioners prioritise?]</p>
+<h2>How to Use This Guide</h2>
+<p>Three tiers:</p>
+<ul><li><strong>Essentials</strong> — Foundation. Authentic, reliable. Stock always.</li><li><strong>Up Your Game</strong> — Where quality becomes noticeable. Worth the premium.</li><li><strong>Luxurious</strong> — Top-tier. Small-batch, artisan, rare. Use strategically.</li></ul>
+<hr>
+<h2>CATEGORY [N]: [Category Name]</h2>
+<p><em>[e.g., Soy Sauces &amp; Fermented Seasonings]</em></p>
+<p>[Brief intro — 2-3 sentences on why quality matters here]</p>
+<h3>Essentials</h3>
+<table class="tcard__table"><thead><tr>
+<th>Product</th>
+<th>Brand</th>
+<th>Origin</th>
+<th>Why This One</th>
+<th>Shelf Life</th>
+<th>Est. Price</th>
+</tr></thead><tbody>
+<tr>
+<td>[Product]</td>
+<td>[Brand]</td>
+<td>[Region]</td>
+<td>[Quality marker]</td>
+<td>[Duration]</td>
+<td>[Price]</td>
+</tr>
+</tbody></table>
+<h3>Up Your Game</h3>
+<table class="tcard__table"><thead><tr>
+<th>Product</th>
+<th>Brand</th>
+<th>Origin</th>
+<th>Why This One</th>
+<th>Shelf Life</th>
+<th>Est. Price</th>
+</tr></thead><tbody>
+<tr>
+<td>[Product]</td>
+<td>[Brand]</td>
+<td>[Region]</td>
+<td>[What makes this a step up]</td>
+<td>[Duration]</td>
+<td>[Price]</td>
+</tr>
+</tbody></table>
+<h3>Luxurious</h3>
+<table class="tcard__table"><thead><tr>
+<th>Product</th>
+<th>Brand</th>
+<th>Origin</th>
+<th>Why This One</th>
+<th>Shelf Life</th>
+<th>Est. Price</th>
+</tr></thead><tbody>
+<tr>
+<td>[Product]</td>
+<td>[Brand]</td>
+<td>[Region]</td>
+<td>[What makes this exceptional]</td>
+<td>[Duration]</td>
+<td>[Price]</td>
+</tr>
+</tbody></table>
+<p><em>[Repeat for 5-6 categories per cuisine]</em></p>
+<hr>
+<h2>The Fresh Components</h2>
+<table class="tcard__table"><thead><tr>
+<th>Fresh Item</th>
+<th>Ideal Form</th>
+<th>Acceptable Alternative</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>[Item]</td>
+<td>[Description]</td>
+<td>[Alternative]</td>
+<td>[Storage tip]</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Sourcing Matrix</h2>
+<h3>Online Retailers (Ship Internationally)</h3>
+<table class="tcard__table"><thead><tr>
+<th>Retailer</th>
+<th>Specialises In</th>
+<th>Ships To</th>
+<th>Notes</th>
+</tr></thead><tbody>
+<tr>
+<td>[Name]</td>
+<td>[Focus]</td>
+<td>[Regions]</td>
+<td>[Reliability, minimums]</td>
+</tr>
+</tbody></table>
+<h3>By Region</h3>
+<ul><li><strong>Mediterranean:</strong> [City]: [Store] — [What they stock well]</li><li><strong>Caribbean:</strong> [City]: [Store] — [What they stock well]</li><li><strong>US East Coast:</strong> [City]: [Store] — [What they stock well]</li></ul>
+<hr>
+<h2>The Starter Kit</h2>
+<p><strong>Budget: EUR [X]-[Y]</strong></p>
+<ol><li>[Item] — [Brand] (EUR [X])</li><li>[Item] — [Brand] (EUR [X])</li></ol>
+<p><em>[8-10 items]</em></p>
+<p>With these items you can produce: [3-5 dishes possible]</p>
+<hr>
+<h2>Common Mistakes</h2>
+<ol><li><strong>[Mistake]</strong> — [Why it's a problem] → [What to do instead]</li><li><strong>[Mistake]</strong> — [Why it's a problem] → [What to do instead]</li><li><strong>[Mistake]</strong> — [Why it's a problem] → [What to do instead]</li></ol>
+<hr>
+<h2>Brand Research Checklist</h2>
+<p>Before recommending a brand, verify:</p>
+<ul><li>[ ] Production method (traditional vs. industrial)</li><li>[ ] Origin authenticity (actually from where it claims?)</li><li>[ ] Ingredient list (hidden additives?)</li><li>[ ] Professional reputation (used in respected restaurants?)</li><li>[ ] Availability (reliably sourceable?)</li><li>[ ] Shelf stability (appropriate for yacht storage?)</li><li>[ ] Price-to-quality ratio at each tier</li></ul>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Operations · 11</span>
+                    <a href="content/template/Template%20-%20Operations%20-%2011%20The%20Locker.md">View .md →</a>
+                </footer>
+            </article>
+
+            <article class="tcard" style="--card-color: #3a3530;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">15</span> · Operations</span>
+                    <span class="tcard__words">1,000–2,500 words · 5–10 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Galley Notes</h3>
+                    <span class="tcard__status status--new">New · ready</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Veteran's Letter</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>Yacht Chef</b></dd>
+                    <dt>Support</dt><dd>Scientist (named platforms, regulations, contracts), Grandmother (anonymised case studies, recognition)</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Logbook ink · sea-stained page</dd>
+                    <dt>Signature</dt><dd>"Tomorrow Morning" — one concrete action, never a list</dd>
+                    <dt>Forbidden</dt><dd><em>Recruitment-website language, "embrace tech," lifestyle filler, "a day in the life"</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p>Three seasons in, you stop saying yes to the agency that pays the slowest. One chef in their fourth year got tired of chasing — moved to direct placement through a captain network, lost one season of charter days, gained <mark>six weeks of confirmed payment-on-disembark</mark>. <strong>Tomorrow morning:</strong> ask your captain who they hire through, not who they get sent.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> The chef who's done it telling the chef who's about to. Yacht-life intel that doesn't fit a recipe, a technique, a science brief, or a port. Personal where the story earns the reader something — never personal as decoration. If the lesson would survive being stripped of the story, write it without the story.</p>
+<p><strong>Rhythm:</strong> The reality of the situation → what most people get wrong → what works → the conditions where it doesn't → the move tomorrow morning.</p>
+<p><strong>Word Count:</strong> 1,000–2,500 · <strong>Read Time:</strong> 5–10 min</p>
+<p><strong>What this is:</strong> Yacht-specific intelligence — the operational, financial, technological, career, and life knowledge that defines working in this trade and that no shore-based publication will ever cover honestly. Career economics, contracts, taxes, agencies, insurance, tooling, software, mental load, charter logistics, solo-chef operations, crew dynamics in the galley, equipment philosophy beyond a single item.</p>
+<p><strong>What this is not:</strong> A technique brief (#02), a recipe protocol (#05), a port guide (#10), a pantry encyclopedia (#11), an industry-news piece (#08), a chef profile (#06). If the piece is mostly about how to cook something or where to buy it, it belongs elsewhere.</p>
+<hr>
+<pre><code class="lang-yaml">---
+title: "[Specific operational subject — what this knowledge is about]"
+date: YYYY-MM-DD
+category: galley-notes
+tags: [galley-life, [topic], [career-stage], yacht-specific]
+read_time: [estimate]
+template: 15
+status: review
+---</code></pre>
+<hr>
+<h2>[HEADLINE: A specific operational truth — not "Thoughts on..." or "Guide to..."]</h2>
+<p><em>[Optional subtitle: the bottom line stated in one line]</em></p>
+<p><strong>[The opening reality.]</strong> [2–3 sentences. The actual situation as it exists on the dock — not the brochure version. Numbers where they exist (charter days, salary band, hours, headcount, fees). The chef should recognise their own week in the first paragraph.]</p>
+<h3>What Most People Get Wrong</h3>
+<p>[2–3 paragraphs. The default approach — what new chefs do, what agencies tell you, what the brochure implies. Why it fails. Be specific: name the misconception, name the consequence, name the chef who learned the hard way (anonymised — vault rule).]</p>
+<h3>What Actually Works</h3>
+<p>[The bulk of the article. Structure varies by topic — could be a numbered protocol, a phased timeline, a decision tree, a compare-and-contrast table, a year-in-review. Whatever the topic earns. Specific numbers, specific tools, specific contracts, specific names of platforms / agencies / certifications when they're public knowledge.]</p>
+<p><strong>Worked examples — anonymised:</strong></p>
+<ul><li>"One chef in their third season negotiated [X] by [Y] — settled at [Z]."</li><li>"A solo on a 38m did [protocol], saved [N] hours/week."</li><li>"An agent in [region] pushed back on [clause] — the resolution was [Y]."</li></ul>
+<h3>The Conditions Where This Doesn't Apply</h3>
+<p>[1–2 paragraphs. Honest scoping. This works on charter, not on private programme. Works for solo chefs over a certain LOA, not for two-chef galleys. Works in the Med, not in the Caribbean. State the boundary explicitly — vague generalisation is the failure mode of every yacht advice piece ever written.]</p>
+<h3>Tomorrow Morning</h3>
+<p>[The single concrete move the reader makes after closing the tab. Update a clause, register for X, calculate Y, install Z, talk to your captain about W. One action — not a list. If the article doesn't justify a specific next move, it's a reflection, not a Galley Note.]</p>
+<h3>Sources &amp; Named References</h3>
+<ul><li>[Specific platform, contract type, certification body, software name — with link]</li><li>[Public document, regulation, official body]</li><li>Personal experience: [stated conditions — vessel size, year, charter vs private, sample size of decisions]</li></ul>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] Topic is yacht-life specific — would not run on a shore-based publication?</li><li>[ ] Opens with the actual reality, not the brochure version?</li><li>[ ] At least one specific number (charter days, salary band, hours, fee, headcount)?</li><li>[ ] "What most people get wrong" is recognisable — reader thinks "that was me last June"?</li><li>[ ] Anecdotes / case studies are anonymised (no names from WhatsApp groups or private contacts — vault rule)?</li><li>[ ] "Conditions where this doesn't apply" is honest — no universal claims?</li><li>[ ] Closes with one concrete action, not a list of suggestions?</li><li>[ ] At least one named, public source (platform, regulation, contract type) — not just "in our experience"?</li></ul>
+<h2>Selection Criteria</h2>
+<ul><li><strong>Run it:</strong> Career economics (taxes, contracts, agencies, insurance), tooling and tech that meaningfully changes how a galley operates, solo-chef vs two-chef workflows, charter logistics that reshape how prep happens, mental load and crew dynamics where the silence is doing harm, things experienced chefs know but never write down.</li><li><strong>Kill it:</strong> Lifestyle pieces, "a day in the life" filler, opinions without operational substance, reflections that don't earn an action, anything that reads like it could have been generated from a yacht-recruitment website.</li></ul>
+<h2>Red Lines</h2>
+<ul><li>No real names from WhatsApp groups, agencies, or private conversations — anonymise to "one chef," "a captain," "an agent in [region]" (vault-wide rule)</li><li>No agency, broker, or platform plugs — name tools when relevant, never as recommendation-by-default</li><li>No salary or contract claims without sourcing or "in our experience over [N] seasons"</li><li>No survivorship-bias career advice — acknowledge that the path you took isn't the only one, and isn't always the right one</li><li>No content that frames yacht life as glamour — the reader knows. Respect them.</li><li>No "AI is the future" / "embrace tech" framing — show the specific tool doing the specific job, then get out of the way</li></ul>
+<h2>Topical Coverage</h2>
+<p>The natural beats for Galley Notes — not a quota, but the territory:</p>
+<table class="tcard__table"><thead><tr>
+<th>Beat</th>
+<th>Example pieces</th>
+</tr></thead><tbody>
+<tr>
+<td>Career economics</td>
+<td>Tax residency, agency fees, contract clauses, day rates by region/LOA</td>
+</tr>
+<tr>
+<td>Tooling</td>
+<td>Software stack for provisioning, recipe libraries, AI in the galley, comms</td>
+</tr>
+<tr>
+<td>Equipment philosophy</td>
+<td>Buy-once-cry-once decisions across a charter season, repair vs replace</td>
+</tr>
+<tr>
+<td>Solo-chef ops</td>
+<td>One-person galley protocols, cross-training the crew, sole-chef sanity</td>
+</tr>
+<tr>
+<td>Two-chef galleys</td>
+<td>Splitting prep, rank dynamics, second-chef as career stage</td>
+</tr>
+<tr>
+<td>Charter logistics</td>
+<td>Provisioning windows, allergen management, dietary-change reality</td>
+</tr>
+<tr>
+<td>Mental load</td>
+<td>Charter fatigue, off-season planning, the third-season wall</td>
+</tr>
+<tr>
+<td>Crew dynamics</td>
+<td>Galley-deck relationship, captain communication, interior coordination</td>
+</tr>
+</tbody></table>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Operations · 15</span>
+                    <a href="content/template/Template%20-%20Operations%20-%2015%20Galley%20Notes.md">View .md →</a>
+                </footer>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="tcluster">
+        <aside class="tcluster__head dm-skip">
+            <h2 class="tcluster__name">IV · Output</h2>
+            <div class="tcluster__sub">The aggregator format — pulls from every other template</div>
+        </aside>
+        <div class="tgrid">
+            <article class="tcard" style="--card-color: #8b6332;">
+                <div class="tcard__rule"></div>
+                <header class="tcard__head dm-skip">
+                    <span><span class="tcard__num">12</span> · Output</span>
+                    <span class="tcard__words">1,500–2,500 words · 8–12 min</span>
+                </header>
+                <div class="tcard__title-row dm-skip">
+                    <h3 class="tcard__name">Weekly Brief</h3>
+                    <span class="tcard__status status--dormant">Dormant · 0 articles</span>
+                </div>
+                <p class="tcard__archetype dm-skip">The Dispatcher</p>
+                <dl class="tcard__attrs dm-skip">
+                    <dt>Lead pillar</dt><dd><b>All three balanced — the brief's job is to make the pillars converge on one thread</b></dd>
+                    <dt>Support</dt><dd>Each section keeps the lead pillar of its parent template</dd>
+                    <dt>Color</dt><dd><span class="tcard__swatch"></span>Newsprint cream · Monday memo</dd>
+                    <dt>Signature</dt><dd>"The Thread" (one connecting idea) opens · "The Close" (one sentence) shuts</dd>
+                    <dt>Forbidden</dt><dd><em>Forced connections, listicle, "round-up," weekly-recap padding</em></dd>
+                </dl>
+                <blockquote class="tcard__voice">
+                    <span class="tcard__voice-label dm-skip">In voice</span>
+                    <p><strong>The Thread.</strong> The thread this week is heat. Saffron loses <mark>60% of its safranal above 95°C</mark> — which is exactly why the Iranian grandmother dissolves it in cold water first. The Aponiente lab confirmed the mechanism in March. And the new Cayman flag rule on galley thermometers takes effect Monday. Pull the thread.</p>
+                </blockquote>
+                <details class="tcard__details">
+                    <summary class="tcard__summary dm-skip">View full template &nbsp;<span class="tcard__chev">▾</span></summary>
+                    <div class="tcard__body">
+<p><strong>Voice:</strong> A trusted colleague handing you a single sheet at the start of the week. Everything you need, nothing you don't. The brief connects the dots — a seasonal ingredient leads to a technique, the technique connects to science, the science frames the news. One thread, pulled through seven days.</p>
+<p><strong>Rhythm:</strong> Open with the thread → Ingredient → Technique → Science → Heritage (if it fits) → The Horizon → Trade Winds → Close with one line worth remembering.</p>
+<p><strong>Word Count:</strong> 1,500-2,500 total across all sections · <strong>Read Time:</strong> 8-12 min</p>
+<hr>
+<pre><code class="lang-yaml">---
+title: "Weekly Brief — [Week of DATE]"
+date: YYYY-MM-DD
+category: brief
+tags: [weekly, [season], [primary-ingredient], [primary-technique]]
+read_time: [estimate]
+issue: [number]
+thread: "[The single theme connecting this week's content]"
+---</code></pre>
+<hr>
+<h2>THE THREAD</h2>
+<p>[2-3 sentences. The single idea that connects this week's content. Not forced — found. A seasonal ingredient that reveals a technique, a technique that connects to recent science, science that frames something happening in the industry. If the connection is genuine, state it. If it's a stretch, run the sections independently and say so.]</p>
+<hr>
+<h2>SHORE LARDER — Seasonal Pick</h2>
+<p><em>[Follow editorial-01-shore-larder.md — condensed to 200-300 words]</em></p>
+<p><strong>Badges:</strong></p>
+<pre><code class="lang-plain">season:[current] region:[origin] type:[category] thesaurus:[ingredient-name]</code></pre>
+<hr>
+<h2>THE METHOD — Technique of the Week</h2>
+<p><em>[Follow editorial-02-the-method.md — condensed]</em></p>
+<p><strong>Badges:</strong></p>
+<pre><code class="lang-plain">technique:[category] applies-to:[ingredient-types] thesaurus:[technique-name]</code></pre>
+<hr>
+<h2>THE EVIDENCE — Research Brief</h2>
+<p><em>[Follow editorial-04-the-evidence.md — condensed]</em></p>
+<p><strong>Badges:</strong></p>
+<pre><code class="lang-plain">science:[domain] source:[journal] year:[publication-year] thesaurus:[topic]</code></pre>
+<hr>
+<h2>LITTORAL HERITAGE — From the Coast <em>(optional — include when it fits the thread)</em></h2>
+<p><em>[Follow editorial-03-littoral-heritage.md — condensed to 250-400 words]</em></p>
+<p><strong>Badges:</strong></p>
+<pre><code class="lang-plain">region:[coast] heritage:[cuisine] dish:[name] thesaurus:[dish-name]</code></pre>
+<hr>
+<h2>THE HORIZON — Chef World News</h2>
+<p><em>[Follow intelligence-07-the-horizon.md — condensed]</em></p>
+<p><strong>Badges:</strong></p>
+<pre><code class="lang-plain">news:[category] region:[where] thesaurus:[topic]</code></pre>
+<hr>
+<h2>TRADE WINDS — Industry Intel</h2>
+<p><em>[Follow intelligence-08-trade-winds.md — condensed]</em></p>
+<p><strong>Badges:</strong></p>
+<pre><code class="lang-plain">industry:[category] scope:[region-or-global] thesaurus:[topic]</code></pre>
+<hr>
+<h2>THE CLOSE</h2>
+<blockquote><p>[One sentence. The single thought worth carrying into the week.]</p></blockquote>
+<hr>
+<h2>Quality Gates</h2>
+<ul><li>[ ] The thread connecting sections is genuine, not forced?</li><li>[ ] Seasonal ingredient is actually in season this week, in a region where yachts operate?</li><li>[ ] Technique is executable — a chef could try it this week?</li><li>[ ] Science is from a peer-reviewed, indexed source?</li><li>[ ] Heritage section included only if it genuinely connects?</li><li>[ ] News is verified and current (within 7 days)?</li><li>[ ] Industry intel is actionable?</li><li>[ ] Every section has badges assigned?</li><li>[ ] Total read time stays under 12 minutes?</li></ul>
+<h2>Output</h2>
+<p>Each section is ALSO saved as a standalone article in <code>/content/review/</code> with full frontmatter and badges. The weekly brief is the digest; the standalone pieces are the archive.</p>
+<h3>File Naming Convention</h3>
+<pre><code class="lang-plain">content/review/YYYY-MM-DD-shore-larder-[ingredient].md
+content/review/YYYY-MM-DD-the-method-[technique].md
+content/review/YYYY-MM-DD-the-evidence-[topic].md
+content/review/YYYY-MM-DD-littoral-heritage-[dish].md
+content/review/YYYY-MM-DD-the-horizon-[topic].md
+content/review/YYYY-MM-DD-trade-winds-[topic].md
+content/review/YYYY-MM-DD-weekly-brief.md</code></pre>
+                    </div>
+                </details>
+                <footer class="tcard__foot dm-skip">
+                    <span>Output · 12</span>
+                    <a href="content/template/Template%20-%20Output%20-%2012%20Weekly%20Brief.md">View .md →</a>
+                </footer>
+            </article>
+
+        </div>
+    </section>
+
+    </main>
+
+    <!-- Retired (aside → not annotated) -->
+    <aside class="tretired">
+        <div class="tretired__title">Retired templates · archived in <code style="font-family: 'SF Mono', Consolas, monospace; font-size: 11px; background: #fff; padding: 2px 6px;">content/template/_archive/</code></div>
+        <ul class="tretired__list">
+            <li><b>01b · Shore Larder Deep-Dive</b> — depth is a tier of #01, not a separate category. Definitive ingredient treatments use Template 01 with extended structure.</li>
+            <li><b>13 · The Lab</b> — insufficient differentiation from #04 The Evidence. The "Lab Watch" panel idea may live as an optional Evidence section.</li>
+        </ul>
+    </aside>
+
+    <!-- Review questions (aside → not annotated) -->
+    <aside class="treview-questions">
+        <h2>What to look for as you review</h2>
+        <ol>
+            <li><b>Distinction.</b> Read any two cards side by side. Could the voice samples be swapped without breaking either? If yes, one of them isn't sharp enough.</li>
+            <li><b>DNA presence.</b> All three pillars need to be readable — even lightly — in every voice sample. Where one pillar disappears entirely, the template has drifted.</li>
+            <li><b>Color fit.</b> Does the figurative color match what the writing actually does? Sepia for Shore Larder reads right. Does Telex green feel like a Dispatch?</li>
+            <li><b>Signature move.</b> Is the move specific enough that you'd notice immediately if a draft skipped it? "What This Does Not Mean" passes that test. Does every other one?</li>
+            <li><b>Forbidden tone.</b> Are these the actual drift modes you've seen creep in — or are they generic? The forbidden list is the immune system.</li>
+            <li><b>Full template body.</b> Open the "View full template" expand on each card. Does the scaffold actually generate the voice the card promises?</li>
+        </ol>
+    </aside>
+
+    <footer class="tfoot dm-skip">
+        Littoralicious · Templates draft · 2026-05-09 · Internal review only · noindex, nofollow
+    </footer>
+
+</div>
+
+<script defer src="assets/js/draft-mode.js?v=20260506b"></script>
+
+</body>
+</html>

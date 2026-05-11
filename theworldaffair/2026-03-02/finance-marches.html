@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finance & March&eacute;s &mdash; The World Affair</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* ── Masthead ── */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 52px; font-weight: 400; letter-spacing: 2px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 400; font-style: italic;
+  color: #4a4540; margin-top: 6px; letter-spacing: 1px;
+}
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* ── Navigation ── */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* ── Page layout ── */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* ── Section divider (NYT style) ── */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* ── Flash briefing box ── */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #3d6b4f;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #3d6b4f; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* ── Hub grid (domain cards) ── */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* ── Article page ── */
+.article-header {
+  padding: 32px 0 20px;
+  border-bottom: 2px solid #1a1714;
+  margin-bottom: 28px;
+}
+.article-overline {
+  font-size: 11px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 8px;
+}
+.article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; font-weight: 900; line-height: 1.2;
+  margin-bottom: 8px;
+}
+.article-date {
+  font-size: 12px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1px;
+}
+
+/* ── Article body (rendered markdown) ── */
+.article-body { max-width: 720px; padding-bottom: 40px; }
+.article-body h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px; font-weight: 900;
+  margin: 28px 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #1a1714;
+}
+.article-body h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700;
+  margin: 24px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #c8c0b4;
+}
+.article-body h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  margin: 20px 0 8px;
+}
+.article-body h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 700;
+  margin: 16px 0 6px;
+}
+.article-body p {
+  font-size: 14px; color: #4a4540; margin-bottom: 12px; line-height: 1.75;
+}
+.article-body strong { color: #1a1714; }
+.article-body em { font-style: italic; }
+.article-body a { color: #3a5a6a; text-decoration: underline; text-underline-offset: 2px; }
+.article-body a:hover { color: #1a1714; }
+.article-body ul, .article-body ol {
+  margin: 10px 0 14px 24px; font-size: 14px; color: #4a4540;
+}
+.article-body li { margin-bottom: 6px; line-height: 1.65; }
+.article-body blockquote {
+  border-left: 3px solid #b5ad9f;
+  padding: 12px 18px; margin: 14px 0;
+  background: #ede9e1;
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  font-style: italic;
+}
+.article-body blockquote p { margin-bottom: 4px; font-style: italic; }
+.article-body hr { border: none; border-top: 1px solid #c8c0b4; margin: 20px 0; }
+.article-body code {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 12px; background: #e6e1d8; padding: 1px 5px; border-radius: 2px;
+}
+.article-body table {
+  width: 100%; border-collapse: collapse; font-size: 12px; margin: 14px 0;
+}
+.article-body th {
+  text-align: left; padding: 8px 10px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 0.5px; color: #8a847a;
+  border-bottom: 2px solid #b5ad9f; font-weight: 700;
+}
+.article-body td {
+  padding: 8px 10px; border-bottom: 1px solid #c8c0b4;
+}
+.article-body tr:hover td { background: #ede9e1; }
+
+/* ── Bottom navigation ── */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* ── Footer ── */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ── Archive table ── */
+.archive-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.archive-table th {
+  text-align: left; padding: 10px 12px; font-size: 10px;
+  text-transform: uppercase; letter-spacing: 1px; color: #8a847a;
+  border-bottom: 2px solid #1a1714; font-weight: 700;
+}
+.archive-table td { padding: 12px; border-bottom: 1px solid #c8c0b4; }
+.archive-table tr:hover td { background: #ede9e1; }
+.archive-table a { color: #1a1714; font-weight: 600; }
+.archive-table a:hover { color: #3a5a6a; }
+.archive-table .mono {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace; font-size: 11px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 44px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .article-title { font-size: 24px; }
+  .article-body { max-width: 100%; }
+  .page { padding: 0 16px; }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Lundi 2 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;54</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link" href="../2026-03-02.html">Premi&egrave;re Page</a><a class="nav-link" href="synthese.html">Synth&egrave;se</a><a class="nav-link" href="../archive.html">Archives</a></nav><div class="page"><div class="article-header">
+  <div class="article-overline" style="color:#3d6b4f">Finance & Marchés</div>
+  <h1 class="article-title">Les marchés absorbent la guerre : complaisance ou lucidité ?</h1>
+  <div class="article-date">Lundi 2 Mars 2026 &mdash; Edition N&deg;54</div>
+</div><div class="article-body"><h1>Quand Wall Street hausse les épaules face à l'apocalypse</h1>
+
+<p><em>« Un chef d'État assassiné, le premier chokepoint pétrolier mondial quasi bloqué, 27 bases américaines sous le feu — et le S&P 500 clôture à -0,1 %. Soit les marchés voient quelque chose que nous ne voyons pas, soit ils ne voient rien du tout. »</em></p>
+
+<hr>
+
+<h2>I. Le dip buying l'emporte malgré la guerre</h2>
+
+<p>Après une chute initiale de -1,2 % à l'ouverture — la réaction mécanique à l'annonce des frappes sur l'Iran — le S&P 500 a terminé la séance quasi flat à -0,1 %. Le Nasdaq a fait mieux encore, clôturant en hausse de +0,5 %, porté par les valeurs tech et software qui ont été les grandes bénéficiaires du « buy the dip ». Le VIX a bondi de 18 %, mais reste autour de 20 — un niveau élevé par rapport aux semaines précédentes, mais loin des seuils de panique (30+) que l'on associe aux crises systémiques.</p>
+
+<p>Cette résilience apparente mérite d'être décortiquée. Le marché ne dit pas que la guerre est sans conséquence. Il dit que, dans l'immédiat, les flux de capitaux cherchent refuge dans les actifs américains — précisément parce que les États-Unis sont perçus comme l'agresseur, donc le gagnant probable à court terme. C'est un pari sur la puissance militaire, pas un jugement sur la stabilité géopolitique. La nuance est importante : elle signifie que le moindre revers — un pétrolier américain coulé, une escalade avec la Russie — pourrait provoquer un retournement brutal.</p>
+
+<table>
+<tr><th>Indicateur</th><th>Valeur</th><th>Variation</th></tr>
+<tr><td>S&P 500</td><td>~5 950 (est.)</td><td>-0,1%</td></tr>
+<tr><td>Nasdaq</td><td>—</td><td>+0,5%</td></tr>
+<tr><td>VIX</td><td>~20</td><td>+18%</td></tr>
+<tr><td>Brent Crude</td><td>>$78</td><td>Plus haut 52 semaines</td></tr>
+<tr><td>BTC</td><td>~$66 100</td><td>Stable</td></tr>
+</table>
+
+<h2>II. Pétrole : le Brent au-dessus de $78, et ce n'est que le début</h2>
+
+<p>Le Brent a franchi les 78 dollars le baril, son plus haut niveau en 52 semaines. La fermeture de facto du détroit d'Hormuz — 20 à 30 % du pétrole mondial — est le facteur immédiat. Mais le marché pétrolier intègre aussi un scénario de durée : si les opérations militaires durent « quatre à cinq semaines » comme l'annonce Trump, la perturbation des flux pétroliers pourrait se prolonger bien au-delà. Les stocks stratégiques américains (SPR), déjà entamés lors des crises précédentes, offrent un tampon limité.</p>
+
+<p>Le vrai risque n'est pas le prix du baril à court terme — les marchés savent pricer un choc temporaire. Le vrai risque est la prime de risque permanente qui s'installe sur les routes maritimes du Golfe. Après la crise Houthi en mer Rouge, après Hormuz aujourd'hui, les assureurs maritimes vont recalibrer durablement leurs modèles. Le coût du transport maritime — et donc de tout ce qui circule par bateau, c'est-à-dire 80 % du commerce mondial — ne reviendra pas à son niveau d'avant.</p>
+
+<h2>III. OpenAI : $110 milliards, la plus grosse levée privée de l'histoire</h2>
+
+<p>En parallèle de la crise géopolitique, OpenAI a bouclé un tour de table de 110 milliards de dollars — la plus importante levée de fonds privée jamais réalisée. Amazon mène avec 50 milliards (dont 15 milliards immédiats et 35 milliards conditionnels), suivi de SoftBank (30 milliards) et Nvidia (30 milliards). La valorisation pré-money atteint 730 milliards de dollars — soit une hausse de 143 % en un an.</p>
+
+<p>Le partenariat élargi avec AWS totalise 138 milliards de dollars, incluant 5 GW de capacité de calcul dédiée sur les systèmes Vera Rubin de Nvidia (3 GW pour l'inférence, 2 GW pour l'entraînement). Pour mettre ce chiffre en perspective : 5 GW, c'est la consommation électrique d'un pays comme la Croatie. OpenAI dispose désormais de plus de ressources financières que le PIB de la majorité des États membres de l'ONU. La dépendance croisée Amazon-Nvidia-OpenAI crée un oligopole de facto sur l'infrastructure IA mondiale.</p>
+
+<table>
+<tr><th>Investisseur</th><th>Montant</th><th>Détail</th></tr>
+<tr><td>Amazon</td><td>$50 milliards</td><td>$15B immédiat + $35B conditionnel</td></tr>
+<tr><td>SoftBank</td><td>$30 milliards</td><td>—</td></tr>
+<tr><td>Nvidia</td><td>$30 milliards</td><td>—</td></tr>
+<tr><td><strong>Total levée</strong></td><td><strong>$110 milliards</strong></td><td>Valorisation : $730B</td></tr>
+<tr><td>Partenariat AWS</td><td>$138 milliards</td><td>5 GW compute dédié</td></tr>
+</table>
+
+<h2>IV. Pénurie de puces mémoire : les smartphones paient la facture de l'IA</h2>
+
+<p>Les prix des puces DRAM et HBM (High Bandwidth Memory) ont presque doublé au premier trimestre 2026 par rapport au trimestre précédent. La cause est structurelle : la demande insatiable en mémoire haute performance pour les centres de données IA absorbe la quasi-totalité de la capacité de production de Samsung, SK Hynix et Micron. Il ne reste plus assez pour le marché grand public.</p>
+
+<p>Le résultat est direct et mesurable : les prix des smartphones sont au plus haut historique. L'iPhone, le Galaxy, le Pixel — tous les flagships intègrent des composants mémoire dont le coût a explosé. L'IA ne « dématérialise » pas l'économie — elle crée de nouvelles rentes sur les matières premières numériques : silicium, HBM, énergie. L'injection de 110 milliards supplémentaires par OpenAI va aggraver cette pénurie. La boucle est bouclée : plus l'IA lève de capitaux, plus la mémoire coûte cher, plus les consommateurs paient.</p>
+
+<hr>
+
+<h2>Signaux Faibles</h2>
+
+<ul>
+<li>Le Bitcoin reste stable à ~$66 100 malgré la crise — il ne joue plus le rôle de « valeur refuge alternative » que ses promoteurs lui attribuaient. L'or, en revanche, bénéficie.</li>
+<li>Le modèle chinois MiniMax M2.5 rivalise avec Claude Opus à un coût significativement inférieur — la pression sur les prix de l'IA va s'accélérer, ce qui pourrait éroder la prime de valorisation d'OpenAI.</li>
+<li>Les 138 milliards du partenariat OpenAI-AWS dépassent le budget de défense de la plupart des pays européens. L'infrastructure IA est désormais un enjeu de souveraineté, pas seulement de technologie.</li>
+</ul>
+
+<hr>
+
+<h2>Connexion</h2>
+
+<p>La séance du 1er mars 2026 restera dans les manuels de finance comportementale. Les marchés ont regardé l'assassinat d'un chef d'État, la fermeture de facto du premier chokepoint pétrolier mondial, et le bombardement de 24 provinces d'un pays de 88 millions d'habitants — et ils ont décidé que c'était une opportunité d'achat. Parallèlement, ils ont valorisé OpenAI à 730 milliards de dollars — plus que la plupart des pays touchés par les missiles iraniens. La question profonde n'est pas de savoir si les marchés ont raison ou tort. C'est de savoir ce que signifie un système financier qui ne distingue plus entre un choc existentiel et du bruit.</p>
+
+<hr>
+
+<p><em>The World Affair — Finance & Marchés — 2 mars 2026</em></p></div><div class="bottom-nav"><a href="espace-energie.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Espace & &Eacute;nergie</span></a><a href="bonnes-nouvelles.html" style="text-align:right;margin-left:auto"><span class="bottom-nav-label">Suivant</span><span class="bottom-nav-title">Bonnes Nouvelles &rarr;</span></a></div></div><div class="site-footer">The World Affair &mdash; FINANCE & MARCH&Eacute;S</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegardés</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegardés">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">Sélectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegardés — " + VAULT + "\n\n";
+    md += "Exporté le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " — " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

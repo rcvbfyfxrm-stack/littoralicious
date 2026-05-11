@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sticky Toffee Pudding &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { box-sizing: border-box; }
+        html, body { height: 100%; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 8.3pt;
+            line-height: 1.3;
+            color: #0a0a0a;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 6mm 9mm 5mm;
+            display: flex;
+            flex-direction: column;
+        }
+        .header { border-bottom: 2px solid #0a0a0a; padding-bottom: 2.2mm; margin-bottom: 2.6mm; }
+        .brand { font-family: Georgia, serif; font-size: 7.8pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 7pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 20pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.03; margin: 0.6mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 9pt; color: #4a5568; line-height: 1.28; }
+        .meta-bar { display: flex; gap: 4.5mm; margin-top: 2.2mm; padding-top: 2.2mm; border-top: 1px solid #e2e2e2; font-size: 8.3pt; color: #6b7280; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 36% 1fr; gap: 5mm; margin-bottom: 2.6mm; }
+        h2 { font-family: Georgia, serif; font-size: 9.7pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1.4mm; margin-bottom: 2.4mm; }
+
+        .ingredients-note { font-size: 7pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -0.9mm 0 1.4mm 0; }
+        .group-label { font-size: 7.8pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 2.4mm 0 0.9mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 8.3pt; }
+        .ingredients td { padding: 0.6mm 1mm; vertical-align: top; line-height: 1.28; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7.8pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 42px; }
+        .ingredients td:nth-child(3) { font-size: 7.4pt; text-align: right; color: #6b7280; white-space: nowrap; width: 62px; padding-left: 1.8mm; }
+        .note { font-size: 7.4pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 7.4pt; color: #6b7280; margin-top: 2.2mm; padding-top: 1.4mm; border-top: 1px solid #f0f0f0; line-height: 1.3; }
+
+        .method ol { padding-left: 5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 1.3mm; padding-left: 0.5mm; counter-increment: step; position: relative; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7.8pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.6mm 0; padding: 0.7mm 0 0.7mm 3mm; border-left: 2px solid #5c9ead; font-size: 7.4pt; font-style: italic; color: #4a5568; line-height: 1.28; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 1.9mm 2.8mm; margin-top: 2.2mm; font-size: 8.3pt; line-height: 1.32; }
+        .done strong { color: #2d4a5e; }
+
+        .sauce-block { background: #fdf8f0; border-left: 3px solid #b88a3a; padding: 1.9mm 2.8mm; margin-top: 2.2mm; font-size: 8.3pt; line-height: 1.34; }
+        .sauce-block strong { color: #8a5e1a; }
+        .sauce-block ol { padding-left: 4.2mm; margin-top: 1mm; }
+
+        .elevation { border: 2px solid #2d4a5e; padding: 1.9mm 2.5mm; margin-bottom: 2mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1.4mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.8mm; }
+        .tier-label { font-weight: 700; font-size: 7pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.5mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3.2mm; font-size: 7.4pt; line-height: 1.3; }
+        .elevation li { margin-bottom: 0.4mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 3.6mm; margin-bottom: 1.4mm; }
+        .bottom h2 { font-size: 8.3pt; padding-bottom: 1mm; margin-bottom: 1.6mm; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 7.4pt; border-collapse: collapse; line-height: 1.3; }
+        .troubleshoot td, .charter td { padding: 0.6mm 1.3mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 32%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 28%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1.2mm; border-top: 1px solid #e2e2e2; font-size: 6pt; color: #94a3b8; display: flex; justify-content: space-between; align-items: baseline; }
+        .footer a { color: #94a3b8; text-decoration: none; border-bottom: 1px dotted #cbd2da; }
+        .footer .colophon { display: flex; gap: 4mm; align-items: baseline; }
+        .contact { margin-top: 1mm; padding: 0.8mm 1.8mm; border: 1px solid #e2e2e2; display: flex; justify-content: center; align-items: center; gap: 2.6mm; font-size: 6pt; color: #4a5568; }
+        .contact strong { font-family: Georgia, serif; font-size: 6.5pt; color: #2d4a5e; letter-spacing: 0.04em; text-transform: uppercase; }
+        .contact a { color: #2d4a5e; text-decoration: none; display: inline-flex; align-items: center; gap: 0.8mm; }
+        .contact a:hover { color: #0a0a0a; }
+        .contact .ig-logo { width: 7pt; height: 7pt; vertical-align: middle; }
+        .contact .sep { color: #cbd2da; }
+        .spacer { flex: 1; min-height: 0; }
+        @media print { .done, .sauce-block, .elevation, .charter tr:first-child td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint</span><span class="brand-tagline">The recipe you actually want to read</span>
+    <h1>Sticky Toffee Pudding</h1>
+    <p class="hook">Soda-bloomed dates. Dark muscovado &amp; black treacle. Whisky caramel finished off-heat.</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>9 portions</strong> (8&Prime; square)</span>
+        <span>Active: <strong>15 min</strong></span>
+        <span>Total: <strong>1 hr 15 min</strong></span>
+        <span>Oven: <strong>170&deg;C</strong> (340&deg;F)</span>
+        <span>Done: <strong>94&deg;C</strong> internal</span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; US volume in right column</p>
+
+        <div class="group-label">Date Base</div>
+        <table>
+            <tr><td>Medjool dates, pitted</td><td>220g</td><td>~1&frac14; cups</td></tr>
+            <tr><td>Boiling water</td><td>280g</td><td>1&frac14; cups</td></tr>
+            <tr><td>Baking soda <span class="note">(stir into hot water)</span></td><td>6g</td><td>1 tsp</td></tr>
+        </table>
+
+        <div class="group-label">Cake</div>
+        <table>
+            <tr><td>Unsalted butter, soft</td><td>100g</td><td>7 tbsp</td></tr>
+            <tr><td>Dark muscovado <span class="note">(non-negotiable)</span></td><td>175g</td><td>scant 1 cup</td></tr>
+            <tr><td>Black treacle / molasses</td><td>25g</td><td>1 tbsp</td></tr>
+            <tr><td>Egg, whole <span class="note">(RT)</span></td><td>100g</td><td>2 large</td></tr>
+            <tr><td>Vanilla extract</td><td>5g</td><td>1 tsp</td></tr>
+            <tr><td>All-purpose flour</td><td>175g</td><td>1&frac12; cups</td></tr>
+            <tr><td>Baking powder</td><td>4g</td><td>1 tsp</td></tr>
+            <tr><td>Diamond kosher salt</td><td>3g</td><td>&frac34; tsp</td></tr>
+        </table>
+
+        <div class="group-label">Whisky Caramel Sauce</div>
+        <table>
+            <tr><td>Dark muscovado</td><td>150g</td><td>3/4 cup</td></tr>
+            <tr><td>Unsalted butter, cubed</td><td>100g</td><td>7 tbsp</td></tr>
+            <tr><td>Heavy cream 35%+</td><td>200g</td><td>scant 1 cup</td></tr>
+            <tr><td>Vanilla extract</td><td>5g</td><td>1 tsp</td></tr>
+            <tr><td>Dark whisky / rum</td><td>30g</td><td>2 tbsp</td></tr>
+            <tr><td>Flaky sea salt</td><td>3g</td><td>&frac12; tsp</td></tr>
+        </table>
+
+        <p class="equipment">
+            <strong>Kit:</strong> 20&times;20 cm (8&Prime;) square pan or 8 ramekins (8oz) &middot; heavy small saucepan &middot; scale &middot; thermometer &middot; whisk &middot; skewer
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method</h2>
+        <ol>
+            <li>
+                <strong>Bloom dates.</strong> Pit and halve dates. Stir <strong>6g soda</strong> into <strong>280g boiling water</strong>, pour over dates. It foams. Stand <strong>15 min</strong>. Blend smooth. Cool to &le;40&deg;C.
+                <span class="why">Soda raises pH from 5 to 8 &rarr; cell walls + fiber dissolve, fruit goes silky. Pre-reacts acid before flour. <cite>&mdash; McGee 2004</cite></span>
+            </li>
+            <li>
+                <strong>Preheat 170&deg;C</strong> (340&deg;F). Butter + line 8&Prime; pan with parchment sling. Whisk dry: flour, baking powder, salt.
+            </li>
+            <li>
+                <strong>Cream butter + muscovado + treacle.</strong> 3&ndash;4 min until pale and aerated. Slight graininess fine.
+                <span class="why">Muscovado = 15% molasses (vs 6% in light brown). Invert sugars keep crumb moist; molasses re-acidifies for residual lift. <cite>&mdash; Parks 2017</cite></span>
+            </li>
+            <li>
+                <strong>Eggs one at a time + vanilla.</strong> Scrape between each.
+            </li>
+            <li>
+                <strong>Fold in flour and dates</strong> in alternation: half flour &rarr; all date pur&eacute;e &rarr; remaining flour. <strong>8&ndash;10 strokes max.</strong> Stop at 80% incorporated &mdash; flour streaks fine.
+                <span class="why">Hot pur&eacute;e &rarr; melted butter &rarr; gummy crumb. Cool to 40&deg;C. Overmixing develops gluten = tough.</span>
+            </li>
+            <li>
+                <strong>Bake 170&deg;C, 30&ndash;35 min.</strong> Tap pan once after pouring to release air pockets.
+            </li>
+        </ol>
+
+        <div class="done">
+            <strong>Done:</strong> Internal <strong>94&deg;C</strong> (200&deg;F). Skewer tacky with crumbs, not wet. Top matte and slightly cracked.<br>
+            <strong>Rest:</strong> 10 min in pan. Do not unmould. Skewer all over (30+ holes) before saucing.
+        </div>
+
+        <div class="sauce-block">
+            <strong>Sauce</strong> &mdash; make while pudding bakes
+            <ol style="counter-reset: sauce; padding-left: 4mm; margin-top: 1mm; list-style: none;">
+                <li style="counter-increment: sauce; position: relative; padding-left: 1mm; margin-bottom: 1mm;">
+                    <span style="position: absolute; left: -4mm; font-weight: 700; font-family: 'SF Mono', monospace; font-size: 7pt; color: #8a5e1a;">a.</span>
+                    Butter + muscovado, low heat, stir until dissolved &mdash; 3&ndash;4 min.
+                </li>
+                <li style="position: relative; padding-left: 1mm; margin-bottom: 1mm;">
+                    <span style="position: absolute; left: -4mm; font-weight: 700; font-family: 'SF Mono', monospace; font-size: 7pt; color: #8a5e1a;">b.</span>
+                    Off heat: cream + vanilla, whisk smooth. Return low heat, simmer 90 sec.
+                </li>
+                <li style="position: relative; padding-left: 1mm; margin-bottom: 1mm;">
+                    <span style="position: absolute; left: -4mm; font-weight: 700; font-family: 'SF Mono', monospace; font-size: 7pt; color: #8a5e1a;">c.</span>
+                    <strong>Off heat:</strong> whisky + flaky salt. Hold 70&ndash;80&deg;C. <em>Whisky on heat &rarr; aromatics boil off &gt;78&deg;C.</em> <cite>&mdash; Modernist Cuisine</cite>
+                </li>
+                <li style="position: relative; padding-left: 1mm;">
+                    <span style="position: absolute; left: -4mm; font-weight: 700; font-family: 'SF Mono', monospace; font-size: 7pt; color: #8a5e1a;">d.</span>
+                    <strong>Service:</strong> Pour 1/3 over warm pudding (60 sec absorb) &rarr; slice &rarr; drench 40g hot sauce per portion &rarr; cold cream.
+                </li>
+            </ol>
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; No Extra Time</div>
+            <ul>
+                <li><strong>Silan glaze</strong> &mdash; replace treacle with date molasses</li>
+                <li><strong>PX sherry</strong> instead of whisky &mdash; raisin/fig notes mirror date</li>
+                <li><strong>Espresso compensator</strong> &mdash; 1g instant if skipping booze</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; Worth It (+10 min)</div>
+            <ul>
+                <li><strong>Brown butter cake</strong> &mdash; brown 130g, weigh 100g</li>
+                <li><strong>Burnt honey sauce</strong> &mdash; caramelize 30g honey, whisk in</li>
+                <li><strong>Miso caramel</strong> &mdash; 15g shiro miso into finished sauce</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>Smoked dates</strong> &mdash; cold-smoke 20 min over oak</li>
+                <li><strong>Smoked clotted cream</strong> &mdash; 15 min hay/applewood</li>
+                <li><strong>Bone marrow crust</strong> &mdash; 20g rendered marrow + flaky salt brushed on top</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>Metallic taste</td><td>Soda not dissolved. Stir to clear before pour.</td></tr>
+            <tr><td>Dense, gummy</td><td>Date pur&eacute;e too hot. Cool to 40&deg;C.</td></tr>
+            <tr><td>Sunk middle</td><td>Underbaked. Hit 94&deg;C internal.</td></tr>
+            <tr><td>Sauce split</td><td>Off heat, splash cold cream, whisk hard.</td></tr>
+            <tr><td>Sauce too thick cooled</td><td>Whisk in 1 tbsp warm cream / 100g sauce.</td></tr>
+            <tr><td>Cake tastes flat</td><td>Light brown sugar &rarr; muscovado, or +25g molasses.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Store separately</td><td>Pudding + sauce in 2 containers. Always.</td></tr>
+            <tr><td>Pudding</td><td>3 d RT &middot; 1 wk fridge &middot; 2 mo freezer</td></tr>
+            <tr><td>Sauce</td><td>2 wk fridge &middot; 3 mo freezer (skim fat layer)</td></tr>
+            <tr><td>Reheat</td><td>120&deg;C / 12 min, lightly pre-soaked. Sauce: 30s microwave bursts.</td></tr>
+            <tr><td>Date base</td><td>Bloomed: 5 d fridge. Double batch = next week.</td></tr>
+            <tr><td>Ramekins (raw)</td><td>Freeze 1 mo. Bake from frozen +10 min @ 165&deg;C.</td></tr>
+            <tr><td>Scaling</td><td>&times;1.5 = 9&times;13&Prime;, 35&ndash;40 min. Sauce linear.</td></tr>
+        </table>
+    </section>
+</div>
+
+<div class="spacer"></div>
+
+<div class="contact">
+    <strong>Contact the Chef</strong>
+    <a href="https://www.instagram.com/arnaudcallier">
+        <svg class="ig-logo" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+        </svg>
+        @arnaudcallier
+    </a>
+    <span class="sep">&middot;</span>
+    <a href="https://www.littoralicious.com">www.littoralicious.com</a>
+</div>
+
+<footer class="footer">
+    <span>Tradition: Coulson (Sharrow Bay), Cartmel Village &nbsp;|&nbsp; Science: McGee &middot; Parks &middot; Modernist Cuisine</span>
+    <span class="colophon">
+        <span>&mdash; The Blueprint</span>
+    </span>
+</footer>
+
+</body>
+</html>

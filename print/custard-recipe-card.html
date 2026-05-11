@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Custard &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 7.8pt;
+            line-height: 1.3;
+            color: #0a0a0a;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 6mm 9mm 4mm;
+            overflow: hidden;
+            zoom: 0.92;
+        }
+        .header { border-bottom: 2px solid #0a0a0a; padding-bottom: 2mm; margin-bottom: 2.5mm; }
+        .brand { font-family: Georgia, serif; font-size: 7pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 6pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 22pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.02; margin: 0.5mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 8.5pt; color: #4a5568; line-height: 1.28; }
+        .meta-bar { display: flex; gap: 4mm; margin-top: 2mm; padding-top: 2mm; border-top: 1px solid #e2e2e2; font-size: 7.5pt; color: #6b7280; flex-wrap: wrap; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 36% 1fr; gap: 4mm; margin-bottom: 2mm; }
+        h2 { font-family: Georgia, serif; font-size: 9pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1mm; margin-bottom: 2mm; }
+
+        .ingredients-note { font-size: 6pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -1mm 0 1.5mm 0; }
+        .group-label { font-size: 7pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 1.8mm 0 0.5mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 7pt; }
+        .ingredients td { padding: 0.3mm 1mm; vertical-align: top; line-height: 1.25; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 6.5pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 42px; }
+        .ingredients td:nth-child(3) { font-size: 6pt; text-align: right; color: #6b7280; white-space: nowrap; width: 55px; padding-left: 2mm; }
+        .note { font-size: 6pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 6pt; color: #6b7280; margin-top: 2mm; padding-top: 1mm; border-top: 1px solid #f0f0f0; line-height: 1.3; }
+
+        .method ol { padding-left: 4.5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 0.9mm; padding-left: 1mm; counter-increment: step; position: relative; line-height: 1.28; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -4.5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.3mm 0; padding: 0.4mm 0 0.4mm 2.5mm; border-left: 2px solid #5c9ead; font-size: 6.3pt; font-style: italic; color: #4a5568; line-height: 1.25; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 1.5mm 2.5mm; margin-top: 2mm; font-size: 7.2pt; line-height: 1.3; }
+        .done strong { color: #2d4a5e; }
+
+        .elevation { border: 1.5px solid #2d4a5e; padding: 1.5mm 2.5mm; margin-bottom: 1.5mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5mm; }
+        .tier-label { font-weight: 700; font-size: 6pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.3mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3mm; font-size: 6.3pt; line-height: 1.25; }
+        .elevation li { margin-bottom: 0.2mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin-bottom: 1mm; }
+        .bottom h2 { font-size: 7.5pt; margin-bottom: 1.5mm; padding-bottom: 0.8mm; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 6.3pt; border-collapse: collapse; }
+        .troubleshoot td, .charter td { padding: 0.3mm 1.5mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; line-height: 1.25; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 30%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 28%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 5.8pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1mm; border-top: 1px solid #e2e2e2; font-size: 5.5pt; color: #94a3b8; display: flex; justify-content: space-between; }
+        @media print { .done, .elevation, .charter tr:first-child td { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint &middot; DRAFT</span><span class="brand-tagline">The failure window is two degrees wide</span>
+    <h1>Custard &mdash; Cr&egrave;me Anglaise</h1>
+    <p class="hook">Cream and milk, warmed. Yolks and sugar, whisked pale. Temper. Back to the pan. Stir constantly to 82&deg;C &mdash; not 83, not 85. Strain. Ice bath. The base every serious dessert on a menu leans on.</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>750 ml</strong> (8)</span>
+        <span>Active: <strong>25 min</strong></span>
+        <span>Total: <strong>45 min</strong> + chill</span>
+        <span>Target: <strong>82&deg;C</strong> (180&deg;F)</span>
+        <span>Window: <strong>80&ndash;84&deg;C</strong></span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; volume right column</p>
+
+        <div class="group-label">Cr&egrave;me Anglaise base</div>
+        <table>
+            <tr><td>Whole milk</td><td>250ml</td><td>1 cup</td></tr>
+            <tr><td>Heavy cream <span class="note">(35%+)</span></td><td>250ml</td><td>1 cup</td></tr>
+            <tr><td>Large egg yolks <span class="note">(no whites)</span></td><td>6</td><td>~110g</td></tr>
+            <tr><td>Granulated sugar</td><td>100g</td><td>&frac12; cup</td></tr>
+            <tr><td>Fine sea salt</td><td>1g</td><td>&frac18; tsp</td></tr>
+            <tr><td>Vanilla bean <span class="note">(split + seeds)</span></td><td>1</td><td>&mdash;</td></tr>
+        </table>
+
+        <div class="group-label">Pastry cream variation</div>
+        <table>
+            <tr><td>Whole milk</td><td>500ml</td><td>2 cups</td></tr>
+            <tr><td>Egg yolks</td><td>4</td><td>~75g</td></tr>
+            <tr><td>Sugar</td><td>100g</td><td>&frac12; cup</td></tr>
+            <tr><td>Cornstarch <span class="note">(not flour)</span></td><td>40g</td><td>&frac13; cup</td></tr>
+            <tr><td>Salt</td><td>1g</td><td>&frac18; tsp</td></tr>
+            <tr><td>Vanilla</td><td>1 pod</td><td>&mdash;</td></tr>
+            <tr><td>Butter <span class="note">(off heat)</span></td><td>30g</td><td>2 tbsp</td></tr>
+        </table>
+
+        <div class="group-label">Flavour variations</div>
+        <table>
+            <tr><td>Coffee</td><td colspan="2">20g ground, infuse warm 15 min, strain</td></tr>
+            <tr><td>Chocolate</td><td colspan="2">hot anglaise over 150g 70% choc, whisk</td></tr>
+            <tr><td>Praliné / gianduja</td><td colspan="2">100g paste, whisk in warm</td></tr>
+            <tr><td>Cardamom / tea</td><td colspan="2">8 crushed pods / 2 tbsp tea, infuse, strain</td></tr>
+            <tr><td>Citrus</td><td colspan="2">zest in dairy (NEVER juice &mdash; curdles)</td></tr>
+            <tr><td>Rum / Cognac</td><td colspan="2">20&ndash;30 ml cold, at service</td></tr>
+            <tr><td>Saffron</td><td colspan="2">10 threads bloomed in 15 ml hot water</td></tr>
+            <tr><td>Brown butter</td><td colspan="2">replace 100 ml cream w/ brown butter</td></tr>
+        </table>
+
+        <p class="equipment">
+            <strong>Kit:</strong> heavy 3 L saucepan (light interior) &middot; silicone spatula &middot; <em>instant-read thermometer</em> &middot; chinois &middot; ice-bath bowl &middot; whisk (yolks only)
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method &mdash; Cr&egrave;me Anglaise</h2>
+        <ol>
+            <li>
+                <strong>Infuse dairy.</strong> Milk + cream + split vanilla (seeds + pod). Bare simmer, cover, steep <strong>10 min</strong>. Coffee / tea / zest / saffron infuse now.
+                <span class="why">Vanilla volatiles flee a rolling boil; a gentle steep extracts without damage.</span>
+            </li>
+            <li>
+                <strong>Yolks to ribbon.</strong> Yolks + sugar + salt. Whisk vigorously <strong>2&ndash;3 min</strong> until pale and ribboning.
+                <span class="why">Sugar coats the proteins and raises their coagulation temp by 10&ndash;15&deg;C. Under-whisked = pre-scrambled. <cite>&mdash; McGee, pp. 97-98</cite></span>
+            </li>
+            <li>
+                <strong>Temper.</strong> Re-warm dairy to steam. Pour 1/3 into yolks in a thin stream, whisking constantly. Return tempered yolks to the pan with remaining dairy. Switch from whisk to silicone spatula.
+                <span class="why">Gradual climb lets proteins unfold rather than seize. Every curdled custard is either un-tempered or too hot.</span>
+            </li>
+            <li>
+                <strong>The stir.</strong> Medium-low heat. <strong>Figure-eight with corner sweeps</strong>, continuously. No whisking &mdash; it aerates and hides the texture. 5&ndash;8 min.
+                <span class="why">Coagulation danger is at the pan bottom and corners where heat concentrates. Figure-8 means every cm&sup2; is scraped every 2&ndash;3 sec.</span>
+            </li>
+            <li>
+                <strong>Read the thickening</strong> at ~75&deg;C: clean trail on the pan bottom, surface goes glossy. Two to three more minutes.
+            </li>
+            <li>
+                <strong>Target 82&deg;C (180&deg;F).</strong> Nappe test: line held across the spatula back with a fingertip. Thermometer in the liquid, not touching pan.
+                <span class="why">80&deg;C = thin. 82&deg;C = perfect. 84&deg;C = edge. 85&deg;C = curdled. No recovery above the ceiling.</span>
+            </li>
+            <li>
+                <strong>THE STOP.</strong> At 82&deg;C, off heat <em>immediately</em>, pour through chinois into the ice-bath bowl. Do not stop at the heat &mdash; carryover hits 85&deg;C in seconds.
+            </li>
+            <li>
+                <strong>Stir over ice</strong> 1&ndash;2 min to drop under 30&deg;C. Press plastic wrap directly on the surface. Chill <strong>2 hr minimum</strong>, ideally overnight &mdash; flavour develops.
+            </li>
+        </ol>
+
+        <div class="done">
+            <strong>Pastry cream variant:</strong> starch in yolks + whisk (not stir) + <strong>BOIL 90 sec</strong> (amylase kill &mdash; unboiled pastry cream liquefies overnight). Off heat, 30 g butter. Film on surface. Whisk before use.<br>
+            <strong>Sous-vide variant (bulletproof):</strong> same ingredients &rarr; bag &rarr; 82&deg;C / 45 min / agitate every 15 min &rarr; chinois &rarr; ice bath. Failure rate zero.
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; No Extra Time</div>
+            <ul>
+                <li><strong>Tahitian vanilla</strong> &mdash; floral/cherry-cola vs. Bourbon</li>
+                <li><strong>Brown sugar swap</strong> &mdash; 30 g of total</li>
+                <li><strong>Extra yolk</strong> &mdash; 7 for ice-cream base</li>
+                <li><strong>Malt syrup</strong> &mdash; 10 g, Horlicks register</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; Worth It</div>
+            <ul>
+                <li><strong>Sous-vide</strong> &mdash; 82&deg;C / 45 min / unfailable</li>
+                <li><strong>Caramelised cream</strong> &mdash; dry-caramel 40 g, deglaze off heat</li>
+                <li><strong>Brown-butter base</strong> &mdash; replace 100 ml cream</li>
+                <li><strong>Duck yolks</strong> &mdash; 4 ducks for 6 hens, richer</li>
+                <li><strong>Cr&egrave;me br&ucirc;l&eacute;e</strong> &mdash; same base, ramekins, bain-marie 150&deg;C 30&ndash;40 min, br&ucirc;l&eacute;e at service</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>Ice cream</strong> &mdash; 7 yolks + 60 g brown butter, churn, harden 4 hr</li>
+                <li><strong>Pot de cr&egrave;me</strong> &mdash; espresso-cup bake, bain 150&deg;C 25&ndash;35 min</li>
+                <li><strong>Custard espuma</strong> &mdash; iSi + 1 N&#8322;O, chill 1 hr</li>
+                <li><strong>&Icirc;le flottante</strong> &mdash; anglaise + poached meringue + caramel</li>
+                <li><strong>Sabayon</strong> &mdash; Marsala replaces 100 ml cream, bain-marie whisk</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>Curdled / grainy</td><td>Past 84&deg;C. Stick-blender over ice bath (saves 70%); strain hard.</td></tr>
+            <tr><td>Too thin chilled</td><td>Under-cooked (&lt;80&deg;C). Use as thin sauce; re-cook impossible.</td></tr>
+            <tr><td>Too thick</td><td>Over-reduced. Thin with warm cream, spoonful at a time.</td></tr>
+            <tr><td>Eggy smell / sulphur</td><td>Over-cooked. 82&deg;C target, chinois, non-negotiable.</td></tr>
+            <tr><td>Skin on surface</td><td>No film contact. Press plastic directly on custard.</td></tr>
+            <tr><td>Pastry cream soup AM</td><td>Amylase not killed. Must boil 90 sec whisking.</td></tr>
+            <tr><td>Ice cream icy</td><td>Not enough fat / no alcohol. 20 ml vodka per L base.</td></tr>
+            <tr><td>Br&ucirc;l&eacute;e top soft</td><td>Too little sugar / damp top. 2&ndash;3 mm sugar, pat dry, 2&ndash;3 torch passes.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Galley move</td><td>Sous-vide 1 L &rarr; 3 desserts: sauce, ice cream, pot de cr&egrave;me.</td></tr>
+            <tr><td>Anglaise</td><td>3 d fridge. <strong>Never freeze</strong> &mdash; breaks. Churn to ice cream instead.</td></tr>
+            <tr><td>Pastry cream</td><td>3 d fridge max. Film on surface. <strong>Never freeze</strong> &mdash; starch retrogrades.</td></tr>
+            <tr><td>Sous-vide bag sealed</td><td>1 wk fridge unopened.</td></tr>
+            <tr><td>Ice cream churned</td><td>2 mo freezer. 20 ml vodka / L prevents over-hardening.</td></tr>
+            <tr><td>Pot de cr&egrave;me baked</td><td>3 d fridge sealed.</td></tr>
+            <tr><td>Scaling</td><td>Stovetop cap at 1.5 L / pot (corner dead zones). Sous-vide scales to any volume.</td></tr>
+            <tr><td>Target never changes</td><td><strong>82&deg;C.</strong> Never adjust for batch size.</td></tr>
+        </table>
+    </section>
+</div>
+
+<footer class="footer">
+    <span>Sources: McGee pp. 85-88, 97-98 &middot; P&eacute;pin <em>La Technique</em> &middot; Kenji SE 2015 &middot; Figoni <em>How Baking Works</em> ch. 10 &middot; Keller <em>French Laundry</em> &middot; ChefSteps 2016</span>
+    <span>littoralicious.com &mdash; DRAFT (unpublished)</span>
+</footer>
+
+</body>
+</html>

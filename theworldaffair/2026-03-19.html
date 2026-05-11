@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The World Affair — Jeudi 19 Mars 2026</title>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=UnifrakturMaguntia&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  background: #f4f1eb;
+  color: #1a1714;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+::selection { background: #2d4a5e; color: #f4f1eb; }
+
+a { color: inherit; text-decoration: none; transition: color 0.15s; }
+a:hover { color: #3a5a6a; }
+
+/* -- Masthead -- */
+.masthead {
+  text-align: center;
+  padding: 40px 24px 0;
+  border-bottom: 4px double #b5ad9f;
+}
+
+.masthead-rule-top {
+  display: flex; align-items: center; gap: 14px;
+  font-size: 9px; color: #8a847a; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.masthead-rule-top::before, .masthead-rule-top::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+.masthead-title {
+  font-family: 'UnifrakturMaguntia', 'Playfair Display', serif;
+  font-size: 52px; font-weight: 400; letter-spacing: 4px;
+  color: #1a1714; line-height: 1; margin: 0;
+}
+.masthead-title a { text-decoration: none; color: inherit; }
+.masthead-title a:hover { color: #1a1714; }
+
+.masthead-meta {
+  display: flex; justify-content: center; align-items: center; gap: 20px;
+  font-size: 11px; color: #8a847a; letter-spacing: 1px;
+  text-transform: uppercase; margin-top: 14px; padding-bottom: 16px;
+}
+.masthead-meta span { white-space: nowrap; }
+.masthead-dot { color: #c8c0b4; }
+
+/* -- Navigation -- */
+.nav-bar {
+  display: flex; justify-content: center; gap: 0;
+  border-bottom: 1px solid #c8c0b4;
+  background: #ede9e1;
+  padding: 0;
+}
+.nav-link {
+  padding: 10px 20px;
+  font-family: 'Libre Baskerville', serif;
+  font-size: 11px; font-weight: 400;
+  color: #4a4540; text-decoration: none;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  border-right: 1px solid #c8c0b4;
+  transition: all 0.15s;
+}
+.nav-link:first-child { border-left: 1px solid #c8c0b4; }
+.nav-link:hover { background: #e6e1d8; color: #1a1714; }
+.nav-link.active { background: #1a1714; color: #f4f1eb; }
+
+/* -- Page layout -- */
+.page { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* -- Section divider (NYT style) -- */
+.section-divider {
+  display: flex; align-items: center; gap: 14px;
+  margin: 32px 0 24px; font-size: 10px; color: #8a847a;
+  letter-spacing: 3px; text-transform: uppercase;
+}
+.section-divider::before, .section-divider::after {
+  content: ''; flex: 1; height: 1px; background: #c8c0b4;
+}
+
+/* -- Flash briefing box -- */
+.flash-box {
+  background: #ede9e1; border: 1px solid #c8c0b4;
+  border-left: 4px solid #8b3a3a;
+  padding: 20px 24px; margin: 28px 0;
+}
+.flash-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 14px; font-weight: 900;
+  text-transform: uppercase; letter-spacing: 2px;
+  color: #8b3a3a; margin-bottom: 12px;
+}
+.flash-box ul { margin: 0; padding-left: 18px; }
+.flash-box li {
+  font-size: 13px; color: #4a4540; line-height: 1.7;
+  margin-bottom: 8px; list-style-type: '— ';
+}
+.flash-box li strong { color: #1a1714; }
+
+/* -- Hub grid (domain cards) -- */
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 0;
+  border-top: 2px solid #1a1714;
+  border-bottom: 1px solid #c8c0b4;
+}
+.hub-card {
+  padding: 20px 20px 18px;
+  border-bottom: 1px solid #c8c0b4;
+  border-right: 1px solid #c8c0b4;
+  text-decoration: none; color: inherit;
+  transition: background 0.15s;
+  position: relative;
+}
+.hub-card:hover { background: #ede9e1; }
+.hub-card-overline {
+  font-size: 10px; text-transform: uppercase; letter-spacing: 2px;
+  font-weight: 700; margin-bottom: 6px;
+}
+.hub-card-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700; line-height: 1.3;
+  margin-bottom: 8px;
+}
+.hub-card-excerpt {
+  font-size: 13px; color: #4a4540; line-height: 1.6;
+  font-style: italic;
+}
+.hub-card-arrow {
+  position: absolute; top: 20px; right: 16px;
+  font-size: 16px; color: #c8c0b4;
+}
+
+/* -- Bottom navigation -- */
+.bottom-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 32px; padding: 16px 0;
+  border-top: 2px solid #b5ad9f;
+}
+.bottom-nav a {
+  font-size: 13px; color: #4a4540; text-decoration: none;
+  padding: 8px 0; transition: color 0.15s;
+}
+.bottom-nav a:hover { color: #1a1714; }
+.bottom-nav-label {
+  display: block; font-size: 9px; color: #8a847a;
+  text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 2px;
+}
+.bottom-nav-title {
+  font-family: 'Playfair Display', serif; font-weight: 600; font-size: 14px;
+}
+
+/* -- Footer -- */
+.site-footer {
+  text-align: center; padding: 24px;
+  margin-top: 24px;
+  border-top: 4px double #b5ad9f;
+  font-family: 'Playfair Display', serif;
+  font-size: 10px; color: #8a847a; letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* -- Responsive -- */
+@media (max-width: 700px) {
+  .masthead-title { font-size: 36px; }
+  .masthead { padding: 24px 16px 0; }
+  .nav-bar { flex-wrap: wrap; }
+  .nav-link { flex: 1; text-align: center; border-right: none; border-bottom: 1px solid #c8c0b4; }
+  .hub-grid { grid-template-columns: 1fr; }
+  .hub-card { border-right: none; }
+  .page { padding: 0 16px; }
+}
+
+/* -- Print -- */
+@media print {
+  .nav-bar, .bottom-nav { display: none !important; }
+  body { background: white; }
+  .masthead-title { font-size: 36px; }
+}
+
+</style>
+</head>
+<body><header class="masthead">
+  <div class="masthead-rule-top"><span>Rather than news that sells &mdash; give me the truth</span></div>
+  <h1 class="masthead-title"><a href="index.html">The World Affair</a></h1>
+  <div class="masthead-meta">
+    <span>Jeudi 19 Mars 2026</span><span class="masthead-dot">&bull;</span>
+    <span>Edition N&deg;56</span><span class="masthead-dot">&bull;</span>
+    <span>NEXUS Intelligence</span>
+  </div>
+</header><nav class="nav-bar"><a class="nav-link active" href="2026-03-19.html">Premi&egrave;re Page</a><a class="nav-link" href="2026-03-19/synthese.html">Synth&egrave;se</a><a class="nav-link" href="archive.html">Archives</a></nav><div class="page"><div class="flash-box"><div class="flash-title">En 60 Secondes</div><ul><li><strong>Guerre Iran — Semaine 4</strong> — Le conflit entre dans sa quatri&egrave;me semaine. Le d&eacute;troit d'Hormuz est effectivement ferm&eacute;. Brent &agrave; $112. Plus de 1 500 morts iraniens confirm&eacute;s.</li><li><strong>GPT-5.4 vs Claude Opus 4.6</strong> — La guerre des mod&egrave;les s'intensifie. OpenAI lance GPT-5.4 (1M de contexte, -33% d'erreurs). Anthropic r&eacute;pond avec le mode auto de Claude Opus 4.6.</li><li><strong>AMI Labs l&egrave;ve $1,03 milliard</strong> — Plus grosse lev&eacute;e seed europ&eacute;enne de l'histoire. Fond&eacute;e par Yann LeCun, l'entreprise vise l'IA de nouvelle g&eacute;n&eacute;ration.</li><li><strong>Vineyard Wind termin&eacute;</strong> — 62 turbines install&eacute;es malgr&eacute; la r&eacute;sistance de l'administration Trump. Premier grand parc &eacute;olien offshore am&eacute;ricain op&eacute;rationnel.</li><li><strong>Cyberguerre iranienne active</strong> — Campagne cyber iranienne contre les infrastructures occidentales. Le NY DFS &eacute;met une alerte pour le secteur financier.</li><li><strong>Le Chili certifi&eacute; sans l&egrave;pre</strong> — L'OMS certifie le Chili exempt de l&egrave;pre — premier pays des Am&eacute;riques &agrave; atteindre ce statut.</li></ul></div><div class="section-divider"><span>14 rubriques du jour</span></div><div class="hub-grid"><a class="hub-card" href="2026-03-19/llm-agents.html">
+  <div class="hub-card-overline" style="color:#2c2c2c">LLM & Agents</div>
+  <div class="hub-card-title">GPT-5.4 contre Claude Opus 4.6 : la guerre des mod&egrave;les</div>
+  <div class="hub-card-excerpt">&laquo; La course aux mod&egrave;les n'est plus un duopole. NVIDIA lance Nemotron 3, Anthropic attaque le Pentagone en justice, 24 000 comptes chinois frauduleux d&eacute;couverts. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/gastronomie.html">
+  <div class="hub-card-overline" style="color:#4a5a30">Gastronomie</div>
+  <div class="hub-card-title">The Chairman reprend le tr&ocirc;ne d'Asie</div>
+  <div class="hub-card-excerpt">&laquo; Asia's 50 Best 2026 : The Chairman (Hong Kong) retrouve la premi&egrave;re place. Wing au num&eacute;ro 2. Le vinaigre sacr&eacute; ingr&eacute;dient de l'ann&eacute;e. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/geopolitique.html">
+  <div class="hub-card-overline" style="color:#8b3a3a">G&eacute;opolitique</div>
+  <div class="hub-card-title">Iran : la guerre entre dans sa quatri&egrave;me semaine</div>
+  <div class="hub-card-excerpt">&laquo; Hormuz ferm&eacute; de facto, 1 500+ morts iraniens, le Pakistan en m&eacute;diateur, plan de cessez-le-feu en 15 points de Trump. La boucle de r&eacute;troaction syst&eacute;mique s'amplifie. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/innovation-startups.html">
+  <div class="hub-card-overline" style="color:#7a6a2e">Innovation & Startups</div>
+  <div class="hub-card-title">AMI Labs : $1,03 milliard en seed</div>
+  <div class="hub-card-excerpt">&laquo; Plus grosse lev&eacute;e seed europ&eacute;enne. En parall&egrave;le : m&eacute;ga-tours en robotique ($1,2B en une semaine), Legora $550M Series D, Wayve $1,2B. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/podcasts-interviews.html">
+  <div class="hub-card-overline" style="color:#5a4a6a">Podcasts & Interviews</div>
+  <div class="hub-card-title">19 mars 2026</div>
+  <div class="hub-card-excerpt">&laquo; Fresh Air avec Ryan Coogler (16 nominations aux Oscars), Lex Fridman sur les futurs de l'IA, Good Hang remporte le Golden Globe du podcast. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/finance-marches.html">
+  <div class="hub-card-overline" style="color:#3d6b4f">Finance & March&eacute;s</div>
+  <div class="hub-card-title">Brent &agrave; $112, or &agrave; $4 569</div>
+  <div class="hub-card-excerpt">&laquo; S&amp;P 500 -0,9%, VIX &agrave; 24,92. La Fed maintient les taux &agrave; 3,50-3,75%. Le choc p&eacute;trolier iranien se propage aux march&eacute;s mondiaux. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/bonnes-nouvelles.html">
+  <div class="hub-card-overline" style="color:#3d6b4f">Bonnes Nouvelles</div>
+  <div class="hub-card-title">19 m&eacute;galopoles r&eacute;duisent leur pollution de 20 &agrave; 40%</div>
+  <div class="hub-card-excerpt">&laquo; Le Chili &eacute;limine la l&egrave;pre, Vineyard Wind achev&eacute;, un concierge de Yale devient m&eacute;decin. Les preuves que le progr&egrave;s continue malgr&eacute; tout. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/science-tech.html">
+  <div class="hub-card-overline" style="color:#5a4a6a">Science & Tech</div>
+  <div class="hub-card-title">Premier &oelig;sophage cultiv&eacute; en laboratoire</div>
+  <div class="hub-card-excerpt">&laquo; Transport routier d'antimati&egrave;re r&eacute;ussi pour la premi&egrave;re fois. D&eacute;couverte d'une voie c&eacute;r&eacute;brale de la metformine. L'ing&eacute;nierie tissulaire franchit un cap. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/maritime-sailing.html">
+  <div class="hub-card-overline" style="color:#3a5a6a">Maritime & Sailing</div>
+  <div class="hub-card-title">Hormuz : transit quasi nul, 2 000 navires bloqu&eacute;s</div>
+  <div class="hub-card-excerpt">&laquo; L'Arabie saoudite redirige via Yanbu (+330%). Les armateurs suspendent les transits. La g&eacute;ographie du commerce maritime se reconfigure en temps r&eacute;el. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/crypto.html">
+  <div class="hub-card-overline" style="color:#7a6a2e">Crypto</div>
+  <div class="hub-card-title">Bitcoin dans le range $65-70K</div>
+  <div class="hub-card-excerpt">&laquo; Le Clarity Act menace les rendements stablecoins. Circle -18%, Coinbase -8%. Le march&eacute; crypto dig&egrave;re le choc g&eacute;opolitique avec une r&eacute;silience relative. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/sante-medecine.html">
+  <div class="hub-card-overline" style="color:#3a5a52">Sant&eacute; & M&eacute;decine</div>
+  <div class="hub-card-title">Casgevy CRISPR approuv&eacute; mondialement</div>
+  <div class="hub-card-excerpt">&laquo; Premi&egrave;re th&eacute;rapie g&eacute;nique CRISPR approuv&eacute;e &agrave; l'&eacute;chelle mondiale. Traitement des cellules souches pour le spina bifida. La FDA publie un cadre pour la sant&eacute; num&eacute;rique. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/liberte-surveillance.html">
+  <div class="hub-card-overline" style="color:#7a5230">Libert&eacute; & Surveillance</div>
+  <div class="hub-card-title">L'UE relance Chat Control (CSAR)</div>
+  <div class="hub-card-excerpt">&laquo; Le Royaume-Uni scanne secr&egrave;tement 150 millions de photos de passeports par reconnaissance faciale. L'identit&eacute; num&eacute;rique obligatoire avance. La vie priv&eacute;e recule. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/espace-energie.html">
+  <div class="hub-card-overline" style="color:#3a5a6a">Espace & &Eacute;nergie</div>
+  <div class="hub-card-title">Tokamak EAST : r&eacute;gime sans densit&eacute; atteint</div>
+  <div class="hub-card-excerpt">&laquo; La Chine franchit un cap dans la fusion nucl&eacute;aire. Le Japon investit $376 milliards dans la tech. Pulsar Fusion teste son moteur-fus&eacute;e. Vineyard Wind op&eacute;rationnel. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a><a class="hub-card" href="2026-03-19/cybersecurite-regulation.html">
+  <div class="hub-card-overline" style="color:#2c2c2c">Cybers&eacute;curit&eacute; & R&eacute;gulation</div>
+  <div class="hub-card-title">Campagne cyber iranienne : alerte NY DFS</div>
+  <div class="hub-card-excerpt">&laquo; Le secteur financier en &eacute;tat d'alerte. &Eacute;ch&eacute;ances EU CRA. Les feuilles de route post-quantiques deviennent obligatoires. 59 000 CVE pr&eacute;vues en 2026. &raquo;</div>
+  <span class="hub-card-arrow">&rarr;</span>
+</a></div><div class="bottom-nav"><a href="2026-03-02.html"><span class="bottom-nav-label">Pr&eacute;c&eacute;dent</span><span class="bottom-nav-title">&larr; Lundi 2 Mars 2026</span></a></div></div><div class="site-footer">The World Affair &mdash; Edition N&deg;56</div>
+<div id="ps-save-btn" style="display:none;position:fixed;z-index:9999;padding:6px 12px;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:4px;font-family:'Libre Baskerville',Georgia,serif;font-size:12px;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psSave()">&#128278; Sauvegarder ce passage</div>
+<div id="ps-panel" style="display:none;position:fixed;bottom:0;right:0;width:360px;max-height:50vh;z-index:9998;background:#1a1714;color:#f4f1eb;border:1px solid #b5ad9f;border-radius:8px 0 0 0;font-family:'Libre Baskerville',Georgia,serif;font-size:11px;overflow:hidden;box-shadow:0 -2px 12px rgba(0,0,0,0.3);">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;border-bottom:1px solid #333;background:#111;">
+    <span style="font-weight:bold;font-size:12px;">&#128209; Passages sauvegard&eacute;s</span>
+    <div>
+      <button onclick="psExport()" style="background:none;border:1px solid #555;color:#b5ad9f;padding:2px 8px;border-radius:3px;cursor:pointer;font-size:10px;margin-right:4px;">Exporter .md</button>
+      <button onclick="document.getElementById('ps-panel').style.display='none'" style="background:none;border:none;color:#888;cursor:pointer;font-size:14px;">&times;</button>
+    </div>
+  </div>
+  <div id="ps-list" style="overflow-y:auto;max-height:calc(50vh - 40px);padding:8px 12px;"></div>
+</div>
+<div id="ps-toggle" style="position:fixed;bottom:12px;right:12px;z-index:9997;padding:6px 10px;background:#1a1714;border:1px solid #b5ad9f;border-radius:50%;cursor:pointer;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.3);" onclick="psTogglePanel()" title="Passages sauvegard&eacute;s">&#128209;<span id="ps-count" style="font-size:9px;color:#b5ad9f;margin-left:2px;"></span></div>
+<script>
+(function(){
+  var VAULT = "worldaffair";
+  var KEY = "nexus-passages-" + VAULT;
+  function getAll(){ try{return JSON.parse(localStorage.getItem(KEY)||"[]")}catch(e){return[]} }
+  function saveAll(arr){ localStorage.setItem(KEY, JSON.stringify(arr)); }
+
+  var selText = "", selRange = null;
+
+  document.addEventListener("mouseup", function(e){
+    var sel = window.getSelection();
+    var txt = sel.toString().trim();
+    var btn = document.getElementById("ps-save-btn");
+    if (txt.length > 10) {
+      selText = txt;
+      btn.style.display = "block";
+      btn.style.left = (e.pageX + 10) + "px";
+      btn.style.top = (e.pageY - 40) + "px";
+    } else {
+      setTimeout(function(){ btn.style.display = "none"; }, 200);
+    }
+  });
+
+  window.psSave = function(){
+    if (!selText) return;
+    var passages = getAll();
+    passages.push({
+      text: selText.substring(0, 2000),
+      source: document.title,
+      url: location.href,
+      date: new Date().toISOString(),
+      vault: VAULT,
+    });
+    saveAll(passages);
+    document.getElementById("ps-save-btn").style.display = "none";
+    psRenderList();
+    psFlash();
+    selText = "";
+  };
+
+  function psFlash(){
+    var t = document.getElementById("ps-toggle");
+    t.style.background = "#3d6b4f";
+    setTimeout(function(){ t.style.background = "#1a1714"; }, 600);
+  }
+
+  window.psTogglePanel = function(){
+    var p = document.getElementById("ps-panel");
+    p.style.display = p.style.display === "none" ? "block" : "none";
+    psRenderList();
+  };
+
+  window.psRenderList = function(){
+    var passages = getAll();
+    var el = document.getElementById("ps-list");
+    document.getElementById("ps-count").textContent = passages.length || "";
+    if (!passages.length){ el.innerHTML = "<div style=\"color:#888;padding:12px;text-align:center;font-style:italic;\">S\u00e9lectionne du texte et clique Sauvegarder</div>"; return; }
+    el.innerHTML = passages.slice().reverse().map(function(p, ri){
+      var i = passages.length - 1 - ri;
+      var d = new Date(p.date);
+      var ds = d.toLocaleDateString("fr-FR", {day:"numeric",month:"short"}) + " " + d.toLocaleTimeString("fr-FR", {hour:"2-digit",minute:"2-digit"});
+      return "<div style=\"padding:8px 0;border-bottom:1px solid #333;\">"
+        + "<div style=\"display:flex;justify-content:space-between;align-items:baseline;\">"
+        + "<span style=\"font-size:9px;color:#888;\">" + ds + " &mdash; " + (p.source||"").substring(0,30) + "</span>"
+        + "<button onclick=\"psDelete("+i+")\" style=\"background:none;border:none;color:#888;cursor:pointer;font-size:10px;\">&times;</button>"
+        + "</div>"
+        + "<div style=\"margin-top:4px;color:#ddd;line-height:1.5;font-style:italic;\">&laquo; " + p.text.substring(0,300) + (p.text.length>300?"...":"") + " &raquo;</div>"
+        + "</div>";
+    }).join("");
+  };
+
+  window.psDelete = function(i){
+    var passages = getAll();
+    passages.splice(i, 1);
+    saveAll(passages);
+    psRenderList();
+  };
+
+  window.psExport = function(){
+    var passages = getAll();
+    if (!passages.length) return;
+    var md = "# Passages sauvegard\u00e9s \u2014 " + VAULT + "\n\n";
+    md += "Export\u00e9 le " + new Date().toLocaleDateString("fr-FR") + "\n\n---\n\n";
+    passages.forEach(function(p){
+      var d = new Date(p.date).toLocaleDateString("fr-FR");
+      md += "> " + p.text.replace(/\n/g, "\n> ") + "\n\n";
+      md += "*Source: " + (p.source||"?") + " \u2014 " + d + "*\n\n---\n\n";
+    });
+    var blob = new Blob([md], {type:"text/markdown"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "passages-" + VAULT + "-" + new Date().toISOString().slice(0,10) + ".md";
+    a.click();
+  };
+
+  psRenderList();
+})();
+</script>
+</body></html>

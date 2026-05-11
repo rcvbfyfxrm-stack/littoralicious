@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roast Lamb Shoulder &mdash; Littoralicious</title>
+    <style>
+        @page { size: A4; margin: 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 8pt;
+            line-height: 1.32;
+            color: #0a0a0a;
+            background: #fff;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 6mm 9mm 4mm;
+            overflow: hidden;
+        }
+        .header { border-bottom: 2.5px solid #0a0a0a; padding-bottom: 2.5mm; margin-bottom: 3mm; }
+        .brand { font-family: Georgia, serif; font-size: 7.2pt; letter-spacing: 0.15em; text-transform: uppercase; color: #2d4a5e; }
+        .brand-tagline { font-size: 6.2pt; letter-spacing: 0.08em; text-transform: uppercase; color: #94a3b8; margin-left: 3mm; font-family: -apple-system, sans-serif; }
+        h1 { font-family: Georgia, serif; font-size: 22pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.04; margin: 0.8mm 0; }
+        .hook { font-family: Georgia, serif; font-style: italic; font-size: 9pt; color: #4a5568; line-height: 1.32; }
+        .meta-bar { display: flex; gap: 4.5mm; margin-top: 2.2mm; padding-top: 2.2mm; border-top: 1px solid #e2e2e2; font-size: 7.6pt; color: #6b7280; flex-wrap: wrap; }
+        .meta-bar strong { color: #0a0a0a; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; }
+
+        .main { display: grid; grid-template-columns: 36% 1fr; gap: 4.5mm; margin-bottom: 2.5mm; }
+        h2 { font-family: Georgia, serif; font-size: 9.2pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; border-bottom: 2px solid #0a0a0a; padding-bottom: 1.2mm; margin-bottom: 2.2mm; }
+
+        .ingredients-note { font-size: 6.2pt; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.06em; margin: -1mm 0 1.5mm 0; }
+        .group-label { font-size: 7.2pt; font-weight: 700; color: #2d4a5e; text-transform: uppercase; letter-spacing: 0.05em; margin: 2mm 0 0.6mm; }
+        .ingredients table { width: 100%; border-collapse: collapse; font-size: 7.5pt; }
+        .ingredients td { padding: 0.4mm 1mm; vertical-align: top; line-height: 1.25; }
+        .ingredients td:nth-child(2) { font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; text-align: right; color: #2d4a5e; white-space: nowrap; width: 50px; }
+        .ingredients td:nth-child(3) { font-size: 6.5pt; text-align: right; color: #6b7280; white-space: nowrap; width: 60px; padding-left: 2mm; }
+        .note { font-size: 6.4pt; color: #6b7280; font-style: italic; }
+        .equipment { font-size: 6.6pt; color: #6b7280; margin-top: 2mm; padding-top: 1.2mm; border-top: 1px solid #f0f0f0; line-height: 1.3; }
+
+        .method ol { padding-left: 4.5mm; counter-reset: step; list-style: none; }
+        .method li { margin-bottom: 1mm; padding-left: 1mm; counter-increment: step; position: relative; line-height: 1.3; }
+        .method li::before { content: counter(step) "."; position: absolute; left: -4.5mm; font-weight: 700; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 7pt; }
+        .method li > strong:first-child { color: #2d4a5e; }
+        .why { display: block; margin: 0.4mm 0; padding: 0.5mm 0 0.5mm 2.8mm; border-left: 2px solid #5c9ead; font-size: 6.6pt; font-style: italic; color: #4a5568; line-height: 1.28; }
+        .why cite { font-style: normal; color: #2d4a5e; }
+        .done { background: #f0f7fa; border-left: 3px solid #2d4a5e; padding: 1.8mm 2.5mm; margin-top: 2mm; font-size: 7.5pt; line-height: 1.3; }
+        .done strong { color: #2d4a5e; }
+        .warn { background: #fef3c7; border-left: 3px solid #d97706; padding: 1.5mm 2.5mm; margin-bottom: 2.5mm; font-size: 7.4pt; line-height: 1.3; }
+        .warn strong { color: #92400e; }
+
+        .elevation { border: 1.5px solid #2d4a5e; padding: 1.8mm 2.5mm; margin-bottom: 2mm; }
+        .elevation h2 { color: #2d4a5e; border-bottom-color: #2d4a5e; margin-bottom: 1.2mm; }
+        .elevation-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2.5mm; }
+        .tier-label { font-weight: 700; font-size: 6.3pt; text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 0.4mm; }
+        .t1 { color: #059669; } .t2 { color: #d97706; } .t3 { color: #7c3aed; }
+        .elevation ul { padding-left: 3mm; font-size: 6.6pt; line-height: 1.28; }
+        .elevation li { margin-bottom: 0.3mm; }
+        .elevation li strong { color: #0a0a0a; }
+
+        .bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 1.5mm; }
+        .bottom h2 { font-size: 7.8pt; margin-bottom: 1.5mm; padding-bottom: 0.8mm; }
+        .troubleshoot table, .charter table { width: 100%; font-size: 6.6pt; border-collapse: collapse; }
+        .troubleshoot td, .charter td { padding: 0.4mm 1.5mm; vertical-align: top; border-bottom: 1px solid #f0f0f0; line-height: 1.27; }
+        .troubleshoot td:first-child { font-weight: 600; white-space: nowrap; width: 30%; }
+        .charter td:first-child { font-weight: 600; white-space: nowrap; width: 30%; color: #2d4a5e; font-family: "SF Mono", SFMono-Regular, Consolas, monospace; font-size: 6pt; }
+        .charter tr:first-child td { border-bottom: 1px solid #2d4a5e; }
+        .charter tr:first-child td:last-child { font-weight: 600; }
+
+        .footer { padding-top: 1.2mm; border-top: 1px solid #e2e2e2; font-size: 5.8pt; color: #94a3b8; display: flex; justify-content: space-between; }
+        @media print { .done, .elevation, .charter tr:first-child td, .warn { -webkit-print-color-adjust: exact; print-color-adjust: exact; } }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <span class="brand">Littoralicious &mdash; The Blueprint</span><span class="brand-tagline">Bone-in shoulder, dry-rubbed, into 110&deg;C overnight</span>
+    <h1>Roast Lamb Shoulder &mdash; Overnight</h1>
+    <p class="hook">Twelve hours at 110&deg;C drives connective tissue past 90&deg;C internal &mdash; collagen melts, fat renders, fibres pull apart under a fork. Dry brine is half the crackle. The blast at the end, never the start. <strong>Shoulder only &mdash; not leg</strong> (leg above 60&deg;C is dry, no recovery; see leg variant in Tier 2).</p>
+    <div class="meta-bar">
+        <span>Yield: <strong>6&ndash;8</strong></span>
+        <span>Active: <strong>30 min</strong></span>
+        <span>Total: <strong>10&ndash;13 hr</strong></span>
+        <span>Oven: <strong>110&deg;C</strong> &rarr; blast <strong>220&deg;C</strong></span>
+        <span>Internal: <strong>90&deg;C</strong></span>
+    </div>
+</header>
+
+<div class="main">
+    <section class="ingredients">
+        <h2>Ingredients</h2>
+        <p class="ingredients-note">Metric &middot; volume in right column</p>
+
+        <div class="group-label">The Lamb (A)</div>
+        <table>
+            <tr><td>Bone-in shoulder, fat cap intact, scored <span class="note">(Welsh / Pyrenean / NZ grass-fed)</span></td><td>2.0&ndash;2.4 kg</td><td>1</td></tr>
+            <tr><td>Coarse sea salt <span class="note">(12 g/kg)</span></td><td>25g</td><td>4 tsp</td></tr>
+            <tr><td>Cracked black pepper</td><td>5g</td><td>2 tsp</td></tr>
+        </table>
+
+        <div class="group-label">The Rub (B) <span class="note">&mdash; pound to paste</span></div>
+        <table>
+            <tr><td>Garlic, grated to paste</td><td>30g</td><td>8&ndash;10</td></tr>
+            <tr><td>Anchovy, mashed <span class="note">(invisible umami)</span></td><td>20g</td><td>&times;4</td></tr>
+            <tr><td>Rosemary + thyme chopped</td><td>10+5g</td><td>&mdash;</td></tr>
+            <tr><td>Lemon zest + Dijon + olive oil + pepper</td><td>1 / 15 / 30 / 3g</td><td>&mdash;</td></tr>
+        </table>
+
+        <div class="group-label">The Bed (C) <span class="note">&mdash; under the rack</span></div>
+        <table>
+            <tr><td>Onions halved + carrots batons + celery</td><td>400 / 300 / 200g</td><td>&mdash;</td></tr>
+            <tr><td>Garlic head halved + bay + rosemary + peppercorns</td><td>1 / 4 / 3 / 5g</td><td>&mdash;</td></tr>
+            <tr><td>Dry white wine + lamb/chicken stock</td><td>250+500g</td><td>~2 cm</td></tr>
+        </table>
+
+        <div class="group-label">Service (D)</div>
+        <table>
+            <tr><td>Maldon &middot; lemon wedges &middot; parsley + mint chopped</td><td>&mdash;</td><td>&mdash;</td></tr>
+        </table>
+
+        <p class="equipment">
+            <strong>Kit:</strong> roasting tray with rack &middot; leave-in probe thermometer (alarm 90&deg;C) &middot; oven thermometer (most ovens drift &plusmn;15&deg;C at low temp) &middot; mortar/pestle &middot; fat separator &middot; two forks.
+        </p>
+    </section>
+
+    <section class="method">
+        <h2>Method</h2>
+        <ol>
+            <li>
+                <strong>Dry brine 12&ndash;24 hr ahead.</strong> Pat dry. Score fat cap in 2 cm crosshatch (through fat, not muscle). Massage salt + pepper all over. Set on rack, <strong>uncovered</strong>, in fridge.
+                <span class="why">Salt 24 hr ahead = seasoned through + dry surface (better crackle). The 30-min window is the trap. Either 24 hr or right before. <cite>&mdash; Nosrat 2017</cite></span>
+            </li>
+            <li>
+                <strong>Make the rub.</strong> Pound garlic + anchovy + rosemary + thyme + zest to paste. Stir in oil, mustard, pepper.
+                <span class="why">Anchovy: glutamate + inosinate, umami synergy ~8&times;. Undetectable as fish; reads as deeper roast. <cite>&mdash; Ottolenghi 2014</cite></span>
+            </li>
+            <li>
+                <strong>Set the bed and rack.</strong> Bed in tray, ~2 cm liquid. Pull shoulder, rub paste all over (into score lines). Rack into tray, fat-cap up. Probe thickest muscle, <em>away from bone</em>. Alarm 90&deg;C.
+            </li>
+            <li>
+                <strong>Overnight: 110&deg;C (230&deg;F).</strong> Centre rack. Close oven door. <strong>Do not open it.</strong> 8&ndash;12 hr until probe reads 90&deg;C.
+                <span class="why">Below 95&deg;C internal: collagen never converts. Above 100&deg;C oven: fibres squeeze water faster than collagen converts. 110&deg;C / 90&deg;C is the corridor. <cite>&mdash; McGee 2004</cite></span>
+            </li>
+            <li>
+                <strong>The blast: 220&deg;C, 15&ndash;20 min.</strong> Move shoulder to a clean tray (so the bed doesn&rsquo;t scorch). Watch closely &mdash; line between mahogany and burned is two minutes. Sprinkle Maldon as it leaves the oven.
+                <span class="why">Maillard at the END, not the start. Browning at start wastes the colour &mdash; volatiles evaporate over 10 hours. Browning at end keeps them on the meat.</span>
+            </li>
+            <li>
+                <strong>Rest 30 minutes</strong> loosely tented in foil.
+            </li>
+            <li>
+                <strong>Build the jus.</strong> Strain bed liquid through fine mesh. De-fat (jar the fat &mdash; exceptional for roast potatoes). Reduce by &frac13; to &frac12;. Season last.
+            </li>
+            <li>
+                <strong>Pull at the table</strong> with two forks. Bone slides out. Pile on warm plates with jus, parsley, mint, lemon wedge.
+            </li>
+        </ol>
+
+        <div class="done">
+            <strong>Done:</strong> Probe reads <strong>90&deg;C</strong> internal in thickest muscle, away from bone. Past 90&deg;C every additional hour pulls texture from &ldquo;tender&rdquo; to &ldquo;spoon-soft.&rdquo; Bone slides out cleanly, fork meets no resistance. Fat cap mahogany after the blast.
+        </div>
+    </section>
+</div>
+
+<section class="elevation">
+    <h2>Elevation</h2>
+    <div class="elevation-grid">
+        <div>
+            <div class="tier-label t1">Tier 1 &mdash; No Extra Time</div>
+            <ul>
+                <li><strong>Anchovy in rub</strong> &mdash; already in base. Don&rsquo;t skip.</li>
+                <li><strong>Save the rendered fat</strong> &mdash; lamb-fat roast potatoes (separate dinner)</li>
+                <li><strong>Garlic confit on side</strong> &mdash; the bed&rsquo;s garlic head, after 10 hr, is already confit</li>
+                <li><strong>Pickled red onion</strong> &mdash; acid + crunch against jammy meat, 30 min</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t2">Tier 2 &mdash; Worth It</div>
+            <ul>
+                <li><strong>Reverse-sear leg</strong> &mdash; 80&deg;C to 50&deg;C internal, blast 240&deg;C 8&ndash;12 min</li>
+                <li><strong>7-Hour Proven&ccedil;al</strong> &mdash; sealed cocotte with white beans, garlic</li>
+                <li><strong>Greek kleftiko</strong> &mdash; parchment+foil package, lemon-oregano</li>
+                <li><strong>Mechoui spice</strong> &mdash; ras-el-hanout + cumin + smoked paprika + smen</li>
+            </ul>
+        </div>
+        <div>
+            <div class="tier-label t3">Tier 3 &mdash; Restaurant</div>
+            <ul>
+                <li><strong>Sous-vide 24 hr at 75&deg;C</strong> &mdash; max collagen / min protein loss</li>
+                <li><strong>Hay-baked</strong> &mdash; smouldering hay in covered Dutch oven</li>
+                <li><strong>Pomegranate-molasses lacquer</strong> &mdash; last 10 min of blast</li>
+                <li><strong>Charcoal-grilled crackle</strong> &mdash; finish over hot embers</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="bottom">
+    <section class="troubleshoot">
+        <h2>Troubleshoot</h2>
+        <table>
+            <tr><td>Still tough at 8 hr</td><td>Not yet 90&deg;C internal. Keep cooking.</td></tr>
+            <tr><td>Dry, fibrous</td><td>Wrong cut (leg) / past 95&deg;C too long. Pull 90&ndash;93&deg;C.</td></tr>
+            <tr><td>No crackle</td><td>Surface wet / oven low. Dry-brine 24 hr; blast 220&deg;C.</td></tr>
+            <tr><td>Burnt cap, raw inside</td><td>Blast at start. Always blast AFTER 90&deg;C internal.</td></tr>
+            <tr><td>Jus weak / watery</td><td>Bed light / not reduced. Reduce by half; cold butter end.</td></tr>
+            <tr><td>Probe 90&deg;C, meat firm</td><td>Probe near bone. Reposition into thickest muscle.</td></tr>
+            <tr><td>Tastes flat</td><td>Salt only at surface. Dry-brine 24 hr next time.</td></tr>
+        </table>
+    </section>
+    <section class="charter">
+        <h2>Charter Prep &amp; Storage</h2>
+        <table>
+            <tr><td>Charter protocol</td><td>Cook night before (8&ndash;10 hr at 110&deg;C). Refrigerate whole.</td></tr>
+            <tr><td>Day of, 90 min ahead</td><td>130&deg;C, 45 min, until warm through.</td></tr>
+            <tr><td>Final blast</td><td>220&deg;C, 15 min &mdash; restores crackle the fridge softened.</td></tr>
+            <tr><td>Roast in port</td><td>Hot stock in moving oven = hazard. Calm only.</td></tr>
+            <tr><td>Save the fat</td><td>Cheesecloth, jar. 1 mo fridge / 6 mo frozen.</td></tr>
+            <tr><td>Underpowered oven</td><td>(&lt; 130&deg;C unavailable) cook 6&ndash;7 hr instead.</td></tr>
+            <tr><td>Leftovers</td><td>Pulled in jus &mdash; 3 d / 2 mo frozen. Shepherd&rsquo;s pie, rag&ugrave;, bao.</td></tr>
+        </table>
+    </section>
+</div>
+
+<footer class="footer">
+    <span>Sources: Heston Blumenthal &middot; J. Kenji L&oacute;pez-Alt &middot; Harold McGee &middot; Felicity Cloake &middot; Yotam Ottolenghi &middot; Samin Nosrat</span>
+    <span>littoralicious.com &mdash; The Blueprint</span>
+</footer>
+
+</body>
+</html>
